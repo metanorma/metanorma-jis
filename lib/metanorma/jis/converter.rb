@@ -9,6 +9,12 @@ module Metanorma
 
       register_for "jis"
 
+      def init_i18n(node)
+        node.attr("language") or
+          node.set_attr("language", "jp")
+        super
+      end
+
       def boilerplate_file(_x_orig)
         File.join(@libdir, "jis_intro_jp.xml")
       end
@@ -44,16 +50,6 @@ module Metanorma
           IsoDoc::JIS::PresentationXMLConvert.new({})
         else
           IsoDoc::JIS::PresentationXMLConvert.new(doc_extract_attributes(node))
-        end
-      end
-
-      def sts_converter(node)
-        return if node.attr("no-pdf")
-
-        if node.nil?
-          IsoDoc::JIS::StsConvert.new({})
-        else
-          IsoDoc::JIS::StsConvert.new(html_extract_attributes(node))
         end
       end
     end

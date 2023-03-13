@@ -15,7 +15,6 @@ module Metanorma
           html: "html",
           pdf: "pdf",
           doc: "doc",
-          sts: "sts.xml",
         )
       end
 
@@ -46,8 +45,6 @@ module Metanorma
           IsoDoc::JIS::WordConvert.new(options).convert(inname, xml, nil, outname)
         when :pdf
           IsoDoc::JIS::PdfConvert.new(options).convert(inname, xml, nil, outname)
-        when :sts
-          IsoDoc::JIS::StsConvert.new(options).convert(inname, xml, nil, outname)
         when :presentation
           IsoDoc::JIS::PresentationXMLConvert.new(options).convert(inname, xml, nil, outname)
         else
