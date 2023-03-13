@@ -26,8 +26,8 @@ module IsoDoc
         @libdir = File.dirname(__FILE__)
         {
           htmlstylesheet: html_doc_path("htmlstyle.scss"),
-          htmlcoverpage: html_doc_path("html_bsi_titlepage.html"),
-          htmlintropage: html_doc_path("html_bsi_intro.html"),
+          htmlcoverpage: html_doc_path("html_jis_titlepage.html"),
+          htmlintropage: html_doc_path("html_jis_intro.html"),
         }
       end
 
