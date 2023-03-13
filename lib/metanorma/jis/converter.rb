@@ -1,0 +1,61 @@
+require "asciidoctor"
+require "metanorma-iso"
+
+module Metanorma
+  module JIS
+    class Converter < ISO::Converter
+      XML_ROOT_TAG = "jis-standard".freeze
+      XML_NAMESPACE = "https://www.metanorma.org/ns/jis".freeze
+
+      register_for "jis"
+
+      def boilerplate_file(_x_orig)
+        File.join(@libdir, "jis_intro_jp.xml")
+      end
+
+      def html_converter(node)
+        if node.nil?
+          IsoDoc::JIS::HtmlConvert.new({})
+        else
+          IsoDoc::JIS::HtmlConvert.new(html_extract_attributes(node))
+        end
+      end
+
+      def doc_converter(node)
+        if node.nil?
+          IsoDoc::JIS::WordConvert.new({})
+        else
+          IsoDoc::JIS::WordConvert.new(doc_extract_attributes(node))
+        end
+      end
+
+      def pdf_converter(node)
+        return if node.attr("no-pdf")
+
+        if node.nil?
+          IsoDoc::JIS::PdfConvert.new({})
+        else
+          IsoDoc::JIS::PdfConvert.new(pdf_extract_attributes(node))
+        end
+      end
+
+      def presentation_xml_converter(node)
+        if node.nil?
+          IsoDoc::JIS::PresentationXMLConvert.new({})
+        else
+          IsoDoc::JIS::PresentationXMLConvert.new(doc_extract_attributes(node))
+        end
+      end
+
+      def sts_converter(node)
+        return if node.attr("no-pdf")
+
+        if node.nil?
+          IsoDoc::JIS::StsConvert.new({})
+        else
+          IsoDoc::JIS::StsConvert.new(html_extract_attributes(node))
+        end
+      end
+    end
+  end
+end
