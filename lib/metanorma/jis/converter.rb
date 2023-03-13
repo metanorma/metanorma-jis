@@ -52,6 +52,13 @@ module Metanorma
           IsoDoc::JIS::PresentationXMLConvert.new(doc_extract_attributes(node))
         end
       end
+
+      def script_validate(xmldoc)
+        script = xmldoc&.at("//bibdata/script")&.text
+        %w(Jpan Latn).include?(script) or
+          @log.add("Document Attributes", nil,
+                   "#{script} is not a recognised script")
+      end
     end
   end
 end

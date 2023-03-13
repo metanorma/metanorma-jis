@@ -11,8 +11,8 @@ module IsoDoc
       end
 
       def default_fonts(options)
-        { bodyfont: font_choice(options),
-          headerfont: font_choice(options),
+        { bodyfont: (options[:script] == "Hans" ? '"Source Han Sans",serif' : '"Gesta","Tahoma",sans-serif'),
+          headerfont: (options[:script] == "Hans" ? '"Source Han Sans",sans-serif' : '"Gesta","Tahoma",sans-serif'),
           monospacefont: '"Courier New",monospace',
           normalfontsize: "11.0pt",
           monospacefontsize: "9.0pt",
