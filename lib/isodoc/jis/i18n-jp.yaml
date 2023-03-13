@@ -16,7 +16,7 @@ normref: 引用規格
 bibliography: 参考文献
 preface: Preface
 clause: 箇条
-annex: Annex
+annex: 附属書
 appendix: Appendix
 no_terms_boilerplate: |
           <p>この規格には，定義する用語はない。</p>
@@ -51,9 +51,9 @@ diagram: Diagram
 formula: 式
 inequality: Formula
 table: 表
-requirement: Requirement
-recommendation: Recommendation
-permission: Permission
+requirement: 要求事項
+recommendation: 推奨事項
+permission: 許容事項
 box: Box
 index: 索引
 # Modspec
@@ -115,10 +115,10 @@ locality: {
                       chapter: Chapter,
                       page: Page,
                       table: 表,
-                      annex: Annex,
+                      annex: 附属書,
                       figure: 図,
                       example: 例,
-                      note: Note,
+                      note: 注記,
                       formula: 式,
                     }
 grammar_abbrevs:
