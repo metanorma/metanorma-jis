@@ -1,5 +1,6 @@
 require "asciidoctor"
 require "metanorma-iso"
+require_relative "./front"
 
 module Metanorma
   module JIS
@@ -10,8 +11,7 @@ module Metanorma
       register_for "jis"
 
       def init_i18n(node)
-        node.attr("language") or
-          node.set_attr("language", "jp")
+        node.attr("language") or node.set_attr("language", "ja")
         super
       end
 

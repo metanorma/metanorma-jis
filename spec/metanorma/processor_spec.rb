@@ -19,15 +19,15 @@ RSpec.describe Metanorma::JIS::Processor do
     <contributor>
     <role type="author"/>
     <organization>
-    <name>International Organization for Standardization</name>
-    <abbreviation>ISO</abbreviation>
+    <name>Japanese Industrial Standards</name>
+    <abbreviation>JIS</abbreviation>
     </organization>
     </contributor>
     <contributor>
     <role type="publisher"/>
     <organization>
-    <name>International Organization for Standardization</name>
-    <abbreviation>ISO</abbreviation>
+    <name>Japanese Industrial Standards</name>
+    <abbreviation>JIS</abbreviation>
     </organization>
     </contributor>
     <language>fr</language>
@@ -40,8 +40,8 @@ RSpec.describe Metanorma::JIS::Processor do
     <from>#{Time.new.year}</from>
     <owner>
     <organization>
-    <name>International Organization for Standardization</name>
-    <abbreviation>ISO</abbreviation>
+    <name>Japanese Industrial Standards</name>
+    <abbreviation>JIS</abbreviation>
     </organization>
     </owner>
     </copyright>
@@ -106,7 +106,7 @@ RSpec.describe Metanorma::JIS::Processor do
 
   it "registers output formats against metanorma" do
     expect(processor.output_formats.sort.to_s).to be_equivalent_to <<~"OUTPUT"
-      [[:doc, "doc"], [:html, "html"], [:html_alt, "alt.html"], [:isosts, "iso.sts.xml"], [:pdf, "pdf"], [:presentation, "presentation.xml"], [:rxl, "rxl"], [:sts, "sts.xml"], [:xml, "xml"]]
+      [[:doc, "doc"], [:html, "html"], [:pdf, "pdf"], [:presentation, "presentation.xml"], [:rxl, "rxl"], [:xml, "xml"]]
     OUTPUT
   end
 

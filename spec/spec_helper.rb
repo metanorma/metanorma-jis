@@ -209,51 +209,55 @@ BLANK_HDR = <<~"HDR".freeze
     <contributor>
       <role type="author"/>
       <organization>
-        <name>The British Standards Institution</name>
-        <abbreviation>BSI</abbreviation>
+        <name>Japanese Industrial Standards</name>
+        <abbreviation>JIS</abbreviation>
       </organization>
     </contributor>
     <contributor>
       <role type="publisher"/>
       <organization>
-        <name>The British Standards Institution</name>
-        <abbreviation>BSI</abbreviation>
+        <name>Japanese Industrial Standards</name>
+        <abbreviation>JIS</abbreviation>
       </organization>
     </contributor>
-    <language>en</language>
-    <script>Latn</script>
+    <language>ja</language>
+    <script>Jpan</script>
     <status>
-    <stage abbreviation="">60</stage>
+    <stage>60</stage>
     <substage>60</substage>
     </status>
     <copyright>
       <from>#{Time.new.year}</from>
       <owner>
         <organization>
-          <name>BSI Standards Limited</name>
+          <name>Japanese Industrial Standards</name>
+          <abbreviation>JIS</abbreviation>
         </organization>
       </owner>
     </copyright>
     <ext>
       <doctype>standard</doctype>
     <editorialgroup>
-      <agency>BSI</agency>
+      <agency>JIS</agency>
     </editorialgroup>
-    <stagename>International standard</stagename>
+          <approvalgroup>
+        <agency>ISO</agency>
+      </approvalgroup>
+    <stagename>International Standard</stagename>
     </ext>
   </bibdata>
   <metanorma-extension>
       <presentation-metadata>
       <name>TOC Heading Levels</name>
-      <value>1</value>
+      <value>3</value>
     </presentation-metadata>
     <presentation-metadata>
       <name>HTML TOC Heading Levels</name>
-      <value>1</value>
+      <value>2</value>
     </presentation-metadata>
     <presentation-metadata>
       <name>DOC TOC Heading Levels</name>
-      <value>1</value>
+      <value>3</value>
     </presentation-metadata>
   </metanorma-extension>
 HDR
