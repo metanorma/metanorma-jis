@@ -1,3 +1,4 @@
+require_relative "../../html2doc/lists"
 require_relative "base_convert"
 require "isodoc"
 require_relative "init"
@@ -43,15 +44,26 @@ module IsoDoc
 
       def word_cleanup(docxml)
         word_note_cleanup(docxml)
+        boldface(docxml)
         super
       end
 
       def word_note_cleanup(docxml)
         docxml.xpath("//p[@class = 'Note']").each do |p|
-          p.xpath("//following-sibling:p").each do |p2|
+          p.xpath("//following-sibling::p").each do |p2|
             p2["class"] == "Note" and
               p2["class"] = "NoteCont"
           end
+        end
+      end
+
+      def boldface(docxml)
+        docxml.xpath("//h1 | h2 | h3 | h4 | h5 | h6").each do |h|
+          h.children = "<b>#{to_xml(h.children)}</b>"
+        end
+        docxml.xpath("//b").each do |b|
+          b.name = "span"
+          b["class"] = "Strong"
         end
       end
 
@@ -68,7 +80,7 @@ module IsoDoc
       def to_word1(result, filename, dir, header)
         result or return
         result = from_xhtml(result).gsub(/-DOUBLE_HYPHEN_ESCAPE-/, "--")
-        Html2Doc.new(
+        ::Html2Doc::JIS.new(
           filename: filename, imagedir: @localdir,
           stylesheet: @wordstylesheet&.path,
           header_file: header&.path, dir: dir,
@@ -94,10 +106,21 @@ module IsoDoc
         c = xml.at("//div[@class = 'WordSection1']")
         c.next_element&.remove
         c.remove
-        c = xml.at("//div[@class = 'bibliography']")
-        c&.previous_element&.remove
-        c&.remove
         xml
+      end
+
+      def norm_ref(isoxml, out, num)
+        (f = isoxml.at(ns(norm_ref_xpath)) and f["hidden"] != "true") or
+          return num
+        out.div class: "normref" do |div|
+          num += 1
+          clause_name(f, f.at(ns("./title")), div, nil)
+          if f.name == "clause"
+            f.elements.each { |e| parse(e, div) unless e.name == "title" }
+          else biblio_list(f, div, false)
+          end
+        end
+        num
       end
 
       def bibliography(isoxml, out)
@@ -109,6 +132,17 @@ module IsoDoc
             f.at(ns("./title"))&.children&.each { |c2| parse(c2, h1) }
           end
           biblio_list(f, div, true)
+        end
+      end
+
+      def new_styles(docxml)
+        super
+        biblio_paras(docxml)
+      end
+
+      def biblio_paras(docxml)
+        docxml.xpath("//div[@class = 'normref']//p[not(@class)]").each do |p|
+          p["class"] = "NormRefText"
         end
       end
 
