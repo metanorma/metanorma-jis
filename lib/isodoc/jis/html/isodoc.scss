@@ -50,22 +50,27 @@ p.Biblio, li.Biblio, div.Biblio
 	mso-bidi-font-family:$bodyfont;
 	mso-ansi-language:EN-GB;}
 p.NormRef, li.NormRef, div.NormRef
-        {mso-style-unhide:no;
-        mso-style-qformat:yes;
+        {mso-style-name:引用規格;
+        /* normative */
+        mso-style-unhide:no;
         mso-style-parent:"";
-        margin-top:0cm;
+        margin-top:2.0pt;
         margin-right:0cm;
-        margin-bottom:12.0pt;
-    margin-left:0pt;
-    text-indent:0pt;
-    tab-stops: 33.15pt;
-        line-height:12.0pt;
-        mso-pagination:widow-orphan;
+        margin-bottom:0cm;
+        margin-left:39.7pt;
+        text-align:justify;
+        text-justify:inter-ideograph;
+        text-indent:-19.85pt;
+        line-height:15.0pt;
+        mso-line-height-rule:exactly;
+        mso-pagination:none;
         font-size:$normalfontsize;
-        font-family:$bodyfont;
-        mso-fareast-font-family:"SimSun",serif;
-        mso-bidi-font-family:$bodyfont;
-        mso-ansi-language:EN-GB;}
+        font-family:"Times New Roman",serif;
+        mso-fareast-font-family:$bodyfont;
+        mso-font-kerning:1.0pt;
+        mso-ansi-language:EN-US;
+        mso-fareast-language:JA;
+        mso-no-proof:yes;}
 p.FigureTitle, li.FigureTitle, div.FigureTitle
 	{mso-style-name:"Figure Title";
 	mso-style-unhide:no;
@@ -485,27 +490,53 @@ span.AnnexFigureTitleChar
 	mso-ansi-language:EN-GB;
 	font-weight:bold;}
 p.Note, div.Note, li.Note, p.TableFootnote, div.TableFootnote, li.TableFootnote
-	{mso-style-unhide:no;
-        mso-style-name:"Note";
-	mso-style-qformat:yes;
-	mso-style-parent:"";
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:12.0pt;
-	margin-left:0cm;
-	text-align:justify;
-	line-height:12.0pt;
-	mso-pagination:widow-orphan;
-	tab-stops:20.15pt;
-	mso-bidi-font-size:$normalfontsize;
-	mso-fareast-font-family:"SimSun",serif;
-	mso-bidi-font-family:$bodyfont;
-	mso-ansi-language:EN-GB;}
+        {mso-style-name:注記１;
+        /*  Note 1 */
+        mso-style-unhide:no;
+        mso-style-parent:"";
+        mso-style-next:注記１＿段落;
+        margin-top:3.0pt;
+        margin-right:0cm;
+        margin-bottom:0cm;
+        margin-left:39.7pt;
+        text-align:justify;
+        text-justify:inter-ideograph;
+        text-indent:-29.75pt;
+        line-height:15.0pt;
+        mso-line-height-rule:exactly;
+        mso-pagination:none;
+        font-size:$normalfontsize;
+        font-family:"Times New Roman",serif;
+        mso-fareast-font-family:$bodyfont;
+        mso-font-kerning:1.0pt;
+        mso-ansi-language:EN-US;
+        mso-fareast-language:JA;}
 p.Note, li.Note, p.TableFootnote, div.TableFootnote, li.TableFootnote {
 	font-size:$smallerfontsize;
 	font-family:$bodyfont;
         }
 	/* may need to be revised */
+p.NoteCont, li.NoteCont, div.NoteCont
+        {mso-style-name:注記１＿段落; 
+        /*  note 1 paragraph */
+        mso-style-unhide:no;
+        mso-style-parent:"";
+        margin-top:3.0pt;
+        margin-right:0cm;
+        margin-bottom:0cm;
+        margin-left:39.7pt;
+        text-align:justify;
+        text-justify:inter-ideograph; 
+        text-indent:9.95pt;
+        line-height:15.0pt;
+        mso-line-height-rule:exactly;
+        mso-pagination:none;
+        font-size:$normalfontsize;
+        font-family:"Times New Roman",serif;
+        mso-fareast-font-family:$bodyfont;
+        mso-font-kerning:1.0pt;
+        mso-ansi-language:EN-US;
+        mso-fareast-language:JA;}
 p.ANNEX, li.ANNEX, div.ANNEX
 	{mso-style-name:ANNEX;
 	mso-style-priority:10;
@@ -575,54 +606,49 @@ p.Definition, li.Definition, div.Definition
 	mso-bidi-font-family:$bodyfont;
 	mso-ansi-language:EN-GB;}
 p.ForewordTitle, li.ForewordTitle, div.ForewordTitle
-	{mso-style-name:"Foreword Title";
-	mso-style-noshow:yes;
-	mso-style-unhide:no;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:15.5pt;
-	margin-left:0cm;
-	text-align:justify;
-	line-height:15.5pt;
-	page-break-before:always;
-	mso-pagination:widow-orphan;
-	page-break-after:avoid;
-	mso-outline-level:1;
-	mso-hyphenate:none;
-	tab-stops:20.15pt;
-	font-size:14.0pt;
-	mso-bidi-font-size:$normalfontsize;
-	font-family:$headerfont;
-	mso-fareast-font-family:"SimHei",serif;
-	mso-bidi-font-family:$headerfont;
-	mso-ansi-language:EN-GB;
-	font-weight:bold;
-	mso-bidi-font-weight:normal;}
-p.IntroTitle, li.IntroTitle, div.IntroTitle
-	{mso-style-name:"Intro Title";
-	mso-style-noshow:yes;
-	mso-style-unhide:no;
-	mso-style-parent:"Foreword Title";
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:15.5pt;
-	margin-left:0cm;
-	text-align:justify;
-	line-height:15.5pt;
-	mso-pagination:widow-orphan;
-	page-break-after:avoid;
-	mso-outline-level:1;
-	mso-hyphenate:none;
-	tab-stops:20.15pt;
-	font-size:14.0pt;
-	mso-bidi-font-size:$normalfontsize;
-	font-family:$headerfont;
-	mso-fareast-font-family:"SimHei",serif;
-	mso-bidi-font-family:$headerfont;
-	mso-ansi-language:EN-GB;
-	font-weight:bold;
+	{mso-style-name:まえがき見出し;
+        /* Foreword heading */
+        mso-style-unhide:no;
+        mso-style-parent:"";
+        mso-style-next:まえがき段落;
+        margin-top:17.0pt;
+        margin-right:0cm;
+        margin-bottom:17.0pt;
+        margin-left:0cm;
+        text-align:center;
         page-break-before:always;
-	mso-bidi-font-weight:normal;}
+        mso-pagination:widow-orphan;
+        font-size:14.0pt; 
+        mso-bidi-font-size:10.0pt;
+        font-family:"Arial",sans-serif;
+        mso-fareast-font-family:$headerfont;
+        mso-bidi-font-family:"Times New Roman";
+        mso-font-kerning:1.0pt;
+        mso-ansi-language:EN-US;
+        mso-fareast-language:JA;
+        mso-no-proof:yes;}
+p.IntroTitle, li.IntroTitle, div.IntroTitle
+        {mso-style-name:序文;
+        /* preface */
+        mso-style-unhide:no;
+        mso-style-parent:"";
+        mso-style-next:段落;
+        margin:0cm;
+        text-align:justify;
+        text-justify:inter-ideograph;
+        line-height:15.0pt;
+        mso-line-height-rule:exactly;
+        mso-pagination:none;
+        mso-outline-level:1;
+        font-size:$normalfontsize;
+        font-family:"Times New Roman",serif;
+        mso-fareast-font-family:$headerfont;
+        mso-font-kerning:1.0pt;
+        mso-ansi-language:EN-US;
+        mso-fareast-language:JA;
+        font-weight:bold;
+        mso-bidi-font-weight:normal;
+        mso-no-proof:yes;}
 p.TitlePageSubhead, li.TitlePageSubhead, div.TitlePageSubhead {
   mso-style-noshow:yes;
         mso-style-unhide:no;
@@ -735,29 +761,27 @@ p.zzHelp, li.zzHelp, div.zzHelp
 	mso-ansi-language:EN-GB;
 	mso-fareast-language:JA;}
 p.zzContents, li.zzContents, div.zzContents
-	{mso-style-name:zzContents;
-	mso-style-noshow:yes;
-	mso-style-unhide:no;
-	mso-style-next:"TOC 1";
-	margin-top:48.0pt;
-	margin-right:0cm;
-	margin-bottom:15.5pt;
-	margin-left:0cm;
-	line-height:15.5pt;
-	mso-line-height-rule:exactly;
-	page-break-before:always;
-	mso-pagination:widow-orphan;
-	page-break-after:avoid;
-	mso-hyphenate:none;
-	tab-stops:20.15pt;
-	font-size:14.0pt;
-	mso-bidi-font-size:$normalfontsize;
-	font-family:$headerfont;
-	mso-fareast-font-family:"SimHei",serif;
-	mso-bidi-font-family:$headerfont;
-	mso-ansi-language:EN-GB;
-	font-weight:bold;
-	mso-bidi-font-weight:normal;}
+        {mso-style-name:目次見出し;
+        /* table of contents heading */
+        mso-style-unhide:no;
+        mso-style-parent:"";
+        mso-style-next:目次;
+        margin-top:17.0pt;
+        margin-right:0cm;
+        margin-bottom:17.0pt;
+        margin-left:0cm;
+        text-align:center;
+        mso-pagination:widow-orphan;
+        font-size:14.0pt;
+        mso-bidi-font-size:10.0pt;
+        font-family:"Arial",sans-serif;
+        mso-fareast-font-family:$headerfont;
+        mso-bidi-font-family:"Times New Roman";
+        mso-font-kerning:1.0pt;
+        mso-ansi-language:EN-US;
+        mso-fareast-language:JA;
+        layout-grid-mode:line;
+        mso-no-proof:yes;}
 p.zzCopyright, li.zzCopyright, div.zzCopyright
 	{mso-style-name:zzCopyright;
 	mso-style-noshow:yes;
@@ -967,29 +991,25 @@ p.Formula, li.Formula, div.Formula
 	mso-bidi-font-family:$bodyfont;
 	mso-ansi-language:EN-GB;}
 p.ForewordText, li.ForewordText, div.ForewordText
-	{mso-style-name:"Foreword Text";
-	mso-style-unhide:no;
-	mso-style-link:"Foreword Text Char";
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:6.0pt;
-	margin-left:0cm;
-	text-align:justify;
-	line-height:12.0pt;
-	mso-pagination:widow-orphan;
-	font-size:$normalfontsize;
-	font-family:$bodyfont;
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";
-	mso-fareast-language:EN-US;}
-span.ForewordTextChar
-	{mso-style-name:"Foreword Text Char";
-	mso-style-unhide:no;
-	mso-style-locked:yes;
-	mso-style-parent:"";
-	mso-style-link:"Foreword Text";
-	mso-ansi-font-size:11.0pt;
-	mso-bidi-font-size:11.0pt;}
+       {mso-style-name:まえがき段落;
+        /* Foreword paragraph */
+        mso-style-unhide:no;
+        mso-style-parent:"";
+        margin-top:10.0pt;
+        margin-right:0cm;
+        margin-bottom:0cm;
+        margin-left:0cm;
+        text-indent:9.95pt;
+        line-height:15.0pt;
+        mso-line-height-rule:exactly;
+        mso-pagination:widow-orphan;
+        font-size:$normalfontsize;
+        font-family:"Times New Roman",serif;
+        mso-fareast-font-family:$bodyfont;
+        mso-font-kerning:1.0pt;
+        mso-ansi-language:EN-US;
+        mso-fareast-language:JA;
+        mso-no-proof:yes;}
 p.Source, li.Source, div.Source
 	{mso-style-name:Source;
 	mso-style-unhide:no;

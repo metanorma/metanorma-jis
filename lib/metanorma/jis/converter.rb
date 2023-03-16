@@ -37,6 +37,7 @@ module Metanorma
 
       def pdf_converter(node)
         return if node.attr("no-pdf")
+        return
 
         if node.nil?
           IsoDoc::JIS::PdfConvert.new({})
@@ -58,6 +59,12 @@ module Metanorma
         %w(Jpan Latn).include?(script) or
           @log.add("Document Attributes", nil,
                    "#{script} is not a recognised script")
+      end
+
+      def validate(doc)
+        content_validate(doc)
+        schema_validate(formattedstr_strip(doc.dup),
+                        File.join(File.dirname(__FILE__), "jis.rng"))
       end
     end
   end

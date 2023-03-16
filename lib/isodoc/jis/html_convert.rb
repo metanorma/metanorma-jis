@@ -11,11 +11,10 @@ module IsoDoc
         @libdir = File.dirname(__FILE__)
       end
 
-      # TODO : true font is BSI Gesta, which is a webfont
       def default_fonts(options)
         {
-          bodyfont: (options[:script] == "Hans" ? '"Source Han Sans",serif' : '"Gesta","Tahoma",sans-serif'),
-          headerfont: (options[:script] == "Hans" ? '"Source Han Sans",sans-serif' : '"Gesta","Tahoma",sans-serif'),
+          bodyfont: (options[:script] == "Jpan" ? '"MS Mincho",serif' : '"Times New Roman",serif'),
+          headerfont: (options[:script] == "Jpan" ? '"MS Gothic",sans-serif' : '"Arial",sans-serif'),
           monospacefont: '"Courier New",monospace',
           monospacefontsize: "1.0em",
           footnotefontsize: "0.9em",

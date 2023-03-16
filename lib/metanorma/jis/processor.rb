@@ -13,23 +13,20 @@ module Metanorma
       def output_formats
         super.merge(
           html: "html",
-          pdf: "pdf",
+          # pdf: "pdf",
           doc: "doc",
         )
       end
 
       def fonts_manifest
         {
-          "Tahoma" => nil,
           "STIX Two Math" => nil,
-          "Source Han Sans" => nil,
-          "Source Han Sans Normal" => nil,
+          "MS Gothic" => nil,
+          "MS Mincho" => nil,
           "Courier New" => nil,
-          "BSI Gesta" => nil,
-          "Cambria" => nil,
           "Cambria Math" => nil,
           "Times New Roman" => nil,
-          "Open Sans" => nil,
+          "Arial" => nil,
         }
       end
 

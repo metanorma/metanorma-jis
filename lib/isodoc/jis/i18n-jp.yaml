@@ -56,6 +56,8 @@ recommendation: 推奨事項
 permission: 許容事項
 box: Box
 index: 索引
+standard_no: 規格番号
+number: 番号
 # Modspec
 recommendationtest: Recommendation test
 requirementtest: Requirement test
