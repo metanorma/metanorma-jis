@@ -12,6 +12,7 @@ module Metanorma
 
       def init_i18n(node)
         node.attr("language") or node.set_attr("language", "ja")
+        node.attr("language") == "jp" and node.set_attr("language", "ja")
         super
       end
 
@@ -37,6 +38,7 @@ module Metanorma
 
       def pdf_converter(node)
         return if node.attr("no-pdf")
+
         return
 
         if node.nil?
