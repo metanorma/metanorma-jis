@@ -11,9 +11,14 @@ module IsoDoc
         super
       end
 
-      def default_fonts(options)
-        { bodyfont: (options[:script] == "Jpan" ? '"MS Mincho",serif' : '"Times New Roman",serif'),
-          headerfont: (options[:script] == "Jpan" ? '"MS Gothic",sans-serif' : '"Arial",sans-serif'),
+      def convert1(docxml, filename, dir)
+        @options.merge!(default_fonts({})) # updated @script
+        super
+      end
+
+      def default_fonts(_options)
+        { bodyfont: (@script == "Jpan" ? '"MS Mincho",serif' : '"Times New Roman",serif'),
+          headerfont: (@script == "Jpan" ? '"MS Gothic",sans-serif' : '"Arial",sans-serif'),
           monospacefont: '"Courier New",monospace',
           normalfontsize: "10.0pt",
           monospacefontsize: "9.0pt",

@@ -93,29 +93,27 @@ p.NormRef, li.NormRef, div.NormRef
         mso-ansi-language:EN-US;
         mso-fareast-language:JA;}
 p.FigureTitle, li.FigureTitle, div.FigureTitle
-	{mso-style-name:"Figure Title";
-	mso-style-unhide:no;
-	mso-style-qformat:yes;
-	mso-style-parent:"";
-	mso-style-parent:"List Paragraph";
-	mso-style-link:"Figure Title Char";
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:6.0pt;
-	margin-left:36.0pt;
-	mso-add-space:auto;
-	text-align:center;
-	text-indent:-30.35pt;
-	line-height:12.0pt;
-	mso-pagination:widow-orphan;
-	/*mso-list:l9 level1 lfo17;*/
-	tab-stops:20.15pt;
-	font-size:$normalfontsize;
-	font-family:$bodyfont;
-    font-weight:bold;
-	mso-fareast-font-family:"SimSun",serif;
-	mso-bidi-font-family:$bodyfont;
-	mso-ansi-language:EN-GB;}
+        {mso-style-name:図題（参考付図）;
+        /*  title (reference figure) */
+        mso-style-unhide:no;
+        mso-style-parent:図題;
+        mso-style-next:段落;
+        margin-top:3.0pt;
+        margin-right:0cm;
+        margin-bottom:0cm;
+        margin-left:0cm;
+        text-align:center;
+        line-height:17.0pt;
+        mso-line-height-rule:exactly;
+        mso-pagination:none;
+        font-size:$normalfontsize;
+        font-family:"Times New Roman",serif;
+        mso-fareast-font-family:$headerfont;
+        mso-font-kerning:1.0pt;
+        mso-ansi-language:EN-US;
+        mso-fareast-language:JA;
+        font-weight:bold;
+        mso-bidi-font-weight:normal;}
 p.FigureTitleCxSpFirst, li.FigureTitleCxSpFirst, div.FigureTitleCxSpFirst
 	{mso-style-name:"Figure TitleCxSpFirst";
 	mso-style-unhide:no;
@@ -384,28 +382,28 @@ p.SourceTitle
         mso-bidi-font-family:$bodyfont;
         mso-ansi-language:EN-GB;}
 p.Tabletitle, li.Tabletitle, div.Tabletitle, p.ListTitle
-	{mso-style-name:"Table title";
+        {mso-style-name:表題（解説表）;
+        /* Title (explanatory table) */
         mso-style-unhide:no;
-	mso-style-qformat:yes;
-	mso-style-parent:"";
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:6.0pt;
-	margin-left:36.0pt;
-	text-align:center;
-	text-indent:-18.0pt;
-	line-height:12.0pt;
-	page-break-after:avoid;
-	line-height:12.0pt;
-	mso-pagination:widow-orphan;
-	/* mso-list:l8 level1 lfo16; */
-	tab-stops:20.15pt;
-	font-size:$normalfontsize;
-	font-weight:bold;
-	font-family:$bodyfont;
-	mso-fareast-font-family:"SimSun",serif;
-	mso-bidi-font-family:$bodyfont;
-	mso-ansi-language:EN-GB;}
+        mso-style-parent:Title;
+        mso-style-next:単位;
+        margin-top:0cm;
+        margin-right:0cm;
+        margin-bottom:3.0pt;
+        margin-left:0cm;
+        text-align:center;
+        line-height:17.0pt;
+        mso-line-height-rule:exactly;
+        mso-pagination:none;
+        font-size:$normalfontsize;
+        font-family:"Times New Roman",serif;
+        mso-fareast-font-family:$headerfont;
+        mso-font-kerning:1.0pt;
+        mso-ansi-language:EN-US;
+        mso-fareast-language:JA;
+        font-weight:bold;
+        mso-bidi-font-weight:normal;
+        mso-no-proof:yes;}
 p.TabletitleCxSpFirst, li.TabletitleCxSpFirst, div.TabletitleCxSpFirst
 	{mso-style-name:"Table titleCxSpFirst";
 	mso-style-unhide:no;
@@ -3753,28 +3751,6 @@ p.afffffffd, li.afffffffd, div.afffffffd
 	font-weight:bold;
 	mso-bidi-font-weight:normal;
 	mso-no-proof:yes;}
-p.afffffffe, li.afffffffe, div.afffffffe
-	{mso-style-name:図題（参考付図）;
-	/*  title (reference figure) */
-	mso-style-unhide:no;
-	mso-style-parent:図題;
-	mso-style-next:段落;
-	margin-top:3.0pt;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:0cm;
-	text-align:center;
-	line-height:17.0pt;
-	mso-line-height-rule:exactly;
-	mso-pagination:none;
-	font-size:$normalfontsize;
-	font-family:"Times New Roman",serif;
-	mso-fareast-font-family:$headerfont;
-	mso-font-kerning:1.0pt;
-	mso-ansi-language:EN-US;
-	mso-fareast-language:JA;
-	font-weight:bold;
-	mso-bidi-font-weight:normal;}
 p.affffffff, li.affffffff, div.affffffff
 	{mso-style-name:図題（付図）;
 	/* Subtitle (Appendix) */
@@ -7260,29 +7236,6 @@ p.afffffffffffffffff4, li.afffffffffffffffff4, div.afffffffffffffffff4
 	mso-font-kerning:1.0pt;
 	mso-ansi-language:EN-US;
 	mso-fareast-language:JA;}
-p.afffffffffffffffff5, li.afffffffffffffffff5, div.afffffffffffffffff5
-	{mso-style-name:表題（解説表）;
-	/* Title (explanatory table) */
-	mso-style-unhide:no;
-	mso-style-parent:Title;
-	mso-style-next:単位;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:3.0pt;
-	margin-left:0cm;
-	text-align:center;
-	line-height:17.0pt;
-	mso-line-height-rule:exactly;
-	mso-pagination:none;
-	font-size:$normalfontsize;
-	font-family:"Times New Roman",serif;
-	mso-fareast-font-family:$headerfont;
-	mso-font-kerning:1.0pt;
-	mso-ansi-language:EN-US;
-	mso-fareast-language:JA;
-	font-weight:bold;
-	mso-bidi-font-weight:normal;
-	mso-no-proof:yes;}
 p.afffffffffffffffff6, li.afffffffffffffffff6, div.afffffffffffffffff6
 	{mso-style-name:表題（解説付表）;
 	/* Title (explanatory table) */
