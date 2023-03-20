@@ -4,6 +4,25 @@ RSpec.describe Metanorma::JIS do
     expect(Metanorma::JIS::VERSION).not_to be nil
   end
 
+  it "accepts language = jp" do
+    xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
+      = Document title
+      Author
+      :language: jp
+    INPUT
+    expect(xml.at("//xmlns:bibdata/xmlns:language").text)
+      .to be_equivalent_to "ja"
+  end
+
+  it "defaults to language = ja" do
+    xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
+      = Document title
+      Author
+    INPUT
+    expect(xml.at("//xmlns:bibdata/xmlns:language").text)
+      .to be_equivalent_to "ja"
+  end
+
   it "processes default metadata" do
     xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
       = Document title
