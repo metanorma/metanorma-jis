@@ -9,7 +9,10 @@ module IsoDoc
       def initialize(options)
         @libdir = File.dirname(__FILE__)
         super
+        @libdir = File.dirname(__FILE__)
       end
+
+      def init_dis(opt); end
 
       def convert(input_filename, file = nil, debug = false,
                 output_filename = nil)
@@ -40,6 +43,7 @@ module IsoDoc
       end
 
       def default_file_locations(_options)
+        @libdir = File.dirname(__FILE__)
         { htmlstylesheet: html_doc_path("htmlstyle.scss"),
           htmlcoverpage: html_doc_path("html_jis_titlepage.html"),
           htmlintropage: html_doc_path("html_jis_intro.html"),
