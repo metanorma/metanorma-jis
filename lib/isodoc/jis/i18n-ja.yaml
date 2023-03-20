@@ -9,3 +9,5 @@ doctype_dict:
   amendment: 追補
   technical-corrigendum: Technical Corrigendum
   directive: Directive
+stage_dict:
+  international-standard: 日本産業規格
