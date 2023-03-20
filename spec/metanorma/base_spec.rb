@@ -61,9 +61,9 @@ RSpec.describe Metanorma::JIS do
       :title-intro-en: Introduction
       :title-main-en: Main Title -- Title
       :title-part-en: Title Part
-      :title-intro-fr: Introduction Française
-      :title-main-fr: Titre Principal
-      :title-part-fr: Part du Titre
+      :title-intro-ja: Introduction Française
+      :title-main-ja: Titre Principal
+      :title-part-ja: Part du Titre
       :copyright-year: 2000
       :horizontal: true
     INPUT
@@ -74,10 +74,10 @@ RSpec.describe Metanorma::JIS do
            <title language="en" format="text/plain" type="title-intro">Introduction</title>
            <title language="en" format="text/plain" type="title-main">Main Title — Title</title>
            <title language="en" format="text/plain" type="title-part">Title Part</title>
-           <title language="fr" format="text/plain" type="main">Introduction Française — Titre Principal — Part du Titre</title>
-           <title language="fr" format="text/plain" type="title-intro">Introduction Française</title>
-           <title language="fr" format="text/plain" type="title-main">Titre Principal</title>
-           <title language="fr" format="text/plain" type="title-part">Part du Titre</title>
+           <title language="ja" format="text/plain" type="main">Introduction Française — Titre Principal — Part du Titre</title>
+           <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
+           <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
+           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
            <docidentifier type="ISO">ISO/WD 1000-1.3</docidentifier>
            <docidentifier type="iso-reference">ISO/WD 1000-1.3:2000()</docidentifier>
            <docidentifier type="URN">urn:iso:std:iso:1000:-1:stage-20.20.v3:ja</docidentifier>

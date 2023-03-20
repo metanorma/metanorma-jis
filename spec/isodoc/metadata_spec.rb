@@ -3,145 +3,133 @@ require "nokogiri"
 
 RSpec.describe IsoDoc::JIS::Metadata do
   it "processes IsoXML metadata" do
-    c = IsoDoc::Iso::HtmlConvert.new({})
+    c = IsoDoc::JIS::HtmlConvert.new({})
     _ = c.convert_init(<<~"INPUT", "test", false)
       <iso-standard xmlns="http://riboseinc.com/isoxml">
     INPUT
     input = <<~INPUT
-      <iso-standard xmlns="http://riboseinc.com/isoxml">
-        <bibdata type="standard">
-          <title format="text/plain" language="en" type="title-intro">Cereals and pulses</title>
-          <title format="text/plain" language="en" type="title-main">Specifications and test methods</title>
-          <title format="text/plain" language="en" type="title-part">Rice</title>
-          <title format="text/plain" language="fr" type="title-intro">Céréales et légumineuses</title>
-          <title format="text/plain" language="fr" type="title-main">Spécification et méthodes d'essai</title>
-          <title format="text/plain" language="fr" type="title-part">Riz</title>
-          <docidentifier type="ISO">ISO/PreCD3 17301-1</docidentifier>
-          <docidentifier type="iso-with-lang">ISO/PreCD3 17301-1 (E)</docidentifier>
-          <docidentifier type="iso-reference">ISO/PreCD3 17301-1:2000 (E)</docidentifier>
-          <docidentifier type="iso-tc">17301</docidentifier>
-          <docidentifier type="iso-tc">17302</docidentifier>
-          <docnumber>1730</docnumber>
-          <date type="published">
-            <on>2011</on>
-          </date>
-          <date type="accessed">
-            <on>2012</on>
-          </date>
-          <date type="created">
-            <from>2010</from>
-            <to>2011</to>
-          </date>
-          <date type="activated">
-            <on>2013</on>
-          </date>
-          <date type="obsoleted">
-            <on>2014</on>
-          </date>
-          <edition>2</edition>
-          <version>
-            <revision-date>2016-05-01</revision-date>
-            <draft>0.4</draft>
-          </version>
+         <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+              <bibdata type="standard">
+          <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
+          <title language="en" format="text/plain" type="title-intro">Introduction</title>
+          <title language="en" format="text/plain" type="title-main">Main Title — Title</title>
+          <title language="en" format="text/plain" type="title-part">Title Part</title>
+          <title language="ja" format="text/plain" type="main">Introduction Française — Titre Principal — Part du Titre</title>
+          <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
+          <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
+          <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
+          <docidentifier type="ISO">ISO/WD 1000-1.3</docidentifier>
+          <docidentifier type="iso-reference">ISO/WD 1000-1.3:2000()</docidentifier>
+          <docidentifier type="URN">urn:iso:std:iso:1000:-1:stage-20.20.v3:ja</docidentifier>
+          <docidentifier type="iso-undated">ISO/WD 1000-1.3</docidentifier>
+          <docidentifier type="iso-with-lang">ISO/WD 1000-1.3(ja)</docidentifier>
+          <docnumber>1000</docnumber>
           <contributor>
             <role type="author"/>
             <organization>
-              <abbreviation>ISO</abbreviation>
+              <name>Japanese Industrial Standards</name>
+              <abbreviation>JIS</abbreviation>
             </organization>
           </contributor>
           <contributor>
             <role type="publisher"/>
             <organization>
-              <name>International Organization for Standardization</name>
-              <abbreviation>ISO</abbreviation>
+              <name>Japanese Industrial Standards</name>
+              <abbreviation>JIS</abbreviation>
             </organization>
           </contributor>
-          <language>en</language>
-          <script>Latn</script>
+          <edition>2</edition>
+          <version>
+            <revision-date>2000-01-01</revision-date>
+            <draft>0.3.4</draft>
+          </version>
+          <language>ja</language>
+          <script>Jpan</script>
           <status>
-            <stage abbreviation="CD">30</stage>
-            <substage>92</substage>
+            <stage abbreviation="WD">20</stage>
+            <substage>20</substage>
             <iteration>3</iteration>
           </status>
           <copyright>
-            <from>2016</from>
+            <from>2000</from>
             <owner>
               <organization>
-                <abbreviation>ISO</abbreviation>
+                <name>Japanese Industrial Standards</name>
+                <abbreviation>JIS</abbreviation>
               </organization>
             </owner>
           </copyright>
-          <keyword>kw2</keyword>
-          <keyword>kw1</keyword>
           <ext>
-            <doctype>international-standard</doctype>
+            <doctype>standard</doctype>
             <horizontal>true</horizontal>
-            <editorialgroup identifier="DEF">
-              <technical-committee number="34">Food products</technical-committee>
-              <subcommittee number="4">Cereals and pulses</subcommittee>
-              <workgroup number="3">Rice Group</workgroup>
-              <secretariat>GB</secretariat>
+            <editorialgroup>
+              <agency>JIS</agency>
+              <technical-committee number="1" type="A">TC</technical-committee>
+              <technical-committee number="11" type="A1">TC1</technical-committee>
+              <subcommittee number="2" type="B">SC</subcommittee>
+              <subcommittee number="21" type="B1">SC1</subcommittee>
+              <workgroup number="3" type="C">WG</workgroup>
+              <workgroup number="31" type="C1">WG1</workgroup>
+              <secretariat>SECRETARIAT</secretariat>
             </editorialgroup>
-            <approvalgroup identifier="ABC">
-              <technical-committee number="34a">Food products A</technical-committee>
-              <subcommittee number="4a">Cereals and pulses A</subcommittee>
-              <workgroup number="3a">Rice Group A</workgroup>
+            <approvalgroup>
+              <agency>ISO</agency>
+              <agency>IEC</agency>
+              <technical-committee number="1a" type="Aa">TCa</technical-committee>
+              <technical-committee number="11a" type="A1a">TC1a</technical-committee>
+              <subcommittee number="2a" type="Ba">SCa</subcommittee>
+              <subcommittee number="21a" type="B1a">SC1a</subcommittee>
+              <workgroup number="3a" type="Ca">WGa</workgroup>
+              <workgroup number="31a" type="C1a">WG1a</workgroup>
             </approvalgroup>
             <structuredidentifier>
-              <project-number part="1">ISO/PreCD3 17301</project-number>
+              <project-number part="1">JIS 1000</project-number>
             </structuredidentifier>
-            <stagename>Committee draft</stagename>
+            <stagename abbreviation="WD">Working Draft International Standard</stagename>
           </ext>
         </bibdata>
-      </iso-standard>
+        <sections> </sections>
+      </jis-standard>
     INPUT
     output = <<~OUTPUT
-      {:accesseddate=>"2012",
-      :activateddate=>"2013",
-      :agency=>"ISO",
-      :approvalgroup=>"ABC",
-      :createddate=>"2010&#x2013;2011",
-      :docnumber=>"ISO/PreCD3 17301-1",
-      :docnumber_lang=>"ISO/PreCD3 17301-1 (E)",
-      :docnumber_reference=>"ISO/PreCD3 17301-1:2000 (E)",
-      :docnumeric=>"1730",
-      :docsubtitle=>"C&#xe9;r&#xe9;ales et l&#xe9;gumineuses&#xa0;&#x2014; Sp&#xe9;cification et m&#xe9;thodes d&#x27;essai&#xa0;&#x2014; Partie&#xa0;1: Riz",
-      :docsubtitleintro=>"C&#xe9;r&#xe9;ales et l&#xe9;gumineuses",
-      :docsubtitlemain=>"Sp&#xe9;cification et m&#xe9;thodes d&#x27;essai",
-      :docsubtitlepart=>"Riz",
-      :docsubtitlepartlabel=>"Partie&#xa0;1",
-      :doctitle=>"Cereals and pulses&#xa0;&#x2014; Specifications and test methods&#xa0;&#x2014; Part&#xa0;1: Rice",
-      :doctitleintro=>"Cereals and pulses",
-      :doctitlemain=>"Specifications and test methods",
-      :doctitlepart=>"Rice",
+      {:agency=>"JIS",
+      :docnumber=>"ISO/WD 1000-1.3",
+      :docnumber_lang=>"ISO/WD 1000-1.3(ja)",
+      :docnumber_reference=>"ISO/WD 1000-1.3:2000()",
+      :docnumber_undated=>"ISO/WD 1000-1.3",
+      :docnumeric=>"1000",
+      :docsubtitle=>"Introduction Fran&#xe7;aise&#xa0;&#x2014; Titre Principal&#xa0;&#x2014; &#xa0;1: Part du Titre",
+      :docsubtitleintro=>"Introduction Fran&#xe7;aise",
+      :docsubtitlemain=>"Titre Principal",
+      :docsubtitlepart=>"Part du Titre",
+      :docsubtitlepartlabel=>"&#xa0;1",
+      :doctitle=>"Introduction&#xa0;&#x2014; Main Title&#x2009;&#x2014;&#x2009;Title&#xa0;&#x2014; Part&#xa0;1: Title Part",
+      :doctitleintro=>"Introduction",
+      :doctitlemain=>"Main Title&#x2009;&#x2014;&#x2009;Title",
+      :doctitlepart=>"Title Part",
       :doctitlepartlabel=>"Part&#xa0;1",
-      :doctype=>"International Standard",
-      :doctype_display=>"International Standard",
-      :docyear=>"2016",
-      :draft=>"0.4",
-      :draftinfo=>" (draft 0.4, 2016-05-01)",
+      :doctype=>"Standard",
+      :doctype_display=>"Standard",
+      :docyear=>"2000",
+      :draft=>"0.3.4",
+      :draftinfo=>" (draft 0.3.4, 2000-01-01)",
       :edition=>"2",
-      :editorialgroup=>"DEF",
       :horizontal=>"true",
-      :keywords=>["kw2", "kw1"],
       :lang=>"en",
-      :obsoleteddate=>"2014",
-      :publisheddate=>"2011",
-      :publisher=>"International Organization for Standardization",
-      :revdate=>"2016-05-01",
-      :revdate_monthyear=>"May 2016",
-      :sc=>"SC 4",
+      :publisher=>"Japanese Industrial Standards",
+      :revdate=>"2000-01-01",
+      :revdate_monthyear=>"January 2000",
+      :sc=>"B 2",
       :script=>"Latn",
-      :secretariat=>"GB",
-      :stage=>"30",
-      :stage_int=>30,
-      :stageabbr=>"CD",
-      :statusabbr=>"PreCD3",
-      :substage_int=>"92",
-      :tc=>"TC 34",
-      :tc_docnumber=>["17301", "17302"],
+      :secretariat=>"SECRETARIAT",
+      :stage=>"20",
+      :stage_int=>20,
+      :stageabbr=>"WD",
+      :statusabbr=>"PreWD3",
+      :substage_int=>"20",
+      :tc=>"A 1",
       :unpublished=>true,
-      :wg=>"WG 3"}
+      :wg=>"C 3"}
     OUTPUT
     expect(metadata(c.info(Nokogiri::XML(input),
                            nil))).to be_equivalent_to output

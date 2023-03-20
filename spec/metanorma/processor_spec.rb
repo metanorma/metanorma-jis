@@ -138,12 +138,14 @@ RSpec.describe Metanorma::JIS::Processor do
         <main class="main-section">
           <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
           <div class='authority'> </div>
-          <p class='zzSTDTitle1'>French</p>
-          <div id="H"><h1 id="_">1&#xA0; Terms, Definitions, Symbols and Abbreviated Terms</h1>
-            <h2 class="TermNum" id="J">1.1</h2>
-            <p class="Terms" style="text-align:left;">Term2</p>
-          </div>
-        </main>
+                  <p class="zzSTDTitle1"/>
+         <p class="zzSTDTitle2"/>
+         <div id="H">
+           <h1 id="_">1  Terms, Definitions, Symbols and Abbreviated Terms</h1>
+           <h2 class="TermNum" id="J">1.1</h2>
+           <p class="Terms" style="text-align:left;">Term2</p>
+         </div>
+       </main>
       OUTPUT
   end
 end
