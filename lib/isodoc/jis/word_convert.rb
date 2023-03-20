@@ -5,10 +5,23 @@ require_relative "init"
 
 module IsoDoc
   module JIS
-    class WordConvert < IsoDoc::WordConvert
+    class WordConvert < IsoDoc::Iso::WordConvert
       def initialize(options)
         @libdir = File.dirname(__FILE__)
         super
+      end
+
+      def convert(input_filename, file = nil, debug = false,
+                output_filename = nil)
+        file = File.read(input_filename, encoding: "utf-8") if file.nil?
+        @openmathdelim, @closemathdelim = extract_delims(file)
+        docxml, filename, dir = convert_init(file, input_filename, debug)
+        result = convert1(docxml, filename, dir)
+        return result if debug
+
+        output_filename ||= "#{filename}.#{@suffix}"
+        postprocess(result, output_filename, dir)
+        FileUtils.rm_rf dir
       end
 
       def convert1(docxml, filename, dir)
@@ -137,6 +150,16 @@ module IsoDoc
             f.at(ns("./title"))&.children&.each { |c2| parse(c2, h1) }
           end
           biblio_list(f, div, true)
+        end
+      end
+
+      def annex_name(_annex, name, div)
+        preceding_floating_titles(name, div)
+        return if name.nil?
+
+        div.h1 class: "Annex" do |t|
+          name.children.each { |c2| parse(c2, t) }
+          clause_parse_subtitle(name, t)
         end
       end
 
