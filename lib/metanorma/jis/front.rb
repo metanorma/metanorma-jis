@@ -46,6 +46,17 @@ module Metanorma
           end
         end
       end
+
+      def title(node, xml)
+        %w(en ja).each do |lang|
+          at = { language: lang, format: "text/plain" }
+          title_full(node, xml, lang, at)
+          title_intro(node, xml, lang, at)
+          title_main(node, xml, lang, at)
+          title_part(node, xml, lang, at)
+          title_amd(node, xml, lang, at) if @amd
+        end
+      end
     end
   end
 end

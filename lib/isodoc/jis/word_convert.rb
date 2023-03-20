@@ -143,11 +143,21 @@ module IsoDoc
       def new_styles(docxml)
         super
         biblio_paras(docxml)
+        heading_to_para(docxml)
       end
 
       def biblio_paras(docxml)
         docxml.xpath("//div[@class = 'normref']//p[not(@class)]").each do |p|
           p["class"] = "NormRefText"
+        end
+      end
+
+      def heading_to_para(docxml)
+        docxml.xpath("//h1[@class = 'ForewordTitle']").each do |p|
+          p.name = "p"
+          p.xpath("../div/p[not(@class)]").each do |n|
+            n["class"] = "ForewordText"
+          end
         end
       end
 

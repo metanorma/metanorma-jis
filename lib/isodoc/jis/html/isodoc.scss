@@ -776,7 +776,7 @@ p.zzHelp, li.zzHelp, div.zzHelp
 	font-size:$normalfontsize;
 	mso-bidi-font-size:10.0pt;
 	font-family:$bodyfont;
-	mso-fareast-font-family:"MS Mincho";
+	mso-fareast-font-family:$bodyfont;
 	mso-bidi-font-family:"Times New Roman";
 	color:green;
 	mso-ansi-language:EN-GB;
@@ -912,7 +912,7 @@ p.zzSTDTitle1, li.zzSTDTitle1, div.zzSTDTitle1
         mso-pagination:none;
         font-size:10.0pt;
         font-family:"Times New Roman",serif;
-        mso-fareast-font-family:"MS Gothic";
+        mso-fareast-font-family:$headerfont;
         mso-font-kerning:1.0pt;
         mso-ansi-language:EN-US;
         mso-fareast-language:JA;
@@ -1314,21 +1314,28 @@ div.Example, td.Example {
 }
 
 p.Example, li.Example, div.Example
-	{
-	mso-style-unhide:no;
-	mso-style-qformat:yes;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:6.0pt;
-	margin-left:0cm;
-	text-align:justify;
-	line-height:12.0pt;
-	mso-pagination:widow-orphan;
-	/* tab-stops:20.15pt; */
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";
-	mso-ansi-language:EN-GB;
-	mso-fareast-language:EN-US;}
+        {mso-style-name:例１;
+        /* Example 1 */
+        mso-style-unhide:no;
+        mso-style-parent:"";
+        mso-style-next:例１＿段落;
+        margin-top:3.0pt;
+        margin-right:0cm;
+        margin-bottom:0cm;
+        margin-left:29.8pt;
+        text-align:justify;
+        text-justify:inter-ideograph;
+        text-indent:-19.85pt;
+        line-height:15.0pt;
+        mso-line-height-rule:exactly;
+        mso-pagination:none;
+        font-size:$normalfontsize;
+        font-family:"Times New Roman",serif;
+        mso-fareast-font-family:$bodyfont;
+        mso-font-kerning:1.0pt;
+        mso-ansi-language:EN-US;
+        mso-fareast-language:JA;
+        mso-no-proof:yes;}
 span.ExampleChar
 	{mso-style-name:"Example Char";
 	mso-style-unhide:no;
@@ -8745,29 +8752,6 @@ p.afffffffffffffffffffffd, li.afffffffffffffffffffffd, div.affffffffffffffffffff
 	mso-fareast-language:JA;
 	font-weight:bold;
 	mso-bidi-font-weight:normal;
-	mso-no-proof:yes;}
-p.afffffffffffffffffffffe, li.afffffffffffffffffffffe, div.afffffffffffffffffffffe
-	{mso-style-name:例１;
-	/* Example 1 */
-	mso-style-unhide:no;
-	mso-style-parent:"";
-	mso-style-next:例１＿段落;
-	margin-top:3.0pt;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:29.8pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-indent:-19.85pt;
-	line-height:15.0pt;
-	mso-line-height-rule:exactly;
-	mso-pagination:none;
-	font-size:$normalfontsize;
-	font-family:"Times New Roman",serif;
-	mso-fareast-font-family:$bodyfont;
-	mso-font-kerning:1.0pt;
-	mso-ansi-language:EN-US;
-	mso-fareast-language:JA;
 	mso-no-proof:yes;}
 p.affffffffffffffffffffff, li.affffffffffffffffffffff, div.affffffffffffffffffffff
 	{mso-style-name:例１（番号のみ）;
