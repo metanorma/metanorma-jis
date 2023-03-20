@@ -1,0 +1,13 @@
+under_preparation: Under preparation.
+doctype_dict:
+  international-standard: International standard
+  technical-specification: Technical specification
+  technical-report: Technical report
+  publicly-available-specification: Publicly Available Specification
+  international-workshop-agreement: International Workshop Agreement
+  guide: Guide
+  amendment: Amendment
+  technical-corrigendum: Technical Corrigendum
+  directive: Directive
+stage_dict:
+  international-standard: International standard

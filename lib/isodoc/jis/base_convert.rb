@@ -28,7 +28,7 @@ module IsoDoc
         out.p(class: "zzSTDTitle2") do |p|
           p << @meta.get[:docsubtitleintro]
           p << " &#x2014; " if @meta.get[:docsubtitleintro] && @meta.get[:docsubtitlemain]
-          p << @meta.get[:doctitlemain]
+          p << @meta.get[:docsubtitlemain]
           p << " &#x2014; " if @meta.get[:docsubtitlemain] && @meta.get[:docsubtitlepart]
         end
         a = @meta.get[:docsubtitlepart] and out.p(class: "zzSTDTitle2") do |p|

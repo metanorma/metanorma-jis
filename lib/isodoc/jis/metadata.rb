@@ -47,6 +47,8 @@ module IsoDoc
         set(:docsubtitleamd, @c.encode(tp[:amd].text, :hexadecimal)) if tp[:amd]
         set(:docsubtitlecorrlabel, corr_prefix(tn, lang)) if tn[:corr]
       end
+
+      PART_LABEL = { en: "Part", ja: "その" }.freeze
     end
   end
 end

@@ -102,7 +102,7 @@ RSpec.describe IsoDoc::JIS::Metadata do
       :docsubtitleintro=>"Introduction Fran&#xe7;aise",
       :docsubtitlemain=>"Titre Principal",
       :docsubtitlepart=>"Part du Titre",
-      :docsubtitlepartlabel=>"&#xa0;1",
+      :docsubtitlepartlabel=>"その&#xa0;1",
       :doctitle=>"Introduction&#xa0;&#x2014; Main Title&#x2009;&#x2014;&#x2009;Title&#xa0;&#x2014; Part&#xa0;1: Title Part",
       :doctitleintro=>"Introduction",
       :doctitlemain=>"Main Title&#x2009;&#x2014;&#x2009;Title",
