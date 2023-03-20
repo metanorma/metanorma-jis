@@ -170,7 +170,8 @@ module IsoDoc
       end
 
       def biblio_paras(docxml)
-        docxml.xpath("//div[@class = 'normref']//p[not(@class)]").each do |p|
+        docxml.xpath("//div[@class = 'normref']//" \
+                     "p[not(@class) or @class = 'MsoNormal']").each do |p|
           p["class"] = "NormRefText"
         end
       end
@@ -178,7 +179,7 @@ module IsoDoc
       def heading_to_para(docxml)
         docxml.xpath("//h1[@class = 'ForewordTitle']").each do |p|
           p.name = "p"
-          p.xpath("../div/p[not(@class)]").each do |n|
+          p.xpath("../div/p[not(@class) or @class = 'MsoNormal']").each do |n|
             n["class"] = "ForewordText"
           end
         end
