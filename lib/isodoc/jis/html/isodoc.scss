@@ -1377,7 +1377,7 @@ div.Note table.dl  {
 span.note_label, span.example_label, td.example_label, td.note_label
 {
 font-size: $smallerfontsize;
-font-family:$bodyfont;
+font-family:$headerfont;
 }
 
 
@@ -1986,7 +1986,7 @@ p.a3, li.a3, div.a3
 	mso-ansi-language:EN-US;
 	mso-fareast-language:JA;
 	mso-no-proof:yes;}
-p.a4, li.a4, div.a4
+p.MsoListBullet, li.MsoListBullet, div.MsoListBullet
 	{mso-style-name:ダーシ１;
 	/*  Darcy 1 */
 	mso-style-unhide:no;
@@ -2030,7 +2030,7 @@ p.a5, li.a5, div.a5
 	mso-ansi-language:EN-US;
 	mso-fareast-language:JA;
 	mso-no-proof:yes;}
-p.a6, li.a6, div.a6
+p.MsoListBullet2, li.MsoListBullet2, div.MsoListBullet2
 	{mso-style-name:ダーシ２;
 	/*  Darcy 2 */
 	mso-style-unhide:no;
@@ -2074,7 +2074,7 @@ p.a7, li.a7, div.a7
 	mso-ansi-language:EN-US;
 	mso-fareast-language:JA;
 	mso-no-proof:yes;}
-p.a8, li.a8, div.a8
+p.MsoListBullet3, li.MsoListBullet3, div.MsoListBullet3
 	{mso-style-name:ダーシ３;
 	/*  Darcy 3 */
 	mso-style-unhide:no;
@@ -2118,7 +2118,7 @@ p.a9, li.a9, div.a9
 	mso-ansi-language:EN-US;
 	mso-fareast-language:JA;
 	mso-no-proof:yes;}
-p.aa, li.aa, div.aa
+p.MsoListBullet4, li.MsoListBullet4, div.MsoListBullet4
 	{mso-style-name:ダーシ４;
 	/*  Darcy 4 */
 	mso-style-unhide:no;
@@ -2162,7 +2162,7 @@ p.ab, li.ab, div.ab
 	mso-ansi-language:EN-US;
 	mso-fareast-language:JA;
 	mso-no-proof:yes;}
-p.ac, li.ac, div.ac
+p.MsoListBullet5, li.MsoListBullet5, div.MsoListBullet5
 	{mso-style-name:ダーシ５;
 	/*  Darcy 5 */
 	mso-style-unhide:no;
@@ -2206,7 +2206,7 @@ p.ad, li.ad, div.ad
 	mso-ansi-language:EN-US;
 	mso-fareast-language:JA;
 	mso-no-proof:yes;}
-p.ae, li.ae, div.ae
+p.MsoListBullet6, li.MsoListBullet6, div.MsoListBullet6
 	{mso-style-name:ダーシ６;
 	/*  Darcy 6 */
 	mso-style-unhide:no;
@@ -3758,7 +3758,7 @@ p.afffffffd, li.afffffffd, div.afffffffd
 	font-weight:bold;
 	mso-bidi-font-weight:normal;
 	mso-no-proof:yes;}
-p.affffffff, li.affffffff, div.affffffff
+p.SubfigureCaption, li.SubfigureCaption, div.SubfigureCaption
 	{mso-style-name:図題（付図）;
 	/* Subtitle (Appendix) */
 	mso-style-unhide:no;
@@ -5194,7 +5194,7 @@ span.affffffffffff5
 	mso-ascii-font-family:Arial;
 	mso-fareast-font-family:$headerfont;
 	mso-hansi-font-family:Arial;}
-p.affffffffffff6, li.affffffffffff6, div.affffffffffff6
+p.UnitStatement, li.UnitStatement, div.UnitStatement
 	{mso-style-name:単位;
 	/* unit */
 	mso-style-unhide:no;

@@ -1,7 +1,7 @@
-require_relative "../../html2doc/lists"
 require_relative "base_convert"
 require "isodoc"
 require_relative "init"
+require_relative "word_cleanup"
 
 module IsoDoc
   module JIS
@@ -13,6 +13,11 @@ module IsoDoc
       end
 
       def init_dis(opt); end
+
+      def clause_attrs(node)
+        # capture the type of clause
+        { id: node["id"], type: node["type"] }
+      end
 
       def convert(input_filename, file = nil, debug = false,
                 output_filename = nil)
@@ -56,85 +61,10 @@ module IsoDoc
           olstyle: "l8" }
       end
 
-      def postprocess(result, filename, dir)
-        filename = filename.sub(/\.doc$/, "")
-        header = generate_header(filename, dir)
-        result = from_xhtml(cleanup(to_xhtml(textcleanup(result))))
-        toWord(result, filename, dir, header)
-        @files_to_delete.each { |f| FileUtils.rm_f f }
-      end
-
-      def word_cleanup(docxml)
-        word_note_cleanup(docxml)
-        boldface(docxml)
-        super
-      end
-
-      def word_note_cleanup(docxml)
-        docxml.xpath("//p[@class = 'Note']").each do |p|
-          p.xpath("//following-sibling::p").each do |p2|
-            p2["class"] == "Note" and
-              p2["class"] = "NoteCont"
-          end
-        end
-      end
-
-      def boldface(docxml)
-        docxml.xpath("//h1 | h2 | h3 | h4 | h5 | h6").each do |h|
-          h.children = "<b>#{to_xml(h.children)}</b>"
-        end
-        docxml.xpath("//b").each do |b|
-          b.name = "span"
-          b["class"] = "Strong"
-        end
-      end
-
-      def toWord(result, filename, dir, header)
-        result = word_split(word_cleanup(to_xhtml(result)))
-        @wordstylesheet = wordstylesheet_update
-        result.each do |k, v|
-          to_word1(v, "#{filename}#{k}", dir, header)
-        end
-        header&.unlink
-        @wordstylesheet.unlink if @wordstylesheet.is_a?(Tempfile)
-      end
-
-      def to_word1(result, filename, dir, header)
-        result or return
-        result = from_xhtml(result).gsub(/-DOUBLE_HYPHEN_ESCAPE-/, "--")
-        ::Html2Doc::JIS.new(
-          filename: filename, imagedir: @localdir,
-          stylesheet: @wordstylesheet&.path,
-          header_file: header&.path, dir: dir,
-          asciimathdelims: [@openmathdelim, @closemathdelim],
-          liststyles: { ul: @ulstyle, ol: @olstyle }
-        ).process(result)
-      end
-
-      def word_split(xml)
-        b = xml.dup
-        { _cover: cover_split(xml), "": main_split(b) }
-      end
-
-      def cover_split(xml)
-        xml.at("//body").elements.each do |e|
-          e.name == "div" && e["class"] == "WordSection1" and next
-          e.remove
-        end
-        xml
-      end
-
-      def main_split(xml)
-        c = xml.at("//div[@class = 'WordSection1']")
-        c.next_element&.remove
-        c.remove
-        xml
-      end
-
       def norm_ref(isoxml, out, num)
         (f = isoxml.at(ns(norm_ref_xpath)) and f["hidden"] != "true") or
           return num
-        out.div class: "normref" do |div|
+        out.div class: "normref_div" do |div|
           num += 1
           clause_name(f, f.at(ns("./title")), div, nil)
           if f.name == "clause"
@@ -167,26 +97,142 @@ module IsoDoc
         end
       end
 
-      def new_styles(docxml)
-        super
-        biblio_paras(docxml)
-        heading_to_para(docxml)
-      end
-
-      def biblio_paras(docxml)
-        docxml.xpath("//div[@class = 'normref']//" \
-                     "p[not(@class) or @class = 'MsoNormal']").each do |p|
-          p["class"] = "NormRefText"
-        end
-      end
-
-      def heading_to_para(docxml)
-        docxml.xpath("//h1[@class = 'ForewordTitle']").each do |p|
-          p.name = "p"
-          p.xpath("../div/p[not(@class) or @class = 'MsoNormal']").each do |n|
-            n["class"] = "ForewordText"
+      def preface(isoxml, out)
+        isoxml.xpath(ns("//preface/clause | //preface/references | " \
+                        "//preface/definitions | //preface/terms")).each do |f|
+          out.div **attr_code(class: "Section3", id: f["id"],
+                              type: f["type"]) do |div|
+            clause_name(f, f&.at(ns("./title")), div, { class: "IntroTitle" })
+            f.elements.each do |e|
+              parse(e, div) unless e.name == "title"
+            end
           end
         end
+      end
+
+      def introduction(isoxml, out)
+        f = isoxml.at(ns("//introduction")) || return
+        out.div class: "Section3", id: f["id"] do |div|
+          clause_name(f, f.at(ns("./title")), div, { class: "IntroTitle" })
+          f.elements.each do |e|
+            parse(e, div) unless e.name == "title"
+          end
+        end
+      end
+
+      def make_body2(body, docxml)
+        body.div class: "WordSection2" do |div2|
+          boilerplate docxml, div2
+          preface_block docxml, div2
+          abstract docxml, div2
+          foreword docxml, div2
+          preface docxml, div2
+          acknowledgements docxml, div2
+          div2.p { |p| p << "&#xa0;" } # placeholder
+        end
+        section_break(body)
+      end
+
+      def middle(isoxml, out)
+        middle_title(isoxml, out)
+        middle_admonitions(isoxml, out)
+        introduction isoxml, out
+        scope isoxml, out, 0
+        norm_ref isoxml, out, 0
+        terms_defs isoxml, out, 0
+        symbols_abbrevs isoxml, out, 0
+        clause isoxml, out
+        annex isoxml, out
+        bibliography isoxml, out
+        colophon isoxml, out
+      end
+
+      def figure_attrs(node)
+        attr_code(id: node["id"], class: "MsoTableGrid",
+                  style: "border-collapse:collapse;" \
+                         "border:none;mso-padding-alt: " \
+                         "0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;" \
+                         "mso-border-insidev:none;#{keep_style(node)}",
+                  border: 0, cellspacing: 0, cellpadding: 0)
+      end
+
+      def figure_components(node)
+        { units: node.at(ns("./note[@type = 'units']/p")),
+          notes: node.xpath(ns("./note[not(@type = 'units')]")),
+          name: node.at(ns("./name")),
+          key: node.at(ns("./dl")),
+          img: node.at(ns("./image")),
+          subfigs: node.xpath(ns("./figure")).map { |n| figure_components(n) } }
+      end
+
+      def figure_parse1(node, out)
+        c = figure_components(node)
+        out.table **figure_attrs(node) do |div|
+          %i(units img subfigs key notes name).each do |key|
+            if key == :subfigs
+              c[key].each do |n|
+                n[:subname] = n[:name]
+                figure_row(node, div, n, :img)
+                figure_row(node, div, n, :subname)
+              end
+            else figure_row(node, div, c, key)
+            end
+          end
+        end
+      end
+
+      def figure_name_parse(_node, div, name)
+        name.nil? and return
+        div.p class: "Tabletitle", style: "text-align:center;" do |p|
+          name.children.each { |n| parse(n, p) }
+        end
+      end
+
+      def figure_row(node, table, hash, key)
+        hash[key].nil? || (hash[key].is_a?(Array) && hash[key].empty?) and
+          return
+        table.tr do |r|
+          r.td valign: "top", style: "padding:0cm 5.4pt 0cm 5.4pt" do |d|
+            figure_row1(node, d, hash, key)
+          end
+        end
+      end
+
+      def fig_para(klass, row, nodes)
+        row.td valign: "top", style: "padding:0cm 5.4pt 0cm 5.4pt" do |d|
+          d.p class: klass do |p|
+            nodes.each { |n| parse(n, p) }
+          end
+        end
+      end
+
+      def figure_row1(node, cell, hash, key)
+        case key
+        when :units
+          cell.p class: "UnitStatement" do |p|
+            hash[key].children.each { |n| parse(n, p) }
+          end
+        when :key
+          figure_key(cell)
+          parse(hash[key], cell)
+        when :notes then hash[key].each { |n| parse(n, cell) }
+        when :name then figure_name_parse(node, cell, hash[key])
+        when :img
+          cell.p class: "FFFF" do |p|
+            parse(hash[key], p)
+          end
+        when :subname
+          cell.p class: "SubfigureCaption" do |p|
+            hash[key].children.each { |n| parse(n, p) }
+          end
+        end
+      end
+
+      def dl_parse(node, out)
+        node.ancestors("table, dl, figure").empty? or
+          return ::IsoDoc::Convert.instance_method(:dl_parse).bind(self)
+              .call(node, out)
+        dl_parse_table(node, out)
       end
 
       include BaseConvert

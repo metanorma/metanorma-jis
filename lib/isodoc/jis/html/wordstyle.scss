@@ -180,8 +180,7 @@ p.MsoList, li.MsoList, div.MsoList
         margin-right:0cm;
         margin-bottom:0cm;
         /* do not put in margin-left, it is specific to list level */
-        /*margin-left:19.85pt;*/
-        margin-left:36.0pt;
+        margin-left:19.85pt;
         text-align:justify;
         text-justify:inter-ideograph;
         text-indent:-19.85pt;
@@ -1604,26 +1603,6 @@ p.MsoToaHeading, li.MsoToaHeading, div.MsoToaHeading
 	mso-font-kerning:1.0pt;
 	mso-ansi-language:EN-US;
 	mso-fareast-language:JA;}
-p.MsoListBullet, li.MsoListBullet, div.MsoListBullet
-	{mso-style-update:auto;
-	mso-style-unhide:no;
-	mso-style-next:箇条７;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:18.0pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-indent:0cm;
-	mso-pagination:none;
-	mso-list:l9 level1 lfo8;
-	tab-stops:list 18.0pt;
-	font-size:$normalfontsize;
-	font-family:"Times New Roman",serif;
-	mso-fareast-font-family:$bodyfont;
-	mso-font-kerning:1.0pt;
-	mso-ansi-language:EN-US;
-	mso-fareast-language:JA;}
 p.MsoListNumber, li.MsoListNumber, div.MsoListNumber
 	{mso-style-unhide:no;
 	mso-style-next:箇条５;
@@ -1768,74 +1747,6 @@ p.MsoList6, li.MsoList6, div.MsoList6
         mso-ansi-language:EN-US;
         mso-fareast-language:JA;
         mso-no-proof:yes;}
-p.MsoListBullet2, li.MsoListBullet2, div.MsoListBullet2
-	{mso-style-update:auto;
-	mso-style-unhide:no;
-	mso-style-next:規格名称;
-	margin:0cm;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-indent:0cm;
-	mso-pagination:none;
-	mso-list:l7 level1 lfo9;
-	tab-stops:list 39.25pt;
-	font-size:$normalfontsize;
-	font-family:"Times New Roman",serif;
-	mso-fareast-font-family:$bodyfont;
-	mso-font-kerning:1.0pt;
-	mso-ansi-language:EN-US;
-	mso-fareast-language:JA;}
-p.MsoListBullet3, li.MsoListBullet3, div.MsoListBullet3
-	{mso-style-update:auto;
-	mso-style-unhide:no;
-	mso-style-next:規格名称（英語）;
-	margin:0cm;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-indent:0cm;
-	mso-pagination:none;
-	mso-list:l6 level1 lfo10;
-	tab-stops:list 60.55pt;
-	font-size:$normalfontsize;
-	font-family:"Times New Roman",serif;
-	mso-fareast-font-family:$bodyfont;
-	mso-font-kerning:1.0pt;
-	mso-ansi-language:EN-US;
-	mso-fareast-language:JA;}
-p.MsoListBullet4, li.MsoListBullet4, div.MsoListBullet4
-	{mso-style-update:auto;
-	mso-style-unhide:no;
-	mso-style-next:段落;
-	margin:0cm;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-indent:0cm;
-	mso-pagination:none;
-	mso-list:l5 level1 lfo11;
-	tab-stops:list 81.8pt;
-	font-size:$normalfontsize;
-	font-family:"Times New Roman",serif;
-	mso-fareast-font-family:$bodyfont;
-	mso-font-kerning:1.0pt;
-	mso-ansi-language:EN-US;
-	mso-fareast-language:JA;}
-p.MsoListBullet5, li.MsoListBullet5, div.MsoListBullet5
-	{mso-style-update:auto;
-	mso-style-unhide:no;
-	mso-style-next:罫線段落;
-	margin:0cm;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-indent:0cm;
-	mso-pagination:none;
-	mso-list:l4 level1 lfo12;
-	tab-stops:list 103.05pt;
-	font-size:$normalfontsize;
-	font-family:"Times New Roman",serif;
-	mso-fareast-font-family:$bodyfont;
-	mso-font-kerning:1.0pt;
-	mso-ansi-language:EN-US;
-	mso-fareast-language:JA;}
 p.MsoListNumber2, li.MsoListNumber2, div.MsoListNumber2
 	{mso-style-unhide:no;
 	mso-style-next:規格名称（英語）;
@@ -2491,7 +2402,7 @@ div.WordSection3
         {page:WordSection3;}
 
  /* List Definitions */
- @list l0
+@list l0
 	{mso-list-id:-132;
 	mso-list-type:simple;
 	mso-list-template-ids:1757713456;}
@@ -2607,60 +2518,59 @@ div.WordSection3
         mso-level-text:"%1\)";
         mso-level-tab-stop:none;
         mso-level-number-position:left;
-	margin-left:36.0pt;
+        margin-left:18.0pt;
         text-indent:-18.0pt;}
 @list l8:level2
         {mso-level-text:"%2\)";
         mso-level-tab-stop:none;
         mso-level-number-position:left;
-	margin-left:54.0pt;
+        margin-left:54.0pt;
         text-indent:-18.0pt;}
 @list l8:level3
-        {
-        mso-level-text:"%2.%3\)";
+        {mso-level-text:"%2\.%3\)";
         mso-level-tab-stop:none;
         mso-level-number-position:right;
-	margin-left:72.0pt;
+        margin-left:72.0pt;
         text-indent:-18.0pt;}
 @list l8:level4
-        {mso-level-tab-stop:none;
-        mso-level-text:"%4\)";
+        {mso-level-text:"%4\)";
+        mso-level-tab-stop:none;
         mso-level-number-position:left;
-	margin-left:90.0pt;
+        margin-left:90.0pt;
         text-indent:-18.0pt;}
 @list l8:level5
         {mso-level-number-format:alpha-lower;
         mso-level-text:"%5\)";
         mso-level-tab-stop:none;
         mso-level-number-position:left;
-	margin-left:108.0pt;
+        margin-left:108.0pt;
         text-indent:-18.0pt;}
 @list l8:level6
         {mso-level-number-format:roman-lower;
-         mso-level-text:"%6\)";
+        mso-level-text:"%6\)";
         mso-level-tab-stop:none;
         mso-level-number-position:right;
-	margin-left:126.0pt;
+        margin-left:126.0pt;
         text-indent:-18.0pt;}
 @list l8:level7
-        {mso-level-tab-stop:none;
-        mso-level-text:"%7\)";
+        {mso-level-text:"%7\)";
+        mso-level-tab-stop:none;
         mso-level-number-position:left;
-	margin-left:144.0pt;
+        margin-left:144.0pt;
         text-indent:-18.0pt;}
 @list l8:level8
         {mso-level-number-format:alpha-lower;
         mso-level-text:"%8\)";
         mso-level-tab-stop:none;
         mso-level-number-position:left;
-	margin-left:162.0pt;
+        margin-left:162.0pt;
         text-indent:-18.0pt;}
 @list l8:level9
         {mso-level-number-format:roman-lower;
         mso-level-text:"%9\)";
         mso-level-tab-stop:none;
         mso-level-number-position:right;
-	margin-left:180.0pt;
+        margin-left:180.0pt;
         text-indent:-18.0pt;}
 
 @list l9

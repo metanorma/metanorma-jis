@@ -24,8 +24,8 @@ class Html2Doc
     def list2para_nest(item, level, list)
       item["class"] = list2para_style(list.name, level)
       item.xpath("./p").each do |p|
-        p["class"] = list2para_style(list.name, level)
-        p["style"] = item["style"]
+        p["class"] = list2para_class(list.name, level)
+        p["style"] = "#{list2para_style(list.name, level)};#{item["style"]}"
         p["id"] = item["id"]
       end
       item.at("./p") or return
@@ -56,14 +56,35 @@ class Html2Doc
       end
     end
 
+    def list2para_class(listtype, depth)
+      case listtype
+      when "ol" then "MsoList"
+      when "ul"
+        case depth
+        when "1" then "MsoListBullet"
+        when "2", "3", "4", "5" then "MsoListBullet#{depth}"
+        else "MsoListBullet6"
+        end
+      end
+    end
+
     def list2para_style(listtype, depth)
       case listtype
-      when "ul", "ol"
-        case depth
-        when "1" then "MsoList"
-        when "2", "3", "4", "5" then "MsoList#{depth}"
-        else "MsoList6"
+      when "ol"
+        ret = case depth
+        when "1" then "margin-left: 36.0pt;"
+        when "2" then "margin-left: 54.0pt;"
+        when "3" then "margin-left: 72.0pt;"
+        when "4" then "margin-left: 90.0pt;"
+        when "5" then "margin-left: 108.0pt;"
+        when "6" then "margin-left: 126.0pt;"
+        when "7" then "margin-left: 144.0pt;"
+        when "8" then "margin-left: 162.0pt;"
+        else "margin-left: 180.0pt;"
         end
+        "#{ret}text-indent:-18.0pt;"
+      when "ul"
+        ""
       end
     end
 
