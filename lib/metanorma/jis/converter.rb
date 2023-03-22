@@ -1,6 +1,7 @@
 require "asciidoctor"
 require "metanorma-iso"
 require_relative "./front"
+require_relative "./validate"
 
 module Metanorma
   module JIS
@@ -14,6 +15,13 @@ module Metanorma
         node.attr("language") or node.set_attr("language", "ja")
         node.attr("language") == "jp" and node.set_attr("language", "ja")
         super
+      end
+
+      def doctype(node)
+        ret = node.attr("doctype")&.gsub(/\s+/, "-")&.downcase ||
+          "japanese-industrial-standard"
+        ret = "japanese-industrial-standard" if ret == "article"
+        ret
       end
 
       def boilerplate_file(_x_orig)
@@ -54,19 +62,6 @@ module Metanorma
         else
           IsoDoc::JIS::PresentationXMLConvert.new(doc_extract_attributes(node))
         end
-      end
-
-      def script_validate(xmldoc)
-        script = xmldoc&.at("//bibdata/script")&.text
-        %w(Jpan Latn).include?(script) or
-          @log.add("Document Attributes", nil,
-                   "#{script} is not a recognised script")
-      end
-
-      def validate(doc)
-        content_validate(doc)
-        schema_validate(formattedstr_strip(doc.dup),
-                        File.join(File.dirname(__FILE__), "jis.rng"))
       end
     end
   end
