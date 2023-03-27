@@ -32,6 +32,7 @@ RSpec.describe Metanorma::JIS do
       :novalid:
       :no-isobib:
       :docnumber: 1000
+      :docseries: Z
       :partnumber: 1
       :edition: 2
       :revdate: 2000-01-01
@@ -97,7 +98,7 @@ RSpec.describe Metanorma::JIS do
            <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
            <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
            <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
-           <docidentifier type="JIS">JIS 1000:2000</docidentifier>
+           <docidentifier type="JIS">JIS Z 1000:2000</docidentifier>
            <docnumber>1000</docnumber>
            <contributor>
              <role type="author"/>
@@ -172,7 +173,7 @@ RSpec.describe Metanorma::JIS do
       .to be_equivalent_to xmlpp(output)
   end
 
-  it "processes metadata, expert commentary" do
+  it "processes metadata, technical report" do
     xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
       = Document title
       Author
@@ -180,6 +181,145 @@ RSpec.describe Metanorma::JIS do
       :nodoc:
       :novalid:
       :no-isobib:
+      :docnumber: 1000
+      :doctype: technical-report
+      :docseries: Z
+    INPUT
+    output = <<~OUTPUT
+      <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+         <bibdata type="standard">
+           <docidentifier type="JIS">TR Z 1000:2023</docidentifier>
+           <docnumber>1000</docnumber>
+           <contributor>
+             <role type="author"/>
+             <organization>
+               <name>Japanese Industrial Standards</name>
+               <abbreviation>JIS</abbreviation>
+             </organization>
+           </contributor>
+           <contributor>
+             <role type="publisher"/>
+             <organization>
+               <name>Japanese Industrial Standards</name>
+               <abbreviation>JIS</abbreviation>
+             </organization>
+           </contributor>
+           <language>ja</language>
+           <script>Jpan</script>
+           <status>
+             <stage>60</stage>
+             <substage>60</substage>
+           </status>
+           <copyright>
+             <from>2023</from>
+             <owner>
+               <organization>
+                 <name>Japanese Industrial Standards</name>
+                 <abbreviation>JIS</abbreviation>
+               </organization>
+             </owner>
+           </copyright>
+           <ext>
+             <doctype>technical-report</doctype>
+             <editorialgroup>
+               <agency>JIS</agency>
+             </editorialgroup>
+             <approvalgroup>
+               <agency>ISO</agency>
+             </approvalgroup>
+             <structuredidentifier>
+               <project-number>JIS 1000</project-number>
+             </structuredidentifier>
+             <stagename abbreviation="TR">Technical Report</stagename>
+           </ext>
+         </bibdata>
+         <sections> </sections>
+       </jis-standard>
+    OUTPUT
+    xml.at("//xmlns:metanorma-extension")&.remove
+    xml.at("//xmlns:boilerplate")&.remove
+    expect(xmlpp(strip_guid(xml.to_xml)))
+      .to be_equivalent_to xmlpp(output)
+  end
+
+  it "processes metadata, technical specification" do
+    xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
+      = Document title
+      Author
+      :docfile: test.adoc
+      :nodoc:
+      :novalid:
+      :no-isobib:
+      :docnumber: 1000
+      :doctype: technical-specification
+      :docseries: Z
+    INPUT
+    output = <<~OUTPUT
+      <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+         <bibdata type="standard">
+           <docidentifier type="JIS">TS Z 1000:2023</docidentifier>
+           <docnumber>1000</docnumber>
+           <contributor>
+             <role type="author"/>
+             <organization>
+               <name>Japanese Industrial Standards</name>
+               <abbreviation>JIS</abbreviation>
+             </organization>
+           </contributor>
+           <contributor>
+             <role type="publisher"/>
+             <organization>
+               <name>Japanese Industrial Standards</name>
+               <abbreviation>JIS</abbreviation>
+             </organization>
+           </contributor>
+           <language>ja</language>
+           <script>Jpan</script>
+           <status>
+             <stage>60</stage>
+             <substage>60</substage>
+           </status>
+           <copyright>
+             <from>2023</from>
+             <owner>
+               <organization>
+                 <name>Japanese Industrial Standards</name>
+                 <abbreviation>JIS</abbreviation>
+               </organization>
+             </owner>
+           </copyright>
+           <ext>
+             <doctype>technical-specification</doctype>
+             <editorialgroup>
+               <agency>JIS</agency>
+             </editorialgroup>
+             <approvalgroup>
+               <agency>ISO</agency>
+             </approvalgroup>
+             <structuredidentifier>
+               <project-number>JIS 1000</project-number>
+             </structuredidentifier>
+             <stagename abbreviation="TS">Technical Specification</stagename>
+           </ext>
+         </bibdata>
+         <sections> </sections>
+       </jis-standard>
+    OUTPUT
+    xml.at("//xmlns:metanorma-extension")&.remove
+    xml.at("//xmlns:boilerplate")&.remove
+    expect(xmlpp(strip_guid(xml.to_xml)))
+      .to be_equivalent_to xmlpp(output)
+  end
+
+  it "processes metadata, unrecognised type" do
+    xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
+      = Document title
+      Author
+      :docfile: test.adoc
+      :nodoc:
+      :novalid:
+      :no-isobib:
+      :docidentifier: JIS EXP
       :docnumber: 1000
       :partnumber: 1
       :edition: 2
@@ -250,7 +390,7 @@ RSpec.describe Metanorma::JIS do
           <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
           <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
-          <docidentifier type="JIS">JIS 1000:2000</docidentifier>
+          <docidentifier type="JIS">JIS EXP</docidentifier>
           <docnumber>1000</docnumber>
           <contributor>
             <role type="author"/>
@@ -315,6 +455,79 @@ RSpec.describe Metanorma::JIS do
         </bibdata>
         <sections> </sections>
       </jis-standard>
+    OUTPUT
+    xml.at("//xmlns:metanorma-extension")&.remove
+    xml.at("//xmlns:boilerplate")&.remove
+    expect(xmlpp(strip_guid(xml.to_xml)))
+      .to be_equivalent_to xmlpp(output)
+  end
+
+  it "processes metadata, amendment" do
+    xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
+      = Document title
+      Author
+      :docfile: test.adoc
+      :nodoc:
+      :novalid:
+      :no-isobib:
+      :docnumber: 1000
+      :doctype: amendment
+      :created-date: 1999-01-01
+      :amendment-number: 3
+    INPUT
+    output = <<~OUTPUT
+      <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::JIS::VERSION}">
+                   <bibdata type="standard">
+           <docidentifier type="JIS">JIS 1000:1999/AMD 3:2023</docidentifier>
+           <docnumber>1000</docnumber>
+           <date type="created">
+             <on>1999-01-01</on>
+           </date>
+           <contributor>
+             <role type="author"/>
+             <organization>
+               <name>Japanese Industrial Standards</name>
+               <abbreviation>JIS</abbreviation>
+             </organization>
+           </contributor>
+           <contributor>
+             <role type="publisher"/>
+             <organization>
+               <name>Japanese Industrial Standards</name>
+               <abbreviation>JIS</abbreviation>
+             </organization>
+           </contributor>
+           <language>ja</language>
+           <script>Jpan</script>
+           <status>
+             <stage>60</stage>
+             <substage>60</substage>
+           </status>
+           <copyright>
+             <from>2023</from>
+             <owner>
+               <organization>
+                 <name>Japanese Industrial Standards</name>
+                 <abbreviation>JIS</abbreviation>
+               </organization>
+             </owner>
+           </copyright>
+           <ext>
+             <doctype>amendment</doctype>
+             <editorialgroup>
+               <agency>JIS</agency>
+             </editorialgroup>
+             <approvalgroup>
+               <agency>ISO</agency>
+             </approvalgroup>
+             <structuredidentifier>
+               <project-number amendment="3" origyr="1999-01-01">1000</project-number>
+             </structuredidentifier>
+             <stagename abbreviation="AMD"/>
+           </ext>
+         </bibdata>
+         <sections> </sections>
+       </jis-standard>
     OUTPUT
     xml.at("//xmlns:metanorma-extension")&.remove
     xml.at("//xmlns:boilerplate")&.remove

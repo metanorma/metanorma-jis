@@ -21,10 +21,10 @@ module IsoDoc
       def move_to_inner_cover(docxml)
         source = docxml.at("//div[@type = 'inner-cover-note']")
         dest = docxml.at("//div[@id = 'boilerplate-inner-cover-note']")
-        source && dest and dest.replace(source)
+        source && dest and dest.replace(source.remove)
         source = docxml.at("//div[@type = 'contributors']")
         dest = docxml.at("//div[@id = 'boilerplate-contributors']")
-        source && dest and dest.replace(source)
+        source && dest and dest.replace(source.remove)
         docxml
       end
 
@@ -120,22 +120,22 @@ module IsoDoc
       def heading_to_para(docxml)
         docxml.xpath("//h1[@class = 'ForewordTitle']").each do |p|
           p.name = "p"
-          p.xpath("../div/p[not(@class) or @class = 'MsoNormal']").each do |n|
+          p.parent.xpath("./p[not(@class) or @class = 'MsoNormal']").each do |n|
             n["class"] = "ForewordText"
           end
         end
         docxml.xpath("//h1[@class = 'IntroTitle'] | //h1[@class = 'Annex'] | " \
                      "//h2[@class = 'Terms'] | " \
                      "//h3[@class = 'Terms'] | //h4[@class = 'Terms'] | " \
-                     "//h5[@class = 'Terms'] | //h6[@class = 'Terms']").each do |p|
-          p.name = "p"
+                     "//h5[@class = 'Terms'] | //h6[@class = 'Terms']").each do |n|
+          n.name = "p"
         end
       end
 
       def word_annex_cleanup1(docxml, lvl)
         docxml.xpath("//h#{lvl}[ancestor::*[@class = 'Section3']]").each do |h2|
           h2.name = "p"
-          h2["class"] = ".h#{lvl}Annex"
+          h2["class"] = "h#{lvl}Annex"
         end
       end
     end

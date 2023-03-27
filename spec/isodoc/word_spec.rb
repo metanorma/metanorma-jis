@@ -25,11 +25,12 @@ RSpec.describe IsoDoc::JIS do
 
       <p id="_3cf332d1-0d92-ce94-f50d-8a0ba6150316"><strong>strong</strong></p>
       </clause>
-
-
-
-
-      </sections><bibliography><references id="_normative_references" normative="true" obligation="informative" displayorder="2">
+      </sections>
+      <annex id="A"><title>Annex</title>
+      <clause id="B"><title>Annex Clause</title>
+      <clause id="C"><title>Annex Clause Clause</title>
+      </clause></clause></annex>
+      <bibliography><references id="_normative_references" normative="true" obligation="informative" displayorder="2">
       <title depth="1">1<tab/>引用規格</title><p id="_375d89b0-e764-77b0-b84e-611678e3e3a8">次に掲げる引用規格は，この規格に引用されることによって
       ，その一部又は全部がこの規格の要 求事項を構成している。これらの引用規格のうち，西暦年を付記してあるものは，記載の年の版を適 用し，その後の改
       正版(追補を含む。)は適用しない。西暦年の付記がない引用規格は，その最新版(追 補を含む。)を適用する。</p>
@@ -118,6 +119,21 @@ RSpec.describe IsoDoc::JIS do
          <p class="MsoNormal">
            <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
          </p>
+           <div class="Section3">
+    <a name="A" id="A"/>
+    <p class="Annex">Annex</p>
+    <div>
+      <a name="B" id="B"/>
+      <p class="h2Annex">Annex Clause</p>
+      <div>
+        <a name="C" id="C"/>
+        <p class="h3Annex">Annex Clause Clause</p>
+      </div>
+    </div>
+  </div>
+  <p class="MsoNormal">
+    <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+  </p>
          <div class="bibliography">
            <h1 class="Section3">参考文献</h1>
            <p class="MsoNormal">
@@ -149,6 +165,42 @@ RSpec.describe IsoDoc::JIS do
     doc1 = doc.at("//xmlns:div[@class = 'WordSection3']")
     expect(xmlpp(doc1.to_xml))
       .to be_equivalent_to xmlpp(word2)
+  end
+
+  it "moves content to inner cover" do
+    input = <<~INPUT
+      <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="presentation" version="0.0.1">
+      <bibdata type="standard">
+      <contributor><role type="author"/><organization>
+      <name>Japanese Industrial Standards</name>
+      <abbreviation>JIS</abbreviation></organization></contributor><contributor><role type="publisher"/><organization>
+      <name>Japanese Industrial Standards</name>
+      <abbreviation>JIS</abbreviation></organization></contributor><language current="true">ja</language><script current="true">Jpan</script><status><stage>60</stage><substage>60</substage></status>
+      </bibdata>
+      <preface>
+      <foreword><title>Antauparolo</title></foreword>
+      <clause type="inner-cover-note"><title>Inner Cover Note</title></foreword>
+      <clause type="contributors"><title>Contributors</title></foreword>
+      </preface>
+      </jis-standard>
+    INPUT
+    FileUtils.rm_f "test.doc"
+    FileUtils.rm_f "test_cover.doc"
+    IsoDoc::JIS::WordConvert.new({}).convert("test", input, false)
+    expect(File.exist?("test.doc")).to be true
+    expect(File.exist?("test_cover.doc")).to be true
+    word = File.read("test.doc", encoding: "UTF-8")
+      .sub(/^.*<html/m, "<html")
+      .sub(/<\/html>.*$/m, "</html>")
+    doc = Nokogiri::XML(word)
+    doc.xpath("//xmlns:p[@class = 'MsoToc1']").each(&:remove)
+    expect(doc.to_xml).to include "Antauparolo"
+    expect(doc.to_xml).not_to include "Inner Cover Note"
+    expect(doc.to_xml).not_to include "Contributors"
+    word = File.read("test_cover.doc", encoding: "UTF-8")
+    expect(word).not_to include "Antauparolo"
+    expect(word).to include "Inner Cover Note"
+    expect(word).to include "Contributors"
   end
 
   it "deals with lists" do
