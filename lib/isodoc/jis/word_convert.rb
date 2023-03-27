@@ -144,7 +144,7 @@ module IsoDoc
         clause isoxml, out
         annex isoxml, out
         bibliography isoxml, out
-        colophon isoxml, out
+        # colophon isoxml, out
       end
 
       def figure_attrs(node)
@@ -158,22 +158,39 @@ module IsoDoc
 
       def figure_components(node)
         { units: node.at(ns("./note[@type = 'units']/p")),
-          notes: node.xpath(ns("./note[not(@type = 'units')]")),
+          notes_etc: figure_notes_examples_paras(node
+          .xpath(ns("./note[not(@type = 'units')] | ./example | ./p"))),
           name: node.at(ns("./name")),
           key: node.at(ns("./dl")),
           img: node.at(ns("./image")),
+          aside: node.at(ns("./aside")),
           subfigs: node.xpath(ns("./figure")).map { |n| figure_components(n) } }
+      end
+
+      def figure_notes_examples_paras(xpath)
+        xpath.empty? and return nil
+        curr = ""
+        xpath.each_with_object([]) do |e, m|
+          e.name == curr or m << []
+          curr = e.name
+          m[-1] << e
+        end
       end
 
       def figure_parse1(node, out)
         c = figure_components(node)
         out.table **figure_attrs(node) do |div|
-          %i(units img subfigs key notes name).each do |key|
-            if key == :subfigs
+          %i(units img subfigs key notes_etc aside name).each do |key|
+            case key
+            when :subfigs
               c[key].each do |n|
                 n[:subname] = n[:name]
                 figure_row(node, div, n, :img)
                 figure_row(node, div, n, :subname)
+              end
+            when :notes_etc
+              c[key].each do |n|
+                figure_row(node, div, n, :notes_etc)
               end
             else figure_row(node, div, c, key)
             end
@@ -189,7 +206,8 @@ module IsoDoc
       end
 
       def figure_row(node, table, hash, key)
-        hash[key].nil? || (hash[key].is_a?(Array) && hash[key].empty?) and
+        key != :notes_etc && (
+        hash[key].nil? || (hash[key].is_a?(Array) && hash[key].empty?)) and
           return
         table.tr do |r|
           r.td valign: "top", style: "padding:0cm 5.4pt 0cm 5.4pt" do |d|
@@ -215,10 +233,11 @@ module IsoDoc
         when :key
           figure_key(cell)
           parse(hash[key], cell)
-        when :notes then hash[key].each { |n| parse(n, cell) }
+        when :notes_etc, :aside
+          hash.each { |n| parse(n, cell) }
         when :name then figure_name_parse(node, cell, hash[key])
         when :img
-          cell.p class: "FFFF" do |p|
+          cell.p class: "Figure" do |p|
             parse(hash[key], p)
           end
         when :subname
@@ -228,11 +247,78 @@ module IsoDoc
         end
       end
 
-      def dl_parse(node, out)
-        node.ancestors("table, dl, figure").empty? or
-          return ::IsoDoc::Convert.instance_method(:dl_parse).bind(self)
-              .call(node, out)
-        dl_parse_table(node, out)
+      def footnote_parse(node, out)
+        return table_footnote_parse(node, out) if @in_table || @in_figure # &&
+
+        # !node.ancestors.map(&:name).include?("name")
+
+        fn = node["reference"] || UUIDTools::UUID.random_create.to_s
+        return seen_footnote_parse(node, out, fn) if @seen_footnote.include?(fn)
+
+        @fn_bookmarks[fn] = bookmarkid
+        out.span style: "mso-bookmark:_Ref#{@fn_bookmarks[fn]}" do |s|
+          s.a class: "FootnoteRef", "epub:type": "footnote",
+              href: "#ftn#{fn}" do |a|
+            a.sup { |sup| sup << fn }
+          end
+        end
+        @in_footnote = true
+        @footnotes << make_generic_footnote_text(node, fn)
+        @in_footnote = false
+        @seen_footnote << fn
+      end
+
+      def make_table_footnote_target(out, fnid, fnref)
+        attrs = { id: fnid, class: "TableFootnoteRef" }
+        out.span do |s|
+          s << @i18n.table_footnote
+          out.span **attrs do |a|
+            a << "#{fnref})"
+          end
+          insert_tab(s, 1)
+        end
+      end
+
+      def table_title_parse(node, out); end
+
+      def table_attrs(node)
+        { id: node["id"], title: node["alt"],
+          summary: node["summary"], width: node["width"],
+          class: (node.text.length > 4000 ? "MsoTableGridBig" : "MsoTableGrid"),
+          style: "border-collapse:collapse;" \
+                 "mso-table-anchor-horizontal:column;mso-table-overlap:never;" \
+                 "border:none;mso-padding-alt: " \
+                 "0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;" \
+                 "mso-border-insidev:none;#{keep_style(node)}",
+          border: 0, cellspacing: 0, cellpadding: 0 }
+      end
+
+      def make_tr_attr_style(cell, row, rowmax, totalrows, opt)
+        top = row.zero? ? "#{SW1} 1.5pt;" : "none;"
+        bottom = "#{SW1} #{rowmax >= totalrows ? '1.5' : '1.0'}pt;"
+        ret = <<~STYLE.gsub(/\n/, "")
+          border-top:#{top}mso-border-top-alt:#{top}
+          border-left:#{bottom}mso-border-top-alt:#{bottom}
+          border-right:#{bottom}mso-border-top-alt:#{bottom}
+          border-bottom:#{bottom}mso-border-bottom-alt:#{bottom}
+        STYLE
+        opt[:bordered] or ret = ""
+        pb = keep_rows_together(cell, rowmax, totalrows, opt) ? "avoid" : "auto"
+        "#{ret}page-break-after:#{pb};"
+      end
+
+      def new_fullcolspan_row(table, tfoot)
+        # how many columns in the table?
+        cols = 0
+        table.at(".//tr").xpath("./td | ./th").each do |td|
+          cols += (td["colspan"] ? td["colspan"].to_i : 1)
+        end
+        style = "border-top:0pt;mso-border-top-alt:0pt;" \
+                "border-bottom:#{SW1} 1.5pt;mso-border-bottom-alt:#{SW1} 1.5pt;" \
+                "border-left:#{SW1} 1.5pt;mso-border-left-alt:#{SW1} 1.5pt;" \
+                "border-right:#{SW1} 1.5pt;mso-border-right-alt:#{SW1} 1.5pt;"
+        tfoot.add_child("<tr><td colspan='#{cols}' style='#{style}'/></tr>")
+        tfoot.xpath(".//td").last
       end
 
       include BaseConvert

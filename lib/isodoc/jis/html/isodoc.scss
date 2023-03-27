@@ -1132,7 +1132,7 @@ table.MsoISOTable td, table.MsoISOTableBig td
     padding:0cm 2.85pt 0cm 2.85pt;}
 table.MsoISOTable p, table.MsoISOTableBig p
 {font-size:$smallerfontsize; }
-table.MsoTableGrid
+table.MsoTableGrid, table.MsoTableGridBig
 	{mso-style-name:"Table Grid";
 	mso-tstyle-rowband-size:0;
 	mso-tstyle-colband-size:0;
@@ -1148,6 +1148,12 @@ table.MsoTableGrid
 	mso-pagination:widow-orphan;
 	font-size:$smallerfontsize;
 	font-family:$bodyfont;}
+table.MsoTableGrid tr
+    {page-break-inside:avoid;}
+table.MsoTableGridBig tr
+    {page-break-inside:auto;}
+table.MsoTableGridBig td
+    {page-break-inside:auto;}
 div.formula
     {tab-stops:right 487.45pt;}
 body 
@@ -2738,28 +2744,6 @@ span.TR0
 	/*  continuation date TR */
 	mso-style-unhide:no;
 	mso-style-parent:"";}
-p.afffa, li.afffa, div.afffa
-	{mso-style-name:段落;
-	/* paragraph */
-	mso-style-unhide:no;
-	mso-style-parent:"";
-	margin-top:10.0pt;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:0cm;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-indent:9.95pt;
-	line-height:15.0pt;
-	mso-line-height-rule:exactly;
-	mso-pagination:none;
-	font-size:$normalfontsize;
-	font-family:"Times New Roman",serif;
-	mso-fareast-font-family:$bodyfont;
-	mso-font-kerning:1.0pt;
-	mso-ansi-language:EN-US;
-	mso-fareast-language:JA;
-	mso-no-proof:yes;}
 p.afffb, li.afffb, div.afffb
 	{mso-style-name:罫線段落;
 	/* ruled paragraph */

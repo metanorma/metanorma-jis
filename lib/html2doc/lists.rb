@@ -25,7 +25,9 @@ class Html2Doc
       item["class"] = list2para_style(list.name, level)
       item.xpath("./p").each do |p|
         p["class"] = list2para_class(list.name, level)
-        p["style"] = "#{list2para_style(list.name, level)};#{item["style"]}"
+        p["style"] = item["style"]
+        (a = list2para_style(list.name, level)) && !a.empty? and
+          p["style"] = "#{a};#{p['style']}"
         p["id"] = item["id"]
       end
       item.at("./p") or return
@@ -84,7 +86,19 @@ class Html2Doc
         end
         "#{ret}text-indent:-18.0pt;"
       when "ul"
-        ""
+        ret = case depth
+       when "1" then "margin-left: 36.0pt;"
+        when "2" then "margin-left: 45.95pt;"
+        when "3" then "margin-left: 72.0pt;"
+        when "4" then "margin-left: 90.0pt;"
+        when "5" then "margin-left: 108.0pt;"
+        when "6" then "margin-left: 126.0pt;"
+        when "7" then "margin-left: 144.0pt;"
+        when "8" then "margin-left: 162.0pt;"
+        else "margin-left: 180.0pt;"
+        end
+        "#{ret}text-indent:-18.0pt;"
+
       end
     end
 

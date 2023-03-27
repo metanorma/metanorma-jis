@@ -47,9 +47,6 @@ module IsoDoc
       end
 
       def boldface(docxml)
-        docxml.xpath("//h1 | h2 | h3 | h4 | h5 | h6").each do |h|
-          h.children = "<b>#{to_xml(h.children)}</b>"
-        end
         docxml.xpath("//b").each do |b|
           b.name = "span"
           b["class"] = "Strong"
@@ -126,6 +123,19 @@ module IsoDoc
           p.xpath("../div/p[not(@class) or @class = 'MsoNormal']").each do |n|
             n["class"] = "ForewordText"
           end
+        end
+        docxml.xpath("//h1[@class = 'IntroTitle'] | //h1[@class = 'Annex'] | " \
+                     "//h2[@class = 'Terms'] | " \
+                     "//h3[@class = 'Terms'] | //h4[@class = 'Terms'] | " \
+                     "//h5[@class = 'Terms'] | //h6[@class = 'Terms']").each do |p|
+          p.name = "p"
+        end
+      end
+
+      def word_annex_cleanup1(docxml, lvl)
+        docxml.xpath("//h#{lvl}[ancestor::*[@class = 'Section3']]").each do |h2|
+          h2.name = "p"
+          h2["class"] = ".h#{lvl}Annex"
         end
       end
     end

@@ -101,21 +101,28 @@
 	mso-font-signature:-536870145 1791491579 134217746 0 131231 0;}
  /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
-/*
-	{mso-style-unhide:no;
-	mso-style-qformat:yes;
-	mso-style-parent:"";
-	margin:0cm;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	mso-pagination:none;
-	font-size:$normalfontsize;
-	font-family:"Times New Roman",serif;
-	mso-fareast-font-family:$bodyfont;
-	mso-font-kerning:1.0pt;
-	mso-ansi-language:EN-US;
-	mso-fareast-language:JA;}
-*/
+        {mso-style-name:段落;
+        /* paragraph */
+        mso-style-unhide:no;
+        mso-style-parent:"";
+        margin-top:10.0pt;
+        margin-right:0cm;
+        margin-bottom:0cm;
+        margin-left:0cm;
+        text-align:justify;
+        text-justify:inter-ideograph;
+        text-indent:9.95pt;
+        line-height:15.0pt;
+        mso-line-height-rule:exactly;
+        mso-pagination:none;
+        font-size:$normalfontsize;
+        font-family:"Times New Roman",serif;
+        mso-fareast-font-family:$bodyfont;
+        mso-font-kerning:1.0pt;
+        mso-ansi-language:EN-US;
+        mso-fareast-language:JA;
+        mso-no-proof:yes;}
+p.afffffff2, li.afffffff2, div.afffffff2
         {mso-style-name:字下げなし段落;
         /* unindented paragraph */
         mso-style-unhide:no;
@@ -376,7 +383,7 @@ h1 {
 h1.ForewordTitle {
 }
 */
-h1, .h1
+h1, .h1, .h2Annex
         {mso-style-name:箇条１;
         /* Clause 1 */
         mso-style-unhide:no;
@@ -404,7 +411,7 @@ h1, .h1
 h1 {
 	mso-outline-level:1;
 }
-h1.Annex
+.h1Annex, .Annex
         {mso-style-name:附属書見出し; 
         /* Annex Heading */
         mso-style-unhide:no;
@@ -425,7 +432,7 @@ h1.Annex
         mso-ansi-language:EN-US;
         mso-fareast-language:JA;
         mso-no-proof:yes;}
-.h2Annex, h2, .h2
+h2, .h2, .h3Annex
 /*
 	{mso-style-unhide:no;
 	mso-style-qformat:yes;
@@ -475,7 +482,7 @@ h2
 	{ /*mso-list:l10 level2 lfo13;*/
         mso-outline-level:2;
         }
-.h3Annex, h3, .h3
+.h4Annex, h3, .h3
 /*
 	{mso-style-unhide:no;
 	mso-style-qformat:yes;
@@ -524,7 +531,7 @@ h2
 h3      {/*mso-list:l10 level3 lfo13;*/
 	mso-outline-level:3;
         }
-.h4Annex, h4, .h4
+.h5Annex, h4, .h4
 /*
 	{mso-style-unhide:no;
 	mso-style-qformat:yes;
@@ -572,7 +579,7 @@ h3      {/*mso-list:l10 level3 lfo13;*/
 h4      {/*mso-list:l10 level4 lfo13;*/
 	mso-outline-level:4;
         }
-.h5Annex, h5, .h5
+.h6Annex, h5, .h5
 /*
 	{mso-style-unhide:no;
 	mso-style-qformat:yes;
@@ -2575,12 +2582,11 @@ div.WordSection3
 
 @list l9
 	{mso-list-id:-119;
-	mso-list-type:simple;
 	mso-list-template-ids:-859032142;}
 @list l9:level1
         {mso-level-start-at:0;
         mso-level-number-format:bullet;
-        mso-level-text:;
+        mso-level-text:;
         mso-level-tab-stop:none;
         mso-level-number-position:left;
 	margin-left:36.0pt;
@@ -2590,12 +2596,12 @@ div.WordSection3
         mso-bidi-font-family:"Times New Roman";}
 @list l9:level2
         {mso-level-number-format:bullet;
-        mso-level-text:o;
+        mso-level-text:;
         mso-level-tab-stop:none;
         mso-level-number-position:left;
 	margin-left:54.0pt;
         text-indent:-18.0pt;
-        font-family:"Courier New";}
+        font-family:Symbol;}
 @list l9:level3
         {mso-level-number-format:bullet;
         mso-level-text:;

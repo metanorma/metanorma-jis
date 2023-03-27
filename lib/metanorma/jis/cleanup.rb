@@ -26,6 +26,17 @@ module Metanorma
         refs[:dated] and return "norm_with_refs_pref_all_dated"
         "norm_with_refs_pref_none_dated"
       end
+
+      def table_footnote_renumber(xmldoc)
+        xmldoc.xpath("//table | //figure").each do |t|
+          seen = {}
+          i = 0
+          #t.xpath(".//fn[not(ancestor::name)]").each do |fn|
+          t.xpath(".//fn").each do |fn|
+            i, seen = table_footnote_renumber1(fn, i, seen)
+          end
+        end
+      end
     end
   end
 end
