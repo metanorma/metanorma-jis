@@ -71,6 +71,7 @@ module Metanorma
              when "japanese-industrial-standard", "amendment" then "JIS"
              when "technical-report" then "TR"
              when "technical-specification" then "TS"
+             else "JIS"
              end
         a = node.attr("docseries") and id += " #{a}"
         a = node.attr("docnumber") and id += " #{a}"

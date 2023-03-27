@@ -48,8 +48,6 @@ module Metanorma
       def pdf_converter(node)
         return if node.attr("no-pdf")
 
-        return
-
         if node.nil?
           IsoDoc::JIS::PdfConvert.new({})
         else
