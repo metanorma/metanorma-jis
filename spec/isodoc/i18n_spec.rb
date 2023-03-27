@@ -202,10 +202,9 @@ RSpec.describe IsoDoc::JIS do
         </sections>
         <annex id="P" inline-header="false" obligation="normative" displayorder="8">
           <title>
-            <strong>附属書 A</strong>
+            附属書 A
             <br/>
-            <span class="obligation">(規定)</span>
-            <br/>
+            (規定)
             <br/>
             <strong>Annex</strong>
           </title>
@@ -368,10 +367,9 @@ RSpec.describe IsoDoc::JIS do
             <br/>
             <div id="P" class="Section3">
               <h1 class="Annex">
-                <b>附属書 A</b>
+                附属書 A
                 <br/>
-                <span class="obligation">(規定)</span>
-                <br/>
+                (規定)
                 <br/>
                 <b>Annex</b>
               </h1>
@@ -414,7 +412,7 @@ RSpec.describe IsoDoc::JIS do
            <style></style>
            <style></style>
          </head>
-         <body lang="EN-US" link="blue" vlink="#954F72">
+                  <body lang="EN-US" link="blue" vlink="#954F72">
            <div class="WordSection1">
              <p> </p>
            </div>
@@ -429,8 +427,23 @@ RSpec.describe IsoDoc::JIS do
                <h1 class="ForewordTitle">Foreword</h1>
                <p class="ForewordText" id="A">This is a preamble</p>
              </div>
-             <p>
-               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+             <p> </p>
+           </div>
+           <p>
+             <br clear="all" class="section"/>
+           </p>
+           <div class="WordSection3">
+             <p class="zzSTDTitle1">Introduction Française — Titre Principal — </p>
+             <p class="zzSTDTitle1">
+               その :
+               <br/>
+               <b>Part du Titre</b>
+             </p>
+             <p class="zzSTDTitle2">Introduction — Main Title — Title — </p>
+             <p class="zzSTDTitle2">
+               Part :
+               <br/>
+               <b>Title Part</b>
              </p>
              <div class="Section3" id="B">
                <h1 class="IntroTitle">Introduction</h1>
@@ -443,24 +456,6 @@ RSpec.describe IsoDoc::JIS do
                </div>
                <p>This is patent boilerplate</p>
              </div>
-             <p> </p>
-           </div>
-           <p>
-             <br clear="all" class="section"/>
-           </p>
-           <div class="WordSection3">
-                 <p class="zzSTDTitle1">Introduction Française — Titre Principal — </p>
-      <p class="zzSTDTitle1">
-        その :
-        <br/>
-        <b>Part du Titre</b>
-      </p>
-      <p class="zzSTDTitle2">Introduction — Main Title — Title — </p>
-      <p class="zzSTDTitle2">
-        Part :
-        <br/>
-        <b>Title Part</b>
-      </p>
              <div id="D">
                <h1>
                  1
@@ -469,7 +464,7 @@ RSpec.describe IsoDoc::JIS do
                </h1>
                <p id="E">Text</p>
              </div>
-             <div class="normref">
+             <div class="normref_div">
                <h1>
                  2
                  <span style="mso-tab-count:1">  </span>
@@ -547,10 +542,9 @@ RSpec.describe IsoDoc::JIS do
              </p>
              <div id="P" class="Section3">
                <h1 class="Annex">
-                 <b>附属書 A</b>
+                 附属書 A
                  <br/>
-                 <span class="obligation">(規定)</span>
-                 <br/>
+                 (規定)
                  <br/>
                  <b>Annex</b>
                </h1>
@@ -568,13 +562,13 @@ RSpec.describe IsoDoc::JIS do
                    </h3>
                  </div>
                </div>
-                       <div id="Q2">
-          <h2>
-            Appendix 1
-            <span style="mso-tab-count:1">  </span>
-            An Appendix
-          </h2>
-        </div>
+               <div id="Q2">
+                 <h2>
+                   Appendix 1
+                   <span style="mso-tab-count:1">  </span>
+                   An Appendix
+                 </h2>
+               </div>
              </div>
              <p>
                <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
@@ -587,7 +581,7 @@ RSpec.describe IsoDoc::JIS do
              </div>
            </div>
            <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
-            <div class="colophon"/>
+           <div class="colophon"/>
          </body>
        </html>
     WORD
@@ -790,10 +784,9 @@ RSpec.describe IsoDoc::JIS do
              </sections>
              <annex id="P" inline-header="false" obligation="normative" displayorder="8">
                <title>
-                 <strong>Annex A</strong>
+                 Annex A
                  <br/>
-                 <span class="obligation">(normative)</span>
-                 <br/>
+                 (normative)
                  <br/>
                  <strong>Annex</strong>
                </title>
@@ -1039,10 +1032,9 @@ RSpec.describe IsoDoc::JIS do
         </sections>
         <annex id="P" inline-header="false" obligation="normative" displayorder="8">
           <title>
-            <strong>Annex A</strong>
+            Annex A
             <br/>
-            <span class="obligation">(normative)</span>
-            <br/>
+            (normative)
             <br/>
             <strong>Annex</strong>
           </title>
@@ -1199,10 +1191,9 @@ RSpec.describe IsoDoc::JIS do
             <br/>
             <div id="P" class="Section3">
               <h1 class="Annex">
-                <b>Annex A</b>
+                Annex A
                 <br/>
-                <span class="obligation">(normative)</span>
-                <br/>
+                (normative)
                 <br/>
                 <b>Annex</b>
               </h1>

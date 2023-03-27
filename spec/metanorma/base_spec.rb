@@ -97,11 +97,7 @@ RSpec.describe Metanorma::JIS do
            <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
            <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
            <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
-           <docidentifier type="ISO">ISO/WD 1000-1.3</docidentifier>
-           <docidentifier type="iso-reference">ISO/WD 1000-1.3:2000()</docidentifier>
-           <docidentifier type="URN">urn:iso:std:iso:1000:-1:stage-20.20.v3:ja</docidentifier>
-           <docidentifier type="iso-undated">ISO/WD 1000-1.3</docidentifier>
-           <docidentifier type="iso-with-lang">ISO/WD 1000-1.3(ja)</docidentifier>
+           <docidentifier type="JIS">JIS 1000:2000</docidentifier>
            <docnumber>1000</docnumber>
            <contributor>
              <role type="author"/>
@@ -139,7 +135,7 @@ RSpec.describe Metanorma::JIS do
              </owner>
            </copyright>
            <ext>
-             <doctype>standard</doctype>
+             <doctype>japanese-industrial-standard</doctype>
              <horizontal>true</horizontal>
              <editorialgroup>
                <agency>JIS</agency>
@@ -244,7 +240,7 @@ RSpec.describe Metanorma::JIS do
       :copyright-holder: Copyright Holder
     INPUT
     output = <<~OUTPUT
-          <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="0.0.1">
+          <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::JIS::VERSION}">
         <bibdata type="standard">
           <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
           <title language="en" format="text/plain" type="title-intro">Introduction</title>
@@ -254,11 +250,7 @@ RSpec.describe Metanorma::JIS do
           <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
           <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
-          <docidentifier type="ISO">Alternative Publisher/WD 1000-1.3</docidentifier>
-          <docidentifier type="iso-reference">Alternative Publisher/WD 1000-1.3:2000()</docidentifier>
-          <docidentifier type="URN">urn:iso:std:alternative publisher:1000:-1:stage-20.20.v3:ja</docidentifier>
-          <docidentifier type="iso-undated">Alternative Publisher/WD 1000-1.3</docidentifier>
-          <docidentifier type="iso-with-lang">Alternative Publisher/WD 1000-1.3(ja)</docidentifier>
+          <docidentifier type="JIS">JIS 1000:2000</docidentifier>
           <docnumber>1000</docnumber>
           <contributor>
             <role type="author"/>

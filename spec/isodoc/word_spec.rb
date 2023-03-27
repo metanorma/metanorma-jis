@@ -50,33 +50,37 @@ RSpec.describe IsoDoc::JIS do
     INPUT
     word1 = <<~OUTPUT
       <div class="WordSection2">
-        <p class="MsoNormal">
-          <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-        </p>
         <div>
           <a name="_foreword" id="_foreword"/>
-          <p class="ForewordTitle">
-            <span class="Strong">まえがき</span>
-          </p>
+          <p class="ForewordTitle">まえがき</p>
           <p class="ForewordText">
             <a name="_553c5ce1-fd17-941b-b935-59caca87f267" id="_553c5ce1-fd17-941b-b935-59caca87f267"/>
             This is a foreword
           </p>
         </div>
         <p class="MsoNormal"> </p>
-      </div>
+                 <div style="mso-element:para-border-div;border:solid windowtext 1.0pt; border-bottom-alt:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt: solid windowtext .5pt;mso-border-right-alt:solid windowtext .5pt;padding:1.0pt 4.0pt 0cm 4.0pt; margin-left:5.1pt;margin-right:5.1pt">
+           <div>
+             <a name="boilerplate-copyright-destination" id="boilerplate-copyright-destination"/>
+           </div>
+         </div>
+         <p class="MsoNormal">
+           <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+         </p>
+         <p class="zzContents" style="margin-top:0cm">
+           <span lang="EN-GB" xml:lang="EN-GB">目次</span>
+         </p>
+       </div>
     OUTPUT
     word2 = <<~OUTPUT
       <div class="WordSection3">
          <p class="zzSTDTitle1"/>
          <p class="zzSTDTitle2"/>
-         <div class="normref">
+         <div class="normref_div">
            <h1>
-             <span class="Strong">
-               1
-               <span style="mso-tab-count:1">  </span>
-               引用規格
-             </span>
+             1
+             <span style="mso-tab-count:1">  </span>
+             引用規格
            </h1>
            <p class="NormRefText">
              <a name="_375d89b0-e764-77b0-b84e-611678e3e3a8" id="_375d89b0-e764-77b0-b84e-611678e3e3a8"/>
@@ -90,11 +94,9 @@ RSpec.describe IsoDoc::JIS do
          <div>
            <a name="_clause" id="_clause"/>
            <h1>
-             <span class="Strong">
-               2
-               <span style="mso-tab-count:1">  </span>
-               Clause
-             </span>
+             2
+             <span style="mso-tab-count:1">  </span>
+             Clause
            </h1>
            <div>
              <a name="_339b7abc-c95c-638c-54a9-750cef9ea065" id="_339b7abc-c95c-638c-54a9-750cef9ea065"/>
@@ -117,14 +119,12 @@ RSpec.describe IsoDoc::JIS do
            <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
          </p>
          <div class="bibliography">
-           <h1 class="Section3">
-             <span class="Strong">参考文献</span>
-           </h1>
+           <h1 class="Section3">参考文献</h1>
            <p class="MsoNormal">
              <a name="_1dcfd70f-f687-ba32-9a43-3088add497fc" id="_1dcfd70f-f687-ba32-9a43-3088add497fc"/>
              This is some boilerplate
            </p>
-           <p class="MsoNormal">
+           <p class="Biblio">
              <a name="C" id="C"/>
              [1]
              <span style="mso-tab-count:1">  </span>
@@ -229,46 +229,44 @@ RSpec.describe IsoDoc::JIS do
          <p class="zzSTDTitle2"/>
          <div>
            <a name="A" id="A"/>
-           <h1>
-             <span class="Strong">1</span>
-           </h1>
-           <p class="MsoList" style="mso-list:l8 level1 lfo2;" id="">A</p>
-           <p class="MsoList" style="mso-list:l8 level1 lfo2;" id="">B</p>
-           <p style="mso-list:l8 level2 lfo2;" class="MsoList2">C</p>
-           <p style="mso-list:l8 level2 lfo2;" class="MsoList2">D</p>
-           <p style="mso-list:l8 level3 lfo2;" class="MsoList3">E</p>
-           <p style="mso-list:l8 level3 lfo2;" class="MsoList3">F</p>
-           <p style="mso-list:l8 level4 lfo2;" class="MsoList4">G</p>
-           <p style="mso-list:l8 level4 lfo2;" class="MsoList4">H</p>
-           <p style="mso-list:l8 level5 lfo2;" class="MsoList5">I</p>
-           <p style="mso-list:l8 level5 lfo2;" class="MsoList5">J</p>
-           <p style="mso-list:l8 level6 lfo2;" class="MsoList6">K</p>
-           <p style="mso-list:l8 level6 lfo2;" class="MsoList6">L</p>
-           <p style="mso-list:l8 level6 lfo2;" class="MsoList6">M</p>
-           <p style="mso-list:l8 level5 lfo2;" class="MsoList5">N</p>
-           <p style="mso-list:l8 level4 lfo2;" class="MsoList4">O</p>
-           <p style="mso-list:l8 level3 lfo2;" class="MsoList3">P</p>
-           <p style="mso-list:l8 level2 lfo2;" class="MsoList2">Q</p>
-           <p style="mso-list:l8 level1 lfo2;" class="MsoList">R</p>
-           <p class="MsoList" style="mso-list:l9 level1 lfo1;" id="">A</p>
-           <p class="MsoList" style="mso-list:l9 level1 lfo1;" id="">B</p>
-           <p class="MsoList" style="mso-list:l9 level1 lfo1;" id="">B1</p>
-           <p style="mso-list:l9 level2 lfo1;" class="MsoList2">C</p>
-           <p style="mso-list:l9 level2 lfo1;" class="MsoList2">D</p>
-           <p style="mso-list:l9 level3 lfo1;" class="MsoList3">E</p>
-           <p style="mso-list:l9 level3 lfo1;" class="MsoList3">F</p>
-           <p style="mso-list:l9 level4 lfo1;" class="MsoList4">G</p>
-           <p style="mso-list:l9 level4 lfo1;" class="MsoList4">H</p>
-           <p style="mso-list:l9 level5 lfo1;" class="MsoList5">I</p>
-           <p style="mso-list:l9 level5 lfo1;" class="MsoList5">J</p>
-           <p style="mso-list:l9 level6 lfo1;" class="MsoList6">K</p>
-           <p style="mso-list:l9 level6 lfo1;" class="MsoList6">L</p>
-           <p style="mso-list:l9 level6 lfo1;" class="MsoList6">M</p>
-           <p style="mso-list:l9 level5 lfo1;" class="MsoList5">N</p>
-           <p style="mso-list:l9 level4 lfo1;" class="MsoList4">O</p>
-           <p style="mso-list:l9 level3 lfo1;" class="MsoList3">P</p>
-           <p style="mso-list:l9 level2 lfo1;" class="MsoList2">Q</p>
-           <p style="mso-list:l9 level1 lfo1;" class="MsoList">R</p>
+           <h1>1</h1>
+           <p class="MsoList" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l8 level1 lfo2;" id="">A</p>
+           <p class="MsoList" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l8 level1 lfo2;" id="">B</p>
+           <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;">C</p>
+           <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;">D</p>
+           <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;">E</p>
+           <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;">F</p>
+           <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;">G</p>
+           <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;">H</p>
+           <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;">I</p>
+           <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;">J</p>
+           <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;">K</p>
+           <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;">L</p>
+           <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;">M</p>
+           <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;">N</p>
+           <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;">O</p>
+           <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;">P</p>
+           <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;">Q</p>
+           <p style="mso-list:l8 level1 lfo2;" class="margin-left: 36.0pt;text-indent:-18.0pt;">R</p>
+           <p class="MsoListBullet" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l9 level1 lfo1;" id="">A</p>
+           <p class="MsoListBullet" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l9 level1 lfo1;" id="">B</p>
+           <p class="MsoListBullet" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l9 level1 lfo1;" id="">B1</p>
+           <p style="mso-list:l9 level2 lfo1;" class="margin-left: 45.95pt;text-indent:-18.0pt;">C</p>
+           <p style="mso-list:l9 level2 lfo1;" class="margin-left: 45.95pt;text-indent:-18.0pt;">D</p>
+           <p style="mso-list:l9 level3 lfo1;" class="margin-left: 72.0pt;text-indent:-18.0pt;">E</p>
+           <p style="mso-list:l9 level3 lfo1;" class="margin-left: 72.0pt;text-indent:-18.0pt;">F</p>
+           <p style="mso-list:l9 level4 lfo1;" class="margin-left: 90.0pt;text-indent:-18.0pt;">G</p>
+           <p style="mso-list:l9 level4 lfo1;" class="margin-left: 90.0pt;text-indent:-18.0pt;">H</p>
+           <p style="mso-list:l9 level5 lfo1;" class="margin-left: 108.0pt;text-indent:-18.0pt;">I</p>
+           <p style="mso-list:l9 level5 lfo1;" class="margin-left: 108.0pt;text-indent:-18.0pt;">J</p>
+           <p style="mso-list:l9 level6 lfo1;" class="margin-left: 126.0pt;text-indent:-18.0pt;">K</p>
+           <p style="mso-list:l9 level6 lfo1;" class="margin-left: 126.0pt;text-indent:-18.0pt;">L</p>
+           <p style="mso-list:l9 level6 lfo1;" class="margin-left: 126.0pt;text-indent:-18.0pt;">M</p>
+           <p style="mso-list:l9 level5 lfo1;" class="margin-left: 108.0pt;text-indent:-18.0pt;">N</p>
+           <p style="mso-list:l9 level4 lfo1;" class="margin-left: 90.0pt;text-indent:-18.0pt;">O</p>
+           <p style="mso-list:l9 level3 lfo1;" class="margin-left: 72.0pt;text-indent:-18.0pt;">P</p>
+           <p style="mso-list:l9 level2 lfo1;" class="margin-left: 45.95pt;text-indent:-18.0pt;">Q</p>
+           <p style="mso-list:l9 level1 lfo1;" class="margin-left: 36.0pt;text-indent:-18.0pt;">R</p>
          </div>
        </div>
     OUTPUT

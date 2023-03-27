@@ -13,7 +13,7 @@ module Metanorma
       def output_formats
         super.merge(
           html: "html",
-          # pdf: "pdf",
+          pdf: "pdf",
           doc: "doc",
         )
       end
