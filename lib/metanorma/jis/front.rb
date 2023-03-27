@@ -76,7 +76,7 @@ module Metanorma
         a = node.attr("docseries") and id += " #{a}"
         a = node.attr("docnumber") and id += " #{a}"
         yr = iso_id_year(node)
-        origyr = node.attr("created-date") || yr
+        origyr = node.attr("created-date")&.sub(/-.*$/, "") || yr
         a = node.attr("amendment-number") and
           id += ":#{origyr}/AMD #{a}"
         id += ":#{yr}"
