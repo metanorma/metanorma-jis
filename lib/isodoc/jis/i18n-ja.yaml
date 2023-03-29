@@ -2,7 +2,7 @@ under_preparation: 準備中。（掲載時のステージ％）。
 cancelled_and_replaced: キャンセルされ、%に置き換えられました。
 norm_with_refs_pref_all_dated: 次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要 求事項を構成している。これらの引用規格は，記載の年の版を適用し，その後の改正版(追補を含む。) は適用しない。
 norm_with_refs_pref_none_dated: 次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要求事項 を構成している。これらの引用規格は，その最新版(追補を含む。)を適用する。
-alternative: "代替用語"
+admitted: "代替用語"
 table_footnote: 注
 doctype_dict:
   international-standard: 日本産業規格
