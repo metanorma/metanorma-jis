@@ -59,13 +59,6 @@ module IsoDoc
         end
       end
 
-      def admitted_term_parse(node, out)
-        out.p class: "Terms", style: "text-align:left;" do |p|
-          p << l10n("#{@i18n.alternative}: ")
-          node.children.each { |c| parse(c, p) }
-        end
-      end
-
       def para_class(node)
         super || node["class"]
       end

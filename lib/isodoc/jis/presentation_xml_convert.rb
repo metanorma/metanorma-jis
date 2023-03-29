@@ -33,6 +33,10 @@ module IsoDoc
         ret
       end
 
+      def admits(elem)
+        elem.children.first.previous = @i18n.l10n("#{@i18n.admitted}: ")
+      end
+
       def block(docxml)
         super
         dl docxml
@@ -76,9 +80,11 @@ module IsoDoc
         name = node.at(ns("./name"))
         h = node.at(ns("./thead")) || name.after("<thead> </thead>").next
         unit_note = node.at(ns(".//note[@type = 'units']"))&.remove
-        unit_note and h.children.first.previous = full_row(cols, unit_row.to_xml)
+        unit_note and h.children.first.previous = full_row(cols,
+                                                           unit_row.to_xml)
         name and h.children.first.previous =
-          full_row(cols, "<p class='TableTitle' style='text-align:center;'>#{name.remove.children.to_xml}</p>")
+          full_row(cols,
+                   "<p class='TableTitle' style='text-align:center;'>#{name.remove.children.to_xml}</p>")
       end
 
       def full_row(cols, elem)
@@ -86,12 +92,12 @@ module IsoDoc
       end
 
       def annex1(elem)
-      lbl = @xrefs.anchor(elem["id"], :label)
-      if t = elem.at(ns("./title"))
-        t.children = "<strong>#{to_xml(t.children)}</strong>"
+        lbl = @xrefs.anchor(elem["id"], :label)
+        if t = elem.at(ns("./title"))
+          t.children = "<strong>#{to_xml(t.children)}</strong>"
+        end
+        prefix_name(elem, "<br/>", lbl, "title")
       end
-      prefix_name(elem, "<br/>", lbl, "title")
-    end
 
       include Init
     end
