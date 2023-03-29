@@ -300,8 +300,6 @@ HTML_HDR = <<~HDR.freeze
         </div>
         <br/>
         <div class="main-section">
-         <br/>
-  #{IEC_TITLE}
 HDR
 
 OPTIONS = [backend: :jis, header_footer: true].freeze
