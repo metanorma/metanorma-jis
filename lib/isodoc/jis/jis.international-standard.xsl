@@ -515,10 +515,10 @@
 
 				<fo:block-container text-align="center">
 					<!-- title -->
-					<fo:block role="H1" font-family="IPAexGothic" font-size="22pt" margin-top="27mm">規格票の様式及び作成方法</fo:block>
+					<fo:block role="H1" font-family="IPAexGothic" font-size="22pt" margin-top="27mm"><xsl:apply-templates select="/*/jis:bibdata/jis:title[@language = 'ja' and @type = 'main']/node()"/></fo:block>
 					<!-- docidentifier, 3 part: number, colon and year-->
-					<fo:block font-family="IPAexGothic" font-size="20pt" margin-top="15mm">JIS Z 8301<fo:inline baseline-shift="20%"><fo:inline font-size="10pt">：</fo:inline><fo:inline font-family="IPAexMincho" font-size="10pt">2019</fo:inline></fo:inline></fo:block>
-					<fo:block font-family="IPAexGothic" font-size="14pt" margin-top="12mm"><fo:inline font-family="IPAexMincho">（</fo:inline>JSA<fo:inline font-family="IPAexMincho">）</fo:inline></fo:block>
+					<fo:block font-family="IPAexGothic" font-size="20pt" margin-top="15mm"><fo:inline font-family="Arial">JIS Z 8301</fo:inline><fo:inline baseline-shift="20%"><fo:inline font-size="10pt">：</fo:inline><fo:inline font-family="Times New Roman" font-size="10pt">2019</fo:inline></fo:inline></fo:block>
+					<fo:block font-family="Arial" font-size="14pt" margin-top="12mm"><fo:inline font-family="IPAexMincho">（</fo:inline>JSA<fo:inline font-family="IPAexMincho">）</fo:inline></fo:block>
 				</fo:block-container>
 
 				<fo:block-container absolute-position="fixed" left="0mm" top="200mm" height="69mm" text-align="center" display-align="after" font-family="IPAexMincho">
@@ -559,7 +559,7 @@
 							<fo:inline/>
 							<fo:footnote-body>
 								<fo:block font-size="8.5pt">
-									<xsl:apply-templates select="/*/*[local-name() = 'preface']/*[local-name() = 'clause'][@type = 'inner-cover-note']/*[not(local-name() = 'title')]"/>
+									<xsl:apply-templates select="/*/*[local-name() = 'preface']/*[local-name() = 'clause'][@type = 'inner-cover-note']"/> <!-- /*[not(local-name() = 'title')] -->
 								</fo:block>
 							</fo:footnote-body>
 						</fo:footnote>
@@ -651,6 +651,13 @@
 				</xsl:if>
 			</item>
 		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="*[local-name() = 'preface']/*[local-name() = 'clause']" priority="3">
+		<fo:block>
+			<xsl:call-template name="setId"/>
+			<xsl:apply-templates/>
+		</fo:block>
 	</xsl:template>
 
 	<xsl:template match="*" priority="3" mode="page">
@@ -755,12 +762,11 @@
 
 		<xsl:variable name="margin-bottom">
 			<xsl:choose>
+				<xsl:when test="@ancestor = 'foreword' and $level = 1">9mm</xsl:when>
 				<xsl:when test="$level = 1">12pt</xsl:when>
 				<xsl:when test="$level &gt;= 2">12pt</xsl:when>
 				<xsl:when test="@type = 'section-title'">6mm</xsl:when>
 				<xsl:when test="@inline-header = 'true'">0pt</xsl:when>
-				<xsl:when test="@ancestor = 'foreword' and $level = 1">9mm</xsl:when>
-				<xsl:when test="@ancestor = 'introduction' and $level = 1">5.5mm</xsl:when>
 				<xsl:when test="@ancestor = 'annex' and $level = 1">6mm</xsl:when>
 				<xsl:otherwise>0mm</xsl:otherwise>
 			</xsl:choose>
@@ -841,7 +847,9 @@
 				<xsl:variable name="element-name">fo:block</xsl:variable>
 
 				<xsl:element name="{$element-name}">
-					<xsl:call-template name="setBlockAttributes"/>
+					<xsl:call-template name="setBlockAttributes">
+						<xsl:with-param name="text_align_default">justify</xsl:with-param>
+					</xsl:call-template>
 					<xsl:attribute name="margin-bottom">10pt</xsl:attribute>
 
 					<xsl:if test="not(parent::jis:note or parent::jis:li or ancestor::jis:table)">
@@ -869,6 +877,14 @@
 
 					<xsl:if test="parent::jis:li or following-sibling::*[1][self::jis:ol or self::jis:ul]">
 						<xsl:attribute name="margin-bottom">4pt</xsl:attribute>
+					</xsl:if>
+
+					<xsl:if test="parent::jis:td or parent::jis:th">
+						<xsl:attribute name="margin-bottom">0pt</xsl:attribute>
+					</xsl:if>
+
+					<xsl:if test="parent::jis:clause[@type = 'inner-cover-note']">
+						<xsl:attribute name="margin-bottom">0pt</xsl:attribute>
 					</xsl:if>
 
 					<xsl:apply-templates>
@@ -949,9 +965,10 @@
 	<!-- ========================= -->
 	<!-- Allocate non-Japanese text -->
 	<!-- ========================= -->
-	<!-- <name>注記  1</name> to <name>注記<font_en>  1</font_en></name> -->
-	<xsl:template match="jis:note/jis:name/text() |        jis:term/jis:preferred//text() |       jis:termnote/jis:name/text() |       jis:table/jis:name/text() |       jis:example/jis:name/text() |        jis:termexample/jis:name/text() |       jis:xref//text() |       jis:origin/text() |       jis:strong/text()" mode="update_xml_step1">
-		<xsl:variable name="regex_en">([^\u3000-\u9FFF\uF900-\uFFFF]{1,})</xsl:variable>
+
+	<xsl:variable name="regex_en">([^\u3000-\u9FFF\uF900-\uFFFF]{1,})</xsl:variable>
+
+	<xsl:template match="jis:p//text()" mode="update_xml_step1">
 		<xsl:variable name="element_name_font_en">font_en</xsl:variable>
 		<xsl:variable name="tag_font_en_open">###<xsl:value-of select="$element_name_font_en"/>###</xsl:variable>
 		<xsl:variable name="tag_font_en_close">###/<xsl:value-of select="$element_name_font_en"/>###</xsl:variable>
@@ -964,8 +981,31 @@
 		<xsl:copy-of select="xalan:nodeset($text_en)/text/node()"/>
 	</xsl:template>
 
-	<xsl:template match="*[local-name() = 'font_en']">
+	<!-- <name>注記  1</name> to <name>注記<font_en>  1</font_en></name> -->
+	<xsl:template match="jis:note/jis:name/text() |        jis:term/jis:preferred//text() |       jis:termnote/jis:name/text() |       jis:table/jis:name/text() |       jis:example/jis:name/text() |        jis:termexample/jis:name/text() |       jis:eref//text() |       jis:xref//text() |       jis:origin/text() |       jis:strong/text()" mode="update_xml_step1">
+		<xsl:variable name="element_name_font_en">font_en_bold</xsl:variable>
+		<xsl:variable name="tag_font_en_open">###<xsl:value-of select="$element_name_font_en"/>###</xsl:variable>
+		<xsl:variable name="tag_font_en_close">###/<xsl:value-of select="$element_name_font_en"/>###</xsl:variable>
+		<xsl:variable name="text_en_" select="java:replaceAll(java:java.lang.String.new(.), $regex_en, concat($tag_font_en_open,'$1',$tag_font_en_close))"/>
+		<xsl:variable name="text_en"><text><xsl:call-template name="replace_text_tags">
+			<xsl:with-param name="tag_open" select="$tag_font_en_open"/>
+			<xsl:with-param name="tag_close" select="$tag_font_en_close"/>
+			<xsl:with-param name="text" select="$text_en_"/>
+		</xsl:call-template></text></xsl:variable>
+		<xsl:copy-of select="xalan:nodeset($text_en)/text/node()"/>
+	</xsl:template>
+
+	<xsl:template match="*[local-name() = 'font_en_bold']">
 		<fo:inline font-family="Times New Roman" font-weight="bold">
+			<xsl:if test="ancestor::*[local-name() = 'preferred']">
+				<xsl:attribute name="font-weight">normal</xsl:attribute>
+			</xsl:if>
+			<xsl:apply-templates/>
+		</fo:inline>
+	</xsl:template>
+
+	<xsl:template match="*[local-name() = 'font_en']">
+		<fo:inline font-family="Times New Roman">
 			<xsl:if test="ancestor::*[local-name() = 'preferred']">
 				<xsl:attribute name="font-weight">normal</xsl:attribute>
 			</xsl:if>
@@ -1605,8 +1645,10 @@
 		<xsl:attribute name="padding-right">1mm</xsl:attribute>
 		<xsl:attribute name="display-align">center</xsl:attribute>
 
+			<xsl:attribute name="font-weight">normal</xsl:attribute>
 			<xsl:attribute name="border"><xsl:value-of select="$table-border"/></xsl:attribute>
 			<xsl:attribute name="padding-top">0.5mm</xsl:attribute>
+			<xsl:attribute name="text-align">center</xsl:attribute>
 
 	</xsl:attribute-set> <!-- table-header-cell-style -->
 
@@ -2655,6 +2697,10 @@
 
 						<xsl:call-template name="setBordersTableArray"/>
 
+							<xsl:if test="ancestor::*[local-name()='preface']">
+								<xsl:attribute name="border">none</xsl:attribute>
+							</xsl:if>
+
 					</xsl:element>
 				</xsl:variable>
 
@@ -3402,6 +3448,11 @@
 
 			<xsl:call-template name="setBordersTableArray"/>
 
+				<xsl:if test="ancestor::*[local-name() = 'preface']">
+					<xsl:attribute name="border-top">none</xsl:attribute>
+					<xsl:attribute name="border-bottom">none</xsl:attribute>
+				</xsl:if>
+
 			<xsl:call-template name="setTableRowAttributes"/>
 
 			<xsl:apply-templates/>
@@ -3468,7 +3519,13 @@
 				<xsl:with-param name="default">center</xsl:with-param>
 			</xsl:call-template>
 
+				<xsl:attribute name="text-align">center</xsl:attribute>
+
 			<xsl:call-template name="setBordersTableArray"/>
+
+				<xsl:if test="ancestor::*[local-name()='preface']">
+					<xsl:attribute name="border">none</xsl:attribute>
+				</xsl:if>
 
 			<xsl:if test="$lang = 'ar'">
 				<xsl:attribute name="padding-right">1mm</xsl:attribute>
@@ -3523,6 +3580,10 @@
 			 <!-- bsi -->
 
 			<xsl:call-template name="setBordersTableArray"/>
+
+				<xsl:if test="ancestor::*[local-name() = 'preface']">
+					<xsl:attribute name="border">none</xsl:attribute>
+				</xsl:if>
 
 			<xsl:if test=".//*[local-name() = 'table']"> <!-- if there is nested table -->
 				<xsl:attribute name="padding-right">1mm</xsl:attribute>
@@ -3721,7 +3782,11 @@
 							<fo:list-item>
 								<fo:list-item-label start-indent="{$text_indent}mm" end-indent="label-end()">
 									<fo:block>
-										<fo:inline font-size="9pt" font-family="IPAexGothic">注</fo:inline>
+										<fo:inline font-size="9pt" font-family="IPAexGothic">
+											<xsl:call-template name="getLocalizedString">
+												<xsl:with-param name="key">table_footnote</xsl:with-param>
+											</xsl:call-template>
+										</fo:inline>
 										<xsl:text> </xsl:text>
 										<fo:inline xsl:use-attribute-sets="table-fn-number-style">
 											<xsl:value-of select="@reference"/>
@@ -6112,7 +6177,14 @@
 
 			<fo:block-container margin-left="0mm" margin-right="0mm">
 
-						<fo:list-block provisional-distance-between-starts="{14 + $text_indent}mm">
+						<fo:list-block>
+							<xsl:attribute name="provisional-distance-between-starts">
+								<xsl:choose>
+									<!-- if last char is digit -->
+									<xsl:when test="translate(substring(*[local-name() = 'name'], string-length(*[local-name() = 'name'])),'0123456789','') = ''"><xsl:value-of select="14 + $text_indent"/>mm</xsl:when>
+									<xsl:otherwise><xsl:value-of select="10 + $text_indent"/>mm</xsl:otherwise>
+								</xsl:choose>
+							</xsl:attribute>
 							<fo:list-item>
 								<fo:list-item-label start-indent="{$text_indent}mm" end-indent="label-end()">
 									<fo:block xsl:use-attribute-sets="note-name-style">
@@ -8584,13 +8656,8 @@
 	</xsl:template>
 
 	<xsl:template match="*[local-name() = 'deprecates']">
-		<xsl:variable name="title-deprecated">
-			<xsl:call-template name="getLocalizedString">
-				<xsl:with-param name="key">deprecated</xsl:with-param>
-			</xsl:call-template>
-		</xsl:variable>
 		<fo:block xsl:use-attribute-sets="deprecates-style">
-			<xsl:value-of select="$title-deprecated"/>: <xsl:apply-templates/>
+			<xsl:apply-templates/>
 		</fo:block>
 	</xsl:template>
 
