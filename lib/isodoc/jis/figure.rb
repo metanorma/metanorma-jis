@@ -18,6 +18,7 @@ module IsoDoc
           key: node.at(ns("./dl")),
           img: node.at(ns("./image")),
           aside: node.at(ns("./aside")),
+          source: node.at(ns("./source")),
           subfigs: node.xpath(ns("./figure")).map { |n| figure_components(n) } }
       end
 
@@ -34,21 +35,24 @@ module IsoDoc
       def figure_parse1(node, out)
         c = figure_components(node)
         out.table **figure_attrs(node) do |div|
-          %i(units img subfigs key notes_etc aside name).each do |key|
+          %i(units img subfigs key notes_etc aside source name).each do |key|
             case key
-            when :subfigs
-              c[key].each do |n|
-                n[:subname] = n[:name]
-                figure_row(node, div, n, :img)
-                figure_row(node, div, n, :subname)
-              end
+            when :subfigs then figure_subfigs(node, div, c[key])
             when :notes_etc
-              c[key].each do |n|
+              c[key]&.each do |n|
                 figure_row(node, div, n, :notes_etc)
               end
             else figure_row(node, div, c, key)
             end
           end
+        end
+      end
+
+      def figure_subfigs(node, div, elem)
+        elem.each do |n|
+          n[:subname] = n[:name]
+          figure_row(node, div, n, :img)
+          figure_row(node, div, n, :subname)
         end
       end
 
@@ -89,6 +93,8 @@ module IsoDoc
           parse(hash[key], cell)
         when :notes_etc, :aside
           hash.each { |n| parse(n, cell) }
+        when :source
+          parse(hash[key], cell)
         when :name then figure_name_parse(node, cell, hash[key])
         when :img
           cell.p class: "Figure" do |p|
