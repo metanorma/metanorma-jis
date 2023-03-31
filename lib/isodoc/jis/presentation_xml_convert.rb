@@ -83,8 +83,8 @@ module IsoDoc
         unit_note and h.children.first.previous = full_row(cols,
                                                            unit_row.to_xml)
         name and h.children.first.previous =
-          full_row(cols,
-                   "<p class='TableTitle' style='text-align:center;'>#{name.remove.children.to_xml}</p>")
+          full_row(cols, "<p class='TableTitle' style='text-align:center;'> " \
+                         "#{name.remove.children.to_xml}</p>")
       end
 
       def full_row(cols, elem)
@@ -97,6 +97,13 @@ module IsoDoc
           t.children = "<strong>#{to_xml(t.children)}</strong>"
         end
         prefix_name(elem, "<br/>", lbl, "title")
+      end
+
+      def tablesource(elem)
+        while elem&.next_element&.name == "source"
+          elem << "; #{to_xml(elem.next_element.remove.children)}"
+        end
+        elem.children = l10n("#{@i18n.source}: #{to_xml(elem.children).strip}")
       end
 
       include Init
