@@ -21,8 +21,8 @@ module Metanorma
       def fonts_manifest
         {
           "STIX Two Math" => nil,
-          "MS Gothic" => nil,
-          "MS Mincho" => nil,
+          "IPAexGothic" => nil,
+          "IPAexMincho" => nil,
           "Courier New" => nil,
           "Cambria Math" => nil,
           "Times New Roman" => nil,
