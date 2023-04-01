@@ -98,7 +98,7 @@ RSpec.describe Metanorma::JIS do
            <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
            <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
            <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
-           <docidentifier type="JIS">JIS Z 1000:2000</docidentifier>
+           <docidentifier type="JIS">Z 1000:2000</docidentifier>
            <docnumber>1000</docnumber>
            <contributor>
              <role type="author"/>
@@ -159,7 +159,7 @@ RSpec.describe Metanorma::JIS do
                <workgroup number="31a" type="C1a">WG1a</workgroup>
              </approvalgroup>
              <structuredidentifier>
-               <project-number part="1">JIS 1000</project-number>
+               <project-number part="1">1000</project-number>
              </structuredidentifier>
              <stagename abbreviation="WD">Working Draft International Standard</stagename>
            </ext>
@@ -228,7 +228,7 @@ RSpec.describe Metanorma::JIS do
                <agency>ISO</agency>
              </approvalgroup>
              <structuredidentifier>
-               <project-number>JIS 1000</project-number>
+               <project-number>1000</project-number>
              </structuredidentifier>
              <stagename abbreviation="TR">Technical Report</stagename>
            </ext>
@@ -297,7 +297,7 @@ RSpec.describe Metanorma::JIS do
                <agency>ISO</agency>
              </approvalgroup>
              <structuredidentifier>
-               <project-number>JIS 1000</project-number>
+               <project-number>1000</project-number>
              </structuredidentifier>
              <stagename abbreviation="TS">Technical Specification</stagename>
            </ext>
@@ -390,7 +390,7 @@ RSpec.describe Metanorma::JIS do
           <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
           <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
-          <docidentifier type="JIS">JIS EXP</docidentifier>
+          <docidentifier type="JIS">EXP</docidentifier>
           <docnumber>1000</docnumber>
           <contributor>
             <role type="author"/>
@@ -448,7 +448,7 @@ RSpec.describe Metanorma::JIS do
               <workgroup number="31a" type="C1a">WG1a</workgroup>
             </approvalgroup>
             <structuredidentifier>
-              <project-number part="1">Alternative Publisher 1000</project-number>
+              <project-number part="1">1000</project-number>
             </structuredidentifier>
             <stagename abbreviation="WD">Working Draft International Standard</stagename>
           </ext>
@@ -478,7 +478,7 @@ RSpec.describe Metanorma::JIS do
     output = <<~OUTPUT
       <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::JIS::VERSION}">
                    <bibdata type="standard">
-           <docidentifier type="JIS">JIS 1000:1999/AMD 3:2023</docidentifier>
+           <docidentifier type="JIS">1000:1999/AMD 3:2023</docidentifier>
            <docnumber>1000</docnumber>
            <date type="created">
              <on>1999-01-01</on>
