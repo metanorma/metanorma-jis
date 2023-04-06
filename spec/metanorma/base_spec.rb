@@ -9,6 +9,7 @@ RSpec.describe Metanorma::JIS do
       = Document title
       Author
       :language: jp
+      :docnumber: 1000
     INPUT
     expect(xml.at("//xmlns:bibdata/xmlns:language").text)
       .to be_equivalent_to "ja"
@@ -18,6 +19,7 @@ RSpec.describe Metanorma::JIS do
     xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
       = Document title
       Author
+      :docnumber: 1000
     INPUT
     expect(xml.at("//xmlns:bibdata/xmlns:language").text)
       .to be_equivalent_to "ja"
@@ -98,7 +100,7 @@ RSpec.describe Metanorma::JIS do
            <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
            <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
            <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
-           <docidentifier type="JIS">Z 1000:2000</docidentifier>
+           <docidentifier type="JIS">Z 1000-1:2000</docidentifier>
            <docnumber>1000</docnumber>
            <contributor>
              <role type="author"/>
@@ -122,7 +124,7 @@ RSpec.describe Metanorma::JIS do
            <language>ja</language>
            <script>Jpan</script>
            <status>
-             <stage abbreviation="WD">20</stage>
+             <stage>20</stage>
              <substage>20</substage>
              <iteration>3</iteration>
            </status>
@@ -161,7 +163,6 @@ RSpec.describe Metanorma::JIS do
              <structuredidentifier>
                <project-number part="1">1000</project-number>
              </structuredidentifier>
-             <stagename abbreviation="WD">Working Draft International Standard</stagename>
            </ext>
          </bibdata>
          <sections> </sections>
@@ -230,7 +231,6 @@ RSpec.describe Metanorma::JIS do
              <structuredidentifier>
                <project-number>1000</project-number>
              </structuredidentifier>
-             <stagename abbreviation="TR">Technical Report</stagename>
            </ext>
          </bibdata>
          <sections> </sections>
@@ -299,7 +299,6 @@ RSpec.describe Metanorma::JIS do
              <structuredidentifier>
                <project-number>1000</project-number>
              </structuredidentifier>
-             <stagename abbreviation="TS">Technical Specification</stagename>
            </ext>
          </bibdata>
          <sections> </sections>
@@ -412,7 +411,7 @@ RSpec.describe Metanorma::JIS do
           <language>ja</language>
           <script>Jpan</script>
           <status>
-            <stage abbreviation="WD">20</stage>
+            <stage>20</stage>
             <substage>20</substage>
             <iteration>3</iteration>
           </status>
@@ -450,7 +449,6 @@ RSpec.describe Metanorma::JIS do
             <structuredidentifier>
               <project-number part="1">1000</project-number>
             </structuredidentifier>
-            <stagename abbreviation="WD">Working Draft International Standard</stagename>
           </ext>
         </bibdata>
         <sections> </sections>
@@ -474,11 +472,13 @@ RSpec.describe Metanorma::JIS do
       :doctype: amendment
       :created-date: 1999-01-01
       :amendment-number: 3
+      :updates: JIS Z 1000-1:1980
+      :copyright-year: 2022
     INPUT
     output = <<~OUTPUT
       <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::JIS::VERSION}">
                    <bibdata type="standard">
-           <docidentifier type="JIS">1000:1999/AMD 3:2023</docidentifier>
+           <docidentifier type="JIS">Z 1000-1:1980/AMD 3:2022</docidentifier>
            <docnumber>1000</docnumber>
            <date type="created">
              <on>1999-01-01</on>
@@ -504,7 +504,7 @@ RSpec.describe Metanorma::JIS do
              <substage>60</substage>
            </status>
            <copyright>
-             <from>2023</from>
+             <from>2022</from>
              <owner>
                <organization>
                  <name>Japanese Industrial Standards</name>
@@ -523,7 +523,6 @@ RSpec.describe Metanorma::JIS do
              <structuredidentifier>
                <project-number amendment="3" origyr="1999-01-01">1000</project-number>
              </structuredidentifier>
-             <stagename abbreviation="AMD"/>
            </ext>
          </bibdata>
          <sections> </sections>
