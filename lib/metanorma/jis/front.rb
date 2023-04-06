@@ -98,7 +98,7 @@ module Metanorma
 
       def iso_id_params_core(node)
         pub = (node.attr("publisher") || "JIS").split(/[;,]/)
-        ret = { number: node.attr("docnumber"),
+        ret = { number: node.attr("docnumber") || "0",
                 part: node.attr("partnumber"),
                 series: node.attr("docseries"),
                 language: node.attr("language") == "en" ? "E" : nil,
@@ -117,12 +117,12 @@ module Metanorma
       def iso_id_out(xml, params, _with_prf)
         id = iso_id_default(params).to_s
         xml.docidentifier id.strip.sub(/^JIS /, ""), type: "JIS"
-      rescue StandardError => e
-        clean_abort("Document identifier: #{e}", xml)
       end
 
       def iso_id_default(params)
         Pubid::Jis::Identifier.create(**params)
+      rescue StandardError => e
+        clean_abort("Document identifier: #{e}", xml)
       end
     end
   end

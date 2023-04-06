@@ -206,7 +206,6 @@ BLANK_HDR = <<~"HDR".freeze
   <?xml version="1.0" encoding="UTF-8"?>
   <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::JIS::VERSION}">
   <bibdata type="standard">
-  <docidentifier type="JIS">:2023</docidentifier>
     <contributor>
       <role type="author"/>
       <organization>
@@ -244,7 +243,6 @@ BLANK_HDR = <<~"HDR".freeze
           <approvalgroup>
         <agency>ISO</agency>
       </approvalgroup>
-    <stagename>International Standard</stagename>
     </ext>
   </bibdata>
   <metanorma-extension>
