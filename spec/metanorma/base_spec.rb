@@ -5,7 +5,7 @@ RSpec.describe Metanorma::JIS do
   end
 
   it "accepts language = jp" do
-    xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
+    xml = Nokogiri::XML(Asciidoctor.convert(<<~INPUT, *OPTIONS))
       = Document title
       Author
       :language: jp
@@ -16,7 +16,7 @@ RSpec.describe Metanorma::JIS do
   end
 
   it "defaults to language = ja" do
-    xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
+    xml = Nokogiri::XML(Asciidoctor.convert(<<~INPUT, *OPTIONS))
       = Document title
       Author
       :docnumber: 1000
@@ -26,7 +26,7 @@ RSpec.describe Metanorma::JIS do
   end
 
   it "processes default metadata" do
-    xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
+    xml = Nokogiri::XML(Asciidoctor.convert(<<~INPUT, *OPTIONS))
       = Document title
       Author
       :docfile: test.adoc
@@ -175,7 +175,7 @@ RSpec.describe Metanorma::JIS do
   end
 
   it "processes metadata, technical report" do
-    xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
+    xml = Nokogiri::XML(Asciidoctor.convert(<<~INPUT, *OPTIONS))
       = Document title
       Author
       :docfile: test.adoc
@@ -243,7 +243,7 @@ RSpec.describe Metanorma::JIS do
   end
 
   it "processes metadata, technical specification" do
-    xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
+    xml = Nokogiri::XML(Asciidoctor.convert(<<~INPUT, *OPTIONS))
       = Document title
       Author
       :docfile: test.adoc
@@ -311,7 +311,7 @@ RSpec.describe Metanorma::JIS do
   end
 
   it "processes metadata, unrecognised type" do
-    xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
+    xml = Nokogiri::XML(Asciidoctor.convert(<<~INPUT, *OPTIONS))
       = Document title
       Author
       :docfile: test.adoc
@@ -461,7 +461,7 @@ RSpec.describe Metanorma::JIS do
   end
 
   it "processes metadata, amendment" do
-    xml = Nokogiri::XML(Asciidoctor.convert(<<~"INPUT", *OPTIONS))
+    xml = Nokogiri::XML(Asciidoctor.convert(<<~INPUT, *OPTIONS))
       = Document title
       Author
       :docfile: test.adoc
@@ -531,6 +531,137 @@ RSpec.describe Metanorma::JIS do
     xml.at("//xmlns:metanorma-extension")&.remove
     xml.at("//xmlns:boilerplate")&.remove
     expect(xmlpp(strip_guid(xml.to_xml)))
+      .to be_equivalent_to xmlpp(output)
+  end
+
+  it "preserves user-supplied boilerplate in Normative References" do
+    VCR.use_cassette "isobib_216" do
+      input = <<~INPUT
+        #{ASCIIDOC_BLANK_HDR}
+        [bibliography]
+        == Normative References
+
+        [NOTE,type=boilerplate]
+        --
+        This is extraneous information
+        --
+
+        * [[[iso216,ISO 216]]], _Reference_
+
+        This is also extraneous information
+      INPUT
+      output = <<~OUTPUT
+        #{BLANK_HDR}
+        <sections></sections>
+                 <bibliography>
+             <references id="_" normative="true" obligation="informative">
+               <title>引用規格</title>
+               <p id="_">This is extraneous information</p>
+               <bibitem id="iso216" type="standard">
+                 <title format="text/plain">Reference</title>
+                 <docidentifier>ISO 216</docidentifier>
+                 <docnumber>216</docnumber>
+                 <contributor>
+                   <role type="publisher"/>
+                   <organization>
+                     <name>International Organization for Standardization</name>
+                     <abbreviation>ISO</abbreviation>
+                   </organization>
+                 </contributor>
+               </bibitem>
+               <p id="_">This is also extraneous information</p>
+             </references>
+           </bibliography>
+        </standard-document>
+      OUTPUT
+      expect(xmlpp(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
+        .to be_equivalent_to xmlpp(output)
+
+      input = <<~INPUT
+        #{ASCIIDOC_BLANK_HDR}
+        [bibliography]
+        == Normative References
+
+        [.boilerplate]
+        --
+        This is extraneous information
+        --
+
+        * [[[iso216,ISO 216]]], _Reference_
+
+        This is also extraneous information
+      INPUT
+      expect(xmlpp(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
+        .to be_equivalent_to xmlpp(output)
+    end
+  end
+
+  it "renumbers footnotes in tables (including table titles)" do
+    input = <<~INPUT
+      #{ASCIIDOC_BLANK_HDR}
+
+      == Clause{blank}footnote:[Normal flow]
+
+      .Table.footnote:[First]
+      |===
+      | A | B{blank}footnote:[Second]
+
+      | C | B{blank}footnote:[Third]
+      |===
+
+      Paragraph.footnote:[Normal flow #2]
+    INPUT
+    output = <<~OUTPUT
+      #{BLANK_HDR}
+               <sections>
+           <clause id="_" inline-header="false" obligation="normative">
+             <title>
+               Clause
+               <fn reference="1">
+                 <p id="_">Normal flow</p>
+               </fn>
+             </title>
+             <table id="_">
+               <name>
+                 Table.
+                 <fn reference="a">
+                   <p id="_">First</p>
+                 </fn>
+               </name>
+               <thead>
+                 <tr>
+                   <th valign="top" align="left">A</th>
+                   <th valign="top" align="left">
+                     B
+                     <fn reference="b">
+                       <p id="_">Second</p>
+                     </fn>
+                   </th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td valign="top" align="left">C</td>
+                   <td valign="top" align="left">
+                     B
+                     <fn reference="c">
+                       <p id="_">Third</p>
+                     </fn>
+                   </td>
+                 </tr>
+               </tbody>
+             </table>
+             <p id="_">
+               Paragraph.
+               <fn reference="2">
+                 <p id="_">Normal flow #2</p>
+               </fn>
+             </p>
+           </clause>
+         </sections>
+       </jis-standard>
+    OUTPUT
+    expect(xmlpp(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
       .to be_equivalent_to xmlpp(output)
   end
 end

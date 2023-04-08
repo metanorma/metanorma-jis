@@ -9,7 +9,7 @@ class Html2Doc
     end
 
     def style_list(elem, level, liststyle, listnumber)
-      return unless liststyle
+      liststyle or return
       elem["level"] = level
       super
     end
@@ -32,14 +32,6 @@ class Html2Doc
       end
       item.at("./p") or return
       item.replace(item.children)
-=begin
-      prev = p1.xpath("./preceding-sibling::* | ./preceding-sibling::text()")
-      if prev[-1].name == "span" && prev[-1]["style"] == "mso-tab-count:1" &&
-          prev.size == 2
-        p1.children.first.previous = prev[1]
-        p1.children.first.previous = prev[0]
-      end
-=end
     end
 
     def list2para_unnest_para(para, first_p, last_p)
@@ -74,29 +66,29 @@ class Html2Doc
       case listtype
       when "ol"
         ret = case depth
-        when "1" then "margin-left: 36.0pt;"
-        when "2" then "margin-left: 54.0pt;"
-        when "3" then "margin-left: 72.0pt;"
-        when "4" then "margin-left: 90.0pt;"
-        when "5" then "margin-left: 108.0pt;"
-        when "6" then "margin-left: 126.0pt;"
-        when "7" then "margin-left: 144.0pt;"
-        when "8" then "margin-left: 162.0pt;"
-        else "margin-left: 180.0pt;"
-        end
+              when "1" then "margin-left: 36.0pt;"
+              when "2" then "margin-left: 54.0pt;"
+              when "3" then "margin-left: 72.0pt;"
+              when "4" then "margin-left: 90.0pt;"
+              when "5" then "margin-left: 108.0pt;"
+              when "6" then "margin-left: 126.0pt;"
+              when "7" then "margin-left: 144.0pt;"
+              when "8" then "margin-left: 162.0pt;"
+              else "margin-left: 180.0pt;"
+              end
         "#{ret}text-indent:-18.0pt;"
       when "ul"
         ret = case depth
-       when "1" then "margin-left: 36.0pt;"
-        when "2" then "margin-left: 45.95pt;"
-        when "3" then "margin-left: 72.0pt;"
-        when "4" then "margin-left: 90.0pt;"
-        when "5" then "margin-left: 108.0pt;"
-        when "6" then "margin-left: 126.0pt;"
-        when "7" then "margin-left: 144.0pt;"
-        when "8" then "margin-left: 162.0pt;"
-        else "margin-left: 180.0pt;"
-        end
+              when "1" then "margin-left: 36.0pt;"
+              when "2" then "margin-left: 45.95pt;"
+              when "3" then "margin-left: 72.0pt;"
+              when "4" then "margin-left: 90.0pt;"
+              when "5" then "margin-left: 108.0pt;"
+              when "6" then "margin-left: 126.0pt;"
+              when "7" then "margin-left: 144.0pt;"
+              when "8" then "margin-left: 162.0pt;"
+              else "margin-left: 180.0pt;"
+              end
         "#{ret}text-indent:-18.0pt;"
 
       end
@@ -112,11 +104,10 @@ class Html2Doc
         u.replace(u.children)
       end
       unnest_list_paras(docxml)
-      indent_lists(docxml)
     end
 
     def unnest_list_paras(docxml)
-      docxml.xpath("//p[@class = 'ListContinue1' or @class = 'ListNumber1']" \
+      docxml.xpath("//p[@class = 'MsoList' or @class = 'MsoListBullet']" \
                    "[.//p]").each do |p|
                      p.at("./p") and
                        list2para_unnest_para(p, p.at("./p"),
@@ -126,24 +117,6 @@ class Html2Doc
                                              p1.at("./p[last()]"))
                      end
                    end
-    end
-
-    def indent_lists(docxml)
-      docxml.xpath("//div[@class = 'Note' or @class = 'Example' or " \
-                   "@class = 'Quote']").each do |d|
-        d.xpath(".//p").each do |p|
-          indent_lists1(p)
-        end
-      end
-    end
-
-    def indent_lists1(para)
-      m = /^(ListContinue|ListNumber|MsoListContinue|MsoListNumber)(\d)$/
-        .match(para["class"]) or return
-      base = m[1].sub(/^Mso/, "")
-      level = m[2].to_i + 1
-      level = 5 if level > 5
-      para["class"] = "#{base}#{level}-"
     end
 
     def list_add(xpath, liststyles, listtype, level)
@@ -169,23 +142,6 @@ class Html2Doc
                  ".//ol[not(ancestor::li/ancestor::*/@id = '#{list['id']}')]")
         .each do |li|
         list_add1(li.parent, liststyles, listtype, level - 1)
-      end
-    end
-
-    def listlabel(listtype, idx, level)
-      case listtype
-      when :ul then "&#x2014;"
-      when :ol then "#{listidx(idx, level)})"
-      end
-    end
-
-    def listidx(idx, level)
-      case level
-      when "a" then (96 + idx).chr.to_s
-      when "1" then idx.to_s
-      when "i" then RomanNumerals.to_roman(idx).downcase
-      when "A" then (64 + idx).chr.to_s
-      when "I" then RomanNumerals.to_roman(idx).upcase
       end
     end
 
