@@ -22,7 +22,7 @@ module IsoDoc
       def strong1(text)
         jpan = /^[#{JPAN}]/o.match?(text[0])
         ret = jpan ? JPAN_BOLD : "<strong>"
-        text.split("").each do |n|
+        text.chars.each do |n|
           new = /^[#{JPAN}]/o.match?(n)
           jpan && !new and ret += "</span><strong>"
           !jpan && new and ret += "</strong>#{JPAN_BOLD}"
@@ -54,35 +54,66 @@ module IsoDoc
       end
 
       def dl_to_para(node)
-        ret = ""
-        e = node.at(ns("./name")) and
-          ret += "<p class='ListTitle' id='#{dlist['id']}'>" \
-                 "#{e.children.to_xml}</p>"
-        node.elements.select { |n| dt_dd?(n) }.each_slice(2) do |dt, dd|
-          term = dt.children.to_xml.gsub(%r{</?p( [^>]*)>}, "")
-          defn = dd.children.to_xml.gsub(%r{</?p( [^>]*)>}, "")
-          ret += "<p id='#{dt['id']}'>#{term}: " \
-                 "<bookmark id='#{dd['id']}'/>#{defn}</p>"
-        end
-        node.elements.each do |x|
-          %w(dt dd name).include?(x.name) and next
+        ret = dl_to_para_name(node)
+        ret += dl_to_para_terms(node)
+        node.elements.reject { |n| %w(dt dd name).include?(n.name) }.each do |x|
           ret += x.to_xml
         end
-        node.replace(ret.gsub(/ id=''/, ""))
+        dl_id_insert(node, ret)
+      end
+
+      def dl_id_insert(node, ret)
+        a = node.replace(ret)
+        p = a.at("./descendant-or-self::xmlns:p")
+        node["id"] and p << "<bookmark id='#{node['id']}'/>"
+        a.xpath("./descendant-or-self::*[@id = '']").each { |x| x.delete("id") }
+      end
+
+      def dl_to_para_name(node)
+        e = node.at(ns("./name")) or return ""
+        "<p class='ListTitle'>#{e.children.to_xml}</p>"
+      end
+
+      def dl_to_para_terms(node)
+        ret = ""
+        node.elements.select { |n| dt_dd?(n) }.each_slice(2) do |dt, dd|
+          term = strip_para(dt)
+          defn = strip_para(dd)
+          bkmk = dd["id"] ? "<bookmark id='#{dd['id']}'/>" : ""
+          ret += "<p id='#{dt['id']}'>#{term}: #{bkmk}#{defn}</p>"
+        end
+        ret
+      end
+
+      def strip_para(node)
+        node.children.to_xml.gsub(%r{</?p( [^>]*)>}, "")
       end
 
       def table1(node)
         super
+        cols = table_cols_count(node)
+        name = node.at(ns("./name"))
+        thead = node.at(ns("./thead")) || name.after("<thead> </thead>").next
+        table_unit_note(node, thead, cols)
+        table_name(name, thead, cols)
+      end
+
+      def table_cols_count(node)
         cols = 0
         node.at(ns(".//tr")).xpath(ns("./td | ./th")).each do |x|
           cols += x["colspan"]&.to_i || 1
         end
-        name = node.at(ns("./name"))
-        h = node.at(ns("./thead")) || name.after("<thead> </thead>").next
-        unit_note = node.at(ns(".//note[@type = 'units']"))&.remove
-        unit_note and h.children.first.previous = full_row(cols,
-                                                           unit_row.to_xml)
-        name and h.children.first.previous =
+        cols
+      end
+
+      def table_unit_note(node, thead, cols)
+        unit_note = node.at(ns(".//note[@type = 'units']")) or return
+        thead.children.first.previous = full_row(cols, unit_note.remove.to_xml)
+      end
+
+      def table_name(name, thead, cols)
+        name or return
+        thead.children.first.previous =
           full_row(cols, "<p class='TableTitle' style='text-align:center;'> " \
                          "#{name.remove.children.to_xml}</p>")
       end
