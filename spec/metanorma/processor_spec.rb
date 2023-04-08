@@ -133,6 +133,7 @@ RSpec.describe Metanorma::JIS::Processor do
       Author
       :docfile: test.adoc
       :novalid:
+      :docnumber: 0
 
       == Clause
     INPUT
