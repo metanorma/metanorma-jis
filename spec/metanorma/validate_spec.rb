@@ -5,7 +5,7 @@ RSpec.describe Metanorma::JIS do
   context "when xref_error.adoc compilation" do
     it "generates error file" do
       FileUtils.rm_f "xref_error.err"
-      File.write("xref_error.adoc", <<~"CONTENT")
+      File.write("xref_error.adoc", <<~CONTENT)
         = X
         A
 
@@ -25,7 +25,7 @@ RSpec.describe Metanorma::JIS do
   end
 
   it "Warns of illegal script" do
-    Asciidoctor.convert(<<~"INPUT", *OPTIONS)
+    Asciidoctor.convert(<<~INPUT, *OPTIONS)
       = Document title
       Author
       :docfile: test.adoc
@@ -37,7 +37,7 @@ RSpec.describe Metanorma::JIS do
     INPUT
     expect(File.read("test.err")).to include "pizza is not a recognised script"
 
-    Asciidoctor.convert(<<~"INPUT", *OPTIONS)
+    Asciidoctor.convert(<<~INPUT, *OPTIONS)
       = Document title
       Author
       :docfile: test.adoc
