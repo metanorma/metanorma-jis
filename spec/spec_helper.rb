@@ -186,6 +186,21 @@ VALIDATING_BLANK_HDR = <<~HDR.freeze
 
 HDR
 
+def middle_title(word, number = "", year = "")
+<<~HDR
+  <p class="JapaneseIndustrialStandard">
+    日本工業規格#{word ? '<span style="mso-tab-count:7">  </span>' : " "}<span class="JIS">JIS</span>
+  </p>
+  <p class="StandardNumber">
+    #{number}:
+    <span class="EffectiveYear">#{year}</span>
+  </p>
+  <p class="IDT"/>
+               <p class="zzSTDTitle1"/>
+      <p class="zzSTDTitle2"/>
+HDR
+end
+
 TERMS_BOILERPLATE = "".freeze
 
 def boilerplate(xmldoc)

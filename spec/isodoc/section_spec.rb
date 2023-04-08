@@ -30,8 +30,7 @@ RSpec.describe IsoDoc::JIS do
           <br clear="all" class="section"/>
         </p>
         <div class="WordSection3">
-           <p class="zzSTDTitle1"/>
-           <p class="zzSTDTitle2"/>
+                    #{middle_title(true)}
            <div class="normref_div">
              <h1>Normative References</h1>
              <div>
@@ -138,8 +137,7 @@ RSpec.describe IsoDoc::JIS do
           </div>
           <br/>
           <div class="main-section">
-            <p class="zzSTDTitle1"/>
-            <p class="zzSTDTitle2"/>
+                      #{middle_title(false)}
             <div>
               <h1>
               1
@@ -205,8 +203,7 @@ RSpec.describe IsoDoc::JIS do
           <br clear="all" class="section"/>
         </p>
         <div class="WordSection3">
-          <p class="zzSTDTitle1"/>
-          <p class="zzSTDTitle2"/>
+                    #{middle_title(true)}
           <div class="normref_div">
             <h1>
               1
@@ -254,12 +251,36 @@ RSpec.describe IsoDoc::JIS do
           <p>
             <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
           </p>
+                <p class="JapaneseIndustrialStandard">
+        日本工業規格
+        <span style="mso-tab-count:7">  </span>
+        <span class="JIS">JIS</span>
+      </p>
+      <p class="StandardNumber">
+        :
+        <span class="EffectiveYear"/>
+      </p>
+      <p class="IDT"/>
+      <p class="zzSTDTitle1"/>
+      <p class="zzSTDTitle2"/>
           <div id="C" class="Section3">
             <h1 class="Annex">Commentary</h1>
           </div>
           <p>
             <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
           </p>
+                <p class="JapaneseIndustrialStandard">
+        日本工業規格
+        <span style="mso-tab-count:7">  </span>
+        <span class="JIS">JIS</span>
+      </p>
+      <p class="StandardNumber">
+        :
+        <span class="EffectiveYear"/>
+      </p>
+      <p class="IDT"/>
+      <p class="zzSTDTitle1"/>
+      <p class="zzSTDTitle2"/>
           <div id="D" class="Section3">
             <h1 class="Annex">Another Commentary</h1>
           </div>

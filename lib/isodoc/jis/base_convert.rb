@@ -5,13 +5,29 @@ module IsoDoc
   module JIS
     module BaseConvert
       def middle_title(_isoxml, out)
-        middle_title_main(out)
+        middle_title_hdr(out)
+        middle_title_main(out,  "zzSTDTitle1")
         middle_subtitle_main(out)
         # middle_title_amd(out)
       end
 
-      def middle_title_main(out)
-        out.p(class: "zzSTDTitle1") do |p|
+      def middle_title_hdr(out)
+        out.p(class: "JapaneseIndustrialStandard") do |p|
+          p << @i18n.jis
+          @meta.get[:unpublished] and p << @i18n.l10n("(#{@i18n.draft_label})")
+          insert_tab(p, 7)
+          p << "<span class='JIS'>JIS</span>"
+        end
+        out.p(class: "StandardNumber") do |p|
+          p << @meta.get[:docnumeric]&.sub(/^JIS /, "")
+          p << ": "
+          p << "<span class='EffectiveYear'>#{@meta.get[:docyear]}</span>"
+        end
+        out.p(class: "IDT")
+      end
+
+      def middle_title_main(out, style)
+        out.p(class: style) do |p|
           p << @meta.get[:doctitleintro]
           p << " &#x2014; " if @meta.get[:doctitleintro] && @meta.get[:doctitlemain]
           p << @meta.get[:doctitlemain]
@@ -34,6 +50,19 @@ module IsoDoc
         a = @meta.get[:docsubtitlepart] and out.p(class: "zzSTDTitle2") do |p|
           b = @meta.get[:docsubtitlepartlabel] and p << "#{b}: "
           p << "<br/><b>#{a}</b>"
+        end
+      end
+
+      def commentary_title(_isoxml, out)
+        commentary_title_hdr(out)
+        middle_title_main(out,  "CommentaryStandardName")
+      end
+
+      def commentary_title_hdr(out)
+        out.p(class: "CommentaryStandardNumber") do |p|
+          p << @meta.get[:docnumeric]
+          p << ": "
+          p << "<span class='CommentaryEffectiveYear'>#{@meta.get[:docyear]}</span>"
         end
       end
 
@@ -95,7 +124,7 @@ module IsoDoc
         amd(isoxml) and @suppressheadingnumbers = true
       end
 
-            def commentary(isoxml, out)
+      def commentary(isoxml, out)
         isoxml.xpath(ns("//annex[@commentary = 'true']")).each do |c|
           page_break(out)
           out.div **attr_code(annex_attrs(c)) do |s|
