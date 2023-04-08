@@ -60,61 +60,61 @@ def xmlpp(xml)
     end
   end.join
   xsl = <<~XSL
-<!--
-    <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-      <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
-      <xsl:strip-space elements="*"/>
-      <xsl:template match="/">
-        <xsl:copy-of select="."/>
+    <!--
+        <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+          <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
+          <xsl:strip-space elements="*"/>
+          <xsl:template match="/">
+            <xsl:copy-of select="."/>
+          </xsl:template>
+        </xsl:stylesheet>
+    -->
+      <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+      <xsl:output method="xml" encoding="ISO-8859-1"/>
+      <xsl:param name="indent-increment" select="'  '"/>
+
+      <xsl:template name="newline">
+        <xsl:text disable-output-escaping="yes">
+    </xsl:text>
+      </xsl:template>
+
+      <xsl:template match="comment() | processing-instruction()">
+        <xsl:param name="indent" select="''"/>
+        <xsl:call-template name="newline"/>
+        <xsl:value-of select="$indent"/>
+        <xsl:copy />
+      </xsl:template>
+
+      <xsl:template match="text()">
+        <xsl:param name="indent" select="''"/>
+        <xsl:call-template name="newline"/>
+        <xsl:value-of select="$indent"/>
+        <xsl:value-of select="normalize-space(.)"/>
+      </xsl:template>
+
+      <xsl:template match="text()[normalize-space(.)='']"/>
+
+      <xsl:template match="*">
+        <xsl:param name="indent" select="''"/>
+        <xsl:call-template name="newline"/>
+        <xsl:value-of select="$indent"/>
+          <xsl:choose>
+           <xsl:when test="count(child::*) > 0">
+            <xsl:copy>
+             <xsl:copy-of select="@*"/>
+             <xsl:apply-templates select="*|text()">
+               <xsl:with-param name="indent" select="concat ($indent, $indent-increment)"/>
+             </xsl:apply-templates>
+             <xsl:call-template name="newline"/>
+             <xsl:value-of select="$indent"/>
+            </xsl:copy>
+           </xsl:when>
+           <xsl:otherwise>
+            <xsl:copy-of select="."/>
+           </xsl:otherwise>
+         </xsl:choose>
       </xsl:template>
     </xsl:stylesheet>
--->
-  <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-  <xsl:output method="xml" encoding="ISO-8859-1"/>
-  <xsl:param name="indent-increment" select="'  '"/>
-
-  <xsl:template name="newline">
-    <xsl:text disable-output-escaping="yes">
-</xsl:text>
-  </xsl:template>
-
-  <xsl:template match="comment() | processing-instruction()">
-    <xsl:param name="indent" select="''"/>
-    <xsl:call-template name="newline"/>
-    <xsl:value-of select="$indent"/>
-    <xsl:copy />
-  </xsl:template>
-
-  <xsl:template match="text()">
-    <xsl:param name="indent" select="''"/>
-    <xsl:call-template name="newline"/>
-    <xsl:value-of select="$indent"/>
-    <xsl:value-of select="normalize-space(.)"/>
-  </xsl:template>
-
-  <xsl:template match="text()[normalize-space(.)='']"/>
-
-  <xsl:template match="*">
-    <xsl:param name="indent" select="''"/>
-    <xsl:call-template name="newline"/>
-    <xsl:value-of select="$indent"/>
-      <xsl:choose>
-       <xsl:when test="count(child::*) > 0">
-        <xsl:copy>
-         <xsl:copy-of select="@*"/>
-         <xsl:apply-templates select="*|text()">
-           <xsl:with-param name="indent" select="concat ($indent, $indent-increment)"/>
-         </xsl:apply-templates>
-         <xsl:call-template name="newline"/>
-         <xsl:value-of select="$indent"/>
-        </xsl:copy>
-       </xsl:when>
-       <xsl:otherwise>
-        <xsl:copy-of select="."/>
-       </xsl:otherwise>
-     </xsl:choose>
-  </xsl:template>
-</xsl:stylesheet>
   XSL
   Nokogiri::XSLT(xsl).transform(Nokogiri::XML(xml, &:noblanks))
     .to_xml(indent: 2, encoding: "UTF-8")
@@ -122,66 +122,71 @@ def xmlpp(xml)
     .gsub(%r{ schema-version="[^"]+"}, "")
 end
 
-ASCIIDOC_BLANK_HDR = <<~"HDR".freeze
+ASCIIDOC_BLANK_HDR = <<~HDR.freeze
   = Document title
   Author
   :docfile: test.adoc
   :nodoc:
   :novalid:
   :no-isobib:
+  :docnumber: 0
 
 HDR
 
-ISOBIB_BLANK_HDR = <<~"HDR".freeze
+ISOBIB_BLANK_HDR = <<~HDR.freeze
   = Document title
   Author
   :docfile: test.adoc
   :nodoc:
   :novalid:
   :no-isobib-cache:
+  :docnumber: 0
 
 HDR
 
-FLUSH_CACHE_ISOBIB_BLANK_HDR = <<~"HDR".freeze
+FLUSH_CACHE_ISOBIB_BLANK_HDR = <<~HDR.freeze
   = Document title
   Author
   :docfile: test.adoc
   :nodoc:
   :novalid:
   :flush-caches:
+  :docnumber: 0
 
 HDR
 
-CACHED_ISOBIB_BLANK_HDR = <<~"HDR".freeze
+CACHED_ISOBIB_BLANK_HDR = <<~HDR.freeze
   = Document title
   Author
   :docfile: test.adoc
   :nodoc:
   :novalid:
+  :docnumber: 0
 
 HDR
 
-LOCAL_CACHED_ISOBIB_BLANK_HDR = <<~"HDR".freeze
+LOCAL_CACHED_ISOBIB_BLANK_HDR = <<~HDR.freeze
   = Document title
   Author
   :docfile: test.adoc
   :nodoc:
   :novalid:
   :local-cache:
+  :docnumber: 0
 
 HDR
 
-VALIDATING_BLANK_HDR = <<~"HDR".freeze
+VALIDATING_BLANK_HDR = <<~HDR.freeze
   = Document title
   Author
   :docfile: test.adoc
   :nodoc:
   :no-isobib:
+  :docnumber: 0
 
 HDR
 
-TERMS_BOILERPLATE = <<~"BOILERPLATE".freeze
-BOILERPLATE
+TERMS_BOILERPLATE = "".freeze
 
 def boilerplate(xmldoc)
   file = File.read(
@@ -206,6 +211,8 @@ BLANK_HDR = <<~"HDR".freeze
   <?xml version="1.0" encoding="UTF-8"?>
   <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::JIS::VERSION}">
   <bibdata type="standard">
+      <docidentifier type="JIS">0:2023</docidentifier>
+    <docnumber>0</docnumber>
     <contributor>
       <role type="author"/>
       <organization>
@@ -243,6 +250,9 @@ BLANK_HDR = <<~"HDR".freeze
           <approvalgroup>
         <agency>ISO</agency>
       </approvalgroup>
+           <structuredidentifier>
+       <project-number>0</project-number>
+     </structuredidentifier>
     </ext>
   </bibdata>
   <metanorma-extension>
@@ -268,36 +278,19 @@ def blank_hdr_gen
   HDR
 end
 
-IEC_TITLE = <<~TITLE.freeze
-  <p class="zzSTDTitle1">BRITISH STANDARDS INSTITUTION</p>
-              <p class="zzSTDTitle1">____________</p>
-              <p class="zzSTDTitle1">&#160;</p>
-              <p class="zzSTDTitle1">
-                <b/>
-              </p>
-              <p class="zzSTDTitle1">&#160;</p>
-TITLE
-
-IEC_TITLE1 = <<~TITLE.freeze
-  <p class="zzSTDTitle1">
-    <b/>
-  </p>
-  <p class="zzSTDTitle1">&#160;</p>
-TITLE
-
 HTML_HDR = <<~HDR.freeze
-    <html xmlns:epub="http://www.idpf.org/2007/ops" lang="en">
-      <head/>
-      <body lang="en">
-        <div class="title-section">
-          <p>&#160;</p>
-        </div>
-        <br/>
-        <div class="prefatory-section">
-          <p>&#160;</p>
-        </div>
-        <br/>
-        <div class="main-section">
+  <html xmlns:epub="http://www.idpf.org/2007/ops" lang="en">
+    <head/>
+    <body lang="en">
+      <div class="title-section">
+        <p>&#160;</p>
+      </div>
+      <br/>
+      <div class="prefatory-section">
+        <p>&#160;</p>
+      </div>
+      <br/>
+      <div class="main-section">
 HDR
 
 OPTIONS = [backend: :jis, header_footer: true].freeze
@@ -307,7 +300,7 @@ def presxml_options
 end
 
 def mock_pdf
-  allow(::Mn2pdf).to receive(:convert) do |url, output, _c, _d|
+  allow(Mn2pdf).to receive(:convert) do |url, output, _c, _d|
     FileUtils.cp(url.gsub(/"/, ""), output.gsub(/"/, ""))
   end
 end
@@ -328,4 +321,3 @@ def get_xml(search, code, opts)
     xml
   end
 end
-
