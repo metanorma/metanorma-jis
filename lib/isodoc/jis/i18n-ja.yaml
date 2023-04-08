@@ -5,6 +5,8 @@ norm_with_refs_pref_none_dated: 次に掲げる引用規格は，この規格に
 admitted: "代替用語"
 table_footnote: 注
 commentary: 解説
+JIS: 日本工業規格
+draft_label: 案
 doctype_dict:
   international-standard: 日本産業規格
   technical-specification: 標準仕様書

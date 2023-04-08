@@ -187,6 +187,7 @@ module IsoDoc
       def commentary(isoxml, out)
         isoxml.xpath(ns("//annex[@commentary = 'true']")).each do |c|
           page_break(out)
+          middle_title(isoxml, out)
           out.div **attr_code(annex_attrs(c)) do |s|
             c.elements.each do |c1|
               if c1.name == "title" then annex_name(c, c1, s)

@@ -338,8 +338,7 @@ RSpec.describe IsoDoc do
              </tfoot>
            </table>
          </div>
-         <p class="zzSTDTitle1"/>
-         <p class="zzSTDTitle2"/>
+                     #{middle_title(false)}
          <br/>
          <div id="Annex" class="Section3">
            <h1 class="Annex" id="_">
@@ -703,8 +702,7 @@ RSpec.describe IsoDoc do
                  </div>
                </table>
              </div>
-             <p class="zzSTDTitle1"/>
-             <p class="zzSTDTitle2"/>
+                         #{middle_title(false)}
            </div>
          </body>
        </html>
@@ -787,8 +785,7 @@ RSpec.describe IsoDoc do
            <br clear="all" class="section"/>
          </p>
          <div class="WordSection3">
-           <p class="zzSTDTitle1"/>
-           <p class="zzSTDTitle2"/>
+                     #{middle_title(true)}
          </div>
          <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
          <div class="colophon"/>
