@@ -192,7 +192,7 @@ def middle_title(word, number = "", year = "")
     日本工業規格#{word ? '<span style="mso-tab-count:7">  </span>' : " "}<span class="JIS">JIS</span>
   </p>
   <p class="StandardNumber">
-    #{number}:
+    #{word ? '<span style="mso-tab-count:1">  </span>' : " "} #{number}:
     <span class="EffectiveYear">#{year}</span>
   </p>
   <p class="IDT"/>

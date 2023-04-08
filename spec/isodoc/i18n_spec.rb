@@ -283,7 +283,7 @@ RSpec.describe IsoDoc::JIS do
         <span class="JIS">JIS</span>
       </p>
       <p class="StandardNumber">
-        :
+                :
         <span class="EffectiveYear"/>
       </p>
       <p class="IDT"/>
@@ -448,6 +448,7 @@ RSpec.describe IsoDoc::JIS do
        <span class="JIS">JIS</span>
      </p>
      <p class="StandardNumber">
+     <span style="mso-tab-count:1">  </span>
        :
        <span class="EffectiveYear"/>
      </p>
