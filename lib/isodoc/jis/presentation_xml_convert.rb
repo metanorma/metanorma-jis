@@ -70,8 +70,8 @@ module IsoDoc
       end
 
       def dl_to_para_name(node)
-        e = node.at(ns("./name")) or return ""
-        "<p class='ListTitle'>#{e.children.to_xml}</p>"
+        e = node.at(ns("./name"))
+        "<p class='ListTitle'>#{e&.children&.to_xml || @i18n.key}</p>"
       end
 
       def dl_to_para_terms(node)
@@ -80,13 +80,13 @@ module IsoDoc
           term = strip_para(dt)
           defn = strip_para(dd)
           bkmk = dd["id"] ? "<bookmark id='#{dd['id']}'/>" : ""
-          ret += "<p id='#{dt['id']}'>#{term}: #{bkmk}#{defn}</p>"
+          ret += "<p class='dl' id='#{dt['id']}'>#{term}: #{bkmk}#{defn}</p>"
         end
         ret
       end
 
       def strip_para(node)
-        node.children.to_xml.gsub(%r{</?p( [^>]*)>}, "")
+        node.children.to_xml.gsub(%r{</?p( [^>]*)?>}, "")
       end
 
       def table1(node)

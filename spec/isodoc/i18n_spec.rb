@@ -599,7 +599,7 @@ RSpec.describe IsoDoc::JIS do
 
   it "defaults to Japanese" do
     output = IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
-      .convert("test", <<~"INPUT", true)
+      .convert("test", <<~INPUT, true)
         <iso-standard xmlns="http://riboseinc.com/isoxml">
           <bibdata>
               <status>
@@ -686,7 +686,7 @@ RSpec.describe IsoDoc::JIS do
       INPUT
     expect(xmlpp(output)
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to xmlpp(<<~"OUTPUT")
+      .to be_equivalent_to xmlpp(<<~OUTPUT)
         <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
              <bibdata>
                <status>

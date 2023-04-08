@@ -74,80 +74,80 @@ RSpec.describe IsoDoc::JIS do
        </div>
     OUTPUT
     word2 = <<~OUTPUT
-      <div class="WordSection3">
-         <p class="zzSTDTitle1"/>
-         <p class="zzSTDTitle2"/>
-         <div class="normref_div">
-           <h1>
-             1
-             <span style="mso-tab-count:1">  </span>
-             引用規格
-           </h1>
-           <p class="NormRefText">
-             <a name="_375d89b0-e764-77b0-b84e-611678e3e3a8" id="_375d89b0-e764-77b0-b84e-611678e3e3a8"/>
-             次に掲げる引用規格は，この規格に引用されることによって ，その一部又は全部がこの規格の要 求事項を構成している。これらの引用規格のうち，西暦年を付記してあるものは，記載の年の版を適 用し，その後の改 正版(追補を含む。)は適用しない。西暦年の付記がない引用規格は，その最新版(追 補を含む。)を適用する。
-           </p>
-           <p class="NormRef">
-             <a name="A" id="A"/>
-             B,
-           </p>
-         </div>
-         <div>
-           <a name="_clause" id="_clause"/>
-           <h1>
-             2
-             <span style="mso-tab-count:1">  </span>
-             Clause
-           </h1>
-           <div>
-             <a name="_339b7abc-c95c-638c-54a9-750cef9ea065" id="_339b7abc-c95c-638c-54a9-750cef9ea065"/>
-             <p class="Note">
-               <span class="note_label">注記</span>
-               <span style="mso-tab-count:1">  </span>
-               Para1
+          <div class="WordSection3">
+             <p class="zzSTDTitle1"/>
+             <p class="zzSTDTitle2"/>
+             <div class="normref_div">
+               <h1>
+                 1
+                 <span style="mso-tab-count:1">  </span>
+                 引用規格
+               </h1>
+               <p class="NormRefText">
+                 <a name="_375d89b0-e764-77b0-b84e-611678e3e3a8" id="_375d89b0-e764-77b0-b84e-611678e3e3a8"/>
+                 次に掲げる引用規格は，この規格に引用されることによって ，その一部又は全部がこの規格の要 求事項を構成している。これらの引用規格のうち，西暦年を付記してあるものは，記載の年の版を適 用し，その後の改 正版(追補を含む。)は適用しない。西暦年の付記がない引用規格は，その最新版(追 補を含む。)を適用する。
+               </p>
+               <p class="NormRef">
+                 <a name="A" id="A"/>
+                 B,
+               </p>
+             </div>
+             <div>
+               <a name="_clause" id="_clause"/>
+               <h1>
+                 2
+                 <span style="mso-tab-count:1">  </span>
+                 Clause
+               </h1>
+               <div>
+                 <a name="_339b7abc-c95c-638c-54a9-750cef9ea065" id="_339b7abc-c95c-638c-54a9-750cef9ea065"/>
+                 <p class="Note">
+                   <span class="note_label">注記</span>
+                   <span style="mso-tab-count:1">  </span>
+                   Para1
+                 </p>
+                 <p class="NoteCont">
+                   <a name="_6d6fb0cf-1924-fadf-4eed-18a5915a75d8" id="_6d6fb0cf-1924-fadf-4eed-18a5915a75d8"/>
+                   para2
+                 </p>
+               </div>
+               <p class="MsoNormal">
+                 <a name="_3cf332d1-0d92-ce94-f50d-8a0ba6150316" id="_3cf332d1-0d92-ce94-f50d-8a0ba6150316"/>
+                 <span class="Strong">strong</span>
+               </p>
+             </div>
+             <p class="MsoNormal">
+               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
              </p>
-             <p class="NoteCont">
-               <a name="_6d6fb0cf-1924-fadf-4eed-18a5915a75d8" id="_6d6fb0cf-1924-fadf-4eed-18a5915a75d8"/>
-               para2
-             </p>
-           </div>
-           <p class="MsoNormal">
-             <a name="_3cf332d1-0d92-ce94-f50d-8a0ba6150316" id="_3cf332d1-0d92-ce94-f50d-8a0ba6150316"/>
-             <span class="Strong">strong</span>
-           </p>
-         </div>
-         <p class="MsoNormal">
-           <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-         </p>
-           <div class="Section3">
-    <a name="A" id="A"/>
-    <p class="Annex">Annex</p>
-    <div>
-      <a name="B" id="B"/>
-      <p class="h2Annex">Annex Clause</p>
-      <div>
-        <a name="C" id="C"/>
-        <p class="h3Annex">Annex Clause Clause</p>
+               <div class="Section3">
+        <a name="A" id="A"/>
+        <p class="Annex">Annex</p>
+        <div>
+          <a name="B" id="B"/>
+          <p class="h2Annex">Annex Clause</p>
+          <div>
+            <a name="C" id="C"/>
+            <p class="h3Annex">Annex Clause Clause</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <p class="MsoNormal">
-    <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-  </p>
-         <div class="bibliography">
-           <h1 class="Section3">参考文献</h1>
-           <p class="MsoNormal">
-             <a name="_1dcfd70f-f687-ba32-9a43-3088add497fc" id="_1dcfd70f-f687-ba32-9a43-3088add497fc"/>
-             This is some boilerplate
-           </p>
-           <p class="Biblio">
-             <a name="C" id="C"/>
-             [1]
-             <span style="mso-tab-count:1">  </span>
-             D,
-           </p>
-         </div>
-       </div>
+      <p class="MsoNormal">
+        <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+      </p>
+             <div class="bibliography">
+               <h1 class="Section3">参考文献</h1>
+               <p class="MsoNormal">
+                 <a name="_1dcfd70f-f687-ba32-9a43-3088add497fc" id="_1dcfd70f-f687-ba32-9a43-3088add497fc"/>
+                 This is some boilerplate
+               </p>
+               <p class="Biblio">
+                 <a name="C" id="C"/>
+                 [1]
+                 <span style="mso-tab-count:1">  </span>
+                 D,
+               </p>
+             </div>
+           </div>
     OUTPUT
     FileUtils.rm_f "test.doc"
     FileUtils.rm_f "test_cover.doc"

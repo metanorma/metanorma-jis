@@ -32,6 +32,8 @@ RSpec.describe IsoDoc::JIS do
             <p id="_">with adjustments</p>
           </modification>
         </source>
+        <note id="note1">This is a note</note>
+        <note id="note2" type="units">Units in mm</note>
         </figure>
         <figure id="figure-B">
         <pre alt="A B">A &#x3c;
@@ -84,10 +86,7 @@ RSpec.describe IsoDoc::JIS do
               <p class="ListTitle">Key
           <bookmark id="DL1"/>
         </p>
-              <p>
-                A:
-                <p>B</p>
-              </p>
+              <p class="dl">A: B</p>
               <source status="generalisation">[SOURCE:
                  <origin bibitemid="ISO712" type="inline" citeas="">
                    <localityStack>
@@ -96,6 +95,11 @@ RSpec.describe IsoDoc::JIS do
                      </locality>
                    </localityStack>, Section 1
                  </origin>, modified – with adjustments]</source>
+                 <note id="note1">
+          <name>NOTE</name>
+          This is a note
+        </note>
+        <note id="note2" type="units">Units in mm</note>
             </figure>
             <figure id="figure-B">
               <name>Figure 2</name>
@@ -144,6 +148,9 @@ RSpec.describe IsoDoc::JIS do
             <br/>
             <div>
               <h1 class="ForewordTitle">Foreword</h1>
+              <div align="right">
+          <b>Units in mm</b>
+        </div>
               <div id="figureA-1" class="figure" style="page-break-after: avoid;page-break-inside: avoid;">
                 <img src="rice_images/rice_image1.png" height="20" width="30" title="titletxt" alt="alttext"/>
                 <img src="rice_images/rice_image1.png" height="20" width="auto"/>
@@ -168,10 +175,7 @@ RSpec.describe IsoDoc::JIS do
             Key
             <a id="DL1"/>
           </p>
-                <p>
-                  A:
-                  <p>B</p>
-                </p>
+                <p class="dl">A: B</p>
                 <div class="BlockSource">
                    <p>
                      [SOURCE:
@@ -181,6 +185,13 @@ RSpec.describe IsoDoc::JIS do
                      , modified – with adjustments]
                    </p>
                  </div>
+                <div id="note1" class="Note">
+            <p>
+              <span class="note_label">NOTE</span>
+               
+            </p>
+            This is a note
+          </div>
                 <p class="FigureTitle" style="text-align:center;">
                   Figure 1 — Split-it-right
                   <i>sample</i>
@@ -240,6 +251,11 @@ RSpec.describe IsoDoc::JIS do
             <div>
               <h1 class="ForewordTitle">Foreword</h1>
               <table id="figureA-1" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;page-break-after: avoid;page-break-inside: avoid;" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+           <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
+             <p class="UnitStatement">Units in mm</p>
+           </td>
+         </tr>
                 <tr>
                   <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
                     <p class="Figure">
@@ -250,12 +266,20 @@ RSpec.describe IsoDoc::JIS do
                 <tr>
                   <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
                       <p class="ForewordText">Key <a id="DL1"/></p>
-                    <p class="ForewordText">
-                      A:
-                      <p class="ForewordText">B</p>
-                    </p>
+                     <p class="ForewordText">A: B</p>
                   </td>
                 </tr>
+                <tr>
+            <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
+              <div id="note1" class="Note">
+                <p class="Note">
+                  <span class="note_label">NOTE</span>
+                  <span style="mso-tab-count:1">  </span>
+                </p>
+                This is a note
+              </div>
+            </td>
+          </tr>
                 <tr>
                   <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
                     <div class="BlockSource">

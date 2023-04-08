@@ -9,7 +9,8 @@ RSpec.describe IsoDoc do
             <table alt="tool tip" id="tableD-1" summary="long desc">
               <name>Repeatability and reproducibility of
                 <em>husked</em>
-                rice yield</name>
+                rice yield<fn reference="1">
+                      <p id="_0fe65e9a-5531-408e-8295-eeff35f41a55">Name footnote.</p></fn></name>
               <thead>
                 <tr>
                   <td align="left" rowspan="2">Description</td>
@@ -61,7 +62,7 @@ RSpec.describe IsoDoc do
                 <dt>Drago</dt>
                 <dd>A type of rice</dd>
               </dl>
-                          <source status="generalisation">
+              <source status="generalisation">
         <origin bibitemid="ISO712" type="inline" citeas="">
           <localityStack>
             <locality type="section">
@@ -71,6 +72,18 @@ RSpec.describe IsoDoc do
         </origin>
         <modification>
           <p id="_">with adjustments</p>
+        </modification>
+      </source>
+          <source status="generalisation">
+        <origin bibitemid="ISO713" type="inline" citeas="">
+          <localityStack>
+            <locality type="section">
+              <referenceFrom>3</referenceFrom>
+            </locality>
+          </localityStack>
+        </origin>
+        <modification>
+          <p id="_">with alterations</p>
         </modification>
       </source>
               <note>
@@ -98,7 +111,9 @@ RSpec.describe IsoDoc do
                      <p class="TableTitle" style="text-align:center;">
                        Table 1 — Repeatability and reproducibility of
                        <em>husked</em>
-                       rice yield
+                       rice yield<fn reference="1">
+                  <p id="_0fe65e9a-5531-408e-8295-eeff35f41a55">Name footnote.</p>
+                </fn>
                      </p>
                    </td>
                  </tr>
@@ -154,7 +169,8 @@ RSpec.describe IsoDoc do
                    <td align="center">6,06</td>
                  </tr>
                </tfoot>
-               <p>Drago: A type of rice</p>
+               <p class="ListTitle">Key</p>
+               <p class="dl">Drago: A type of rice</p>
                <source status="generalisation">SOURCE:
                  <origin bibitemid="ISO712" type="inline" citeas="">
                    <localityStack>
@@ -164,7 +180,16 @@ RSpec.describe IsoDoc do
                    </localityStack>
                    , Section 1
                  </origin>
-                   , modified – with adjustments
+                   , modified – with adjustments ;
+               <origin bibitemid="ISO713" type="inline" citeas="">
+            <localityStack>
+              <locality type="section">
+                <referenceFrom>3</referenceFrom>
+              </locality>
+            </localityStack>
+            , Section 3
+          </origin>
+          , modified – with alterations
                </source>
                <note>
                  <name>NOTE</name>
@@ -215,7 +240,7 @@ RSpec.describe IsoDoc do
                    <p class="TableTitle">
                      Table 1 — Repeatability and reproducibility of
                      <i>husked</i>
-                     rice yield
+                     rice yield<a href="#tableD-11" class="TableFootnoteRef">1</a>
                    </p>
                  </td>
                </tr>
@@ -274,7 +299,8 @@ RSpec.describe IsoDoc do
 
                     , Section 1
 
-                  , modified – with adjustments
+                  , modified – with adjustments ;      , Section 3
+                 , modified – with alterations
                 </p>
                    </div>
                    <div class="Note">
@@ -283,6 +309,18 @@ RSpec.describe IsoDoc do
                          This is a table about rice
                      </p>
                    </div>
+                   <div class="TableFootnote">
+              <div id="fn:tableD-11">
+                <p id="_" class="TableFootnote">
+                  <span>
+                    Footnote
+                    <span id="tableD-11" class="TableFootnoteRef">1)</span>
+                     
+                  </span>
+                  Name footnote.
+                </p>
+              </div>
+            </div>
                    <div class="TableFootnote">
                      <div id="fn:tableD-1a">
                        <p id="_" class="TableFootnote">
@@ -339,7 +377,7 @@ RSpec.describe IsoDoc do
                  <p class="ForewordText" style="text-align: center;page-break-after:avoid">
                    Table 1 — Repeatability and reproducibility of
                    <i>husked</i>
-                   rice yield
+                   rice yield <a href="#tableD-11" class="TableFootnoteRef">1</a>
                  </p>
                </td>
              </tr>
@@ -419,7 +457,10 @@ RSpec.describe IsoDoc do
 
              , Section 1
 
-             , modified – with adjustments
+             , modified – with adjustments ;
+                   , Section 3
+
+    , modified – with alterations
          </p>
           </div>
                  <div>
@@ -429,6 +470,23 @@ RSpec.describe IsoDoc do
                      This is a table about rice
                    </p>
                  </div>
+                 <div class="TableFootnote">
+            <div>
+              <a name="ftntableD-11" id="ftntableD-11"/>
+              <p class="TableFootnote">
+                <a name="_0fe65e9a-5531-408e-8295-eeff35f41a55" id="_0fe65e9a-5531-408e-8295-eeff35f41a55"/>
+                <span>
+                  Footnote
+                  <span class="TableFootnoteRef">
+                    <a name="tableD-11" id="tableD-11"/>
+                    1)
+                  </span>
+                  <span style="mso-tab-count:1">  </span>
+                </span>
+                Name footnote.
+              </p>
+            </div>
+          </div>
                  <div class="TableFootnote">
                    <div>
                      <a name="ftntableD-1a" id="ftntableD-1a"/>
@@ -574,7 +632,8 @@ RSpec.describe IsoDoc do
                    <td align="center">81,2</td>
                  </tr>
                </tbody>
-               <p>Drago: A type of rice</p>
+               <p class="ListTitle">Key</p>
+               <p class="dl">Drago: A type of rice</p>
                <note id="A">
                  <name>NOTE  1</name>
                  Note 1
@@ -675,7 +734,7 @@ RSpec.describe IsoDoc do
                        <p class="ForewordText">
                          Table 1 — Repeatability and reproducibility of
                          <i>husked</i>
-                         rice yield
+                         rice yield 
                        </p>
                      </td>
                    </tr>
