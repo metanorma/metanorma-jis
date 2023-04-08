@@ -19,6 +19,7 @@ module IsoDoc
           p << "<span class='JIS'>JIS</span>"
         end
         out.p(class: "StandardNumber") do |p|
+          insert_tab(p, 1)
           p << @meta.get[:docnumeric]&.sub(/^JIS /, "")
           p << ": "
           p << "<span class='EffectiveYear'>#{@meta.get[:docyear]}</span>"
