@@ -11,11 +11,11 @@ module IsoDoc
       end
 
       def figure_components(node)
-        { units: node.at(ns("./note[@type = 'units']/p")),
+        { units: node.at(ns("./note[@type = 'units']")),
           notes_etc: figure_notes_examples_paras(node
           .xpath(ns("./note[not(@type = 'units')] | ./example | ./p"))),
           name: node.at(ns("./name")),
-          key: node.at(ns("./dl")),
+          key: node.xpath(ns("./p[@class = 'ListTitle' or @class = 'dl']")),
           img: node.at(ns("./image")),
           aside: node.at(ns("./aside")),
           source: node.at(ns("./source")),
@@ -38,12 +38,9 @@ module IsoDoc
           %i(units img subfigs key notes_etc aside source name).each do |key|
             case key
             when :subfigs then figure_subfigs(node, div, c[key])
-            when :notes_etc
-              c[key]&.each do |n|
-                figure_row(node, div, n, :notes_etc)
-              end
-            else figure_row(node, div, c, key)
-            end
+            when :notes_etc, :key
+              c[key]&.each { |n| figure_row(node, div, n, key) }
+            else figure_row(node, div, c, key) end
           end
         end
       end
@@ -74,27 +71,11 @@ module IsoDoc
         end
       end
 
-      def fig_para(klass, row, nodes)
-        row.td valign: "top", style: "padding:0cm 5.4pt 0cm 5.4pt" do |d|
-          d.p class: klass do |p|
-            nodes.each { |n| parse(n, p) }
-          end
-        end
-      end
-
       def figure_row1(node, cell, hash, key)
         case key
-        when :units
-          cell.p class: "UnitStatement" do |p|
-            hash[key].children.each { |n| parse(n, p) }
-          end
-        when :key
-          figure_key(cell)
-          parse(hash[key], cell)
-        when :notes_etc, :aside
-          hash.each { |n| parse(n, cell) }
-        when :source
-          parse(hash[key], cell)
+        when :units then units_render(hash[key], cell)
+        when :notes_etc, :aside, :key then hash.each { |n| parse(n, cell) }
+        when :source then parse(hash[key], cell)
         when :name then figure_name_parse(node, cell, hash[key])
         when :img
           cell.p class: "Figure" do |p|
@@ -104,6 +85,13 @@ module IsoDoc
           cell.p class: "SubfigureCaption" do |p|
             hash[key].children.each { |n| parse(n, p) }
           end
+        end
+      end
+
+      def units_render(note, cell)
+        para = note.at(ns("./p")) and note = para
+        cell.p class: "UnitStatement" do |p|
+          note.children.each { |n| parse(n, p) }
         end
       end
     end

@@ -105,7 +105,7 @@ RSpec.describe Metanorma::JIS::Processor do
   end
 
   it "registers output formats against metanorma" do
-    expect(processor.output_formats.sort.to_s).to be_equivalent_to <<~"OUTPUT"
+    expect(processor.output_formats.sort.to_s).to be_equivalent_to <<~OUTPUT
       [[:doc, "doc"], [:html, "html"], [:pdf, "pdf"], [:presentation, "presentation.xml"], [:rxl, "rxl"], [:xml, "xml"]]
     OUTPUT
   end
@@ -127,6 +127,36 @@ RSpec.describe Metanorma::JIS::Processor do
       .to be_equivalent_to xmlpp(output)
   end
 
+  it "converts a blank document" do
+    input = <<~INPUT
+      = Document title
+      Author
+      :docfile: test.adoc
+      :novalid:
+
+      == Clause
+    INPUT
+
+    output = xmlpp(<<~"OUTPUT")
+      #{BLANK_HDR}
+      <sections>
+          <clause id="_" inline-header="false" obligation="normative">
+            <title>Clause</title>
+          </clause>
+        </sections>
+      </ogc-standard>
+    OUTPUT
+
+    FileUtils.rm_f "test.html"
+    FileUtils.rm_f "test.doc"
+    FileUtils.rm_f "test.pdf"
+    expect(xmlpp(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
+      .to be_equivalent_to output
+    expect(File.exist?("test.html")).to be true
+    expect(File.exist?("test.doc")).to be true
+    expect(File.exist?("test.pdf")).to be true
+  end
+
   it "generates HTML from Metanorma XML" do
     FileUtils.rm_f "test.xml"
     FileUtils.rm_f "test.html"
@@ -134,18 +164,18 @@ RSpec.describe Metanorma::JIS::Processor do
     expect(xmlpp(strip_guid(File.read("test.html", encoding: "utf-8")
       .gsub(%r{^.*<main}m, "<main")
       .gsub(%r{</main>.*}m, "</main>"))))
-      .to be_equivalent_to xmlpp(<<~"OUTPUT")
-        <main class="main-section">
-          <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-          <div class='authority'> </div>
-                  <p class="zzSTDTitle1"/>
-         <p class="zzSTDTitle2"/>
-         <div id="H">
-           <h1 id="_">1  Terms, Definitions, Symbols and Abbreviated Terms</h1>
-           <h2 class="TermNum" id="J">1.1</h2>
-           <p class="Terms" style="text-align:left;">Term2</p>
-         </div>
-       </main>
+      .to be_equivalent_to xmlpp(<<~OUTPUT)
+         <main class="main-section">
+           <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+           <div class='authority'> </div>
+                   <p class="zzSTDTitle1"/>
+          <p class="zzSTDTitle2"/>
+          <div id="H">
+            <h1 id="_">1  Terms, Definitions, Symbols and Abbreviated Terms</h1>
+            <h2 class="TermNum" id="J">1.1</h2>
+            <p class="Terms" style="text-align:left;">Term2</p>
+          </div>
+        </main>
       OUTPUT
   end
 end
