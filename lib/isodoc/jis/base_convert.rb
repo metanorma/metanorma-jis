@@ -67,6 +67,46 @@ module IsoDoc
         cell["border"] == "0" and bordered = false
         super
       end
+
+      def middle(isoxml, out)
+        middle_title(isoxml, out)
+        middle_admonitions(isoxml, out)
+        scope isoxml, out, 0
+        norm_ref isoxml, out, 0
+        clause_etc isoxml, out, 0
+        annex isoxml, out
+        bibliography isoxml, out
+        commentary isoxml, out
+        indexsect isoxml, out
+      end
+
+      def annex(isoxml, out)
+        amd(isoxml) and @suppressheadingnumbers = @oldsuppressheadingnumbers
+        isoxml.xpath(ns("//annex[not(@commentary = 'true')]")).each do |c|
+          page_break(out)
+          out.div **attr_code(annex_attrs(c)) do |s|
+            c.elements.each do |c1|
+              if c1.name == "title" then annex_name(c, c1, s)
+              else parse(c1, s)
+              end
+            end
+          end
+        end
+        amd(isoxml) and @suppressheadingnumbers = true
+      end
+
+            def commentary(isoxml, out)
+        isoxml.xpath(ns("//annex[@commentary = 'true']")).each do |c|
+          page_break(out)
+          out.div **attr_code(annex_attrs(c)) do |s|
+            c.elements.each do |c1|
+              if c1.name == "title" then annex_name(c, c1, s)
+              else parse(c1, s)
+              end
+            end
+          end
+        end
+      end
     end
   end
 end

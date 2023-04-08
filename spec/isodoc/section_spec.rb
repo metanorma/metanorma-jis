@@ -48,4 +48,236 @@ RSpec.describe IsoDoc::JIS do
           .sub(/^.*<body /m, "<body ").sub(%r{</body>.*$}m, "</body>")))
       .to be_equivalent_to xmlpp(word)
   end
+
+  it "renders commentaries" do
+    input = <<~INPUT
+      <iso-standard xmlns="http://riboseinc.com/isoxml">
+      <annex id="A"  inline-header="false" obligation="normative">
+      <title>First Annex</title>
+      </annex>
+      <annex id="C"  inline-header="false" obligation="informative" commentary="true">
+      <title>Commentary</title>
+      </annex>
+      <annex id="B"  inline-header="false" obligation="informative">
+      <title>Second Annex</title>
+      </annex>
+      <annex id="D"  inline-header="false" obligation="informative" commentary="true">
+      <title>Another Commentary</title>
+      </annex>
+       <bibliography>
+       <clause id="R" normative="true" obligation="informative">
+         <title>Normative References</title>
+          <references id="R1" normative="true" obligation="informative">
+         <title>Normative References 1</title>
+       </references>
+       </clause>
+       <references id="S" normative="false" obligation="informative">
+         <title>Bibliography</title>
+       </references>
+       </clause>
+       </bibliography>
+       </iso-standard>
+    INPUT
+    presxml = <<~OUTPUT
+        <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+        <annex id="A" inline-header="false" obligation="normative" displayorder="2">
+          <title>
+            Annex A
+            <br/>
+            (normative)
+            <br/>
+            <strong>First Annex</strong>
+          </title>
+        </annex>
+        <annex id="B" inline-header="false" obligation="informative" displayorder="3">
+          <title>
+            Annex B
+            <br/>
+            (informative)
+            <br/>
+            <strong>Second Annex</strong>
+          </title>
+        </annex>
+        <bibliography>
+          <clause id="R" normative="true" obligation="informative" displayorder="1">
+            <title depth="1">
+              1
+              <tab/>
+              Normative References
+            </title>
+            <references id="R1" normative="true" obligation="informative">
+              <title depth="2">
+                1.1
+                <tab/>
+                Normative References 1
+              </title>
+            </references>
+          </clause>
+          <references id="S" normative="false" obligation="informative" displayorder="4">
+            <title depth="1">Bibliography</title>
+          </references>
+        </bibliography>
+        <annex id="C" inline-header="false" obligation="informative" commentary="true" displayorder="5">
+          <title>Commentary</title>
+        </annex>
+        <annex id="D" inline-header="false" obligation="informative" commentary="true" displayorder="6">
+          <title>Another Commentary</title>
+        </annex>
+      </iso-standard>
+    OUTPUT
+    html = <<~OUTPUT
+        <html lang="en">
+        <head/>
+        <body lang="en">
+          <div class="title-section">
+            <p> </p>
+          </div>
+          <br/>
+          <div class="prefatory-section">
+            <p> </p>
+          </div>
+          <br/>
+          <div class="main-section">
+            <p class="zzSTDTitle1"/>
+            <p class="zzSTDTitle2"/>
+            <div>
+              <h1>
+              1
+               
+              Normative References
+            </h1>
+              <div>
+                <h2 class="Section3">
+                1.1
+                 
+                Normative References 1
+              </h2>
+              </div>
+            </div>
+            <br/>
+            <div id="A" class="Section3">
+              <h1 class="Annex">
+                Annex A
+                <br/>
+                (normative)
+                <br/>
+                <b>First Annex</b>
+              </h1>
+            </div>
+            <br/>
+            <div id="B" class="Section3">
+              <h1 class="Annex">
+                Annex B
+                <br/>
+                (informative)
+                <br/>
+                <b>Second Annex</b>
+              </h1>
+            </div>
+            <br/>
+            <div>
+              <h1 class="Section3">Bibliography</h1>
+            </div>
+            <br/>
+            <div id="C" class="Section3">
+              <h1 class="Annex">Commentary</h1>
+            </div>
+            <br/>
+            <div id="D" class="Section3">
+              <h1 class="Annex">Another Commentary</h1>
+            </div>
+          </div>
+        </body>
+      </html>
+    OUTPUT
+    word = <<~OUTPUT
+      <body lang="EN-US" link="blue" vlink="#954F72">
+        <div class="WordSection1">
+          <p> </p>
+        </div>
+        <p>
+          <br clear="all" class="section"/>
+        </p>
+        <div class="WordSection2">
+          <p> </p>
+        </div>
+        <p>
+          <br clear="all" class="section"/>
+        </p>
+        <div class="WordSection3">
+          <p class="zzSTDTitle1"/>
+          <p class="zzSTDTitle2"/>
+          <div class="normref_div">
+            <h1>
+              1
+              <span style="mso-tab-count:1">  </span>
+              Normative References
+            </h1>
+            <div>
+              <h2 class="BiblioTitle">
+                1.1
+                <span style="mso-tab-count:1">  </span>
+                Normative References 1
+              </h2>
+            </div>
+          </div>
+          <p>
+            <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+          </p>
+          <div id="A" class="Section3">
+            <h1 class="Annex">
+              Annex A
+              <br/>
+              (normative)
+              <br/>
+              <b>First Annex</b>
+            </h1>
+          </div>
+          <p>
+            <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+          </p>
+          <div id="B" class="Section3">
+            <h1 class="Annex">
+              Annex B
+              <br/>
+              (informative)
+              <br/>
+              <b>Second Annex</b>
+            </h1>
+          </div>
+          <p>
+            <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+          </p>
+          <div class="bibliography">
+            <h1 class="Section3">Bibliography</h1>
+          </div>
+          <p>
+            <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+          </p>
+          <div id="C" class="Section3">
+            <h1 class="Annex">Commentary</h1>
+          </div>
+          <p>
+            <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+          </p>
+          <div id="D" class="Section3">
+            <h1 class="Annex">Another Commentary</h1>
+          </div>
+        </div>
+        <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
+        <div class="colophon"/>
+      </body>
+    OUTPUT
+    expect(xmlpp(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+        .convert("test", input, true))
+        .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
+      .to be_equivalent_to xmlpp(presxml)
+    expect(xmlpp(IsoDoc::JIS::HtmlConvert.new({})
+        .convert("test", presxml, true)))
+      .to be_equivalent_to xmlpp(html)
+    expect(xmlpp(IsoDoc::JIS::WordConvert.new({})
+        .convert("test", presxml, true))
+            .sub(/^.*<body /m, "<body ").sub(%r{</body>.*$}m, "</body>"))
+      .to be_equivalent_to xmlpp(word)
+  end
 end

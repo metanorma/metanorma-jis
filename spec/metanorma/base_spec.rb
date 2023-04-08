@@ -664,4 +664,29 @@ RSpec.describe Metanorma::JIS do
     expect(xmlpp(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
       .to be_equivalent_to xmlpp(output)
   end
+
+  it "processes commentaries" do
+    input = <<~INPUT
+      #{ASCIIDOC_BLANK_HDR}
+
+      [appendix]
+      == First appendix
+
+      [appendix%commentary]
+      == Commentary
+    INPUT
+    output = <<~OUTPUT
+      #{BLANK_HDR}
+      <sections/>
+        <annex id="_" inline-header="false" obligation="normative">
+          <title>First appendix</title>
+        </annex>
+        <annex id="_" commentary="true" inline-header="false" obligation="informative">
+          <title>Commentary</title>
+        </annex>
+      </jis-standard>
+    OUTPUT
+    expect(xmlpp(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
+      .to be_equivalent_to xmlpp(output)
+  end
 end

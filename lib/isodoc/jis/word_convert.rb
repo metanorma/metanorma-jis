@@ -3,6 +3,7 @@ require "isodoc"
 require_relative "init"
 require_relative "word_cleanup"
 require_relative "figure"
+require_relative "table"
 
 module IsoDoc
   module JIS
@@ -140,11 +141,10 @@ module IsoDoc
         introduction isoxml, out
         scope isoxml, out, 0
         norm_ref isoxml, out, 0
-        terms_defs isoxml, out, 0
-        symbols_abbrevs isoxml, out, 0
-        clause isoxml, out
+        clause_etc isoxml, out, 0
         annex isoxml, out
         bibliography isoxml, out
+        commentary isoxml, out
         # colophon isoxml, out
       end
 
@@ -169,57 +169,32 @@ module IsoDoc
         @seen_footnote << fn
       end
 
-      def make_table_footnote_target(out, fnid, fnref)
-        attrs = { id: fnid, class: "TableFootnoteRef" }
-        out.span do |s|
-          s << @i18n.table_footnote
-          out.span **attrs do |a|
-            a << "#{fnref})"
+      def annex(isoxml, out)
+        amd(isoxml) and @suppressheadingnumbers = @oldsuppressheadingnumbers
+        isoxml.xpath(ns("//annex[not(@commentary = 'true')]")).each do |c|
+          page_break(out)
+          out.div **attr_code(annex_attrs(c)) do |s|
+            c.elements.each do |c1|
+              if c1.name == "title" then annex_name(c, c1, s)
+              else parse(c1, s)
+              end
+            end
           end
-          insert_tab(s, 1)
         end
+        amd(isoxml) and @suppressheadingnumbers = true
       end
 
-      def table_title_parse(node, out); end
-
-      def table_attrs(node)
-        { id: node["id"], title: node["alt"],
-          summary: node["summary"], width: node["width"],
-          class: (node.text.length > 4000 ? "MsoTableGridBig" : "MsoTableGrid"),
-          style: "border-collapse:collapse;" \
-                 "mso-table-anchor-horizontal:column;mso-table-overlap:never;" \
-                 "border:none;mso-padding-alt: " \
-                 "0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;" \
-                 "mso-border-insidev:none;#{keep_style(node)}",
-          border: 0, cellspacing: 0, cellpadding: 0 }
-      end
-
-      def make_tr_attr_style(cell, row, rowmax, totalrows, opt)
-        top = row.zero? ? "#{SW1} 1.5pt;" : "none;"
-        bottom = "#{SW1} #{rowmax >= totalrows ? '1.5' : '1.0'}pt;"
-        ret = <<~STYLE.gsub(/\n/, "")
-          border-top:#{top}mso-border-top-alt:#{top}
-          border-left:#{bottom}mso-border-top-alt:#{bottom}
-          border-right:#{bottom}mso-border-top-alt:#{bottom}
-          border-bottom:#{bottom}mso-border-bottom-alt:#{bottom}
-        STYLE
-        opt[:bordered] or ret = ""
-        pb = keep_rows_together(cell, rowmax, totalrows, opt) ? "avoid" : "auto"
-        "#{ret}page-break-after:#{pb};"
-      end
-
-      def new_fullcolspan_row(table, tfoot)
-        # how many columns in the table?
-        cols = 0
-        table.at(".//tr").xpath("./td | ./th").each do |td|
-          cols += (td["colspan"] ? td["colspan"].to_i : 1)
+      def commentary(isoxml, out)
+        isoxml.xpath(ns("//annex[@commentary = 'true']")).each do |c|
+          page_break(out)
+          out.div **attr_code(annex_attrs(c)) do |s|
+            c.elements.each do |c1|
+              if c1.name == "title" then annex_name(c, c1, s)
+              else parse(c1, s)
+              end
+            end
+          end
         end
-        style = "border-top:0pt;mso-border-top-alt:0pt;" \
-                "border-bottom:#{SW1} 1.5pt;mso-border-bottom-alt:#{SW1} 1.5pt;" \
-                "border-left:#{SW1} 1.5pt;mso-border-left-alt:#{SW1} 1.5pt;" \
-                "border-right:#{SW1} 1.5pt;mso-border-right-alt:#{SW1} 1.5pt;"
-        tfoot.add_child("<tr><td colspan='#{cols}' style='#{style}'/></tr>")
-        tfoot.xpath(".//td").last
       end
 
       include BaseConvert
