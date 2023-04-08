@@ -93,9 +93,15 @@ module IsoDoc
         super
         cols = table_cols_count(node)
         name = node.at(ns("./name"))
-        thead = node.at(ns("./thead")) || name.after("<thead> </thead>").next
+        thead = table_thead_pt(node, name)
         table_unit_note(node, thead, cols)
         table_name(name, thead, cols)
+      end
+
+      def table_thead_pt(node, name)
+        node.at(ns("./thead")) ||
+          name&.after("<thead> </thead>")&.next ||
+          node.elements.first.before("<thead> </thead>").previous
       end
 
       def table_cols_count(node)
