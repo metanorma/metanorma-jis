@@ -102,6 +102,10 @@ RSpec.describe IsoDoc::JIS do
       </annex>
       <annex id="C"  inline-header="false" obligation="informative" commentary="true">
       <title>Commentary</title>
+      <clause id="C1"><title>First clause</title>
+      <clause id="C2"><title>First subclause</title>
+      </clause>
+      </clause>
       </annex>
       <annex id="B"  inline-header="false" obligation="informative">
       <title>Second Annex</title>
@@ -124,7 +128,7 @@ RSpec.describe IsoDoc::JIS do
        </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-           <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
          <bibdata>
            <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
            <title language="en" format="text/plain" type="title-intro">Introduction</title>
@@ -172,7 +176,6 @@ RSpec.describe IsoDoc::JIS do
              </owner>
            </copyright>
          </bibdata>
-
          <annex id="A" inline-header="false" obligation="normative" displayorder="2">
            <title>
              Annex A
@@ -212,6 +215,20 @@ RSpec.describe IsoDoc::JIS do
          </bibliography>
          <annex id="C" inline-header="false" obligation="informative" commentary="true" displayorder="5">
            <title>Commentary</title>
+               <clause id="C1">
+                <title depth="2">
+                  1
+                  <tab/>
+                  First clause
+                </title>
+                <clause id="C2">
+                  <title depth="3">
+                    1.1
+                    <tab/>
+                    First subclause
+                  </title>
+                </clause>
+              </clause>
          </annex>
          <annex id="D" inline-header="false" obligation="informative" commentary="true" displayorder="6">
            <title>Another Commentary</title>
@@ -293,6 +310,20 @@ RSpec.describe IsoDoc::JIS do
             <br/>
             <div id="C" class="Section3">
               <h1 class="Annex">Commentary</h1>
+                      <div id="C1">
+          <h2>
+            1
+             
+            First clause
+          </h2>
+          <div id="C2">
+            <h3>
+              1.1
+               
+              First subclause
+            </h3>
+          </div>
+        </div>
             </div>
             <br/>
             <div id="D" class="Section3">
@@ -303,20 +334,20 @@ RSpec.describe IsoDoc::JIS do
       </html>
     OUTPUT
     word = <<~OUTPUT
-      <body lang="EN-US" link="blue" vlink="#954F72">
-        <div class="WordSection1">
-          <p> </p>
-        </div>
-        <p>
-          <br clear="all" class="section"/>
-        </p>
-        <div class="WordSection2">
-          <p> </p>
-        </div>
-        <p>
-          <br clear="all" class="section"/>
-        </p>
-                   <div class="WordSection3">
+           <body lang="EN-US" link="blue" vlink="#954F72">
+           <div class="WordSection1">
+             <p> </p>
+           </div>
+           <p>
+             <br clear="all" class="section"/>
+           </p>
+           <div class="WordSection2">
+             <p> </p>
+           </div>
+           <p>
+             <br clear="all" class="section"/>
+           </p>
+           <div class="WordSection3">
              <p class="JapaneseIndustrialStandard">
                日本工業規格
                <span style="mso-tab-count:7">  </span>
@@ -384,9 +415,11 @@ RSpec.describe IsoDoc::JIS do
              <div class="bibliography">
                <h1 class="Section3">Bibliography</h1>
              </div>
-             <p>
-               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-             </p>
+           </div>
+           <p>
+             <br clear="all" class="section"/>
+           </p>
+           <div class="WordSectionCommentary">
              <p class="CommentaryStandardNumber">
                1000:
                <span class="CommentaryEffectiveYear">2000</span>
@@ -399,10 +432,26 @@ RSpec.describe IsoDoc::JIS do
              </p>
              <div id="C" class="Section3">
                <h1 class="Annex">Commentary</h1>
+               <div id="C1">
+                 <h2>
+                   1
+                   <span style="mso-tab-count:1">  </span>
+                   First clause
+                 </h2>
+                 <div id="C2">
+                   <h3>
+                     1.1
+                     <span style="mso-tab-count:1">  </span>
+                     First subclause
+                   </h3>
+                 </div>
+               </div>
              </div>
-             <p>
-               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-             </p>
+           </div>
+           <p>
+             <br clear="all" class="section"/>
+           </p>
+           <div class="WordSectionCommentary">
              <p class="CommentaryStandardNumber">
                1000:
                <span class="CommentaryEffectiveYear">2000</span>

@@ -13,6 +13,8 @@ RSpec.describe IsoDoc::JIS do
          <xref target="Q1"/>
          <xref target="U"/>
          <xref target="V"/>
+         <xref target="V1"/>
+         <xref target="V2"/>
          <xref target="R"/>
          <xref target="S"/>
          </p>
@@ -33,6 +35,9 @@ RSpec.describe IsoDoc::JIS do
        </annex>
        <annex id="V" inline-header="false" obligation="normative" commentary="true">
          <title>Commentary</title>
+         <clause id="V1">
+         <clause id="V2"/>
+         </clause>
        </annex>
         <bibliography><references id="R" obligation="informative" normative="true">
          <title>Normative References</title>
@@ -65,6 +70,12 @@ RSpec.describe IsoDoc::JIS do
            <xref target="V">
              <span class="citesec">Commentary</span>
            </xref>
+           <xref target="V1">
+              <span class="citesec">Commentary, Clause 1</span>
+            </xref>
+            <xref target="V2">
+              <span class="citesec">Commentary, Clause 1.1</span>
+            </xref>
            <xref target="R">
              <span class="citesec">Clause 1</span>
            </xref>
