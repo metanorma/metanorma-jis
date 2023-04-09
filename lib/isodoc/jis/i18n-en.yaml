@@ -1,6 +1,9 @@
 under_preparation: Under preparation.
 table_footnote: Footnote
 admitted: ADMITTED
+commentary: Commentary
+commentary_page: Comm.
+JIS: 日本工業規格
 doctype_dict:
   international-standard: International standard
   technical-specification: Technical specification

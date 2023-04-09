@@ -29,6 +29,16 @@ module Metanorma
         File.join(@libdir, "jis_intro_jp.xml")
       end
 
+      def section_attributes(node)
+        ret = super
+        if node.attr("style") == "appendix" && node.level == 1 &&
+            node.option?("commentary")
+          ret[:commentary] = true
+          node.set_attr("obligation", "informative")
+        end
+        ret
+      end
+
       def html_converter(node)
         if node.nil?
           IsoDoc::JIS::HtmlConvert.new({})

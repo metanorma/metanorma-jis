@@ -167,8 +167,7 @@ RSpec.describe IsoDoc::JIS do
 
     html = <<~OUTPUT
       #{HTML_HDR}
-             <p class="zzSTDTitle1"/>
-             <p class="zzSTDTitle2"/>
+                  #{middle_title(false)}
              <div id="_terms_and_definitions">
                <h1>
                1
@@ -274,8 +273,7 @@ RSpec.describe IsoDoc::JIS do
           <br clear="all" class="section"/>
         </p>
         <div class="WordSection3">
-          <p class="zzSTDTitle1"/>
-          <p class="zzSTDTitle2"/>
+                    #{middle_title(true)}
           <div id="_terms_and_definitions">
             <h1>
               1

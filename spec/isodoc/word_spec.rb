@@ -75,8 +75,7 @@ RSpec.describe IsoDoc::JIS do
     OUTPUT
     word2 = <<~OUTPUT
           <div class="WordSection3">
-             <p class="zzSTDTitle1"/>
-             <p class="zzSTDTitle2"/>
+                      #{middle_title(true)}
              <div class="normref_div">
                <h1>
                  1
@@ -206,9 +205,6 @@ RSpec.describe IsoDoc::JIS do
   it "deals with lists" do
     input = <<~INPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml">
-        <bibdata>
-          <status><stage>50</stage></status>
-        </bibdata>
         <sections>
         <clause id="A"><p>
         <ol>
@@ -277,8 +273,7 @@ RSpec.describe IsoDoc::JIS do
     INPUT
     word = <<~OUTPUT
       <div class="WordSection3">
-         <p class="zzSTDTitle1"/>
-         <p class="zzSTDTitle2"/>
+                  #{middle_title(true)}
          <div>
            <a name="A" id="A"/>
            <h1>1</h1>
@@ -338,9 +333,6 @@ RSpec.describe IsoDoc::JIS do
   it "deals with lists and paragraphs" do
     input = <<~INPUT
         <iso-standard xmlns="http://riboseinc.com/isoxml">
-      <bibdata>
-        <status><stage>50</stage></status>
-      </bibdata>
       <sections>
       <clause id="A">
       <p id="_eb2fd8cd-5cbe-1f1f-7bdb-282868a25828">ISO and IEC maintain terminological databases for use in
@@ -358,8 +350,7 @@ RSpec.describe IsoDoc::JIS do
     INPUT
     word = <<~OUTPUT
       <div class="WordSection3">
-         <p class="zzSTDTitle1"/>
-         <p class="zzSTDTitle2"/>
+                  #{middle_title(true)}
          <div>
            <a name="A" id="A"/>
            <h1>1</h1>

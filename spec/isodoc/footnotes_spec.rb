@@ -44,8 +44,7 @@ RSpec.describe IsoDoc do
                  </a>
                </p>
              </div>
-             <p class="zzSTDTitle1"/>
-             <p class="zzSTDTitle2"/>
+                         #{middle_title(false)}
              <aside id="fn:2" class="footnote">
                <p id="_1e228e29-baef-4f38-b048-b05a051747e4">Formerly denoted as 15 % (m/m).</p>
              </aside>
@@ -106,8 +105,7 @@ RSpec.describe IsoDoc do
              <br clear="all" class="section"/>
            </p>
            <div class="WordSection3">
-             <p class="zzSTDTitle1"/>
-             <p class="zzSTDTitle2"/>
+                       #{middle_title(true)}
              <aside id="ftn2">
                <p id="_1e228e29-baef-4f38-b048-b05a051747e4">Formerly denoted as 15 % (m/m).</p>
              </aside>

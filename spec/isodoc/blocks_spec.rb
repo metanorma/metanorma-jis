@@ -212,8 +212,7 @@ RSpec.describe IsoDoc::JIS do
                 <p class="FigureTitle" style="text-align:center;"/>
               </div>
             </div>
-            <p class="zzSTDTitle1"/>
-            <p class="zzSTDTitle2"/>
+            #{middle_title(false)}
             <div>
               <h1>
               1
@@ -329,8 +328,7 @@ RSpec.describe IsoDoc::JIS do
             <br clear="all" class="section"/>
           </p>
           <div class="WordSection3">
-            <p class="zzSTDTitle1"/>
-            <p class="zzSTDTitle2"/>
+            #{middle_title(true)}
             <div class="normref_div">
               <h1>
                 1
@@ -417,8 +415,7 @@ RSpec.describe IsoDoc::JIS do
                  <p class="FigureTitle" style="text-align:center;">Figure 1 — Overall title</p>
                </div>
              </div>
-             <p class="zzSTDTitle1"/>
-             <p class="zzSTDTitle2"/>
+             #{middle_title(false)}
            </div>
          </body>
        </html>
@@ -480,8 +477,7 @@ RSpec.describe IsoDoc::JIS do
             <br clear="all" class="section"/>
           </p>
           <div class="WordSection3">
-            <p class="zzSTDTitle1"/>
-            <p class="zzSTDTitle2"/>
+            #{middle_title(true)}
           </div>
           <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
           <div class="colophon"/>
@@ -543,8 +539,7 @@ RSpec.describe IsoDoc::JIS do
                  <p id="_e94663cc-2473-4ccc-9a72-983a74d989f2">Only use paddy or parboiled rice for the determination of husked rice yield.</p>
                </div>
              </div>
-             <p class="zzSTDTitle1"/>
-             <p class="zzSTDTitle2"/>
+                         #{middle_title(false)}
            </div>
          </body>
        </html>

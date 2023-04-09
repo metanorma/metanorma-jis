@@ -32,6 +32,7 @@ RSpec.describe Metanorma::JIS do
       :nodoc:
       :no-isobib:
       :script: pizza
+      :docnumber: 1000
 
       text
     INPUT
@@ -44,6 +45,7 @@ RSpec.describe Metanorma::JIS do
       :nodoc:
       :no-isobib:
       :script: Jpan
+      :docnumber: 1000
 
       text
     INPUT

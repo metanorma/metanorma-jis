@@ -14,7 +14,7 @@ RSpec.describe Metanorma::JIS::Processor do
     <title language="en" format="text/plain" type="title-main">English</title>
     <title language="fr" format="text/plain" type="main">French</title>
     <title language="fr" format="text/plain" type="title-main">French</title>
-    <docidentifier type="ISO">ISO DIR 1</docidentifier><docidentifier type="iso-with-lang">ISO DIR 1(F)</docidentifier><docidentifier type="iso-reference">ISO DIR 1(F)</docidentifier>
+    <docidentifier type="JIS">Z 100</docidentifier>
     <docnumber>1</docnumber>
     <contributor>
     <role type="author"/>
@@ -169,8 +169,7 @@ RSpec.describe Metanorma::JIS::Processor do
          <main class="main-section">
            <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
            <div class='authority'> </div>
-                   <p class="zzSTDTitle1"/>
-          <p class="zzSTDTitle2"/>
+           #{middle_title(false, "Z 100", Date.today.year)}
           <div id="H">
             <h1 id="_">1  Terms, Definitions, Symbols and Abbreviated Terms</h1>
             <h2 class="TermNum" id="J">1.1</h2>
