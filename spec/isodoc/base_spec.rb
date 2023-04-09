@@ -3,7 +3,7 @@ require "fileutils"
 
 RSpec.describe IsoDoc::JIS do
   it "processes isodoc as JIS: HTML output" do
-    IsoDoc::JIS::HtmlConvert.new({}).convert("test", <<~"INPUT", false)
+    IsoDoc::JIS::HtmlConvert.new({}).convert("test", <<~INPUT, false)
       <iso-standard xmlns="http://riboseinc.com/isoxml">
         <bibdata>
         <language>ja</language>
@@ -27,7 +27,7 @@ RSpec.describe IsoDoc::JIS do
   end
 
   it "processes isodoc as JIS: HTML output, Latin script" do
-    IsoDoc::JIS::HtmlConvert.new({}).convert("test", <<~"INPUT", false)
+    IsoDoc::JIS::HtmlConvert.new({}).convert("test", <<~INPUT, false)
       <iso-standard xmlns="http://riboseinc.com/isoxml">
         <bibdata>
         <language>en</language>

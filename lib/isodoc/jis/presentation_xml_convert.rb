@@ -93,9 +93,15 @@ module IsoDoc
         super
         cols = table_cols_count(node)
         name = node.at(ns("./name"))
-        thead = node.at(ns("./thead")) || name.after("<thead> </thead>").next
+        thead = table_thead_pt(node, name)
         table_unit_note(node, thead, cols)
         table_name(name, thead, cols)
+      end
+
+      def table_thead_pt(node, name)
+        node.at(ns("./thead")) ||
+          name&.after("<thead> </thead>")&.next ||
+          node.elements.first.before("<thead> </thead>").previous
       end
 
       def table_cols_count(node)
@@ -123,11 +129,42 @@ module IsoDoc
       end
 
       def annex1(elem)
+        elem["commentary"] == "true" and return
         lbl = @xrefs.anchor(elem["id"], :label)
         if t = elem.at(ns("./title"))
           t.children = "<strong>#{to_xml(t.children)}</strong>"
         end
         prefix_name(elem, "<br/>", lbl, "title")
+      end
+
+      def annex(docxml)
+        super
+        move_commentaries_to_end(docxml)
+      end
+
+      def move_commentaries_to_end(docxml)
+        docxml.at(ns("//annex[@commentary = 'true']")) or return
+        b = docxml.at(ns("//bibliography")) ||
+          docxml.at(ns("//annex[last()]")).after(" ").next
+        docxml.xpath(ns("//annex[@commentary = 'true']")).reverse.each do |x|
+          b.next = x.remove
+        end
+      end
+
+      def display_order(docxml)
+        i = 0
+        i = display_order_xpath(docxml, "//preface/*", i)
+        i = display_order_at(docxml, "//clause[@type = 'scope']", i)
+        i = display_order_at(docxml, @xrefs.klass.norm_ref_xpath, i)
+        i = display_order_at(docxml, "//sections/terms | " \
+                                     "//sections/clause[descendant::terms]", i)
+        i = display_order_at(docxml, "//sections/definitions", i)
+        i = display_order_xpath(docxml, @xrefs.klass.middle_clause(docxml), i)
+        i = display_order_xpath(docxml, "//annex[not(@commentary = 'true')]", i)
+        i = display_order_xpath(docxml, @xrefs.klass.bibliography_xpath, i)
+        i = display_order_xpath(docxml, "//annex[@commentary = 'true']", i)
+        i = display_order_xpath(docxml, "//indexsect", i)
+        display_order_xpath(docxml, "//colophon/*", i)
       end
 
       def tablesource(elem)

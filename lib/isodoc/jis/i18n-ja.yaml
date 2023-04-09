@@ -4,6 +4,10 @@ norm_with_refs_pref_all_dated: 次に掲げる引用規格は，この規格に�
 norm_with_refs_pref_none_dated: 次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要求事項 を構成している。これらの引用規格は，その最新版(追補を含む。)を適用する。
 admitted: "代替用語"
 table_footnote: 注
+commentary: 解説
+commentary_page: 解
+JIS: 日本工業規格
+draft_label: 案
 doctype_dict:
   international-standard: 日本産業規格
   technical-specification: 標準仕様書

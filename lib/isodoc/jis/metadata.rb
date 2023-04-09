@@ -49,6 +49,13 @@ module IsoDoc
       end
 
       PART_LABEL = { en: "Part", ja: "その" }.freeze
+
+      def docid(isoxml, _out)
+        id = isoxml.at(ns("//bibdata/docidentifier[@type = 'JIS']"))&.text or
+          return
+        set(:docnumber, id)
+        set(:docnumber_undated, id.sub(/:\d{4}$/, ""))
+      end
     end
   end
 end

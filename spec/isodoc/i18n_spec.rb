@@ -278,6 +278,12 @@ RSpec.describe IsoDoc::JIS do
               </div>
               <p>This is patent boilerplate</p>
             </div>
+                  <p class="JapaneseIndustrialStandard">
+        日本工業規格 
+        <span class="JIS">JIS</span>
+      </p>
+      <p class="StandardNumber">  </p>
+      <p class="IDT"/>
             <p class="zzSTDTitle1">Introduction Française — Titre Principal — </p>
              <p class="zzSTDTitle1">
                その :
@@ -433,6 +439,15 @@ RSpec.describe IsoDoc::JIS do
              <br clear="all" class="section"/>
            </p>
            <div class="WordSection3">
+                <p class="JapaneseIndustrialStandard">
+       日本工業規格
+       <span style="mso-tab-count:7">  </span>
+       <span class="JIS">JIS</span>
+     </p>
+     <p class="StandardNumber">
+     <span style="mso-tab-count:1">  </span>
+     </p>
+     <p class="IDT"/>
              <p class="zzSTDTitle1">Introduction Française — Titre Principal — </p>
              <p class="zzSTDTitle1">
                その :

@@ -556,34 +556,6 @@ p.NoteCont, li.NoteCont, div.NoteCont
         mso-font-kerning:1.0pt;
         mso-ansi-language:EN-US;
         mso-fareast-language:JA;}
-p.ANNEX, li.ANNEX, div.ANNEX
-	{mso-style-name:ANNEX;
-	mso-style-priority:10;
-	mso-style-unhide:no;
-	mso-style-next:Normal;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:24.0pt;
-	margin-left:0cm;
-	text-align:center;
-	text-indent:0cm;
-	line-height:15.5pt;
-	mso-line-height-rule:exactly;
-	page-break-before:always;
-	mso-pagination:widow-orphan;
-	page-break-after:avoid;
-	mso-outline-level:1;
-	mso-list:l0 level1 lfo12;
-	tab-stops:20.15pt;
-	font-size:14.0pt;
-	mso-bidi-font-size:$normalfontsize;
-	font-family:$headerfont;
-	mso-fareast-font-family:"SimHei",serif;
-	mso-bidi-font-family:$headerfont;
-	mso-ansi-language:EN-GB;
-	mso-fareast-language:JA;
-	font-weight:bold;
-	mso-bidi-font-weight:normal;}
 p.BiblioTitle, li.BiblioTitle, div.BiblioTitle
 	{mso-style-name:"Biblio Title";
 	mso-style-priority:5;
@@ -899,7 +871,7 @@ p.zzSTDTitle, li.zzSTDTitle, div.zzSTDTitle
 	mso-ansi-language:EN-GB;
 	font-weight:bold;
 	mso-bidi-font-weight:normal;}
-p.zzSTDTitle1, li.zzSTDTitle1, div.zzSTDTitle1
+p.Chapter, li.Chapter, div.Chapter
         {mso-style-name:章;
         /* chapter */
         mso-style-unhide:no;
@@ -2533,7 +2505,7 @@ p.IDT0, li.IDT0, div.IDT0
 	mso-ansi-language:EN-US;
 	mso-fareast-language:JA;
 	mso-no-proof:yes;}
-p.affa, li.affa, div.affa
+p.CommentaryStandardNumber, li.CommentaryStandardNumber, div.CommentaryStandardNumber
 	{mso-style-name:解説＿規格番号;
 	/* description_standard number */
 	mso-style-unhide:no;
@@ -2553,7 +2525,7 @@ p.affa, li.affa, div.affa
 	mso-ansi-language:EN-US;
 	mso-fareast-language:JA;
 	mso-no-proof:yes;}
-p.affb, li.affb, div.affb
+p.CommentaryStandardName, li.CommentaryStandardName, div.CommentaryStandardName
 	{mso-style-name:解説＿規格名称;
 	/*  comment_standard name */
 	mso-style-unhide:no;
@@ -2575,7 +2547,7 @@ p.affb, li.affb, div.affb
 	mso-ansi-language:EN-US;
 	mso-fareast-language:JA;
 	mso-no-proof:yes;}
-span.affc
+span.CommentaryEffectiveYear
 	{mso-style-name:解説＿発効年;
 	/* description_effective year */
 	mso-style-unhide:no;
@@ -2659,7 +2631,7 @@ span.afff1
 	mso-hansi-font-family:"Times New Roman";
 	font-weight:bold;
 	mso-bidi-font-weight:normal;}
-p.afff2, li.afff2, div.afff2
+p.StandardNumber, li.StandardNumber, div.StandardNumber
 	{mso-style-name:規格番号;
 	/* standard number */
 	mso-style-unhide:no;
@@ -2682,7 +2654,7 @@ p.afff2, li.afff2, div.afff2
 	mso-ansi-language:EN-US;
 	mso-fareast-language:JA;
 	mso-no-proof:yes;}
-p.afff3, li.afff3, div.afff3
+p.zzSTDTitle1, li.zzSTDTitle1, div.zzSTDTitle1
 	{mso-style-name:規格名称;
 	/* standard name */
 	mso-style-unhide:no;
@@ -5798,7 +5770,7 @@ span.TR2
 	/* Proposer TR */
 	mso-style-unhide:no;
 	mso-style-parent:"";}
-p.affffffffffffff1, li.affffffffffffff1, div.affffffffffffff1
+p.JapaneseIndustrialStandard, li.JapaneseIndustrialStandard, div.JapaneseIndustrialStandard
 	{mso-style-name:日本工業規格;
 	/* Japanese Industrial Standard */
 	mso-style-unhide:no;
@@ -5826,7 +5798,7 @@ span.affffffffffffff2
 	/* Deprecation date */
 	mso-style-unhide:no;
 	mso-style-parent:"";}
-span.affffffffffffff3
+span.EffectiveYear
 	{mso-style-name:発効年;
 	/* effective-year */
 	mso-style-unhide:no;
