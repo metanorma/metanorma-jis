@@ -169,7 +169,7 @@ RSpec.describe Metanorma::JIS::Processor do
          <main class="main-section">
            <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
            <div class='authority'> </div>
-           #{middle_title(false, "1", Date.today.year)}
+           #{middle_title(false, "", Date.today.year)}
           <div id="H">
             <h1 id="_">1  Terms, Definitions, Symbols and Abbreviated Terms</h1>
             <h2 class="TermNum" id="J">1.1</h2>
