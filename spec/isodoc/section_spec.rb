@@ -60,11 +60,7 @@ RSpec.describe IsoDoc::JIS do
           <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
           <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
-          <docidentifier type="ISO">ISO/WD 1000-1.3</docidentifier>
-          <docidentifier type="iso-reference">ISO/WD 1000-1.3:2000()</docidentifier>
-          <docidentifier type="URN">urn:iso:std:iso:1000:-1:stage-20.20.v3:ja</docidentifier>
-          <docidentifier type="iso-undated">ISO/WD 1000-1.3</docidentifier>
-          <docidentifier type="iso-with-lang">ISO/WD 1000-1.3(ja)</docidentifier>
+          <docidentifier type="JIS">Z 1000-1.3:2000</docidentifier>
           <docnumber>1000</docnumber>
           <contributor>
             <role type="author"/>
@@ -138,11 +134,7 @@ RSpec.describe IsoDoc::JIS do
            <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
            <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
            <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
-           <docidentifier type="ISO">ISO/WD 1000-1.3</docidentifier>
-           <docidentifier type="iso-reference">ISO/WD 1000-1.3:2000()</docidentifier>
-           <docidentifier type="URN">urn:iso:std:iso:1000:-1:stage-20.20.v3:ja</docidentifier>
-           <docidentifier type="iso-undated">ISO/WD 1000-1.3</docidentifier>
-           <docidentifier type="iso-with-lang">ISO/WD 1000-1.3(ja)</docidentifier>
+           <docidentifier type="JIS">Z 1000-1.3:2000</docidentifier>
            <docnumber>1000</docnumber>
            <contributor>
              <role type="author"/>
@@ -253,7 +245,7 @@ RSpec.describe IsoDoc::JIS do
                <span class="JIS">JIS</span>
              </p>
              <p class="StandardNumber">
-                 1000:
+                 Z 1000-1.3:
                <span class="EffectiveYear">2000</span>
              </p>
              <p class="IDT"/>
@@ -355,7 +347,7 @@ RSpec.describe IsoDoc::JIS do
              </p>
              <p class="StandardNumber">
                <span style="mso-tab-count:1">  </span>
-               1000:
+                Z 1000-1.3:
                <span class="EffectiveYear">2000</span>
              </p>
              <p class="IDT"/>
@@ -421,7 +413,7 @@ RSpec.describe IsoDoc::JIS do
            </p>
            <div class="WordSectionCommentary">
              <p class="CommentaryStandardNumber">
-               1000:
+               JIS Z 1000-1.3:
                <span class="CommentaryEffectiveYear">2000</span>
              </p>
              <p class="CommentaryStandardName">Introduction — Main Title — Title — </p>
@@ -453,7 +445,7 @@ RSpec.describe IsoDoc::JIS do
            </p>
            <div class="WordSectionCommentary">
              <p class="CommentaryStandardNumber">
-               1000:
+               JIS Z 1000-1.3:
                <span class="CommentaryEffectiveYear">2000</span>
              </p>
              <p class="CommentaryStandardName">Introduction — Main Title — Title — </p>

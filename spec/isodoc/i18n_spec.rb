@@ -282,10 +282,7 @@ RSpec.describe IsoDoc::JIS do
         日本工業規格 
         <span class="JIS">JIS</span>
       </p>
-      <p class="StandardNumber">
-                :
-        <span class="EffectiveYear"/>
-      </p>
+      <p class="StandardNumber">  </p>
       <p class="IDT"/>
             <p class="zzSTDTitle1">Introduction Française — Titre Principal — </p>
              <p class="zzSTDTitle1">
@@ -449,8 +446,6 @@ RSpec.describe IsoDoc::JIS do
      </p>
      <p class="StandardNumber">
      <span style="mso-tab-count:1">  </span>
-       :
-       <span class="EffectiveYear"/>
      </p>
      <p class="IDT"/>
              <p class="zzSTDTitle1">Introduction Française — Titre Principal — </p>

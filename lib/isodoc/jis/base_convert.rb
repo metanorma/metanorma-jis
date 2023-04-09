@@ -6,7 +6,7 @@ module IsoDoc
     module BaseConvert
       def middle_title(_isoxml, out)
         middle_title_hdr(out)
-        middle_title_main(out,  "zzSTDTitle1")
+        middle_title_main(out, "zzSTDTitle1")
         middle_subtitle_main(out)
         # middle_title_amd(out)
       end
@@ -20,9 +20,11 @@ module IsoDoc
         end
         out.p(class: "StandardNumber") do |p|
           insert_tab(p, 1)
-          p << @meta.get[:docnumeric]&.sub(/^JIS /, "")
-          p << ": "
-          p << "<span class='EffectiveYear'>#{@meta.get[:docyear]}</span>"
+          p << @meta.get[:docnumber_undated]
+          if yr = @meta.get[:docyear]
+            p << ": "
+            p << "<span class='EffectiveYear'>#{yr}</span>"
+          end
         end
         out.p(class: "IDT")
       end
@@ -56,19 +58,21 @@ module IsoDoc
 
       def commentary_title(_isoxml, out)
         commentary_title_hdr(out)
-        middle_title_main(out,  "CommentaryStandardName")
+        middle_title_main(out, "CommentaryStandardName")
       end
 
       def commentary_title_hdr(out)
         out.p(class: "CommentaryStandardNumber") do |p|
-          p << @meta.get[:docnumeric]
-          p << ": "
-          p << "<span class='CommentaryEffectiveYear'>#{@meta.get[:docyear]}</span>"
+          p << "JIS #{@meta.get[:docnumber_undated]}"
+          if yr = @meta.get[:docyear]
+            p << ": "
+            p << "<span class='CommentaryEffectiveYear'>#{yr}</span>"
+          end
         end
       end
 
       def termnote_parse(node, out)
-        name = node&.at(ns("./name"))&.remove
+        name = node.at(ns("./name"))&.remove
         out.div **note_attrs(node) do |div|
           div.p do |p|
             if name
