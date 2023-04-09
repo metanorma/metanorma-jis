@@ -68,7 +68,7 @@ lang=EN-HK><span style='mso-no-proof:yes'>10</span></span><!--[if supportFields]
 lang=EN-HK><span style='mso-element:field-end'></span></span><![endif]--></p>
 
 <p class=MsoHeader style='text-align:justify;text-justify:inter-ideograph'><span
-   lang=EN-HK>{{ docnumber }}</span>{% if docyear %}<span lang=ZH-TW style='font-family:"MS Gothic";
+   lang=EN-HK>{{ docnumber_undated }}</span>{% if docyear %}<span lang=ZH-TW style='font-family:"MS Gothic";
 mso-ascii-font-family:Arial;mso-hansi-font-family:Arial'>：</span><span
 lang=EN-HK>{{ docyear }}</span>{% endif %}<!--[if supportFields]><span lang=EN-HK><span
 style='mso-element:field-begin'></span> IF <span style='mso-element:field-begin'></span><span
@@ -161,9 +161,9 @@ MERGEFORMAT <span style='mso-element:field-separator'></span></span><![endif]-->
 lang=EN-HK><span style='mso-no-proof:yes'>11</span></span><!--[if supportFields]><span
 lang=EN-HK><span style='mso-element:field-end'></span></span><![endif]--></p>
 
-<p class=MsoHeader align=right style='text-align:right'><span lang=EN-HK>{{ docnumber }}</span>{% if docnumber %}<span lang=ZH-TW 
+<p class=MsoHeader align=right style='text-align:right'><span lang=EN-HK>{{ docnumber_undated }}</span>{% if docyear %}<span lang=ZH-TW 
 style='font-family:"MS Gothic";mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;mso-no-proof:yes'>：</span><span 
-lang=EN-HK>{{ docnumber }}</span>{% endif %}</p>
+lang=EN-HK>{{ docyear }}</span>{% endif %}</p>
 
 </div>
 
@@ -199,9 +199,9 @@ mso-bidi-font-family:"Times New Roman"'><span style='mso-no-proof:yes'>3</span><
 class=MsoPageNumber><span lang=EN-HK style='font-family:"Arial",sans-serif;
 mso-bidi-font-family:"Times New Roman"'><span style='mso-element:field-end'></span></span></span><![endif]--></p>
 
-<p class=MsoHeader align=right style='text-align:right'><span lang=EN-HK>{{ docnumber }}</span>{% if docnumber %}<span lang=ZH-TW 
+<p class=MsoHeader align=right style='text-align:right'><span lang=EN-HK>{{ docnumber_undated }}</span>{% if docyear %}<span lang=ZH-TW 
 style='font-family:"MS Gothic";mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;mso-no-proof:yes'>：</span><span 
-lang=EN-HK>{{ docnumber }}</span>{% endif %}</p>
+lang=EN-HK>{{ docyear }}</span>{% endif %}</p>
 
 </div>
 
@@ -266,7 +266,7 @@ mso-bidi-font-family:"Times New Roman"'><span style='mso-no-proof:yes'>2</span><
 class=MsoPageNumber><span lang=EN-HK style='font-family:"Arial",sans-serif;
 mso-bidi-font-family:"Times New Roman"'><span style='mso-element:field-end'></span></span></span><![endif]--></p>
 
-<p class=MsoHeader><span lang=EN-HK>{{ docnumber }}{%if docyear %} : {{ docyear }}{% endif %}</span><span lang=ZH-TW
+<p class=MsoHeader><span lang=EN-HK>{{ docnumber }}</span><span lang=ZH-TW
 style='font-family:"MS Gothic";mso-ascii-font-family:Arial;mso-hansi-font-family:
 Arial'>　</span><span lang=ZH-TW 
 style='font-family:"MS Gothic";mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;mso-ansi-language:EN-US'>{{ labels["commentary"]}}</span><span

@@ -18,11 +18,7 @@ RSpec.describe IsoDoc::JIS::Metadata do
           <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
           <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
-          <docidentifier type="ISO">ISO/WD 1000-1.3</docidentifier>
-          <docidentifier type="iso-reference">ISO/WD 1000-1.3:2000()</docidentifier>
-          <docidentifier type="URN">urn:iso:std:iso:1000:-1:stage-20.20.v3:ja</docidentifier>
-          <docidentifier type="iso-undated">ISO/WD 1000-1.3</docidentifier>
-          <docidentifier type="iso-with-lang">ISO/WD 1000-1.3(ja)</docidentifier>
+          <docidentifier type="JIS">1000-1.3:2000</docidentifier>
           <docnumber>1000</docnumber>
           <contributor>
             <role type="author"/>
@@ -93,10 +89,8 @@ RSpec.describe IsoDoc::JIS::Metadata do
     INPUT
     output = <<~OUTPUT
       {:agency=>"JIS",
-      :docnumber=>"ISO/WD 1000-1.3",
-      :docnumber_lang=>"ISO/WD 1000-1.3(ja)",
-      :docnumber_reference=>"ISO/WD 1000-1.3:2000()",
-      :docnumber_undated=>"ISO/WD 1000-1.3",
+      :docnumber=>"1000-1.3:2000",
+      :docnumber_undated=>"1000-1.3",
       :docnumeric=>"1000",
       :docsubtitle=>"Introduction Fran&#xe7;aise&#xa0;&#x2014; Titre Principal&#xa0;&#x2014; &#xa0;1: Part du Titre",
       :docsubtitleintro=>"Introduction Fran&#xe7;aise",
