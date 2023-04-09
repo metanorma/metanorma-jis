@@ -1,5 +1,8 @@
 module IsoDoc
   module JIS
+    class Counter < IsoDoc::XrefGen::Counter
+    end
+
     class Xref < IsoDoc::Iso::Xref
       def annex_name_lbl(clause, num)
         obl = l10n("(#{@labels['inform_annex']})")
@@ -11,10 +14,10 @@ module IsoDoc
 
       def back_anchor_names(xml)
         if @parse_settings.empty? || @parse_settings[:clauses]
-          i = ::IsoDoc::XrefGen::Counter.new("@")
+          i = Counter.new("@")
           xml.xpath(ns("//annex")).each do |c|
             if c["commentary"] == "true"
-              preface_names(c)
+              commentary_names(c)
             else
               annex_names(c, i.increment(c).print)
             end
@@ -26,6 +29,29 @@ module IsoDoc
           xml.xpath(ns("//indexsect")).each { |b| preface_names(b) }
         end
         references(xml) if @parse_settings.empty? || @parse_settings[:refs]
+      end
+
+      def commentary_names(clause)
+        preface_name_anchors(clause, 1, clause_title(clause))
+        clause.xpath(ns(SUBCLAUSES)).each_with_object(Counter.new) do |c, i|
+          commentary_names1(c, clause["id"], i.increment(c).print, 2)
+        end
+      end
+
+      def commentary_names1(clause, root, num, level)
+        commentary_name_anchors(clause, num, root, level)
+        clause.xpath(ns(SUBCLAUSES)).each_with_object(Counter.new) do |c, i|
+          commentary_names1(c, root, "#{num}.#{i.increment(c).print}",
+                            level + 1)
+        end
+      end
+
+      def commentary_name_anchors(clause, num, root, level)
+        @anchors[clause["id"]] =
+          { label: num, xref: l10n("#{@labels['clause']} #{num}"),
+            container: root,
+            title: clause_title(clause), level: level, type: "clause",
+            elem: @labels["clause"] }
       end
     end
   end

@@ -144,8 +144,11 @@ module IsoDoc
         clause_etc isoxml, out, 0
         annex isoxml, out
         bibliography isoxml, out
-        commentary isoxml, out
-        # colophon isoxml, out
+      end
+
+      def make_body3(body, docxml)
+        super
+        commentary docxml, body
       end
 
       def footnote_parse(node, out)
@@ -173,26 +176,26 @@ module IsoDoc
         amd(isoxml) and @suppressheadingnumbers = @oldsuppressheadingnumbers
         isoxml.xpath(ns("//annex[not(@commentary = 'true')]")).each do |c|
           page_break(out)
-          out.div **attr_code(annex_attrs(c)) do |s|
-            c.elements.each do |c1|
-              if c1.name == "title" then annex_name(c, c1, s)
-              else parse(c1, s)
-              end
-            end
-          end
+          render_annex(out, c)
         end
         amd(isoxml) and @suppressheadingnumbers = true
       end
 
       def commentary(isoxml, out)
         isoxml.xpath(ns("//annex[@commentary = 'true']")).each do |c|
-          page_break(out)
-          commentary_title(isoxml, out)
-          out.div **attr_code(annex_attrs(c)) do |s|
-            c.elements.each do |c1|
-              if c1.name == "title" then annex_name(c, c1, s)
-              else parse(c1, s)
-              end
+          section_break(out)
+          out.div class: "WordSectionCommentary" do |div|
+            commentary_title(isoxml, div)
+            render_annex(div, c)
+          end
+        end
+      end
+
+      def render_annex(out, clause)
+        out.div **attr_code(annex_attrs(clause)) do |s|
+          clause.elements.each do |c1|
+            if c1.name == "title" then annex_name(clause, c1, s)
+            else parse(c1, s)
             end
           end
         end
