@@ -115,8 +115,8 @@ module Metanorma
       end
 
       def iso_id_out(xml, params, _with_prf)
-        id = iso_id_default(params).to_s
-        xml.docidentifier id.strip.sub(/^JIS /, ""), type: "JIS"
+        id = iso_id_default(params).to_s(with_publisher: false)
+        xml.docidentifier id.strip, type: "JIS"
       end
 
       def iso_id_default(params)

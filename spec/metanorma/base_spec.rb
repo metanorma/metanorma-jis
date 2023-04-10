@@ -184,12 +184,11 @@ RSpec.describe Metanorma::JIS do
       :no-isobib:
       :docnumber: 1000
       :doctype: technical-report
-      :docseries: Z
     INPUT
     output = <<~OUTPUT
       <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
          <bibdata type="standard">
-           <docidentifier type="JIS">TR Z 1000:2023</docidentifier>
+           <docidentifier type="JIS">TR 1000:2023</docidentifier>
            <docnumber>1000</docnumber>
            <contributor>
              <role type="author"/>
@@ -252,12 +251,11 @@ RSpec.describe Metanorma::JIS do
       :no-isobib:
       :docnumber: 1000
       :doctype: technical-specification
-      :docseries: Z
     INPUT
     output = <<~OUTPUT
       <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
          <bibdata type="standard">
-           <docidentifier type="JIS">TS Z 1000:2023</docidentifier>
+           <docidentifier type="JIS">TS 1000:2023</docidentifier>
            <docnumber>1000</docnumber>
            <contributor>
              <role type="author"/>
@@ -478,7 +476,7 @@ RSpec.describe Metanorma::JIS do
     output = <<~OUTPUT
       <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::JIS::VERSION}">
                    <bibdata type="standard">
-           <docidentifier type="JIS">Z 1000-1:1980/AMD 3:2022</docidentifier>
+           <docidentifier type="JIS">JIS Z 1000-1:1980/AMD 3:2022</docidentifier>
            <docnumber>1000</docnumber>
            <date type="created">
              <on>1999-01-01</on>
