@@ -4,6 +4,7 @@ admitted: ADMITTED
 commentary: Commentary
 commentary_page: Comm.
 JIS: 日本工業規格
+permission_footer: Duplication, reprinting, etc. without permission is prohibited by copyright law.
 doctype_dict:
   international-standard: International standard
   technical-specification: Technical specification
