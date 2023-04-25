@@ -476,7 +476,7 @@ RSpec.describe Metanorma::JIS do
     output = <<~OUTPUT
       <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::JIS::VERSION}">
                    <bibdata type="standard">
-           <docidentifier type="JIS">JIS Z 1000-1:1980/AMD 3:2022</docidentifier>
+           <docidentifier type="JIS">Z 1000-1:1980/AMD 3:2022</docidentifier>
            <docnumber>1000</docnumber>
            <date type="created">
              <on>1999-01-01</on>
