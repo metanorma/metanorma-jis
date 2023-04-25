@@ -35,7 +35,7 @@ module IsoDoc
         }
       end
 
-          def make_table_footnote_target(out, fnid, fnref)
+      def make_table_footnote_target(out, fnid, fnref)
         attrs = { id: fnid, class: "TableFootnoteRef" }
         out.span do |s|
           s << @i18n.table_footnote

@@ -123,8 +123,13 @@ RSpec.describe IsoDoc::JIS do
             <title>Foreword</title>
             <p id="A">This is a preamble</p>
           </foreword>
-          <introduction id="B" obligation="informative" displayorder="2">
-            <title depth="1">Introduction</title>
+              <clause type="toc" id="_" displayorder="2">
+          <title depth="1">目　次</title>
+        </clause>
+        </preface>
+        <sections>
+          <introduction id="B" obligation="informative" displayorder="3">
+            <title>Introduction</title>
             <clause id="C" inline-header="false" obligation="informative">
               <title depth="2">
                 0.1
@@ -134,9 +139,7 @@ RSpec.describe IsoDoc::JIS do
             </clause>
             <p>This is patent boilerplate</p>
           </introduction>
-        </preface>
-        <sections>
-          <clause id="D" obligation="normative" type="scope" displayorder="3">
+          <clause id="D" obligation="normative" type="scope" displayorder="4">
             <title depth="1">
               1
               <tab/>
@@ -144,7 +147,7 @@ RSpec.describe IsoDoc::JIS do
             </title>
             <p id="E">Text</p>
           </clause>
-          <clause id="H" obligation="normative" displayorder="5">
+          <clause id="H" obligation="normative" displayorder="6">
             <title depth="1">
               3
               <tab/>
@@ -171,14 +174,14 @@ RSpec.describe IsoDoc::JIS do
               </dl>
             </definitions>
           </clause>
-          <definitions id="L" displayorder="6">
+          <definitions id="L" displayorder="7">
             <title>4</title>
             <dl>
               <dt>Symbol</dt>
               <dd>Definition</dd>
             </dl>
           </definitions>
-          <clause id="M" inline-header="false" obligation="normative" displayorder="7">
+          <clause id="M" inline-header="false" obligation="normative" displayorder="8">
             <title depth="1">
               5
               <tab/>
@@ -200,7 +203,7 @@ RSpec.describe IsoDoc::JIS do
             </clause>
           </clause>
         </sections>
-        <annex id="P" inline-header="false" obligation="normative" displayorder="8">
+        <annex id="P" inline-header="false" obligation="normative" displayorder="9">
           <title>
             附属書 A
             <br/>
@@ -231,14 +234,14 @@ RSpec.describe IsoDoc::JIS do
           </appendix>
         </annex>
         <bibliography>
-          <references id="R" normative="true" obligation="informative" displayorder="4">
+          <references id="R" normative="true" obligation="informative" displayorder="5">
             <title depth="1">
               2
               <tab/>
               Normative References
             </title>
           </references>
-          <clause id="S" obligation="informative" displayorder="9">
+          <clause id="S" obligation="informative" displayorder="10">
             <title depth="1">Bibliography</title>
             <references id="T" normative="false" obligation="informative">
               <title depth="2">Bibliography Subsection</title>
@@ -267,17 +270,9 @@ RSpec.describe IsoDoc::JIS do
               <p id="A">This is a preamble</p>
             </div>
             <br/>
-            <div class="Section3" id="B">
-              <h1 class="IntroTitle">Introduction</h1>
-              <div id="C">
-                <h2>
-                0.1
-                 
-                Introduction Subsection
-              </h2>
-              </div>
-              <p>This is patent boilerplate</p>
-            </div>
+      <div id="_" class="TOC">
+        <h1 class="IntroTitle">目　次</h1>
+      </div>
                   <p class="JapaneseIndustrialStandard">
         日本工業規格 
         <span class="JIS">JIS</span>
@@ -296,6 +291,18 @@ RSpec.describe IsoDoc::JIS do
                <br/>
                <b>Title Part</b>
              </p>
+             <div class="Section3" id="B">
+              <h1 class="IntroTitle">Introduction</h1>
+              <div id="C">
+                <h2>
+                0.1
+                 
+                Introduction Subsection
+              </h2>
+              </div>
+              <p>This is patent boilerplate</p>
+            </div>
+                  <br/>
             <div id="D">
               <h1>
               1
@@ -433,7 +440,13 @@ RSpec.describe IsoDoc::JIS do
                <h1 class="ForewordTitle">Foreword</h1>
                <p class="ForewordText" id="A">This is a preamble</p>
              </div>
-             <p> </p>
+                 <p>
+        <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+      </p>
+      <div id="_" type="toc" class="TOC">
+        <p class="zzContents">目　次</p>
+      </div>
+      <p> </p>
            </div>
            <p>
              <br clear="all" class="section"/>
@@ -600,8 +613,8 @@ RSpec.describe IsoDoc::JIS do
          </body>
        </html>
     WORD
-    expect(xmlpp(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
-      .convert("test", input, true))
+    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+      .convert("test", input, true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
       .to be_equivalent_to xmlpp(presxml)
     expect(xmlpp(IsoDoc::JIS::HtmlConvert.new({})
@@ -699,7 +712,7 @@ RSpec.describe IsoDoc::JIS do
           </bibliography>
         </iso-standard>
       INPUT
-    expect(xmlpp(output)
+    expect(xmlpp(strip_guid(output))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
       .to be_equivalent_to xmlpp(<<~OUTPUT)
         <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
@@ -720,8 +733,13 @@ RSpec.describe IsoDoc::JIS do
                  <title>Foreword</title>
                  <p id="A">This is a preamble</p>
                </foreword>
-               <introduction id="B" obligation="informative" displayorder="2">
-                 <title depth="1">Introduction</title>
+                <clause type="toc" id="_" displayorder="2">
+                  <title depth="1">Contents</title>
+                </clause>
+             </preface>
+             <sections>
+                <introduction id="B" obligation="informative" displayorder="3">
+                 <title>Introduction</title>
                  <clause id="C" inline-header="false" obligation="informative">
                    <title depth="2">
                      0.1
@@ -731,9 +749,7 @@ RSpec.describe IsoDoc::JIS do
                  </clause>
                  <p>This is patent boilerplate</p>
                </introduction>
-             </preface>
-             <sections>
-               <clause id="D" obligation="normative" type="scope" displayorder="3">
+               <clause id="D" obligation="normative" type="scope" displayorder="4">
                  <title depth="1">
                    1
                    <tab/>
@@ -741,7 +757,7 @@ RSpec.describe IsoDoc::JIS do
                  </title>
                  <p id="E">Text</p>
                </clause>
-               <clause id="H" obligation="normative" displayorder="5">
+               <clause id="H" obligation="normative" displayorder="6">
                  <title depth="1">
                    3
                    <tab/>
@@ -768,14 +784,14 @@ RSpec.describe IsoDoc::JIS do
                    </dl>
                  </definitions>
                </clause>
-               <definitions id="L" displayorder="6">
+               <definitions id="L" displayorder="7">
                  <title>4</title>
                  <dl>
                    <dt>Symbol</dt>
                    <dd>Definition</dd>
                  </dl>
                </definitions>
-               <clause id="M" inline-header="false" obligation="normative" displayorder="7">
+               <clause id="M" inline-header="false" obligation="normative" displayorder="8">
                  <title depth="1">
                    5
                    <tab/>
@@ -797,7 +813,7 @@ RSpec.describe IsoDoc::JIS do
                  </clause>
                </clause>
              </sections>
-             <annex id="P" inline-header="false" obligation="normative" displayorder="8">
+             <annex id="P" inline-header="false" obligation="normative" displayorder="9">
                <title>
                  Annex A
                  <br/>
@@ -828,14 +844,14 @@ RSpec.describe IsoDoc::JIS do
                </appendix>
              </annex>
              <bibliography>
-               <references id="R" normative="true" obligation="informative" displayorder="4">
+               <references id="R" normative="true" obligation="informative" displayorder="5">
                  <title depth="1">
                    2
                    <tab/>
                    Normative References
                  </title>
                </references>
-               <clause id="S" obligation="informative" displayorder="9">
+               <clause id="S" obligation="informative" displayorder="10">
                  <title depth="1">Bibliography</title>
                  <references id="T" normative="false" obligation="informative">
                    <title depth="2">Bibliography Subsection</title>
@@ -942,7 +958,7 @@ RSpec.describe IsoDoc::JIS do
     INPUT
 
     presxml = <<~OUTPUT
-          <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
         <bibdata>
                   <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
           <title language="en" format="text/plain" type="title-intro">Introduction</title>
@@ -968,8 +984,13 @@ RSpec.describe IsoDoc::JIS do
             <title>Foreword</title>
             <p id="A">This is a preamble</p>
           </foreword>
-          <introduction id="B" obligation="informative" displayorder="2">
-            <title depth="1">Introduction</title>
+            <clause type="toc" id="_" displayorder="2">
+        <title depth="1">Contents</title>
+      </clause>
+        </preface>
+        <sections>
+                  <introduction id="B" obligation="informative" displayorder="3">
+            <title>Introduction</title>
             <clause id="C" inline-header="false" obligation="informative">
               <title depth="2">
                 0.1
@@ -979,9 +1000,7 @@ RSpec.describe IsoDoc::JIS do
             </clause>
             <p>This is patent boilerplate</p>
           </introduction>
-        </preface>
-        <sections>
-          <clause id="D" obligation="normative" type="scope" displayorder="3">
+          <clause id="D" obligation="normative" type="scope" displayorder="4">
             <title depth="1">
               1
               <tab/>
@@ -989,7 +1008,7 @@ RSpec.describe IsoDoc::JIS do
             </title>
             <p id="E">Text</p>
           </clause>
-          <clause id="H" obligation="normative" displayorder="5">
+          <clause id="H" obligation="normative" displayorder="6">
             <title depth="1">
               3
               <tab/>
@@ -1016,14 +1035,14 @@ RSpec.describe IsoDoc::JIS do
               </dl>
             </definitions>
           </clause>
-          <definitions id="L" displayorder="6">
+          <definitions id="L" displayorder="7">
             <title>4</title>
             <dl>
               <dt>Symbol</dt>
               <dd>Definition</dd>
             </dl>
           </definitions>
-          <clause id="M" inline-header="false" obligation="normative" displayorder="7">
+          <clause id="M" inline-header="false" obligation="normative" displayorder="8">
             <title depth="1">
               5
               <tab/>
@@ -1045,7 +1064,7 @@ RSpec.describe IsoDoc::JIS do
             </clause>
           </clause>
         </sections>
-        <annex id="P" inline-header="false" obligation="normative" displayorder="8">
+        <annex id="P" inline-header="false" obligation="normative" displayorder="9">
           <title>
             Annex A
             <br/>
@@ -1076,14 +1095,14 @@ RSpec.describe IsoDoc::JIS do
           </appendix>
         </annex>
         <bibliography>
-          <references id="R" normative="true" obligation="informative" displayorder="4">
+          <references id="R" normative="true" obligation="informative" displayorder="5">
             <title depth="1">
               2
               <tab/>
               Normative References
             </title>
           </references>
-          <clause id="S" obligation="informative" displayorder="9">
+          <clause id="S" obligation="informative" displayorder="10">
             <title depth="1">Bibliography</title>
             <references id="T" normative="false" obligation="informative">
               <title depth="2">Bibliography Subsection</title>
@@ -1112,7 +1131,29 @@ RSpec.describe IsoDoc::JIS do
               <p id="A">This is a preamble</p>
             </div>
             <br/>
-            <div class="Section3" id="B">
+      <div id="_" class="TOC">
+        <h1 class="IntroTitle">Contents</h1>
+      </div>
+            <p class="JapaneseIndustrialStandard">
+        日本工業規格 
+        <span class="JIS">JIS</span>
+      </p>
+      <p class="StandardNumber">  </p>
+      <p class="IDT"/>
+                  <p class="zzSTDTitle1">Introduction — Main Title — Title — </p>
+      <p class="zzSTDTitle1">
+        Part :
+        <br/>
+        <b>Title Part</b>
+      </p>
+            <p class="zzSTDTitle2">Introduction Française — Titre Principal — </p>
+      <p class="zzSTDTitle2">
+        その :
+        <br/>
+        <b>Part du Titre</b>
+      </p>
+      <br/>
+      <div class="Section3" id="B">
               <h1 class="IntroTitle">Introduction</h1>
               <div id="C">
                 <h2>
@@ -1123,12 +1164,6 @@ RSpec.describe IsoDoc::JIS do
               </div>
               <p>This is patent boilerplate</p>
             </div>
-                  <p class="zzSTDTitle1">Introduction — Main Title — Title — </p>
-      <p class="zzSTDTitle2">
-        Part :
-        <br/>
-        <b>Title Part</b>
-      </p>
             <div id="D">
               <h1>
               1
@@ -1245,11 +1280,11 @@ RSpec.describe IsoDoc::JIS do
         </body>
       </html>
     OUTPUT
-    expect(xmlpp(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
-      .convert("test", input, true))
+    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+      .convert("test", input, true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
       .to be_equivalent_to xmlpp(presxml)
-    expect(xmlpp(IsoDoc::Iso::HtmlConvert.new({})
+    expect(xmlpp(IsoDoc::JIS::HtmlConvert.new({})
       .convert("test", presxml, true)))
       .to be_equivalent_to xmlpp(html)
   end

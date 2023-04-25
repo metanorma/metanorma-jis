@@ -12,10 +12,13 @@ RSpec.describe IsoDoc::JIS do
       <name>Japanese Industrial Standards</name>
       <abbreviation>JIS</abbreviation></organization></contributor><language current="true">ja</language><script current="true">Jpan</script><status><stage>60</stage><substage>60</substage></status>
       </bibdata>
-      <preface><foreword id="_foreword" obligation="informative" displayorder="1">
+      <preface>
+      <foreword id="_foreword" obligation="informative" displayorder="1">
       <title>まえがき</title>
       <p id="_553c5ce1-fd17-941b-b935-59caca87f267">This is a foreword</p>
-      </foreword></preface><sections>
+      </foreword>
+      <clause type="toc"><title>目次</title></clause>
+      </preface><sections>
       <clause id="_clause" inline-header="false" obligation="normative" displayorder="3">
       <title depth="1">2<tab/>Clause</title>
       <note id="_339b7abc-c95c-638c-54a9-750cef9ea065"><name>注記</name><p id="_977f50de-4e2f-4dfc-c48b-c35a3ff271cc">Para1</p>
@@ -59,18 +62,18 @@ RSpec.describe IsoDoc::JIS do
             This is a foreword
           </p>
         </div>
+         <p class="MsoNormal">
+           <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+         </p>
+           <div type="toc" class="TOC">
+          <p class="zzContents">目次</p>
+        </div>
         <p class="MsoNormal"> </p>
                  <div style="mso-element:para-border-div;border:solid windowtext 1.0pt; border-bottom-alt:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt: solid windowtext .5pt;mso-border-right-alt:solid windowtext .5pt;padding:1.0pt 4.0pt 0cm 4.0pt; margin-left:5.1pt;margin-right:5.1pt">
            <div>
              <a name="boilerplate-copyright-destination" id="boilerplate-copyright-destination"/>
            </div>
          </div>
-         <p class="MsoNormal">
-           <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-         </p>
-         <p class="zzContents" style="margin-top:0cm">
-           <span lang="EN-GB" xml:lang="EN-GB">目次</span>
-         </p>
        </div>
     OUTPUT
     word2 = <<~OUTPUT
@@ -159,8 +162,8 @@ RSpec.describe IsoDoc::JIS do
     doc = Nokogiri::XML(output)
     doc.xpath("//xmlns:p[@class = 'MsoToc1']").each(&:remove)
     doc1 = doc.at("//xmlns:div[@class = 'WordSection2']")
-    expect(xmlpp(doc1.to_xml))
-      .to be_equivalent_to xmlpp(word1)
+    expect(xmlpp(strip_guid(doc1.to_xml)))
+      .to be_equivalent_to xmlpp(strip_guid(word1))
     doc1 = doc.at("//xmlns:div[@class = 'WordSection3']")
     expect(xmlpp(doc1.to_xml))
       .to be_equivalent_to xmlpp(word2)

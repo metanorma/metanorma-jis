@@ -105,6 +105,8 @@ module IsoDoc
       def middle(isoxml, out)
         middle_title(isoxml, out)
         middle_admonitions(isoxml, out)
+        i = isoxml.at(ns("//sections/introduction")) and
+          introduction i, out
         scope isoxml, out, 0
         norm_ref isoxml, out, 0
         clause_etc isoxml, out, 0

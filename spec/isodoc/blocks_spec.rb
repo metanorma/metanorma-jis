@@ -72,12 +72,12 @@ RSpec.describe IsoDoc::JIS do
                   <p>X</p>
                 </fn>
               </name>
-              <image src="rice_images/rice_image1.png" height="20" width="30" id="_8357ede4-6d44-4672-bac4-9a85e82ab7f0" mimetype="image/png" alt="alttext" title="titletxt"/>
-              <image src="rice_images/rice_image1.png" height="20" width="auto" id="_8357ede4-6d44-4672-bac4-9a85e82ab7f1" mimetype="image/png"/>
-              <image src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7" height="20" width="auto" id="_8357ede4-6d44-4672-bac4-9a85e82ab7f2" mimetype="image/png"/>
-              <image src="data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjw/eG1sLXN0eWxlc2hlZXQgdHlwZT0idGV4dC94c2wiIGhyZWY9Ii4uLy4uLy4uL3hzbC9yZXNfZG9jL2ltZ2ZpbGUueHNsIj8+CjwhRE9DVFlQRSBpbWdmaWxlLmNvbnRlbnQgU1lTVEVNICIuLi8uLi8uLi9kdGQvdGV4dC5lbnQiPgo8aW1nZmlsZS5jb250ZW50IG1vZHVsZT0iZnVuZGFtZW50YWxzX29mX3Byb2R1Y3RfZGVzY3JpcHRpb25fYW5kX3N1cHBvcnQiIGZpbGU9ImFjdGlvbl9zY2hlbWFleHBnMS54bWwiPgo8aW1nIHNyYz0iYWN0aW9uX3NjaGVtYWV4cGcxLmdpZiI+CjxpbWcuYXJlYSBzaGFwZT0icmVjdCIgY29vcmRzPSIyMTAsMTg2LDM0MywyMjciIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9iYXNpY19hdHRyaWJ1dGVfc2NoZW1hL2Jhc2ljX2F0dHJpYnV0ZV9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMTAsMTAsOTYsNTEiIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9hY3Rpb25fc2NoZW1hL2FjdGlvbl9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMjEwLDI2NCwzNTgsMzA1IiBocmVmPSIuLi8uLi9yZXNvdXJjZXMvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEueG1sIiAvPgo8L2ltZz4KPC9pbWdmaWxlLmNvbnRlbnQ+Cg==" height="20" width="auto" id="_8357ede4-6d44-4672-bac4-9a85e82ab7f2" mimetype="application/xml"/>
+              <image src="rice_images/rice_image1.png" height="20" width="30" id="_" mimetype="image/png" alt="alttext" title="titletxt"/>
+              <image src="rice_images/rice_image1.png" height="20" width="auto" id="_" mimetype="image/png"/>
+              <image src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7" height="20" width="auto" id="_" mimetype="image/png"/>
+              <image src="data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjw/eG1sLXN0eWxlc2hlZXQgdHlwZT0idGV4dC94c2wiIGhyZWY9Ii4uLy4uLy4uL3hzbC9yZXNfZG9jL2ltZ2ZpbGUueHNsIj8+CjwhRE9DVFlQRSBpbWdmaWxlLmNvbnRlbnQgU1lTVEVNICIuLi8uLi8uLi9kdGQvdGV4dC5lbnQiPgo8aW1nZmlsZS5jb250ZW50IG1vZHVsZT0iZnVuZGFtZW50YWxzX29mX3Byb2R1Y3RfZGVzY3JpcHRpb25fYW5kX3N1cHBvcnQiIGZpbGU9ImFjdGlvbl9zY2hlbWFleHBnMS54bWwiPgo8aW1nIHNyYz0iYWN0aW9uX3NjaGVtYWV4cGcxLmdpZiI+CjxpbWcuYXJlYSBzaGFwZT0icmVjdCIgY29vcmRzPSIyMTAsMTg2LDM0MywyMjciIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9iYXNpY19hdHRyaWJ1dGVfc2NoZW1hL2Jhc2ljX2F0dHJpYnV0ZV9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMTAsMTAsOTYsNTEiIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9hY3Rpb25fc2NoZW1hL2FjdGlvbl9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMjEwLDI2NCwzNTgsMzA1IiBocmVmPSIuLi8uLi9yZXNvdXJjZXMvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEueG1sIiAvPgo8L2ltZz4KPC9pbWdmaWxlLmNvbnRlbnQ+Cg==" height="20" width="auto" id="_" mimetype="application/xml"/>
               <fn reference="a">
-                <p id="_ef2c85b8-5a5a-4ecd-a1e6-92acefaaa852">
+                <p id="_">
                   The time
                   <stem type="AsciiMath">t_90</stem>
                   was estimated to be 18,2 min for this example.
@@ -111,9 +111,12 @@ RSpec.describe IsoDoc::JIS do
         B</pre>
             </figure>
           </foreword>
+              <clause type="toc" id="_" displayorder="2">
+      <title depth="1">Contents</title>
+    </clause>
         </preface>
         <bibliography>
-          <references id="_normative_references" obligation="informative" normative="true" displayorder="2">
+          <references id="_" obligation="informative" normative="true" displayorder="3">
             <title depth="1">
               1
               <tab/>
@@ -212,6 +215,10 @@ RSpec.describe IsoDoc::JIS do
                 <p class="FigureTitle" style="text-align:center;"/>
               </div>
             </div>
+                 <br/>
+     <div id="_" class="TOC">
+       <h1 class="IntroTitle">Contents</h1>
+     </div>
             #{middle_title(false)}
             <div>
               <h1>
@@ -322,6 +329,12 @@ RSpec.describe IsoDoc::JIS do
               </table>
               <table id="figure-C" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0"/>
             </div>
+                  <p>
+        <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+      </p>
+      <div id="_" type="toc" class="TOC">
+        <p class="zzContents">Contents</p>
+      </div>
             <p> </p>
           </div>
           <p>
@@ -348,8 +361,8 @@ RSpec.describe IsoDoc::JIS do
         </body>
       </html>
     OUTPUT
-    expect(xmlpp(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
-      .convert("test", input, true).gsub(/&lt;/, "&#x3c;")))
+    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+      .convert("test", input, true).gsub(/&lt;/, "&#x3c;"))))
       .to be_equivalent_to xmlpp(presxml)
     expect(xmlpp(strip_guid(IsoDoc::JIS::HtmlConvert.new({})
       .convert("test", presxml, true)))).to be_equivalent_to xmlpp(html)
@@ -387,14 +400,17 @@ RSpec.describe IsoDoc::JIS do
               <name>Figure 1 — Overall title</name>
               <figure id="note1">
                 <name>a)  Subfigure 1</name>
-                <image src="rice_images/rice_image1.png" height="20" width="30" id="_8357ede4-6d44-4672-bac4-9a85e82ab7f0" mimetype="image/png" alt="alttext" title="titletxt"/>
+                <image src="rice_images/rice_image1.png" height="20" width="30" id="_" mimetype="image/png" alt="alttext" title="titletxt"/>
               </figure>
               <figure id="note2">
                 <name>b)  Subfigure 2</name>
-                <image src="rice_images/rice_image1.png" height="20" width="auto" id="_8357ede4-6d44-4672-bac4-9a85e82ab7f1" mimetype="image/png"/>
+                <image src="rice_images/rice_image1.png" height="20" width="auto" id="_" mimetype="image/png"/>
               </figure>
             </figure>
           </foreword>
+              <clause type="toc" id="_" displayorder="2">
+      <title depth="1">Contents</title>
+    </clause>
         </preface>
       </iso-standard>
     OUTPUT
@@ -415,6 +431,10 @@ RSpec.describe IsoDoc::JIS do
                  <p class="FigureTitle" style="text-align:center;">Figure 1 — Overall title</p>
                </div>
              </div>
+                   <br/>
+      <div id="_" class="TOC">
+        <h1 class="IntroTitle">Contents</h1>
+      </div>
              #{middle_title(false)}
            </div>
          </body>
@@ -471,6 +491,12 @@ RSpec.describe IsoDoc::JIS do
                 </tr>
               </table>
             </div>
+                  <p>
+        <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+      </p>
+      <div id="_" type="toc" class="TOC">
+        <p class="zzContents">Contents</p>
+      </div>
             <p> </p>
           </div>
           <p>
@@ -484,8 +510,8 @@ RSpec.describe IsoDoc::JIS do
         </body>
       </html>
     OUTPUT
-    expect(xmlpp(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
-      .convert("test", input, true).gsub(/&lt;/, "&#x3c;")))
+    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+      .convert("test", input, true).gsub(/&lt;/, "&#x3c;"))))
       .to be_equivalent_to xmlpp(presxml)
     expect(xmlpp(strip_guid(IsoDoc::JIS::HtmlConvert.new({})
       .convert("test", presxml, true)))).to be_equivalent_to xmlpp(html)
@@ -514,14 +540,18 @@ RSpec.describe IsoDoc::JIS do
     presxml = <<~INPUT
           <iso-standard xmlns="http://riboseinc.com/isoxml" type='presentation'>
           <preface><foreword displayorder="1">
-          <admonition id="_70234f78-64e5-4dfc-8b6f-f3f037348b6a" type="caution">
+          <admonition id="_" type="caution">
           <name>Title</name>
           <ul>
           <li>List</li>
           </ul>
-        <p id="_e94663cc-2473-4ccc-9a72-983a74d989f2">Only use paddy or parboiled rice for the determination of husked rice yield.</p>
+        <p id="_">Only use paddy or parboiled rice for the determination of husked rice yield.</p>
       </admonition>
-          </foreword></preface>
+          </foreword>
+              <clause type="toc" id="_" displayorder="2">
+      <title depth="1">Contents</title>
+    </clause>
+          </preface>
           </iso-standard>
     INPUT
     output = <<~OUTPUT
@@ -529,26 +559,30 @@ RSpec.describe IsoDoc::JIS do
                     <br/>
              <div>
              <h1 class="ForewordTitle">Foreword</h1>
-                      <div id="_70234f78-64e5-4dfc-8b6f-f3f037348b6a" class="Admonition">
+                      <div id="_" class="Admonition">
                  <p>
                    <span class="note_label">Title — </span>
                  </p>
                  <ul>
                    <li>List</li>
                  </ul>
-                 <p id="_e94663cc-2473-4ccc-9a72-983a74d989f2">Only use paddy or parboiled rice for the determination of husked rice yield.</p>
+                 <p id="_">Only use paddy or parboiled rice for the determination of husked rice yield.</p>
                </div>
              </div>
+                   <br/>
+      <div id="_" class="TOC">
+        <h1 class="IntroTitle">Contents</h1>
+      </div>
                          #{middle_title(false)}
            </div>
          </body>
        </html>
     OUTPUT
-    expect(xmlpp(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
-      .convert("test", input, true)))
+    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+      .convert("test", input, true))))
       .to be_equivalent_to xmlpp(presxml)
     expect(xmlpp(IsoDoc::JIS::HtmlConvert.new({})
-      .convert("test", input, true)))
+      .convert("test", presxml, true)))
       .to be_equivalent_to xmlpp(output)
   end
 end

@@ -99,24 +99,16 @@ module IsoDoc
         end
       end
 
-      def preface(isoxml, out)
-        isoxml.xpath(ns("//preface/clause | //preface/references | " \
-                        "//preface/definitions | //preface/terms")).each do |f|
-          out.div **attr_code(class: "Section3", id: f["id"],
-                              type: f["type"]) do |div|
-            clause_name(f, f&.at(ns("./title")), div, { class: "IntroTitle" })
-            f.elements.each do |e|
-              parse(e, div) unless e.name == "title"
-            end
-          end
-        end
+      def preface_attrs(node)
+        { id: node["id"], type: node["type"],
+          class: node["type"] == "toc" ? "TOC" : "Section3" }
       end
 
-      def introduction(isoxml, out)
-        f = isoxml.at(ns("//introduction")) || return
-        out.div class: "Section3", id: f["id"] do |div|
-          clause_name(f, f.at(ns("./title")), div, { class: "IntroTitle" })
-          f.elements.each do |e|
+      def introduction(clause, out)
+        out.div class: "Section3", id: clause["id"] do |div|
+          clause_name(clause, clause.at(ns("./title")), div,
+                      { class: "IntroTitle" })
+          clause.elements.each do |e|
             parse(e, div) unless e.name == "title"
           end
         end
@@ -125,11 +117,7 @@ module IsoDoc
       def make_body2(body, docxml)
         body.div class: "WordSection2" do |div2|
           boilerplate docxml, div2
-          preface_block docxml, div2
-          abstract docxml, div2
-          foreword docxml, div2
-          preface docxml, div2
-          acknowledgements docxml, div2
+          front docxml, div2
           div2.p { |p| p << "&#xa0;" } # placeholder
         end
         section_break(body)
@@ -138,7 +126,8 @@ module IsoDoc
       def middle(isoxml, out)
         middle_title(isoxml, out)
         middle_admonitions(isoxml, out)
-        introduction isoxml, out
+        i = isoxml.at(ns("//sections/introduction")) and
+          introduction i, out
         scope isoxml, out, 0
         norm_ref isoxml, out, 0
         clause_etc isoxml, out, 0

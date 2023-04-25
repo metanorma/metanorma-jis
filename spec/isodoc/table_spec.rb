@@ -112,7 +112,7 @@ RSpec.describe IsoDoc do
                        Table 1 — Repeatability and reproducibility of
                        <em>husked</em>
                        rice yield<fn reference="1">
-                  <p id="_0fe65e9a-5531-408e-8295-eeff35f41a55">Name footnote.</p>
+                  <p id="_">Name footnote.</p>
                 </fn>
                      </p>
                    </td>
@@ -126,13 +126,13 @@ RSpec.describe IsoDoc do
                    <td align="center">
                      Drago
                      <fn reference="a">
-                       <p id="_0fe65e9a-5531-408e-8295-eeff35f41a55">Parboiled rice.</p>
+                       <p id="_">Parboiled rice.</p>
                      </fn>
                    </td>
                    <td align="center">
                      Balilla
                      <fn reference="a">
-                       <p id="_0fe65e9a-5531-408e-8295-eeff35f41a55">Parboiled rice.</p>
+                       <p id="_">Parboiled rice.</p>
                      </fn>
                    </td>
                    <td align="center">Thaibonnet</td>
@@ -197,8 +197,11 @@ RSpec.describe IsoDoc do
                </note>
              </table>
            </foreword>
+            <clause type="toc" id="_" displayorder="2">
+            <title depth="1">Contents</title>
+          </clause>
          </preface>
-         <annex id="Annex" displayorder="2">
+         <annex id="Annex" displayorder="3">
            <title>
              Annex A
              <br/>
@@ -338,6 +341,7 @@ RSpec.describe IsoDoc do
              </tfoot>
            </table>
          </div>
+         <br/>
                      #{middle_title(false)}
          <br/>
          <div id="Annex" class="Section3">
@@ -473,7 +477,7 @@ RSpec.describe IsoDoc do
             <div>
               <a name="ftntableD-11" id="ftntableD-11"/>
               <p class="TableFootnote">
-                <a name="_0fe65e9a-5531-408e-8295-eeff35f41a55" id="_0fe65e9a-5531-408e-8295-eeff35f41a55"/>
+                <a name="_" id="_"/>
                 <span>
                   Footnote
                   <span class="TableFootnoteRef">
@@ -490,7 +494,7 @@ RSpec.describe IsoDoc do
                    <div>
                      <a name="ftntableD-1a" id="ftntableD-1a"/>
                      <p class="TableFootnote">
-                       <a name="_0fe65e9a-5531-408e-8295-eeff35f41a55" id="_0fe65e9a-5531-408e-8295-eeff35f41a55"/>
+                       <a name="_" id="_"/>
                        <span>
                          Footnote
                          <span class="TableFootnoteRef">
@@ -538,8 +542,8 @@ RSpec.describe IsoDoc do
          </div>
        </div>
     OUTPUT
-    expect(xmlpp(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
-      .convert("test", input, true))).to be_equivalent_to xmlpp(presxml)
+    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+      .convert("test", input, true)))).to be_equivalent_to xmlpp(presxml)
     IsoDoc::JIS::HtmlConvert.new({}).convert("test", presxml, false)
     expect(File.exist?("test.html")).to be true
     out = File.read("test.html")
@@ -644,6 +648,9 @@ RSpec.describe IsoDoc do
                <note id="D" type="units">Other units in sec</note>
              </table>
            </foreword>
+            <clause type="toc" id="_" displayorder="2">
+            <title depth="1">Contents</title>
+          </clause>
          </preface>
        </iso-standard>
     OUTPUT
@@ -702,6 +709,10 @@ RSpec.describe IsoDoc do
                  </div>
                </table>
              </div>
+                   <br/>
+              <div id="_" class="TOC">
+                <h1 class="IntroTitle">Contents</h1>
+              </div>
                          #{middle_title(false)}
            </div>
          </body>
@@ -779,6 +790,12 @@ RSpec.describe IsoDoc do
                </table>
              </div>
            </div>
+               <p>
+      <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+    </p>
+    <div id="_" type="toc" class="TOC">
+      <p class="zzContents">Contents</p>
+    </div>
            <p> </p>
          </div>
          <p>
@@ -791,8 +808,8 @@ RSpec.describe IsoDoc do
          <div class="colophon"/>
        </body>
     OUTPUT
-    expect(xmlpp(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
-       .convert("test", input, true))).to be_equivalent_to xmlpp(presxml)
+    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+       .convert("test", input, true)))).to be_equivalent_to xmlpp(presxml)
     expect(xmlpp(IsoDoc::JIS::HtmlConvert.new({})
       .convert("test", presxml, true))).to be_equivalent_to xmlpp(html)
     expect(xmlpp(Nokogiri::XML(IsoDoc::JIS::WordConvert.new({})

@@ -154,6 +154,7 @@ module IsoDoc
       def display_order(docxml)
         i = 0
         i = display_order_xpath(docxml, "//preface/*", i)
+        i = display_order_at(docxml, "//sections/introduction", i)
         i = display_order_at(docxml, "//clause[@type = 'scope']", i)
         i = display_order_at(docxml, @xrefs.klass.norm_ref_xpath, i)
         i = display_order_at(docxml, "//sections/terms | " \
@@ -172,6 +173,27 @@ module IsoDoc
           elem << "; #{to_xml(elem.next_element.remove.children)}"
         end
         elem.children = l10n("#{@i18n.source}: #{to_xml(elem.children).strip}")
+      end
+
+      def toc_title_insert_pt(docxml)
+        ins = docxml.at(ns("//preface")) ||
+          docxml.at(ns("//sections | //annex | //bibliography"))
+            &.before("<preface> </preface>")
+            &.previous_element or return nil
+        ins.children.last.after(" ").next
+      end
+
+      def preface_rearrange(doc)
+        move_introduction(doc)
+        super
+      end
+
+      def move_introduction(doc)
+        source = doc.at(ns("//preface/introduction")) or return
+        dest = doc.at(ns("//sections")) ||
+          doc.at(ns("//preface")).after("<sections> </sections>").next_element
+        dest.children.empty? and dest.children = " "
+        dest.children.first.next = source
       end
 
       include Init
