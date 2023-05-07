@@ -1091,6 +1091,18 @@
 		<xsl:copy-of select="xalan:nodeset($text_en)/text/node()"/>
 	</xsl:template>
 
+	<!-- for $contents -->
+	<xsl:template match="title/text()">
+		<xsl:variable name="regex_en_contents">([^\u3000-\u9FFF\uF900-\uFFFF\(\)]{1,})</xsl:variable>
+		<xsl:variable name="text_en_" select="java:replaceAll(java:java.lang.String.new(.), $regex_en_contents, concat($tag_font_en_bold_open,'$1',$tag_font_en_bold_close))"/>
+		<xsl:variable name="text_en"><text><xsl:call-template name="replace_text_tags">
+			<xsl:with-param name="tag_open" select="$tag_font_en_bold_open"/>
+			<xsl:with-param name="tag_close" select="$tag_font_en_bold_close"/>
+			<xsl:with-param name="text" select="$text_en_"/>
+		</xsl:call-template></text></xsl:variable>
+		<xsl:apply-templates select="xalan:nodeset($text_en)/text/node()"/>
+	</xsl:template>
+
 	<!-- move example title to the first paragraph -->
 	<xsl:template match="jis:example[contains(jis:name/text(), ' — ')]" mode="update_xml_step1">
 		<xsl:copy>
@@ -9441,7 +9453,20 @@
 						<xsl:call-template name="append_add-style"/>
 					</xsl:if>
 
-					<xsl:call-template name="getListItemFormat"/>
+							<xsl:variable name="list_item_label">
+								<xsl:call-template name="getListItemFormat"/>
+							</xsl:variable>
+							<xsl:choose>
+								<xsl:when test="contains($list_item_label, ')')">
+									<xsl:value-of select="substring-before($list_item_label,')')"/>
+									<fo:inline font-weight="normal">)</fo:inline>
+									<xsl:value-of select="substring-after($list_item_label,')')"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="$list_item_label"/>
+								</xsl:otherwise>
+							</xsl:choose>
+
 				</fo:block>
 			</fo:list-item-label>
 			<fo:list-item-body start-indent="body-start()" xsl:use-attribute-sets="list-item-body-style">
