@@ -594,6 +594,151 @@ RSpec.describe Metanorma::JIS do
     end
   end
 
+  it "adds examples and notes both to tables" do
+    input = <<~INPUT
+      #{ASCIIDOC_BLANK_HDR}
+
+      == Clause
+
+      |===
+      | A | B
+
+      | C | B
+      |===
+
+      ====
+      Example 1
+      ====
+
+      NOTE: Note 1
+
+      ====
+      Example 2
+      ====
+
+      ....
+      hello?
+      ....
+
+      ====
+      Example 3
+      ====
+    INPUT
+    output = <<~OUTPUT
+          #{BLANK_HDR}
+            <sections>
+        <clause id="_" inline-header="false" obligation="normative">
+          <title>Clause</title>
+          <table id="_">
+            <thead>
+              <tr>
+                <th valign="top" align="left">A</th>
+                <th valign="top" align="left">B</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td valign="top" align="left">C</td>
+                <td valign="top" align="left">B</td>
+              </tr>
+            </tbody>
+          <example id="_">
+            <p id="_">Example 1</p>
+          </example>
+          <note id="_">
+            <p id="_">Note 1</p>
+          </note>
+          <example id="_">
+            <p id="_">Example 2</p>
+          </example>
+          </table>
+          <figure id="_">
+            <pre id="_">hello?</pre>
+          </figure>
+          <example id="_">
+            <p id="_">Example 3</p>
+          </example>
+        </clause>
+      </sections>
+      </jis-standard>
+    OUTPUT
+    expect(xmlpp(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
+      .to be_equivalent_to xmlpp(output)
+  end
+
+  it "respects keep-separate on examples" do
+    input = <<~INPUT
+      #{ASCIIDOC_BLANK_HDR}
+
+      == Clause
+
+      |===
+      | A | B
+
+      | C | B
+      |===
+
+      ====
+      Example 1
+      ====
+
+      NOTE: Note 1
+
+      [keep-separate=true]
+      ====
+      Example 2
+      ====
+
+      ....
+      hello?
+      ....
+
+      ====
+      Example 3
+      ====
+    INPUT
+    output = <<~OUTPUT
+          #{BLANK_HDR}
+            <sections>
+        <clause id="_" inline-header="false" obligation="normative">
+          <title>Clause</title>
+          <table id="_">
+            <thead>
+              <tr>
+                <th valign="top" align="left">A</th>
+                <th valign="top" align="left">B</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td valign="top" align="left">C</td>
+                <td valign="top" align="left">B</td>
+              </tr>
+            </tbody>
+          <example id="_">
+            <p id="_">Example 1</p>
+          </example>
+          <note id="_">
+            <p id="_">Note 1</p>
+          </note>
+          </table>
+          <example id="_">
+            <p id="_">Example 2</p>
+          </example>
+          <figure id="_">
+            <pre id="_">hello?</pre>
+          </figure>
+          <example id="_">
+            <p id="_">Example 3</p>
+          </example>
+        </clause>
+      </sections>
+      </jis-standard>
+    OUTPUT
+    expect(xmlpp(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
+      .to be_equivalent_to xmlpp(output)
+  end
+
   it "renumbers footnotes in tables (including table titles)" do
     input = <<~INPUT
       #{ASCIIDOC_BLANK_HDR}
