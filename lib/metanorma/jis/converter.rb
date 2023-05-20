@@ -39,6 +39,11 @@ module Metanorma
         ret
       end
 
+      def example_attrs(node)
+        attr_code(id_unnum_attrs(node).merge(keep_attrs(node))
+          .merge("keep-separate": node.attr("keep-separate")))
+      end
+
       def html_converter(node)
         if node.nil?
           IsoDoc::JIS::HtmlConvert.new({})
