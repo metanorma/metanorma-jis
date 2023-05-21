@@ -38,6 +38,29 @@ module Metanorma
       end
 
       def docidentifier_cleanup(xmldoc); end
+
+      def note_cleanup(xmldoc)
+        note_example_to_table(xmldoc)
+        super
+        clean_example_keep_separate(xmldoc)
+      end
+
+      def note_example_to_table(xmldoc)
+        xmldoc.xpath("//table").each do |t|
+          t.xpath("./following-sibling::*").each do |n|
+            %w(note example).include?(n.name) or break
+            n["keep-separate"] == "true" and break
+            n.parent = t
+          end
+        end
+      end
+
+      def clean_example_keep_separate(xmldoc)
+        xmldoc.xpath("//example[@keep-separate] | " \
+                     "//termexample[@keep-separate]").each do |n|
+          n.delete("keep-separate")
+        end
+      end
     end
   end
 end
