@@ -335,147 +335,149 @@ RSpec.describe IsoDoc::JIS do
       </html>
     OUTPUT
     word = <<~OUTPUT
-        <body lang="EN-US" link="blue" vlink="#954F72">
-        <div class="WordSection1">
-          <p> </p>
-        </div>
-        <p>
-          <br clear="all" class="section"/>
-        </p>
-        <div class="WordSection2">
-          <p>
-            <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-          </p>
-          <div id="_" type="toc" class="TOC">
-            <p class="zzContents">Contents</p>
-          </div>
-          <p> </p>
-        </div>
-        <p>
-          <br clear="all" class="section"/>
-        </p>
-        <div class="WordSection3">
-          <p class="JapaneseIndustrialStandard">
-            日本工業規格
-            <span style="mso-tab-count:7">  </span>
-            <span class="JIS">JIS</span>
-          </p>
-          <p class="StandardNumber">
-            <span style="mso-tab-count:1">  </span>
-            Z 1000-1.3:
-            <span class="EffectiveYear">2000</span>
-          </p>
-          <p class="IDT"/>
-          <p class="zzSTDTitle1">Introduction — Main Title — Title — </p>
-          <p class="zzSTDTitle1">
-            Part :
-            <br/>
-            <b>Title Part</b>
-          </p>
-          <p class="zzSTDTitle2">Introduction Française — Titre Principal — </p>
-          <p class="zzSTDTitle2">
-            その :
-            <br/>
-            <b>Part du Titre</b>
-          </p>
-          <div class="normref_div">
-            <h1>
-              1
-              <span style="mso-tab-count:1">  </span>
-              Normative References
-            </h1>
-            <div>
-              <h2 class="BiblioTitle">
-                1.1
-                <span style="mso-tab-count:1">  </span>
-                Normative References 1
-              </h2>
-            </div>
-          </div>
-          <p>
-            <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-          </p>
-          <div id="A" class="Section3">
-            <h1 class="Annex">
-              Annex A
-              <br/>
-              (normative)
-              <br/>
-              <b>First Annex</b>
-            </h1>
-          </div>
-          <p>
-            <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-          </p>
-          <div id="B" class="Section3">
-            <h1 class="Annex">
-              Annex B
-              <br/>
-              (informative)
-              <br/>
-              <b>Second Annex</b>
-            </h1>
-          </div>
-          <p>
-            <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-          </p>
-          <div class="bibliography">
-            <h1 class="Section3">Bibliography</h1>
-          </div>
-        </div>
-        <p>
-          <br clear="all" class="section"/>
-        </p>
-        <div class="WordSectionCommentary">
-          <p class="CommentaryStandardNumber">
-            JIS Z 1000-1.3:
-            <span class="CommentaryEffectiveYear">2000</span>
-          </p>
-          <p class="CommentaryStandardName">Introduction — Main Title — Title — </p>
-          <p class="zzSTDTitle1">
-            Part :
-            <br/>
-            <b>Title Part</b>
-          </p>
-          <div id="C" class="Section3">
-            <h1 class="Annex">Commentary</h1>
-            <div id="C1">
-              <h2>
-                1
-                <span style="mso-tab-count:1">  </span>
-                First clause
-              </h2>
-              <div id="C2">
-                <h3>
-                  1.1
-                  <span style="mso-tab-count:1">  </span>
-                  First subclause
-                </h3>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p>
-          <br clear="all" class="section"/>
-        </p>
-        <div class="WordSectionCommentary">
-          <p class="CommentaryStandardNumber">
-            JIS Z 1000-1.3:
-            <span class="CommentaryEffectiveYear">2000</span>
-          </p>
-          <p class="CommentaryStandardName">Introduction — Main Title — Title — </p>
-          <p class="zzSTDTitle1">
-            Part :
-            <br/>
-            <b>Title Part</b>
-          </p>
-          <div id="D" class="Section3">
-            <h1 class="Annex">Another Commentary</h1>
-          </div>
-        </div>
-        <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
-        <div class="colophon"/>
-      </body>
+           <body lang="EN-US" link="blue" vlink="#954F72">
+           <div class="WordSection1">
+             <p> </p>
+           </div>
+           <p>
+             <br clear="all" class="section"/>
+           </p>
+           <div class="WordSection2">
+             <p>
+               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+             </p>
+             <div id="_" type="toc" class="TOC">
+               <p class="zzContents">Contents</p>
+             </div>
+             <p> </p>
+           </div>
+           <p>
+             <br clear="all" class="section"/>
+           </p>
+           <div class="WordSection3">
+             <p class="JapaneseIndustrialStandard">
+               日本工業規格
+               <span style="mso-tab-count:7">  </span>
+               <span class="JIS">JIS</span>
+             </p>
+             <p class="StandardNumber">
+               <span style="mso-tab-count:1">  </span>
+               Z 1000-1.3:
+               <span class="EffectiveYear">2000</span>
+             </p>
+             <p class="IDT"/>
+             <p class="zzSTDTitle1">Introduction — Main Title — Title — </p>
+             <p class="zzSTDTitle1">
+               Part :
+               <br/>
+               <b>Title Part</b>
+             </p>
+             <p class="zzSTDTitle2">Introduction Française — Titre Principal — </p>
+             <p class="zzSTDTitle2">
+               その :
+               <br/>
+               <b>Part du Titre</b>
+             </p>
+             <div class="normref_div">
+               <h1>
+                 1
+                 <span style="mso-tab-count:1">  </span>
+                 Normative References
+               </h1>
+               <div>
+                 <h2 class="BiblioTitle">
+                   1.1
+                   <span style="mso-tab-count:1">  </span>
+                   Normative References 1
+                 </h2>
+               </div>
+             </div>
+             <p>
+               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+             </p>
+             <div id="A" class="Section3">
+               <h1 class="Annex">
+                 Annex A
+                 <br/>
+                 (normative)
+                 <br/>
+                 <b>First Annex</b>
+               </h1>
+             </div>
+             <p>
+               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+             </p>
+             <div id="B" class="Section3">
+               <h1 class="Annex">
+                 Annex B
+                 <br/>
+                 (informative)
+                 <br/>
+                 <b>Second Annex</b>
+               </h1>
+             </div>
+             <p>
+               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+             </p>
+             <div class="bibliography">
+               <h1 class="Section3">Bibliography</h1>
+             </div>
+           </div>
+           <span style="mso-bookmark:PRECOMMENTARYPAGEREF"/>
+           <p>
+             <br clear="all" class="section"/>
+           </p>
+           <div class="WordSectionCommentary">
+             <p class="CommentaryStandardNumber">
+               JIS Z 1000-1.3:
+               <span class="CommentaryEffectiveYear">2000</span>
+             </p>
+             <p class="CommentaryStandardName">Introduction — Main Title — Title — </p>
+             <p class="zzSTDTitle1">
+               Part :
+               <br/>
+               <b>Title Part</b>
+             </p>
+             <div id="C" class="Section3">
+               <h1 class="Annex">Commentary</h1>
+               <div id="C1">
+                 <h2>
+                   1
+                   <span style="mso-tab-count:1">  </span>
+                   First clause
+                 </h2>
+                 <div id="C2">
+                   <h3>
+                     1.1
+                     <span style="mso-tab-count:1">  </span>
+                     First subclause
+                   </h3>
+                 </div>
+               </div>
+             </div>
+           </div>
+           <span style="mso-bookmark:PRECOMMENTARYPAGEREF"/>
+           <p>
+             <br clear="all" class="section"/>
+           </p>
+           <div class="WordSectionCommentary">
+             <p class="CommentaryStandardNumber">
+               JIS Z 1000-1.3:
+               <span class="CommentaryEffectiveYear">2000</span>
+             </p>
+             <p class="CommentaryStandardName">Introduction — Main Title — Title — </p>
+             <p class="zzSTDTitle1">
+               Part :
+               <br/>
+               <b>Title Part</b>
+             </p>
+             <div id="D" class="Section3">
+               <h1 class="Annex">Another Commentary</h1>
+             </div>
+           </div>
+           <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
+           <div class="colophon"/>
+         </body>
     OUTPUT
     expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
         .convert("test", input, true))
