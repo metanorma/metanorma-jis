@@ -172,6 +172,7 @@ module IsoDoc
 
       def commentary(isoxml, out)
         isoxml.xpath(ns("//annex[@commentary = 'true']")).each do |c|
+          out.span style: "mso-bookmark:PRECOMMENTARYPAGEREF"
           section_break(out)
           out.div class: "WordSectionCommentary" do |div|
             commentary_title(isoxml, div)
