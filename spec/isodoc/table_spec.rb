@@ -180,7 +180,7 @@ RSpec.describe IsoDoc do
                    </localityStack>
                    , Section 1
                  </origin>
-                   , modified – with adjustments ;
+                   – with adjustments ;
                <origin bibitemid="ISO713" type="inline" citeas="">
             <localityStack>
               <locality type="section">
@@ -189,7 +189,7 @@ RSpec.describe IsoDoc do
             </localityStack>
             , Section 3
           </origin>
-          , modified – with alterations
+          – with alterations
                </source>
                <note>
                  <name>NOTE</name>
@@ -302,8 +302,8 @@ RSpec.describe IsoDoc do
 
                     , Section 1
 
-                  , modified – with adjustments ;      , Section 3
-                 , modified – with alterations
+                  – with adjustments ;      , Section 3
+                 – with alterations
                 </p>
                    </div>
                    <div class="Note">
@@ -460,10 +460,10 @@ RSpec.describe IsoDoc do
 
              , Section 1
 
-             , modified – with adjustments ;
+             – with adjustments ;
                    , Section 3
 
-    , modified – with alterations
+    – with alterations
          </p>
           </div>
                  <div>
