@@ -502,7 +502,7 @@ RSpec.describe IsoDoc::JIS do
                    ISO 7301:2011,
                    <span class="citesec">3.1</span>
                  </origin>
-                 , modified – The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+                 , 修正された – The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
                </termsource>
              </term>
              <term id="paddy">
