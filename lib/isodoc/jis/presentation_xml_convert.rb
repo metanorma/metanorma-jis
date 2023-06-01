@@ -33,6 +33,12 @@ module IsoDoc
         ret
       end
 
+      def ol_depth(node)
+        depth = node.ancestors("ol").size + 1
+        depth == 1 and return :alphabetic
+        :arabic
+      end
+
       def admits(elem)
         elem.children.first.previous = @i18n.l10n("#{@i18n.admitted}: ")
       end

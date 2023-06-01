@@ -71,27 +71,28 @@ module IsoDoc
 refer_list)
         c = Counter.new(list["start"] ? list["start"].to_i - 1 : 0)
         list.xpath(ns("./li")).each do |li|
-          label = list_item_anchor_names_value(li, c, depth, { list_anchor: list_anchor, prev_label: prev_label,
-                                                               refer_list: refer_list })
+          bare_label, label = list_item_value(li, c, depth,
+                                              { list_anchor: list_anchor, prev_label: prev_label, refer_list: refer_list })
           li["id"] and @anchors[li["id"]] =
-                         { xref: "#{label})", type: "listitem", refer_list:
-                           refer_list, container: list_anchor[:container] }
+                         { label: bare_label, bare_xref: "#{bare_label})",
+                           xref: "#{label})", type: "listitem", refer_list:
+                                        refer_list, container: list_anchor[:container] }
           (li.xpath(ns(".//ol")) - li.xpath(ns(".//ol//ol"))).each do |ol|
             list_item_anchor_names(ol, list_anchor, depth + 1, label, false)
           end
         end
       end
 
-      def list_item_anchor_names_value(entry, counter, depth, opts)
+      def list_item_value(entry, counter, depth, opts)
         label1 = counter.increment(entry).listlabel(entry.parent, depth)
         if depth > 2
           base = opts[:prev_label].match(/^(.*?)([0-9.]+)$/) # a) 1.1.1
           label1 = "#{base[2]}.#{label1}"
-          list_item_anchor_label(label1, opts[:list_anchor],
-                                 base[1].sub(/[^a-z0-9]*$/, ""), opts[:refer_list])
+          [label1, list_item_anchor_label(label1, opts[:list_anchor],
+                                          base[1].sub(/[^a-z0-9]*$/, ""), opts[:refer_list])]
         else
-          list_item_anchor_label(label1, opts[:list_anchor], opts[:prev_label],
-                                 opts[:refer_list])
+          [label1, list_item_anchor_label(label1, opts[:list_anchor], opts[:prev_label],
+                                          opts[:refer_list])]
         end
       end
     end
