@@ -91,4 +91,125 @@ RSpec.describe IsoDoc::JIS do
       .at("//xmlns:foreword").to_xml))
       .to be_equivalent_to xmlpp(output)
   end
+
+  it "cross-references list items" do
+    input = <<~INPUT
+      <iso-standard xmlns="http://riboseinc.com/isoxml">
+      <preface>
+      <foreword obligation="informative">
+         <title>Foreword</title>
+         <p id="A">This is a preamble
+         <xref target="P"/>
+         <xref target="Q"/>
+         <xref target="R"/>
+         <xref target="S"/>
+         <xref target="P1"/>
+         </p>
+       </foreword>
+       </preface>
+       <sections>
+       <clause id="A"><title>Clause</title>
+       <ol id="L">
+       <li id="P">
+       <ol id="L11">
+       <li id="Q">
+       <ol id="L12">
+       <li id="R">
+       <ol id="L13">
+       <li id="S">
+       </li>
+       </ol>
+       </li>
+       </ol>
+       </li>
+       </ol>
+       </li>
+       </ol>
+       <ol id="L1">
+       <li id="P1">A</li>
+       </ol>
+       </clause>
+       </sections>
+       </iso-standard>
+    INPUT
+    output = <<~OUTPUT
+      <foreword obligation="informative" displayorder="1">
+        <title>Foreword</title>
+        <p id="A">
+          This is a preamble
+          <xref target="P">Clause 1, List  1 a)</xref>
+          <xref target="Q">1 List  1 a) 1)</xref>
+          <xref target="R">1 List  1 a) 1.1)</xref>
+          <xref target="S">1 List  1 a) 1.1.1)</xref>
+          <xref target="P1">Clause 1, List  2 a)</xref>
+        </p>
+      </foreword>
+    OUTPUT
+    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+       .new(presxml_options)
+       .convert("test", input, true))
+       .at("//xmlns:foreword").to_xml))
+      .to be_equivalent_to xmlpp(output)
+  end
+
+  it "cross-references list items in Japanese" do
+    input = <<~INPUT
+      <iso-standard xmlns="http://riboseinc.com/isoxml">
+      <bibdata><language>ja</language></bibdata>
+      <preface>
+      <foreword obligation="informative">
+         <title>Foreword</title>
+         <p id="A">This is a preamble
+         <xref target="P"/>
+         <xref target="Q"/>
+         <xref target="R"/>
+         <xref target="S"/>
+         <xref target="P1"/>
+         </p>
+       </foreword>
+       </preface>
+       <sections>
+       <clause id="A"><title>Clause</title>
+       <ol id="L">
+       <li id="P">
+       <ol id="L11">
+       <li id="Q">
+       <ol id="L12">
+       <li id="R">
+       <ol id="L13">
+       <li id="S">
+       </li>
+       </ol>
+       </li>
+       </ol>
+       </li>
+       </ol>
+       </li>
+       </ol>
+       <ol id="L1">
+       <li id="P1">A</li>
+       </ol>
+       </clause>
+       </sections>
+       </iso-standard>
+    INPUT
+    output = <<~OUTPUT
+      <foreword obligation="informative" displayorder="1">
+         <title>Foreword</title>
+         <p id="A">
+           This is a preamble
+           <xref target="P">箇条 1, リスト  1のa)</xref>
+           <xref target="Q">1 リスト  1のa)の1)</xref>
+           <xref target="R">1 リスト  1のa)の1.1)</xref>
+           <xref target="S">1 リスト  1のa)の1.1.1)</xref>
+           <xref target="P1">箇条 1, リスト  2のa)</xref>
+         </p>
+       </foreword>
+    OUTPUT
+    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+       .new(presxml_options)
+       .convert("test", input, true))
+       .at("//xmlns:foreword").to_xml))
+      .to be_equivalent_to xmlpp(output)
+  end
 end
