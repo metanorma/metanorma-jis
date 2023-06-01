@@ -280,24 +280,24 @@ RSpec.describe IsoDoc::JIS do
          <div>
            <a name="A" id="A"/>
            <h1>1</h1>
-           <p class="MsoList" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l8 level1 lfo2;" id="">A</p>
-           <p class="MsoList" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l8 level1 lfo2;" id="">B</p>
-           <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;">C</p>
-           <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;">D</p>
-           <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;">E</p>
-           <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;">F</p>
-           <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;">G</p>
-           <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;">H</p>
-           <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;">I</p>
-           <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;">J</p>
-           <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;">K</p>
-           <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;">L</p>
-           <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;">M</p>
-           <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;">N</p>
-           <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;">O</p>
-           <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;">P</p>
-           <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;">Q</p>
-           <p style="mso-list:l8 level1 lfo2;" class="margin-left: 36.0pt;text-indent:-18.0pt;">R</p>
+           <p class="MsoList" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l8 level1 lfo2;"><a name="_" id="_"/>A</p>
+           <p class="MsoList" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l8 level1 lfo2;"><a name="_" id="_"/>B</p>
+           <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>C</p>
+           <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>D</p>
+           <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>E</p>
+           <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>F</p>
+           <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>G</p>
+           <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>H</p>
+           <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>I</p>
+           <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>J</p>
+           <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>K</p>
+           <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>L</p>
+           <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>M</p>
+           <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>N</p>
+           <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>O</p>
+           <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>P</p>
+           <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>Q</p>
+           <p style="mso-list:l8 level1 lfo2;" class="margin-left: 36.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>R</p>
            <p class="MsoListBullet" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l9 level1 lfo1;" id="">A</p>
            <p class="MsoListBullet" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l9 level1 lfo1;" id="">B</p>
            <p class="MsoListBullet" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l9 level1 lfo1;" id="">B1</p>
@@ -328,8 +328,8 @@ RSpec.describe IsoDoc::JIS do
     output = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
-    expect(xmlpp(Nokogiri::XML(output)
-      .at("//xmlns:div[@class = 'WordSection3']").to_xml))
+    expect(xmlpp(strip_guid(Nokogiri::XML(output)
+      .at("//xmlns:div[@class = 'WordSection3']").to_xml)))
       .to be_equivalent_to xmlpp(word)
   end
 
