@@ -27,6 +27,18 @@ module Metanorma
           "Cambria Math" => nil,
           "Times New Roman" => nil,
           "Arial" => nil,
+          "Noto Serif" => nil,
+          "Noto Serif HK" => nil,
+          "Noto Serif JP" => nil,
+          "Noto Serif KR" => nil,
+          "Noto Serif SC" => nil,
+          "Noto Serif TC" => nil,
+          "Noto Sans Mono" => nil,
+          "Noto Sans Mono CJK HK" => nil,
+          "Noto Sans Mono CJK JP" => nil,
+          "Noto Sans Mono CJK KR" => nil,
+          "Noto Sans Mono CJK SC" => nil,
+          "Noto Sans Mono CJK TC" => nil,
         }
       end
 
