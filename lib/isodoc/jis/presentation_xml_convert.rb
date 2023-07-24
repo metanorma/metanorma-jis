@@ -202,6 +202,56 @@ module IsoDoc
         dest.children.first.next = source
       end
 
+      def middle_title(docxml)
+        s = docxml.at(ns("//sections")) or return
+        middle_title_hdr(s.children.first)
+        middle_title_main(s.children.first, "zzSTDTitle1")
+        middle_subtitle_main(s.children.first)
+        # middle_title_amd(s.children.first)
+      end
+
+      def middle_title_hdr(out)
+        ret = "<p class='JapaneseIndustrialStandard'>#{@i18n.jis}"
+        @meta.get[:unpublished] and ret += @i18n.l10n("(#{@i18n.draft_label})")
+        ret += ("<tab/>" * 7)
+        ret += "<span class='JIS'>JIS</span></p>"
+        ret += "<p class='StandardNumber'><tab/>#{@meta.get[:docnumber_undated]}"
+        if yr = @meta.get[:docyear]
+          ret += ": <span class='EffectiveYear'>#{yr}</span>"
+        end
+        ret += "</p><p class='IDT'/>"
+        out.previous = ret
+      end
+
+      def middle_title_main(out, style)
+        ret = "<p class='#{style}'>#{@meta.get[:doctitleintro]}"
+        ret += " &#x2014; " if @meta.get[:doctitleintro] && @meta.get[:doctitlemain]
+        ret += @meta.get[:doctitlemain]
+        ret += " &#x2014; " if @meta.get[:doctitlemain] && @meta.get[:doctitlepart]
+        ret += "</p>"
+        if a = @meta.get[:doctitlepart]
+          ret += "<p class='zzSTDTitle1'>"
+          b = @meta.get[:doctitlepartlabel] and ret += "#{b}: "
+          ret += "<br/><strong>#{a}</strong></p>"
+        end
+        out.previous = ret
+      end
+
+      def middle_subtitle_main(out)
+        @meta.get[:docsubtitlemain] or return
+        ret = "<p class='zzSTDTitle2'>#{@meta.get[:docsubtitleintro]}"
+        ret += " &#x2014; " if @meta.get[:docsubtitleintro] && @meta.get[:docsubtitlemain]
+        ret += @meta.get[:docsubtitlemain]
+        ret += " &#x2014; " if @meta.get[:docsubtitlemain] && @meta.get[:docsubtitlepart]
+        ret += "</p>"
+        if a = @meta.get[:docsubtitlepart]
+          ret += "<p class='zzSTDTitle2'>"
+          b = @meta.get[:docsubtitlepartlabel] and ret += "#{b}: "
+          ret += "<br/><strong>#{a}</strong></p>"
+        end
+        out.previous = ret
+      end
+
       include Init
     end
   end
