@@ -110,8 +110,23 @@ RSpec.describe IsoDoc::JIS do
         <title depth="1">Contents</title>
       </clause>
           </preface>
-          <bibliography>
-            <references id="_" obligation="informative" normative="true" displayorder="3">
+          <sections>
+           <p class="JapaneseIndustrialStandard" displayorder="3">
+             日本工業規格
+             <tab/>
+             <tab/>
+             <tab/>
+             <tab/>
+             <tab/>
+             <tab/>
+             <tab/>
+             <span class="JIS">JIS</span>
+           </p>
+           <p class="StandardNumber" displayorder="4">
+             <tab/>
+           </p>
+           <p class="IDT" displayorder="5"/>
+            <references id="_" obligation="informative" normative="true" displayorder="6">
               <title depth="1">
                 1
                 <tab/>
@@ -127,7 +142,8 @@ RSpec.describe IsoDoc::JIS do
                 <biblio-tag>ISO 712, </biblio-tag>
               </bibitem>
             </references>
-          </bibliography>
+          </sections>
+          <bibliography/>
         </iso-standard>
     OUTPUT
     html = <<~OUTPUT
@@ -214,7 +230,7 @@ RSpec.describe IsoDoc::JIS do
       <div id="_" class="TOC">
         <h1 class="IntroTitle">Contents</h1>
       </div>
-             #{middle_title(false)}
+      #{middle_title(false)}
              <div>
                <h1>
                1
@@ -242,11 +258,11 @@ RSpec.describe IsoDoc::JIS do
           <div class="WordSection1">
             <p> </p>
           </div>
-          <p>
+          <p class="section-break">
             <br clear="all" class="section"/>
           </p>
           <div class="WordSection2">
-            <p>
+            <p class="page-break">
               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
             </p>
             <div>
@@ -324,7 +340,7 @@ RSpec.describe IsoDoc::JIS do
               </table>
               <table id="figure-C" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0"/>
             </div>
-                  <p>
+                  <p class="page-break">
         <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
       </p>
       <div id="_" type="toc" class="TOC">
@@ -332,11 +348,11 @@ RSpec.describe IsoDoc::JIS do
       </div>
             <p> </p>
           </div>
-          <p>
+          <p class="section-break">
             <br clear="all" class="section"/>
           </p>
           <div class="WordSection3">
-            #{middle_title(true)}
+      #{middle_title(true)}
             <div class="normref_div">
               <h1>
                 1
@@ -358,7 +374,7 @@ RSpec.describe IsoDoc::JIS do
     OUTPUT
     expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
-      .convert("test", input, true).gsub(/&lt;/, "&#x3c;"))))
+      .convert("test", input, true).gsub("&lt;", "&#x3c;"))))
       .to be_equivalent_to xmlpp(presxml)
     expect(xmlpp(strip_guid(IsoDoc::JIS::HtmlConvert.new({})
       .convert("test", presxml, true)))).to be_equivalent_to xmlpp(html)
@@ -431,7 +447,6 @@ RSpec.describe IsoDoc::JIS do
       <div id="_" class="TOC">
         <h1 class="IntroTitle">Contents</h1>
       </div>
-             #{middle_title(false)}
            </div>
          </body>
        </html>
@@ -446,11 +461,11 @@ RSpec.describe IsoDoc::JIS do
           <div class="WordSection1">
             <p> </p>
           </div>
-          <p>
+          <p class="section-break">
             <br clear="all" class="section"/>
           </p>
           <div class="WordSection2">
-            <p>
+            <p class="page-break">
               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
             </p>
             <div>
@@ -487,7 +502,7 @@ RSpec.describe IsoDoc::JIS do
                 </tr>
               </table>
             </div>
-                  <p>
+                  <p class="page-break">
         <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
       </p>
       <div id="_" type="toc" class="TOC">
@@ -495,11 +510,10 @@ RSpec.describe IsoDoc::JIS do
       </div>
             <p> </p>
           </div>
-          <p>
+          <p class="section-break">
             <br clear="all" class="section"/>
           </p>
           <div class="WordSection3">
-            #{middle_title(true)}
           </div>
           <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
           <div class="colophon"/>
@@ -508,7 +522,7 @@ RSpec.describe IsoDoc::JIS do
     OUTPUT
     expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
-      .convert("test", input, true).gsub(/&lt;/, "&#x3c;"))))
+      .convert("test", input, true).gsub("&lt;", "&#x3c;"))))
       .to be_equivalent_to xmlpp(presxml)
     expect(xmlpp(strip_guid(IsoDoc::JIS::HtmlConvert.new({})
       .convert("test", presxml, true)))).to be_equivalent_to xmlpp(html)
@@ -570,7 +584,6 @@ RSpec.describe IsoDoc::JIS do
       <div id="_" class="TOC">
         <h1 class="IntroTitle">Contents</h1>
       </div>
-                         #{middle_title(false)}
            </div>
          </body>
        </html>

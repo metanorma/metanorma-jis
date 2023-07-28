@@ -135,7 +135,7 @@ module IsoDoc
       end
 
       def annex1(elem)
-        elem["commentary"] == "true" and return
+        elem["commentary"] == "true" and return commentary(elem)
         lbl = @xrefs.anchor(elem["id"], :label)
         if t = elem.at(ns("./title"))
           t.children = "<strong>#{to_xml(t.children)}</strong>"
@@ -155,6 +155,21 @@ module IsoDoc
         docxml.xpath(ns("//annex[@commentary = 'true']")).reverse.each do |x|
           b.next = x.remove
         end
+      end
+
+      def commentary(elem)
+        t = elem.elements.first
+        commentary_title_hdr(t)
+        middle_title_main(t, "CommentaryStandardName")
+      end
+
+      def commentary_title_hdr(elem)
+        ret = <<~COMMENTARY
+          <p class="CommentaryStandardNumber">JIS #{@meta.get[:docnumber_undated]}
+        COMMENTARY
+        yr = @meta.get[:docyear] and
+          ret += ": <span class='CommentaryEffectiveYear'>#{yr}</span>"
+        elem.previous = ret
       end
 
       def display_order(docxml)
@@ -204,9 +219,10 @@ module IsoDoc
 
       def middle_title(docxml)
         s = docxml.at(ns("//sections")) or return
-        middle_title_hdr(s.children.first)
-        middle_title_main(s.children.first, "zzSTDTitle1")
-        middle_subtitle_main(s.children.first)
+        elem = s.children.first
+        middle_title_hdr(elem)
+        middle_title_main(elem, "zzSTDTitle1")
+        middle_subtitle_main(elem)
         # middle_title_amd(s.children.first)
       end
 
@@ -224,10 +240,12 @@ module IsoDoc
       end
 
       def middle_title_main(out, style)
+        t = @meta.get[:doctitlemain]
+        (t && !t.empty?) or return
         ret = "<p class='#{style}'>#{@meta.get[:doctitleintro]}"
-        ret += " &#x2014; " if @meta.get[:doctitleintro] && @meta.get[:doctitlemain]
-        ret += @meta.get[:doctitlemain]
-        ret += " &#x2014; " if @meta.get[:doctitlemain] && @meta.get[:doctitlepart]
+        ret += " &#x2014; " if @meta.get[:doctitleintro] && t
+        ret += t
+        ret += " &#x2014; " if t && @meta.get[:doctitlepart]
         ret += "</p>"
         if a = @meta.get[:doctitlepart]
           ret += "<p class='zzSTDTitle1'>"
@@ -238,11 +256,12 @@ module IsoDoc
       end
 
       def middle_subtitle_main(out)
-        @meta.get[:docsubtitlemain] or return
+        t = @meta.get[:docsubtitlemain]
+        (t && !t.empty?) or return
         ret = "<p class='zzSTDTitle2'>#{@meta.get[:docsubtitleintro]}"
-        ret += " &#x2014; " if @meta.get[:docsubtitleintro] && @meta.get[:docsubtitlemain]
+        ret += " &#x2014; " if @meta.get[:docsubtitleintro] && t
         ret += @meta.get[:docsubtitlemain]
-        ret += " &#x2014; " if @meta.get[:docsubtitlemain] && @meta.get[:docsubtitlepart]
+        ret += " &#x2014; " if t && @meta.get[:docsubtitlepart]
         ret += "</p>"
         if a = @meta.get[:docsubtitlepart]
           ret += "<p class='zzSTDTitle2'>"
