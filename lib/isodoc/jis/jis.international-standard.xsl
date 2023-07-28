@@ -1167,6 +1167,46 @@
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:template match="*[local-name() = 'span'][@class = 'surname' or @class = 'givenname']" mode="update_xml_step1" priority="2">
+		<xsl:copy>
+			<xsl:apply-templates select="@* | node()" mode="update_xml_step1"/>
+		</xsl:copy>
+	</xsl:template>
+
+	<xsl:template match="jis:clause[@type = 'contributors']//jis:table//jis:span[@class = 'surname']/text()[string-length() &lt; 3]" priority="2">
+		<xsl:choose>
+			<xsl:when test="string-length() = 1">
+				<xsl:value-of select="concat(.,'　　')"/>
+			</xsl:when>
+			<xsl:when test="string-length() = 2">
+				<xsl:value-of select="concat(substring(.,1,1), '　', substring(., 2))"/>
+			</xsl:when>
+		</xsl:choose>
+		<xsl:if test="../following-sibling::node()[1][self::jis:span and @class = 'surname']"> <!-- if no space between surname and given name -->
+			<xsl:text>　</xsl:text>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="jis:clause[@type = 'contributors']//jis:table//jis:span[@class = 'givenname']/text()[string-length() &lt; 3]" priority="2">
+		<xsl:choose>
+			<xsl:when test="string-length() = 1">
+				<xsl:value-of select="concat('　　', .)"/>
+			</xsl:when>
+			<xsl:when test="string-length() = 2">
+				<xsl:value-of select="concat(substring(.,1,1), '　', substring(., 2))"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="."/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- space between surname and givenname replace by 'ideographic space' -->
+	<!-- and following-sibling::node()[1][self::jis:span and @class = 'givenname'] -->
+	<xsl:template match="jis:clause[@type = 'contributors']//jis:table//node()[preceding-sibling::node()[1][self::jis:span and @class = 'surname']][. = ' ']" priority="2">
+		<xsl:text>　</xsl:text>
+	</xsl:template>
+
 	<xsl:template name="makePagedXML">
 		<xsl:param name="structured_xml"/>
 		<xsl:choose>
@@ -1571,19 +1611,32 @@
 	<xsl:variable name="titles_">
 
 		<!-- These titles of Table of contents renders different than determined in localized-strings -->
-		<title-toc lang="en">
-
-		</title-toc>
-		<title-toc lang="fr">
+		<!-- <title-toc lang="en">
+			<xsl:if test="$namespace = 'csd' or $namespace = 'ieee' or $namespace = 'iho' or $namespace = 'mpfd' or $namespace = 'ogc' or $namespace = 'unece-rec'">
+				<xsl:text>Contents</xsl:text>
+			</xsl:if>
+			<xsl:if test="$namespace = 'csa' or $namespace = 'm3d' or $namespace = 'nist-sp' or $namespace = 'ogc-white-paper'">
+				<xsl:text>Table of Contents</xsl:text>
+			</xsl:if>
+			<xsl:if test="$namespace = 'gb'">
+				<xsl:text>Table of contents</xsl:text>
+			</xsl:if>
+		</title-toc> -->
+		<title-toc lang="en">Table of contents</title-toc>
+		<!-- <title-toc lang="fr">
 			<xsl:text>Sommaire</xsl:text>
-		</title-toc>
-		<title-toc lang="zh">
-
+		</title-toc> -->
+		<!-- <title-toc lang="zh">
+			<xsl:choose>
+				<xsl:when test="$namespace = 'gb'">
+					<xsl:text>目次</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
 					<xsl:text>Contents</xsl:text>
-
-		</title-toc>
-
-		<title-descriptors lang="en">Descriptors</title-descriptors>
+				</xsl:otherwise>
+			</xsl:choose>
+		</title-toc> -->
+		<title-toc lang="zh">目次</title-toc>
 
 		<title-part lang="en">
 
@@ -1599,20 +1652,6 @@
 		<title-subpart lang="en">Sub-part #</title-subpart>
 		<title-subpart lang="fr">Partie de sub #</title-subpart>
 
-		<title-list-tables lang="en">List of Tables</title-list-tables>
-
-		<title-list-figures lang="en">List of Figures</title-list-figures>
-
-		<title-table-figures lang="en">Table of Figures</title-table-figures>
-
-		<title-list-recommendations lang="en">List of Recommendations</title-list-recommendations>
-
-		<title-summary lang="en">Summary</title-summary>
-
-		<title-continued lang="ru">(продолжение)</title-continued>
-		<title-continued lang="en">(continued)</title-continued>
-		<title-continued lang="fr">(continué)</title-continued>
-
 	</xsl:variable>
 	<xsl:variable name="titles" select="xalan:nodeset($titles_)"/>
 
@@ -1620,8 +1659,8 @@
 		<xsl:variable name="toc_table_title" select="//*[contains(local-name(), '-standard')]/*[local-name() = 'metanorma-extension']/*[local-name() = 'toc'][@type='table']/*[local-name() = 'title']"/>
 		<xsl:value-of select="$toc_table_title"/>
 		<xsl:if test="normalize-space($toc_table_title) = ''">
-			<xsl:call-template name="getTitle">
-				<xsl:with-param name="name" select="'title-list-tables'"/>
+			<xsl:call-template name="getLocalizedString">
+				<xsl:with-param name="key">toc_tables</xsl:with-param>
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:variable>
@@ -1630,8 +1669,8 @@
 		<xsl:variable name="toc_figure_title" select="//*[contains(local-name(), '-standard')]/*[local-name() = 'metanorma-extension']/*[local-name() = 'toc'][@type='figure']/*[local-name() = 'title']"/>
 		<xsl:value-of select="$toc_figure_title"/>
 		<xsl:if test="normalize-space($toc_figure_title) = ''">
-			<xsl:call-template name="getTitle">
-				<xsl:with-param name="name" select="'title-list-figures'"/>
+			<xsl:call-template name="getLocalizedString">
+				<xsl:with-param name="key">toc_figures</xsl:with-param>
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:variable>
@@ -1640,8 +1679,8 @@
 		<xsl:variable name="toc_requirement_title" select="//*[contains(local-name(), '-standard')]/*[local-name() = 'metanorma-extension']/*[local-name() = 'toc'][@type='requirement']/*[local-name() = 'title']"/>
 		<xsl:value-of select="$toc_requirement_title"/>
 		<xsl:if test="normalize-space($toc_requirement_title) = ''">
-			<xsl:call-template name="getTitle">
-				<xsl:with-param name="name" select="'title-list-recommendations'"/>
+			<xsl:call-template name="getLocalizedString">
+				<xsl:with-param name="key">toc_recommendations</xsl:with-param>
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:variable>
@@ -5401,7 +5440,7 @@
 	<xsl:variable name="regex_url_start">^(http://|https://|www\.)?(.*)</xsl:variable>
 	<xsl:template match="*[local-name()='tt']/text()" priority="2">
 		<xsl:choose>
-			<xsl:when test="java:replaceAll(java:java.lang.String.new(.), '$2', '') != ''">
+			<xsl:when test="java:replaceAll(java:java.lang.String.new(.), $regex_url_start, '$2') != ''">
 				 <!-- url -->
 				<xsl:call-template name="add-zero-spaces-link-java"/>
 			</xsl:when>
@@ -5867,10 +5906,13 @@
 			</xsl:choose>
 		</xsl:variable>
 
-		<!-- replace sequence #x200B and space TO space -->
-		<xsl:variable name="text10" select="java:replaceAll(java:java.lang.String.new($text9), '\u200b ', ' ')"/>
+		<!-- replace sequence #x200B to one &#x200B -->
+		<xsl:variable name="text10" select="java:replaceAll(java:java.lang.String.new($text9), '\u200b{2,}', '​')"/>
 
-		<xsl:value-of select="$text10"/>
+		<!-- replace sequence #x200B and space TO space -->
+		<xsl:variable name="text11" select="java:replaceAll(java:java.lang.String.new($text10), '\u200b ', ' ')"/>
+
+		<xsl:value-of select="$text11"/>
 	</xsl:template>
 
 	<xsl:template name="add-zero-spaces-link-java">
@@ -5880,8 +5922,12 @@
 		<xsl:variable name="url_continue" select="java:replaceAll(java:java.lang.String.new($text), $regex_url_start, '$2')"/>
 		<!-- add zero-width space (#x200B) after characters: dash, dot, colon, equal, underscore, em dash, thin space, comma, slash, @  -->
 		<xsl:variable name="url" select="java:replaceAll(java:java.lang.String.new($url_continue),'(-|\.|:|=|_|—| |,|/|@)','$1​')"/>
+
+		<!-- replace sequence #x200B to one &#x200B -->
+		<xsl:variable name="url2" select="java:replaceAll(java:java.lang.String.new($url), '\u200b{2,}', '​')"/>
+
 		<!-- remove zero-width space at the end -->
-		<xsl:value-of select="java:replaceAll(java:java.lang.String.new($url), '​$', '')"/>
+		<xsl:value-of select="java:replaceAll(java:java.lang.String.new($url2), '​$', '')"/>
 	</xsl:template>
 
 	<!-- add zero space after dash character (for table's entries) -->
@@ -7176,12 +7222,12 @@
 		<xsl:variable name="num"><xsl:number/></xsl:variable>
 		<xsl:choose>
 			<xsl:when test="$num = 1"> <!-- display first NOTE's paragraph in the same line with label NOTE -->
-				<fo:inline xsl:use-attribute-sets="note-p-style">
+				<fo:inline xsl:use-attribute-sets="note-p-style" role="SKIP">
 					<xsl:apply-templates/>
 				</fo:inline>
 			</xsl:when>
 			<xsl:otherwise>
-				<fo:block xsl:use-attribute-sets="note-p-style">
+				<fo:block xsl:use-attribute-sets="note-p-style" role="SKIP">
 					<xsl:apply-templates/>
 				</fo:block>
 			</xsl:otherwise>
