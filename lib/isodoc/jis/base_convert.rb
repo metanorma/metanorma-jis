@@ -4,21 +4,6 @@ require "metanorma-iso"
 module IsoDoc
   module JIS
     module BaseConvert
-      def commentary_title(_isoxml, out)
-        commentary_title_hdr(out)
-        middle_title_main(out, "CommentaryStandardName")
-      end
-
-      def commentary_title_hdr(out)
-        out.p(class: "CommentaryStandardNumber") do |p|
-          p << "JIS #{@meta.get[:docnumber_undated]}"
-          if yr = @meta.get[:docyear]
-            p << ": "
-            p << "<span class='CommentaryEffectiveYear'>#{yr}</span>"
-          end
-        end
-      end
-
       def termnote_parse(node, out)
         name = node.at(ns("./name"))&.remove
         out.div **note_attrs(node) do |div|

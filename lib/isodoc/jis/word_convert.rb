@@ -63,17 +63,15 @@ module IsoDoc
           olstyle: "l8" }
       end
 
-      def norm_ref(node, out, num)
-        node["hidden"] != "true" or return num
+      def norm_ref(node, out)
+        node["hidden"] != "true" or return
         out.div class: "normref_div" do |div|
-          num += 1
           clause_name(node, node.at(ns("./title")), div, nil)
           if node.name == "clause"
             node.elements.each { |e| parse(e, div) unless e.name == "title" }
           else biblio_list(node, div, false)
           end
         end
-        num
       end
 
       def bibliography(node, out)
@@ -133,18 +131,18 @@ module IsoDoc
       end
 
       def annex(node, out)
-        c["commentary"] == "true" and return commentary(c, out)
-        amd(isoxml) and @suppressheadingnumbers = @oldsuppressheadingnumbers
+        node["commentary"] == "true" and return commentary(node, out)
+        amd(node.document.root) and
+          @suppressheadingnumbers = @oldsuppressheadingnumbers
         page_break(out)
         render_annex(out, node)
-        amd(isoxml) and @suppressheadingnumbers = true
+        amd(node.document.root) and @suppressheadingnumbers = true
       end
 
       def commentary(node, out)
         out.span style: "mso-bookmark:PRECOMMENTARYPAGEREF"
         section_break(out)
         out.div class: "WordSectionCommentary" do |div|
-          commentary_title(isoxml, div)
           render_annex(div, node)
         end
       end
