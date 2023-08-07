@@ -195,14 +195,12 @@ def middle_title(word, number = "", year = "")
   YR
   <<~HDR
     <p class="JapaneseIndustrialStandard">
-      日本工業規格#{word ? '<span style="mso-tab-count:7">  </span>' : ' '}<span class="JIS">JIS</span>
+      日本工業規格#{word ? '<span style="mso-tab-count:1">  </span>' * 7 : '              '}<span class="JIS">JIS</span>
     </p>
     <p class="StandardNumber">
       #{word ? '<span style="mso-tab-count:1">  </span>' : ' '} #{number}#{yr}
     </p>
     <p class="IDT"/>
-                 <p class="zzSTDTitle1"/>
-        <p class="zzSTDTitle2"/>
   HDR
 end
 
@@ -218,10 +216,10 @@ def boilerplate(xmldoc)
   conv.init(Asciidoctor::Document.new([]))
   ret = Nokogiri::XML(
     conv.boilerplate_isodoc(xmldoc).populate_template(file, nil)
-    .gsub(/<p>/, "<p id='_'>")
-    .gsub(/<p align="left">/, "<p align='left' id='_'>")
-    .gsub(/<ol>/, "<ol id='_' type='alphabet'>")
-    .gsub(/<ul>/, "<ul id='_'>"),
+    .gsub("<p>", "<p id='_'>")
+    .gsub('<p align="left">', "<p align='left' id='_'>")
+    .gsub("<ol>", "<ol id='_' type='alphabet'>")
+    .gsub("<ul>", "<ul id='_'>"),
   )
   conv.smartquotes_cleanup(ret)
   HTMLEntities.new.decode(ret.to_xml)
@@ -321,7 +319,7 @@ end
 
 def mock_pdf
   allow(Mn2pdf).to receive(:convert) do |url, output, _c, _d|
-    FileUtils.cp(url.gsub(/"/, ""), output.gsub(/"/, ""))
+    FileUtils.cp(url.gsub('"', ""), output.gsub('"', ""))
   end
 end
 

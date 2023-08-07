@@ -63,34 +63,29 @@ module IsoDoc
           olstyle: "l8" }
       end
 
-      def norm_ref(isoxml, out, num)
-        (f = isoxml.at(ns(norm_ref_xpath)) and f["hidden"] != "true") or
-          return num
+      def norm_ref(node, out)
+        node["hidden"] != "true" or return
         out.div class: "normref_div" do |div|
-          num += 1
-          clause_name(f, f.at(ns("./title")), div, nil)
-          if f.name == "clause"
-            f.elements.each { |e| parse(e, div) unless e.name == "title" }
-          else biblio_list(f, div, false)
+          clause_name(node, node.at(ns("./title")), div, nil)
+          if node.name == "clause"
+            node.elements.each { |e| parse(e, div) unless e.name == "title" }
+          else biblio_list(node, div, false)
           end
         end
-        num
       end
 
-      def bibliography(isoxml, out)
-        (f = isoxml.at(ns(bibliography_xpath)) and f["hidden"] != "true") or
-          return
+      def bibliography(node, out)
+        node["hidden"] != "true" or return
         page_break(out)
         out.div class: "bibliography" do |div|
           div.h1 class: "Section3" do |h1|
-            f.at(ns("./title"))&.children&.each { |c2| parse(c2, h1) }
+            node.at(ns("./title"))&.children&.each { |c2| parse(c2, h1) }
           end
-          biblio_list(f, div, true)
+          biblio_list(node, div, true)
         end
       end
 
       def annex_name(_annex, name, div)
-        preceding_floating_titles(name, div)
         return if name.nil?
 
         div.h1 class: "Annex" do |t|
@@ -114,32 +109,6 @@ module IsoDoc
         end
       end
 
-      def make_body2(body, docxml)
-        body.div class: "WordSection2" do |div2|
-          boilerplate docxml, div2
-          front docxml, div2
-          div2.p { |p| p << "&#xa0;" } # placeholder
-        end
-        section_break(body)
-      end
-
-      def middle(isoxml, out)
-        middle_title(isoxml, out)
-        middle_admonitions(isoxml, out)
-        i = isoxml.at(ns("//sections/introduction")) and
-          introduction i, out
-        scope isoxml, out, 0
-        norm_ref isoxml, out, 0
-        clause_etc isoxml, out, 0
-        annex isoxml, out
-        bibliography isoxml, out
-      end
-
-      def make_body3(body, docxml)
-        super
-        commentary docxml, body
-      end
-
       def footnote_parse(node, out)
         return table_footnote_parse(node, out) if @in_table || @in_figure # &&
 
@@ -161,23 +130,20 @@ module IsoDoc
         @seen_footnote << fn
       end
 
-      def annex(isoxml, out)
-        amd(isoxml) and @suppressheadingnumbers = @oldsuppressheadingnumbers
-        isoxml.xpath(ns("//annex[not(@commentary = 'true')]")).each do |c|
-          page_break(out)
-          render_annex(out, c)
-        end
-        amd(isoxml) and @suppressheadingnumbers = true
+      def annex(node, out)
+        node["commentary"] == "true" and return commentary(node, out)
+        amd(node.document.root) and
+          @suppressheadingnumbers = @oldsuppressheadingnumbers
+        page_break(out)
+        render_annex(out, node)
+        amd(node.document.root) and @suppressheadingnumbers = true
       end
 
-      def commentary(isoxml, out)
-        isoxml.xpath(ns("//annex[@commentary = 'true']")).each do |c|
-          out.span style: "mso-bookmark:PRECOMMENTARYPAGEREF"
-          section_break(out)
-          out.div class: "WordSectionCommentary" do |div|
-            commentary_title(isoxml, div)
-            render_annex(div, c)
-          end
+      def commentary(node, out)
+        out.span style: "mso-bookmark:PRECOMMENTARYPAGEREF"
+        section_break(out)
+        out.div class: "WordSectionCommentary" do |div|
+          render_annex(div, node)
         end
       end
 

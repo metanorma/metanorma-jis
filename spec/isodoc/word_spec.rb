@@ -28,19 +28,21 @@ RSpec.describe IsoDoc::JIS do
 
       <p id="_3cf332d1-0d92-ce94-f50d-8a0ba6150316"><strong>strong</strong></p>
       </clause>
-      </sections>
-      <annex id="A"><title>Annex</title>
-      <clause id="B"><title>Annex Clause</title>
-      <clause id="C"><title>Annex Clause Clause</title>
-      </clause></clause></annex>
-      <bibliography><references id="_normative_references" normative="true" obligation="informative" displayorder="2">
-      <title depth="1">1<tab/>引用規格</title><p id="_375d89b0-e764-77b0-b84e-611678e3e3a8">次に掲げる引用規格は，この規格に引用されることによって
-      ，その一部又は全部がこの規格の要 求事項を構成している。これらの引用規格のうち，西暦年を付記してあるものは，記載の年の版を適 用し，その後の改
+      <references id="_normative_references" normative="true" obligation="informative" displayorder="2" displayorder="5">
+      <title depth="1">1<tab/>引用規格</title><p id="_375d89b0-e764-77b0-b84e-611678e3e3a8">次に掲げる引用規格は，この規格に引用されることによ>って
+      ，その一部又は全部がこの規格の要 求事項を構成している。これらの引用規格のうち，西暦年を付記してあるものは，記載の年の版を適 用し，その後>の改
       正版(追補を含む。)は適用しない。西暦年の付記がない引用規格は，その最新版(追 補を含む。)を適用する。</p>
 
 
       <bibitem id="A"><formattedref format="application/x-isodoc+xml"/><docidentifier>B</docidentifier><biblio-tag>B, </biblio-tag></bibitem>
-      </references><references id="_bibliography" normative="false" obligation="informative" displayorder="4">
+      </references>
+      </sections>
+      <annex id="A" displayorder="4"><title>Annex</title>
+      <clause id="B"><title>Annex Clause</title>
+      <clause id="C"><title>Annex Clause Clause</title>
+      </clause></clause></annex>
+      <bibliography>
+      <references id="_bibliography" normative="false" obligation="informative" displayorder="6">
       <title depth="1">参考文献</title>
       <p id="_1dcfd70f-f687-ba32-9a43-3088add497fc">This is some boilerplate</p><bibitem id="C">
         <formattedref format="application/x-isodoc+xml"/><docidentifier type="metanorma-ordinal">[1]</docidentifier>
@@ -62,12 +64,6 @@ RSpec.describe IsoDoc::JIS do
             This is a foreword
           </p>
         </div>
-         <p class="MsoNormal">
-           <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-         </p>
-           <div type="toc" class="TOC">
-          <p class="zzContents">目次</p>
-        </div>
         <p class="MsoNormal"> </p>
                  <div style="mso-element:para-border-div;border:solid windowtext 1.0pt; border-bottom-alt:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt: solid windowtext .5pt;mso-border-right-alt:solid windowtext .5pt;padding:1.0pt 4.0pt 0cm 4.0pt; margin-left:5.1pt;margin-right:5.1pt">
            <div>
@@ -78,7 +74,6 @@ RSpec.describe IsoDoc::JIS do
     OUTPUT
     word2 = <<~OUTPUT
           <div class="WordSection3">
-                      #{middle_title(true)}
              <div class="normref_div">
                <h1>
                  1
@@ -180,9 +175,9 @@ RSpec.describe IsoDoc::JIS do
       <abbreviation>JIS</abbreviation></organization></contributor><language current="true">ja</language><script current="true">Jpan</script><status><stage>60</stage><substage>60</substage></status>
       </bibdata>
       <preface>
-      <foreword><title>Antauparolo</title></foreword>
-      <clause type="inner-cover-note"><title>Inner Cover Note</title></foreword>
-      <clause type="contributors"><title>Contributors</title></foreword>
+      <foreword displayorder="1"><title>Antauparolo</title></foreword>
+      <clause type="inner-cover-note" displayorder="2"><title>Inner Cover Note</title></clause>
+      <clause type="contributors" displayorder="3"><title>Contributors</title></clause>
       </preface>
       </jis-standard>
     INPUT

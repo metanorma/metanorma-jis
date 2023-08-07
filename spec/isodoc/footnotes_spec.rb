@@ -6,7 +6,7 @@ RSpec.describe IsoDoc do
     input = <<~INPUT
           <iso-standard xmlns="http://riboseinc.com/isoxml">
           <preface>
-          <foreword>
+          <foreword displayorder="1">
           <p>A.<fn reference="2">
         <p id="_1e228e29-baef-4f38-b048-b05a051747e4">Formerly denoted as 15 % (m/m).</p>
       </fn></p>
@@ -44,7 +44,6 @@ RSpec.describe IsoDoc do
                  </a>
                </p>
              </div>
-                         #{middle_title(false)}
              <aside id="fn:2" class="footnote">
                <p id="_1e228e29-baef-4f38-b048-b05a051747e4">Formerly denoted as 15 % (m/m).</p>
              </aside>
@@ -65,11 +64,11 @@ RSpec.describe IsoDoc do
            <div class="WordSection1">
              <p> </p>
            </div>
-           <p>
+           <p class="section-break">
              <br clear="all" class="section"/>
            </p>
            <div class="WordSection2">
-             <p>
+             <p class="page-break">
                <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
              </p>
              <div>
@@ -101,11 +100,10 @@ RSpec.describe IsoDoc do
              </div>
              <p> </p>
            </div>
-           <p>
+           <p class="section-break">
              <br clear="all" class="section"/>
            </p>
            <div class="WordSection3">
-                       #{middle_title(true)}
              <aside id="ftn2">
                <p id="_1e228e29-baef-4f38-b048-b05a051747e4">Formerly denoted as 15 % (m/m).</p>
              </aside>
