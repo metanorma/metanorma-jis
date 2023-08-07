@@ -135,7 +135,7 @@ module IsoDoc
       end
 
       def annex1(elem)
-        elem["commentary"] == "true" and return
+        elem["commentary"] == "true" and return commentary(elem)
         lbl = @xrefs.anchor(elem["id"], :label)
         if t = elem.at(ns("./title"))
           t.children = "<strong>#{to_xml(t.children)}</strong>"
@@ -155,6 +155,21 @@ module IsoDoc
         docxml.xpath(ns("//annex[@commentary = 'true']")).reverse.each do |x|
           b.next = x.remove
         end
+      end
+
+      def commentary(elem)
+        t = elem.elements.first
+        commentary_title_hdr(t)
+        middle_title_main(t, "CommentaryStandardName")
+      end
+
+      def commentary_title_hdr(elem)
+        ret = <<~COMMENTARY
+          <p class="CommentaryStandardNumber">JIS #{@meta.get[:docnumber_undated]}
+        COMMENTARY
+        yr = @meta.get[:docyear] and
+          ret += ": <span class='CommentaryEffectiveYear'>#{yr}</span>"
+        elem.previous = ret
       end
 
       def display_order(docxml)
@@ -200,6 +215,60 @@ module IsoDoc
           doc.at(ns("//preface")).after("<sections> </sections>").next_element
         dest.children.empty? and dest.children = " "
         dest.children.first.next = source
+      end
+
+      def middle_title(docxml)
+        s = docxml.at(ns("//sections")) or return
+        elem = s.children.first
+        middle_title_hdr(elem)
+        middle_title_main(elem, "zzSTDTitle1")
+        middle_subtitle_main(elem)
+        # middle_title_amd(s.children.first)
+      end
+
+      def middle_title_hdr(out)
+        ret = "<p class='JapaneseIndustrialStandard'>#{@i18n.jis}"
+        @meta.get[:unpublished] and ret += @i18n.l10n("(#{@i18n.draft_label})")
+        ret += ("<tab/>" * 7)
+        ret += "<span class='JIS'>JIS</span></p>"
+        ret += "<p class='StandardNumber'><tab/>#{@meta.get[:docnumber_undated]}"
+        if yr = @meta.get[:docyear]
+          ret += ": <span class='EffectiveYear'>#{yr}</span>"
+        end
+        ret += "</p><p class='IDT'/>"
+        out.previous = ret
+      end
+
+      def middle_title_main(out, style)
+        t = @meta.get[:doctitlemain]
+        (t && !t.empty?) or return
+        ret = "<p class='#{style}'>#{@meta.get[:doctitleintro]}"
+        ret += " &#x2014; " if @meta.get[:doctitleintro] && t
+        ret += t
+        ret += " &#x2014; " if t && @meta.get[:doctitlepart]
+        ret += "</p>"
+        if a = @meta.get[:doctitlepart]
+          ret += "<p class='zzSTDTitle1'>"
+          b = @meta.get[:doctitlepartlabel] and ret += "#{b}: "
+          ret += "<br/><strong>#{a}</strong></p>"
+        end
+        out.previous = ret
+      end
+
+      def middle_subtitle_main(out)
+        t = @meta.get[:docsubtitlemain]
+        (t && !t.empty?) or return
+        ret = "<p class='zzSTDTitle2'>#{@meta.get[:docsubtitleintro]}"
+        ret += " &#x2014; " if @meta.get[:docsubtitleintro] && t
+        ret += @meta.get[:docsubtitlemain]
+        ret += " &#x2014; " if t && @meta.get[:docsubtitlepart]
+        ret += "</p>"
+        if a = @meta.get[:docsubtitlepart]
+          ret += "<p class='zzSTDTitle2'>"
+          b = @meta.get[:docsubtitlepartlabel] and ret += "#{b}: "
+          ret += "<br/><strong>#{a}</strong></p>"
+        end
+        out.previous = ret
       end
 
       include Init

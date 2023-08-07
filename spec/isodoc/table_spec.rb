@@ -92,6 +92,9 @@ RSpec.describe IsoDoc do
             </table>
           </foreword>
         </preface>
+        <sections>
+        <clause/>
+        </sections>
         <annex id="Annex"><title>Annex</title>
         <table id="AnnexTable">
         <name>Another table</name>
@@ -192,7 +195,7 @@ RSpec.describe IsoDoc do
           – with alterations
                </source>
                <note>
-                 <name>NOTE</name>
+                 <name>NOTE 1</name>
                  <p>This is a table about rice</p>
                </note>
              </table>
@@ -201,7 +204,25 @@ RSpec.describe IsoDoc do
             <title depth="1">Contents</title>
           </clause>
          </preface>
-         <annex id="Annex" displayorder="3">
+           <sections>
+               <p class="JapaneseIndustrialStandard" displayorder="3">
+              日本工業規格
+              <tab/>
+              <tab/>
+              <tab/>
+              <tab/>
+              <tab/>
+              <tab/>
+              <tab/>
+              <span class="JIS">JIS</span>
+            </p>
+            <p class="StandardNumber" displayorder="4">
+              <tab/>
+            </p>
+            <p class="IDT" displayorder="5"/>
+            <clause displayorder="6"/>
+            </sections>
+         <annex id="Annex" displayorder="7">
            <title>
              Annex A
              <br/>
@@ -308,7 +329,7 @@ RSpec.describe IsoDoc do
                    </div>
                    <div class="Note">
                      <p>
-                       <span class="note_label">NOTE</span>
+                       <span class="note_label">NOTE 1</span>
                          This is a table about rice
                      </p>
                    </div>
@@ -343,6 +364,7 @@ RSpec.describe IsoDoc do
          </div>
          <br/>
                      #{middle_title(false)}
+                     <div><h1/></div>
          <br/>
          <div id="Annex" class="Section3">
            <h1 class="Annex" id="_">
@@ -468,7 +490,7 @@ RSpec.describe IsoDoc do
           </div>
                  <div>
                    <p class="Note">
-                     <span class="note_label">NOTE</span>
+                     <span class="note_label">NOTE 1</span>
                      <span style="mso-tab-count:1">  </span>
                      This is a table about rice
                    </p>
@@ -598,6 +620,9 @@ RSpec.describe IsoDoc do
             </table>
           </foreword>
         </preface>
+         <sections>
+         <clause/>
+         </sections>
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
@@ -652,6 +677,24 @@ RSpec.describe IsoDoc do
             <title depth="1">Contents</title>
           </clause>
          </preface>
+           <sections>
+          <p class="JapaneseIndustrialStandard" displayorder="3">
+            日本工業規格
+            <tab/>
+            <tab/>
+            <tab/>
+            <tab/>
+            <tab/>
+            <tab/>
+            <tab/>
+            <span class="JIS">JIS</span>
+          </p>
+          <p class="StandardNumber" displayorder="4">
+            <tab/>
+          </p>
+          <p class="IDT" displayorder="5"/>
+          <clause displayorder="6"/>
+        </sections>
        </iso-standard>
     OUTPUT
     html = <<~OUTPUT
@@ -714,6 +757,9 @@ RSpec.describe IsoDoc do
                 <h1 class="IntroTitle">Contents</h1>
               </div>
                          #{middle_title(false)}
+                              <div>
+                <h1/>
+              </div>
            </div>
          </body>
        </html>
@@ -723,11 +769,11 @@ RSpec.describe IsoDoc do
          <div class="WordSection1">
            <p> </p>
          </div>
-         <p>
+         <p class="section-break">
            <br clear="all" class="section"/>
          </p>
          <div class="WordSection2">
-           <p>
+           <p class="page-break">
              <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
            </p>
            <div>
@@ -790,7 +836,7 @@ RSpec.describe IsoDoc do
                </table>
              </div>
            </div>
-               <p>
+               <p class="page-break">
       <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
     </p>
     <div id="_" type="toc" class="TOC">
@@ -798,11 +844,14 @@ RSpec.describe IsoDoc do
     </div>
            <p> </p>
          </div>
-         <p>
+         <p class="section-break">
            <br clear="all" class="section"/>
          </p>
          <div class="WordSection3">
                      #{middle_title(true)}
+                         <div>
+          <h1/>
+        </div>
          </div>
          <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
          <div class="colophon"/>

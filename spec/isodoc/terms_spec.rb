@@ -72,7 +72,22 @@ RSpec.describe IsoDoc::JIS do
           </clause>
         </preface>
         <sections>
-          <terms id="_" obligation="normative" displayorder="2">
+                    <p class="JapaneseIndustrialStandard" displayorder="2">
+              日本工業規格
+              <tab/>
+              <tab/>
+              <tab/>
+              <tab/>
+              <tab/>
+              <tab/>
+              <tab/>
+              <span class="JIS">JIS</span>
+            </p>
+            <p class="StandardNumber" displayorder="3">
+              <tab/>
+            </p>
+            <p class="IDT" displayorder="4"/>
+          <terms id="_" obligation="normative" displayorder="5">
             <title depth="1">
               1
               <tab/>
@@ -272,11 +287,11 @@ RSpec.describe IsoDoc::JIS do
         <div class="WordSection1">
           <p> </p>
         </div>
-        <p>
+        <p class="section-break">
           <br clear="all" class="section"/>
         </p>
         <div class="WordSection2">
-            <p>
+        <p class="page-break">
           <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
         </p>
         <div id="_" type="toc" class="TOC">
@@ -284,7 +299,7 @@ RSpec.describe IsoDoc::JIS do
         </div>
           <p> </p>
         </div>
-        <p>
+        <p class="section-break">
           <br clear="all" class="section"/>
         </p>
         <div class="WordSection3">
@@ -456,7 +471,7 @@ RSpec.describe IsoDoc::JIS do
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-           <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
          <bibdata>
            <language current="true">ja</language>
          </bibdata>
@@ -466,7 +481,22 @@ RSpec.describe IsoDoc::JIS do
           </clause>
         </preface>
          <sections>
-           <terms id="_" obligation="normative" displayorder="2">
+                     <p class="JapaneseIndustrialStandard" displayorder="2">
+              日本工業規格
+              <tab/>
+              <tab/>
+              <tab/>
+              <tab/>
+              <tab/>
+              <tab/>
+              <tab/>
+              <span class="JIS">JIS</span>
+            </p>
+            <p class="StandardNumber" displayorder="3">
+              <tab/>
+            </p>
+            <p class="IDT" displayorder="4"/>
+           <terms id="_" obligation="normative" displayorder="5">
              <title depth="1">
                1
                <tab/>

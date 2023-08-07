@@ -90,7 +90,8 @@ RSpec.describe Metanorma::JIS::Processor do
 
     </boilerplate>
           <sections>
-            <terms id="H" obligation="normative"><title>1&#xA0; Terms, Definitions, Symbols and Abbreviated Terms</title>
+            <terms id="H" obligation="normative" displayorder="1">
+            <title>1&#xA0; Terms, Definitions, Symbols and Abbreviated Terms</title>
               <term id="J">
                 <name>1.1</name>
                 <preferred>Term2</preferred>
@@ -169,7 +170,6 @@ RSpec.describe Metanorma::JIS::Processor do
          <main class="main-section">
            <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
            <div class='authority'> </div>
-           #{middle_title(false, "Z 100", Date.today.year)}
           <div id="H">
             <h1 id="_">1  Terms, Definitions, Symbols and Abbreviated Terms</h1>
             <h2 class="TermNum" id="J">1.1</h2>
