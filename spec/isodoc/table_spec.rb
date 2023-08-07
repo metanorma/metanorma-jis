@@ -393,7 +393,7 @@ RSpec.describe IsoDoc do
     OUTPUT
 
     doc = <<~OUTPUT
-      <div>
+           <div>
          <table xmlns:m="m" title="tool tip" summary="long desc" width="" class="MsoTableGrid" style="border-collapse:collapse;mso-table-anchor-horizontal:column;mso-table-overlap:never;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0">
            <a name="tableD-1" id="tableD-1"/>
            <thead>
@@ -402,7 +402,8 @@ RSpec.describe IsoDoc do
                  <p class="ForewordText" style="text-align: center;page-break-after:avoid">
                    Table 1 — Repeatability and reproducibility of
                    <i>husked</i>
-                   rice yield <a href="#tableD-11" class="TableFootnoteRef">1</a>
+                   rice yield
+                   <a href="#tableD-11" class="TableFootnoteRef">1</a>
                  </p>
                </td>
              </tr>
@@ -443,30 +444,9 @@ RSpec.describe IsoDoc do
              <tr>
                <td align="left" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">
                  Reproducibility limit,
-                 <span class="stem">
-                   <m:oMath>
-                     <m:r>
-                       <m:t>R</m:t>
-                     </m:r>
-                   </m:oMath>
-                 </span>
+                 <span class="stem">(#(R)#)</span>
                  (= 2,83
-                 <span class="stem">
-                   <m:oMath>
-                     <m:sSub>
-                       <m:e>
-                         <m:r>
-                           <m:t>s</m:t>
-                         </m:r>
-                       </m:e>
-                       <m:sub>
-                         <m:r>
-                           <m:t>R</m:t>
-                         </m:r>
-                       </m:sub>
-                     </m:sSub>
-                   </m:oMath>
-                 </span>
+                 <span class="stem">(#(s_R)#)</span>
                  )
                </td>
                <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">2,89</td>
@@ -476,18 +456,20 @@ RSpec.describe IsoDoc do
              </tr>
              <tr>
                <td colspan="5" style="border-top:0pt;mso-border-top-alt:0pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-left-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-right-alt:solid windowtext 1.5pt;">
-                           <div class="BlockSource">
-            <p class="MsoNormal">SOURCE:
+                 <div class="BlockSource">
+                   <p class="MsoNormal">SOURCE:
 
 
-             , Section 1
+                    , Section 1
 
-             – with adjustments ;
-                   , Section 3
+                    – with adjustments ;
 
-    – with alterations
-         </p>
-          </div>
+
+             , Section 3
+
+           – with alterations
+                </p>
+                 </div>
                  <div>
                    <p class="Note">
                      <span class="note_label">NOTE 1</span>
@@ -496,22 +478,22 @@ RSpec.describe IsoDoc do
                    </p>
                  </div>
                  <div class="TableFootnote">
-            <div>
-              <a name="ftntableD-11" id="ftntableD-11"/>
-              <p class="TableFootnote">
-                <a name="_" id="_"/>
-                <span>
-                  Footnote
-                  <span class="TableFootnoteRef">
-                    <a name="tableD-11" id="tableD-11"/>
-                    1)
-                  </span>
-                  <span style="mso-tab-count:1">  </span>
-                </span>
-                Name footnote.
-              </p>
-            </div>
-          </div>
+                   <div>
+                     <a name="ftntableD-11" id="ftntableD-11"/>
+                     <p class="TableFootnote">
+                       <a name="_" id="_"/>
+                       <span>
+                         Footnote
+                         <span class="TableFootnoteRef">
+                           <a name="tableD-11" id="tableD-11"/>
+                           1)
+                         </span>
+                         <span style="mso-tab-count:1">  </span>
+                       </span>
+                       Name footnote.
+                     </p>
+                   </div>
+                 </div>
                  <div class="TableFootnote">
                    <div>
                      <a name="ftntableD-1a" id="ftntableD-1a"/>
