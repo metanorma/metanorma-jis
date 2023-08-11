@@ -2144,6 +2144,7 @@
 		<xsl:attribute name="margin-right">0mm</xsl:attribute>
 
 			<xsl:attribute name="font-size">9pt</xsl:attribute>
+			<xsl:attribute name="margin-bottom">8pt</xsl:attribute>
 
 	</xsl:attribute-set> <!-- table-container-style -->
 
@@ -2307,6 +2308,10 @@
 		<xsl:attribute name="font-size">10pt</xsl:attribute>
 		<xsl:attribute name="margin-bottom">12pt</xsl:attribute>
 
+			<xsl:attribute name="font-size">inherit</xsl:attribute>
+			<xsl:attribute name="margin-bottom">1pt</xsl:attribute>
+			<xsl:attribute name="margin-left"><xsl:value-of select="$text_indent"/></xsl:attribute>
+
 	</xsl:attribute-set><!-- table-note-style -->
 
 	<xsl:template name="refine_table-note-style">
@@ -2317,7 +2322,7 @@
 		<xsl:attribute name="margin-bottom">12pt</xsl:attribute>
 
 			<xsl:attribute name="font-size">inherit</xsl:attribute>
-			<xsl:attribute name="margin-bottom">0pt</xsl:attribute>
+			<xsl:attribute name="margin-bottom">1pt</xsl:attribute>
 
 	</xsl:attribute-set> <!-- table-fn-style -->
 
@@ -2329,7 +2334,7 @@
 			<xsl:attribute name="font-size">67%</xsl:attribute>
 			<xsl:attribute name="font-weight">bold</xsl:attribute>
 			<xsl:attribute name="vertical-align">super</xsl:attribute>
-			<xsl:attribute name="padding-right">3mm</xsl:attribute>
+			<xsl:attribute name="padding-right">0mm</xsl:attribute>
 
 	</xsl:attribute-set> <!-- table-fn-number-style -->
 
@@ -4119,11 +4124,7 @@
 
 								<!-- except gb and bsi  -->
 
-										<xsl:apply-templates select="../*[local-name()='p']"/>
-										<xsl:apply-templates select="../*[local-name()='dl']"/>
-										<xsl:apply-templates select="../*[local-name()='note']"/>
-										<xsl:apply-templates select="../*[local-name()='example']"/>
-										<xsl:apply-templates select="../*[local-name()='source']"/>
+										<xsl:apply-templates select="../*[local-name()='p' or local-name()='dl' or local-name()='note' or local-name()='example' or local-name()='source']"/>
 
 								<xsl:variable name="isDisplayRowSeparator">
 
@@ -4394,21 +4395,21 @@
 
 	<xsl:template match="*[local-name()='table']/*[local-name()='note' or local-name() = 'example']" priority="2">
 
-		<fo:block xsl:use-attribute-sets="table-note-style">
-
-			<xsl:call-template name="refine_table-note-style"/>
-
-			<!-- Table's note/example name (NOTE, for example) -->
-			<fo:inline xsl:use-attribute-sets="table-note-name-style">
-
-				<xsl:call-template name="refine_table-note-name-style"/>
-
-				<xsl:apply-templates select="*[local-name() = 'name']"/>
-
-			</fo:inline>
-
-			<xsl:apply-templates select="node()[not(local-name() = 'name')]"/>
-		</fo:block>
+				<fo:list-block id="{@id}" xsl:use-attribute-sets="table-note-style" provisional-distance-between-starts="{9 + $text_indent}mm"> <!-- 12 -->
+					<fo:list-item>
+						<fo:list-item-label start-indent="{$text_indent}mm" end-indent="label-end()">
+							<fo:block>
+								<xsl:apply-templates select="*[local-name() = 'name']"/>
+							</fo:block>
+						</fo:list-item-label>
+						<fo:list-item-body start-indent="body-start()" xsl:use-attribute-sets="table-fn-body-style">
+							<fo:block>
+								<xsl:apply-templates select="node()[not(local-name() = 'name')]"/>
+							</fo:block>
+						</fo:list-item-body>
+					</fo:list-item>
+				</fo:list-block>
+				<!-- jis -->
 
 	</xsl:template> <!-- table/note -->
 
@@ -4611,7 +4612,7 @@
 			<xsl:variable name="reference" select="@reference"/>
 			<xsl:if test="not(preceding-sibling::*[@reference = $reference])"> <!-- only unique reference puts in note-->
 
-						<fo:list-block id="{@id}" xsl:use-attribute-sets="table-fn-style" provisional-distance-between-starts="{12 + $text_indent}mm">
+						<fo:list-block id="{@id}" xsl:use-attribute-sets="table-fn-style" provisional-distance-between-starts="{9 + $text_indent}mm"> <!-- 12 -->
 							<fo:list-item>
 								<fo:list-item-label start-indent="{$text_indent}mm" end-indent="label-end()">
 									<fo:block>
@@ -4627,7 +4628,7 @@
 										</fo:inline>
 									</fo:block>
 								</fo:list-item-label>
-								<fo:list-item-body start-indent="body-start()" xsl:use-attribute-sets="table-fn-body-style">&gt;
+								<fo:list-item-body start-indent="body-start()" xsl:use-attribute-sets="table-fn-body-style">
 									<fo:block>
 										<xsl:copy-of select="./node()"/>
 									</fo:block>
