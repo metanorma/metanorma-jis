@@ -88,6 +88,9 @@ RSpec.describe Metanorma::JIS do
       :title-part-ja: Part du Titre
       :copyright-year: 2000
       :horizontal: true
+      :investigation-organization-ja: 日本産業標準調査会
+      :investigation-organization-en: Japanese Industrial Standards Committee
+      :investigation-committee: 日本産業標準調査会 標準第一部会
     INPUT
     output = <<~OUTPUT
       <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
@@ -105,15 +108,40 @@ RSpec.describe Metanorma::JIS do
            <contributor>
              <role type="author"/>
              <organization>
-               <name>Japanese Industrial Standards</name>
+               <name>
+                  <variant language="ja">日本工業規格</variant>
+                  <variant language="en">Japanese Industrial Standards</variant>
+               </name>
                <abbreviation>JIS</abbreviation>
              </organization>
            </contributor>
            <contributor>
              <role type="publisher"/>
              <organization>
-               <name>Japanese Industrial Standards</name>
+                            <name>
+                  <variant language="ja">日本工業規格</variant>
+                  <variant language="en">Japanese Industrial Standards</variant>
+               </name>
                <abbreviation>JIS</abbreviation>
+             </organization>
+           </contributor>
+                      <contributor>
+             <role type="authorizer">
+               <description>Investigative organization</description>
+             </role>
+             <organization>
+               <name>
+                 <variant language="ja">日本産業標準調査会</variant>
+                 <variant language="en">Japanese Industrial Standards Committee</variant>
+               </name>
+             </organization>
+           </contributor>
+           <contributor>
+             <role type="authorizer">
+               <description>Investigative committee</description>
+             </role>
+             <organization>
+               <name>日本産業標準調査会 標準第一部会</name>
              </organization>
            </contributor>
            <edition>2</edition>
@@ -132,7 +160,10 @@ RSpec.describe Metanorma::JIS do
              <from>2000</from>
              <owner>
                <organization>
-                 <name>Japanese Industrial Standards</name>
+                         <name>
+            <variant language="ja">日本工業規格</variant>
+            <variant language="en">Japanese Industrial Standards</variant>
+          </name>
                  <abbreviation>JIS</abbreviation>
                </organization>
              </owner>
@@ -174,6 +205,84 @@ RSpec.describe Metanorma::JIS do
       .to be_equivalent_to xmlpp(output)
   end
 
+  it "processes metadata, multilingual values" do
+    xml = Nokogiri::XML(Asciidoctor.convert(<<~INPUT, *OPTIONS))
+      = Document title
+      Author
+      :docfile: test.adoc
+      :nodoc:
+      :novalid:
+      :no-isobib:
+      :docnumber: 1000
+      :publisher-ja: JAPANESE NAME PUBLISHER
+      :publisher-en: English name publisher
+      :publisher-abbr: Publisher Abbrev
+    INPUT
+    output = <<~OUTPUT
+      <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+               <bibdata type="standard">
+           <docidentifier type="JIS">1000:2023</docidentifier>
+           <docnumber>1000</docnumber>
+           <contributor>
+             <role type="author"/>
+             <organization>
+               <name>
+                 <variant language="ja">JAPANESE NAME PUBLISHER</variant>
+                 <variant language="en">English name publisher</variant>
+               </name>
+               <abbreviation>Publisher Abbrev</abbreviation>
+             </organization>
+           </contributor>
+           <contributor>
+             <role type="publisher"/>
+             <organization>
+               <name>
+                 <variant language="ja">JAPANESE NAME PUBLISHER</variant>
+                 <variant language="en">English name publisher</variant>
+               </name>
+               <abbreviation>Publisher Abbrev</abbreviation>
+             </organization>
+           </contributor>
+           <language>ja</language>
+           <script>Jpan</script>
+           <status>
+             <stage>60</stage>
+             <substage>60</substage>
+           </status>
+           <copyright>
+             <from>2023</from>
+             <owner>
+               <organization>
+                 <name>
+                   <variant language="ja">JAPANESE NAME PUBLISHER</variant>
+                   <variant language="en">English name publisher</variant>
+                 </name>
+                 <abbreviation>Publisher Abbrev</abbreviation>
+               </organization>
+             </owner>
+           </copyright>
+           <ext>
+             <doctype>japanese-industrial-standard</doctype>
+             <editorialgroup>
+               <agency>Publisher Abbrev</agency>
+             </editorialgroup>
+             <approvalgroup>
+               <agency>ISO</agency>
+             </approvalgroup>
+             <structuredidentifier>
+               <project-number>1000</project-number>
+             </structuredidentifier>
+           </ext>
+         </bibdata>
+         <sections> </sections>
+      </jis-standard>
+    OUTPUT
+    xml.at("//xmlns:metanorma-extension")&.remove
+    xml.at("//xmlns:boilerplate")&.remove
+    expect(xmlpp(strip_guid(xml.to_xml)))
+      .to be_equivalent_to xmlpp(output)
+  end
+
   it "processes metadata, technical report" do
     xml = Nokogiri::XML(Asciidoctor.convert(<<~INPUT, *OPTIONS))
       = Document title
@@ -193,14 +302,20 @@ RSpec.describe Metanorma::JIS do
            <contributor>
              <role type="author"/>
              <organization>
-               <name>Japanese Industrial Standards</name>
+                            <name>
+                  <variant language="ja">日本工業規格</variant>
+                  <variant language="en">Japanese Industrial Standards</variant>
+               </name>
                <abbreviation>JIS</abbreviation>
              </organization>
            </contributor>
            <contributor>
              <role type="publisher"/>
              <organization>
-               <name>Japanese Industrial Standards</name>
+                            <name>
+                  <variant language="ja">日本工業規格</variant>
+                  <variant language="en">Japanese Industrial Standards</variant>
+               </name>
                <abbreviation>JIS</abbreviation>
              </organization>
            </contributor>
@@ -214,7 +329,10 @@ RSpec.describe Metanorma::JIS do
              <from>2023</from>
              <owner>
                <organization>
-                 <name>Japanese Industrial Standards</name>
+                         <name>
+            <variant language="ja">日本工業規格</variant>
+            <variant language="en">Japanese Industrial Standards</variant>
+          </name>
                  <abbreviation>JIS</abbreviation>
                </organization>
              </owner>
@@ -260,14 +378,20 @@ RSpec.describe Metanorma::JIS do
            <contributor>
              <role type="author"/>
              <organization>
-               <name>Japanese Industrial Standards</name>
+                            <name>
+                  <variant language="ja">日本工業規格</variant>
+                  <variant language="en">Japanese Industrial Standards</variant>
+               </name>
                <abbreviation>JIS</abbreviation>
              </organization>
            </contributor>
            <contributor>
              <role type="publisher"/>
              <organization>
-               <name>Japanese Industrial Standards</name>
+                            <name>
+                  <variant language="ja">日本工業規格</variant>
+                  <variant language="en">Japanese Industrial Standards</variant>
+               </name>
                <abbreviation>JIS</abbreviation>
              </organization>
            </contributor>
@@ -281,7 +405,10 @@ RSpec.describe Metanorma::JIS do
              <from>2023</from>
              <owner>
                <organization>
-                 <name>Japanese Industrial Standards</name>
+                         <name>
+            <variant language="ja">日本工業規格</variant>
+            <variant language="en">Japanese Industrial Standards</variant>
+          </name>
                  <abbreviation>JIS</abbreviation>
                </organization>
              </owner>
@@ -484,14 +611,20 @@ RSpec.describe Metanorma::JIS do
            <contributor>
              <role type="author"/>
              <organization>
-               <name>Japanese Industrial Standards</name>
+                            <name>
+                  <variant language="ja">日本工業規格</variant>
+                  <variant language="en">Japanese Industrial Standards</variant>
+               </name>
                <abbreviation>JIS</abbreviation>
              </organization>
            </contributor>
            <contributor>
              <role type="publisher"/>
              <organization>
-               <name>Japanese Industrial Standards</name>
+                            <name>
+                  <variant language="ja">日本工業規格</variant>
+                  <variant language="en">Japanese Industrial Standards</variant>
+               </name>
                <abbreviation>JIS</abbreviation>
              </organization>
            </contributor>
@@ -505,7 +638,10 @@ RSpec.describe Metanorma::JIS do
              <from>2022</from>
              <owner>
                <organization>
-                 <name>Japanese Industrial Standards</name>
+                         <name>
+            <variant language="ja">日本工業規格</variant>
+            <variant language="en">Japanese Industrial Standards</variant>
+          </name>
                  <abbreviation>JIS</abbreviation>
                </organization>
              </owner>
