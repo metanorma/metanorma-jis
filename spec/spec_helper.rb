@@ -234,14 +234,20 @@ BLANK_HDR = <<~"HDR".freeze
     <contributor>
       <role type="author"/>
       <organization>
-        <name>Japanese Industrial Standards</name>
+        <name>
+          <variant language="ja">日本工業規格</variant>
+          <variant language="en">Japanese Industrial Standards</variant>
+        </name>
         <abbreviation>JIS</abbreviation>
       </organization>
     </contributor>
     <contributor>
       <role type="publisher"/>
       <organization>
-        <name>Japanese Industrial Standards</name>
+        <name>
+          <variant language="ja">日本工業規格</variant>
+          <variant language="en">Japanese Industrial Standards</variant>
+        </name>
         <abbreviation>JIS</abbreviation>
       </organization>
     </contributor>
@@ -255,7 +261,10 @@ BLANK_HDR = <<~"HDR".freeze
       <from>#{Time.new.year}</from>
       <owner>
         <organization>
-          <name>Japanese Industrial Standards</name>
+                  <name>
+            <variant language="ja">日本工業規格</variant>
+            <variant language="en">Japanese Industrial Standards</variant>
+          </name>
           <abbreviation>JIS</abbreviation>
         </organization>
       </owner>
