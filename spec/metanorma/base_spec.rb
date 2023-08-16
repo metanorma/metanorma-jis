@@ -88,9 +88,9 @@ RSpec.describe Metanorma::JIS do
       :title-part-ja: Part du Titre
       :copyright-year: 2000
       :horizontal: true
-      :investigation-organization-ja: 日本産業標準調査会
-      :investigation-organization-en: Japanese Industrial Standards Committee
-      :investigation-committee: 日本産業標準調査会 標準第一部会
+      :investigative-organization-ja: 日本産業標準調査会
+      :investigative-organization-en: Japanese Industrial Standards Committee
+      :investigative-committee: 日本産業標準調査会 標準第一部会
     INPUT
     output = <<~OUTPUT
       <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
