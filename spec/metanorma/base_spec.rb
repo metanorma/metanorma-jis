@@ -267,7 +267,7 @@ RSpec.describe Metanorma::JIS do
                <agency>Publisher Abbrev</agency>
              </editorialgroup>
              <approvalgroup>
-               <agency>ISO</agency>
+               <agency>JIS</agency>
              </approvalgroup>
              <structuredidentifier>
                <project-number>1000</project-number>
@@ -343,7 +343,7 @@ RSpec.describe Metanorma::JIS do
                <agency>JIS</agency>
              </editorialgroup>
              <approvalgroup>
-               <agency>ISO</agency>
+               <agency>JIS</agency>
              </approvalgroup>
              <structuredidentifier>
                <project-number>1000</project-number>
@@ -419,7 +419,7 @@ RSpec.describe Metanorma::JIS do
                <agency>JIS</agency>
              </editorialgroup>
              <approvalgroup>
-               <agency>ISO</agency>
+               <agency>JIS</agency>
              </approvalgroup>
              <structuredidentifier>
                <project-number>1000</project-number>
@@ -652,7 +652,7 @@ RSpec.describe Metanorma::JIS do
                <agency>JIS</agency>
              </editorialgroup>
              <approvalgroup>
-               <agency>ISO</agency>
+               <agency>JIS</agency>
              </approvalgroup>
              <structuredidentifier>
                <project-number amendment="3" origyr="1999-01-01">1000</project-number>
