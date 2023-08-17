@@ -19,11 +19,11 @@ module Metanorma
                              { role: "publisher", sourcerole: "publisher" })
         metadata_contrib_sdo(node, xml, nil,
                              { role: "authorizer",
-                               sourcerole: "investigation-organization",
+                               sourcerole: "investigative-organization",
                                desc: "Investigative organization" })
         metadata_contrib_sdo(node, xml, nil,
                              { role: "authorizer",
-                               sourcerole: "investigation-committee",
+                               sourcerole: "investigative-committee",
                                desc: "Investigative committee" })
       end
 
