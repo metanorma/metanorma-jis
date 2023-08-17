@@ -275,7 +275,7 @@ BLANK_HDR = <<~"HDR".freeze
       <agency>JIS</agency>
     </editorialgroup>
           <approvalgroup>
-        <agency>ISO</agency>
+        <agency>JIS</agency>
       </approvalgroup>
            <structuredidentifier>
        <project-number>0</project-number>

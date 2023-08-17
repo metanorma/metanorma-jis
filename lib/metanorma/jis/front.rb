@@ -7,6 +7,11 @@ module Metanorma
         super.merge("Japanese Industrial Standards" => "JIS")
       end
 
+      def home_agency
+        "JIS"
+      end
+
+      # Like the ISO code, but multilingual
       def metadata_author(node, xml)
         metadata_contrib_sdo(node, xml, JIS_HASH,
                              { role: "author", sourcerole: "publisher" })
