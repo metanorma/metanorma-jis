@@ -155,7 +155,7 @@ RSpec.describe IsoDoc::JIS do
              <br/>
              <strong>Title Part</strong>
            </p>
-          <introduction id="B" obligation="informative" displayorder="10">
+          <introduction id="B" obligation="informative" unnumbered="true" displayorder="10">
             <title>Introduction</title>
             <clause id="C" inline-header="false" obligation="informative">
               <title depth="2">
@@ -786,7 +786,7 @@ RSpec.describe IsoDoc::JIS do
              <tab/>
            </p>
            <p class="IDT" displayorder="5"/>
-                <introduction id="B" obligation="informative" displayorder="6">
+                <introduction id="B" obligation="informative" unnumbered="true" displayorder="6">
                  <title>Introduction</title>
                  <clause id="C" inline-header="false" obligation="informative">
                    <title depth="2">
@@ -1064,7 +1064,7 @@ RSpec.describe IsoDoc::JIS do
              <br/>
              <strong>Part du Titre</strong>
            </p>
-                  <introduction id="B" obligation="informative" displayorder="10">
+                  <introduction id="B" unnumbered="true" obligation="informative" displayorder="10">
             <title>Introduction</title>
             <clause id="C" inline-header="false" obligation="informative">
               <title depth="2">
