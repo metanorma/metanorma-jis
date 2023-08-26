@@ -25,23 +25,48 @@ module IsoDoc
         l10n("#{title} #{num}<br/>#{obl}")
       end
 
-      def back_anchor_names(xml)
-        if @parse_settings.empty? || @parse_settings[:clauses]
-          i = Counter.new("@")
-          xml.xpath(ns("//annex")).each do |c|
+      def clause_order_main(docxml)
+        [
+          { path: "//sections/introduction" },
+          { path: "//clause[@type = 'scope']" },
+          { path: @klass.norm_ref_xpath },
+          { path: "//sections/terms | " \
+                  "//sections/clause[descendant::terms]" },
+          { path: "//sections/definitions | " \
+                  "//sections/clause[descendant::definitions][not(descendant::terms)]" },
+          { path: @klass.middle_clause(docxml), multi: true },
+        ]
+      end
+
+      def clause_order_annex(_docxml)
+        [{ path: "//annex[not(@commentary = 'true')]", multi: true }]
+      end
+
+      def clause_order_back(_docxml)
+        [
+          { path: @klass.bibliography_xpath },
+          { path: "//annex[@commentary = 'true']", multi: true },
+          { path: "//indexsect", multi: true },
+          { path: "//colophon/*", multi: true },
+        ]
+      end
+
+      def section_names(clause, num, lvl)
+        clause&.name == "introduction" and clause["unnumbered"] = "true"
+        super
+      end
+
+      def back_clauses_anchor_names(xml)
+        clause_order_back(xml).each do |a|
+          xml.xpath(ns(a[:path])).each do |c|
             if c["commentary"] == "true"
               commentary_names(c)
             else
-              annex_names(c, i.increment(c).print)
+              preface_names(c)
             end
+            a[:multi] or break
           end
-          xml.xpath(ns(@klass.bibliography_xpath)).each do |b|
-            preface_names(b)
-          end
-          xml.xpath(ns("//colophon/clause")).each { |b| preface_names(b) }
-          xml.xpath(ns("//indexsect")).each { |b| preface_names(b) }
         end
-        references(xml) if @parse_settings.empty? || @parse_settings[:refs]
       end
 
       def commentary_names(clause)
