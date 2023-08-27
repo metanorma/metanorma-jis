@@ -33,7 +33,7 @@ module IsoDoc
 
       def annex(node, out)
         node["commentary"] = "true" and return commentary(node, out)
-        amd(isoxml) and @suppressheadingnumbers = @oldsuppressheadingnumbers
+        amd?(isoxml) and @suppressheadingnumbers = @oldsuppressheadingnumbers
         page_break(out)
         out.div **attr_code(annex_attrs(node)) do |s|
           node.elements.each do |c1|
@@ -41,7 +41,7 @@ module IsoDoc
             else parse(c1, s) end
           end
         end
-        amd(isoxml) and @suppressheadingnumbers = true
+        amd?(isoxml) and @suppressheadingnumbers = true
       end
 
       def commentary(node, out)

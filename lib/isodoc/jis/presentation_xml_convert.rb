@@ -172,23 +172,6 @@ module IsoDoc
         elem.previous = ret
       end
 
-      def display_order(docxml)
-        i = 0
-        i = display_order_xpath(docxml, "//preface/*", i)
-        i = display_order_at(docxml, "//sections/introduction", i)
-        i = display_order_at(docxml, "//clause[@type = 'scope']", i)
-        i = display_order_at(docxml, @xrefs.klass.norm_ref_xpath, i)
-        i = display_order_at(docxml, "//sections/terms | " \
-                                     "//sections/clause[descendant::terms]", i)
-        i = display_order_at(docxml, "//sections/definitions", i)
-        i = display_order_xpath(docxml, @xrefs.klass.middle_clause(docxml), i)
-        i = display_order_xpath(docxml, "//annex[not(@commentary = 'true')]", i)
-        i = display_order_xpath(docxml, @xrefs.klass.bibliography_xpath, i)
-        i = display_order_xpath(docxml, "//annex[@commentary = 'true']", i)
-        i = display_order_xpath(docxml, "//indexsect", i)
-        display_order_xpath(docxml, "//colophon/*", i)
-      end
-
       def tablesource(elem)
         while elem&.next_element&.name == "source"
           elem << "; #{to_xml(elem.next_element.remove.children)}"

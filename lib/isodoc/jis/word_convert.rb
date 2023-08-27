@@ -132,11 +132,11 @@ module IsoDoc
 
       def annex(node, out)
         node["commentary"] == "true" and return commentary(node, out)
-        amd(node.document.root) and
+        amd?(node.document.root) and
           @suppressheadingnumbers = @oldsuppressheadingnumbers
         page_break(out)
         render_annex(out, node)
-        amd(node.document.root) and @suppressheadingnumbers = true
+        amd?(node.document.root) and @suppressheadingnumbers = true
       end
 
       def commentary(node, out)
