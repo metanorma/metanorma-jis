@@ -30,9 +30,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = `git ls-files -- {spec}/*`.split("\n")
   spec.required_ruby_version = Gem::Requirement.new(">= 2.7.0")
 
-  spec.add_dependency "metanorma-iso", "~> 2.5.0"
-  #spec.add_dependency "relaton-bipm", "~> 1.14.8"
-  #spec.add_dependency "relaton-iho", "~> 1.14.3"
+  spec.add_dependency "metanorma-iso", "~> 2.5.1"
   spec.add_dependency "pubid-jis"
 
   spec.add_development_dependency "debug"
