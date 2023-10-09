@@ -4,7 +4,7 @@ require "fileutils"
 RSpec.describe Metanorma::JIS do
   context "when xref_error.adoc compilation" do
     it "generates error file" do
-      FileUtils.rm_f "xref_error.err"
+      FileUtils.rm_f "xref_error.err.html"
       File.write("xref_error.adoc", <<~CONTENT)
         = X
         A
@@ -19,7 +19,7 @@ RSpec.describe Metanorma::JIS do
         Metanorma::Compile
           .new
           .compile("xref_error.adoc", type: "iso", no_install_fonts: true)
-      end.to(change { File.exist?("xref_error.err") }
+      end.to(change { File.exist?("xref_error.err.html") }
               .from(false).to(true))
     end
   end
@@ -36,7 +36,7 @@ RSpec.describe Metanorma::JIS do
 
       text
     INPUT
-    expect(File.read("test.err")).to include "pizza is not a recognised script"
+    expect(File.read("test.err.html")).to include "pizza is not a recognised script"
 
     Asciidoctor.convert(<<~INPUT, *OPTIONS)
       = Document title
@@ -49,6 +49,6 @@ RSpec.describe Metanorma::JIS do
 
       text
     INPUT
-    expect(File.read("test.err")).not_to include "Jpan is not a recognised script"
+    expect(File.read("test.err.html")).not_to include "Jpan is not a recognised script"
   end
 end
