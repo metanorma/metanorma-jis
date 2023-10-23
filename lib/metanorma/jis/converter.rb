@@ -1,8 +1,8 @@
 require "asciidoctor"
 require "metanorma-iso"
-require_relative "./front"
-require_relative "./validate"
-require_relative "./cleanup"
+require_relative "front"
+require_relative "validate"
+require_relative "cleanup"
 
 module Metanorma
   module JIS
@@ -74,7 +74,9 @@ module Metanorma
         if node.nil?
           IsoDoc::JIS::PresentationXMLConvert.new({})
         else
-          IsoDoc::JIS::PresentationXMLConvert.new(doc_extract_attributes(node))
+          IsoDoc::JIS::PresentationXMLConvert
+            .new(doc_extract_attributes(node)
+            .merge(output_formats: ::Metanorma::JIS::Processor.new.output_formats))
         end
       end
     end
