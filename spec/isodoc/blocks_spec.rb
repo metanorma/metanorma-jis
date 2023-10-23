@@ -223,7 +223,6 @@ RSpec.describe IsoDoc::JIS do
                <div id="figure-C" class="figure">
                  <pre>A &lt;
          B</pre>
-                 <p class="FigureTitle" style="text-align:center;"/>
                </div>
              </div>
                   <br/>

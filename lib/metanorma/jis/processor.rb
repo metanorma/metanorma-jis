@@ -35,6 +35,7 @@ module Metanorma
       end
 
       def output(xml, inname, outname, format, options = {})
+        options_preprocess(options)
         case format
         when :html
           IsoDoc::JIS::HtmlConvert.new(options).convert(inname, xml, nil, outname)
