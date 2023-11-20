@@ -78,8 +78,9 @@ module IsoDoc
 
       def commentary_names1(clause, root, num, level)
         commentary_name_anchors(clause, num, root, level)
-        clause.xpath(ns(SUBCLAUSES)).each_with_object(Counter.new) do |c, i|
-          commentary_names1(c, root, "#{num}.#{i.increment(c).print}",
+        clause.xpath(ns(SUBCLAUSES))
+          .each_with_object(Counter.new(0, prefix: "#{num}.")) do |c, i|
+          commentary_names1(c, root, i.increment(c).print,
                             level + 1)
         end
       end
