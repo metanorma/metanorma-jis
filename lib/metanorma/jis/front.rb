@@ -7,29 +7,49 @@ module Metanorma
         super.merge("Japanese Industrial Standards" => "JIS")
       end
 
-      def home_agency
+      def default_publisher
         "JIS"
       end
 
-      # Like the ISO code, but multilingual
+      #       # Like the ISO code, but multilingual
+      #       def metadata_author(node, xml)
+      #         metadata_contrib_sdo(node, xml, JIS_HASH,
+      #                              { role: "author", sourcerole: "publisher" })
+      #         node.attr("doctype") == "expert-commentary" and
+      #           personal_author(node, xml)
+      #       end
+
       def metadata_author(node, xml)
-        metadata_contrib_sdo(node, xml, JIS_HASH,
-                             { role: "author", sourcerole: "publisher" })
+        org_contributor(node, xml,
+                        { source: ["publisher", "pub"], role: "author",
+                          default: JIS_HASH })
         node.attr("doctype") == "expert-commentary" and
           personal_author(node, xml)
       end
 
+      #       def metadata_publisher(node, xml)
+      #         metadata_contrib_sdo(node, xml, JIS_HASH,
+      #                              { role: "publisher", sourcerole: "publisher" })
+      #         metadata_contrib_sdo(node, xml, nil,
+      #                              { role: "authorizer",
+      #                                sourcerole: "investigative-organization",
+      #                                desc: "Investigative organization" })
+      #         metadata_contrib_sdo(node, xml, nil,
+      #                              { role: "authorizer",
+      #                                sourcerole: "investigative-committee",
+      #                                desc: "Investigative committee" })
+      #       end
+
       def metadata_publisher(node, xml)
-        metadata_contrib_sdo(node, xml, JIS_HASH,
-                             { role: "publisher", sourcerole: "publisher" })
-        metadata_contrib_sdo(node, xml, nil,
-                             { role: "authorizer",
-                               sourcerole: "investigative-organization",
-                               desc: "Investigative organization" })
-        metadata_contrib_sdo(node, xml, nil,
-                             { role: "authorizer",
-                               sourcerole: "investigative-committee",
-                               desc: "Investigative committee" })
+        [{ source: ["publisher", "pub"], role: "publisher", default: JIS_HASH },
+         { role: "authorizer",
+           source: ["investigative-organization"],
+           desc: "Investigative organization" },
+         { role: "authorizer",
+           source: ["investigative-committee"],
+           desc: "Investigative committee" }].each do |o|
+          org_contributor(node, xml, o)
+        end
       end
 
       LANGS = %w(ja en).freeze
@@ -37,56 +57,111 @@ module Metanorma
       JIS_HASH =
         { "ja" => "日本工業規格", "en" => "Japanese Industrial Standards" }.freeze
 
-      def metadata_contrib_sdo(node, xml, default_value, opt)
-        pub, default = metadata_contrib_extract(node, opt[:sourcerole], default_value)
-        metadata_contrib_sdo_build(node, xml, pub, default, opt)
+      #       def metadata_contrib_sdo(node, xml, default_value, opt)
+      #         pub, default = metadata_contrib_extract(node, opt[:sourcerole], default_value)
+      #         metadata_contrib_sdo_build(node, xml, pub, default, opt)
+      #       end
+      #
+      #       def metadata_contrib_sdo_build(node, xml, pub, default, opt)
+      #         pub&.each do |p|
+      #           xml.contributor do |c|
+      #             c.role type: opt[:role] do |r|
+      #               opt[:desc] and r.description opt[:desc]
+      #             end
+      #             c.organization do |a|
+      #               organization(a, p, opt[:role] == "publisher", node, default)
+      #             end
+      #           end
+      #         end
+      #       end
+      #
+      #       def metadata_contrib_extract(node, role, default_value)
+      #         pub, default = multiling_docattr_csv(node, role, LANGS, default_value)
+      #         a = node.attr("#{role}-abbr") and abbr = a # one abbrev for all languages
+      #         [pub&.map { |p| { name: p, abbr: abbr } }, default]
+      #       end
+      #
+      #       def multiling_docattr(node, attr, langs)
+      #         ret = node.attr(attr) and return ret
+      #         ret = langs.each_with_object({}).each do |l, m|
+      #           x = node.attr("#{attr}-#{l}") and m[l] = x
+      #         end.compact
+      #         ret.empty? and return nil
+      #         ret
+      #       end
+      #
+      #       def multiling_docattr_csv(node, attr, langs, default)
+      #         ret = multiling_docattr(node, attr, langs)
+      #         not_found = ret.nil?
+      #         ret ||= default
+      #         ret &&= if ret.is_a?(Hash) then interleave_multiling_docattr(ret)
+      #                 else csv_split(ret)
+      #                 end
+      #         [ret, not_found]
+      #       end
+      #
+      #       # TODO abort if CSV count different between different languages
+      #       def interleave_multiling_docattr(ret)
+      #         h = ret.transform_values { |v| csv_split(v) }
+      #         h.each_with_object([]) do |(k, v), m|
+      #           v.each_with_index do |v1, i|
+      #             m[i] ||= {}
+      #             m[i][k] = v1
+      #           end
+      #         end
+      #       end
+
+      def org_organization(node, xml, org)
+        organization(xml, { name: org[:name], abbr: org[:abbr] }.compact,
+                     node, !multiling_docattr(node, "publisher", "", LANGS))
+        org_address(org, xml)
+        org_logo(xml, org[:logo])
       end
 
-      def metadata_contrib_sdo_build(node, xml, pub, default, opt)
-        pub&.each do |p|
-          xml.contributor do |c|
-            c.role type: opt[:role] do |r|
-              opt[:desc] and r.description opt[:desc]
-            end
-            c.organization do |a|
-              organization(a, p, opt[:role] == "publisher", node, default)
-            end
+      def org_attrs_parse(node, opts)
+        source = opts[:source]&.detect { |s| node.attr(s) }
+          source ||= opts[:source]&.detect do |s|
+            LANGS.detect { |l| node.attr("#{s}-#{l}") }
           end
+        org_attrs_simple_parse(node, opts, source) ||
+          org_attrs_complex_parse(node, opts, source)
+      end
+
+      def org_attrs_complex_parse(node, opts, source)
+        i = 1
+        suffix = ""
+        ret = []
+        while multiling_docattr(node, source, suffix, LANGS)
+          ret << extract_org_attrs_complex(node, opts, source, suffix)
+          i += 1
+          suffix = "_#{i}"
         end
+        ret
       end
 
-      def metadata_contrib_extract(node, role, default_value)
-        pub, default = multiling_docattr_csv(node, role, LANGS, default_value)
-        a = node.attr("#{role}-abbr") and abbr = a # one abbrev for all languages
-        [pub&.map { |p| { name: p, abbr: abbr } }, default]
-      end
-
-      def multiling_docattr(node, attr, langs)
-        ret = node.attr(attr) and return ret
+      def multiling_docattr(node, attr, suffix, langs)
+        ret = node.attr(attr + suffix) and return ret
         ret = langs.each_with_object({}).each do |l, m|
-          x = node.attr("#{attr}-#{l}") and m[l] = x
+          x = node.attr("#{attr}-#{l}#{suffix}") and m[l] = x
         end.compact
         ret.empty? and return nil
         ret
       end
 
-      def multiling_docattr_csv(node, attr, langs, default)
-        ret = multiling_docattr(node, attr, langs)
-        not_found = ret.nil?
-        ret ||= default
-        ret &&= if ret.is_a?(Hash) then interleave_multiling_docattr(ret)
-                else csv_split(ret)
-                end
-        [ret, not_found]
+      def extract_org_attrs_complex(node, opts, source, suffix)
+        { name: multiling_docattr(node, source, suffix, LANGS),
+          role: opts[:role], desc: opts[:desc],
+          abbr: multiling_docattr(node, "#{source}-abbr", suffix, LANGS),
+          logo: multiling_docattr(node, "#{source}_logo", suffix, LANGS) }
+          .compact
+          .merge(extract_org_attrs_address(node, opts, suffix))
       end
 
-      # TODO abort if CSV count different between different languages
-      def interleave_multiling_docattr(ret)
-        h = ret.transform_values { |v| csv_split(v) }
-        h.each_with_object([]) do |(k, v), m|
-          v.each_with_index do |v1, i|
-            m[i] ||= {}
-            m[i][k] = v1
+      def extract_org_attrs_address(node, opts, suffix)
+        %w(address phone fax email uri).each_with_object({}) do |a, m|
+          opts[:source]&.each do |s|
+            p = multiling_docattr(node, "#{s}-#{a}", suffix, LANGS) and
+              m[a.to_sym] = p
           end
         end
       end
@@ -104,37 +179,44 @@ module Metanorma
         end
       end
 
-      def organization(xml, org, _is_pub, node = nil, default_org = nil)
-        org.is_a?(Hash) or org = { name: org }
+      def organization(xml, org, node = nil, default_org = nil)
+        org.is_a?(Hash) && org[:name] or org = { name: org }
         abbrevs = org_abbrev
         name_str = org[:name].is_a?(Hash) ? org[:name]["en"] : org[:name]
         n = abbrevs.invert[org[:name]] and org = { name: n, abbr: org[:name] }
         multiling_noko_value(org[:name], "name", xml)
-        default_org && a = multiling_docattr(node, "subdivision", LANGS) and
+        default_org && a = multiling_docattr(node, "subdivision", "", LANGS) and
           multiling_noko_value(a, "subdivision", xml)
         abbr = org[:abbr]
         abbr ||= org_abbrev[name_str]
         default_org && b = node.attr("subdivision-abbr") and abbr = b
         abbr and xml.abbreviation abbr
-        # is_pub && node and org_address(node, org) # should refactor into struct, like abbr
       end
 
-      def metadata_copyright(node, xml)
-        pub, default = metadata_contrib_extract(node, "copyright-holder", nil)
-        if default
-          pub, default = metadata_contrib_extract(node, "publisher", JIS_HASH)
-        end
+      #       def metadata_copyright(node, xml)
+      #         pub, default = metadata_contrib_extract(node, "copyright-holder", nil)
+      #         if default
+      #           pub, default = metadata_contrib_extract(node, "publisher", JIS_HASH)
+      #         end
+      #
+      #         pub&.each do |p|
+      #           xml.copyright do |c|
+      #             c.from (node.attr("copyright-year") || Date.today.year)
+      #             c.owner do |owner|
+      #               owner.organization do |o|
+      #                 organization(o, p, true, node, default)
+      #               end
+      #             end
+      #           end
+      #         end
+      #       end
 
-        pub&.each do |p|
-          xml.copyright do |c|
-            c.from (node.attr("copyright-year") || Date.today.year)
-            c.owner do |owner|
-              owner.organization do |o|
-                organization(o, p, true, node, default)
-              end
-            end
-          end
-        end
+      def copyright_parse(node)
+        opt = { source: ["copyright-holder", "publisher", "pub"],
+                role: "publisher", default: JIS_HASH }
+        ret = org_attrs_parse(node, opt)
+        ret.empty? and ret = [{ name: "-" }]
+        ret
       end
 
       def title(node, xml)
