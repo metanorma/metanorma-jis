@@ -1,0 +1,19 @@
+under_preparation: Under preparation.
+table_footnote: Footnote
+admitted: ADMITTED
+commentary: Commentary
+commentary_page: Comm.
+JIS: 日本工業規格
+permission_footer: Duplication, reprinting, etc. without permission is prohibited by copyright law.
+doctype_dict:
+  international-standard: International standard
+  technical-specification: Technical specification
+  technical-report: Technical report
+  publicly-available-specification: Publicly Available Specification
+  international-workshop-agreement: International Workshop Agreement
+  guide: Guide
+  amendment: Amendment
+  technical-corrigendum: Technical Corrigendum
+  directive: Directive
+stage_dict:
+  international-standard: International standard

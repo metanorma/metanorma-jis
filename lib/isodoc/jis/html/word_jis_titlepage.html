@@ -1,0 +1,134 @@
+{% if tc_docnumber.size > 0 %}
+{% for num in tc_docnumber %}
+<p class="MsoNormal" align="right" style='text-align:right'><b style='mso-bidi-font-weight:
+normal'><span lang="EN-GB" style='font-size:14.0pt;mso-no-proof:yes'>{{ num }}</span></b><b
+style='mso-bidi-font-weight:normal'><span lang="EN-GB" style='font-size:14.0pt'><o:p></o:p></span></b></p>
+{% endfor %}
+{% else %}
+<p class="MsoNormal" align="right" style='text-align:right'><b style='mso-bidi-font-weight:
+normal'><span lang="EN-GB" style='font-size:14.0pt;mso-no-proof:yes'>{{ docnumber_undated }} {{ draftinfo }}</span></b><b
+style='mso-bidi-font-weight:normal'><span lang="EN-GB" style='font-size:14.0pt'><o:p></o:p></span></b></p>
+{% endif %}
+
+{% if tc_docnumber.size > 0 %}
+<p class="MsoNormal" align="right" style='text-align:right'><span lang="EN-GB" style='mso-no-proof:yes'>{{ docnumber_undated }} {{ draftinfo }}</span></p>
+{% endif %}
+
+{% if doctitleamdlabel %}
+<p class="MsoNormal" align="right" style='text-align:right'><b>{{ doctitleamdlabel }}</b></p>
+{% endif %}
+
+{% if doctitlecorrlabel %}
+<p class="MsoNormal" align="right" style='text-align:right'><b>{{ doctitlecorrlabel }}</b></p>
+{% endif %}
+
+<p class="MsoNormal" align="right" style='text-align:right'><span lang="EN-GB"
+style='mso-no-proof:yes'>{{ editorialgroup }}</span></p>
+
+{% if secretariat %}
+<p class="MsoNormal" align="right" style='text-align:right'><span lang="EN-GB">{{ labels["secretariat"] }}: <span style='mso-no-proof:yes'>{{ secretariat }}</span></span></p>
+{% endif %}
+
+{% if edition_display %}
+<p class="MsoNormal" align="right" style='text-align:right'><span lang="EN-GB">{{ edition_display | capitalize }}</span></p>
+{% endif %}
+
+{% if revdate %}
+<p class="MsoNormal" align="right" style='text-align:right'><span lang="EN-GB">{{ labels["date"] }}: <span style='mso-no-proof:yes'>{{ revdate }}</span></span></p>
+{% endif %}
+
+<p class="MsoNormal" align="left" style='text-align:left;line-height:18.0pt;margin-top:100.0pt;margin-bottom:0.0pt;font-size:16.0pt'>
+<span class="title"><b>{{ doctitleintro }}{% if doctitleintro and doctitlemain %} &#x2014; {% endif %}</b></span><b><span class="subtitle">{{ doctitlemain }}{% if doctitlemain and doctitlepart %} &#x2014;{% endif %}</b></span>
+  {% if doctitlepart %}
+{% if doctitlepartlabel %}<span class="partlabel">{{ doctitlepartlabel }}: </span><br/>{% endif %}
+<span class="part"><b>{{ doctitlepart }}</b></span>
+{% endif %}
+</p>
+{% if doctitleamdlabel %}
+<p class="MsoNormal" style='text-align:left;line-height:18.0pt;margin-bottom:0.0pt;margin-top:6.0pt;font-size:16.0pt'>{{ doctitleamdlabel }}{% if doctitleamd %}: {{ doctitleamd }}{% endif %}</p>
+{% endif %}
+{% if doctitlecorrlabel %}
+<p class="MsoNormal" style='text-align:left;line-height:18.0pt;margin-bottom:0.0pt;margin-top:6.0pt;font-size:16.0pt'>{{ doctitlecorrlabel }}</p>
+{% endif %}
+
+{% if unpublished %}
+{% else %}
+<br/>
+<p class="MsoNormal" align="left" style='text-align:left;line-height:18.0pt;margin-bottom:0.0pt;font-size:16.0pt'>
+<span class="title">{{ docsubtitleintro }}{% if docsubtitleintro and docsubtitlemain %} &#x2014; {% endif %}</span><span class="subtitle">{{ docsubtitlemain }}{% if docsubtitlemain and docsubtitlepart %} &#x2014;{% endif %}</span>
+  {% if docsubtitlepart %}
+{% if docsubtitlepartlabel %}<span class="partlabel">{{ docsubtitlepartlabel }}: </span><br/>{% endif %}
+<span class="part">{{ docsubtitlepart }}</span>
+{% endif %}
+</p>
+{% if docsubtitleamdlabel %}
+<p class="MsoNormal" style='text-align:left;line-height:18.0pt;margin-bottom:0.0pt;margin-top:6.0pt;font-size:16.0pt'>{{ docsubtitleamdlabel }}{% if docsubtitleamd %}: {{ docsubtitleamd }}{% endif %}</p>
+{% endif %}
+{% if docsubtitlecorrlabel %}
+<p class="MsoNormal" style='text-align:left;line-height:18.0pt;margin-bottom:0.0pt;margin-top:6.0pt;font-size:16.0pt'>{{ docsubtitlecorrlabel }}</p>
+{% endif %}
+{% endif %}
+
+
+
+<p class="MsoNormal" style='margin-top:100.0pt'><span lang="EN-GB"><o:p>&#xa0;</o:p></span></p>
+{% if unpublished %}
+<div style='mso-element:para-border-div;border:solid windowtext 1.0pt;
+mso-border-alt:solid windowtext .5pt;padding:1.0pt 4.0pt 1.0pt 4.0pt;
+margin-left:4.25pt;margin-right:4.25pt'>
+
+<p class="MsoNormal" align="center" style='text-align:center;border:none;
+mso-border-alt:solid windowtext .5pt;padding:0cm;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span
+lang="EN-GB" style='font-size:40.0pt'>{{ stageabbr }} stage<o:p></o:p></span></p>
+
+</div>
+{% else %}
+<p class="MsoNormal" align="center" style='text-align:center;border:none;'><span
+lang="EN-GB" style='font-size:40.0pt'><o:p></o:p></span></p>
+{% endif %}
+
+<p class="MsoNormal" style='margin-bottom:6.0pt'><span lang="EN-GB"><o:p>&#xa0;</o:p></span></p>
+
+{% if unpublished %}
+<!--
+<div style='mso-element:para-border-div;border:solid windowtext 1.0pt;
+mso-border-alt:solid windowtext .5pt;padding:1.0pt 4.0pt 1.0pt 4.0pt;
+margin-left:4.25pt;margin-right:4.25pt'>
+-->
+
+  <div id="boilerplate-license-destination"/>
+<!--
+<p class="MsoNormal" align="center" style='margin-bottom:6.0pt;text-align:center;
+border:none;mso-border-alt:solid windowtext .5pt;padding:0cm;mso-padding-alt:
+1.0pt 4.0pt 1.0pt 4.0pt'><b style='mso-bidi-font-weight:normal'><span
+lang="EN-GB" style='font-size:10.0pt;mso-bidi-font-size:11.0pt'>Warning for WDs
+and CDs<o:p></o:p></span></b></p>
+
+<p class="MsoNormal" style='margin-bottom:6.0pt;border:none;mso-border-alt:solid windowtext .5pt;
+padding:0cm;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang="EN-GB"
+style='font-size:10.0pt;mso-bidi-font-size:11.0pt;mso-bidi-font-weight:bold'>This
+document is not an ISO International Standard. It is distributed for review and
+comment. It is subject to change without notice and may not be referred to as
+an International Standard.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0cm;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang="EN-GB"
+style='font-size:10.0pt;mso-bidi-font-size:11.0pt;mso-bidi-font-weight:bold'>Recipients
+of this draft are invited to submit, with their comments, notification of any
+relevant patent rights of which they are aware and to provide supporting
+documentation.</span><span lang="EN-GB" style='font-size:10.0pt;mso-bidi-font-size:
+11.0pt'><o:p></o:p></span></p>
+-->
+{% endif %}
+
+<div class="coverpage-warning" id="coverpage-note-destination"/>
+
+<!--</div>-->
+
+<p class="MsoNormal">
+        <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+</p>
+
+<div id="boilerplate-inner-cover-note"/>
+<div id="boilerplate-contributors"/>
+
