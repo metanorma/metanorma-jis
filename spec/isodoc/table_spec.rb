@@ -364,7 +364,7 @@ RSpec.describe IsoDoc do
          </div>
          <br/>
                      #{middle_title(false)}
-                     <div><h1/></div>
+                     <div><h1 id="_"/></div>
          <br/>
          <div id="Annex" class="Section3">
            <h1 class="Annex" id="_">
