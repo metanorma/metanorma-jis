@@ -222,6 +222,8 @@ RSpec.describe IsoDoc::JIS do
          <xref target="Q"/>
          <xref target="R"/>
          <xref target="S"/>
+         <xref target="T"/>
+         <xref target="U"/>
          </p>
        </foreword>
        </preface>
@@ -236,8 +238,10 @@ RSpec.describe IsoDoc::JIS do
        <annex id="A3" inline-header="false" obligation="normative" commentary="true">
          <title>Commentary</title>
          <note id="R"/>
+         <table id="T"><tbody><tr><td/></tr></tbody></table>
          <clause id="A4">
          <note id="S"/>
+         <table id="U">><tbody><tr><td/></tr></tbody></table>
          </clause>
        </annex>
        </iso-standard>
@@ -251,6 +255,12 @@ RSpec.describe IsoDoc::JIS do
             <xref target="Q">A.1, Note</xref>
             <xref target="R">Commentary, Note</xref>
             <xref target="S">Commentary, Clause 1, Note</xref>
+               <xref target="T">
+            <span class="citetbl">Commentary, Table 1</span>
+          </xref>
+          <xref target="U">
+            <span class="citetbl">Commentary, Clause 1, Table 2</span>
+          </xref>
          </p>
        </foreword>
     OUTPUT
@@ -268,6 +278,12 @@ RSpec.describe IsoDoc::JIS do
            <xref target="Q">A.1の注記</xref>
            <xref target="R">Commentaryの注記</xref>
            <xref target="S">Commentaryの箇条 1の注記</xref>
+           <xref target="T">
+            <span class="citetbl">Commentaryの表 1</span>
+          </xref>
+          <xref target="U">
+            <span class="citetbl">Commentaryの箇条 1の表 2</span>
+          </xref>
          </p>
        </foreword>
     OUTPUT
