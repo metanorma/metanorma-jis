@@ -150,9 +150,7 @@ RSpec.describe IsoDoc::JIS do
        .convert("test", input, true))
        .at("//xmlns:foreword").to_xml))
       .to be_equivalent_to xmlpp(output)
-  end
 
-  it "cross-references list items in Japanese" do
     input = <<~INPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml">
       <bibdata><language>ja</language></bibdata>
@@ -198,17 +196,102 @@ RSpec.describe IsoDoc::JIS do
          <title>Foreword</title>
          <p id="A">
            This is a preamble
-           <xref target="P">箇条 1, リスト  1のa)</xref>
+           <xref target="P">箇条 1のリスト  1のa)</xref>
            <xref target="Q">1 リスト  1のa)の1)</xref>
            <xref target="R">1 リスト  1のa)の1.1)</xref>
            <xref target="S">1 リスト  1のa)の1.1.1)</xref>
-           <xref target="P1">箇条 1, リスト  2のa)</xref>
+           <xref target="P1">箇条 1のリスト  2のa)</xref>
          </p>
        </foreword>
     OUTPUT
     expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
        .new(presxml_options)
        .convert("test", input, true))
+       .at("//xmlns:foreword").to_xml))
+      .to be_equivalent_to xmlpp(output)
+  end
+
+  it "cross-references assets in commentaries" do
+    input = <<~INPUT
+      <iso-standard xmlns="http://riboseinc.com/isoxml">
+      <preface>
+      <foreword obligation="informative">
+         <title>Foreword</title>
+         <p id="A">This is a preamble
+         <xref target="P"/>
+         <xref target="Q"/>
+         <xref target="R"/>
+         <xref target="S"/>
+         <xref target="T"/>
+         <xref target="U"/>
+         </p>
+       </foreword>
+       </preface>
+       <annex id="A1" inline-header="false" obligation="normative">
+         <title>Annex</title>
+         <note id="P"/>
+         <clause id="A2" inline-header="false" obligation="normative">
+         <title>Annex A.1a</title>
+         <note id="Q"/>
+         </clause>
+       </annex>
+       <annex id="A3" inline-header="false" obligation="normative" commentary="true">
+         <title>Commentary</title>
+         <note id="R"/>
+         <table id="T"><tbody><tr><td/></tr></tbody></table>
+         <clause id="A4">
+         <note id="S"/>
+         <table id="U">><tbody><tr><td/></tr></tbody></table>
+         </clause>
+       </annex>
+       </iso-standard>
+    INPUT
+    output = <<~OUTPUT
+      <foreword obligation="informative" displayorder="1">
+         <title>Foreword</title>
+         <p id="A">
+           This is a preamble
+            <xref target="P">Annex A, Note</xref>
+            <xref target="Q">A.1, Note</xref>
+            <xref target="R">Commentary, Note</xref>
+            <xref target="S">Commentary, Clause 1, Note</xref>
+               <xref target="T">
+            <span class="citetbl">Commentary, Table 1</span>
+          </xref>
+          <xref target="U">
+            <span class="citetbl">Commentary, Clause 1, Table 2</span>
+          </xref>
+         </p>
+       </foreword>
+    OUTPUT
+    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+       .new(presxml_options)
+       .convert("test", input, true))
+       .at("//xmlns:foreword").to_xml))
+      .to be_equivalent_to xmlpp(output)
+    output = <<~OUTPUT
+      <foreword obligation="informative" displayorder="1">
+         <title>Foreword</title>
+         <p id="A">
+           This is a preamble
+           <xref target="P">附属書 Aの注記</xref>
+           <xref target="Q">A.1の注記</xref>
+           <xref target="R">Commentaryの注記</xref>
+           <xref target="S">Commentaryの箇条 1の注記</xref>
+           <xref target="T">
+            <span class="citetbl">Commentaryの表 1</span>
+          </xref>
+          <xref target="U">
+            <span class="citetbl">Commentaryの箇条 1の表 2</span>
+          </xref>
+         </p>
+       </foreword>
+    OUTPUT
+    input.sub!("<preface>",
+               "<bibdata><language>ja</language></bibdata><preface>")
+    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+      .new(presxml_options)
+      .convert("test", input, true))
        .at("//xmlns:foreword").to_xml))
       .to be_equivalent_to xmlpp(output)
   end

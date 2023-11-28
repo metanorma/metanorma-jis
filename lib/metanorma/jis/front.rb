@@ -140,6 +140,7 @@ module Metanorma
       end
 
       def multiling_docattr(node, attr, suffix, langs)
+        node.nil? and return nil
         ret = node.attr(attr + suffix) and return ret
         ret = langs.each_with_object({}).each do |l, m|
           x = node.attr("#{attr}-#{l}#{suffix}") and m[l] = x
@@ -189,7 +190,7 @@ module Metanorma
           multiling_noko_value(a, "subdivision", xml)
         abbr = org[:abbr]
         abbr ||= org_abbrev[name_str]
-        default_org && b = node.attr("subdivision-abbr") and abbr = b
+        default_org && b = node&.attr("subdivision-abbr") and abbr = b
         abbr and xml.abbreviation abbr
       end
 
