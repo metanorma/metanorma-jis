@@ -205,7 +205,7 @@ module IsoDoc
         elem = s.children.first
         middle_title_hdr(elem)
         middle_title_main(elem, "zzSTDTitle1")
-        middle_subtitle_main(elem)
+        middle_subtitle_main(elem, "zzSTDTitle2")
         # middle_title_amd(s.children.first)
       end
 
@@ -225,11 +225,8 @@ module IsoDoc
       def middle_title_main(out, style)
         t = @meta.get[:doctitlemain]
         (t && !t.empty?) or return
-        ret = "<p class='#{style}'>#{@meta.get[:doctitleintro]}"
-        ret += " &#x2014; " if @meta.get[:doctitleintro] && t
-        ret += t
-        ret += " &#x2014; " if t && @meta.get[:doctitlepart]
-        ret += "</p>"
+        ret =
+          middle_title_para(style, :doctitleintro, :doctitlemain, :doctitlepart)
         if a = @meta.get[:doctitlepart]
           ret += "<p class='zzSTDTitle1'>"
           b = @meta.get[:doctitlepartlabel] and ret += "#{b}: "
@@ -238,20 +235,26 @@ module IsoDoc
         out.previous = ret
       end
 
-      def middle_subtitle_main(out)
+      def middle_subtitle_main(out, style)
         t = @meta.get[:docsubtitlemain]
         (t && !t.empty?) or return
-        ret = "<p class='zzSTDTitle2'>#{@meta.get[:docsubtitleintro]}"
-        ret += " &#x2014; " if @meta.get[:docsubtitleintro] && t
-        ret += @meta.get[:docsubtitlemain]
-        ret += " &#x2014; " if t && @meta.get[:docsubtitlepart]
-        ret += "</p>"
+        ret = middle_title_para(style, :docsubtitleintro, :docsubtitlemain,
+                                :docsubtitlepart)
         if a = @meta.get[:docsubtitlepart]
           ret += "<p class='zzSTDTitle2'>"
           b = @meta.get[:docsubtitlepartlabel] and ret += "#{b}: "
           ret += "<br/><strong>#{a}</strong></p>"
         end
         out.previous = ret
+      end
+
+      def middle_title_para(style, intro, main, part)
+        ret = "<p class='#{style}'>#{@meta.get[intro]}"
+        ret += " &#x2014; " if @meta.get[intro] && @meta.get[main]
+        ret += @meta.get[main]
+        ret += " &#x2014; " if @meta.get[main] && @meta.get[part]
+        ret += "</p>"
+        ret
       end
 
       include Init
