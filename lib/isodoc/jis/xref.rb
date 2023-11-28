@@ -59,11 +59,11 @@ module IsoDoc
       def back_clauses_anchor_names(xml)
         clause_order_back(xml).each do |a|
           xml.xpath(ns(a[:path])).each do |c|
-            if c["commentary"] == "true"
-              commentary_names(c)
-            else
-              preface_names(c)
+            if c["commentary"] == "true" then commentary_names(c)
+            else preface_names(c)
             end
+            x = Nokogiri::XML::NodeSet.new(c.document, [c])
+            sequential_asset_names(x, container: true)
             a[:multi] or break
           end
         end
