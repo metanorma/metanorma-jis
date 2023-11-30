@@ -757,7 +757,7 @@ RSpec.describe IsoDoc::JIS do
                <language current="true">tlh</language>
                <ext>
                  <doctype language="">international-standard</doctype>
-                 <doctype language="tlh">日本産業規格</doctype>
+                 <doctype language="tlh">International Standard</doctype>
                </ext>
              </bibdata>
 
@@ -767,7 +767,7 @@ RSpec.describe IsoDoc::JIS do
                  <p id="A">This is a preamble</p>
                </foreword>
                 <clause type="toc" id="_" displayorder="2">
-                  <title depth="1">Contents</title>
+                  <title depth="1">Table of contents</title>
                 </clause>
              </preface>
              <sections>
