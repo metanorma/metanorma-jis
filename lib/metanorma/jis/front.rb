@@ -45,9 +45,9 @@ module Metanorma
 
       def org_attrs_parse(node, opts)
         source = opts[:source]&.detect { |s| node.attr(s) }
-          source ||= opts[:source]&.detect do |s|
-            LANGS.detect { |l| node.attr("#{s}-#{l}") }
-          end
+        source ||= opts[:source]&.detect do |s|
+          LANGS.detect { |l| node.attr("#{s}-#{l}") }
+        end
         org_attrs_simple_parse(node, opts, source) ||
           org_attrs_complex_parse(node, opts, source)
       end
@@ -139,7 +139,8 @@ module Metanorma
       end
 
       def metadata_id(node, xml)
-        node.attr("docidentifier") || node.attr("docnumber") or
+        node.attr("docidentifier") || node.attr("docnumber") ||
+          node.attr("adopted-from") or
           @fatalerror << "No docnumber attribute supplied"
         if id = node.attr("docidentifier")
           xml.docidentifier id.sub(/^JIS /, ""), **attr_code(type: "JIS")
@@ -157,21 +158,8 @@ module Metanorma
         end
       end
 
-      def iso_id(node, xml)
-        (!@amd && node.attr("docnumber")) || (@amd && node.attr("updates")) or
-          return
-        params = iso_id_params(node)
-        iso_id_out(xml, params, true)
-      end
-
-      def iso_id_params(node)
-        params = iso_id_params_core(node)
-        params2 = iso_id_params_add(node)
-        if node.attr("updates")
-          orig_id = Pubid::Jis::Identifier::Base.parse(node.attr("updates"))
-          orig_id.edition ||= 1
-        end
-        iso_id_params_resolve(params, params2, node, orig_id)
+      def base_pubid
+        Pubid::Jis::Identifier
       end
 
       def iso_id_params_core(node)
@@ -198,7 +186,7 @@ module Metanorma
       end
 
       def iso_id_default(params)
-        Pubid::Jis::Identifier.create(**params)
+        base_pubid.create(**params)
       rescue StandardError => e
         clean_abort("Document identifier: #{e}", xml)
       end
