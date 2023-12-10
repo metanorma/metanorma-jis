@@ -139,9 +139,6 @@ module Metanorma
       end
 
       def metadata_id(node, xml)
-        node.attr("docidentifier") || node.attr("docnumber") ||
-          node.attr("adopted-from") or
-          @fatalerror << "No docnumber attribute supplied"
         if id = node.attr("docidentifier")
           xml.docidentifier id.sub(/^JIS /, ""), **attr_code(type: "JIS")
         else iso_id(node, xml)
