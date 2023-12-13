@@ -447,206 +447,207 @@ RSpec.describe IsoDoc::JIS do
       </html>
     OUTPUT
     word = <<~WORD
-      <html xmlns:epub='http://www.idpf.org/2007/ops' lang='ja'>
-         <head>
-           <style></style>
-           <style></style>
-         </head>
-                  <body lang="EN-US" link="blue" vlink="#954F72">
-           <div class="WordSection1">
-             <p> </p>
-           </div>
-           <p class="section-break">
-             <br clear="all" class="section"/>
-           </p>
-           <div class="WordSection2">
-             <p class="page-break">
-               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-             </p>
-             <div>
-               <h1 class="ForewordTitle">Foreword</h1>
-               <p class="ForewordText" id="A">This is a preamble</p>
-             </div>
-                 <p class="page-break">
-        <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+       <html xmlns:epub='http://www.idpf.org/2007/ops' lang='ja'>
+          <head>
+            <style></style>
+            <style></style>
+          </head>
+                   <body lang="EN-US" link="blue" vlink="#954F72">
+            <div class="WordSection1">
+              <p> </p>
+            </div>
+            <p class="section-break">
+              <br clear="all" class="section"/>
+            </p>
+            <div class="WordSection2">
+              <p class="page-break">
+                <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+              </p>
+              <div>
+                <h1 class="ForewordTitle">Foreword</h1>
+                <p class="ForewordText" id="A">This is a preamble</p>
+              </div>
+                  <p class="page-break">
+         <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+       </p>
+       <div id="_" type="toc" class="TOC">
+         <p class="zzContents">目　次</p>
+       </div>
+       <p> </p>
+            </div>
+            <p class="section-break">
+              <br clear="all" class="section"/>
+            </p>
+            <div class="WordSection3">
+                 <p class="JapaneseIndustrialStandard">
+        日本工業規格
+        <span style="mso-tab-count:1">  </span>
+        <span style="mso-tab-count:1">  </span>
+        <span style="mso-tab-count:1">  </span>
+        <span style="mso-tab-count:1">  </span>
+        <span style="mso-tab-count:1">  </span>
+        <span style="mso-tab-count:1">  </span>
+        <span style="mso-tab-count:1">  </span>
+        <span class="JIS">JIS</span>
       </p>
-      <div id="_" type="toc" class="TOC">
-        <p class="zzContents">目　次</p>
-      </div>
-      <p> </p>
-           </div>
-           <p class="section-break">
-             <br clear="all" class="section"/>
-           </p>
-           <div class="WordSection3">
-                <p class="JapaneseIndustrialStandard">
-       日本工業規格
-       <span style="mso-tab-count:1">  </span>
-       <span style="mso-tab-count:1">  </span>
-       <span style="mso-tab-count:1">  </span>
-       <span style="mso-tab-count:1">  </span>
-       <span style="mso-tab-count:1">  </span>
-       <span style="mso-tab-count:1">  </span>
-       <span style="mso-tab-count:1">  </span>
-       <span class="JIS">JIS</span>
-     </p>
-     <p class="StandardNumber">
-     <span style="mso-tab-count:1">  </span>
-     </p>
-     <p class="IDT"/>
-             <p class="zzSTDTitle1">Introduction Française — Titre Principal — </p>
-             <p class="zzSTDTitle1">
-               その :
-               <br/>
-               <b>Part du Titre</b>
-             </p>
-             <p class="zzSTDTitle2">Introduction — Main Title — Title — </p>
-             <p class="zzSTDTitle2">
-               Part :
-               <br/>
-               <b>Title Part</b>
-             </p>
-             <div class="Section3" id="B">
-               <h1 class="IntroTitle">Introduction</h1>
-               <div id="C">
-                 <h2>
-                   0.1
-                   <span style="mso-tab-count:1">  </span>
-                   Introduction Subsection
-                 </h2>
-               </div>
-               <p>This is patent boilerplate</p>
-             </div>
-             <div id="D">
-               <h1>
-                 1
-                 <span style="mso-tab-count:1">  </span>
-                 Scope
-               </h1>
-               <p id="E">Text</p>
-             </div>
-             <div class="normref_div">
-               <h1>
-                 2
-                 <span style="mso-tab-count:1">  </span>
-                 Normative References
-               </h1>
-             </div>
-             <div id="H">
-               <h1>
-                 3
-                 <span style="mso-tab-count:1">  </span>
-                 Terms, definitions, symbols and abbreviated terms
-               </h1>
-               <div id="I">
-                 <h2>
-                   3.1
-                   <span style="mso-tab-count:1">  </span>
-                   Normal Terms
-                 </h2>
-                 <p class="TermNum" id="J">3.1.1</p>
-                 <p class="Terms" style="text-align:left;">
-                   <b>Term2</b>
-                 </p>
-               </div>
-               <div id="K">
-                 <span class="zzMoveToFollowing">
-                   <b>
-                     3.2
-                     <span style="mso-tab-count:1">  </span>
-                   </b>
-                 </span>
-                 <table class="dl">
-                   <tr>
-                     <td valign="top" align="left">
-                       <p align="left" style="margin-left:0pt;text-align:left;">Symbol</p>
-                     </td>
-                     <td valign="top">Definition</td>
-                   </tr>
-                 </table>
-               </div>
-             </div>
-             <div id="L" class="Symbols">
-               <h1>4</h1>
-               <table class="dl">
-                 <tr>
-                   <td valign="top" align="left">
-                     <p align="left" style="margin-left:0pt;text-align:left;">Symbol</p>
-                   </td>
-                   <td valign="top">Definition</td>
-                 </tr>
-               </table>
-             </div>
-             <div id="M">
-               <h1>
-                 5
-                 <span style="mso-tab-count:1">  </span>
-                 Clause 4
-               </h1>
-               <div id="N">
-                 <h2>
-                   5.1
-                   <span style="mso-tab-count:1">  </span>
-                   Introduction
-                 </h2>
-               </div>
-               <div id="O">
-                 <h2>
-                   5.2
-                   <span style="mso-tab-count:1">  </span>
-                   Clause 4.2
-                 </h2>
-               </div>
-             </div>
-             <p class="page-break">
-               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-             </p>
-             <div id="P" class="Section3">
-               <h1 class="Annex">
-                 附属書 A
-                 <br/>
-                 (規定)
-                 <br/>
-                 <b>Annex</b>
-               </h1>
-               <div id="Q">
-                 <h2>
-                   A.1
-                   <span style="mso-tab-count:1">  </span>
-                   Annex A.1
-                 </h2>
-                 <div id="Q1">
-                   <h3>
-                     A.1.1
-                     <span style="mso-tab-count:1">  </span>
-                     Annex A.1a
-                   </h3>
-                 </div>
-               </div>
-               <div id="Q2">
-                 <h2>
-                   Appendix 1
-                   <span style="mso-tab-count:1">  </span>
-                   An Appendix
-                 </h2>
-               </div>
-             </div>
-             <p class="page-break">
-               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-             </p>
-             <div class="bibliography">
-               <h1 class="Section3">Bibliography</h1>
-               <div>
-                 <h2 class="BiblioTitle">Bibliography Subsection</h2>
-               </div>
-             </div>
-           </div>
-           <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
-           <div class="colophon"/>
-         </body>
-       </html>
+      <p class="StandardNumber">
+      <span style="mso-tab-count:1">  </span>
+      </p>
+      <p class="IDT"/>
+              <p class="zzSTDTitle1">Introduction Française — Titre Principal — </p>
+              <p class="zzSTDTitle1">
+                その :
+                <br/>
+                <b>Part du Titre</b>
+              </p>
+              <p class="zzSTDTitle2">Introduction — Main Title — Title — </p>
+              <p class="zzSTDTitle2">
+                Part :
+                <br/>
+                <b>Title Part</b>
+              </p>
+              <div class="Section3" id="B">
+                <h1 class="IntroTitle">Introduction</h1>
+                <div id="C">
+                  <h2>
+                    0.1
+                    <span style="mso-tab-count:1">  </span>
+                    Introduction Subsection
+                  </h2>
+                </div>
+                <p>This is patent boilerplate</p>
+              </div>
+              <div id="D">
+                <h1>
+                  1
+                  <span style="mso-tab-count:1">  </span>
+                  Scope
+                </h1>
+                <p id="E">Text</p>
+              </div>
+              <div class="normref_div">
+                <h1>
+                  2
+                  <span style="mso-tab-count:1">  </span>
+                  Normative References
+                </h1>
+              </div>
+              <div id="H">
+                <h1>
+                  3
+                  <span style="mso-tab-count:1">  </span>
+                  Terms, definitions, symbols and abbreviated terms
+                </h1>
+                <div id="I">
+                  <h2>
+                    3.1
+                    <span style="mso-tab-count:1">  </span>
+                    Normal Terms
+                  </h2>
+                  <p class="TermNum" id="J">3.1.1</p>
+                  <p class="Terms" style="text-align:left;">
+                    <b>Term2</b>
+                  </p>
+                </div>
+                <div id="K">
+                  <span class="zzMoveToFollowing">
+                    <b>
+                      3.2
+                      <span style="mso-tab-count:1">  </span>
+                    </b>
+                  </span>
+                  <table class="dl">
+                    <tr>
+                      <td valign="top" align="left">
+                        <p align="left" style="margin-left:0pt;text-align:left;">Symbol</p>
+                      </td>
+                      <td valign="top">Definition</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div id="L" class="Symbols">
+                <h1>4</h1>
+                <table class="dl">
+                  <tr>
+                    <td valign="top" align="left">
+                      <p align="left" style="margin-left:0pt;text-align:left;">Symbol</p>
+                    </td>
+                    <td valign="top">Definition</td>
+                  </tr>
+                </table>
+              </div>
+              <div id="M">
+                <h1>
+                  5
+                  <span style="mso-tab-count:1">  </span>
+                  Clause 4
+                </h1>
+                <div id="N">
+                  <h2>
+                    5.1
+                    <span style="mso-tab-count:1">  </span>
+                    Introduction
+                  </h2>
+                </div>
+                <div id="O">
+                  <h2>
+                    5.2
+                    <span style="mso-tab-count:1">  </span>
+                    Clause 4.2
+                  </h2>
+                </div>
+              </div>
+              <p class="page-break">
+                <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+              </p>
+              <div id="P" class="Section3">
+                <h1 class="Annex">
+                  附属書 A
+                  <br/>
+                  (規定)
+                  <br/>
+                  <b>Annex</b>
+                </h1>
+                <div id="Q">
+                  <h2>
+                    A.1
+                    <span style="mso-tab-count:1">  </span>
+                    Annex A.1
+                  </h2>
+                  <div id="Q1">
+                    <h3>
+                      A.1.1
+                      <span style="mso-tab-count:1">  </span>
+                      Annex A.1a
+                    </h3>
+                  </div>
+                </div>
+                <div id="Q2">
+                  <h2>
+                    Appendix 1
+                    <span style="mso-tab-count:1">  </span>
+                    An Appendix
+                  </h2>
+                </div>
+              </div>
+              <p class="page-break">
+                <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+              </p>
+              <div class="bibliography">
+                <h1 class="Section3">Bibliography</h1>
+                <div>
+                  <h2 class="BiblioTitle">Bibliography Subsection</h2>
+                </div>
+              </div>
+            </div>
+            <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
+            <div class="colophon"/>
+          </body>
+        </html>
     WORD
-    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+      .new(presxml_options)
       .convert("test", input, true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
       .to be_equivalent_to xmlpp(presxml)
@@ -1355,12 +1356,57 @@ RSpec.describe IsoDoc::JIS do
         </body>
       </html>
     OUTPUT
-    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+      .new(presxml_options)
       .convert("test", input, true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
       .to be_equivalent_to xmlpp(presxml)
     expect(xmlpp(IsoDoc::JIS::HtmlConvert.new({})
       .convert("test", presxml, true)))
       .to be_equivalent_to xmlpp(html)
+  end
+
+  it "internationalises dates in bibdata" do
+    input = <<~INPUT
+      <iso-standard xmlns="http://riboseinc.com/isoxml">
+        <bibdata>
+        <language>en</language>
+          <date type="created">2020-10-11</date>
+          <date type="issued">2020-10</date>
+          <date type="published">2020</date>
+        </bibdata>
+      </iso-standard>
+    INPUT
+    output = <<~OUTPUT
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+        <bibdata>
+          <language current="true">en</language>
+          <date type="created">2020-10-11</date>
+          <date type="issued">2020-10</date>
+          <date type="published">2020</date>
+        </bibdata>
+      </iso-standard>
+    OUTPUT
+    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+      .new(presxml_options)
+      .convert("test", input, true)))
+      .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
+      .to be_equivalent_to xmlpp(output)
+    output = <<~OUTPUT
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+        <bibdata>
+          <language current="true">ja</language>
+          <date type="created">令和二年10月11日</date>
+          <date type="issued">令和二年10月</date>
+          <date type="published">令和二年</date>
+        </bibdata>
+      </iso-standard>
+    OUTPUT
+    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+      .new(presxml_options)
+      .convert("test", input.sub("<language>en</language>",
+                                 "<language>ja</language"), true)))
+      .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
+      .to be_equivalent_to xmlpp(output)
   end
 end
