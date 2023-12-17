@@ -206,24 +206,39 @@ end
 
 TERMS_BOILERPLATE = "".freeze
 
-def boilerplate(xmldoc)
-  file = File.read(
-    File.join(File.dirname(__FILE__), "..", "lib",
-              "metanorma", "jsi", "jsi_intro_jp.xml"), encoding: "utf-8"
+def boilerplate_read(file)
+  HTMLEntities.new.decode(
+    Metanorma::JIS::Converter.new(:jis, {}).boilerplate_file_restructure(file)
+    .to_xml.gsub(/<(\/)?sections>/, "<\\1boilerplate>")
+      .gsub(/ id="_[^"]+"/, " id='_'"),
   )
-  conv = Metanorma::JIS::Converter
-    .new(nil, backend: :jis, header_footer: true)
-  conv.init(Asciidoctor::Document.new([]))
-  ret = Nokogiri::XML(
-    conv.boilerplate_isodoc(xmldoc).populate_template(file, nil)
-    .gsub("<p>", "<p id='_'>")
-    .gsub('<p align="left">', "<p align='left' id='_'>")
-    .gsub("<ol>", "<ol id='_' type='alphabet'>")
-    .gsub("<ul>", "<ul id='_'>"),
-  )
-  conv.smartquotes_cleanup(ret)
-  HTMLEntities.new.decode(ret.to_xml)
 end
+
+ASCIIDOCTOR_ISO_DIR = Pathname
+  .new(File.dirname(__FILE__)) / "../lib/metanorma/jis"
+
+BOILERPLATE_EN =
+  boilerplate_read(
+    File.read(ASCIIDOCTOR_ISO_DIR / "boilerplate-en.adoc", encoding: "utf-8")
+      .gsub(/\{\{ agency \}\}/, "JIS")
+      .gsub(/\{\{ docyear \}\}/, Date.today.year.to_s)
+      .gsub(/(?<=\p{Alnum})'(?=\p{Alpha})/, "’"),
+  ).freeze
+
+BOILERPLATE =
+  boilerplate_read(
+    File.read(ASCIIDOCTOR_ISO_DIR / "boilerplate-ja.adoc", encoding: "utf-8")
+    .gsub(/\{\{ agency \}\}/, "JIS")
+  .gsub(/\{\{ revdate \}\}/, "")
+  .gsub(/\{\{ announceddate \}\}/, "")
+  .gsub(/\{\{ investigative-organization \}\}/, "日本工業規格")
+  .gsub(/\{\{ investigative-committee \}\}/, "")
+  .gsub(/\{\{ investigative-committee-representative-name \}\}/, "")
+  .gsub(/\{\{ investigative-committee-representative-role \}\}/, "")
+  .gsub(/\{% if.+?\{% endif %\}/, "")
+    .gsub(/\{\{ docyear \}\}/, Date.today.year.to_s)
+    .gsub(/(?<=\p{Alnum})'(?=\p{Alpha})/, "’"),
+  ).freeze
 
 BLANK_HDR = <<~"HDR".freeze
   <?xml version="1.0" encoding="UTF-8"?>
@@ -301,7 +316,7 @@ HDR
 def blank_hdr_gen
   <<~"HDR"
     #{BLANK_HDR}
-    #{boilerplate(Nokogiri::XML("#{BLANK_HDR}</bsi-standard>"))}
+    #{BOILERPLATE}
   HDR
 end
 

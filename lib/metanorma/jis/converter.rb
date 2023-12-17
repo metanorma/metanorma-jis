@@ -25,10 +25,6 @@ module Metanorma
         ret
       end
 
-      def boilerplate_file(_x_orig)
-        File.join(@libdir, "jis_intro_jp.xml")
-      end
-
       def section_attributes(node)
         ret = super
         if node.attr("style") == "appendix" && node.level == 1 &&
@@ -42,6 +38,10 @@ module Metanorma
       def example_attrs(node)
         attr_code(id_unnum_attrs(node).merge(keep_attrs(node))
           .merge("keep-separate": node.attr("keep-separate")))
+      end
+
+      def boilerplate_file(_x_orig)
+        File.join(@libdir, "boilerplate-#{@lang}.adoc")
       end
 
       def html_converter(node)
