@@ -3,16 +3,17 @@ cancelled_and_replaced: キャンセルされ、%に置き換えられました�
 norm_with_refs_pref_all_dated: 次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要 求事項を構成している。これらの引用規格は，記載の年の版を適用し，その後の改正版(追補を含む。) は適用しない。
 norm_with_refs_pref_none_dated: 次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要求事項 を構成している。これらの引用規格は，その最新版(追補を含む。)を適用する。
 permission_footer: 著作権法により無断での複製，転載等は禁止されております。
-admitted: "代替用語"
+admitted: 代替用語
 table_footnote: 注
 commentary: 解説
 commentary_page: 解
 JIS: 日本工業規格
 draft_label: 案
 white-paper: 白紙
+chairperson: 委員会長
 doctype_dict:
   international-standard: 日本産業規格
-  japaanese-industrial-standard: 日本産業規格
+  japanese-industrial-standard: 日本産業規格
   technical-specification: 標準仕様書
   technical-report: 標準報告書
   publicly-available-specification: Publicly Available Specification

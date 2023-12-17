@@ -121,10 +121,11 @@ RSpec.describe Metanorma::JIS::Processor do
     INPUT
     output = <<~OUTPUT
         #{BLANK_HDR}
+        #{BOILERPLATE}
         <sections/>
       </jis-standard>
     OUTPUT
-    expect(xmlpp(processor.input_to_isodoc(input, nil)))
+    expect(strip_guid(xmlpp(processor.input_to_isodoc(input, nil))))
       .to be_equivalent_to xmlpp(output)
   end
 
@@ -141,6 +142,7 @@ RSpec.describe Metanorma::JIS::Processor do
 
     output = xmlpp(<<~"OUTPUT")
       #{BLANK_HDR}
+      #{BOILERPLATE}
       <sections>
           <clause id="_" inline-header="false" obligation="normative">
             <title>Clause</title>
