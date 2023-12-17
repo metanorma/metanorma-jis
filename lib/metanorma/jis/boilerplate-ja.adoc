@@ -1,0 +1,18 @@
+== copyright-statement
+
+主 務 大 臣:経済産業大臣 制定:昭和 26.10.31 改正:{{ revdate }}
+
+官 報 掲 載 日:{{ announceddate }}
+
+原 案 作 成 者:一般財団法人日本規格協会
+
+(〒108-0073 東京都港区三田 3-13-12 三田 MT ビル TEL 03-4231-8530)
+
+審 議 部 会:{{ investigative-organization }}{{ investigative-committee }}{% if investigative-committee-representative-name %}({{ investigative-committee-representative-role }} {{ investigative-committee-representative-name }}){% endif %}
+
+== feedback-statement
+
+
+この規格についての意見又は質問は，上記原案作成者又は経済産業省産業技術環境局 国際標準課(〒100-8901 東京 都千代田区霞が関 1-3-1)にご連絡ください。
+
+なお，日本産業規格は，産業標準化法の規定によって，少なくとも 5 年を経過する日までに日本産業標準調査会の審 議に付され，速やかに，確認，改正又は廃止されます。

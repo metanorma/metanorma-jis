@@ -61,6 +61,22 @@ module Metanorma
           n.delete("keep-separate")
         end
       end
+
+      def bibdata_cleanup(xmldoc)
+        super
+        bibdata_supply_chairperson_role(xmldoc)
+      end
+
+      def bibdata_supply_chairperson_role(xmldoc)
+        xpath =
+          "//bibdata/contributor" \
+          "[role/@type = 'authorizer'][role/description = " \
+          "'investigative committee']/person/affiliation"
+        xmldoc.xpath(xpath).each do |a|
+          a.at("./name") or next
+          a.children.first.previous = "<name>#{@i18n.chairperson}</name>"
+        end
+      end
     end
   end
 end

@@ -15,8 +15,7 @@ module Metanorma
         org_contributor(node, xml,
                         { source: ["publisher", "pub"], role: "author",
                           default: JIS_HASH })
-        node.attr("doctype") == "expert-commentary" and
-          personal_author(node, xml)
+        personal_author(node, xml)
       end
 
       def metadata_publisher(node, xml)
