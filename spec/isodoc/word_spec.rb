@@ -66,9 +66,6 @@ RSpec.describe IsoDoc::JIS do
         </div>
         <p class="MsoNormal"> </p>
                  <div style="mso-element:para-border-div;border:solid windowtext 1.0pt; border-bottom-alt:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt: solid windowtext .5pt;mso-border-right-alt:solid windowtext .5pt;padding:1.0pt 4.0pt 0cm 4.0pt; margin-left:5.1pt;margin-right:5.1pt">
-           <div>
-             <a name="boilerplate-copyright-destination" id="boilerplate-copyright-destination"/>
-           </div>
          </div>
        </div>
     OUTPUT
@@ -176,7 +173,6 @@ RSpec.describe IsoDoc::JIS do
       </bibdata>
       <preface>
       <foreword displayorder="1"><title>Antauparolo</title></foreword>
-      <clause type="inner-cover-note" displayorder="2"><title>Inner Cover Note</title></clause>
       <clause type="contributors" displayorder="3"><title>Contributors</title></clause>
       </preface>
       </jis-standard>
@@ -192,11 +188,9 @@ RSpec.describe IsoDoc::JIS do
     doc = Nokogiri::XML(word)
     doc.xpath("//xmlns:p[@class = 'MsoToc1']").each(&:remove)
     expect(doc.to_xml).to include "Antauparolo"
-    expect(doc.to_xml).not_to include "Inner Cover Note"
     expect(doc.to_xml).not_to include "Contributors"
     word = File.read("test_cover.doc", encoding: "UTF-8")
     expect(word).not_to include "Antauparolo"
-    expect(word).to include "Inner Cover Note"
     expect(word).to include "Contributors"
   end
 
