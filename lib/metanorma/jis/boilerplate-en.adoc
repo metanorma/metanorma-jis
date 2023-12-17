@@ -1,0 +1,12 @@
+== copyright-statement
+
+Competent Minister: Minister of Economy, Trade and Industry Established: October 31, 1951 Revised: {{ revdate }}
+Date of publication in the Official Gazette: {{ announceddate }}
+Draft creator: Japanese Standards Association
+(Mita MT Building, 3-13-12 Mita, Minato-ku, Tokyo 108-0073 Tel: 03-4231-8530)
+Investigative Working Group: {{ investigative-organization }} {{ investigative-committee }}
+{% if investigative-committee-representative-name %}({{ investigative-committee-representative-role | capitalize }}: {{ investigative-committee-representative-name }}){% endif %}
+
+== feedback-statement
+
+Any comments or questions regarding this standard should be directed to the above drafter or the International Standardization Division, Industrial Science and Technology Policy and Environment Bureau, Ministry of Economy, Trade and Industry (Tokyo 100-8901 Tokyo, Japan). Please contact 1-3-1 Kasumigaseki, Chiyoda-ku, Tokyo. In accordance with the provisions of the Industrial Standardization Law, Japanese Industrial Standards shall be reviewed by the Japan Industrial Standards Committee by the date when at least five years have passed. It will be put up for discussion and promptly confirmed, amended or repealed.

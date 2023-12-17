@@ -1,8 +1,6 @@
 require_relative "init"
 require "isodoc"
 require_relative "presentation_section"
-require "japanese_calendar"
-require "twitter_cldr"
 
 module IsoDoc
   module JIS
@@ -151,27 +149,8 @@ module IsoDoc
 
       def date_translate(bibdata)
         bibdata.xpath(ns("./date")).each do |d|
-          d.children = japanese_date(d.text.strip)
+          d.children = @i18n.japanese_date(d.text.strip)
         end
-      end
-
-      # use Japanese ordinals for era years
-      def japanese_date(date)
-        d = date.split(/-/).map(&:to_i)
-        time = Date.new(*d)
-        yr = japanese_year(time)
-        case d.size
-        when 1 then yr
-        when 2 then yr + time.strftime("%-m月")
-        when 3 then yr + time.strftime("%-m月%-d日")
-        else date
-        end
-      end
-
-      def japanese_year(time)
-        era_yr = time.era_year.to_i.localize(:ja)
-          .to_rbnf_s("SpelloutRules", "spellout-numbering-year")
-        "#{time.strftime('%JN')}#{era_yr}年"
       end
 
       include Init

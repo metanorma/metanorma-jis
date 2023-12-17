@@ -34,6 +34,49 @@ RSpec.describe IsoDoc::JIS::Metadata do
               <abbreviation>JIS</abbreviation>
             </organization>
           </contributor>
+          <contributor>
+             <role type="authorizer">
+               <description>Investigative organization</description>
+             </role>
+             <organization>
+               <name>
+                 <variant language="ja">日本産業標準調査会</variant>
+                 <variant language="en">Japanese Industrial Standards Committee</variant>
+               </name>
+             </organization>
+           </contributor>
+                      <contributor>
+             <role type="authorizer">
+               <description>investigative committee</description>
+             </role>
+             <person>
+               <name>
+                 <completename>KUROSAWA Akira</completename>
+               </name>
+               <affiliation>
+                 <organization>
+                   <name>Committee 123</name>
+                 </organization>
+               </affiliation>
+             </person>
+           </contributor>
+           <contributor>
+             <role type="authorizer">
+               <description>investigative committee</description>
+             </role>
+             <person>
+               <name>
+                 <completename>MIFUNE Toshiro</completename>
+               </name>
+               <affiliation>
+                 <name>委員会長</name>
+                 <name>lead actor</name>
+                 <organization>
+                   <name>Committee 123</name>
+                 </organization>
+               </affiliation>
+             </person>
+           </contributor>
           <edition>2</edition>
           <version>
             <revision-date>2000-01-01</revision-date>
@@ -109,6 +152,10 @@ RSpec.describe IsoDoc::JIS::Metadata do
       :draftinfo=>" (draft 0.3.4, 2000-01-01)",
       :edition=>"2",
       :horizontal=>"true",
+      :"investigative-committee"=>"Committee 123",
+      :"investigative-committee-representative-name"=>"KUROSAWA Akira",
+      :"investigative-committee-representative-role"=>"chairperson",
+      :"investigative-organization"=>"Japanese Industrial Standards",
       :lang=>"en",
       :publisher=>"Japanese Industrial Standards",
       :revdate=>"2000-01-01",

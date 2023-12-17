@@ -5,8 +5,10 @@ commentary: Commentary
 commentary_page: Comm.
 JIS: 日本工業規格
 permission_footer: Duplication, reprinting, etc. without permission is prohibited by copyright law.
+chairperson: chairperson
 doctype_dict:
   international-standard: International standard
+  japanese-industrial-standard: International standard
   technical-specification: Technical specification
   technical-report: Technical report
   publicly-available-specification: Publicly Available Specification
