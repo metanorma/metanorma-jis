@@ -701,7 +701,8 @@
 							<fo:inline/>
 							<fo:footnote-body>
 								<fo:block font-size="8.5pt">
-									<xsl:apply-templates select="/*/*[local-name() = 'preface']/*[local-name() = 'clause'][@type = 'inner-cover-note']"/> <!-- /*[not(local-name() = 'title')] -->
+									<!-- <xsl:apply-templates select="/*/*[local-name() = 'preface']/*[local-name() = 'clause'][@type = 'inner-cover-note']" /> -->
+									<xsl:apply-templates select="/*/*[local-name() = 'boilerplate']"/>
 								</fo:block>
 							</fo:footnote-body>
 						</fo:footnote>
@@ -1153,7 +1154,7 @@
 						<xsl:attribute name="margin-bottom">0pt</xsl:attribute>
 					</xsl:if>
 
-					<xsl:if test="parent::jis:clause[@type = 'inner-cover-note']">
+					<xsl:if test="parent::jis:clause[@type = 'inner-cover-note'] or ancestor::jis:boilerplate">
 						<xsl:attribute name="margin-bottom">0pt</xsl:attribute>
 					</xsl:if>
 
@@ -10022,14 +10023,16 @@
 
 	<xsl:template match="*[local-name() = 'annex']">
 		<fo:block break-after="page"/>
-		<fo:block id="{@id}">
+		<fo:block>
 
 			<xsl:call-template name="setBlockSpanAll"/>
 
 			<xsl:call-template name="refine_annex_style"/>
 
 		</fo:block>
-		<xsl:apply-templates/>
+		<fo:block id="{@id}">
+			<xsl:apply-templates/>
+		</fo:block>
 	</xsl:template>
 
 	<xsl:template name="refine_annex_style">
