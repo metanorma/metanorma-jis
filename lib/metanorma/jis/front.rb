@@ -159,7 +159,7 @@ module Metanorma
       end
 
       def iso_id_params_core(node)
-        pub = (node.attr("publisher") || "JIS").split(/[;,]/)
+        pub = iso_id_pub(node)
         ret = { number: node.attr("docnumber") || "0",
                 part: node.attr("partnumber"),
                 series: node.attr("docseries"),
