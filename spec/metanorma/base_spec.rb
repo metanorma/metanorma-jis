@@ -371,7 +371,7 @@ RSpec.describe Metanorma::JIS do
     output = <<~OUTPUT
       <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
                <bibdata type="standard">
-           <docidentifier type="JIS">1000:2023</docidentifier>
+           <docidentifier type="JIS">1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
            <contributor>
              <role type="author"/>
@@ -403,7 +403,7 @@ RSpec.describe Metanorma::JIS do
              <substage>60</substage>
            </status>
            <copyright>
-             <from>2023</from>
+             <from>#{Date.today.year}</from>
              <owner>
                <organization>
                  <name>
@@ -473,7 +473,7 @@ RSpec.describe Metanorma::JIS do
     output = <<~OUTPUT
       <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
          <bibdata type="standard">
-           <docidentifier type="JIS">TR 1000:2023</docidentifier>
+           <docidentifier type="JIS">TR 1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
            <contributor>
              <role type="author"/>
@@ -534,7 +534,7 @@ RSpec.describe Metanorma::JIS do
              <substage>60</substage>
            </status>
            <copyright>
-             <from>2023</from>
+             <from>#{Date.today.year}</from>
              <owner>
                <organization>
                          <name>
@@ -613,7 +613,7 @@ RSpec.describe Metanorma::JIS do
     output = <<~OUTPUT
       <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
          <bibdata type="standard">
-           <docidentifier type="JIS">TS 1000:2023</docidentifier>
+           <docidentifier type="JIS">TS 1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
            <contributor>
              <role type="author"/>
@@ -642,7 +642,7 @@ RSpec.describe Metanorma::JIS do
              <substage>60</substage>
            </status>
            <copyright>
-             <from>2023</from>
+             <from>#{Date.today.year}</from>
              <owner>
                <organization>
                          <name>
