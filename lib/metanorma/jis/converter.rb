@@ -44,6 +44,10 @@ module Metanorma
         File.join(@libdir, "boilerplate-#{@lang}.adoc")
       end
 
+      def document_scheme(node)
+        node.attr("document-scheme")
+      end
+
       def html_converter(node)
         if node.nil?
           IsoDoc::JIS::HtmlConvert.new({})
