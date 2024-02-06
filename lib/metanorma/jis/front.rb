@@ -68,17 +68,16 @@ module Metanorma
         ret = node.attr(attr + suffix) and return ret
         ret = langs.each_with_object({}).each do |l, m|
           x = node.attr("#{attr}-#{l}#{suffix}") and m[l] = x
-        end.compact
+        end
         ret.empty? and return nil
-        ret
+        compact_blank(ret)
       end
 
       def extract_org_attrs_complex(node, opts, source, suffix)
-        { name: multiling_docattr(node, source, suffix, LANGS),
-          role: opts[:role], desc: opts[:desc],
-          abbr: multiling_docattr(node, "#{source}-abbr", suffix, LANGS),
-          logo: multiling_docattr(node, "#{source}_logo", suffix, LANGS) }
-          .compact
+        compact_blank({ name: multiling_docattr(node, source, suffix, LANGS),
+                        role: opts[:role], desc: opts[:desc],
+                        abbr: multiling_docattr(node, "#{source}-abbr", suffix, LANGS),
+                        logo: multiling_docattr(node, "#{source}_logo", suffix, LANGS) })
           .merge(extract_org_attrs_address(node, opts, suffix))
       end
 
@@ -168,12 +167,13 @@ module Metanorma
                 publisher: pub[0],
                 copublisher: pub[1..-1] }.compact
         ret[:copublisher].empty? and ret.delete(:copublisher)
-        ret
+        compact_blank(ret)
       end
 
       def iso_id_params_add(node)
-        { number: node.attr("amendment-number"),
-          year: iso_id_year(node) }.compact
+        ret = { number: node.attr("amendment-number"),
+                year: iso_id_year(node) }
+        compact_blank(ret)
       end
 
       def iso_id_out(xml, params, _with_prf)
