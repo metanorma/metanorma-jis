@@ -9,14 +9,14 @@ module IsoDoc
         %w(en ja).include?(lang) or lang = "ja"
         tp = title_parts(isoxml, lang)
         tn = title_nums(isoxml)
-        set_encoded(:doctitlemain, tp[:main])
+        tp[:main] and set(:doctitlemain, tp[:main].children.to_xml)
         main = compose_title(tp, tn, lang)
         set(:doctitle, main)
-        set_encoded(:doctitleintro, tp[:intro])
+        tp[:intro] and set(:doctitleintro, tp[:intro].children.to_xml)
         set(:doctitlepartlabel, part_prefix(tn, lang))
-        set_encoded(:doctitlepart, tp[:part])
+        tp[:part] and set(:doctitlepart, tp[:part].children.to_xml)
         set(:doctitleamdlabel, amd_prefix(tn, lang)) if tn[:amd]
-        set_encoded(:doctitleamd, tp[:amd])
+        tp[:amd] and set(:doctitleamd, tp[:amd].children.to_xml)
         set(:doctitlecorrlabel, corr_prefix(tn, lang)) if tn[:corr]
       end
 
@@ -24,14 +24,14 @@ module IsoDoc
         lang = @lang == "ja" ? "en" : "ja"
         tp = title_parts(isoxml, lang)
         tn = title_nums(isoxml)
-        set_encoded(:docsubtitlemain, tp[:main])
+        tp[:main] and set(:docsubtitlemain, tp[:main].children.to_xml)
         main = compose_title(tp, tn, lang)
         set(:docsubtitle, main)
-        set_encoded(:docsubtitleintro, tp[:intro])
+        tp[:intro] and set(:docsubtitleintro, tp[:intro].children.to_xml)
         set(:docsubtitlepartlabel, part_prefix(tn, lang))
-        set_encoded(:docsubtitlepart, tp[:part])
+        tp[:part] and set(:docsubtitlepart, tp[:part].children.to_xml)
         set(:docsubtitleamdlabel, amd_prefix(tn, lang)) if tn[:amd]
-        set_encoded(:docsubtitleamd, tp[:amd])
+        tp[:amd] and set(:docsubtitleamd, tp[:amd].children.to_xml)
         set(:docsubtitlecorrlabel, corr_prefix(tn, lang)) if tn[:corr]
       end
 
