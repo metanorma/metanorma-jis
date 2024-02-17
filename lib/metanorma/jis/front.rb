@@ -141,7 +141,6 @@ module Metanorma
           xml.docidentifier id.sub(/^JIS /, ""), **attr_code(type: "JIS")
         else iso_id(node, xml)
         end
-        xml.docnumber node.attr("docnumber")
       end
 
       def get_typeabbr(node, amd: false)
