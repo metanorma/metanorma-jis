@@ -1,5 +1,13 @@
 require "spec_helper"
 RSpec.describe Metanorma::JIS do
+  before do
+    # Force to download Relaton index file
+    allow_any_instance_of(Relaton::Index::Type).to receive(:actual?)
+      .and_return(false)
+    allow_any_instance_of(Relaton::Index::FileIO).to receive(:check_file)
+      .and_return(nil)
+  end
+
   it "has a version number" do
     expect(Metanorma::JIS::VERSION).not_to be nil
   end
