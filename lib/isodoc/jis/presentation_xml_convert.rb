@@ -102,7 +102,6 @@ module IsoDoc
         name = node.at(ns("./name"))
         thead = table_thead_pt(node, name)
         table_unit_note(node, thead, cols)
-        table_name(name, thead, cols)
       end
 
       def table_thead_pt(node, name)
@@ -122,13 +121,6 @@ module IsoDoc
       def table_unit_note(node, thead, cols)
         unit_note = node.at(ns(".//note[@type = 'units']")) or return
         thead.children.first.previous = full_row(cols, unit_note.remove.to_xml)
-      end
-
-      def table_name(name, thead, cols)
-        name or return
-        thead.children.first.previous =
-          full_row(cols, "<p class='TableTitle' style='text-align:center;'> " \
-                         "#{name.remove.children.to_xml}</p>")
       end
 
       def full_row(cols, elem)

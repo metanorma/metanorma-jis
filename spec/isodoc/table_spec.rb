@@ -108,18 +108,15 @@ RSpec.describe IsoDoc do
          <preface>
            <foreword displayorder="1">
              <table alt="tool tip" id="tableD-1" summary="long desc">
-               <thead>
-                 <tr>
-                   <td border="0" colspan="5">
-                     <p class="TableTitle" style="text-align:center;">
-                       Table 1 — Repeatability and reproducibility of
-                       <em>husked</em>
-                       rice yield<fn reference="1">
+               <name>
+                Table 1 — Repeatability and reproducibility of
+                <em>husked</em>
+                rice yield
+                <fn reference="1">
                   <p id="_">Name footnote.</p>
                 </fn>
-                     </p>
-                   </td>
-                 </tr>
+              </name>
+               <thead>
                  <tr>
                    <td align="left" rowspan="2">Description</td>
                    <td align="center" colspan="4">Rice sample</td>
@@ -231,13 +228,8 @@ RSpec.describe IsoDoc do
              <strong>Annex</strong>
            </title>
            <table id="AnnexTable">
-             <thead>
-               <tr>
-                 <td border="0" colspan="1">
-                   <p class="TableTitle" style="text-align:center;"> Table A.1 — Another table</p>
-                 </td>
-               </tr>
-             </thead>
+               <name>Table A.1 — Another table</name>
+               <thead> </thead>
              <tbody>
                <tr>
                  <td>?</td>
@@ -612,16 +604,12 @@ RSpec.describe IsoDoc do
          <preface>
            <foreword displayorder="1">
              <table id="tableD-1">
+               <name>
+                  Table 1 — Repeatability and reproducibility of
+                  <em>husked</em>
+                  rice yield
+                </name>
                <thead>
-                 <tr>
-                   <td border="0" colspan="2">
-                     <p class="TableTitle" style="text-align:center;">
-                       Table 1 — Repeatability and reproducibility of
-                       <em>husked</em>
-                       rice yield
-                     </p>
-                   </td>
-                 </tr>
                  <tr>
                    <td border="0" colspan="2">
                      <note id="B" type="units">Units in mm</note>

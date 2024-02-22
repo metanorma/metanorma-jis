@@ -54,6 +54,39 @@ module IsoDoc
           end
         end
       end
+
+      def table_parse(node, out)
+        cols = table_cols_count(node)
+        name = node.at(ns("./name"))
+        thead = table_thead_pt(node, name)
+        table_name(name, thead, cols)
+        super
+      end
+
+      def table_thead_pt(node, name)
+        node.at(ns("./thead")) ||
+          name&.after("<thead> </thead>")&.next ||
+          node.elements.first.before("<thead> </thead>").previous
+      end
+
+      def table_cols_count(node)
+        cols = 0
+        node.at(ns(".//tr")).xpath(ns("./td | ./th")).each do |x|
+          cols += x["colspan"]&.to_i || 1
+        end
+        cols
+      end
+
+      def full_row(cols, elem)
+        "<tr><td border='0' colspan='#{cols}'>#{elem}</td></tr>"
+      end
+
+      def table_name(name, thead, cols)
+        name or return
+        thead.children.first.previous =
+          full_row(cols, "<p class='TableTitle' style='text-align:center;'> " \
+                         "#{name.remove.children.to_xml}</p>")
+      end
     end
   end
 end
