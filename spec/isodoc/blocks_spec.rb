@@ -139,6 +139,7 @@ RSpec.describe IsoDoc::JIS do
                   </em>
                 </formattedref>
                 <docidentifier type="ISO">ISO 712</docidentifier>
+                <docidentifier scope="biblio-tag">ISO 712</docidentifier>
                 <biblio-tag>ISO 712, </biblio-tag>
               </bibitem>
             </references>
