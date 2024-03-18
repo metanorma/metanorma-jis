@@ -112,7 +112,7 @@ RSpec.describe Metanorma::JIS do
            <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
            <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
            <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
-           <docidentifier type="JIS">Z 1000-1:2000</docidentifier>
+           <docidentifier primary="true" type="JIS">Z 1000-1:2000</docidentifier>
            <docnumber>1000</docnumber>
            <date type="announced">
               <on>2000-02-01</on>
@@ -245,7 +245,7 @@ RSpec.describe Metanorma::JIS do
            <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
            <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
            <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
-           <docidentifier type="JIS">Z 1000-1:2000(E)</docidentifier>
+           <docidentifier primary="true" type="JIS">Z 1000-1:2000(E)</docidentifier>
            <docnumber>1000</docnumber>
            <date type="announced">
               <on>2000-02-01</on>
@@ -379,7 +379,7 @@ RSpec.describe Metanorma::JIS do
     output = <<~OUTPUT
       <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
                <bibdata type="standard">
-           <docidentifier type="JIS">1000:#{Date.today.year}</docidentifier>
+           <docidentifier primary="true" type="JIS">1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
            <contributor>
              <role type="author"/>
@@ -481,7 +481,7 @@ RSpec.describe Metanorma::JIS do
     output = <<~OUTPUT
       <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
          <bibdata type="standard">
-           <docidentifier type="JIS">TR 1000:#{Date.today.year}</docidentifier>
+           <docidentifier primary="true" type="JIS">TR 1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
            <contributor>
              <role type="author"/>
@@ -621,7 +621,7 @@ RSpec.describe Metanorma::JIS do
     output = <<~OUTPUT
       <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
          <bibdata type="standard">
-           <docidentifier type="JIS">TS 1000:#{Date.today.year}</docidentifier>
+           <docidentifier primary="true" type="JIS">TS 1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
            <contributor>
              <role type="author"/>
@@ -762,7 +762,7 @@ RSpec.describe Metanorma::JIS do
           <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
           <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
-          <docidentifier type="JIS">EXP</docidentifier>
+          <docidentifier primary="true" type="JIS">EXP</docidentifier>
           <docnumber>1000</docnumber>
           <contributor>
             <role type="author"/>
@@ -851,7 +851,7 @@ RSpec.describe Metanorma::JIS do
     output = <<~OUTPUT
       <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::JIS::VERSION}">
                    <bibdata type="standard">
-           <docidentifier type="JIS">Z 1000-1:1980/AMD 3:2022</docidentifier>
+           <docidentifier primary="true" type="JIS">Z 1000-1:1980/AMD 3:2022</docidentifier>
            <docnumber>1000</docnumber>
            <date type="created">
              <on>1999-01-01</on>
