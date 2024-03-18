@@ -88,7 +88,7 @@ RSpec.describe IsoDoc::JIS do
           </p>
                 <p class="dl">A: B</p>
                 <source status="generalisation">[SOURCE:
-                         <xref type="inline" target="ISO712">, Section 1</xref>
+                         <xref type="inline" target="ISO712">ISO 712, Section 1</xref>
                    – with adjustments]</source>
                    <note id="note1">
             <name>NOTE</name>
@@ -195,7 +195,7 @@ RSpec.describe IsoDoc::JIS do
                     <p>
                       [SOURCE:
                       <a href="#ISO712">
-                     , Section 1
+                     ISO 712, Section 1
                    </a>
                       – with adjustments]
                     </p>
@@ -303,7 +303,7 @@ RSpec.describe IsoDoc::JIS do
                        <p>
                          [SOURCE:
                          <a href="#ISO712">
-                    , Section 1
+                    ISO 712, Section 1
                   </a>
                          – with adjustments]
                        </p>
