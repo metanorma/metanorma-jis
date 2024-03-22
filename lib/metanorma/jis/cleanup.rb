@@ -77,6 +77,11 @@ module Metanorma
           a.children.first.previous = "<name>#{@i18n.chairperson}</name>"
         end
       end
+
+      def ol_cleanup(doc)
+        ::Metanorma::Standoc::Converter.instance_method(:ol_cleanup).bind(self)
+          .call(doc)
+      end
     end
   end
 end
