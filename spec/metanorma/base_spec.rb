@@ -1221,4 +1221,34 @@ RSpec.describe Metanorma::JIS do
     expect(xmlpp(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
       .to be_equivalent_to xmlpp(output)
   end
+
+  it "ignores ordered list styles" do
+    input = <<~INPUT
+      #{ASCIIDOC_BLANK_HDR}
+
+      [upperalpha]
+      . First
+      [upperroman]
+      .. Second
+    INPUT
+    output = <<~OUTPUT
+      #{BLANK_HDR}
+      #{BOILERPLATE}
+               <sections>
+           <ol id="_">
+             <li>
+               <p id="_">First</p>
+               <ol id="_">
+                 <li>
+                   <p id="_">Second</p>
+                 </li>
+               </ol>
+             </li>
+           </ol>
+         </sections>
+      </jis-standard>
+    OUTPUT
+    expect(xmlpp(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
+      .to be_equivalent_to xmlpp(output)
+  end
 end
