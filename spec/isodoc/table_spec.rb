@@ -180,7 +180,7 @@ RSpec.describe IsoDoc do
                    </localityStack>
                    , Section 1
                  </origin>
-                   – with adjustments ;
+                   &#x2014; with adjustments ;
                <origin bibitemid="ISO713" type="inline" citeas="">
             <localityStack>
               <locality type="section">
@@ -189,7 +189,7 @@ RSpec.describe IsoDoc do
             </localityStack>
             , Section 3
           </origin>
-          – with alterations
+          &#x2014; with alterations
                </source>
                <note>
                  <name>NOTE 1</name>
@@ -253,7 +253,7 @@ RSpec.describe IsoDoc do
              <thead>
                <tr>
                  <td colspan="5" style=";text-align:center;vertical-align:middle;" scope="colgroup">
-                   <p class="TableTitle">
+                   <p class="TableTitle"  style="text-align:center;;">
                      Table 1 — Repeatability and reproducibility of
                      <i>husked</i>
                      rice yield<a href="#tableD-11" class="TableFootnoteRef">1</a>
@@ -315,8 +315,8 @@ RSpec.describe IsoDoc do
 
                     , Section 1
 
-                  – with adjustments ;      , Section 3
-                 – with alterations
+                  &#x2014; with adjustments ;      , Section 3
+                 &#x2014; with alterations
                 </p>
                    </div>
                    <div class="Note">
@@ -370,7 +370,7 @@ RSpec.describe IsoDoc do
              <thead>
                <tr>
                  <td colspan="1" style=";text-align:center;vertical-align:middle;" scope="colgroup">
-                   <p class="TableTitle"> Table A.1 — Another table</p>
+                   <p class="TableTitle"  style="text-align:center;;"> Table A.1 — Another table</p>
                  </td>
                </tr>
              </thead>
@@ -385,13 +385,13 @@ RSpec.describe IsoDoc do
     OUTPUT
 
     doc = <<~OUTPUT
-           <div>
+      <div>
          <table xmlns:m="m" title="tool tip" summary="long desc" width="" class="MsoTableGrid" style="border-collapse:collapse;mso-table-anchor-horizontal:column;mso-table-overlap:never;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0">
            <a name="tableD-1" id="tableD-1"/>
            <thead>
              <tr>
                <td colspan="5" style="page-break-after:avoid;" align="center" valign="middle">
-                 <p class="ForewordText" style="text-align: center;page-break-after:avoid">
+               <p class="ForewordText" style="text-align:center;;text-align: center;page-break-after:avoid">
                    Table 1 — Repeatability and reproducibility of
                    <i>husked</i>
                    rice yield
@@ -454,12 +454,12 @@ RSpec.describe IsoDoc do
 
                     , Section 1
 
-                    – with adjustments ;
+                    &#x2014; with adjustments ;
 
 
              , Section 3
 
-           – with alterations
+           &#x2014; with alterations
                 </p>
                  </div>
                  <div>
@@ -525,7 +525,7 @@ RSpec.describe IsoDoc do
              <thead>
                <tr>
                  <td colspan="1" style="page-break-after:avoid;" align="center" valign="middle">
-                   <p class="TableTitle" style="text-align: center;page-break-after:avoid"> Table A.1 — Another table</p>
+                 <p class="TableTitle" style="text-align:center;;text-align: center;page-break-after:avoid"> Table A.1 — Another table</p>
                  </td>
                </tr>
              </thead>
@@ -538,7 +538,8 @@ RSpec.describe IsoDoc do
          </div>
        </div>
     OUTPUT
-    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+      .new(presxml_options)
       .convert("test", input, true)))).to be_equivalent_to xmlpp(presxml)
     IsoDoc::JIS::HtmlConvert.new({}).convert("test", presxml, false)
     expect(File.exist?("test.html")).to be true
@@ -679,7 +680,7 @@ RSpec.describe IsoDoc do
                  <thead>
                    <tr>
                      <td colspan="2" style="" scope="colgroup">
-                       <p class="TableTitle">
+                       <p class="TableTitle" style="text-align:center;;">
                          Table 1 — Repeatability and reproducibility of
                          <i>husked</i>
                          rice yield
@@ -735,99 +736,100 @@ RSpec.describe IsoDoc do
        </html>
     OUTPUT
     doc = <<~OUTPUT
-      <body lang="EN-US" link="blue" vlink="#954F72">
-         <div class="WordSection1">
-           <p> </p>
-         </div>
-         <p class="section-break">
-           <br clear="all" class="section"/>
-         </p>
-         <div class="WordSection2">
-           <p class="page-break">
-             <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-           </p>
-           <div>
-             <h1 class="ForewordTitle">Foreword</h1>
-             <div align="right">
-               <b>Other units in sec</b>
-             </div>
-             <div align="center" class="table_container">
-               <table id="tableD-1" title="" summary="" width="" class="MsoTableGrid" style="border-collapse:collapse;mso-table-anchor-horizontal:column;mso-table-overlap:never;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0">
-                 <thead>
-                   <tr>
-                     <td colspan="2" style="page-break-after:avoid;">
-                       <p class="ForewordText">
-                         Table 1 — Repeatability and reproducibility of
-                         <i>husked</i>
-                         rice yield 
-                       </p>
-                     </td>
-                   </tr>
-                   <tr>
-                     <td colspan="2" style="page-break-after:avoid;">
-                       <div id="B" class="Note">
-                         <p class="Note">
-                           <span class="note_label"/>
-                           <span style="mso-tab-count:1">  </span>
-                         </p>
-                         Units in mm
-                       </div>
-                     </td>
-                   </tr>
-                   <tr>
-                     <td style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:avoid;">Description</td>
-                     <td style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:avoid;">Rice sample</td>
-                   </tr>
-                 </thead>
-                 <tbody>
-                   <tr>
-                     <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">Number of laboratories retained after eliminating outliers</th>
-                     <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">13</td>
-                   </tr>
-                   <tr>
-                     <td align="left" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">Mean value, g/100 g</td>
-                     <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">81,2</td>
-                   </tr>
-                 </tbody>
-                 <div id="A" class="Note">
-                   <p class="Note">
-                     <span class="note_label">NOTE  1</span>
-                     <span style="mso-tab-count:1">  </span>
-                   </p>
-                   Note 1
-                 </div>
-                 <div id="C" class="Note">
-                   <p class="Note">
-                     <span class="note_label">NOTE  2</span>
-                     <span style="mso-tab-count:1">  </span>
-                   </p>
-                   Note 2
-                 </div>
-               </table>
-             </div>
+        <body lang="EN-US" link="blue" vlink="#954F72">
+           <div class="WordSection1">
+             <p> </p>
            </div>
-               <p class="page-break">
-      <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-    </p>
-    <div id="_" type="toc" class="TOC">
-      <p class="zzContents">Contents</p>
-    </div>
-           <p> </p>
-         </div>
-         <p class="section-break">
-           <br clear="all" class="section"/>
-         </p>
-         <div class="WordSection3">
-                     #{middle_title(true)}
-                         <div>
-          <h1/>
-        </div>
-         </div>
-         <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
-         <div class="colophon"/>
-       </body>
+           <p class="section-break">
+             <br clear="all" class="section"/>
+           </p>
+           <div class="WordSection2">
+             <p class="page-break">
+               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+             </p>
+             <div>
+               <h1 class="ForewordTitle">Foreword</h1>
+               <div align="right">
+                 <b>Other units in sec</b>
+               </div>
+               <div align="center" class="table_container">
+                 <table id="tableD-1" title="" summary="" width="" class="MsoTableGrid" style="border-collapse:collapse;mso-table-anchor-horizontal:column;mso-table-overlap:never;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0">
+                   <thead>
+                     <tr>
+                       <td colspan="2" style="page-break-after:avoid;">
+                         <p class="ForewordText" style="text-align:center;;">
+                           Table 1 — Repeatability and reproducibility of
+                           <i>husked</i>
+                           rice yield
+                         </p>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td colspan="2" style="page-break-after:avoid;">
+                         <div id="B" class="Note">
+                           <p class="Note">
+                             <span class="note_label"/>
+                             <span style="mso-tab-count:1">  </span>
+                           </p>
+                           Units in mm
+                         </div>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:avoid;">Description</td>
+                       <td style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:avoid;">Rice sample</td>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr>
+                       <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">Number of laboratories retained after eliminating outliers</th>
+                       <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">13</td>
+                     </tr>
+                     <tr>
+                       <td align="left" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">Mean value, g/100 g</td>
+                       <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">81,2</td>
+                     </tr>
+                   </tbody>
+                   <div id="A" class="Note">
+                     <p class="Note">
+                       <span class="note_label">NOTE  1</span>
+                       <span style="mso-tab-count:1">  </span>
+                     </p>
+                     Note 1
+                   </div>
+                   <div id="C" class="Note">
+                     <p class="Note">
+                       <span class="note_label">NOTE  2</span>
+                       <span style="mso-tab-count:1">  </span>
+                     </p>
+                     Note 2
+                   </div>
+                 </table>
+               </div>
+             </div>
+                 <p class="page-break">
+        <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+      </p>
+      <div id="_" type="toc" class="TOC">
+        <p class="zzContents">Contents</p>
+      </div>
+             <p> </p>
+           </div>
+           <p class="section-break">
+             <br clear="all" class="section"/>
+           </p>
+           <div class="WordSection3">
+                       #{middle_title(true)}
+                           <div>
+            <h1/>
+          </div>
+           </div>
+           <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
+           <div class="colophon"/>
+         </body>
     OUTPUT
-    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+      .new(presxml_options)
        .convert("test", input, true)))).to be_equivalent_to xmlpp(presxml)
     expect(xmlpp(IsoDoc::JIS::HtmlConvert.new({})
       .convert("test", presxml, true))).to be_equivalent_to xmlpp(html)

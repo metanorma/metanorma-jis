@@ -123,7 +123,7 @@ RSpec.describe IsoDoc::JIS do
                   ISO 7301:2011,
                   <span class="citesec">3.1</span>
                 </origin>
-                , modified – The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+                , modified &#x2014; The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
               </termsource>
             </term>
             <term id="paddy">
@@ -224,7 +224,7 @@ RSpec.describe IsoDoc::JIS do
                <p>
                  [SOURCE: ISO 7301:2011,
                  <span class="citesec">3.1</span>
-                 , modified – The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+                 , modified &#x2014; The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
                </p>
                <p class="TermNum" id="paddy">1.2</p>
                <p class="Terms" style="text-align:left;">
@@ -337,7 +337,7 @@ RSpec.describe IsoDoc::JIS do
             <p class="Source">
               [SOURCE: ISO 7301:2011,
               <span class="citesec">3.1</span>
-              , modified – The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+              , modified &#x2014; The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
             </p>
             <p class="TermNum" id="paddy">1.2</p>
             <p class="Terms" style="text-align:left;">
@@ -532,7 +532,7 @@ RSpec.describe IsoDoc::JIS do
                    ISO 7301:2011,
                    <span class="citesec">3.1</span>
                  </origin>
-                 , 修正された – The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+                 , 修正された &#x2014; The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
                </termsource>
              </term>
              <term id="paddy">
