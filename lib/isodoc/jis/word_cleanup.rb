@@ -3,14 +3,6 @@ require_relative "../../html2doc/lists"
 module IsoDoc
   module JIS
     class WordConvert < IsoDoc::Iso::WordConvert
-      def postprocess(result, filename, dir)
-        filename = filename.sub(/\.doc$/, "")
-        header = generate_header(filename, dir)
-        result = from_xhtml(cleanup(to_xhtml(textcleanup(result))))
-        toWord(result, filename, dir, header)
-        @files_to_delete.each { |f| FileUtils.rm_f f }
-      end
-
       def word_cleanup(docxml)
         word_note_cleanup(docxml)
         boldface(docxml)
@@ -53,9 +45,12 @@ module IsoDoc
         end
       end
 
+      def postprocess_cleanup(result)
+        result = (cleanup(to_xhtml(textcleanup(result))))
+        word_split(word_cleanup(to_xhtml(result)))
+      end
+
       def toWord(result, filename, dir, header)
-        result = word_split(word_cleanup(to_xhtml(result)))
-        @wordstylesheet = wordstylesheet_update
         result.each do |k, v|
           to_word1(v, "#{filename}#{k}", dir, header)
         end
