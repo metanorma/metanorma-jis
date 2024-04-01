@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "japanese_calendar", "~> 0"
   spec.add_dependency "metanorma-iso", "~> 2.7.3"
-  spec.add_dependency "pubid-jis"
+  spec.add_dependency "pubid"
 
   spec.add_development_dependency "debug"
   spec.add_development_dependency "equivalent-xml", "~> 0.6"
