@@ -1583,6 +1583,9 @@
 		<xsl:param name="copyrightText"/>
 		<fo:static-content flow-name="footer">
 			<fo:block-container height="24mm" display-align="after">
+        <xsl:if test="$section = 'commentary'">
+          <xsl:attribute name="height">24.5mm</xsl:attribute>
+        </xsl:if>
 				<xsl:if test="$section = 'preface'">
 					<fo:block font-size="9pt" text-align="center" space-after="10pt">(<fo:inline font-family="Times New Roman"><fo:page-number/></fo:inline>)</fo:block>
 				</xsl:if>
@@ -2646,6 +2649,10 @@
 	</xsl:attribute-set>
 
 	<xsl:template name="refine_figure-block-style">
+
+			<xsl:if test="ancestor::*[local-name() = 'example'] or ancestor::*[local-name() = 'note']">
+				<xsl:attribute name="margin-left">0mm</xsl:attribute>
+			</xsl:if>
 
 	</xsl:template>
 
@@ -7822,7 +7829,7 @@
 						</xsl:when>
 						<xsl:otherwise>
 							<fo:external-graphic src="{$src}" fox:alt-text="Image {@alt}" xsl:use-attribute-sets="image-graphic-style">
-								<xsl:if test="not(@mimetype = 'image/svg+xml') and ../*[local-name() = 'name'] and not(ancestor::*[local-name() = 'table'])">
+								<xsl:if test="not(@mimetype = 'image/svg+xml') and (../*[local-name() = 'name'] or parent::*[local-name() = 'figure'][@unnumbered = 'true']) and not(ancestor::*[local-name() = 'table'])">
 
 									<xsl:if test="@width != '' and @width != 'auto' and @width != 'text-width' and @width != 'full-page-width' and @width != 'narrow'">
 										<xsl:attribute name="width">
