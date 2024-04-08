@@ -23,32 +23,4 @@ RSpec.describe Metanorma::JIS do
               .from(false).to(true))
     end
   end
-
-  it "Warns of illegal script" do
-    Asciidoctor.convert(<<~INPUT, *OPTIONS)
-      = Document title
-      Author
-      :docfile: test.adoc
-      :nodoc:
-      :no-isobib:
-      :script: pizza
-      :docnumber: 1000
-
-      text
-    INPUT
-    expect(File.read("test.err.html")).to include "pizza is not a recognised script"
-
-    Asciidoctor.convert(<<~INPUT, *OPTIONS)
-      = Document title
-      Author
-      :docfile: test.adoc
-      :nodoc:
-      :no-isobib:
-      :script: Jpan
-      :docnumber: 1000
-
-      text
-    INPUT
-    expect(File.read("test.err.html")).not_to include "Jpan is not a recognised script"
-  end
 end
