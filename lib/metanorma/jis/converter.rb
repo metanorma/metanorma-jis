@@ -80,7 +80,8 @@ module Metanorma
         else
           IsoDoc::JIS::PresentationXMLConvert
             .new(doc_extract_attributes(node)
-            .merge(output_formats: ::Metanorma::JIS::Processor.new.output_formats))
+            .merge(output_formats: ::Metanorma::JIS::Processor.new
+            .output_formats))
         end
       end
     end

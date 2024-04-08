@@ -340,6 +340,7 @@ HTML_HDR = <<~HDR.freeze
 HDR
 
 OPTIONS = [backend: :jis, header_footer: true].freeze
+PLATEAU_OPTIONS = [backend: :plateau, header_footer: true].freeze
 
 def presxml_options
   { semanticxmlinsert: "false" }
