@@ -138,9 +138,9 @@ RSpec.describe IsoDoc::JIS do
         <p id="A">
           This is a preamble
           <xref target="P">Clause 1, List  1 a)</xref>
-          <xref target="Q">1 List  1 a) 1)</xref>
-          <xref target="R">1 List  1 a) 1.1)</xref>
-          <xref target="S">1 List  1 a) 1.1.1)</xref>
+          <xref target="Q">Clause 1, List  1 a) 1)</xref>
+          <xref target="R">Clause 1, List  1 a) 1.1)</xref>
+          <xref target="S">Clause 1, List  1 a) 1.1.1)</xref>
           <xref target="P1">Clause 1, List  2 a)</xref>
         </p>
       </foreword>
@@ -197,9 +197,9 @@ RSpec.describe IsoDoc::JIS do
          <p id="A">
            This is a preamble
            <xref target="P">箇条 1のリスト  1のa)</xref>
-           <xref target="Q">1 リスト  1のa)の1)</xref>
-           <xref target="R">1 リスト  1のa)の1.1)</xref>
-           <xref target="S">1 リスト  1のa)の1.1.1)</xref>
+           <xref target="Q">箇条 1のリスト  1のa)の1)</xref>
+           <xref target="R">箇条 1のリスト  1のa)の1.1)</xref>
+           <xref target="S">箇条 1のリスト  1のa)の1.1.1)</xref>
            <xref target="P1">箇条 1のリスト  2のa)</xref>
          </p>
        </foreword>

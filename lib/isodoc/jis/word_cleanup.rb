@@ -46,8 +46,8 @@ module IsoDoc
       end
 
       def postprocess_cleanup(result)
-        result = (cleanup(to_xhtml(textcleanup(result))))
-        word_split(word_cleanup(to_xhtml(result)))
+        result = cleanup(to_xhtml(textcleanup(result)))
+        word_split(word_cleanup(result))
       end
 
       def toWord(result, filename, dir, header)
@@ -84,11 +84,13 @@ module IsoDoc
       end
 
       def main_split(xml)
-        c = xml.at("//div[@class = 'WordSection1']")
-        c.next_element&.remove
-        c.remove
-        c = xml.at("//div[@class = 'WordSection2']")
-        c.elements.first.at("./br") and c.elements.first.remove
+        if c = xml.at("//div[@class = 'WordSection1']")
+          c.next_element&.remove
+          c.remove
+        end
+        if c = xml.at("//div[@class = 'WordSection2']")
+          c.elements.first.at("./br") and c.elements.first.remove
+        end
         xml
       end
 

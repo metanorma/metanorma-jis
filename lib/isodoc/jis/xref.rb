@@ -25,6 +25,20 @@ module IsoDoc
         l10n("#{title} #{num}<br/>#{obl}")
       end
 
+      def annex_name_anchors1(clause, num, level)
+        @anchors[clause["id"]] =
+          { xref: num, label: num, level: level,
+            subtype: "annex" }
+      end
+
+      def annex_names1(clause, num, level)
+        annex_name_anchors1(clause, num, level)
+        i = ::IsoDoc::XrefGen::Counter.new(0, prefix: "#{num}.")
+        clause.xpath(ns(SUBCLAUSES)).each do |c|
+          annex_names1(c, i.increment(c).print, level + 1)
+        end
+      end
+
       def clause_order_main(docxml)
         [
           { path: "//sections/introduction" },
@@ -97,14 +111,16 @@ module IsoDoc
 refer_list)
         c = Counter.new(list["start"] ? list["start"].to_i - 1 : 0)
         list.xpath(ns("./li")).each do |li|
-          bare_label, label = list_item_value(li, c, depth,
-                                              { list_anchor: list_anchor, prev_label: prev_label, refer_list: refer_list })
+          bare_label, label =
+            list_item_value(li, c, depth, { list_anchor: list_anchor,
+                                            prev_label: prev_label, refer_list: depth == 1 ? refer_list : nil })
           li["id"] and @anchors[li["id"]] =
                          { label: bare_label, bare_xref: "#{bare_label})",
-                           xref: "#{label})", type: "listitem", refer_list:
-                                        refer_list, container: list_anchor[:container] }
+                           xref: "#{label})", type: "listitem",
+                           refer_list: refer_list, container: list_anchor[:container] }
           (li.xpath(ns(".//ol")) - li.xpath(ns(".//ol//ol"))).each do |ol|
-            list_item_anchor_names(ol, list_anchor, depth + 1, label, false)
+            list_item_anchor_names(ol, list_anchor, depth + 1, label,
+                                   refer_list)
           end
         end
       end
