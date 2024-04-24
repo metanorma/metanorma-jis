@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Ribose Inc."]
   spec.email         = ["open.source@ribose.com"]
 
-  spec.summary       = "metanorma-jis lets you write BSI standards "\
+  spec.summary       = "metanorma-jis lets you write JIS standards "\
                        "in AsciiDoc."
   spec.description   = <<~DESCRIPTION
     metanorma-jis lets you write JIS standards in AsciiDoc syntax.
