@@ -574,9 +574,11 @@ RSpec.describe IsoDoc::JIS do
                  <p>
                    <span class="note_label">Title — </span>
                  </p>
+                 <div class="ul_wrap">
                  <ul>
                    <li>List</li>
                  </ul>
+                 </div>
                  <p id="_">Only use paddy or parboiled rice for the determination of husked rice yield.</p>
                </div>
              </div>

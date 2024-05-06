@@ -139,7 +139,7 @@ module Metanorma
       def metadata_id(node, xml)
         if id = node.attr("docidentifier")
           xml.docidentifier id.sub(/^JIS /, ""),
-            **attr_code(type: "JIS", primary: "true")
+                            **attr_code(type: "JIS", primary: "true")
         else iso_id(node, xml)
         end
       end

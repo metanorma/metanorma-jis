@@ -208,18 +208,22 @@ RSpec.describe IsoDoc::JIS do
                    <span class="example_label">EXAMPLE  1</span>
                      Foreign seeds, husks, bran, sand, dust.
                  </p>
+                 <div class="ul_wrap">
                  <ul>
                    <li>A</li>
                  </ul>
+               </div>
                </div>
                <div id="_" class="example">
                  <p>
                    <span class="example_label">EXAMPLE  2</span>
                     
                  </p>
+                 <div class="ul_wrap">
                  <ul>
                    <li>A</li>
                  </ul>
+               </div>
                </div>
                <p>
                  [SOURCE: ISO 7301:2011,
@@ -239,9 +243,11 @@ RSpec.describe IsoDoc::JIS do
                    <span class="example_label">EXAMPLE</span>
                     
                  </p>
+                 <div class="ul_wrap">
                  <ul>
                    <li>A</li>
                  </ul>
+               </div>
                </div>
                <div id="_" class="Note">
                  <p>
@@ -253,9 +259,11 @@ RSpec.describe IsoDoc::JIS do
                  <p>
                    <span class="note_label">Note 2 to entry</span>
                    :
+                   <div class="ul_wrap">
                    <ul>
                      <li>A</li>
                    </ul>
+                   </div>
                    <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
                  </p>
                </div>
@@ -321,18 +329,22 @@ RSpec.describe IsoDoc::JIS do
                 <span style="mso-tab-count:1">  </span>
                 Foreign seeds, husks, bran, sand, dust.
               </p>
+              <div class="ul_wrap">
               <ul>
                 <li>A</li>
               </ul>
+            </div>
             </div>
             <div id="_" class="example">
               <p>
                 <span class="example_label">EXAMPLE  2</span>
                 <span style="mso-tab-count:1">  </span>
               </p>
+              <div class="ul_wrap">
               <ul>
                 <li>A</li>
               </ul>
+            </div>
             </div>
             <p class="Source">
               [SOURCE: ISO 7301:2011,
@@ -352,9 +364,11 @@ RSpec.describe IsoDoc::JIS do
                 <span class="example_label">EXAMPLE</span>
                 <span style="mso-tab-count:1">  </span>
               </p>
+              <div class="ul_wrap">
               <ul>
                 <li>A</li>
               </ul>
+            </div>
             </div>
             <div id="_" class="Note">
               <p>
@@ -366,9 +380,11 @@ RSpec.describe IsoDoc::JIS do
               <p>
                 <span class="note_label">Note 2 to entry</span>
                 :
+                <div class="ul_wrap">
                 <ul>
                   <li>A</li>
                 </ul>
+                </div>
                 <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
               </p>
             </div>
