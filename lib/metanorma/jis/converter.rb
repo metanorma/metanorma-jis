@@ -18,11 +18,9 @@ module Metanorma
         super
       end
 
-      def doctype(node)
-        ret = node.attr("doctype")&.gsub(/\s+/, "-")&.downcase ||
-          "japanese-industrial-standard"
-        ret = "japanese-industrial-standard" if ret == "article"
-        ret
+      def init_misc(node)
+        super
+        @default_doctype = "japanese-industrial-standard"
       end
 
       def section_attributes(node)
