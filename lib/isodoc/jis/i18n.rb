@@ -11,7 +11,11 @@ module IsoDoc
 
       def load_yaml1(lang, script)
         y = jis_load_file("i18n-#{yaml_lang(lang, script)}.yaml")
-        y.empty? ? load_file("i18n-en.yaml").merge(super) : super.deep_merge(y)
+        if y.empty?
+          jis_load_file("i18n-en.yaml").merge(super)
+        else
+          super.deep_merge(y)
+        end
       end
 
       # use Japanese ordinals for era years
@@ -32,7 +36,7 @@ module IsoDoc
         era_yr = time.era_year.to_i.localize(:ja)
           .to_rbnf_s("SpelloutRules", "spellout-numbering-year")
         "#{time.strftime('%JN')}#{era_yr}年"
-      rescue
+      rescue StandardError
         time.year.to_s
       end
     end
