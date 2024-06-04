@@ -3789,7 +3789,9 @@
 
 					<xsl:variable name="isNoteOrFnExist" select="./*[local-name()='note'][not(@type = 'units')] or ./*[local-name()='example'] or .//*[local-name()='fn'][local-name(..) != 'name'] or ./*[local-name()='source']"/>
 					<xsl:if test="$isNoteOrFnExist = 'true'">
-						<xsl:attribute name="border-bottom">0pt solid black</xsl:attribute><!-- set 0pt border, because there is a separete table below for footer -->
+
+								<xsl:attribute name="border-bottom">0pt solid black</xsl:attribute><!-- set 0pt border, because there is a separete table below for footer -->
+
 					</xsl:if>
 
 					<xsl:choose>
@@ -3846,13 +3848,14 @@
 				</fo:table>
 
 				<xsl:variable name="colgroup" select="*[local-name()='colgroup']"/>
-				<xsl:for-each select="*[local-name()='tbody']"><!-- select context to tbody -->
-					<xsl:call-template name="insertTableFooterInSeparateTable">
-						<xsl:with-param name="table_attributes" select="$table_attributes"/>
-						<xsl:with-param name="colwidths" select="$colwidths"/>
-						<xsl:with-param name="colgroup" select="$colgroup"/>
-					</xsl:call-template>
-				</xsl:for-each>
+
+						<xsl:for-each select="*[local-name()='tbody']"><!-- select context to tbody -->
+							<xsl:call-template name="insertTableFooterInSeparateTable">
+								<xsl:with-param name="table_attributes" select="$table_attributes"/>
+								<xsl:with-param name="colwidths" select="$colwidths"/>
+								<xsl:with-param name="colgroup" select="$colgroup"/>
+							</xsl:call-template>
+						</xsl:for-each>
 
 				<xsl:if test="*[local-name()='bookmark']"> <!-- special case: table/bookmark -->
 					<fo:block keep-with-previous="always" line-height="0.1">
@@ -3872,6 +3875,27 @@
 			<xsl:when test="@width and @width != 'full-page-width' and @width != 'text-width'">
 
 				<!-- centered table when table name is centered (see table-name-style) -->
+
+					<fo:table table-layout="fixed" width="100%" xsl:use-attribute-sets="table-container-style">
+
+						<fo:table-column column-width="proportional-column-width(1)"/>
+						<fo:table-column column-width="{@width}"/>
+						<fo:table-column column-width="proportional-column-width(1)"/>
+						<fo:table-body>
+							<fo:table-row>
+								<fo:table-cell column-number="2">
+									<xsl:copy-of select="$table-preamble"/>
+									<fo:block role="SKIP">
+										<xsl:call-template name="setTrackChangesStyles">
+											<xsl:with-param name="isAdded" select="$isAdded"/>
+											<xsl:with-param name="isDeleted" select="$isDeleted"/>
+										</xsl:call-template>
+										<xsl:copy-of select="$table"/>
+									</fo:block>
+								</fo:table-cell>
+							</fo:table-row>
+						</fo:table-body>
+					</fo:table>
 
 			</xsl:when>
 			<xsl:otherwise>
@@ -4221,8 +4245,10 @@
 					<width_min><xsl:value-of select="@width_min"/></width_min>
 					<e><xsl:value-of select="$d * $W div $D"/></e>
 					<!-- set the column's width to the minimum width plus d times W over D.  -->
+					<xsl:variable name="column_width_" select="round(@width_min + $d * $W div $D)"/> <!--  * 10 -->
+					<xsl:variable name="column_width" select="$column_width_*($column_width_ &gt;= 0) - $column_width_*($column_width_ &lt; 0)"/> <!-- absolute value -->
 					<column divider="100">
-						<xsl:value-of select="round(@width_min + $d * $W div $D)"/> <!--  * 10 -->
+						<xsl:value-of select="$column_width"/>
 					</column>
 				</xsl:for-each>
 
@@ -4625,6 +4651,22 @@
 			</xsl:call-template>
 
 			<xsl:call-template name="refine_table-header-cell-style"/>
+
+			<!-- experimental feature, see https://github.com/metanorma/metanorma-plateau/issues/30#issuecomment-2145461828 -->
+			<!-- <xsl:choose>
+				<xsl:when test="count(node()) = 1 and *[local-name() = 'span'][contains(@style, 'text-orientation')]">
+					<fo:block-container reference-orientation="270">
+						<fo:block role="SKIP" text-align="start">
+							<xsl:apply-templates />
+						</fo:block>
+					</fo:block-container>
+				</xsl:when>
+				<xsl:otherwise>
+					<fo:block role="SKIP">
+						<xsl:apply-templates />
+					</fo:block>
+				</xsl:otherwise>
+			</xsl:choose> -->
 
 			<fo:block role="SKIP">
 				<xsl:apply-templates/>
