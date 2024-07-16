@@ -309,6 +309,8 @@ RSpec.describe IsoDoc do
                </tr>
                <tr>
                  <td colspan="5" style="border-top:0pt;border-bottom:solid windowtext 1.5pt;">
+                 <p class="ListTitle">Key</p>
+                <p class="dl">Drago: A type of rice</p>
                    <div class="BlockSource">
                      <p>SOURCE:
 
@@ -509,6 +511,8 @@ RSpec.describe IsoDoc do
                </td>
              </tr>
            </tfoot>
+          <p class="ForewordText">Key</p>
+          <p class="ForewordText">Drago: A type of rice</p>
          </table>
        </div>
     OUTPUT
@@ -710,6 +714,8 @@ RSpec.describe IsoDoc do
                      <td style="text-align:center;border-top:none;border-bottom:solid windowtext 1.5pt;">81,2</td>
                    </tr>
                  </tbody>
+                 <p class="ListTitle">Key</p>
+                 <p class="dl">Drago: A type of rice</p>
                  <div id="A" class="Note">
                    <p>
                      <span class="note_label">NOTE  1</span>
@@ -724,6 +730,7 @@ RSpec.describe IsoDoc do
                    </p>
                    Note 2
                  </div>
+                 <div id="D" class="Note">Other units in sec</div>
                </table>
              </div>
                    <br/>
@@ -793,6 +800,8 @@ RSpec.describe IsoDoc do
                        <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">81,2</td>
                      </tr>
                    </tbody>
+                   <p class="ForewordText">Key</p>
+                  <p class="ForewordText">Drago: A type of rice</p>
                    <div id="A" class="Note">
                      <p class="Note">
                        <span class="note_label">NOTE  1</span>
@@ -807,6 +816,13 @@ RSpec.describe IsoDoc do
                      </p>
                      Note 2
                    </div>
+                   <div id="D" class="Note">
+            <p class="Note">
+              <span class="note_label"/>
+              <span style="mso-tab-count:1">  </span>
+            </p>
+            Other units in sec
+          </div>
                  </table>
                </div>
              </div>
