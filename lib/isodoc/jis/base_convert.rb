@@ -63,6 +63,13 @@ module IsoDoc
         super
       end
 
+      def table_parse_tail(node, out)
+        node.xpath(ns("./p[@class = 'ListTitle' or @class = 'dl']"))
+          .each { |p| parse(p, out) }
+        node.xpath(ns("./source")).each { |n| parse(n, out) }
+        node.xpath(ns("./note")).each { |n| parse(n, out) }
+      end
+
       def table_thead_pt(node, name)
         node.at(ns("./thead")) ||
           name&.after("<thead> </thead>")&.next ||
@@ -86,6 +93,19 @@ module IsoDoc
         thead.children.first.previous =
           full_row(cols, "<p class='TableTitle' style='text-align:center;'> " \
                          "#{name.remove.children.to_xml}</p>")
+      end
+
+      def table_note_cleanup(docxml)
+        tn = ::IsoDoc::Function::Cleanup::TABLENOTE_CSS
+        docxml.xpath("//table[dl or #{tn} or p[@class = 'dl']]").each do |t|
+          tfoot = table_get_or_make_tfoot(t)
+          insert_here = new_fullcolspan_row(t, tfoot)
+          t.xpath("dl | p[@class = 'ListTitle'] | #{tn} | " \
+                  "p[@class = 'dl']")
+            .each do |d|
+            d.parent = insert_here
+          end
+        end
       end
     end
   end
