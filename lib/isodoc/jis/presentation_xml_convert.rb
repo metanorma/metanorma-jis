@@ -77,8 +77,8 @@ module IsoDoc
       end
 
       def dl_to_para_name(node)
-        e = node.at(ns("./name"))
-        "<p class='ListTitle'>#{e&.children&.to_xml || @i18n.key}</p>"
+        e = node.at(ns("./name")) or return ""
+        "<p class='ListTitle'>#{e.children.to_xml}</p>"
       end
 
       def dl_to_para_terms(node)
