@@ -295,4 +295,270 @@ RSpec.describe IsoDoc::JIS do
        .at("//xmlns:foreword").to_xml))
       .to be_equivalent_to xmlpp(output)
   end
+
+  it "cross-references subfigures" do
+    input = <<~INPUT
+            <iso-standard xmlns="http://riboseinc.com/isoxml">
+            <bibdata><language>en</language></bibdata>
+            <preface>
+        <foreword id="fwd">
+        <p>
+        <xref target="N"/>
+        <xref target="note1"/>
+        <xref target="note2"/>
+        <xref target="AN"/>
+        <xref target="Anote1"/>
+        <xref target="Anote2"/>
+        <xref target="AN1"/>
+        <xref target="Anote11"/>
+        <xref target="Anote21"/>
+        </p>
+        </foreword>
+        </preface>
+        <sections>
+        <clause id="scope" type="scope"><title>Scope</title>
+        </clause>
+        <terms id="terms"/>
+        <clause id="widgets"><title>Widgets</title>
+        <clause id="widgets1">
+        <figure id="N">
+            <figure id="note1">
+      <name>Split-it-right sample divider</name>
+      <image src="rice_images/rice_image1.png" id="_8357ede4-6d44-4672-bac4-9a85e82ab7f0" mimetype="image/png"/>
+      </figure>
+        <figure id="note2">
+      <name>Split-it-right sample divider</name>
+      <image src="rice_images/rice_image1.png" id="_8357ede4-6d44-4672-bac4-9a85e82ab7f0" mimetype="image/png"/>
+      </figure>
+      </figure>
+      <p>    <xref target="note1"/> <xref target="note2"/> </p>
+        </clause>
+        </clause>
+        </sections>
+        <annex id="annex1">
+        <clause id="annex1a">
+        </clause>
+        <clause id="annex1b">
+        <figure id="AN">
+            <figure id="Anote1">
+      <name>Split-it-right sample divider</name>
+      <image src="rice_images/rice_image1.png" id="_8357ede4-6d44-4672-bac4-9a85e82ab7f0" mimetype="image/png"/>
+      </figure>
+        <figure id="Anote2">
+      <name>Split-it-right sample divider</name>
+      <image src="rice_images/rice_image1.png" id="_8357ede4-6d44-4672-bac4-9a85e82ab7f0" mimetype="image/png"/>
+      </figure>
+      </figure>
+        </clause>
+        </annex>
+                  <bibliography><references normative="false" id="biblio"><title>Bibliographical Section</title>
+                  <figure id="AN1">
+            <figure id="Anote11">
+      <name>Split-it-right sample divider</name>
+      <image src="rice_images/rice_image1.png" id="_8357ede4-6d44-4672-bac4-9a85e82ab7f0" mimetype="image/png"/>
+      </figure>
+        <figure id="Anote21">
+      <name>Split-it-right sample divider</name>
+      <image src="rice_images/rice_image1.png" id="_8357ede4-6d44-4672-bac4-9a85e82ab7f0" mimetype="image/png"/>
+      </figure>
+      </figure>
+          </references></bibliography>
+        </iso-standard>
+    INPUT
+    output = <<~OUTPUT
+      <foreword id="fwd" displayorder="1">
+         <p>
+           <xref target="N">
+             <span class="citefig">Figure 1</span>
+           </xref>
+           <xref target="note1">
+             <span class="citefig">Figure 1 a)</span>
+           </xref>
+           <xref target="note2">
+             <span class="citefig">Figure 1 b)</span>
+           </xref>
+           <xref target="AN">
+             <span class="citefig">Figure A.1</span>
+           </xref>
+           <xref target="Anote1">
+             <span class="citefig">Figure A.1 a)</span>
+           </xref>
+           <xref target="Anote2">
+             <span class="citefig">Figure A.1 b)</span>
+           </xref>
+           <xref target="AN1">
+             <span class="citefig">Bibliographical Section, Figure 1</span>
+           </xref>
+           <xref target="Anote11">
+             <span class="citefig">Bibliographical Section, Figure 1 a)</span>
+           </xref>
+           <xref target="Anote21">
+             <span class="citefig">Bibliographical Section, Figure 1 b)</span>
+           </xref>
+         </p>
+       </foreword>
+    OUTPUT
+    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+      .new(presxml_options)
+      .convert("test", input, true))
+      .at("//xmlns:foreword").to_xml))
+      .to be_equivalent_to xmlpp(output)
+    output = <<~OUTPUT
+       <foreword id="fwd" displayorder="1">
+         <p>
+           <xref target="N">
+             <span class="citefig">図 1</span>
+           </xref>
+           <xref target="note1">
+             <span class="citefig">図 1のa)</span>
+           </xref>
+           <xref target="note2">
+             <span class="citefig">図 1のb)</span>
+           </xref>
+           <xref target="AN">
+             <span class="citefig">図 A.1</span>
+           </xref>
+           <xref target="Anote1">
+             <span class="citefig">図 A.1のa)</span>
+           </xref>
+           <xref target="Anote2">
+             <span class="citefig">図 A.1のb)</span>
+           </xref>
+           <xref target="AN1">
+             <span class="citefig">Bibliographical Sectionの図 1</span>
+           </xref>
+           <xref target="Anote11">
+             <span class="citefig">Bibliographical Sectionの図 1のa)</span>
+           </xref>
+           <xref target="Anote21">
+             <span class="citefig">Bibliographical Sectionの図 1のb)</span>
+           </xref>
+         </p>
+       </foreword>
+    OUTPUT
+    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+      .new(presxml_options)
+      .convert("test", input.sub(">en<", ">ja<"), true))
+      .at("//xmlns:foreword").to_xml))
+      .to be_equivalent_to xmlpp(output)
+  end
+
+  it "labels and cross-references nested requirements" do
+    input = <<~INPUT
+              <iso-standard xmlns="http://riboseinc.com/isoxml">
+            <bibdata><language>en</language></bibdata>
+              <preface>
+      <foreword>
+      <p>
+      <xref target="N1"/>
+      <xref target="N2"/>
+      <xref target="N"/>
+      <xref target="Q1"/>
+      <xref target="R1"/>
+      <xref target="AN1"/>
+      <xref target="AN2"/>
+      <xref target="AN"/>
+      <xref target="AQ1"/>
+      <xref target="AR1"/>
+      <xref target="BN1"/>
+      <xref target="BN2"/>
+      <xref target="BN"/>
+      <xref target="BQ1"/>
+      <xref target="BR1"/>
+      </p>
+      </foreword>
+      </preface>
+      <sections>
+      <clause id="xyz"><title>Preparatory</title>
+      <permission id="N1" model="default">
+      <permission id="N2" model="default">
+      <permission id="N" model="default">
+      </permission>
+      </permission>
+      <requirement id="Q1" model="default">
+      </requirement>
+      <recommendation id="R1" model="default">
+      </recommendation>
+      </permission>
+      </clause>
+      </sections>
+      <annex id="Axyz"><title>Preparatory</title>
+      <permission id="AN1" model="default">
+      <permission id="AN2" model="default">
+      <permission id="AN" model="default">
+      </permission>
+      </permission>
+      <requirement id="AQ1" model="default">
+      </requirement>
+      <recommendation id="AR1" model="default">
+      </recommendation>
+      </permission>
+      </annex>
+                <bibliography><references normative="false" id="biblio"><title>Bibliographical Section</title>
+                <permission id="BN1" model="default">
+      <permission id="BN2" model="default">
+      <permission id="BN" model="default">
+      </permission>
+      </permission>
+      <requirement id="BQ1" model="default">
+      </requirement>
+      <recommendation id="BR1" model="default">
+      </recommendation>
+      </permission>
+          </references></bibliography>
+      </iso-standard>
+    INPUT
+    output = <<~OUTPUT
+                <foreword displayorder='1'>
+                  <p>
+                     <xref target='N1'>Clause 1, Permission 1</xref>
+      <xref target='N2'>Clause 1, Permission 1-1</xref>
+      <xref target='N'>Clause 1, Permission 1-1-1</xref>
+      <xref target='Q1'>Clause 1, Requirement 1-1</xref>
+      <xref target='R1'>Clause 1, Recommendation 1-1</xref>
+      <xref target='AN1'>Permission A.1</xref>
+      <xref target='AN2'>Permission A.1-1</xref>
+      <xref target='AN'>Permission A.1-1-1</xref>
+      <xref target='AQ1'>Requirement A.1-1</xref>
+      <xref target='AR1'>Recommendation A.1-1</xref>
+      <xref target="BN1">Bibliographical Section, Permission 1</xref>
+      <xref target="BN2">Bibliographical Section, Permission 1-1</xref>
+      <xref target="BN">Bibliographical Section, Permission 1-1-1</xref>
+      <xref target="BQ1">Bibliographical Section, Requirement 1-1</xref>
+      <xref target="BR1">Bibliographical Section, Recommendation 1-1</xref>
+                  </p>
+                </foreword>
+    OUTPUT
+    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+      .new(presxml_options)
+      .convert("test", input, true))
+      .at("//xmlns:foreword").to_xml))
+      .to be_equivalent_to xmlpp(output)
+    output = <<~OUTPUT
+      <foreword displayorder="1">
+         <p>
+           <xref target="N1">箇条 1のPermission 1</xref>
+           <xref target="N2">箇条 1のPermission 1の1</xref>
+           <xref target="N">箇条 1のPermission 1の1の1</xref>
+           <xref target="Q1">箇条 1のRequirement 1の1</xref>
+           <xref target="R1">箇条 1のRecommendation 1の1</xref>
+           <xref target="AN1">Permission A.1</xref>
+           <xref target="AN2">Permission A.1の1</xref>
+           <xref target="AN">Permission A.1の1の1</xref>
+           <xref target="AQ1">Requirement A.1の1</xref>
+           <xref target="AR1">Recommendation A.1の1</xref>
+           <xref target="BN1">Bibliographical SectionのPermission 1</xref>
+           <xref target="BN2">Bibliographical SectionのPermission 1の1</xref>
+           <xref target="BN">Bibliographical SectionのPermission 1の1の1</xref>
+           <xref target="BQ1">Bibliographical SectionのRequirement 1の1</xref>
+           <xref target="BR1">Bibliographical SectionのRecommendation 1の1</xref>
+         </p>
+       </foreword>
+    OUTPUT
+    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+      .new(presxml_options)
+      .convert("test", input.sub(">en<", ">ja<"), true))
+      .at("//xmlns:foreword").to_xml))
+      .to be_equivalent_to xmlpp(output)
+  end
 end
