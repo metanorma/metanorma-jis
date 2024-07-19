@@ -55,10 +55,10 @@ RSpec.describe IsoDoc do
                   <td align="center">2,89</td>
                   <td align="center">0,57</td>
                   <td align="center">2,26</td>
-                  <td align="center">6,06</td>
+                  <td align="center"><dl><dt>6,06</dt><dd>definition</dd></dl></td>
                 </tr>
               </tfoot>
-              <dl>
+              <dl key="true">
                 <dt>Drago</dt>
                 <dd>A type of rice</dd>
               </dl>
@@ -166,7 +166,9 @@ RSpec.describe IsoDoc do
                    <td align="center">2,89</td>
                    <td align="center">0,57</td>
                    <td align="center">2,26</td>
-                   <td align="center">6,06</td>
+                   <td align="center">
+                      <p class="dl">6,06: definition</p>
+                    </td>
                  </tr>
                </tfoot>
                <p class="ListTitle">Key</p>
@@ -305,7 +307,9 @@ RSpec.describe IsoDoc do
                  <td style="text-align:center;border-top:solid windowtext 1.5pt;border-bottom:0pt;">2,89</td>
                  <td style="text-align:center;border-top:solid windowtext 1.5pt;border-bottom:0pt;">0,57</td>
                  <td style="text-align:center;border-top:solid windowtext 1.5pt;border-bottom:0pt;">2,26</td>
-                 <td style="text-align:center;border-top:solid windowtext 1.5pt;border-bottom:0pt;">6,06</td>
+                 <td style="text-align:center;border-top:solid windowtext 1.5pt;border-bottom:0pt;">
+                    <p class="dl">6,06: definition</p>
+                 </td>
                </tr>
                <tr>
                  <td colspan="5" style="border-top:0pt;border-bottom:solid windowtext 1.5pt;">
@@ -449,7 +453,9 @@ RSpec.describe IsoDoc do
                <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">2,89</td>
                <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">0,57</td>
                <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">2,26</td>
-               <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">6,06</td>
+               <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">
+                   <p class="ForewordText" style="text-align: center;page-break-after:auto">6,06: definition</p>
+               </td>
              </tr>
              <tr>
                <td colspan="5" style="border-top:0pt;mso-border-top-alt:0pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-left-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-right-alt:solid windowtext 1.5pt;">
@@ -591,7 +597,7 @@ RSpec.describe IsoDoc do
                   <td align="center">81,2</td>
                 </tr>
               </tbody>
-              <dl>
+              <dl key="true">
                 <dt>Drago</dt>
                 <dd>A type of rice</dd>
               </dl>
