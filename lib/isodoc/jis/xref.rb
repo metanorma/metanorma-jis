@@ -17,11 +17,22 @@ module IsoDoc
     end
 
     class Xref < IsoDoc::Iso::Xref
+      def hierfigsep
+        @lang == "ja" ? "の" : super
+      end
+
+      def subfigure_label(subfignum)
+        subfignum.zero? and return ""
+        sep = @lang == "ja" ? "の" : " "
+        "#{sep}#{(subfignum + 96).chr})"
+      end
+
       def annex_name_lbl(clause, num)
         obl = l10n("(#{@labels['inform_annex']})")
         clause["obligation"] == "normative" and
           obl = l10n("(#{@labels['norm_annex']})")
-        title = Common::case_with_markup(@labels["annex"], "capital", @script)
+        title = Common::case_with_markup(@labels["annex"], "capital",
+                                         @script)
         l10n("#{title} #{num}<br/>#{obl}")
       end
 
