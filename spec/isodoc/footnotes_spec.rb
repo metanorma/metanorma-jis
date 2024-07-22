@@ -116,10 +116,10 @@ RSpec.describe IsoDoc do
          </body>
        </html>
     OUTPUT
-    expect(xmlpp(IsoDoc::JIS::HtmlConvert.new({}).convert("test", input, true)))
-      .to be_equivalent_to xmlpp(html)
-    expect(xmlpp(IsoDoc::JIS::WordConvert.new({}).convert("test", input, true)
+    expect(Xml::C14n.format(IsoDoc::JIS::HtmlConvert.new({}).convert("test", input, true)))
+      .to be_equivalent_to Xml::C14n.format(html)
+    expect(Xml::C14n.format(IsoDoc::JIS::WordConvert.new({}).convert("test", input, true)
       .gsub(/_Ref\d+/, "_Ref")))
-      .to be_equivalent_to xmlpp(word)
+      .to be_equivalent_to Xml::C14n.format(word)
   end
 end

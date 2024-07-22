@@ -154,11 +154,11 @@ RSpec.describe IsoDoc::JIS do
     doc = Nokogiri::XML(output)
     doc.xpath("//xmlns:p[@class = 'MsoToc1']").each(&:remove)
     doc1 = doc.at("//xmlns:div[@class = 'WordSection2']")
-    expect(xmlpp(strip_guid(doc1.to_xml)))
-      .to be_equivalent_to xmlpp(strip_guid(word1))
+    expect(Xml::C14n.format(strip_guid(doc1.to_xml)))
+      .to be_equivalent_to Xml::C14n.format(strip_guid(word1))
     doc1 = doc.at("//xmlns:div[@class = 'WordSection3']")
-    expect(xmlpp(doc1.to_xml))
-      .to be_equivalent_to xmlpp(word2)
+    expect(Xml::C14n.format(doc1.to_xml))
+      .to be_equivalent_to Xml::C14n.format(word2)
   end
 
   it "moves content to inner cover" do
@@ -424,9 +424,9 @@ RSpec.describe IsoDoc::JIS do
     output = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
-    expect(xmlpp(strip_guid(Nokogiri::XML(output)
+    expect(Xml::C14n.format(strip_guid(Nokogiri::XML(output)
       .at("//xmlns:div[@class = 'WordSection3']").to_xml)))
-      .to be_equivalent_to xmlpp(word)
+      .to be_equivalent_to Xml::C14n.format(word)
   end
 
   it "deals with lists and paragraphs" do
@@ -478,8 +478,8 @@ RSpec.describe IsoDoc::JIS do
     output = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
-    expect(xmlpp(Nokogiri::XML(output)
+    expect(Xml::C14n.format(Nokogiri::XML(output)
       .at("//xmlns:div[@class = 'WordSection3']").to_xml))
-      .to be_equivalent_to xmlpp(word)
+      .to be_equivalent_to Xml::C14n.format(word)
   end
 end

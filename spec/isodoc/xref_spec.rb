@@ -85,11 +85,11 @@ RSpec.describe IsoDoc::JIS do
          </p>
        </foreword>
     OUTPUT
-    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))
       .at("//xmlns:foreword").to_xml))
-      .to be_equivalent_to xmlpp(output)
+      .to be_equivalent_to Xml::C14n.format(output)
   end
 
   it "cross-references list items" do
@@ -145,11 +145,11 @@ RSpec.describe IsoDoc::JIS do
         </p>
       </foreword>
     OUTPUT
-    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
        .new(presxml_options)
        .convert("test", input, true))
        .at("//xmlns:foreword").to_xml))
-      .to be_equivalent_to xmlpp(output)
+      .to be_equivalent_to Xml::C14n.format(output)
 
     input = <<~INPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml">
@@ -204,11 +204,11 @@ RSpec.describe IsoDoc::JIS do
          </p>
        </foreword>
     OUTPUT
-    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
        .new(presxml_options)
        .convert("test", input, true))
        .at("//xmlns:foreword").to_xml))
-      .to be_equivalent_to xmlpp(output)
+      .to be_equivalent_to Xml::C14n.format(output)
   end
 
   it "cross-references assets in commentaries" do
@@ -264,11 +264,11 @@ RSpec.describe IsoDoc::JIS do
          </p>
        </foreword>
     OUTPUT
-    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
        .new(presxml_options)
        .convert("test", input, true))
        .at("//xmlns:foreword").to_xml))
-      .to be_equivalent_to xmlpp(output)
+      .to be_equivalent_to Xml::C14n.format(output)
     output = <<~OUTPUT
       <foreword obligation="informative" displayorder="1">
          <title>Foreword</title>
@@ -289,11 +289,11 @@ RSpec.describe IsoDoc::JIS do
     OUTPUT
     input.sub!("<preface>",
                "<bibdata><language>ja</language></bibdata><preface>")
-    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))
        .at("//xmlns:foreword").to_xml))
-      .to be_equivalent_to xmlpp(output)
+      .to be_equivalent_to Xml::C14n.format(output)
   end
 
   it "cross-references subfigures" do
@@ -398,11 +398,11 @@ RSpec.describe IsoDoc::JIS do
          </p>
        </foreword>
     OUTPUT
-    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))
       .at("//xmlns:foreword").to_xml))
-      .to be_equivalent_to xmlpp(output)
+      .to be_equivalent_to Xml::C14n.format(output)
     output = <<~OUTPUT
        <foreword id="fwd" displayorder="1">
          <p>
@@ -436,11 +436,11 @@ RSpec.describe IsoDoc::JIS do
          </p>
        </foreword>
     OUTPUT
-    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input.sub(">en<", ">ja<"), true))
       .at("//xmlns:foreword").to_xml))
-      .to be_equivalent_to xmlpp(output)
+      .to be_equivalent_to Xml::C14n.format(output)
   end
 
   it "labels and cross-references nested requirements" do
@@ -529,11 +529,11 @@ RSpec.describe IsoDoc::JIS do
                   </p>
                 </foreword>
     OUTPUT
-    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))
       .at("//xmlns:foreword").to_xml))
-      .to be_equivalent_to xmlpp(output)
+      .to be_equivalent_to Xml::C14n.format(output)
     output = <<~OUTPUT
       <foreword displayorder="1">
          <p>
@@ -555,10 +555,10 @@ RSpec.describe IsoDoc::JIS do
          </p>
        </foreword>
     OUTPUT
-    expect(xmlpp(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input.sub(">en<", ">ja<"), true))
       .at("//xmlns:foreword").to_xml))
-      .to be_equivalent_to xmlpp(output)
+      .to be_equivalent_to Xml::C14n.format(output)
   end
 end

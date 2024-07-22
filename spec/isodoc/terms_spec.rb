@@ -409,17 +409,17 @@ RSpec.describe IsoDoc::JIS do
         <div class="colophon"/>
       </body>
     OUTPUT
-    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
       .convert("test", input, true))))
-      .to be_equivalent_to xmlpp(presxml)
-    expect(xmlpp(IsoDoc::JIS::HtmlConvert.new({})
+      .to be_equivalent_to Xml::C14n.format(presxml)
+    expect(Xml::C14n.format(IsoDoc::JIS::HtmlConvert.new({})
       .convert("test", presxml, true)))
-      .to be_equivalent_to xmlpp(html)
-    expect(xmlpp(IsoDoc::JIS::WordConvert.new({})
+      .to be_equivalent_to Xml::C14n.format(html)
+    expect(Xml::C14n.format(IsoDoc::JIS::WordConvert.new({})
       .convert("test", presxml, true)
       .sub(/^.*<body/m, "<body")
       .sub(%r{</body>.*$}m, "</body>")))
-      .to be_equivalent_to xmlpp(word)
+      .to be_equivalent_to Xml::C14n.format(word)
   end
 
   it "processes IsoXML terms in Japanese" do
@@ -612,7 +612,7 @@ RSpec.describe IsoDoc::JIS do
     xml = Nokogiri::XML(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
       .convert("test", input, true))
     xml.at("//xmlns:localized-strings").remove
-    expect(xmlpp(strip_guid(xml.to_xml)))
-      .to be_equivalent_to xmlpp(presxml)
+    expect(Xml::C14n.format(strip_guid(xml.to_xml)))
+      .to be_equivalent_to Xml::C14n.format(presxml)
   end
 end
