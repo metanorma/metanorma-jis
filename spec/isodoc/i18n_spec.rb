@@ -650,17 +650,17 @@ RSpec.describe IsoDoc::JIS do
           </body>
         </html>
     WORD
-    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to xmlpp(presxml)
-    expect(xmlpp(IsoDoc::JIS::HtmlConvert.new({})
+      .to be_equivalent_to Xml::C14n.format(presxml)
+    expect(Xml::C14n.format(IsoDoc::JIS::HtmlConvert.new({})
       .convert("test", presxml, true)))
-      .to be_equivalent_to xmlpp(html)
-    expect(xmlpp(IsoDoc::JIS::WordConvert.new({})
+      .to be_equivalent_to Xml::C14n.format(html)
+    expect(Xml::C14n.format(IsoDoc::JIS::WordConvert.new({})
       .convert("test", presxml, true)))
-      .to be_equivalent_to xmlpp(word)
+      .to be_equivalent_to Xml::C14n.format(word)
   end
 
   it "defaults to Japanese" do
@@ -750,9 +750,9 @@ RSpec.describe IsoDoc::JIS do
           </bibliography>
         </iso-standard>
       INPUT
-    expect(xmlpp(strip_guid(output))
+    expect(Xml::C14n.format(strip_guid(output))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to xmlpp(<<~OUTPUT)
+      .to be_equivalent_to Xml::C14n.format(<<~OUTPUT)
         <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
              <bibdata>
                <status>
@@ -1364,14 +1364,14 @@ RSpec.describe IsoDoc::JIS do
         </body>
       </html>
     OUTPUT
-    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to xmlpp(presxml)
-    expect(xmlpp(IsoDoc::JIS::HtmlConvert.new({})
+      .to be_equivalent_to Xml::C14n.format(presxml)
+    expect(Xml::C14n.format(IsoDoc::JIS::HtmlConvert.new({})
       .convert("test", presxml, true)))
-      .to be_equivalent_to xmlpp(html)
+      .to be_equivalent_to Xml::C14n.format(html)
   end
 
   it "internationalises dates in bibdata" do
@@ -1395,11 +1395,11 @@ RSpec.describe IsoDoc::JIS do
         </bibdata>
       </iso-standard>
     OUTPUT
-    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to xmlpp(output)
+      .to be_equivalent_to Xml::C14n.format(output)
     output = <<~OUTPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
         <bibdata>
@@ -1410,11 +1410,11 @@ RSpec.describe IsoDoc::JIS do
         </bibdata>
       </iso-standard>
     OUTPUT
-    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input.sub("<language>en</language>",
                                  "<language>ja</language"), true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to xmlpp(output)
+      .to be_equivalent_to Xml::C14n.format(output)
   end
 end

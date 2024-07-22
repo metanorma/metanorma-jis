@@ -372,18 +372,18 @@ RSpec.describe IsoDoc::JIS do
         </body>
       </html>
     OUTPUT
-    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true).gsub("&lt;", "&#x3c;"))))
-      .to be_equivalent_to xmlpp(presxml)
-    expect(xmlpp(strip_guid(IsoDoc::JIS::HtmlConvert.new({})
-      .convert("test", presxml, true)))).to be_equivalent_to xmlpp(html)
+      .to be_equivalent_to Xml::C14n.format(presxml)
+    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::HtmlConvert.new({})
+      .convert("test", presxml, true)))).to be_equivalent_to Xml::C14n.format(html)
     FileUtils.rm_rf "spec/assets/odf1.emf"
-    expect(xmlpp(strip_guid(IsoDoc::JIS::WordConvert.new({})
+    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::WordConvert.new({})
       .convert("test", presxml, true)
       .gsub(/['"][^'".]+\.(gif|xml)['"]/, "'_.\\1'")
       .gsub(/mso-bookmark:_Ref\d+/, "mso-bookmark:_Ref"))))
-      .to be_equivalent_to xmlpp(word)
+      .to be_equivalent_to Xml::C14n.format(word)
   end
 
   it "processes subfigures" do
@@ -520,18 +520,18 @@ RSpec.describe IsoDoc::JIS do
         </body>
       </html>
     OUTPUT
-    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true).gsub("&lt;", "&#x3c;"))))
-      .to be_equivalent_to xmlpp(presxml)
-    expect(xmlpp(strip_guid(IsoDoc::JIS::HtmlConvert.new({})
-      .convert("test", presxml, true)))).to be_equivalent_to xmlpp(html)
+      .to be_equivalent_to Xml::C14n.format(presxml)
+    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::HtmlConvert.new({})
+      .convert("test", presxml, true)))).to be_equivalent_to Xml::C14n.format(html)
     FileUtils.rm_rf "spec/assets/odf1.emf"
-    expect(xmlpp(strip_guid(IsoDoc::JIS::WordConvert.new({})
+    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::WordConvert.new({})
       .convert("test", presxml, true)
       .gsub(/['"][^'".]+\.(gif|xml)['"]/, "'_.\\1'")
       .gsub(/mso-bookmark:_Ref\d+/, "mso-bookmark:_Ref"))))
-      .to be_equivalent_to xmlpp(word)
+      .to be_equivalent_to Xml::C14n.format(word)
   end
 
   it "processes admonitions with titles" do
@@ -590,13 +590,13 @@ RSpec.describe IsoDoc::JIS do
          </body>
        </html>
     OUTPUT
-    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))))
-      .to be_equivalent_to xmlpp(presxml)
-    expect(xmlpp(IsoDoc::JIS::HtmlConvert.new({})
+      .to be_equivalent_to Xml::C14n.format(presxml)
+    expect(Xml::C14n.format(IsoDoc::JIS::HtmlConvert.new({})
       .convert("test", presxml, true)))
-      .to be_equivalent_to xmlpp(output)
+      .to be_equivalent_to Xml::C14n.format(output)
   end
 
   it "processes ordered lists" do
@@ -689,9 +689,9 @@ RSpec.describe IsoDoc::JIS do
         </preface>
       </iso-standard>
     INPUT
-    expect(xmlpp(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
       .new(presxml_options)
      .convert("test", input, true))))
-      .to be_equivalent_to xmlpp(presxml)
+      .to be_equivalent_to Xml::C14n.format(presxml)
   end
 end
