@@ -1,6 +1,7 @@
 require_relative "init"
 require "isodoc"
 require_relative "presentation_section"
+require_relative "../../relaton/render-jis/general"
 
 module IsoDoc
   module JIS
