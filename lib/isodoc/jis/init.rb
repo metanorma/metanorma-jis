@@ -20,6 +20,11 @@ module IsoDoc
                                        i18nyaml: i18nyaml || @i18nyaml)
       end
 
+      def bibrenderer(options = {})
+        ::Relaton::Render::JIS::General.new(options.merge(language: @lang,
+                                                          i18nhash: @i18n.get))
+      end
+
       def omit_docid_prefix(prefix)
         return true if prefix.nil? || prefix.empty?
 
