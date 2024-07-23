@@ -11,6 +11,9 @@ JIS: 日本工業規格
 draft_label: 案
 white-paper: 白紙
 chairperson: 委員会長
+membership_table: 構成表
+full_name: 氏名
+affiliation: 所属
 doctype_dict:
   international-standard: 日本産業規格
   japanese-industrial-standard: 日本産業規格

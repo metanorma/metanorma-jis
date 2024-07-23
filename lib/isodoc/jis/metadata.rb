@@ -76,7 +76,7 @@ module IsoDoc
       def investigative_organisation(xml)
         xpath = "//bibdata/contributor" \
           "[xmlns:role/@type = 'authorizer'][xmlns:role/description = " \
-          "'investigative organization']/organization/name"
+          "'Investigative organization']/organization/name"
         org = xml.at(ns(xpath))
         if org then set_encoded(:"investigative-organization", org)
         else set(:"investigative-organization", get[:publisher])
@@ -86,7 +86,7 @@ module IsoDoc
       def investigative_committee(xml)
         xpath = "//bibdata/contributor" \
           "[xmlns:role/@type = 'authorizer'][xmlns:role/description = " \
-          "'investigative committee']"
+          "'Investigative committee']"
         if o = xml.at(ns("#{xpath}/organization/name"))
           set_encoded(:"investigative-committee", o)
         elsif p = xml.at(ns("#{xpath}/person"))
