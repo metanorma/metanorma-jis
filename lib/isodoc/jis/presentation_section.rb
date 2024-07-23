@@ -96,7 +96,7 @@ module IsoDoc
 
       def participant_rows(yaml)
         yaml.map do |y|
-          r = y["role"] ? @i18n.l10n("(#{y['role']}}") : ""
+          r = y["role"] ? @i18n.l10n("(#{y['role']})") : ""
           n = y["name"]
           if n.is_a?(Hash)
             n =
