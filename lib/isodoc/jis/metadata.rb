@@ -73,20 +73,23 @@ module IsoDoc
         investigative_committee(xml)
       end
 
+      def extract_role(role, desc)
+        <<~XPATH
+          //bibdata/contributor[xmlns:role/@type = '#{role}'][xmlns:role/description = '#{desc}' or xmlns:role/description = '#{desc.downcase}']
+        XPATH
+      end
+
       def investigative_organisation(xml)
-        xpath = "//bibdata/contributor" \
-          "[xmlns:role/@type = 'authorizer'][xmlns:role/description = " \
-          "'Investigative organization']/organization/name"
-        org = xml.at(ns(xpath))
+        p = extract_role("authorizer", "Investigative organization")
+        org = xml.at(ns("#{p}/organization/name/variant[@language = '#{@lang}']"))
+        org ||= xml.at(ns("#{p}/organization/name"))
         if org then set_encoded(:"investigative-organization", org)
         else set(:"investigative-organization", get[:publisher])
         end
       end
 
       def investigative_committee(xml)
-        xpath = "//bibdata/contributor" \
-          "[xmlns:role/@type = 'authorizer'][xmlns:role/description = " \
-          "'Investigative committee']"
+        xpath = extract_role("authorizer", "Investigative committee")
         if o = xml.at(ns("#{xpath}/organization/name"))
           set_encoded(:"investigative-committee", o)
         elsif p = xml.at(ns("#{xpath}/person"))
