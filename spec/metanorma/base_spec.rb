@@ -214,7 +214,7 @@ RSpec.describe Metanorma::JIS do
              <p id="_">官 報 掲 載 日:平成十二年2月1日</p>
              <p id="_">原 案 作 成 者:一般財団法人日本規格協会</p>
              <p id="_">(〒108-0073 東京都港区三田 3-13-12 三田 MT ビル TEL 03-4231-8530)</p>
-             <p id="_">審 議 部 会:日本工業規格</p>
+             <p id="_">審 議 部 会:日本産業標準調査会日本産業標準調査会 標準第一部会</p>
            </copyright-statement>
            <feedback-statement>
              <p id="_">この規格についての意見又は質問は，上記原案作成者又は経済産業省産業技術環境局 国際標準課(〒100-8901 東京 都千代田区霞が関 1-3-1)にご連絡ください。</p>
@@ -347,7 +347,7 @@ RSpec.describe Metanorma::JIS do
        Date of publication in the Official Gazette: 2000-02-01
        Draft creator: Japanese Standards Association
        (Mita MT Building, 3-13-12 Mita, Minato-ku, Tokyo 108-0073 Tel: 03-4231-8530)
-       Investigative Working Group: Japanese Industrial Standards </p>
+       Investigative Working Group: Japanese Industrial Standards Committee 日本産業標準調査会 標準第一部会 </p>
            </copyright-statement>
            <feedback-statement>
              <p id="_">Any comments or questions regarding this standard should be directed to the above drafter or the International Standardization Division, Industrial Science and Technology Policy and Environment Bureau, Ministry of Economy, Trade and Industry (Tokyo 100-8901 Tokyo, Japan). Please contact 1-3-1 Kasumigaseki, Chiyoda-ku, Tokyo. In accordance with the provisions of the Industrial Standardization Law, Japanese Industrial Standards shall be reviewed by the Japan Industrial Standards Committee by the date when at least five years have passed. It will be put up for discussion and promptly confirmed, amended or repealed.</p>

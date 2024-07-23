@@ -155,7 +155,7 @@ RSpec.describe IsoDoc::JIS::Metadata do
       :"investigative-committee"=>"Committee 123",
       :"investigative-committee-representative-name"=>"KUROSAWA Akira",
       :"investigative-committee-representative-role"=>"chairperson",
-      :"investigative-organization"=>"Japanese Industrial Standards",
+      :"investigative-organization"=>"Japanese Industrial Standards Committee",
       :lang=>"en",
       :publisher=>"Japanese Industrial Standards",
       :revdate=>"2000-01-01",
