@@ -47,7 +47,7 @@ RSpec.describe IsoDoc::JIS::Metadata do
            </contributor>
                       <contributor>
              <role type="authorizer">
-               <description>investigative committee</description>
+               <description>Investigative committee</description>
              </role>
              <person>
                <name>
@@ -62,7 +62,7 @@ RSpec.describe IsoDoc::JIS::Metadata do
            </contributor>
            <contributor>
              <role type="authorizer">
-               <description>investigative committee</description>
+               <description>Investigative committee</description>
              </role>
              <person>
                <name>

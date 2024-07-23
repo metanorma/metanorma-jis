@@ -6,6 +6,9 @@ commentary_page: Comm.
 JIS: 日本工業規格
 permission_footer: Duplication, reprinting, etc. without permission is prohibited by copyright law.
 chairperson: chairperson
+membership_table: Membership Table
+full_name: Full Name
+affiliation: Affiliation
 doctype_dict:
   international-standard: International standard
   japanese-industrial-standard: International standard
