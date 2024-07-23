@@ -622,12 +622,12 @@ RSpec.describe IsoDoc::JIS do
                 </thead>
                 <tbody>
                    <tr>
-                      <td>(部会長}</td>
+                      <td>(部会長)</td>
                       <td>信介 酒井</td>
                       <td>横浜国立大学</td>
                    </tr>
                    <tr>
-                      <td>(委員}</td>
+                      <td>(委員)</td>
                       <td>弘 伊藤</td>
                       <td>国立研究開発法人建築研究所</td>
                    </tr>
@@ -652,7 +652,7 @@ RSpec.describe IsoDoc::JIS do
       .to be_equivalent_to Xml::C14n.format(strip_guid(presxml))
 
     presxml = <<~OUTPUT
-       <preface>
+      <preface>
           <clause id="_" displayorder="1">
              <title depth="1">日本産業標準調査会 標準第一部会 構成表</title>
              <table unnumbered="true">
@@ -665,12 +665,12 @@ RSpec.describe IsoDoc::JIS do
                 </thead>
                 <tbody>
                    <tr>
-                      <td>(部会長}</td>
+                      <td>(部会長)</td>
                       <td>酒井 信介</td>
                       <td>横浜国立大学</td>
                    </tr>
                    <tr>
-                      <td>(委員}</td>
+                      <td>(委員)</td>
                       <td>伊藤 弘</td>
                       <td>国立研究開発法人建築研究所</td>
                    </tr>
