@@ -39,10 +39,8 @@ RSpec.describe IsoDoc::JIS::Metadata do
                <description>Investigative organization</description>
              </role>
              <organization>
-               <name>
-                 <variant language="ja">日本産業標準調査会</variant>
-                 <variant language="en">Japanese Industrial Standards Committee</variant>
-               </name>
+                 <name language="ja">日本産業標準調査会</name>
+                 <name language="en">Japanese Industrial Standards Committee</name>
              </organization>
            </contributor>
                       <contributor>

@@ -81,7 +81,7 @@ module IsoDoc
 
       def investigative_organisation(xml)
         p = extract_role("authorizer", "Investigative organization")
-        org = xml.at(ns("#{p}/organization/name/variant[@language = '#{@lang}']"))
+        org = xml.at(ns("#{p}/organization/name[@language = '#{@lang}']"))
         org ||= xml.at(ns("#{p}/organization/name"))
         if org then set_encoded(:"investigative-organization", org)
         else set(:"investigative-organization", get[:publisher])
