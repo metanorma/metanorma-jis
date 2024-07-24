@@ -577,7 +577,7 @@ RSpec.describe IsoDoc::JIS do
               <contributor><role type="publisher"/><organization>
                 <name>国土交通省都市局</name>
               </organization></contributor><contributor><role type="authorizer"><description>Investigative organization</description></role><organization>
-              <name><variant language="ja">日本産業標準調査会</variant><variant language="en">Japanese Industrial Standards Committee</variant></name>
+              <name> language="ja">日本産業標準調査会</name><name language="en">Japanese Industrial Standards Committee</name>
               </organization></contributor><contributor><role type="authorizer"><description>Investigative committee</description></role><organization>
               <name>日本産業標準調査会 標準第一部会</name>
               </organization></contributor>
