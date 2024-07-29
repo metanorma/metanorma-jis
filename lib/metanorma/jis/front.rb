@@ -92,9 +92,9 @@ module Metanorma
 
       def multiling_noko_value(value, tag, xml)
         if value.is_a?(Hash)
-          xml.send tag do |t|
-            value.each do |k, v|
-              t.variant v, language: k
+          value.each do |k, v|
+            xml.send tag, language: k do |x|
+              x << v
             end
           end
         elsif value.is_a?(Array)

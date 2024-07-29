@@ -39,15 +39,13 @@ RSpec.describe IsoDoc::JIS::Metadata do
                <description>Investigative organization</description>
              </role>
              <organization>
-               <name>
-                 <variant language="ja">日本産業標準調査会</variant>
-                 <variant language="en">Japanese Industrial Standards Committee</variant>
-               </name>
+                 <name language="ja">日本産業標準調査会</name>
+                 <name language="en">Japanese Industrial Standards Committee</name>
              </organization>
            </contributor>
                       <contributor>
              <role type="authorizer">
-               <description>investigative committee</description>
+               <description>Investigative committee</description>
              </role>
              <person>
                <name>
@@ -62,7 +60,7 @@ RSpec.describe IsoDoc::JIS::Metadata do
            </contributor>
            <contributor>
              <role type="authorizer">
-               <description>investigative committee</description>
+               <description>Investigative committee</description>
              </role>
              <person>
                <name>
@@ -155,7 +153,7 @@ RSpec.describe IsoDoc::JIS::Metadata do
       :"investigative-committee"=>"Committee 123",
       :"investigative-committee-representative-name"=>"KUROSAWA Akira",
       :"investigative-committee-representative-role"=>"chairperson",
-      :"investigative-organization"=>"Japanese Industrial Standards",
+      :"investigative-organization"=>"Japanese Industrial Standards Committee",
       :lang=>"en",
       :publisher=>"Japanese Industrial Standards",
       :revdate=>"2000-01-01",
