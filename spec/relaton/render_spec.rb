@@ -73,8 +73,8 @@ RSpec.describe Relaton::Render::JIS do
 
   it "renders home standard, JIS" do
     input = <<~INPUT
-          <bibdata type="standard" schema-version="v1.2.9">
-        <fetched>2024-07-22</fetched>
+      <bibdata type="standard" schema-version="v1.2.9">
+        <fetched>2024-07-29</fetched>
         <title format="text/plain" language="ja" script="Jpan">電気及び関連分野―信号指定及び接続指定</title>
         <title format="text/plain" language="en" script="Lant">Designations for signals and connections</title>
         <uri type="src">https://webdesk.jsa.or.jp/books/W11M0090/index/?bunsyo_id=JIS+C+0450%3A2004</uri>
@@ -85,6 +85,14 @@ RSpec.describe Relaton::Render::JIS do
           <role type="author"/>
           <organization>
             <name language="ja" script="Jpan">一般財団法人　日本規格協会</name>
+            <name language="en" script="Latn">Japanese Industrial Standards</name>
+          </organization>
+        </contributor>
+        <contributor>
+          <role type="publisher"/>
+          <organization>
+            <name language="ja" script="Jpan">一般財団法人　日本規格協会</name>
+            <name language="en" script="Latn">Japanese Industrial Standards</name>
           </organization>
         </contributor>
         <language>ja</language>
@@ -94,7 +102,7 @@ RSpec.describe Relaton::Render::JIS do
         </status>
         <relation type="instanceOf">
           <bibitem type="standard">
-            <fetched>2024-07-22</fetched>
+            <fetched>2024-07-29</fetched>
             <title format="text/plain" language="ja" script="Jpan">電気及び関連分野―信号指定及び接続指定</title>
             <title format="text/plain" language="en" script="Lant">Designations for signals and connections</title>
             <uri type="src">https://webdesk.jsa.or.jp/books/W11M0090/index/?bunsyo_id=JIS+C+0450%3A2004</uri>
@@ -111,6 +119,14 @@ RSpec.describe Relaton::Render::JIS do
               <role type="author"/>
               <organization>
                 <name language="ja" script="Jpan">一般財団法人　日本規格協会</name>
+                <name language="en" script="Latn">Japanese Industrial Standards</name>
+              </organization>
+            </contributor>
+            <contributor>
+              <role type="publisher"/>
+              <organization>
+                <name language="ja" script="Jpan">一般財団法人　日本規格協会</name>
+                <name language="en" script="Latn">Japanese Industrial Standards</name>
               </organization>
             </contributor>
             <language>ja</language>
@@ -137,7 +153,7 @@ RSpec.describe Relaton::Render::JIS do
       </bibdata>
     INPUT
     output = <<~OUTPUT
-      <formattedref><smallcap>一般財団法人　日本規格協会</smallcap>. <em><span class='stddocTitle'>電気及び関連分野―信号指定及び接続指定</span></em>. 有効です. 入手可能: <span class='biburl'><link target='https://webdesk.jsa.or.jp/books/W11M0090/index/?bunsyo_id=JIS+C+0450%3A2004'>https://webdesk.jsa.or.jp/books/W11M0090/index/?bunsyo_id=JIS+C+0450%3A2004</link></span>.</formattedref>
+      <formattedref><em><span class='stddocTitle'>電気及び関連分野―信号指定及び接続指定</span></em></formattedref>
     OUTPUT
     p = renderer
     expect(p.render(input))
