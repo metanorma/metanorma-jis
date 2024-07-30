@@ -14,12 +14,12 @@ module Metanorma
       def metadata_author(node, xml)
         org_contributor(node, xml,
                         { source: ["publisher", "pub"], role: "author",
-                          default: JIS_HASH })
+                          default: pub_hash })
         personal_author(node, xml)
       end
 
       def metadata_publisher(node, xml)
-        [{ source: ["publisher", "pub"], role: "publisher", default: JIS_HASH },
+        [{ source: ["publisher", "pub"], role: "publisher", default: pub_hash },
          { role: "authorizer",
            source: ["investigative-organization"],
            desc: "Investigative organization" },
@@ -32,8 +32,9 @@ module Metanorma
 
       LANGS = %w(ja en).freeze
 
-      JIS_HASH =
-        { "ja" => "日本工業規格", "en" => "Japanese Industrial Standards" }.freeze
+      def pub_hash
+        { "ja" => "日本工業規格", "en" => "Japanese Industrial Standards" }
+      end
 
       def org_organization(node, xml, org)
         organization(xml, { name: org[:name], abbr: org[:abbr] }.compact,
@@ -119,7 +120,7 @@ module Metanorma
 
       def copyright_parse(node)
         opt = { source: ["copyright-holder", "publisher", "pub"],
-                role: "publisher", default: JIS_HASH }
+                role: "publisher", default: pub_hash }
         ret = org_attrs_parse(node, opt)
         ret.empty? and ret = [{ name: "-" }]
         ret
