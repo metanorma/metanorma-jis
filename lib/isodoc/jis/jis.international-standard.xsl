@@ -7683,14 +7683,17 @@
 					<xsl:value-of select="concat(normalize-space(@target), '.pdf')"/>
 				</xsl:when>
 				<!-- link to the PDF attachment -->
-				<xsl:when test="starts-with($target_normalized, '_') and contains($target_normalized, '_attachments/') and $pdfAttachmentsList//attachment[@filename = $target_attachment_name]">
+				<xsl:when test="$pdfAttachmentsList//attachment[@filename = current()/@target]">
+					<xsl:value-of select="concat('url(embedded-file:', @target, ')')"/>
+				</xsl:when>
+				<!-- <xsl:when test="starts-with($target_normalized, '_') and contains($target_normalized, '_attachments/') and $pdfAttachmentsList//attachment[@filename = $target_attachment_name]">
 					<xsl:value-of select="concat('url(embedded-file:', $target_attachment_name, ')')"/>
 				</xsl:when>
 				<xsl:when test="contains(@target, concat('_', $inputxml_filename_prefix, '_attachments'))">
 					<xsl:variable name="target_" select="translate(@target, '\', '/')"/>
 					<xsl:variable name="target__" select="substring-after($target_, concat('_', $inputxml_filename_prefix, '_attachments', '/'))"/>
 					<xsl:value-of select="concat('url(embedded-file:', $target__, ')')"/>
-				</xsl:when>
+				</xsl:when> -->
 				<xsl:otherwise>
 					<xsl:value-of select="normalize-space(@target)"/>
 				</xsl:otherwise>
@@ -12284,6 +12287,17 @@
 		<xsl:copy-of select="."/>
 	</xsl:template>
 
+	<xsl:template match="*[local-name() = 'metanorma-extension']/*[local-name() = 'attachment']" mode="update_xml_step1">
+		<xsl:copy>
+			<xsl:copy-of select="@*"/>
+			<xsl:variable name="name_filepath" select="concat($inputxml_basepath, @name)"/>
+			<xsl:variable name="file_exists" select="normalize-space(java:exists(java:java.io.File.new($name_filepath)))"/>
+			<xsl:if test="$file_exists = 'false'"> <!-- copy attachment content only if file on disk doesnt exist -->
+				<xsl:value-of select="."/>
+			</xsl:if>
+		</xsl:copy>
+	</xsl:template>
+
 	<!-- add @id, mandatory for table auto-layout algorithm -->
 	<xsl:template match="*[local-name() = 'dl' or local-name() = 'table'][not(@id)]" mode="update_xml_step1">
 		<xsl:copy>
@@ -13265,7 +13279,8 @@
 				</xsl:when>
 				<xsl:otherwise>
 					<!-- _{filename}_attachments -->
-					<xsl:variable name="url" select="concat('url(file:///',$inputxml_basepath, '_', $inputxml_filename_prefix, '_attachments', '/', @name, ')')"/>
+					<!-- <xsl:variable name="url" select="concat('url(file:///',$inputxml_basepath, '_', $inputxml_filename_prefix, '_attachments', '/', @name, ')')"/> -->
+					<xsl:variable name="url" select="concat('url(file:///',$inputxml_basepath , @name, ')')"/>
 					<pdf:embedded-file src="{$url}" filename="{@name}"/>
 				</xsl:otherwise>
 			</xsl:choose>
