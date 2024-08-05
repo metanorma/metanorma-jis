@@ -22,7 +22,7 @@ module IsoDoc
         docxml.at(ns("//annex[@commentary = 'true']")) or return
         b = docxml.at(ns("//bibliography")) ||
           docxml.at(ns("//annex[last()]")).after(" ").next
-        docxml.xpath(ns("//annex[@commentary = 'true']")).reverse.each do |x|
+        docxml.xpath(ns("//annex[@commentary = 'true']")).reverse_each do |x|
           b.next = x.remove
         end
       end
