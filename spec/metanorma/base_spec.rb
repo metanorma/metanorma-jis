@@ -564,7 +564,7 @@ RSpec.describe Metanorma::JIS do
     output = <<~OUTPUT
       <boilerplate>
            <copyright-statement>
-           <p id="_">Competent Minister: Minister of Economy, Trade and Industry Established: October 31, 1951 Revised: Date of publication in the Official Gazette: Draft creator: Japanese Standards Association (Mita MT Building, 3-13-12 Mita, Minato-ku, Tokyo 108-0073 Tel: 03-4231-8530) Investigative Working Group: 日本工業規格 Committee 123 (Chairperson: KUROSAWA Akira)</p>
+           <p id="_">Competent Minister: Minister of Economy, Trade and Industry Established: October 31, 1951 Revised: Date of publication in the Official Gazette: Draft creator: Japanese Standards Association (Mita MT Building, 3-13-12 Mita, Minato-ku, Tokyo 108-0073 Tel: 03-4231-8530) Investigative Working Group: Japanese Industrial Standards Committee 123 (Chairperson: KUROSAWA Akira)</p>
            </copyright-statement>
            <feedback-statement>
              <p id="_">Any comments or questions regarding this standard should be directed to the above drafter or the International Standardization Division, Industrial Science and Technology Policy and Environment Bureau, Ministry of Economy, Trade and Industry (Tokyo 100-8901 Tokyo, Japan). Please contact 1-3-1 Kasumigaseki, Chiyoda-ku, Tokyo. In accordance with the provisions of the Industrial Standardization Law, Japanese Industrial Standards shall be reviewed by the Japan Industrial Standards Committee by the date when at least five years have passed. It will be put up for discussion and promptly confirmed, amended or repealed.</p>
