@@ -7,14 +7,18 @@ module IsoDoc
         word_note_cleanup(docxml)
         boldface(docxml)
         super
-        move_to_inner_cover(docxml)
+      end
+
+      def word_remove_empty_sections(docxml)
+        move_to_inner_cover(docxml) # preempt by populating WordSection1
+        super
       end
 
       def move_to_inner_cover(docxml)
         source = docxml.at("//div[@type = 'inner-cover-note']")
         dest = docxml.at("//div[@id = 'boilerplate-inner-cover-note']")
         source && dest and dest.replace(source.remove)
-        source = docxml.at("//div[@type = 'contributors']")
+        source = docxml.at("//div[@type = 'participants']")
         dest = docxml.at("//div[@id = 'boilerplate-contributors']")
         source && dest and dest.replace(source.remove)
         docxml
