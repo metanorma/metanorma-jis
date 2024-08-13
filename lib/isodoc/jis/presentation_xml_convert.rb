@@ -37,7 +37,7 @@ module IsoDoc
 
       def ol_depth(node)
         depth = node.ancestors("ol").size + 1
-        depth == 1 and return :alphabetic
+        depth == 1 and return :alphabet
         :arabic
       end
 

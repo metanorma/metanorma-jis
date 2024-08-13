@@ -646,7 +646,7 @@ RSpec.describe IsoDoc::JIS do
          <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
         <preface>
           <foreword displayorder="1">
-            <ol id="A" type="alphabetic">
+            <ol id="A" type="alphabet">
               <li id="A1" label="a">
                 <ol id="B" type="arabic">
                   <li id="B1" label="1">
