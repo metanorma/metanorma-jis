@@ -82,6 +82,37 @@ module Metanorma
         ::Metanorma::Standoc::Converter.instance_method(:ol_cleanup).bind(self)
           .call(doc)
       end
+
+      def biblio_reorder(xmldoc)
+        xmldoc.xpath("//references[@normative = 'true']").each do |r|
+          biblio_reorder1(r)
+        end
+      end
+
+      def pub_class_prep(bib)
+        iso = bib.at("#{PUBLISHER}[abbreviation = 'ISO']") ||
+          bib.at("#{PUBLISHER}[name = 'International Organization " \
+                                   "for Standardization']")
+        iec = bib.at("#{PUBLISHER}[abbreviation = 'IEC']") ||
+          bib.at("#{PUBLISHER}[name = 'International " \
+                                   "Electrotechnical Commission']")
+        jis = bib.at("#{PUBLISHER}[abbreviation = 'JIS']") ||
+          bib.at("#{PUBLISHER}[name = '#{pub_hash['ja']}']") ||
+          bib.at("#{PUBLISHER}[name = '#{pub_hash['en']}']")
+        [iso, iec, jis]
+      end
+
+      def pub_class(bib)
+        iso, iec, jis = pub_class_prep(bib)
+        jis && iec && iso and return 2
+        jis && iec and return 2
+        jis && iso and return 3
+        jis and return 1
+        iso && iec and return 4
+        iso and return 4
+        iec and return 5
+        6
+      end
     end
   end
 end
