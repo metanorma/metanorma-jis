@@ -173,7 +173,7 @@ RSpec.describe IsoDoc::JIS do
       </bibdata>
       <preface>
       <foreword displayorder="1"><title>Antauparolo</title></foreword>
-      <clause type="contributors" displayorder="3"><title>Contributors</title><p>Contributors</p></clause>
+      <clause type="participants" displayorder="3"><title>Contributors</title><p>Contributors</p></clause>
       </preface>
       </jis-standard>
     INPUT
@@ -188,12 +188,10 @@ RSpec.describe IsoDoc::JIS do
     doc = Nokogiri::XML(word)
     doc.xpath("//xmlns:p[@class = 'MsoToc1']").each(&:remove)
     expect(doc.to_xml).to include "Antauparolo"
-    # TODO
-    # expect(doc.to_xml).not_to include "Contributors"
+    expect(doc.to_xml).not_to include "Contributors"
     word = File.read("test_cover.doc", encoding: "UTF-8")
     expect(word).not_to include "Antauparolo"
-    # TODO
-    # expect(word).to include "Contributors"
+    expect(word).to include "Contributors"
   end
 
   it "deals with lists" do
