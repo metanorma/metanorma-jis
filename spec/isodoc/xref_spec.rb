@@ -536,23 +536,23 @@ RSpec.describe IsoDoc::JIS do
       .to be_equivalent_to Xml::C14n.format(output)
     output = <<~OUTPUT
       <foreword displayorder="1">
-         <p>
-           <xref target="N1">箇条 1のPermission 1</xref>
-           <xref target="N2">箇条 1のPermission 1の1</xref>
-           <xref target="N">箇条 1のPermission 1の1の1</xref>
-           <xref target="Q1">箇条 1のRequirement 1の1</xref>
-           <xref target="R1">箇条 1のRecommendation 1の1</xref>
-           <xref target="AN1">Permission A.1</xref>
-           <xref target="AN2">Permission A.1の1</xref>
-           <xref target="AN">Permission A.1の1の1</xref>
-           <xref target="AQ1">Requirement A.1の1</xref>
-           <xref target="AR1">Recommendation A.1の1</xref>
-           <xref target="BN1">Bibliographical SectionのPermission 1</xref>
-           <xref target="BN2">Bibliographical SectionのPermission 1の1</xref>
-           <xref target="BN">Bibliographical SectionのPermission 1の1の1</xref>
-           <xref target="BQ1">Bibliographical SectionのRequirement 1の1</xref>
-           <xref target="BR1">Bibliographical SectionのRecommendation 1の1</xref>
-         </p>
+          <p>
+             <xref target="N1">箇条 1の許可 1</xref>
+             <xref target="N2">箇条 1の許可 1の1</xref>
+             <xref target="N">箇条 1の許可 1の1の1</xref>
+             <xref target="Q1">箇条 1の要求 1の1</xref>
+             <xref target="R1">箇条 1の推奨 1の1</xref>
+             <xref target="AN1">許可 A.1</xref>
+             <xref target="AN2">許可 A.1の1</xref>
+             <xref target="AN">許可 A.1の1の1</xref>
+             <xref target="AQ1">要求 A.1の1</xref>
+             <xref target="AR1">推奨 A.1の1</xref>
+             <xref target="BN1">Bibliographical Sectionの許可 1</xref>
+             <xref target="BN2">Bibliographical Sectionの許可 1の1</xref>
+             <xref target="BN">Bibliographical Sectionの許可 1の1の1</xref>
+             <xref target="BQ1">Bibliographical Sectionの要求 1の1</xref>
+             <xref target="BR1">Bibliographical Sectionの推奨 1の1</xref>
+          </p>
        </foreword>
     OUTPUT
     expect(Xml::C14n.format(Nokogiri.XML(IsoDoc::JIS::PresentationXMLConvert

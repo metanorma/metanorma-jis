@@ -85,4 +85,31 @@ RSpec.describe Metanorma::JIS do
       OUTPUT
     end
   end
+
+  it "sorts referenes" do
+    input = <<~INPUT
+      #{ASCIIDOC_BLANK_HDR}
+
+      [bibliography]
+      == Normative references
+
+      * [[[ref1,JIS/ISO/IEC 1]]]  span:publisher[Japanese Industrial Standards] span:publisher[International Electrotechnical Commission] span:publisher[International Organization for Standardization]
+      * [[[ref2,JIS/IEC 1]]] span:publisher[Japanese Industrial Standards] span:publisher[International Electrotechnical Commission]
+      * [[[ref3,JIS/ISO 1]]] span:publisher[Japanese Industrial Standards] span:publisher[International Organization for Standardization]
+      * [[[ref4,ISO/IEC 1]]] span:publisher[International Electrotechnical Commission]
+      * [[[ref5,ISO 1]]] span:publisher[International Organization for Standardization]
+      * [[[ref6,IEC 1]]] span:publisher[International Electrotechnical Commission]
+      * [[[ref7,IEC 10]]] span:publisher[International Electrotechnical Commission]
+      * [[[ref8,IEC 2]]] span:publisher[International Electrotechnical Commission]
+      * [[[ref10,NIST 1]]] span:publisher[National Institute for Science and Technology]
+      * [[[ref9,IETF 1]]] span:publisher[Internet Task Force]
+      * [[[ref11,JIS 1]]] span:publisher[Japanese Industrial Standards]
+    INPUT
+
+    out = Nokogiri::XML(Asciidoctor.convert(input, *OPTIONS))
+    expect(out.xpath("//xmlns:references/xmlns:bibitem/@id")
+      .map(&:value))
+      .to be_equivalent_to ["ref11", "ref2", "ref1", "ref3", "ref5", "ref4",
+                            "ref6", "ref8", "ref7", "ref9", "ref10"]
+  end
 end
