@@ -25,7 +25,7 @@ module Relaton
 
         def render_all(bib, type: "author-date")
           ret = super
-          ret.each_value { |k| k[:formattedref].sub!(/[.。]\s*$/, "") }
+          ret&.each_value { |k| k[:formattedref].sub!(/[.。]\s*$/, "") }
           ret
         end
       end
