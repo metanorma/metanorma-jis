@@ -64,7 +64,7 @@ RSpec.describe Relaton::Render::JIS do
       </bibitem>
     INPUT
     output = <<~OUTPUT
-      <formattedref><em><span class='stddocTitle'>Latex, rubber - Determination of total solids content</span></em></formattedref>
+      <formattedref><span class='stddocTitle'>Latex, rubber - Determination of total solids content</span></formattedref>
     OUTPUT
     p = renderer
     expect(p.render(input))
@@ -153,7 +153,7 @@ RSpec.describe Relaton::Render::JIS do
       </bibdata>
     INPUT
     output = <<~OUTPUT
-      <formattedref><em><span class='stddocTitle'>電気及び関連分野―信号指定及び接続指定</span></em></formattedref>
+      <formattedref><span class='stddocTitle'>電気及び関連分野―信号指定及び接続指定</span></formattedref>
     OUTPUT
     p = renderer
     expect(p.render(input))
@@ -223,10 +223,72 @@ RSpec.describe Relaton::Render::JIS do
       </bibitem>
     INPUT
     output = <<~OUTPUT
-      <formattedref><smallcap>S. Bradner</smallcap>. <em><span class='stddocTitle'>Intellectual Property Rights in IETF Technology</span></em>. RFC Series. 入手可能: <span class='biburl'><link target='https://www.rfc-editor.org/info/rfc3979'>https://www.rfc-editor.org/info/rfc3979</link></span>.</formattedref>
+      <formattedref>S. Bradner. <span class='stddocTitle'>Intellectual Property Rights in IETF Technology</span>. RFC Series. 入手可能: <span class='biburl'><link target='https://www.rfc-editor.org/info/rfc3979'>https://www.rfc-editor.org/info/rfc3979</link></span></formattedref>
     OUTPUT
     p = renderer
     expect(p.render(input))
+      .to be_equivalent_to output
+  end
+
+  it "generates generic citations" do
+    input = <<~INPUT
+      <references>
+        <bibitem type="book" id="A">
+          <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
+          <docidentifier>ABC1</docidentifier>
+          <date type="published"><on>2022</on></date>
+          <contributor>
+            <role type="editor"/>
+            <person>
+              <name><surname>Aluffi</surname><forename>Paolo</forename></name>
+            </person>
+          </contributor>
+          <edition>1</edition>
+          <series>
+          <title>London Mathematical Society Lecture Note Series</title>
+          <number>472</number>
+          </series>
+              <contributor>
+                <role type="publisher"/>
+                <organization>
+                  <name>Cambridge University Press</name>
+                </organization>
+              </contributor>
+              <place>Cambridge, UK</place>
+            <size><value type="volume">1</value></size>
+        </bibitem>
+        <bibitem type="book" id="B">
+          <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
+          <docidentifier>ABC2</docidentifier>
+          <date type="published"><on>2022</on></date>
+          <contributor>
+            <role type="editor"/>
+            <person>
+              <name><surname>Aluffi</surname><forename>Paolo</forename></name>
+            </person>
+          </contributor>
+          <edition>1</edition>
+          <series>
+          <title>London Mathematical Society Lecture Note Series</title>
+          <number>472</number>
+          </series>
+              <contributor>
+                <role type="publisher"/>
+                <organization>
+                  <name>Cambridge University Press</name>
+                </organization>
+              </contributor>
+              <place>Cambridge, UK</place>
+            <size><value type="volume">1</value></size>
+        </bibitem>
+      </references>
+    INPUT
+    output = <<~OUTPUT
+      {"A"=>{:citation=>nil, :formattedref=>"Aluffi P. (編). Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday. 第1版. (London Mathematical Society Lecture Note Series 472). Cambridge, UK: Cambridge University Press. 2022. 巻1"},
+      "B"=>{:citation=>nil, :formattedref=>"Aluffi P. (編). Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday. 第1版. (London Mathematical Society Lecture Note Series 472). Cambridge, UK: Cambridge University Press. 2022. 巻1"}}
+    OUTPUT
+    p = renderer
+    expect(p.render_all(input, type: nil))
       .to be_equivalent_to output
   end
 
