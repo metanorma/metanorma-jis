@@ -187,11 +187,11 @@ RSpec.describe IsoDoc::JIS do
       .sub(/<\/html>.*$/m, "</html>")
     doc = Nokogiri::XML(word)
     doc.xpath("//xmlns:p[@class = 'MsoToc1']").each(&:remove)
-    expect(doc.to_xml).to include "Antauparolo"
-    expect(doc.to_xml).not_to include "Contributors"
+    expect(doc.to_xml).to include("Antauparolo")
+    expect(doc.to_xml).not_to include("Contributors")
     word = File.read("test_cover.doc", encoding: "UTF-8")
-    expect(word).not_to include "Antauparolo"
-    expect(word).to include "Contributors"
+    expect(word).not_to include("Antauparolo")
+    expect(word).to include("Contributors")
   end
 
   it "deals with lists" do
