@@ -6,6 +6,8 @@
 
 	<xsl:variable name="debug">false</xsl:variable>
 
+	<xsl:variable name="isIgnoreComplexScripts">true</xsl:variable>
+
 	<xsl:variable name="contents_">
 		<xsl:variable name="bundle" select="count(//jis:jis-standard) &gt; 1"/>
 
