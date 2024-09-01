@@ -20,6 +20,8 @@ module Metanorma
         schema_validate(formattedstr_strip(doc.dup),
                         File.join(File.dirname(__FILE__), "jis.rng"))
       end
+
+      def image_name_validate(xmldoc); end
     end
   end
 end
