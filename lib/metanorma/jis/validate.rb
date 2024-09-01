@@ -22,6 +22,7 @@ module Metanorma
       end
 
       def image_name_validate(xmldoc); end
+      def norm_bibitem_style(xmldoc); end
     end
   end
 end
