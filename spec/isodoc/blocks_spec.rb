@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fileutils"
 
-RSpec.describe IsoDoc::JIS do
+RSpec.describe IsoDoc::Jis do
   it "processes figures" do
     input = <<~INPUT
                 <iso-standard xmlns="http://riboseinc.com/isoxml">
@@ -366,14 +366,14 @@ RSpec.describe IsoDoc::JIS do
         </body>
       </html>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true).gsub("&lt;", "&#x3c;"))))
       .to be_equivalent_to Xml::C14n.format(presxml)
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::HtmlConvert.new({})
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
       .convert("test", presxml, true)))).to be_equivalent_to Xml::C14n.format(html)
     FileUtils.rm_rf "spec/assets/odf1.emf"
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::WordConvert.new({})
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::WordConvert.new({})
       .convert("test", presxml, true)
       .gsub(/['"][^'".]+\.(gif|xml)['"]/, "'_.\\1'")
       .gsub(/mso-bookmark:_Ref\d+/, "mso-bookmark:_Ref"))))
@@ -514,14 +514,14 @@ RSpec.describe IsoDoc::JIS do
         </body>
       </html>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true).gsub("&lt;", "&#x3c;"))))
       .to be_equivalent_to Xml::C14n.format(presxml)
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::HtmlConvert.new({})
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
       .convert("test", presxml, true)))).to be_equivalent_to Xml::C14n.format(html)
     FileUtils.rm_rf "spec/assets/odf1.emf"
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::WordConvert.new({})
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::WordConvert.new({})
       .convert("test", presxml, true)
       .gsub(/['"][^'".]+\.(gif|xml)['"]/, "'_.\\1'")
       .gsub(/mso-bookmark:_Ref\d+/, "mso-bookmark:_Ref"))))
@@ -584,11 +584,11 @@ RSpec.describe IsoDoc::JIS do
          </body>
        </html>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))))
       .to be_equivalent_to Xml::C14n.format(presxml)
-    expect(Xml::C14n.format(IsoDoc::JIS::HtmlConvert.new({})
+    expect(Xml::C14n.format(IsoDoc::Jis::HtmlConvert.new({})
       .convert("test", presxml, true)))
       .to be_equivalent_to Xml::C14n.format(output)
   end
@@ -683,7 +683,7 @@ RSpec.describe IsoDoc::JIS do
         </preface>
       </iso-standard>
     INPUT
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
      .convert("test", input, true))))
       .to be_equivalent_to Xml::C14n.format(presxml)

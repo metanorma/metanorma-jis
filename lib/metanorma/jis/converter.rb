@@ -5,7 +5,7 @@ require_relative "validate"
 require_relative "cleanup"
 
 module Metanorma
-  module JIS
+  module Jis
     class Converter < ISO::Converter
       XML_ROOT_TAG = "jis-standard".freeze
       XML_NAMESPACE = "https://www.metanorma.org/ns/jis".freeze
@@ -48,17 +48,17 @@ module Metanorma
 
       def html_converter(node)
         if node.nil?
-          IsoDoc::JIS::HtmlConvert.new({})
+          IsoDoc::Jis::HtmlConvert.new({})
         else
-          IsoDoc::JIS::HtmlConvert.new(html_extract_attributes(node))
+          IsoDoc::Jis::HtmlConvert.new(html_extract_attributes(node))
         end
       end
 
       def doc_converter(node)
         if node.nil?
-          IsoDoc::JIS::WordConvert.new({})
+          IsoDoc::Jis::WordConvert.new({})
         else
-          IsoDoc::JIS::WordConvert.new(doc_extract_attributes(node))
+          IsoDoc::Jis::WordConvert.new(doc_extract_attributes(node))
         end
       end
 
@@ -66,19 +66,19 @@ module Metanorma
         return if node.attr("no-pdf")
 
         if node.nil?
-          IsoDoc::JIS::PdfConvert.new({})
+          IsoDoc::Jis::PdfConvert.new({})
         else
-          IsoDoc::JIS::PdfConvert.new(pdf_extract_attributes(node))
+          IsoDoc::Jis::PdfConvert.new(pdf_extract_attributes(node))
         end
       end
 
       def presentation_xml_converter(node)
         if node.nil?
-          IsoDoc::JIS::PresentationXMLConvert.new({})
+          IsoDoc::Jis::PresentationXMLConvert.new({})
         else
-          IsoDoc::JIS::PresentationXMLConvert
+          IsoDoc::Jis::PresentationXMLConvert
             .new(doc_extract_attributes(node)
-            .merge(output_formats: ::Metanorma::JIS::Processor.new
+            .merge(output_formats: ::Metanorma::Jis::Processor.new
             .output_formats))
         end
       end

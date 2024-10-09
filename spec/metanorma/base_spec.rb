@@ -1,5 +1,5 @@
 require "spec_helper"
-RSpec.describe Metanorma::JIS do
+RSpec.describe Metanorma::Jis do
   before do
     # Force to download Relaton index file
     allow_any_instance_of(Relaton::Index::Type).to receive(:actual?)
@@ -9,7 +9,7 @@ RSpec.describe Metanorma::JIS do
   end
 
   it "has a version number" do
-    expect(Metanorma::JIS::VERSION).not_to be nil
+    expect(Metanorma::Jis::VERSION).not_to be nil
   end
 
   it "accepts language = jp" do
@@ -102,7 +102,7 @@ RSpec.describe Metanorma::JIS do
       :investigative-committee: 日本産業標準調査会 標準第一部会
     INPUT
     output = <<~OUTPUT
-      <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+      <jis-standard type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
                <bibdata type="standard">
            <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
            <title language="en" format="text/plain" type="title-intro">Introduction</title>
@@ -174,6 +174,7 @@ RSpec.describe Metanorma::JIS do
            </copyright>
            <ext>
              <doctype>japanese-industrial-standard</doctype>
+             <flavor>jis</flavor>
              <horizontal>true</horizontal>
              <editorialgroup>
                <agency>JIS</agency>
@@ -227,7 +228,7 @@ RSpec.describe Metanorma::JIS do
                         ))
     xml.at("//xmlns:metanorma-extension")&.remove
     output = <<~OUTPUT
-      <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+      <jis-standard type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
                <bibdata type="standard">
            <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
            <title language="en" format="text/plain" type="title-intro">Introduction</title>
@@ -299,6 +300,7 @@ RSpec.describe Metanorma::JIS do
            </copyright>
            <ext>
              <doctype>japanese-industrial-standard</doctype>
+             <flavor>jis</flavor>
              <horizontal>true</horizontal>
              <editorialgroup>
                <agency>JIS</agency>
@@ -361,7 +363,7 @@ RSpec.describe Metanorma::JIS do
       :publisher-abbr: Publisher Abbrev
     INPUT
     output = <<~OUTPUT
-      <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+      <jis-standard type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
                <bibdata type="standard">
            <docidentifier primary="true" type="JIS">1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
@@ -402,6 +404,7 @@ RSpec.describe Metanorma::JIS do
            </copyright>
            <ext>
              <doctype>japanese-industrial-standard</doctype>
+             <flavor>jis</flavor>
              <editorialgroup>
                <agency>Publisher Abbrev</agency>
              </editorialgroup>
@@ -457,7 +460,7 @@ RSpec.describe Metanorma::JIS do
 
     INPUT
     output = <<~OUTPUT
-      <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+      <jis-standard type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
          <bibdata type="standard">
            <docidentifier primary="true" type="JIS">TR 1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
@@ -527,6 +530,7 @@ RSpec.describe Metanorma::JIS do
            </copyright>
            <ext>
              <doctype>technical-report</doctype>
+             <flavor>jis</flavor>
              <editorialgroup>
                <agency>JIS</agency>
              </editorialgroup>
@@ -587,7 +591,7 @@ RSpec.describe Metanorma::JIS do
       :doctype: technical-specification
     INPUT
     output = <<~OUTPUT
-      <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+      <jis-standard type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
          <bibdata type="standard">
            <docidentifier primary="true" type="JIS">TS 1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
@@ -625,6 +629,7 @@ RSpec.describe Metanorma::JIS do
            </copyright>
            <ext>
              <doctype>technical-specification</doctype>
+             <flavor>jis</flavor>
              <editorialgroup>
                <agency>JIS</agency>
              </editorialgroup>
@@ -714,7 +719,7 @@ RSpec.describe Metanorma::JIS do
       :copyright-holder: Copyright Holder
     INPUT
     output = <<~OUTPUT
-          <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::JIS::VERSION}">
+          <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::Jis::VERSION}">
         <bibdata type="standard">
           <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
           <title language="en" format="text/plain" type="title-intro">Introduction</title>
@@ -760,6 +765,7 @@ RSpec.describe Metanorma::JIS do
           </copyright>
           <ext>
             <doctype>expert-commentary</doctype>
+             <flavor>jis</flavor>
             <horizontal>true</horizontal>
             <editorialgroup>
               <agency>Alternative Publisher</agency>
@@ -811,7 +817,7 @@ RSpec.describe Metanorma::JIS do
       :copyright-year: 2022
     INPUT
     output = <<~OUTPUT
-      <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::JIS::VERSION}">
+      <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::Jis::VERSION}">
                    <bibdata type="standard">
            <docidentifier primary="true" type="JIS">Z 1000-1:1980/AMD 3:2022</docidentifier>
            <docnumber>1000</docnumber>
@@ -852,6 +858,7 @@ RSpec.describe Metanorma::JIS do
            </copyright>
            <ext>
              <doctype>amendment</doctype>
+             <flavor>jis</flavor>
              <editorialgroup>
                <agency>JIS</agency>
              </editorialgroup>

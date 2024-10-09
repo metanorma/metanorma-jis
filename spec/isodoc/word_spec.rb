@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fileutils"
 
-RSpec.describe IsoDoc::JIS do
+RSpec.describe IsoDoc::Jis do
   it "processes Word styles" do
     input = <<~INPUT
       <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="presentation" version="0.0.1">
@@ -145,7 +145,7 @@ RSpec.describe IsoDoc::JIS do
     OUTPUT
     FileUtils.rm_f "test.doc"
     FileUtils.rm_f "test_cover.doc"
-    IsoDoc::JIS::WordConvert.new({}).convert("test", input, false)
+    IsoDoc::Jis::WordConvert.new({}).convert("test", input, false)
     expect(File.exist?("test.doc")).to be true
     expect(File.exist?("test_cover.doc")).to be true
     output = File.read("test.doc", encoding: "UTF-8")
@@ -179,7 +179,7 @@ RSpec.describe IsoDoc::JIS do
     INPUT
     FileUtils.rm_f "test.doc"
     FileUtils.rm_f "test_cover.doc"
-    IsoDoc::JIS::WordConvert.new({}).convert("test", input, false)
+    IsoDoc::Jis::WordConvert.new({}).convert("test", input, false)
     expect(File.exist?("test.doc")).to be true
     expect(File.exist?("test_cover.doc")).to be true
     word = File.read("test.doc", encoding: "UTF-8")
@@ -415,9 +415,9 @@ RSpec.describe IsoDoc::JIS do
        </div>
     OUTPUT
     FileUtils.rm_f "test.doc"
-    presxml = IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+    presxml = IsoDoc::Jis::PresentationXMLConvert.new(presxml_options)
       .convert("test", input, true)
-    IsoDoc::JIS::WordConvert.new({}).convert("test", presxml, false)
+    IsoDoc::Jis::WordConvert.new({}).convert("test", presxml, false)
     expect(File.exist?("test.doc")).to be true
     output = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")
@@ -469,9 +469,9 @@ RSpec.describe IsoDoc::JIS do
        </div>
     OUTPUT
     FileUtils.rm_f "test.doc"
-    presxml = IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+    presxml = IsoDoc::Jis::PresentationXMLConvert.new(presxml_options)
       .convert("test", input, true)
-    IsoDoc::JIS::WordConvert.new({}).convert("test", presxml, false)
+    IsoDoc::Jis::WordConvert.new({}).convert("test", presxml, false)
     expect(File.exist?("test.doc")).to be true
     output = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")

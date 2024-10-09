@@ -6,7 +6,7 @@ require "metanorma/jis/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "metanorma-jis"
-  spec.version       = Metanorma::JIS::VERSION
+  spec.version       = Metanorma::Jis::VERSION
   spec.authors       = ["Ribose Inc."]
   spec.email         = ["open.source@ribose.com"]
 

@@ -1,7 +1,7 @@
 require_relative "../../html2doc/lists"
 
 module IsoDoc
-  module JIS
+  module Jis
     class WordConvert < IsoDoc::Iso::WordConvert
       def word_cleanup(docxml)
         word_note_cleanup(docxml)
@@ -65,7 +65,7 @@ module IsoDoc
       def to_word1(result, filename, dir, header)
         result or return
         result = from_xhtml(result).gsub(/-DOUBLE_HYPHEN_ESCAPE-/, "--")
-        ::Html2Doc::JIS.new(
+        ::Html2Doc::Jis.new(
           filename: filename, imagedir: @localdir,
           stylesheet: @wordstylesheet&.path,
           header_file: header&.path, dir: dir,

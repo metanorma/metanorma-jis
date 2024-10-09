@@ -2,7 +2,7 @@ require "isodoc"
 require "metanorma-iso"
 
 module IsoDoc
-  module JIS
+  module Jis
     module BaseConvert
       def termnote_parse(node, out)
         name = node.at(ns("./name"))&.remove

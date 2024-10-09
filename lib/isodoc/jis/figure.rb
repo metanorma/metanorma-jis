@@ -1,5 +1,5 @@
 module IsoDoc
-  module JIS
+  module Jis
     class WordConvert < IsoDoc::Iso::WordConvert
       def figure_attrs(node)
         attr_code(id: node["id"], class: "MsoTableGrid",

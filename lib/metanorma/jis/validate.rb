@@ -1,5 +1,5 @@
 module Metanorma
-  module JIS
+  module Jis
     class Converter < ISO::Converter
       def doctype_validate(_xmldoc)
         %w(japanese-industrial-standard technical-report

@@ -4,7 +4,7 @@ require_relative "base_convert"
 require_relative "init"
 
 module IsoDoc
-  module JIS
+  module Jis
     class HtmlConvert < IsoDoc::Iso::HtmlConvert
       def initialize(options)
         super

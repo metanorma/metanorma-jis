@@ -4,7 +4,7 @@ require_relative "presentation_section"
 require_relative "../../relaton/render-jis/general"
 
 module IsoDoc
-  module JIS
+  module Jis
     class PresentationXMLConvert < IsoDoc::Iso::PresentationXMLConvert
       def inline(docxml)
         super

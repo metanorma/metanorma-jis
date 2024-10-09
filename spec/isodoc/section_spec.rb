@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fileutils"
 
-RSpec.describe IsoDoc::JIS do
+RSpec.describe IsoDoc::Jis do
   it "processes normative reference subclauses" do
     input = <<~INPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml">
@@ -41,7 +41,7 @@ RSpec.describe IsoDoc::JIS do
          <div class="colophon"/>
        </body>
     OUTPUT
-    expect(Xml::C14n.format(IsoDoc::JIS::WordConvert.new({})
+    expect(Xml::C14n.format(IsoDoc::Jis::WordConvert.new({})
           .convert("test", input, true)
           .sub(/^.*<body /m, "<body ").sub(%r{</body>.*$}m, "</body>")))
       .to be_equivalent_to Xml::C14n.format(word)
@@ -555,15 +555,15 @@ RSpec.describe IsoDoc::JIS do
         <div class="colophon"/>
       </body>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
         .convert("test", input, true))
         .sub(%r{<localized-strings>.*</localized-strings>}m, "")))
       .to be_equivalent_to Xml::C14n.format(presxml)
-    expect(Xml::C14n.format(IsoDoc::JIS::HtmlConvert.new({})
+    expect(Xml::C14n.format(IsoDoc::Jis::HtmlConvert.new({})
         .convert("test", presxml, true)))
       .to be_equivalent_to Xml::C14n.format(html)
-    expect(Xml::C14n.format(IsoDoc::JIS::WordConvert.new({})
+    expect(Xml::C14n.format(IsoDoc::Jis::WordConvert.new({})
         .convert("test", presxml, true))
             .sub(/^.*<body /m, "<body ").sub(%r{</body>.*$}m, "</body>"))
       .to be_equivalent_to Xml::C14n.format(word)
@@ -644,7 +644,7 @@ RSpec.describe IsoDoc::JIS do
           </clause>
        </preface>
     OUTPUT
-    output = Nokogiri::XML(IsoDoc::JIS::PresentationXMLConvert
+    output = Nokogiri::XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))
     output = output.at("//xmlns:preface")
@@ -687,7 +687,7 @@ RSpec.describe IsoDoc::JIS do
           </clause>
        </preface>
     OUTPUT
-    output = Nokogiri::XML(IsoDoc::JIS::PresentationXMLConvert
+    output = Nokogiri::XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input.sub("<language>en</language>",
                                  "<language>ja</language>"), true))

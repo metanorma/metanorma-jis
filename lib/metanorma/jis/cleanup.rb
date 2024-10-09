@@ -1,5 +1,5 @@
 module Metanorma
-  module JIS
+  module Jis
     class Converter < ISO::Converter
       def norm_ref_preface(ref)
         if ref.at("./note[@type = 'boilerplate']")

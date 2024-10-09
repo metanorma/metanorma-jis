@@ -551,16 +551,16 @@ RSpec.describe IsoDoc do
          </div>
        </div>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)))).to be_equivalent_to Xml::C14n.format(presxml)
-    IsoDoc::JIS::HtmlConvert.new({}).convert("test", presxml, false)
+    IsoDoc::Jis::HtmlConvert.new({}).convert("test", presxml, false)
     expect(File.exist?("test.html")).to be true
     out = File.read("test.html")
       .sub(/^.*<main /m, "<main ")
       .sub(%r{</main>.*$}m, "</main>")
     expect(Xml::C14n.format(strip_guid(out))).to be_equivalent_to Xml::C14n.format(html)
-    IsoDoc::JIS::WordConvert.new({}).convert("test", presxml, false)
+    IsoDoc::Jis::WordConvert.new({}).convert("test", presxml, false)
     expect(File.exist?("test.doc")).to be true
     out = File.read("test.doc")
       .sub(/^.+?<table /m, '<table xmlns:m="m" ')
@@ -853,12 +853,12 @@ RSpec.describe IsoDoc do
            <div class="colophon"/>
          </body>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
        .convert("test", input, true)))).to be_equivalent_to Xml::C14n.format(presxml)
-    expect(Xml::C14n.format(IsoDoc::JIS::HtmlConvert.new({})
+    expect(Xml::C14n.format(IsoDoc::Jis::HtmlConvert.new({})
       .convert("test", presxml, true))).to be_equivalent_to Xml::C14n.format(html)
-    expect(Xml::C14n.format(Nokogiri::XML(IsoDoc::JIS::WordConvert.new({})
+    expect(Xml::C14n.format(Nokogiri::XML(IsoDoc::Jis::WordConvert.new({})
       .convert("test", presxml, true))
       .at("//body").to_xml)).to be_equivalent_to Xml::C14n.format(doc)
   end
