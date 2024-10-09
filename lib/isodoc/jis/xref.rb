@@ -1,5 +1,5 @@
 module IsoDoc
-  module JIS
+  module Jis
     class Counter < IsoDoc::XrefGen::Counter
       def ol_type(list, depth)
         return list["type"].to_sym if list["type"]

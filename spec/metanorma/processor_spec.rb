@@ -2,9 +2,9 @@ require "spec_helper"
 require "metanorma"
 require "fileutils"
 
-RSpec.describe Metanorma::JIS::Processor do
+RSpec.describe Metanorma::Jis::Processor do
   registry = Metanorma::Registry.instance
-  registry.register(Metanorma::JIS::Processor)
+  registry.register(Metanorma::Jis::Processor)
   processor = registry.find_processor(:jis)
 
   inputxml = <<~INPUT
@@ -48,6 +48,7 @@ RSpec.describe Metanorma::JIS::Processor do
     <ext>
     <doctype>directive</doctype>
     <subdoctype>vocabulary</subdoctype>
+             <flavor>jis</flavor>
     <editorialgroup>
     <technical-committee/>
     <subcommittee/>
@@ -112,7 +113,7 @@ RSpec.describe Metanorma::JIS::Processor do
   end
 
   it "registers version against metanorma" do
-    expect(processor.version.to_s).to match(%r{^Metanorma::JIS })
+    expect(processor.version.to_s).to match(%r{^Metanorma::Jis })
   end
 
   it "generates IsoDoc XML from a blank document" do

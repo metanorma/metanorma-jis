@@ -11,6 +11,6 @@ require "metanorma"
 
 if defined? Metanorma::Registry
   require_relative "metanorma/jis"
-  Metanorma::Registry.instance.register(Metanorma::JIS::Processor)
+  Metanorma::Registry.instance.register(Metanorma::Jis::Processor)
 end
 
