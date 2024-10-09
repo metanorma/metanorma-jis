@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe Relaton::Render::JIS do
+RSpec.describe Relaton::Render::Jis do
   it "renders home standard, ISO" do
     input = <<~INPUT
       <bibitem type="standard" schema-version="v1.2.1">
@@ -295,9 +295,9 @@ RSpec.describe Relaton::Render::JIS do
   private
 
   def renderer
-    Relaton::Render::JIS::General
+    Relaton::Render::Jis::General
       .new("language" => "ja", "script" => "Jpan",
-           "i18nhash" => IsoDoc::JIS::PresentationXMLConvert.new({})
+           "i18nhash" => IsoDoc::Jis::PresentationXMLConvert.new({})
       .i18n_init("ja", "Jpan", nil).get)
   end
 end

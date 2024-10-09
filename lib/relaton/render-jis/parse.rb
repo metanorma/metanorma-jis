@@ -2,7 +2,7 @@ require "metanorma-iso"
 
 module Relaton
   module Render
-    module JIS
+    module Jis
       class Parse < ::Relaton::Render::Iso::Parse
         def simple_or_host_xml2hash(doc, host)
           ret = super

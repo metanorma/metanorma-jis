@@ -1,5 +1,5 @@
 class Html2Doc
-  class JIS < ::Html2Doc
+  class Jis < ::Html2Doc
     def list2para(list)
       return if list.xpath("./li").empty?
 

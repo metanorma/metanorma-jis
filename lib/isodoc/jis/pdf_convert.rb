@@ -2,7 +2,7 @@ require_relative "base_convert"
 require "isodoc"
 
 module IsoDoc
-  module JIS
+  module Jis
     class PdfConvert < IsoDoc::XslfoPdfConvert
       def initialize(options)
         @libdir = File.dirname(__FILE__)

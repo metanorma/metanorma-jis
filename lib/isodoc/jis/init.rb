@@ -3,7 +3,7 @@ require_relative "metadata"
 require_relative "i18n"
 
 module IsoDoc
-  module JIS
+  module Jis
     module Init
       def metadata_init(lang, script, locale, labels)
         @meta = Metadata.new(lang, script, locale, labels)
@@ -21,7 +21,7 @@ module IsoDoc
       end
 
       def bibrenderer(options = {})
-        ::Relaton::Render::JIS::General.new(options.merge(language: @lang,
+        ::Relaton::Render::Jis::General.new(options.merge(language: @lang,
                                                           i18nhash: @i18n.get))
       end
 
