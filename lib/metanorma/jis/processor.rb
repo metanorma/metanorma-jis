@@ -1,7 +1,7 @@
 require "metanorma/processor"
 
 module Metanorma
-  module JIS
+  module Jis
     class Processor < Metanorma::Processor
 
       def initialize # rubocop:disable Lint/MissingSuper
@@ -31,20 +31,20 @@ module Metanorma
       end
 
       def version
-        "Metanorma::JIS #{Metanorma::JIS::VERSION}"
+        "Metanorma::Jis #{Metanorma::Jis::VERSION}"
       end
 
       def output(xml, inname, outname, format, options = {})
         options_preprocess(options)
         case format
         when :html
-          IsoDoc::JIS::HtmlConvert.new(options).convert(inname, xml, nil, outname)
+          IsoDoc::Jis::HtmlConvert.new(options).convert(inname, xml, nil, outname)
         when :doc
-          IsoDoc::JIS::WordConvert.new(options).convert(inname, xml, nil, outname)
+          IsoDoc::Jis::WordConvert.new(options).convert(inname, xml, nil, outname)
         when :pdf
-          IsoDoc::JIS::PdfConvert.new(options).convert(inname, xml, nil, outname)
+          IsoDoc::Jis::PdfConvert.new(options).convert(inname, xml, nil, outname)
         when :presentation
-          IsoDoc::JIS::PresentationXMLConvert.new(options).convert(inname, xml, nil, outname)
+          IsoDoc::Jis::PresentationXMLConvert.new(options).convert(inname, xml, nil, outname)
         else
           super
         end

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe IsoDoc::JIS do
+RSpec.describe IsoDoc::Jis do
   it "processes Japanese" do
     input = <<~INPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml">
@@ -644,21 +644,21 @@ RSpec.describe IsoDoc::JIS do
           </body>
         </html>
     WORD
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
       .to be_equivalent_to Xml::C14n.format(presxml)
-    expect(Xml::C14n.format(IsoDoc::JIS::HtmlConvert.new({})
+    expect(Xml::C14n.format(IsoDoc::Jis::HtmlConvert.new({})
       .convert("test", presxml, true)))
       .to be_equivalent_to Xml::C14n.format(html)
-    expect(Xml::C14n.format(IsoDoc::JIS::WordConvert.new({})
+    expect(Xml::C14n.format(IsoDoc::Jis::WordConvert.new({})
       .convert("test", presxml, true)))
       .to be_equivalent_to Xml::C14n.format(word)
   end
 
   it "defaults to Japanese" do
-    output = IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+    output = IsoDoc::Jis::PresentationXMLConvert.new(presxml_options)
       .convert("test", <<~INPUT, true)
         <iso-standard xmlns="http://riboseinc.com/isoxml">
           <bibdata>
@@ -1352,12 +1352,12 @@ RSpec.describe IsoDoc::JIS do
         </body>
       </html>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
       .to be_equivalent_to Xml::C14n.format(presxml)
-    expect(Xml::C14n.format(IsoDoc::JIS::HtmlConvert.new({})
+    expect(Xml::C14n.format(IsoDoc::Jis::HtmlConvert.new({})
       .convert("test", presxml, true)))
       .to be_equivalent_to Xml::C14n.format(html)
   end
@@ -1383,7 +1383,7 @@ RSpec.describe IsoDoc::JIS do
         </bibdata>
       </iso-standard>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
@@ -1398,7 +1398,7 @@ RSpec.describe IsoDoc::JIS do
         </bibdata>
       </iso-standard>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input.sub("<language>en</language>",
                                  "<language>ja</language"), true)))

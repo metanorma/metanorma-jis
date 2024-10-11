@@ -1,5 +1,5 @@
 require "spec_helper"
-RSpec.describe Metanorma::JIS do
+RSpec.describe Metanorma::Jis do
   before do
     # Force to download Relaton index file
     allow_any_instance_of(Relaton::Index::Type).to receive(:actual?)

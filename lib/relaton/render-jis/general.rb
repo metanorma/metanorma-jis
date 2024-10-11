@@ -5,7 +5,7 @@ require_relative "parse"
 
 module Relaton
   module Render
-    module JIS
+    module Jis
       class General < ::Relaton::Render::Iso::General
         def config_loc
           YAML.load_file(File.join(File.dirname(__FILE__), "config.yml"))
@@ -13,7 +13,7 @@ module Relaton
 
         def klass_initialize(_options)
           super
-          @parseklass = Relaton::Render::JIS::Parse
+          @parseklass = Relaton::Render::Jis::Parse
         end
 
         def render1(doc)

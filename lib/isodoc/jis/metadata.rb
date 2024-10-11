@@ -2,7 +2,7 @@ require "isodoc"
 require "metanorma-iso"
 
 module IsoDoc
-  module JIS
+  module Jis
     class Metadata < IsoDoc::Iso::Metadata
       def title(isoxml, _out)
         lang = @lang

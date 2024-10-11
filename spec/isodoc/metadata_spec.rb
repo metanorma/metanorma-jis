@@ -1,14 +1,14 @@
 require "spec_helper"
 require "nokogiri"
 
-RSpec.describe IsoDoc::JIS::Metadata do
+RSpec.describe IsoDoc::Jis::Metadata do
   it "processes IsoXML metadata" do
-    c = IsoDoc::JIS::HtmlConvert.new({})
+    c = IsoDoc::Jis::HtmlConvert.new({})
     _ = c.convert_init(<<~"INPUT", "test", false)
       <iso-standard xmlns="http://riboseinc.com/isoxml">
     INPUT
     input = <<~INPUT
-         <jis-standard type="semantic" version="#{Metanorma::JIS::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+         <jis-standard type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
               <bibdata type="standard">
           <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
           <title language="en" format="text/plain" type="title-intro">Introduction</title>
