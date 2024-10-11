@@ -2,7 +2,7 @@ require "japanese_calendar"
 require "twitter_cldr"
 
 module IsoDoc
-  module JIS
+  module Jis
     class I18n < IsoDoc::Iso::I18n
       def jis_load_file(fname)
         f = File.join(File.dirname(__FILE__), fname)

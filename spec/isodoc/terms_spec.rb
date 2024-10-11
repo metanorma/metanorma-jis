@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe IsoDoc::JIS do
+RSpec.describe IsoDoc::Jis do
   it "processes IsoXML terms" do
     input = <<~INPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml">
@@ -409,13 +409,13 @@ RSpec.describe IsoDoc::JIS do
         <div class="colophon"/>
       </body>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert.new(presxml_options)
       .convert("test", input, true))))
       .to be_equivalent_to Xml::C14n.format(presxml)
-    expect(Xml::C14n.format(IsoDoc::JIS::HtmlConvert.new({})
+    expect(Xml::C14n.format(IsoDoc::Jis::HtmlConvert.new({})
       .convert("test", presxml, true)))
       .to be_equivalent_to Xml::C14n.format(html)
-    expect(Xml::C14n.format(IsoDoc::JIS::WordConvert.new({})
+    expect(Xml::C14n.format(IsoDoc::Jis::WordConvert.new({})
       .convert("test", presxml, true)
       .sub(/^.*<body/m, "<body")
       .sub(%r{</body>.*$}m, "</body>")))
@@ -609,7 +609,7 @@ RSpec.describe IsoDoc::JIS do
          </sections>
        </iso-standard>
     OUTPUT
-    xml = Nokogiri::XML(IsoDoc::JIS::PresentationXMLConvert.new(presxml_options)
+    xml = Nokogiri::XML(IsoDoc::Jis::PresentationXMLConvert.new(presxml_options)
       .convert("test", input, true))
     xml.at("//xmlns:localized-strings").remove
     expect(Xml::C14n.format(strip_guid(xml.to_xml)))

@@ -141,7 +141,7 @@ TERMS_BOILERPLATE = "".freeze
 
 def boilerplate_read(file)
   HTMLEntities.new.decode(
-    Metanorma::JIS::Converter.new(:jis, {}).boilerplate_file_restructure(file)
+    Metanorma::Jis::Converter.new(:jis, {}).boilerplate_file_restructure(file)
     .to_xml.gsub(/<(\/)?sections>/, "<\\1boilerplate>")
       .gsub(/ id="_[^"]+"/, " id='_'"),
   )
@@ -175,7 +175,7 @@ BOILERPLATE =
 
 BLANK_HDR = <<~"HDR".freeze
   <?xml version="1.0" encoding="UTF-8"?>
-  <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::JIS::VERSION}">
+  <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::Jis::VERSION}">
   <bibdata type="standard">
       <docidentifier primary="true" type="JIS">0:#{Date.today.year}</docidentifier>
     <docnumber>0</docnumber>
@@ -213,6 +213,7 @@ BLANK_HDR = <<~"HDR".freeze
     </copyright>
     <ext>
       <doctype>japanese-industrial-standard</doctype>
+      <flavor>jis</flavor>
     <editorialgroup>
       <agency>JIS</agency>
     </editorialgroup>

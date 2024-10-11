@@ -6,7 +6,7 @@ require_relative "figure"
 require_relative "table"
 
 module IsoDoc
-  module JIS
+  module Jis
     class WordConvert < IsoDoc::Iso::WordConvert
       def initialize(options)
         @libdir = File.dirname(__FILE__)

@@ -2,7 +2,7 @@ require_relative "init"
 require "isodoc"
 
 module IsoDoc
-  module JIS
+  module Jis
     class PresentationXMLConvert < IsoDoc::Iso::PresentationXMLConvert
       def annex1(elem)
         elem["commentary"] == "true" and return commentary(elem)

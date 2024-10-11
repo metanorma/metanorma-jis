@@ -1,5 +1,5 @@
 module IsoDoc
-  module JIS
+  module Jis
     class WordConvert < IsoDoc::Iso::WordConvert
       def make_table_footnote_target(out, fnid, fnref)
         attrs = { id: fnid, class: "TableFootnoteRef" }
