@@ -1,6 +1,6 @@
 module Metanorma
   module Jis
-    class Converter < ISO::Converter
+    class Converter < Iso::Converter
       def doctype_validate(_xmldoc)
         %w(japanese-industrial-standard technical-report
            technical-specification amendment).include? @doctype or
