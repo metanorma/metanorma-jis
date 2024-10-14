@@ -2,7 +2,7 @@ require "pubid-jis"
 
 module Metanorma
   module Jis
-    class Converter < ISO::Converter
+    class Converter < Iso::Converter
       def org_abbrev
         super.merge("Japanese Industrial Standards" => "JIS")
       end

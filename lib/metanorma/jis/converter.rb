@@ -6,7 +6,7 @@ require_relative "cleanup"
 
 module Metanorma
   module Jis
-    class Converter < ISO::Converter
+    class Converter < Iso::Converter
       XML_ROOT_TAG = "jis-standard".freeze
       XML_NAMESPACE = "https://www.metanorma.org/ns/jis".freeze
 
