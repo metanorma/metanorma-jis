@@ -6,8 +6,11 @@ module Relaton
       class Parse < ::Relaton::Render::Iso::Parse
         def simple_or_host_xml2hash(doc, host)
           ret = super
-          ret.merge(home_standard: home_standard(doc, ret[:publisher_raw] ||
-                                                 ret[:author_raw]))
+          orgs = %i(publisher_raw author_raw authorizer_raw)
+            .each_with_object([]) do |i, m|
+            ret[i] and m << ret[i]
+          end
+          ret.merge(home_standard: home_standard(doc, orgs.flatten))
         end
 
         def home_standard(_doc, pubs)
