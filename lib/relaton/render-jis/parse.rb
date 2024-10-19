@@ -14,7 +14,8 @@ module Relaton
           pubs&.any? do |r|
             ["International Organization for Standardization", "ISO",
              "International Electrotechnical Commission", "IEC",
-             "一般財団法人　日本規格協会", "Japanese Industrial Standards"]
+             "日本規格協会", "一般財団法人　日本規格協会",
+             "Japanese Industrial Standards"]
               .include?(r[:nonpersonal])
           end
         end
