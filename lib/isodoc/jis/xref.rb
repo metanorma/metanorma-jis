@@ -14,9 +14,21 @@ module IsoDoc
         else @num.to_s
         end
       end
+
+      def style_number(num)
+        @style == :japanese && !num.nil? and return @num.localize(:ja).spellout
+        super
+      end
     end
 
     class Xref < IsoDoc::Iso::Xref
+      attr_accessor :autonumbering_style
+
+      def clause_counter(num, opts)
+        opts[:numerals] ||= @autonumbering_style
+        super
+      end
+
       def hierfigsep
         @lang == "ja" ? "の" : super
       end
@@ -79,6 +91,16 @@ module IsoDoc
       def section_names(clause, num, lvl)
         clause&.name == "introduction" and clause["unnumbered"] = "true"
         super
+      end
+
+      def main_anchor_names(xml)
+        n = Counter.new(0, { numerals: @autonumbering_style })
+        clause_order_main(xml).each do |a|
+          xml.xpath(ns(a[:path])).each do |c|
+            section_names(c, n, 1)
+            a[:multi] or break
+          end
+        end
       end
 
       def back_clauses_anchor_names(xml)

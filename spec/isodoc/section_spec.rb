@@ -695,4 +695,355 @@ RSpec.describe IsoDoc::Jis do
     expect(Xml::C14n.format(strip_guid(output.to_xml)))
       .to be_equivalent_to Xml::C14n.format(strip_guid(presxml))
   end
+
+    it "processes section names" do
+    input = <<~INPUT
+      <iso-standard xmlns="http://riboseinc.com/isoxml">
+      <boilerplate>
+        <copyright-statement>
+        <clause>
+          <title>Copyright</title>
+        </clause>
+        </copyright-statement>
+        <license-statement>
+        <clause>
+          <title>License</title>
+        </clause>
+        </license-statement>
+        <legal-statement>
+        <clause>
+          <title>Legal</title>
+        </clause>
+        </legal-statement>
+        <feedback-statement>
+        <clause>
+          <title>Feedback</title>
+        </clause>
+        </feedback-statement>
+      </boilerplate>
+      <preface>
+      <abstract obligation="informative">
+         <title>Abstract</title>
+      </abstract>
+      <foreword obligation="informative">
+         <title>Foreword</title>
+         <p id="A">This is a preamble</p>
+       </foreword>
+        <introduction id="B" obligation="informative"><title>Introduction</title><clause id="C" inline-header="false" obligation="informative">
+         <title>Introduction Subsection</title>
+       </clause>
+       </introduction>
+       <clause id="B1"><title>Dedication</title></clause>
+       <clause id="B2"><title>Note to reader</title></clause>
+       <acknowledgements obligation="informative">
+         <title>Acknowledgements</title>
+       </acknowledgements>
+        </preface><sections>
+        <note id="NN1"><p>Initial note</p></note>
+        <admonition id="NN2" type="warning">
+        <name>WARNING</name>
+        <p>Initial admonition</p></admonition>
+       <clause id="D" obligation="normative" type="scope">
+         <title>Scope</title>
+         <p id="E">Text</p>
+       </clause>
+       <clause id="H" obligation="normative"><title>Terms, Definitions, Symbols and Abbreviated Terms</title><terms id="I" obligation="normative">
+         <title>Normal Terms</title>
+         <term id="J">
+         <preferred><expression><name>Term2</name></expression></preferred>
+       </term>
+       </terms>
+       <definitions id="K">
+         <title>Definitions</title>
+         <dl>
+         <dt>Symbol</dt>
+         <dd>Definition</dd>
+         </dl>
+       </definitions>
+       </clause>
+       <definitions id="L">
+       <title>Symbols and abbreviated terms</title>
+         <dl>
+         <dt>Symbol</dt>
+         <dd>Definition</dd>
+         </dl>
+       </definitions>
+       <clause id="M" inline-header="false" obligation="normative"><title>Clause 4</title><clause id="N" inline-header="false" obligation="normative">
+         <title>Introduction</title>
+       </clause>
+       <clause id="O" inline-header="false" obligation="normative">
+         <title>Clause 4.2</title>
+       </clause>
+       <clause id="O1" inline-header="false" obligation="normative">
+       </clause>
+        </clause>
+       </sections><annex id="P" inline-header="false" obligation="normative">
+         <title>Annex</title>
+         <clause id="Q" inline-header="false" obligation="normative">
+         <title>Annex A.1</title>
+         <clause id="Q1" inline-header="false" obligation="normative">
+         <title>Annex A.1a</title>
+         </clause>
+         <references id="Q2" normative="false">
+        <title>Annex Bibliography</title>
+        </references>
+       </clause>
+       </annex>
+       <annex id="P1" inline-header="false" obligation="normative">
+       </annex>
+        <bibliography><references id="R" obligation="informative" normative="true">
+         <title>Normative References</title>
+       </references><clause id="S" obligation="informative">
+         <title>Bibliography</title>
+         <references id="T" obligation="informative" normative="false">
+         <title>Bibliography Subsection</title>
+       </references>
+       </clause>
+       </bibliography>
+       <indexsect id="INDX">
+       <title>Index</title>
+       </indexsect>
+       <colophon>
+      <clause id="U1" obligation="informative">
+         <title>Postface 1</title>
+      </clause>
+      <clause id="U2" obligation="informative">
+         <title>Postface 2</title>
+      </clause>
+      </colophon>
+       </iso-standard>
+    INPUT
+    presxml = <<~PRESXML
+           <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+          <boilerplate>
+             <copyright-statement>
+                <clause>
+                   <title depth="1">Copyright</title>
+                </clause>
+             </copyright-statement>
+             <license-statement>
+                <clause>
+                   <title depth="1">License</title>
+                </clause>
+             </license-statement>
+             <legal-statement>
+                <clause>
+                   <title depth="1">Legal</title>
+                </clause>
+             </legal-statement>
+             <feedback-statement>
+                <clause>
+                   <title depth="1">Feedback</title>
+                </clause>
+             </feedback-statement>
+          </boilerplate>
+          <preface>
+             <abstract obligation="informative" displayorder="1">
+                <title>Abstract</title>
+             </abstract>
+             <foreword obligation="informative" displayorder="2">
+                <title>Foreword</title>
+                <p id="A">This is a preamble</p>
+             </foreword>
+             <clause id="B1" displayorder="3">
+                <title depth="1">Dedication</title>
+             </clause>
+             <clause id="B2" displayorder="4">
+                <title depth="1">Note to reader</title>
+             </clause>
+             <acknowledgements obligation="informative" displayorder="5">
+                <title>Acknowledgements</title>
+             </acknowledgements>
+             <clause type="toc" id="_" displayorder="6">
+                <title depth="1">Contents</title>
+             </clause>
+          </preface>
+          <sections>
+             <p class="JapaneseIndustrialStandard" displayorder="7">
+                日本工業規格
+                <tab/>
+                <tab/>
+                <tab/>
+                <tab/>
+                <tab/>
+                <tab/>
+                <tab/>
+                <span class="JIS">JIS</span>
+             </p>
+             <p class="StandardNumber" displayorder="8">
+                <tab/>
+             </p>
+             <p class="IDT" displayorder="9"/>
+             <introduction id="B" obligation="informative" unnumbered="true" displayorder="10">
+                <title>Introduction</title>
+                <clause id="C" inline-header="false" obligation="informative">
+                   <title depth="2">Introduction Subsection</title>
+                </clause>
+             </introduction>
+             <note id="NN1" displayorder="11">
+                <name>NOTE</name>
+                <p>Initial note</p>
+             </note>
+             <admonition id="NN2" type="warning" displayorder="12">
+                <p>
+                   <strong>WARNING — </strong>
+                   <strong>Initial admonition</strong>
+                </p>
+             </admonition>
+             <clause id="D" obligation="normative" type="scope" displayorder="13">
+                <title depth="1">
+                   1
+                   <tab/>
+                   Scope
+                </title>
+                <p id="E">Text</p>
+             </clause>
+             <clause id="H" obligation="normative" displayorder="15">
+                <title depth="1">
+                   3
+                   <tab/>
+                   Terms, Definitions, Symbols and Abbreviated Terms
+                </title>
+                <terms id="I" obligation="normative">
+                   <title depth="2">
+                      3.1
+                      <tab/>
+                      Normal Terms
+                   </title>
+                   <term id="J">
+                      <name>3.1.1</name>
+                      <preferred>
+                         <strong>Term2</strong>
+                      </preferred>
+                   </term>
+                </terms>
+                <definitions id="K">
+                   <title depth="2">
+                      3.2
+                      <tab/>
+                      Definitions
+                   </title>
+                   <dl>
+                      <dt>Symbol</dt>
+                      <dd>Definition</dd>
+                   </dl>
+                </definitions>
+             </clause>
+             <definitions id="L" displayorder="16">
+                <title depth="1">
+                   4
+                   <tab/>
+                   Symbols and abbreviated terms
+                </title>
+                <dl>
+                   <dt>Symbol</dt>
+                   <dd>Definition</dd>
+                </dl>
+             </definitions>
+             <clause id="M" inline-header="false" obligation="normative" displayorder="17">
+                <title depth="1">
+                   5
+                   <tab/>
+                   Clause 4
+                </title>
+                <clause id="N" inline-header="false" obligation="normative">
+                   <title depth="2">
+                      5.1
+                      <tab/>
+                      Introduction
+                   </title>
+                </clause>
+                <clause id="O" inline-header="false" obligation="normative">
+                   <title depth="2">
+                      5.2
+                      <tab/>
+                      Clause 4.2
+                   </title>
+                </clause>
+                <clause id="O1" inline-header="true" obligation="normative">
+                   <title>5.3</title>
+                </clause>
+             </clause>
+             <references id="R" obligation="informative" normative="true" displayorder="14">
+                <title depth="1">
+                   2
+                   <tab/>
+                   Normative References
+                </title>
+             </references>
+          </sections>
+          <annex id="P" inline-header="false" obligation="normative" displayorder="18">
+             <title>
+                Annex A
+                <br/>
+                (normative)
+                <br/>
+                <strong>Annex</strong>
+             </title>
+             <clause id="Q" inline-header="false" obligation="normative">
+                <title depth="2">
+                   A.1
+                   <tab/>
+                   Annex A.1
+                </title>
+                <clause id="Q1" inline-header="false" obligation="normative">
+                   <title depth="3">
+                      A.1.1
+                      <tab/>
+                      Annex A.1a
+                   </title>
+                </clause>
+                <references id="Q2" normative="false">
+                   <title depth="3">
+                      A.1.2
+                      <tab/>
+                      Annex Bibliography
+                   </title>
+                </references>
+             </clause>
+          </annex>
+          <annex id="P1" inline-header="false" obligation="normative" displayorder="19">
+             <title>
+                Annex B
+                <br/>
+                (normative)
+             </title>
+          </annex>
+          <bibliography>
+             <clause id="S" obligation="informative" displayorder="20">
+                <title depth="1">Bibliography</title>
+                <references id="T" obligation="informative" normative="false">
+                   <title depth="2">Bibliography Subsection</title>
+                </references>
+             </clause>
+          </bibliography>
+          <colophon>
+             <clause id="U1" obligation="informative" displayorder="21">
+                <title depth="1">Postface 1</title>
+             </clause>
+             <clause id="U2" obligation="informative" displayorder="22">
+                <title depth="1">Postface 2</title>
+             </clause>
+          </colophon>
+       </iso-standard>
+    PRESXML
+     output = Nokogiri::XML(IsoDoc::Jis::PresentationXMLConvert
+      .new(presxml_options)
+      .convert("test", input, true))
+    expect(Xml::C14n.format(strip_guid(output.to_xml)))
+      .to be_equivalent_to Xml::C14n.format(presxml)
+    presxml = <<~PRESXML
+    PRESXML
+    input.sub!("</bibdata>", <<~SUB
+      </bibdata><metanorma-extension>
+      <presentation-metadata><name>autonumber-style</name><value>japanese</value></presentation-metadata>
+      </metanorma-extension>
+      SUB
+    )
+     output = Nokogiri::XML(IsoDoc::Jis::PresentationXMLConvert
+      .new(presxml_options)
+      .convert("test", input, true))
+    expect(Xml::C14n.format(strip_guid(output.to_xml)))
+      .to be_equivalent_to Xml::C14n.format(presxml)
+    end
 end

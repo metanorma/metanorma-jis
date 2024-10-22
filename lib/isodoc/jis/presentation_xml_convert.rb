@@ -146,6 +146,24 @@ module IsoDoc
         end
       end
 
+      def edition_translate(bibdata)
+        x = bibdata.at(ns("./edition")) or return
+        /^\d+$/.match?(x.text) or return
+        @i18n.edition_ordinal or return
+        num = x.text.to_i
+        @autonumbering_style == :japanese and num = num.localize(:ja).spellout
+        tag_translate(x, @lang, @i18n
+          .populate("edition_ordinal", { "var1" => num }))
+      end
+
+      def convert1(docxml, filename, dir)
+        j = docxml.at(ns("//metanorma-extension/presentation-metadata" \
+          "[name[text() = 'autonumbering-style']]/value")) || "arabic"
+        @autonumbering_style = j.to_sym
+        @xrefs.autonumbering_style = j.to_sym
+        super
+      end
+
       include Init
     end
   end
