@@ -13,6 +13,7 @@ RSpec.describe IsoDoc::Jis do
           <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
           <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
+          <edition>2</edition>
           <status>
             <stage abbreviation='IS' language=''>60</stage>
           </status>
@@ -107,6 +108,8 @@ RSpec.describe IsoDoc::Jis do
           <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
           <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
+          <edition language="">2</edition>
+          <edition language="ja">第2版</edition>
           <status>
             <stage abbreviation="IS" language="">60</stage>
             <stage abbreviation="IS" language="ja">International Standard</stage>
@@ -655,6 +658,20 @@ RSpec.describe IsoDoc::Jis do
     expect(Xml::C14n.format(IsoDoc::Jis::WordConvert.new({})
       .convert("test", presxml, true)))
       .to be_equivalent_to Xml::C14n.format(word)
+
+    input.sub!("</bibdata>", <<~SUB
+      </bibdata><metanorma-extension>
+      <presentation-metadata><name>autonumber-style</name><value>japanese</value></presentation-metadata>
+      </metanorma-extension>
+      SUB
+    )
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+      .new(presxml_options)
+      .convert("test", input, true)))
+      .sub(%r{<localized-strings>.*</localized-strings>}m, "")
+      .sub(%r{<metanorma-extension>.*</metanorma-extension>}m, ""))
+      .to be_equivalent_to Xml::C14n.format(presxml
+      .sub("第2版", "第二版"))
   end
 
   it "defaults to Japanese" do
