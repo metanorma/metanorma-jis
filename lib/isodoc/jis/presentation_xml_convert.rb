@@ -157,8 +157,8 @@ module IsoDoc
       end
 
       def convert1(xml, filename, dir)
-        j = xml.at(ns("//metanorma-extension/presentation-metadata" \
-                     "[name[text() = 'autonumbering-style']]/value"))&.text
+        j = xml.at(ns("//metanorma-extension/presentation-metadata/" \
+                     "autonumbering-style"))&.text
         j ||= "arabic"
         @autonumbering_style = j.to_sym
         @xrefs.autonumbering_style = j.to_sym
