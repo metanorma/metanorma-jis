@@ -29,6 +29,7 @@ module Metanorma
           "Noto Serif JP Bold" => nil,
           "Noto Serif JP Black" => nil,
           "Noto Sans JP Thin" => nil,
+          "Noto Sans JP Medium" => nil,
           "Courier New" => nil,
           "Cambria Math" => nil,
           "Times New Roman" => nil,
