@@ -665,12 +665,12 @@ RSpec.describe IsoDoc::Jis do
                 </thead>
                 <tbody>
                    <tr>
-                      <td>(部会長)</td>
+                      <td>（部会長）</td>
                       <td>酒井 信介</td>
                       <td>横浜国立大学</td>
                    </tr>
                    <tr>
-                      <td>(委員)</td>
+                      <td>（委員）</td>
                       <td>伊藤 弘</td>
                       <td>国立研究開発法人建築研究所</td>
                    </tr>

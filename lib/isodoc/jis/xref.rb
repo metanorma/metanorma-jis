@@ -113,7 +113,8 @@ module IsoDoc
 
       def commentary_names(clause)
         preface_name_anchors(clause, 1, clause_title(clause))
-        clause.xpath(ns(SUBCLAUSES)).each_with_object(clause_counter) do |c, i|
+        clause.xpath(ns(SUBCLAUSES))
+          .each_with_object(clause_counter(0, {})) do |c, i|
           commentary_names1(c, clause["id"], i.increment(c).print, 2)
         end
       end
