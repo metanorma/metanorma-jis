@@ -14,11 +14,6 @@ module IsoDoc
         else @num.to_s
         end
       end
-
-      def style_number(num)
-        @style == :japanese && !num.nil? and return @num.localize(:ja).spellout
-        super
-      end
     end
 
     class Xref < IsoDoc::Iso::Xref
@@ -40,12 +35,12 @@ module IsoDoc
       end
 
       def annex_name_lbl(clause, num)
-        obl = l10n("(#{@labels['inform_annex']})")
+        obl = "(#{@labels['inform_annex']})"
         clause["obligation"] == "normative" and
-          obl = l10n("(#{@labels['norm_annex']})")
+          obl = "(#{@labels['norm_annex']})"
         title = Common::case_with_markup(@labels["annex"], "capital",
                                          @script)
-        l10n("#{title} #{num}<br/>#{obl}")
+        "#{title} #{num}<br/>#{obl}"
       end
 
       def annex_name_anchors1(clause, num, level)
@@ -56,7 +51,7 @@ module IsoDoc
 
       def annex_names1(clause, num, level)
         annex_name_anchors1(clause, num, level)
-        i = ::IsoDoc::XrefGen::Counter.new(0, prefix: "#{num}.")
+        i = clause_counter(0, prefix: "#{num}.")
         clause.xpath(ns(SUBCLAUSES)).each do |c|
           annex_names1(c, i.increment(c).print, level + 1)
         end
@@ -118,7 +113,7 @@ module IsoDoc
 
       def commentary_names(clause)
         preface_name_anchors(clause, 1, clause_title(clause))
-        clause.xpath(ns(SUBCLAUSES)).each_with_object(Counter.new) do |c, i|
+        clause.xpath(ns(SUBCLAUSES)).each_with_object(clause_counter) do |c, i|
           commentary_names1(c, clause["id"], i.increment(c).print, 2)
         end
       end
@@ -126,7 +121,7 @@ module IsoDoc
       def commentary_names1(clause, root, num, level)
         commentary_name_anchors(clause, num, root, level)
         clause.xpath(ns(SUBCLAUSES))
-          .each_with_object(Counter.new(0, prefix: "#{num}.")) do |c, i|
+          .each_with_object(clause_counter(0, prefix: "#{num}.")) do |c, i|
           commentary_names1(c, root, i.increment(c).print,
                             level + 1)
         end

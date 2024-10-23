@@ -156,12 +156,23 @@ module IsoDoc
           .populate("edition_ordinal", { "var1" => num }))
       end
 
-      def convert1(docxml, filename, dir)
-        j = docxml.at(ns("//metanorma-extension/presentation-metadata" \
-          "[name[text() = 'autonumbering-style']]/value")) || "arabic"
+      def convert1(xml, filename, dir)
+        j = xml.at(ns("//metanorma-extension/presentation-metadata" \
+                     "[name[text() = 'autonumbering-style']]/value"))&.text
+        j ||= "arabic"
         @autonumbering_style = j.to_sym
         @xrefs.autonumbering_style = j.to_sym
         super
+      end
+
+      def localized_strings(docxml)
+        super
+        a = docxml.at(ns("//localized-strings")) or return
+        ret = (0..1000).map do |i|
+          n = i.localize(:ja).spellout
+          "<localized-string key='#{i}' language='ja'>#{n}</localized-string>"
+        end.join("\n")
+        a << ret
       end
 
       include Init
