@@ -14,6 +14,7 @@ chairperson: 委員会長
 membership_table: 構成表
 full_name: 氏名
 affiliation: 所属
+toc_page: 頁
 doctype_dict:
   international-standard: 日本産業規格
   japanese-industrial-standard: 日本産業規格
