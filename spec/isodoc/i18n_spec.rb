@@ -665,7 +665,7 @@ RSpec.describe IsoDoc::Jis do
 
     input.sub!("</bibdata>", <<~SUB
       </bibdata><metanorma-extension>
-      <presentation-metadata><name>autonumbering-style</name><value>japanese</value></presentation-metadata>
+      <presentation-metadata><autonumbering-style>japanese</autonumbering-style></presentation-metadata>
       </metanorma-extension>
     SUB
     )
