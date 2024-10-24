@@ -21,6 +21,8 @@ module IsoDoc
 
       def clause_counter(num, opts)
         opts[:numerals] ||= @autonumbering_style
+        opts[:separator] ||=
+          @autonumbering_style == :japanese ? "&#x30fb;" : "."
         super
       end
 
@@ -51,7 +53,7 @@ module IsoDoc
 
       def annex_names1(clause, num, level)
         annex_name_anchors1(clause, num, level)
-        i = clause_counter(0, prefix: "#{num}.")
+        i = clause_counter(0, prefix: num)
         clause.xpath(ns(SUBCLAUSES)).each do |c|
           annex_names1(c, i.increment(c).print, level + 1)
         end
@@ -122,7 +124,7 @@ module IsoDoc
       def commentary_names1(clause, root, num, level)
         commentary_name_anchors(clause, num, root, level)
         clause.xpath(ns(SUBCLAUSES))
-          .each_with_object(clause_counter(0, prefix: "#{num}.")) do |c, i|
+          .each_with_object(clause_counter(0, prefix: num)) do |c, i|
           commentary_names1(c, root, i.increment(c).print,
                             level + 1)
         end

@@ -754,19 +754,19 @@ RSpec.describe IsoDoc::Jis do
                 </title>
                 <terms id="I" obligation="normative">
                    <title depth="2">
-                      三．一
+                      三・一
                       <tab/>
                       Normal Terms
                    </title>
                    <term id="J">
-                      <name>三．一．一</name>
+                      <name>三・一・一</name>
                       <preferred>
                          <strong>Term2</strong>
                       </preferred>
                    </term>
                 </terms>
                 <definitions id="K" inline-header="true">
-                <title>三　．　二</title>
+                <title>三・二</title>
                    <dl>
                       <dt>Symbol</dt>
                       <dd>Definition</dd>
@@ -788,14 +788,14 @@ RSpec.describe IsoDoc::Jis do
                 </title>
                 <clause id="N" inline-header="false" obligation="normative">
                    <title depth="2">
-                      五．一
+                      五・一
                       <tab/>
                       Introduction
                    </title>
                 </clause>
                 <clause id="O" inline-header="false" obligation="normative">
                    <title depth="2">
-                      五．二
+                      五・二
                       <tab/>
                       Clause 4.2
                    </title>
@@ -819,13 +819,13 @@ RSpec.describe IsoDoc::Jis do
              </title>
              <clause id="Q" inline-header="false" obligation="normative">
                 <title depth="2">
-                   A.一
+                   A・一
                    <tab/>
                    Annex A.1
                 </title>
                 <clause id="Q1" inline-header="false" obligation="normative">
                    <title depth="3">
-                      A.一．一
+                      A・一・一
                       <tab/>
                       Annex A.1a
                    </title>
@@ -1600,9 +1600,27 @@ RSpec.describe IsoDoc::Jis do
     OUTPUT
     expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
-      .convert("test", input.sub("<language>en</language>",
-                                 "<language>ja</language"), true)))
+      .convert("test", input.sub!("<language>en</language>",
+                                  "<language>ja</language"), true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
       .to be_equivalent_to Xml::C14n.format(output)
+
+    input.sub!("</bibdata>", <<~SUB
+      </bibdata><metanorma-extension>
+      <presentation-metadata><autonumbering-style>japanese</autonumbering-style></presentation-metadata>
+      </metanorma-extension>
+    SUB
+    )
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+      .new(presxml_options)
+      .convert("test", input, true))
+      .sub(%r{<metanorma-extension>.*</metanorma-extension>}m, "")
+      .sub(%r{<localized-strings>.*</localized-strings>}m, "")))
+      .to be_equivalent_to Xml::C14n
+        .format(output
+        .sub('<date type="created">令和二年10月11日</date>',
+             '<date type="created">令和二年十月十一日</date>')
+        .sub('<date type="issued">令和二年10月</date>',
+             '<date type="issued">令和二年十月</date>'))
   end
 end
