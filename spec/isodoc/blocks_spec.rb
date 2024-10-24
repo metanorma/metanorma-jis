@@ -687,5 +687,68 @@ RSpec.describe IsoDoc::Jis do
       .new(presxml_options)
      .convert("test", input, true))))
       .to be_equivalent_to Xml::C14n.format(presxml)
+
+    input.sub!("<preface>", <<~SUB
+      <metanorma-extension>
+      <presentation-metadata><autonumbering-style>japanese</autonumbering-style></presentation-metadata>
+      </metanorma-extension><preface>
+    SUB
+    )
+    presxml = <<~INPUT
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+          <metanorma-extension>
+             <presentation-metadata>
+                <autonumbering-style>japanese</autonumbering-style>
+             </presentation-metadata>
+          </metanorma-extension>
+          <preface>
+             <foreword displayorder="1">
+                <ol id="A" type="alphabet">
+                   <li id="A1" label="a">
+                      <ol id="B" type="arabic">
+                         <li id="B1" label="一">
+                            <ol id="C" type="arabic">
+                               <li id="C1" label="一・一">
+                                  <ol id="D" type="arabic">
+                                     <li id="D1" label="一・一・一">
+                                        <ol id="E" type="arabic">
+                                           <li id="E1" label="一・一・一・一">
+       </li>
+                                           <li id="E2" label="一・一・一・二">
+       </li>
+                                        </ol>
+                                     </li>
+                                     <li id="D2" label="一・一・二">
+       </li>
+                                  </ol>
+                               </li>
+                               <li id="C2" label="一・二">
+       </li>
+                            </ol>
+                         </li>
+                         <li id="B2" label="二">
+                            <ol id="CC" type="arabic">
+                               <li id="CC1" label="二・一"/>
+                            </ol>
+                         </li>
+                      </ol>
+                   </li>
+                   <li id="A2" label="b">
+                      <ol id="BB" type="arabic">
+                         <li id="BB1" label="一"/>
+                      </ol>
+                   </li>
+                </ol>
+             </foreword>
+             <clause type="toc" id="_" displayorder="2">
+                <title depth="1">Contents</title>
+             </clause>
+          </preface>
+       </iso-standard>
+    INPUT
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+      .new(presxml_options)
+     .convert("test", input, true))))
+      .to be_equivalent_to Xml::C14n.format(presxml)
   end
 end
