@@ -487,126 +487,126 @@ RSpec.describe IsoDoc::Jis do
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
-         <bibdata>
-           <language current="true">ja</language>
-         </bibdata>
-           <preface>
-            <clause type="toc" id="_" displayorder="1">
-            <title depth="1">目　次</title>
-          </clause>
-        </preface>
-         <sections>
-                     <p class="JapaneseIndustrialStandard" displayorder="2">
-              日本工業規格
-              <tab/>
-              <tab/>
-              <tab/>
-              <tab/>
-              <tab/>
-              <tab/>
-              <tab/>
-              <span class="JIS">JIS</span>
-            </p>
-            <p class="StandardNumber" displayorder="3">
-              <tab/>
-            </p>
-            <p class="IDT" displayorder="4"/>
-           <terms id="_" obligation="normative" displayorder="5">
-             <title depth="1">
-               1
-               <tab/>
-               Terms and Definitions
-             </title>
-             <term id="paddy1">
-               <name>1.1</name>
-               <preferred>
-                 <strong>paddy</strong>
-               </preferred>
-               <definition>
-                 <p id="_">&lt;rice&gt; rice retaining its husk after threshing</p>
-               </definition>
-               <termexample id="_">
-                 <name>例  1</name>
-                 <p id="_">Foreign seeds, husks, bran, sand, dust.</p>
-                 <ul>
-                   <li>A</li>
-                 </ul>
-               </termexample>
-               <termexample id="_">
-                 <name>例  2</name>
-                 <ul>
-                   <li>A</li>
-                 </ul>
-               </termexample>
-               <termsource status="modified">
-                 [出典:
-                 <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
-                   <locality type="clause">
-                     <referenceFrom>3.1</referenceFrom>
-                   </locality>
-                   ISO 7301:2011,
-                   <span class="citesec">3.1</span>
-                 </origin>
-                 , 修正された &#x2014; The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
-               </termsource>
-             </term>
-             <term id="paddy">
-               <name>1.2</name>
-               <preferred>
-                 <strong>paddy</strong>
-               </preferred>
-               <admitted>代替用語: paddy rice</admitted>
-               <admitted>代替用語: rough rice</admitted>
-               <deprecates>推奨しない用語: cargo rice</deprecates>
-               <definition>
-                 <p id="_">rice retaining its husk after threshing</p>
-               </definition>
-               <termexample id="_">
-                 <name>例</name>
-                 <ul>
-                   <li>A</li>
-                 </ul>
-               </termexample>
-               <termnote id="_">
-                 <name>注釈1</name>
-                 <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
-               </termnote>
-               <termnote id="_">
-                 <name>注釈2</name>
-                 <ul>
-                   <li>A</li>
-                 </ul>
-                 <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
-               </termnote>
-               <termsource status="identical">
-                 [出典:
-                 <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
-                   <locality type="clause">
-                     <referenceFrom>3.1</referenceFrom>
-                   </locality>
-                   ISO 7301:2011,
-                   <span class="citesec">3.1</span>
-                 </origin>
-                 ]
-               </termsource>
-             </term>
-             <term id="A">
-               <name>1.3</name>
-               <preferred>
-                 <strong>term1</strong>
-               </preferred>
-               <definition>term1 definition</definition>
-               <term id="B">
-                 <name>1.3.1</name>
-                 <preferred>
-                   <strong>term2</strong>
-                 </preferred>
-                 <definition>term2 definition</definition>
-               </term>
-             </term>
-           </terms>
-         </sections>
+       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+          <bibdata>
+             <language current="true">ja</language>
+          </bibdata>
+          <preface>
+             <clause type="toc" id="_" displayorder="1">
+                <title depth="1">目　次</title>
+             </clause>
+          </preface>
+          <sections>
+             <p class="JapaneseIndustrialStandard" displayorder="2">
+                日本工業規格
+                <tab/>
+                <tab/>
+                <tab/>
+                <tab/>
+                <tab/>
+                <tab/>
+                <tab/>
+                <span class="JIS">JIS</span>
+             </p>
+             <p class="StandardNumber" displayorder="3">
+                <tab/>
+             </p>
+             <p class="IDT" displayorder="4"/>
+             <terms id="_" obligation="normative" displayorder="5">
+                <title depth="1">
+                   1
+                   <tab/>
+                   Terms and Definitions
+                </title>
+                <term id="paddy1">
+                   <name>1.1</name>
+                   <preferred>
+                      <strong>paddy</strong>
+                   </preferred>
+                   <definition>
+                      <p id="_">&lt;rice&gt; rice retaining its husk after threshing</p>
+                   </definition>
+                   <termexample id="_">
+                      <name>例  1</name>
+                      <p id="_">Foreign seeds, husks, bran, sand, dust.</p>
+                      <ul>
+                         <li>A</li>
+                      </ul>
+                   </termexample>
+                   <termexample id="_">
+                      <name>例  2</name>
+                      <ul>
+                         <li>A</li>
+                      </ul>
+                   </termexample>
+                   <termsource status="modified">
+                      ［出典：
+                      <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
+                         <locality type="clause">
+                            <referenceFrom>3.1</referenceFrom>
+                         </locality>
+                         ISO 7301:2011，
+                         <span class="citesec">3.1</span>
+                      </origin>
+                      ，修正された — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+                   </termsource>
+                </term>
+                <term id="paddy">
+                   <name>1.2</name>
+                   <preferred>
+                      <strong>paddy</strong>
+                   </preferred>
+                   <admitted>代替用語： paddy rice</admitted>
+                   <admitted>代替用語： rough rice</admitted>
+                   <deprecates>推奨しない用語： cargo rice</deprecates>
+                   <definition>
+                      <p id="_">rice retaining its husk after threshing</p>
+                   </definition>
+                   <termexample id="_">
+                      <name>例</name>
+                      <ul>
+                         <li>A</li>
+                      </ul>
+                   </termexample>
+                   <termnote id="_">
+                      <name>注釈1</name>
+                      <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
+                   </termnote>
+                   <termnote id="_">
+                      <name>注釈2</name>
+                      <ul>
+                         <li>A</li>
+                      </ul>
+                      <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
+                   </termnote>
+                   <termsource status="identical">
+                      ［出典：
+                      <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
+                         <locality type="clause">
+                            <referenceFrom>3.1</referenceFrom>
+                         </locality>
+                         ISO 7301:2011，
+                         <span class="citesec">3.1</span>
+                      </origin>
+                      ］
+                   </termsource>
+                </term>
+                <term id="A">
+                   <name>1.3</name>
+                   <preferred>
+                      <strong>term1</strong>
+                   </preferred>
+                   <definition>term1 definition</definition>
+                   <term id="B">
+                      <name>1.3.1</name>
+                      <preferred>
+                         <strong>term2</strong>
+                      </preferred>
+                      <definition>term2 definition</definition>
+                   </term>
+                </term>
+             </terms>
+          </sections>
        </iso-standard>
     OUTPUT
     xml = Nokogiri::XML(IsoDoc::Jis::PresentationXMLConvert.new(presxml_options)

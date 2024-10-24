@@ -151,6 +151,7 @@ RSpec.describe IsoDoc::Jis do
            </contributor>
            <edition language="">2</edition>
            <edition language="en">second edition</edition>
+           <edition language="en" numberonly="true">2</edition>
            <version>
              <revision-date>2000-01-01</revision-date>
              <draft>0.3.4</draft>
@@ -665,12 +666,12 @@ RSpec.describe IsoDoc::Jis do
                 </thead>
                 <tbody>
                    <tr>
-                      <td>(部会長)</td>
+                      <td>（部会長）</td>
                       <td>酒井 信介</td>
                       <td>横浜国立大学</td>
                    </tr>
                    <tr>
-                      <td>(委員)</td>
+                      <td>（委員）</td>
                       <td>伊藤 弘</td>
                       <td>国立研究開発法人建築研究所</td>
                    </tr>
