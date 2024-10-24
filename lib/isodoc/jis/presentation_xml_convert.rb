@@ -142,7 +142,12 @@ module IsoDoc
 
       def date_translate(bibdata)
         bibdata.xpath(ns("./date")).each do |d|
-          d.children = @i18n.japanese_date(d.text.strip)
+          j = @i18n.japanese_date(d.text.strip)
+          @autonumbering_style == :japanese and
+            j.gsub!(/(\d+)/) do
+              $1.to_i.localize(:ja).spellout
+            end
+          d.children = j
         end
       end
 
