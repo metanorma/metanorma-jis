@@ -110,6 +110,7 @@ RSpec.describe IsoDoc::Jis do
           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
           <edition language="">2</edition>
           <edition language="ja">第2版</edition>
+          <edition language="ja" numberonly="true">2</edition>
           <status>
             <stage abbreviation="IS" language="">60</stage>
             <stage abbreviation="IS" language="ja">International Standard</stage>
@@ -682,6 +683,7 @@ RSpec.describe IsoDoc::Jis do
              <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
              <edition language="">2</edition>
              <edition language="ja">第二版</edition>
+             <edition language="ja" numberonly="true">二</edition>
              <status>
                 <stage abbreviation="IS" language="">60</stage>
                 <stage abbreviation="IS" language="ja">International Standard</stage>

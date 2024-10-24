@@ -177,7 +177,7 @@ refer_list)
       def list_item_value(entry, counter, depth, opts)
         label1 = counter.increment(entry).listlabel(entry.parent, depth)
         if depth > 2
-          base = @c.decode(opts[:prev_label]).split(/\)/) # List a) 1.1.1
+          base = @c.decode(opts[:prev_label]).split(/\)\s*/) # List a) 1.1.1
           label1 = "#{base[-1].sub(/^の/,'')}#{clause_sep}#{label1}"
           [label1, list_item_anchor_label(label1, opts[:list_anchor],
                                           base[0].sub(/[\p{Zs})]+$/, ""), opts[:refer_list])]
