@@ -151,6 +151,7 @@ RSpec.describe IsoDoc::Jis do
            </contributor>
            <edition language="">2</edition>
            <edition language="en">second edition</edition>
+           <edition language="en" numberonly="true">2</edition>
            <version>
              <revision-date>2000-01-01</revision-date>
              <draft>0.3.4</draft>

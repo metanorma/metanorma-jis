@@ -157,6 +157,8 @@ module IsoDoc
         @i18n.edition_ordinal or return
         num = x.text.to_i
         @autonumbering_style == :japanese and num = num.localize(:ja).spellout
+        x.next =
+          %(<edition language="#{@lang}" numberonly="true">#{num}</edition>)
         tag_translate(x, @lang, @i18n
           .populate("edition_ordinal", { "var1" => num }))
       end
