@@ -196,11 +196,11 @@ RSpec.describe IsoDoc::Jis do
          <title>Foreword</title>
          <p id="A">
            This is a preamble
-           <xref target="P">箇条 1のリスト  1のa)</xref>
-           <xref target="Q">箇条 1のリスト  1のa)の1)</xref>
-           <xref target="R">箇条 1のリスト  1のa)の1.1)</xref>
-           <xref target="S">箇条 1のリスト  1のa)の1.1.1)</xref>
-           <xref target="P1">箇条 1のリスト  2のa)</xref>
+           <xref target="P">箇条1のリスト  1のa)</xref>
+           <xref target="Q">箇条1のリスト  1のa)の1)</xref>
+           <xref target="R">箇条1のリスト  1のa)の1.1)</xref>
+           <xref target="S">箇条1のリスト  1のa)の1.1.1)</xref>
+           <xref target="P1">箇条1のリスト  2のa)</xref>
          </p>
        </foreword>
     OUTPUT
@@ -274,15 +274,15 @@ RSpec.describe IsoDoc::Jis do
          <title>Foreword</title>
          <p id="A">
            This is a preamble
-           <xref target="P">附属書 Aの注記</xref>
+           <xref target="P">附属書Aの注記</xref>
            <xref target="Q">A.1の注記</xref>
            <xref target="R">Commentaryの注記</xref>
-           <xref target="S">Commentaryの箇条 1の注記</xref>
+           <xref target="S">Commentaryの箇条1の注記</xref>
            <xref target="T">
-            <span class="citetbl">Commentaryの表 1</span>
+            <span class="citetbl">Commentaryの表1</span>
           </xref>
           <xref target="U">
-            <span class="citetbl">Commentaryの箇条 1の表 2</span>
+            <span class="citetbl">Commentaryの箇条1の表2</span>
           </xref>
          </p>
        </foreword>
@@ -407,13 +407,13 @@ RSpec.describe IsoDoc::Jis do
        <foreword id="fwd" displayorder="1">
          <p>
            <xref target="N">
-             <span class="citefig">図 1</span>
+             <span class="citefig">図1</span>
            </xref>
            <xref target="note1">
-             <span class="citefig">図 1のa)</span>
+             <span class="citefig">図1のa)</span>
            </xref>
            <xref target="note2">
-             <span class="citefig">図 1のb)</span>
+             <span class="citefig">図1のb)</span>
            </xref>
            <xref target="AN">
              <span class="citefig">図 A.1</span>
@@ -425,13 +425,13 @@ RSpec.describe IsoDoc::Jis do
              <span class="citefig">図 A.1のb)</span>
            </xref>
            <xref target="AN1">
-             <span class="citefig">Bibliographical Sectionの図 1</span>
+             <span class="citefig">Bibliographical Sectionの図1</span>
            </xref>
            <xref target="Anote11">
-             <span class="citefig">Bibliographical Sectionの図 1のa)</span>
+             <span class="citefig">Bibliographical Sectionの図1のa)</span>
            </xref>
            <xref target="Anote21">
-             <span class="citefig">Bibliographical Sectionの図 1のb)</span>
+             <span class="citefig">Bibliographical Sectionの図1のb)</span>
            </xref>
          </p>
        </foreword>
@@ -537,21 +537,21 @@ RSpec.describe IsoDoc::Jis do
     output = <<~OUTPUT
       <foreword displayorder="1">
           <p>
-             <xref target="N1">箇条 1の許可 1</xref>
-             <xref target="N2">箇条 1の許可 1の1</xref>
-             <xref target="N">箇条 1の許可 1の1の1</xref>
-             <xref target="Q1">箇条 1の要求 1の1</xref>
-             <xref target="R1">箇条 1の推奨 1の1</xref>
+             <xref target="N1">箇条1の許可1</xref>
+             <xref target="N2">箇条1の許可1の1</xref>
+             <xref target="N">箇条1の許可1の1の1</xref>
+             <xref target="Q1">箇条1の要求1の1</xref>
+             <xref target="R1">箇条1の推奨1の1</xref>
              <xref target="AN1">許可 A.1</xref>
              <xref target="AN2">許可 A.1の1</xref>
              <xref target="AN">許可 A.1の1の1</xref>
              <xref target="AQ1">要求 A.1の1</xref>
              <xref target="AR1">推奨 A.1の1</xref>
-             <xref target="BN1">Bibliographical Sectionの許可 1</xref>
-             <xref target="BN2">Bibliographical Sectionの許可 1の1</xref>
-             <xref target="BN">Bibliographical Sectionの許可 1の1の1</xref>
-             <xref target="BQ1">Bibliographical Sectionの要求 1の1</xref>
-             <xref target="BR1">Bibliographical Sectionの推奨 1の1</xref>
+             <xref target="BN1">Bibliographical Sectionの許可1</xref>
+             <xref target="BN2">Bibliographical Sectionの許可1の1</xref>
+             <xref target="BN">Bibliographical Sectionの許可1の1の1</xref>
+             <xref target="BQ1">Bibliographical Sectionの要求1の1</xref>
+             <xref target="BR1">Bibliographical Sectionの推奨1の1</xref>
           </p>
        </foreword>
     OUTPUT
