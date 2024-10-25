@@ -142,8 +142,44 @@ module IsoDoc
 
       def date_translate(bibdata)
         bibdata.xpath(ns("./date")).each do |d|
-          d.children = @i18n.japanese_date(d.text.strip)
+          j = @i18n.japanese_date(d.text.strip)
+          @autonumbering_style == :japanese and
+            j.gsub!(/(\d+)/) do
+              $1.to_i.localize(:ja).spellout
+            end
+          d.children = j
         end
+      end
+
+      def edition_translate(bibdata)
+        x = bibdata.at(ns("./edition")) or return
+        /^\d+$/.match?(x.text) or return
+        @i18n.edition_ordinal or return
+        num = x.text.to_i
+        @autonumbering_style == :japanese and num = num.localize(:ja).spellout
+        x.next =
+          %(<edition language="#{@lang}" numberonly="true">#{num}</edition>)
+        tag_translate(x, @lang, @i18n
+          .populate("edition_ordinal", { "var1" => num }))
+      end
+
+      def convert1(xml, filename, dir)
+        j = xml.at(ns("//metanorma-extension/presentation-metadata/" \
+                     "autonumbering-style"))&.text
+        j ||= "arabic"
+        @autonumbering_style = j.to_sym
+        @xrefs.autonumbering_style = j.to_sym
+        super
+      end
+
+      def localized_strings(docxml)
+        super
+        a = docxml.at(ns("//localized-strings")) or return
+        ret = (0..1000).map do |i|
+          n = i.localize(:ja).spellout
+          "<localized-string key='#{i}' language='ja'>#{n}</localized-string>"
+        end.join("\n")
+        a << ret
       end
 
       include Init
