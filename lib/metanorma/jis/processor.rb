@@ -23,6 +23,7 @@ module Metanorma
           "STIX Two Math" => nil,
           "IPAexGothic" => nil,
           "IPAexMincho" => nil,
+=begin
           "Noto Serif JP" => nil,
           "Noto Serif JP ExtraLight" => nil,
           "Noto Serif JP Medium" => nil,
@@ -30,6 +31,7 @@ module Metanorma
           "Noto Serif JP Black" => nil,
           "Noto Sans JP Thin" => nil,
           "Noto Sans JP Medium" => nil,
+=end
           "Courier New" => nil,
           "Cambria Math" => nil,
           "Times New Roman" => nil,
