@@ -27,7 +27,6 @@ module Metanorma
           "Noto Serif JP" => nil,
           "Noto Serif JP ExtraLight" => nil,
           "Noto Serif JP Medium" => nil,
-          "Noto Serif JP Bold" => nil,
           "Noto Serif JP Black" => nil,
           "Noto Sans JP Thin" => nil,
           "Noto Sans JP Medium" => nil,
