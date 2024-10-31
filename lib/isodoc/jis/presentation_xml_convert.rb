@@ -45,11 +45,6 @@ module IsoDoc
         elem.children.first.previous = @i18n.l10n("#{@i18n.admitted}: ")
       end
 
-      def block(docxml)
-        super
-        dl docxml
-      end
-
       def dl(docxml)
         docxml.xpath(ns("//table//dl | //figure//dl")).each do |l|
           l.at(ns("./dl")) || l.at("./ancestor::xmlns:dl") and next
