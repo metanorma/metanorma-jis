@@ -12,7 +12,7 @@ module IsoDoc
               p.span class: "note_label" do |s|
                 name.children.each { |n| parse(n, s) }
               end
-              p << termnote_delim
+              p << " "
             end
             para_then_remainder(node.first_element_child, node, p, div)
           end
