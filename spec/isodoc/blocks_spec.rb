@@ -62,7 +62,7 @@ RSpec.describe IsoDoc::Jis do
     presxml = <<~OUTPUT
             <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <preface>
-            <foreword displayorder="1">
+            <foreword displayorder="1"><title>Foreword</title>
               <figure id="figureA-1" keep-with-next="true" keep-lines-together="true">
                 <name>
                   Figure 1 — Split-it-right
@@ -401,7 +401,7 @@ RSpec.describe IsoDoc::Jis do
     presxml = <<~OUTPUT
         <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <preface>
-            <foreword displayorder="1">
+            <foreword displayorder="1"><title>Foreword</title>
               <figure id="figureA-1" keep-with-next="true" keep-lines-together="true">
                 <name>Figure 1 — Overall title</name>
                 <figure id="note1">
@@ -544,7 +544,7 @@ RSpec.describe IsoDoc::Jis do
     INPUT
     presxml = <<~INPUT
             <iso-standard xmlns="http://riboseinc.com/isoxml" type='presentation'>
-            <preface><foreword displayorder="1">
+            <preface><foreword displayorder="1"><title>Foreword</title>
             <admonition id="_" type="caution">
             <name>Title</name>
             <ul>
@@ -639,7 +639,7 @@ RSpec.describe IsoDoc::Jis do
     presxml = <<~INPUT
          <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
         <preface>
-          <foreword displayorder="1">
+          <foreword displayorder="1"><title>Foreword</title>
             <ol id="A" type="alphabet">
               <li id="A1" label="a">
                 <ol id="B" type="arabic">
@@ -702,7 +702,7 @@ RSpec.describe IsoDoc::Jis do
              </presentation-metadata>
           </metanorma-extension>
           <preface>
-             <foreword displayorder="1">
+             <foreword displayorder="1"><title>Foreword</title>
                 <ol id="A" type="alphabet">
                    <li id="A1" label="a">
                       <ol id="B" type="arabic">

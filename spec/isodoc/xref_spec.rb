@@ -404,7 +404,7 @@ RSpec.describe IsoDoc::Jis do
       .at("//xmlns:foreword").to_xml))
       .to be_equivalent_to Xml::C14n.format(output)
     output = <<~OUTPUT
-       <foreword id="fwd" displayorder="1"><title>Foreword</title>
+      <foreword id="fwd" displayorder="1"><title>まえがき</title>
          <p>
            <xref target="N">
              <span class="citefig">図1</span>
