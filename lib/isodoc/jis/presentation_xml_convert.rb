@@ -94,18 +94,11 @@ module IsoDoc
       end
 
       def table1(node)
-        require "debug"; binding.b
-        #table_key(node)
         super
         cols = table_cols_count(node)
         name = node.at(ns("./name"))
         thead = table_thead_pt(node, name)
         table_unit_note(node, thead, cols)
-      end
-
-      def table_key(node)
-        dl = node.at(ns("./dl[@key = 'true'][not(name)]")) or return
-        dl.add_first_child("<name>#{@i18n.key}</name>")
       end
 
       def table_thead_pt(node, name)
@@ -184,6 +177,8 @@ module IsoDoc
         end.join("\n")
         a << ret
       end
+
+      def figure_fn(elem); end
 
       include Init
     end
