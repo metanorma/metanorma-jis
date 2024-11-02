@@ -29,7 +29,7 @@ module IsoDoc
       def make_tr_attr_style(cell, row, rowmax, totalrows, opt)
         top = row.zero? ? "#{SW1} 1.5pt;" : "none;"
         bottom = "#{SW1} #{rowmax >= totalrows ? '1.5' : '1.0'}pt;"
-        ret = <<~STYLE.gsub(/\n/, "")
+        ret = <<~STYLE.delete("\n")
           border-top:#{top}mso-border-top-alt:#{top}
           border-left:#{bottom}mso-border-top-alt:#{bottom}
           border-right:#{bottom}mso-border-top-alt:#{bottom}
