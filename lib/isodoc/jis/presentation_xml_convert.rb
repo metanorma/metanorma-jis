@@ -46,6 +46,7 @@ module IsoDoc
       end
 
       def dl(docxml)
+        super
         docxml.xpath(ns("//table//dl | //figure//dl")).each do |l|
           l.at(ns("./dl")) || l.at("./ancestor::xmlns:dl") and next
           dl_to_para(l)
