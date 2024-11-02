@@ -90,9 +90,10 @@ module IsoDoc
 
       def table_name(name, thead, cols)
         name or return
-        thead.children.first.previous =
-          full_row(cols, "<p class='TableTitle' style='text-align:center;'> " \
-                         "#{name.remove.children.to_xml}</p>")
+        thead.add_first_child full_row(
+          cols, "<p class='TableTitle' style='text-align:center;'> " \
+                         "#{name.remove.children.to_xml}</p>"
+        )
       end
 
       def table_note_cleanup(docxml)
