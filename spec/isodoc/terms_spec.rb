@@ -98,6 +98,7 @@ RSpec.describe IsoDoc::Jis do
               <preferred>
                 <strong>paddy</strong>
               </preferred>
+              <domain hidden="true">rice</domain>
               <definition>
                 <p id="_">&lt;<domain>rice</domain>&gt; rice retaining its husk after threshing</p>
               </definition>
@@ -521,6 +522,7 @@ RSpec.describe IsoDoc::Jis do
                    <preferred>
                       <strong>paddy</strong>
                    </preferred>
+                   <domain hidden="true">rice</domain>
                    <definition>
                       <p id="_">&lt;<domain>rice</domain>&gt; rice retaining its husk after threshing</p>
                    </definition>
