@@ -19,6 +19,7 @@ module IsoDoc
         end
       end
 
+      # TODO to Presentation XML
       def admonition_name_parse(_node, div, name)
         div.span class: "note_label" do |s|
           name.children.each { |n| parse(n, s) }
