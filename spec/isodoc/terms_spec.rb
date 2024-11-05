@@ -98,8 +98,9 @@ RSpec.describe IsoDoc::Jis do
               <preferred>
                 <strong>paddy</strong>
               </preferred>
+              <domain hidden="true">rice</domain>
               <definition>
-                <p id="_">&lt;rice&gt; rice retaining its husk after threshing</p>
+                <p id="_">&lt;<domain>rice</domain>&gt; rice retaining its husk after threshing</p>
               </definition>
               <termexample id="_">
                 <name>EXAMPLE  1</name>
@@ -144,11 +145,11 @@ RSpec.describe IsoDoc::Jis do
                 </ul>
               </termexample>
               <termnote id="_">
-                <name>Note 1 to entry</name>
+                <name>Note 1 to entry:</name>
                 <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
               </termnote>
               <termnote id="_">
-                <name>Note 2 to entry</name>
+                <name>Note 2 to entry:</name>
                 <ul>
                   <li>A</li>
                 </ul>
@@ -251,14 +252,13 @@ RSpec.describe IsoDoc::Jis do
                </div>
                <div id="_" class="Note">
                  <p>
-                   <span class="note_label">Note 1 to entry</span>
-                   : The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.
+                   <span class="note_label">Note 1 to entry:</span>
+                   The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.
                  </p>
                </div>
                <div id="_" class="Note">
                  <p>
-                   <span class="note_label">Note 2 to entry</span>
-                   :
+                   <span class="note_label">Note 2 to entry:</span>
                    <div class="ul_wrap">
                    <ul>
                      <li>A</li>
@@ -372,14 +372,13 @@ RSpec.describe IsoDoc::Jis do
             </div>
             <div id="_" class="Note">
               <p>
-                <span class="note_label">Note 1 to entry</span>
-                : The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.
+                <span class="note_label">Note 1 to entry:</span>
+                The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.
               </p>
             </div>
             <div id="_" class="Note">
               <p>
-                <span class="note_label">Note 2 to entry</span>
-                :
+                <span class="note_label">Note 2 to entry:</span>
                 <div class="ul_wrap">
                 <ul>
                   <li>A</li>
@@ -523,8 +522,9 @@ RSpec.describe IsoDoc::Jis do
                    <preferred>
                       <strong>paddy</strong>
                    </preferred>
+                   <domain hidden="true">rice</domain>
                    <definition>
-                      <p id="_">&lt;rice&gt; rice retaining its husk after threshing</p>
+                      <p id="_">&lt;<domain>rice</domain>&gt; rice retaining its husk after threshing</p>
                    </definition>
                    <termexample id="_">
                       <name>例  1</name>
@@ -569,11 +569,11 @@ RSpec.describe IsoDoc::Jis do
                       </ul>
                    </termexample>
                    <termnote id="_">
-                      <name>注釈1</name>
+                      <name>注釈1：</name>
                       <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
                    </termnote>
                    <termnote id="_">
-                      <name>注釈2</name>
+                      <name>注釈2：</name>
                       <ul>
                          <li>A</li>
                       </ul>
