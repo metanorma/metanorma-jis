@@ -181,8 +181,7 @@ module IsoDoc
       def figure_fn(elem); end
 
       def omit_docid_prefix(prefix)
-        return true if prefix.nil? || prefix.empty?
-
+        prefix.nil? || prefix.empty? and return true
         super || %w(JIS).include?(prefix)
       end
 
