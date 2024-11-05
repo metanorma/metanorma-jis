@@ -195,8 +195,12 @@ RSpec.describe IsoDoc::Jis do
                 </preferred>
               </term>
             </terms>
-            <definitions id="K" inline-header="true">
-              <title>3.2</title>
+            <definitions id="K">
+            <title depth="2">
+               3.2
+               <tab/>
+               記号
+            </title>
               <dl>
                 <dt>Symbol</dt>
                 <dd>Definition</dd>
@@ -204,7 +208,11 @@ RSpec.describe IsoDoc::Jis do
             </definitions>
           </clause>
           <definitions id="L" displayorder="14">
-            <title>4</title>
+         <title depth="1">
+            4
+            <tab/>
+            記号
+         </title>
             <dl>
               <dt>Symbol</dt>
               <dd>Definition</dd>
@@ -295,160 +303,168 @@ RSpec.describe IsoDoc::Jis do
           <div class="main-section">
             <br/>
             <div>
-              <h1 class="ForewordTitle">Foreword</h1>
-              <p id="A">This is a preamble</p>
-            </div>
-            <br/>
-      <div id="_" class="TOC">
-        <h1 class="IntroTitle">目　次</h1>
-      </div>
-                  <p class="JapaneseIndustrialStandard">
-        日本工業規格              
-        <span class="JIS">JIS</span>
-      </p>
-      <p class="StandardNumber">  </p>
-      <p class="IDT"/>
-            <p class="zzSTDTitle1">Introduction Française — Titre Principal — </p>
-             <p class="zzSTDTitle1">
-               その :
-               <br/>
-               <b>Part du Titre</b>
-             </p>
-             <p class="zzSTDTitle2">Introduction — Main Title — Title — </p>
-             <p class="zzSTDTitle2">
-               Part :
-               <br/>
-               <b>Title Part</b>
-             </p>
-             <div class="Section3" id="B">
-              <h1 class="IntroTitle">Introduction</h1>
-              <div id="C">
-                <h2>
-                Introduction Subsection
-              </h2>
-              </div>
-              <p>This is patent boilerplate</p>
-            </div>
-                  <br/>
-            <div id="D">
-              <h1>
-              1
-               
-              Scope
-            </h1>
-              <p id="E">Text</p>
-            </div>
-            <div>
-              <h1>
-              2
-               
-              Normative References
-            </h1>
-            </div>
-            <div id="H">
-              <h1>
-              3
-               
-              Terms, definitions, symbols and abbreviated terms
-            </h1>
-              <div id="I">
-                <h2>
-                3.1
-                 
-                Normal Terms
-              </h2>
-                <p class="TermNum" id="J">3.1.1</p>
-                <p class="Terms" style="text-align:left;">
-                  <b>Term2</b>
-                </p>
-              </div>
-              <div id="K">
-                <span class="zzMoveToFollowing inline-header">
-                  <b>3.2  </b>
-                </span>
-                <div class="figdl">
-                <dl>
-                  <dt>
-                    <p>Symbol</p>
-                  </dt>
-                  <dd>Definition</dd>
-                </dl>
-              </div>
-              </div>
-            </div>
-            <div id="L" class="Symbols">
-              <h1>4</h1>
-              <div class="figdl">
-              <dl>
-                <dt>
-                  <p>Symbol</p>
-                </dt>
-                <dd>Definition</dd>
-              </dl>
-            </div>
-            </div>
-            <div id="M">
-              <h1>
-              5
-               
-              Clause 4
-            </h1>
-              <div id="N">
-                <h2>
-                5.1
-                 
-                Introduction
-              </h2>
-              </div>
-              <div id="O">
-                <h2>
-                5.2
-                 
-                Clause 4.2
-              </h2>
-              </div>
-            </div>
-            <br/>
-            <div id="P" class="Section3">
-              <h1 class="Annex">
-                附属書A
-                <br/>
-                （規定）
-                <br/>
-                <b>Annex</b>
-              </h1>
-              <div id="Q">
-                <h2>
-              A.1
-               
-              Annex A.1
-            </h2>
-                <div id="Q1">
-                  <h3>
-                A.1.1
-                 
-                Annex A.1a
-              </h3>
+                              <h1 class="ForewordTitle">Foreword</h1>
+                   <p id="A">This is a preamble</p>
                 </div>
-              </div>
-              <div id="Q2">
-                <h2>
-              Appendix 1
-               
-              An Appendix
-            </h2>
-              </div>
-            </div>
-            <br/>
-            <div>
-              <h1 class="Section3">Bibliography</h1>
-              <div>
-                <h2 class="Section3">Bibliography Subsection</h2>
-              </div>
-            </div>
-          </div>
-        </body>
-      </html>
+                <br/>
+                <div id="_" class="TOC">
+                   <h1 class="IntroTitle">目　次</h1>
+                </div>
+                <p class="JapaneseIndustrialStandard">
+                   日本工業規格 　 　 　 　 　 　 　
+                   <span class="JIS">JIS</span>
+                </p>
+                <p class="StandardNumber">
+              　
+            </p>
+                <p class="IDT"/>
+                <p class="zzSTDTitle1">Introduction Française — Titre Principal — </p>
+                <p class="zzSTDTitle1">
+                   その :
+                   <br/>
+                   <b>Part du Titre</b>
+                </p>
+                <p class="zzSTDTitle2">Introduction — Main Title — Title — </p>
+                <p class="zzSTDTitle2">
+                   Part :
+                   <br/>
+                   <b>Title Part</b>
+                </p>
+                <br/>
+                <div class="Section3" id="B">
+                   <h1 class="IntroTitle">Introduction</h1>
+                   <div id="C">
+                      <h2>
+                 Introduction Subsection
+               </h2>
+                   </div>
+                   <p>This is patent boilerplate</p>
+                </div>
+                <div id="D">
+                   <h1>
+               1
+               　
+               Scope
+             </h1>
+                   <p id="E">Text</p>
+                </div>
+                <div>
+                   <h1>
+               2
+               　
+               Normative References
+             </h1>
+                </div>
+                <div id="H">
+                   <h1>
+               3
+               　
+               Terms, definitions, symbols and abbreviated terms
+             </h1>
+                   <div id="I">
+                      <h2>
+                 3.1
+                 　
+                 Normal Terms
+               </h2>
+                      <p class="TermNum" id="J">3.1.1</p>
+                      <p class="Terms" style="text-align:left;">
+                         <b>Term2</b>
+                      </p>
+                   </div>
+                   <div id="K">
+                      <h2>
+                3.2
+                　
+                記号
+             </h2>
+                      <div class="figdl">
+                         <dl>
+                            <dt>
+                               <p>Symbol</p>
+                            </dt>
+                            <dd>Definition</dd>
+                         </dl>
+                      </div>
+                   </div>
+                </div>
+                <div id="L" class="Symbols">
+                   <h1>
+             4
+             　
+             記号
+          </h1>
+                   <div class="figdl">
+                      <dl>
+                         <dt>
+                            <p>Symbol</p>
+                         </dt>
+                         <dd>Definition</dd>
+                      </dl>
+                   </div>
+                </div>
+                <div id="M">
+                   <h1>
+               5
+               　
+               Clause 4
+             </h1>
+                   <div id="N">
+                      <h2>
+                 5.1
+                 　
+                 Introduction
+               </h2>
+                   </div>
+                   <div id="O">
+                      <h2>
+                 5.2
+                 　
+                 Clause 4.2
+               </h2>
+                   </div>
+                </div>
+                <br/>
+                <div id="P" class="Section3">
+                   <h1 class="Annex">
+                      附属書A
+                      <br/>
+                      （規定）
+                      <br/>
+                      <b>Annex</b>
+                   </h1>
+                   <div id="Q">
+                      <h2>
+               A.1
+               　
+               Annex A.1
+             </h2>
+                      <div id="Q1">
+                         <h3>
+                 A.1.1
+                 　
+                 Annex A.1a
+               </h3>
+                      </div>
+                   </div>
+                   <div id="Q2">
+                      <h2>
+               Appendix 1
+               　
+               An Appendix
+             </h2>
+                   </div>
+                </div>
+                <br/>
+                <div>
+                   <h1 class="Section3">Bibliography</h1>
+                   <div>
+                      <h2 class="Section3">Bibliography Subsection</h2>
+                   </div>
+                </div>
+             </div>
+          </body>
+       </html>
     OUTPUT
     word = <<~WORD
        <html xmlns:epub='http://www.idpf.org/2007/ops' lang='ja'>
@@ -552,12 +568,11 @@ RSpec.describe IsoDoc::Jis do
                   </p>
                 </div>
                 <div id="K">
-                  <span class="zzMoveToFollowing inline-header">
-                    <b>
-                      3.2
-                      <span style="mso-tab-count:1">  </span>
-                    </b>
-                  </span>
+               <h2>
+                  3.2
+                  <span style="mso-tab-count:1">  </span>
+                  記号
+               </h2>
                   <table class="dl">
                     <tr>
                       <td valign="top" align="left">
@@ -569,7 +584,11 @@ RSpec.describe IsoDoc::Jis do
                 </div>
               </div>
               <div id="L" class="Symbols">
-                <h1>4</h1>
+            <h1>
+               4
+               <span style="mso-tab-count:1">  </span>
+               記号
+            </h1>
                 <table class="dl">
                   <tr>
                     <td valign="top" align="left">
@@ -767,8 +786,8 @@ RSpec.describe IsoDoc::Jis do
                       </preferred>
                    </term>
                 </terms>
-                <definitions id="K" inline-header="true">
-                <title>三・二</title>
+                <definitions id="K">
+                <title depth="2">三・二<tab/>記号</title>
                    <dl>
                       <dt>Symbol</dt>
                       <dd>Definition</dd>
@@ -776,7 +795,7 @@ RSpec.describe IsoDoc::Jis do
                 </definitions>
              </clause>
              <definitions id="L" displayorder="14">
-                <title>四</title>
+                <title depth="1">四<tab/>記号</title>
                 <dl>
                    <dt>Symbol</dt>
                    <dd>Definition</dd>
@@ -1023,8 +1042,12 @@ RSpec.describe IsoDoc::Jis do
                      </preferred>
                    </term>
                  </terms>
-                 <definitions id="K" inline-header="true">
-                   <title>3.2</title>
+                 <definitions id="K">
+            <title depth="2">
+               3.2
+               <tab/>
+               Symbols
+            </title>
                    <dl>
                      <dt>Symbol</dt>
                      <dd>Definition</dd>
@@ -1032,7 +1055,11 @@ RSpec.describe IsoDoc::Jis do
                  </definitions>
                </clause>
                <definitions id="L" displayorder="10">
-                 <title>4</title>
+         <title depth="1">
+            4
+            <tab/>
+            Symbols
+         </title>
                  <dl>
                    <dt>Symbol</dt>
                    <dd>Definition</dd>
@@ -1299,8 +1326,12 @@ RSpec.describe IsoDoc::Jis do
                 </preferred>
               </term>
             </terms>
-            <definitions id="K" inline-header="true">
-              <title>3.2</title>
+         <definitions id="K">
+            <title depth="2">
+               3.2
+               <tab/>
+               Symbols
+            </title>
               <dl>
                 <dt>Symbol</dt>
                 <dd>Definition</dd>
@@ -1308,7 +1339,11 @@ RSpec.describe IsoDoc::Jis do
             </definitions>
           </clause>
           <definitions id="L" displayorder="14">
-            <title>4</title>
+         <title depth="1">
+            4
+            <tab/>
+            Symbols
+         </title>
             <dl>
               <dt>Symbol</dt>
               <dd>Definition</dd>
@@ -1467,9 +1502,11 @@ RSpec.describe IsoDoc::Jis do
                 </p>
               </div>
               <div id="K">
-                <span class="zzMoveToFollowing inline-header">
-                  <b>3.2  </b>
-                </span>
+               <h2>
+         3.2
+          
+         Symbols
+      </h2>
                 <div class="figdl">
                 <dl>
                   <dt>
@@ -1481,7 +1518,12 @@ RSpec.describe IsoDoc::Jis do
               </div>
             </div>
             <div id="L" class="Symbols">
-              <h1>4</h1>
+            <h1>
+         4
+       
+         Symbols
+       </h1>
+
               <div class="figdl">
               <dl>
                 <dt>

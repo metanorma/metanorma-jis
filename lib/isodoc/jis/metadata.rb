@@ -54,7 +54,7 @@ module IsoDoc
         isoxml.xpath(ns("//bibdata/date")).each do |d|
           val = Common::date_range(d)
           @lang == "ja" and val = @i18n.japanese_date(val)
-          set("#{d['type'].gsub(/-/, '_')}date".to_sym, val)
+          set("#{d['type'].tr('-', '_')}date".to_sym, val)
         end
       end
 

@@ -12,13 +12,14 @@ module IsoDoc
               p.span class: "note_label" do |s|
                 name.children.each { |n| parse(n, s) }
               end
-              p << termnote_delim
+              p << " "
             end
             para_then_remainder(node.first_element_child, node, p, div)
           end
         end
       end
 
+      # TODO to Presentation XML
       def admonition_name_parse(_node, div, name)
         div.span class: "note_label" do |s|
           name.children.each { |n| parse(n, s) }
@@ -90,9 +91,10 @@ module IsoDoc
 
       def table_name(name, thead, cols)
         name or return
-        thead.children.first.previous =
-          full_row(cols, "<p class='TableTitle' style='text-align:center;'> " \
-                         "#{name.remove.children.to_xml}</p>")
+        thead.add_first_child full_row(
+          cols, "<p class='TableTitle' style='text-align:center;'> " \
+                         "#{name.remove.children.to_xml}</p>"
+        )
       end
 
       def table_note_cleanup(docxml)

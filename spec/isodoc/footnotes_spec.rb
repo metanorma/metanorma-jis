@@ -6,7 +6,7 @@ RSpec.describe IsoDoc do
     input = <<~INPUT
           <iso-standard xmlns="http://riboseinc.com/isoxml">
           <preface>
-          <foreword displayorder="1">
+          <foreword displayorder="1"><title>Foreword</title>
           <p>A.<fn reference="2">
         <p id="_1e228e29-baef-4f38-b048-b05a051747e4">Formerly denoted as 15 % (m/m).</p>
       </fn></p>
@@ -116,9 +116,11 @@ RSpec.describe IsoDoc do
          </body>
        </html>
     OUTPUT
-    expect(Xml::C14n.format(IsoDoc::Jis::HtmlConvert.new({}).convert("test", input, true)))
+    expect(Xml::C14n.format(IsoDoc::Jis::HtmlConvert.new({})
+      .convert("test", input, true)))
       .to be_equivalent_to Xml::C14n.format(html)
-    expect(Xml::C14n.format(IsoDoc::Jis::WordConvert.new({}).convert("test", input, true)
+    expect(Xml::C14n.format(IsoDoc::Jis::WordConvert.new({})
+      .convert("test", input, true)
       .gsub(/_Ref\d+/, "_Ref")))
       .to be_equivalent_to Xml::C14n.format(word)
   end

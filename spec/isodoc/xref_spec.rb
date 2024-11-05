@@ -366,7 +366,7 @@ RSpec.describe IsoDoc::Jis do
         </iso-standard>
     INPUT
     output = <<~OUTPUT
-      <foreword id="fwd" displayorder="1">
+      <foreword id="fwd" displayorder="1"><title>Foreword</title>
          <p>
            <xref target="N">
              <span class="citefig">Figure 1</span>
@@ -404,7 +404,7 @@ RSpec.describe IsoDoc::Jis do
       .at("//xmlns:foreword").to_xml))
       .to be_equivalent_to Xml::C14n.format(output)
     output = <<~OUTPUT
-       <foreword id="fwd" displayorder="1">
+      <foreword id="fwd" displayorder="1"><title>まえがき</title>
          <p>
            <xref target="N">
              <span class="citefig">図1</span>
@@ -509,7 +509,7 @@ RSpec.describe IsoDoc::Jis do
       </iso-standard>
     INPUT
     output = <<~OUTPUT
-                <foreword displayorder='1'>
+                <foreword displayorder='1'><title>Foreword</title>
                   <p>
                      <xref target='N1'>Clause 1, Permission 1</xref>
       <xref target='N2'>Clause 1, Permission 1-1</xref>
@@ -535,7 +535,7 @@ RSpec.describe IsoDoc::Jis do
       .at("//xmlns:foreword").to_xml))
       .to be_equivalent_to Xml::C14n.format(output)
     output = <<~OUTPUT
-      <foreword displayorder="1">
+      <foreword displayorder="1"><title>まえがき</title>
           <p>
              <xref target="N1">箇条1の許可1</xref>
              <xref target="N2">箇条1の許可1の1</xref>

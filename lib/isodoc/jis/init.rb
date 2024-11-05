@@ -10,9 +10,8 @@ module IsoDoc
       end
 
       def xref_init(lang, script, _klass, labels, options)
-        @xrefs = Xref.new(lang, script,
-                          HtmlConvert.new(language: lang, script: script),
-                          labels, options)
+        p = HtmlConvert.new(language: lang, script: script)
+        @xrefs = Xref.new(lang, script, p, labels, options)
       end
 
       def i18n_init(lang, script, locale, i18nyaml = nil)
@@ -23,12 +22,6 @@ module IsoDoc
       def bibrenderer(options = {})
         ::Relaton::Render::Jis::General.new(options.merge(language: @lang,
                                                           i18nhash: @i18n.get))
-      end
-
-      def omit_docid_prefix(prefix)
-        return true if prefix.nil? || prefix.empty?
-
-        super || %w(JIS).include?(prefix)
       end
 
       def std_docid_semantic(text)

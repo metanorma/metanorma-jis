@@ -35,6 +35,7 @@ module IsoDoc
         }
       end
 
+      # TODO to Presentation XML
       def make_table_footnote_target(out, fnid, fnref)
         attrs = { id: fnid, class: "TableFootnoteRef" }
         out.span do |s|

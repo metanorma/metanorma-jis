@@ -45,12 +45,8 @@ module IsoDoc
         elem.children.first.previous = @i18n.l10n("#{@i18n.admitted}: ")
       end
 
-      def block(docxml)
-        super
-        dl docxml
-      end
-
       def dl(docxml)
+        super
         docxml.xpath(ns("//table//dl | //figure//dl")).each do |l|
           l.at(ns("./dl")) || l.at("./ancestor::xmlns:dl") and next
           dl_to_para(l)
@@ -180,6 +176,13 @@ module IsoDoc
           "<localized-string key='#{i}' language='ja'>#{n}</localized-string>"
         end.join("\n")
         a << ret
+      end
+
+      def figure_fn(elem); end
+
+      def omit_docid_prefix(prefix)
+        prefix.nil? || prefix.empty? and return true
+        super || %w(JIS).include?(prefix)
       end
 
       include Init

@@ -106,7 +106,7 @@ RSpec.describe IsoDoc do
     presxml = <<~OUTPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
          <preface>
-           <foreword displayorder="1">
+           <foreword displayorder="1"><title>Foreword</title>
              <table alt="tool tip" id="tableD-1" summary="long desc">
                <name>
                 Table 1 — Repeatability and reproducibility of
@@ -616,7 +616,7 @@ RSpec.describe IsoDoc do
     presxml = <<~OUTPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
          <preface>
-           <foreword displayorder="1">
+           <foreword displayorder="1"><title>Foreword</title>
              <table id="tableD-1">
                <name>
                   Table 1 — Repeatability and reproducibility of

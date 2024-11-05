@@ -65,7 +65,7 @@ module IsoDoc
         dest = doc.at(ns("//sections")) ||
           doc.at(ns("//preface")).after("<sections> </sections>").next_element
         dest.children.empty? and dest.children = " "
-        dest.children.first.next = source
+        dest.add_first_child source
       end
 
       def move_participants(doc)
@@ -73,7 +73,7 @@ module IsoDoc
         t = participant_table(p) or return
         p.remove
         ins = make_preface(doc) or return nil
-        ins.children.first.previous = t
+        ins.add_first_child t
       end
 
       def participant_table(clause)
