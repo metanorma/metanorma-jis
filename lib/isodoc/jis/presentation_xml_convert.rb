@@ -131,6 +131,10 @@ module IsoDoc
         elem.children = l10n("#{@i18n.source}: #{to_xml(elem.children).strip}")
       end
 
+      def table_fn1(_table, fnote, _idx)
+        fnote["reference"] += ")"
+      end
+
       def bibdata_i18n(bibdata)
         super
         @lang == "ja" and date_translate(bibdata)
@@ -178,7 +182,12 @@ module IsoDoc
         a << ret
       end
 
-      def figure_fn(elem); end
+      def figure_fn(elem)
+        (elem.xpath(ns(".//fn")) - elem.xpath(ns("./name//fn")))
+          .each do |f|
+            table_fn1(elem, f, nil)
+          end
+      end
 
       def omit_docid_prefix(prefix)
         prefix.nil? || prefix.empty? and return true
