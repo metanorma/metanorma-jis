@@ -76,7 +76,7 @@ RSpec.describe IsoDoc::Jis do
                 <image src="rice_images/rice_image1.png" height="20" width="auto" id="_" mimetype="image/png"/>
                 <image src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7" height="20" width="auto" id="_" mimetype="image/png"/>
                 <image src="data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjw/eG1sLXN0eWxlc2hlZXQgdHlwZT0idGV4dC94c2wiIGhyZWY9Ii4uLy4uLy4uL3hzbC9yZXNfZG9jL2ltZ2ZpbGUueHNsIj8+CjwhRE9DVFlQRSBpbWdmaWxlLmNvbnRlbnQgU1lTVEVNICIuLi8uLi8uLi9kdGQvdGV4dC5lbnQiPgo8aW1nZmlsZS5jb250ZW50IG1vZHVsZT0iZnVuZGFtZW50YWxzX29mX3Byb2R1Y3RfZGVzY3JpcHRpb25fYW5kX3N1cHBvcnQiIGZpbGU9ImFjdGlvbl9zY2hlbWFleHBnMS54bWwiPgo8aW1nIHNyYz0iYWN0aW9uX3NjaGVtYWV4cGcxLmdpZiI+CjxpbWcuYXJlYSBzaGFwZT0icmVjdCIgY29vcmRzPSIyMTAsMTg2LDM0MywyMjciIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9iYXNpY19hdHRyaWJ1dGVfc2NoZW1hL2Jhc2ljX2F0dHJpYnV0ZV9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMTAsMTAsOTYsNTEiIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9hY3Rpb25fc2NoZW1hL2FjdGlvbl9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMjEwLDI2NCwzNTgsMzA1IiBocmVmPSIuLi8uLi9yZXNvdXJjZXMvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEueG1sIiAvPgo8L2ltZz4KPC9pbWdmaWxlLmNvbnRlbnQ+Cg==" height="20" width="auto" id="_" mimetype="application/xml"/>
-                <fn reference="a">
+                <fn reference="a)">
                   <p id="_">
                     The time
                     <stem type="AsciiMath">t_90</stem>
@@ -146,85 +146,83 @@ RSpec.describe IsoDoc::Jis do
         </iso-standard>
     OUTPUT
     html = <<~OUTPUT
-           <html lang="en">
-         <head/>
-         <body lang="en">
-           <div class="title-section">
-             <p> </p>
-           </div>
-           <br/>
-           <div class="prefatory-section">
-             <p> </p>
-           </div>
-           <br/>
-           <div class="main-section">
-             <br/>
-             <div>
-               <h1 class="ForewordTitle">Foreword</h1>
-               <div align="right">
-           <b>Units in mm</b>
-         </div>
-               <div id="figureA-1" class="figure" style="page-break-after: avoid;page-break-inside: avoid;">
-                 <img src="rice_images/rice_image1.png" height="20" width="30" title="titletxt" alt="alttext"/>
-                 <img src="rice_images/rice_image1.png" height="20" width="auto"/>
-                 <img src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7" height="20" width="auto"/>
-                 <img src="data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjw/eG1sLXN0eWxlc2hlZXQgdHlwZT0idGV4dC94c2wiIGhyZWY9Ii4uLy4uLy4uL3hzbC9yZXNfZG9jL2ltZ2ZpbGUueHNsIj8+CjwhRE9DVFlQRSBpbWdmaWxlLmNvbnRlbnQgU1lTVEVNICIuLi8uLi8uLi9kdGQvdGV4dC5lbnQiPgo8aW1nZmlsZS5jb250ZW50IG1vZHVsZT0iZnVuZGFtZW50YWxzX29mX3Byb2R1Y3RfZGVzY3JpcHRpb25fYW5kX3N1cHBvcnQiIGZpbGU9ImFjdGlvbl9zY2hlbWFleHBnMS54bWwiPgo8aW1nIHNyYz0iYWN0aW9uX3NjaGVtYWV4cGcxLmdpZiI+CjxpbWcuYXJlYSBzaGFwZT0icmVjdCIgY29vcmRzPSIyMTAsMTg2LDM0MywyMjciIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9iYXNpY19hdHRyaWJ1dGVfc2NoZW1hL2Jhc2ljX2F0dHJpYnV0ZV9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMTAsMTAsOTYsNTEiIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9hY3Rpb25fc2NoZW1hL2FjdGlvbl9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMjEwLDI2NCwzNTgsMzA1IiBocmVmPSIuLi8uLi9yZXNvdXJjZXMvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEueG1sIiAvPgo8L2ltZz4KPC9pbWdmaWxlLmNvbnRlbnQ+Cg==" height="20" width="auto"/>
-                 <a href="#_" class="TableFootnoteRef">a</a>
-                 <aside class="footnote">
-                   <div id="fn:_">
-                     <span>
-                       Footnote
-                       <span id="_" class="TableFootnoteRef">a)</span>
-                        
-                     </span>
-                     <p id="_">
-                       The time
-                       <span class="stem">(#(t_90)#)</span>
-                       was estimated to be 18,2 min for this example.
-                     </p>
-                   </div>
-                 </aside>
-                 <p class="ListTitle">
-             Key
-             <a id="DL1"/>
-           </p>
-                 <p class="dl">A: B</p>
-                 <div class="BlockSource">
-                    <p>
-                      [SOURCE:
-                      <a href="#ISO712">
-                     ISO 712, Section 1
-                   </a>
-                      &#x2014; with adjustments]
-                    </p>
-                  </div>
-                 <div id="note1" class="Note">
-             <p>
-               <span class="note_label">NOTE</span>
-                
-             </p>
-             This is a note
-           </div>
-                 <p class="FigureTitle" style="text-align:center;">
-                   Figure 1 — Split-it-right
-                   <i>sample</i>
-                   divider
-                   <a class="FootnoteRef" href="#fn:1">
-                     <sup>1</sup>
-                   </a>
-                 </p>
-               </div>
-               <div id="figure-B" class="figure">
-                 <pre>A &lt;
-         B</pre>
-                 <p class="FigureTitle" style="text-align:center;">Figure 2</p>
-               </div>
-               <div id="figure-C" class="figure">
-                 <pre>A &lt;
-         B</pre>
-               </div>
+       <html lang="en">
+          <head/>
+          <body lang="en">
+             <div class="title-section">
+                <p> </p>
              </div>
-                  <br/>
+             <br/>
+             <div class="prefatory-section">
+                <p> </p>
+             </div>
+             <br/>
+             <div class="main-section">
+                <br/>
+                <div>
+                   <h1 class="ForewordTitle">Foreword</h1>
+                   <div align="right">
+                      <b>Units in mm</b>
+                   </div>
+                   <div id="figureA-1" class="figure" style="page-break-after: avoid;page-break-inside: avoid;">
+                      <img src="rice_images/rice_image1.png" height="20" width="30" title="titletxt" alt="alttext"/>
+                      <img src="rice_images/rice_image1.png" height="20" width="auto"/>
+                      <img src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7" height="20" width="auto"/>
+                      <img src="data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjw/eG1sLXN0eWxlc2hlZXQgdHlwZT0idGV4dC94c2wiIGhyZWY9Ii4uLy4uLy4uL3hzbC9yZXNfZG9jL2ltZ2ZpbGUueHNsIj8+CjwhRE9DVFlQRSBpbWdmaWxlLmNvbnRlbnQgU1lTVEVNICIuLi8uLi8uLi9kdGQvdGV4dC5lbnQiPgo8aW1nZmlsZS5jb250ZW50IG1vZHVsZT0iZnVuZGFtZW50YWxzX29mX3Byb2R1Y3RfZGVzY3JpcHRpb25fYW5kX3N1cHBvcnQiIGZpbGU9ImFjdGlvbl9zY2hlbWFleHBnMS54bWwiPgo8aW1nIHNyYz0iYWN0aW9uX3NjaGVtYWV4cGcxLmdpZiI+CjxpbWcuYXJlYSBzaGFwZT0icmVjdCIgY29vcmRzPSIyMTAsMTg2LDM0MywyMjciIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9iYXNpY19hdHRyaWJ1dGVfc2NoZW1hL2Jhc2ljX2F0dHJpYnV0ZV9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMTAsMTAsOTYsNTEiIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9hY3Rpb25fc2NoZW1hL2FjdGlvbl9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMjEwLDI2NCwzNTgsMzA1IiBocmVmPSIuLi8uLi9yZXNvdXJjZXMvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEueG1sIiAvPgo8L2ltZz4KPC9pbWdmaWxlLmNvbnRlbnQ+Cg==" height="20" width="auto"/>
+                      <a href="#_" class="TableFootnoteRef">a)</a>
+                      <aside class="footnote">
+                         <div id="fn:_">
+                            <span>
+                               Footnote
+                               <span id="_" class="TableFootnoteRef">a)</span>
+                                
+                            </span>
+                            <p id="_">
+                               The time
+                               <span class="stem">(#(t_90)#)</span>
+                               was estimated to be 18,2 min for this example.
+                            </p>
+                         </div>
+                      </aside>
+                      <p class="ListTitle">
+                         Key
+                         <a id="DL1"/>
+                      </p>
+                      <p class="dl">A: B</p>
+                      <div class="BlockSource">
+                         <p>
+                            [SOURCE:
+                            <a href="#ISO712">ISO 712, Section 1</a>
+                            — with adjustments]
+                         </p>
+                      </div>
+                      <div id="note1" class="Note">
+                         <p>
+                            <span class="note_label">NOTE</span>
+                             
+                         </p>
+                         This is a note
+                      </div>
+                      <p class="FigureTitle" style="text-align:center;">
+                         Figure 1 — Split-it-right
+                         <i>sample</i>
+                         divider
+                         <a class="FootnoteRef" href="#fn:1">
+                            <sup>1</sup>
+                         </a>
+                      </p>
+                   </div>
+                   <div id="figure-B" class="figure">
+                      <pre>A &lt;
+           B</pre>
+                      <p class="FigureTitle" style="text-align:center;">Figure 2</p>
+                   </div>
+                   <div id="figure-C" class="figure">
+                      <pre>A &lt;
+           B</pre>
+                   </div>
+                </div>
+                <br/>
       <div id="_" class="TOC">
         <h1 class="IntroTitle">Contents</h1>
       </div>
@@ -371,7 +369,8 @@ RSpec.describe IsoDoc::Jis do
       .convert("test", input, true).gsub("&lt;", "&#x3c;"))))
       .to be_equivalent_to Xml::C14n.format(presxml)
     expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
-      .convert("test", presxml, true)))).to be_equivalent_to Xml::C14n.format(html)
+      .convert("test", presxml, true))))
+      .to be_equivalent_to Xml::C14n.format(html)
     FileUtils.rm_rf "spec/assets/odf1.emf"
     expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::WordConvert.new({})
       .convert("test", presxml, true)
@@ -519,7 +518,8 @@ RSpec.describe IsoDoc::Jis do
       .convert("test", input, true).gsub("&lt;", "&#x3c;"))))
       .to be_equivalent_to Xml::C14n.format(presxml)
     expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
-      .convert("test", presxml, true)))).to be_equivalent_to Xml::C14n.format(html)
+      .convert("test", presxml, true))))
+      .to be_equivalent_to Xml::C14n.format(html)
     FileUtils.rm_rf "spec/assets/odf1.emf"
     expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::WordConvert.new({})
       .convert("test", presxml, true)
