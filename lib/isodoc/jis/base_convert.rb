@@ -19,14 +19,6 @@ module IsoDoc
         end
       end
 
-      # TODO to Presentation XML
-      def admonition_name_parse(_node, div, name)
-        div.span class: "note_label" do |s|
-          name.children.each { |n| parse(n, s) }
-          s << " &#x2014; "
-        end
-      end
-
       def make_tr_attr(cell, row, totalrows, header, bordered)
         cell["border"] == "0" and bordered = false
         super
