@@ -125,13 +125,13 @@ RSpec.describe IsoDoc do
                    <td align="left">Arborio</td>
                    <td align="center">
                      Drago
-                     <fn reference="a">
+                     <fn reference="a)">
                        <p id="_">Parboiled rice.</p>
                      </fn>
                    </td>
                    <td align="center">
                      Balilla
-                     <fn reference="a">
+                     <fn reference="a)">
                        <p id="_">Parboiled rice.</p>
                      </fn>
                    </td>
@@ -270,11 +270,11 @@ RSpec.describe IsoDoc do
                  <td style="text-align:left;border-top:none;border-bottom:solid windowtext 1.5pt;;text-align:center;vertical-align:middle;" scope="col">Arborio</td>
                  <td style="text-align:center;border-top:none;border-bottom:solid windowtext 1.5pt;;text-align:center;vertical-align:middle;" scope="col">
                    Drago
-                   <a href="#tableD-1a" class="TableFootnoteRef">a</a>
+                   <a href="#tableD-1a)" class="TableFootnoteRef">a)</a>
                  </td>
                  <td style="text-align:center;border-top:none;border-bottom:solid windowtext 1.5pt;;text-align:center;vertical-align:middle;" scope="col">
                    Balilla
-                   <a href="#tableD-1a" class="TableFootnoteRef">a</a>
+                   <a href="#tableD-1a)" class="TableFootnoteRef">a)</a>
                  </td>
                  <td style="text-align:center;border-top:none;border-bottom:solid windowtext 1.5pt;;text-align:center;vertical-align:middle;" scope="col">Thaibonnet</td>
                </tr>
@@ -336,7 +336,7 @@ RSpec.describe IsoDoc do
                 <p id="_" class="TableFootnote">
                   <span>
                     Footnote
-                    <span id="tableD-11" class="TableFootnoteRef">1)</span>
+                    <span id="tableD-11" class="TableFootnoteRef">1</span>
                      
                   </span>
                   Name footnote.
@@ -344,11 +344,11 @@ RSpec.describe IsoDoc do
               </div>
             </div>
                    <div class="TableFootnote">
-                     <div id="fn:tableD-1a">
+                     <div id="fn:tableD-1a)">
                        <p id="_" class="TableFootnote">
                          <span>
                            Footnote
-                           <span id="tableD-1a" class="TableFootnoteRef">a)</span>
+                           <span id="tableD-1a)" class="TableFootnoteRef">a)</span>
                             
                          </span>
                          Parboiled rice.
@@ -394,132 +394,132 @@ RSpec.describe IsoDoc do
     OUTPUT
 
     doc = <<~OUTPUT
-      <div>
-         <table xmlns:m="m" title="tool tip" summary="long desc" width="" class="MsoTableGrid" style="border-collapse:collapse;mso-table-anchor-horizontal:column;mso-table-overlap:never;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0">
-           <a name="tableD-1" id="tableD-1"/>
-           <thead>
-             <tr>
-               <td colspan="5" style="page-break-after:avoid;" align="center" valign="middle">
-               <p class="ForewordText" style="text-align:center;;text-align: center;page-break-after:avoid">
-                   Table 1 — Repeatability and reproducibility of
-                   <i>husked</i>
-                   rice yield
-                   <a href="#tableD-11" class="TableFootnoteRef">1</a>
-                 </p>
-               </td>
-             </tr>
-             <tr>
-               <td rowspan="2" align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:avoid;" valign="middle">Description</td>
-               <td colspan="4" align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;" valign="middle">Rice sample</td>
-             </tr>
-             <tr>
-               <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:avoid;" valign="middle">Arborio</td>
-               <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:avoid;" valign="middle">
-                 Drago
-                 <a href="#tableD-1a" class="TableFootnoteRef">a</a>
-               </td>
-               <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:avoid;" valign="middle">
-                 Balilla
-                 <a href="#tableD-1a" class="TableFootnoteRef">a</a>
-               </td>
-               <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:avoid;" valign="middle">Thaibonnet</td>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">Number of laboratories retained after eliminating outliers</th>
-               <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">13</td>
-               <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">11</td>
-               <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">13</td>
-               <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">13</td>
-             </tr>
-             <tr>
-               <td align="left" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">Mean value, g/100 g</td>
-               <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">81,2</td>
-               <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">82,0</td>
-               <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">81,8</td>
-               <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">77,7</td>
-             </tr>
-           </tbody>
-           <tfoot>
-             <tr>
-               <td align="left" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">
-                 Reproducibility limit,
-                 <span class="stem">(#(R)#)</span>
-                 (= 2,83
-                 <span class="stem">(#(s_R)#)</span>
-                 )
-               </td>
-               <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">2,89</td>
-               <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">0,57</td>
-               <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">2,26</td>
-               <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">
-                   <p class="ForewordText" style="text-align: center;page-break-after:auto">6,06: definition</p>
-               </td>
-             </tr>
-             <tr>
-               <td colspan="5" style="border-top:0pt;mso-border-top-alt:0pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-left-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-right-alt:solid windowtext 1.5pt;">
-                 <div class="BlockSource">
-                   <p class="MsoNormal">SOURCE:
-
-
+       <div>
+          <table xmlns:m="m" title="tool tip" summary="long desc" width="" class="MsoTableGrid" style="border-collapse:collapse;mso-table-anchor-horizontal:column;mso-table-overlap:never;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0">
+             <a name="tableD-1" id="tableD-1"/>
+             <thead>
+                <tr>
+                   <td colspan="5" style="page-break-after:avoid;" align="center" valign="middle">
+                      <p class="ForewordText" style="text-align:center;;text-align: center;page-break-after:avoid">
+                         Table 1 — Repeatability and reproducibility of
+                         <i>husked</i>
+                         rice yield
+                         <a href="#tableD-11" class="TableFootnoteRef">1</a>
+                      </p>
+                   </td>
+                </tr>
+                <tr>
+                   <td rowspan="2" align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:avoid;" valign="middle">Description</td>
+                   <td colspan="4" align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;" valign="middle">Rice sample</td>
+                </tr>
+                <tr>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:avoid;" valign="middle">Arborio</td>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:avoid;" valign="middle">
+                      Drago
+                      <a href="#tableD-1a)" class="TableFootnoteRef">a)</a>
+                   </td>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:avoid;" valign="middle">
+                      Balilla
+                      <a href="#tableD-1a)" class="TableFootnoteRef">a)</a>
+                   </td>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:avoid;" valign="middle">Thaibonnet</td>
+                </tr>
+             </thead>
+             <tbody>
+                <tr>
+                   <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">Number of laboratories retained after eliminating outliers</th>
+                   <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">13</td>
+                   <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">11</td>
+                   <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">13</td>
+                   <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">13</td>
+                </tr>
+                <tr>
+                   <td align="left" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">Mean value, g/100 g</td>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">81,2</td>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">82,0</td>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">81,8</td>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">77,7</td>
+                </tr>
+             </tbody>
+             <tfoot>
+                <tr>
+                   <td align="left" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">
+                      Reproducibility limit,
+                      <span class="stem">(#(R)#)</span>
+                      (= 2,83
+                      <span class="stem">(#(s_R)#)</span>
+                      )
+                   </td>
+                   <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">2,89</td>
+                   <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">0,57</td>
+                   <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">2,26</td>
+                   <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">
+                      <p class="ForewordText" style="text-align: center;page-break-after:auto">6,06: definition</p>
+                   </td>
+                </tr>
+                <tr>
+                   <td colspan="5" style="border-top:0pt;mso-border-top-alt:0pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-left-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-right-alt:solid windowtext 1.5pt;">
+                      <div class="BlockSource">
+                         <p class="MsoNormal">SOURCE:
+     
+     
                     , Section 1
-
-                    &#x2014; with adjustments ;
-
-
+     
+                    — with adjustments ;
+     
+     
              , Section 3
-
-           &#x2014; with alterations
+     
+           — with alterations
                 </p>
-                 </div>
-                 <div>
-                   <p class="Note">
-                     <span class="note_label">NOTE 1</span>
-                     <span style="mso-tab-count:1">  </span>
-                     This is a table about rice
-                   </p>
-                 </div>
-                 <div class="TableFootnote">
-                   <div>
-                     <a name="ftntableD-11" id="ftntableD-11"/>
-                     <p class="TableFootnote">
-                       <a name="_" id="_"/>
-                       <span>
-                         Footnote
-                         <span class="TableFootnoteRef">
-                           <a name="tableD-11" id="tableD-11"/>
-                           1)
-                         </span>
-                         <span style="mso-tab-count:1">  </span>
-                       </span>
-                       Name footnote.
-                     </p>
-                   </div>
-                 </div>
-                 <div class="TableFootnote">
-                   <div>
-                     <a name="ftntableD-1a" id="ftntableD-1a"/>
-                     <p class="TableFootnote">
-                       <a name="_" id="_"/>
-                       <span>
-                         Footnote
-                         <span class="TableFootnoteRef">
-                           <a name="tableD-1a" id="tableD-1a"/>
-                           a)
-                         </span>
-                         <span style="mso-tab-count:1">  </span>
-                       </span>
-                       Parboiled rice.
-                     </p>
-                   </div>
-                 </div>
-               </td>
-             </tr>
-           </tfoot>
-          <p class="ForewordText">Key</p>
-          <p class="ForewordText">Drago: A type of rice</p>
-         </table>
+                      </div>
+                      <div>
+                         <p class="Note">
+                            <span class="note_label">NOTE 1</span>
+                            <span style="mso-tab-count:1">  </span>
+                            This is a table about rice
+                         </p>
+                      </div>
+                      <div class="TableFootnote">
+                         <div>
+                            <a name="ftntableD-11" id="ftntableD-11"/>
+                            <p class="TableFootnote">
+                               <a name="_" id="_"/>
+                               <span>
+                                  Footnote
+                                  <span class="TableFootnoteRef">
+                                     <a name="tableD-11" id="tableD-11"/>
+                                     1)
+                                  </span>
+                                  <span style="mso-tab-count:1">  </span>
+                               </span>
+                               Name footnote.
+                            </p>
+                         </div>
+                      </div>
+                      <div class="TableFootnote">
+                         <div>
+                            <a name="ftntableD-1a)" id="ftntableD-1a)"/>
+                            <p class="TableFootnote">
+                               <a name="_" id="_"/>
+                               <span>
+                                  Footnote
+                                  <span class="TableFootnoteRef">
+                                     <a name="tableD-1a)" id="tableD-1a)"/>
+                                     a))
+                                  </span>
+                                  <span style="mso-tab-count:1">  </span>
+                               </span>
+                               Parboiled rice.
+                            </p>
+                         </div>
+                      </div>
+                   </td>
+                </tr>
+             </tfoot>
+             <p class="ForewordText">Key</p>
+             <p class="ForewordText">Drago: A type of rice</p>
+          </table>
        </div>
     OUTPUT
     doc2 = <<~OUTPUT
@@ -553,19 +553,22 @@ RSpec.describe IsoDoc do
     OUTPUT
     expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
-      .convert("test", input, true)))).to be_equivalent_to Xml::C14n.format(presxml)
+      .convert("test", input, true))))
+      .to be_equivalent_to Xml::C14n.format(presxml)
     IsoDoc::Jis::HtmlConvert.new({}).convert("test", presxml, false)
     expect(File.exist?("test.html")).to be true
     out = File.read("test.html")
       .sub(/^.*<main /m, "<main ")
       .sub(%r{</main>.*$}m, "</main>")
-    expect(Xml::C14n.format(strip_guid(out))).to be_equivalent_to Xml::C14n.format(html)
+    expect(Xml::C14n.format(strip_guid(out)))
+      .to be_equivalent_to Xml::C14n.format(html)
     IsoDoc::Jis::WordConvert.new({}).convert("test", presxml, false)
     expect(File.exist?("test.doc")).to be true
     out = File.read("test.doc")
       .sub(/^.+?<table /m, '<table xmlns:m="m" ')
       .sub(%r{</div>\s*<p class="MsoNormal">.*$}m, "")
-    expect(Xml::C14n.format("<div>#{out}")).to be_equivalent_to Xml::C14n.format(doc)
+    expect(Xml::C14n.format("<div>#{out}"))
+      .to be_equivalent_to Xml::C14n.format(doc)
     out = File.read("test.doc")
       .sub(/^.+?<div class="Section3"/m, '<div class="Section3"')
       .sub(%r{</div>\s*<br[^>]+>\s*<div class="colophon".*$}m, "")
