@@ -39,9 +39,10 @@ module IsoDoc
       def make_table_footnote_target(out, fnid, fnref)
         attrs = { id: fnid, class: "TableFootnoteRef" }
         out.span do |s|
+         # TODO to Presentation XML
           s << @i18n.table_footnote
           out.span **attrs do |a|
-            a << "#{fnref})"
+            a << fnref
           end
           insert_tab(s, 1)
         end
