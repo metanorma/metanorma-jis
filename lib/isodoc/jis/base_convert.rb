@@ -4,7 +4,8 @@ require "metanorma-iso"
 module IsoDoc
   module Jis
     module BaseConvert
-      def termnote_parse(node, out)
+      # KILL
+      def termnote_parsex(node, out)
         name = node.at(ns("./name"))&.remove
         out.div **note_attrs(node) do |div|
           div.p do |p|
@@ -30,7 +31,7 @@ module IsoDoc
         page_break(out)
         out.div **attr_code(annex_attrs(node)) do |s|
           node.elements.each do |c1|
-            if c1.name == "title" then annex_name(node, c1, s)
+            if c1.name == "fmt-title" then annex_name(node, c1, s)
             else parse(c1, s) end
           end
         end
@@ -41,7 +42,7 @@ module IsoDoc
         page_break(out)
         out.div **attr_code(annex_attrs(node)) do |s|
           node.elements.each do |c1|
-            if c1.name == "title" then annex_name(node, c1, s)
+            if c1.name == "fmt-title" then annex_name(node, c1, s)
             else parse(c1, s)
             end
           end
@@ -50,7 +51,7 @@ module IsoDoc
 
       def table_parse(node, out)
         cols = table_cols_count(node)
-        name = node.at(ns("./name"))
+        name = node.at(ns("./fmt-name"))
         thead = table_thead_pt(node, name)
         table_name(name, thead, cols)
         super
