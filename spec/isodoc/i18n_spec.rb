@@ -569,7 +569,7 @@ RSpec.describe IsoDoc::Jis do
                 <br/>
                 <div id="P" class="Section3">
                    <h1 class="Annex">
-                      附属書 A
+                      附属書A
                       <br/>
                       <span class="obligation">（規定）</span>
                       <br/>
@@ -752,7 +752,7 @@ RSpec.describe IsoDoc::Jis do
                 </p>
                 <div id="P" class="Section3">
                    <h1 class="Annex">
-                      附属書 A
+                      附属書A
                       <br/>
                       <span class="obligation">（規定）</span>
                       <br/>
