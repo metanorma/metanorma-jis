@@ -63,7 +63,7 @@ RSpec.describe Metanorma::Jis::Processor do
     <boilerplate>
       <copyright-statement>
         <clause>
-          <title>DOCUMENT PROT&#201;G&#201; PAR COPYRIGHT</title>
+          <fmt-title>DOCUMENT PROT&#201;G&#201; PAR COPYRIGHT</fmt-title>
         <p id="boilerplate-year">&#169; ISO 2021</p>
 
       <p id="boilerplate-message">
@@ -92,9 +92,9 @@ RSpec.describe Metanorma::Jis::Processor do
     </boilerplate>
           <sections>
             <terms id="H" obligation="normative" displayorder="1">
-            <title>1&#xA0; Terms, Definitions, Symbols and Abbreviated Terms</title>
+            <fmt-title>1&#xA0; Terms, Definitions, Symbols and Abbreviated Terms</fmt-title>
               <term id="J">
-                <name>1.1</name>
+                <fmt-name>1.1</fmt-name>
                 <preferred>Term2</preferred>
               </term>
             </terms>
@@ -146,7 +146,7 @@ RSpec.describe Metanorma::Jis::Processor do
       #{BOILERPLATE}
       <sections>
           <clause id="_" inline-header="false" obligation="normative">
-            <title>Clause</title>
+            <fmt-title>Clause</fmt-itle>
           </clause>
         </sections>
       </ogc-standard>

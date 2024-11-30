@@ -225,7 +225,7 @@ RSpec.describe Relaton::Render::Jis do
     output = <<~OUTPUT
       <formattedref>S. Bradner. <span class="stddocTitle">Intellectual Property Rights in IETF Technology</span>. RFC Series. 入手先： <span class="biburl">
           <link target="https://www.rfc-editor.org/info/rfc3979">https://www.rfc-editor.org/info/rfc3979</link>
-        </span>．</formattedref>
+        </span></formattedref>
     OUTPUT
     p = renderer
     expect(p.render(input))

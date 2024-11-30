@@ -66,9 +66,9 @@ module IsoDoc
       def norm_ref(node, out)
         node["hidden"] != "true" or return
         out.div class: "normref_div" do |div|
-          clause_name(node, node.at(ns("./title")), div, nil)
+          clause_name(node, node.at(ns("./fmt-title")), div, nil)
           if node.name == "clause"
-            node.elements.each { |e| parse(e, div) unless e.name == "title" }
+            node.elements.each { |e| parse(e, div) unless e.name == "fmt-title" }
           else biblio_list(node, div, false)
           end
         end
@@ -79,7 +79,7 @@ module IsoDoc
         page_break(out)
         out.div class: "bibliography" do |div|
           div.h1 class: "Section3" do |h1|
-            node.at(ns("./title"))&.children&.each { |c2| parse(c2, h1) }
+            node.at(ns("./fmt-title"))&.children&.each { |c2| parse(c2, h1) }
           end
           biblio_list(node, div, true)
         end
@@ -101,10 +101,10 @@ module IsoDoc
 
       def introduction(clause, out)
         out.div class: "Section3", id: clause["id"] do |div|
-          clause_name(clause, clause.at(ns("./title")), div,
+          clause_name(clause, clause.at(ns("./fmt-title")), div,
                       { class: "IntroTitle" })
           clause.elements.each do |e|
-            parse(e, div) unless e.name == "title"
+            parse(e, div) unless e.name == "fmt-title"
           end
         end
       end
@@ -150,7 +150,7 @@ module IsoDoc
       def render_annex(out, clause)
         out.div **attr_code(annex_attrs(clause)) do |s|
           clause.elements.each do |c1|
-            if c1.name == "title" then annex_name(clause, c1, s)
+            if c1.name == "fmt-title" then annex_name(clause, c1, s)
             else parse(c1, s)
             end
           end

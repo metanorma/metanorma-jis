@@ -28,13 +28,13 @@ module IsoDoc
         @autonumbering_style == :japanese ? "\u30fb" : "."
       end
 
-      def clause_counter(num, opts)
+      def clause_counter(num, opts = { })
         opts[:numerals] ||= @autonumbering_style
         opts[:separator] ||= clause_sep
         super
       end
 
-      def list_counter(num, opts)
+      def list_counter(num, opts = { })
         opts[:numerals] ||= @autonumbering_style
         opts[:separator] ||= clause_sep
         IsoDoc::Jis::Counter.new(num, opts)
@@ -44,13 +44,43 @@ module IsoDoc
         @lang == "ja" ? "の" : super
       end
 
-      def subfigure_label(subfignum)
+      def hierreqtsep
+        @lang == "ja" ? "の" : super
+      end
+
+      # KILL
+      def subfigure_labelx(subfignum)
         subfignum.zero? and return ""
         sep = @lang == "ja" ? "の" : " "
         "#{sep}#{(subfignum + 96).chr})"
       end
 
-      def annex_name_lbl(clause, num)
+      def subfigure_label(subfignum)
+        subfignum.zero? and return
+        (subfignum + 96).chr
+      end
+
+      def subfigure_delim
+        ")"
+      end
+
+      # taken from isodoc to override ISO
+def subfigure_anchor(elem, sublabel, label, klass, container: false)
+        figlabel = fig_subfig_label(label, sublabel)
+        @anchors[elem["id"]] = anchor_struct(
+          figlabel, elem, @labels[klass] || klass.capitalize, klass,
+          { unnumb: elem["unnumbered"], container: }
+        ) 
+        if elem["unnumbered"] != "true"
+          x = semx(elem, sublabel)
+          @anchors[elem["id"]][:label] = x
+          @anchors[elem["id"]][:xref] = @anchors[elem.parent["id"]][:xref] + 
+            subfigure_separator(markup: true) + x + delim_wrap(subfigure_delim)
+        end
+      end 
+
+      # KILL
+      def annex_name_lblx(clause, num)
         obl = "(#{@labels['inform_annex']})"
         clause["obligation"] == "normative" and
           obl = "(#{@labels['norm_annex']})"
@@ -59,6 +89,26 @@ module IsoDoc
         "#{title} #{num}<br/>#{obl}"
       end
 
+      def annex_name_lbl(clause, num)
+        super.gsub(%r{</?strong>}, "")
+      end
+
+=begin cf. isodoc:
+        def annex_name_anchors(clause, num, level)
+        label = num
+        level == 1 && clause.name == "annex" and
+          label = annex_name_lbl(clause, label)
+        xref = labelled_autonum(@labels["annex"], num)
+        c = clause_title(clause) and title = semx(clause, c, "title")
+        @anchors[clause["id"]] =
+          { label:, xref:, title:,
+            elem: @labels["annex"], type: "clause",
+            subtype: "annex", value: num.to_s, level: }
+      end
+=end
+
+# KILL?
+=begin
       def annex_name_anchors1(clause, num, level)
         @anchors[clause["id"]] =
           { xref: num, label: num, level: level,
@@ -72,6 +122,14 @@ module IsoDoc
           annex_names1(c, i.increment(c).print, level + 1)
         end
       end
+=end
+
+def annex_name_anchors1(clause, num, level)
+  super
+  # undo ISO "Clause A.2" in favour of "A.2"
+  level == 2 and
+            @anchors[clause["id"]][:xref] =  semx(clause, num)
+end
 
       def clause_order_main(docxml)
         [
@@ -128,31 +186,34 @@ module IsoDoc
       end
 
       def commentary_names(clause)
+        #require "debug" ; binding.b
         preface_name_anchors(clause, 1, clause_title(clause))
         clause.xpath(ns(SUBCLAUSES))
           .each_with_object(clause_counter(0, {})) do |c, i|
-          commentary_names1(c, clause["id"], i.increment(c).print, 2)
+          commentary_names1(c, clause["id"], nil, i.increment(c).print, 2)
         end
       end
 
-      def commentary_names1(clause, root, num, level)
-        commentary_name_anchors(clause, num, root, level)
+      def commentary_names1(clause, root, parentnum, num, level)
+        lbl = clause_number_semx(parentnum, clause, num)
+        commentary_name_anchors(clause, lbl, root, level)
         clause.xpath(ns(SUBCLAUSES))
           .each_with_object(clause_counter(0, prefix: num)) do |c, i|
-          commentary_names1(c, root, i.increment(c).print,
+          commentary_names1(c, root, lbl, i.increment(c).print,
                             level + 1)
         end
       end
 
       def commentary_name_anchors(clause, num, root, level)
         @anchors[clause["id"]] =
-          { label: num, xref: l10n("#{@labels['clause']} #{num}"),
+          { label: num, xref: labelled_autonum(@labels["clause"], num),
             container: root,
             title: clause_title(clause), level: level, type: "clause",
             elem: @labels["clause"] }
       end
 
-      def list_item_anchor_names(list, list_anchor, depth, prev_label,
+      # KILL ?
+      def list_item_anchor_namesx(list, list_anchor, depth, prev_label,
 refer_list)
         c = list_counter(list["start"] ? list["start"].to_i - 1 : 0, {})
         list.xpath(ns("./li")).each do |li|
@@ -161,10 +222,11 @@ refer_list)
                             { list_anchor: list_anchor,
                               prev_label: prev_label,
                               refer_list: depth == 1 ? refer_list : nil })
-          li["id"] and @anchors[li["id"]] =
+          li["id"] ||= "_#{UUIDTools::UUID.random_create}"
+          @anchors[li["id"]] =
                          { label: bare_label,
                            bare_xref: "#{bare_label})",
-                           xref: "#{label})", type: "listitem",
+                           xref: "#{label}#{list_item_delim}", type: "listitem",
                            refer_list: refer_list,
                            container: list_anchor[:container] }
           (li.xpath(ns(".//ol")) - li.xpath(ns(".//ol//ol"))).each do |ol|
@@ -174,16 +236,105 @@ refer_list)
         end
       end
 
+      # KILL
+      def list_anchor_names(s)
+        super
+        #require "debug"; binding.b
+      end
+
+# FROM ISODOC
+=begin
+      def list_anchor_names(sections)
+        sections.each do |s|
+          notes = s.xpath(ns(".//ol")) - s.xpath(ns(".//clause//ol")) -
+            s.xpath(ns(".//appendix//ol")) - s.xpath(ns(".//ol//ol"))
+          c = list_counter(0, {})
+          notes.noblank.each do |n|
+            @anchors[n["id"]] =
+              anchor_struct(increment_label(notes, n, c), n,
+                            @labels["list"], "list",
+                            { unnumb: false, container: true })
+            list_item_anchor_names(n, @anchors[n["id"]], 1, "", notes.size != 1)
+          end
+          list_anchor_names(s.xpath(ns(child_sections)))
+        end
+      end
+
+      def list_item_delim
+        '<span class="fmt-autonum-delim">)</span>'
+      end
+
+      def list_item_anchor_names(list, list_anchor, depth, prev_label,
+refer_list)
+        c = list_counter(list["start"] ? list["start"].to_i - 1 : 0)
+        list.xpath(ns("./li")).each do |li|
+          bare_label, label =
+            list_item_value(li, c, depth,
+                            { list_anchor:, prev_label:,
+                              refer_list: depth == 1 ? refer_list : nil })
+          li["id"] ||= "_#{UUIDTools::UUID.random_create}"
+          @anchors[li["id"]] =
+            { label: bare_label, bare_xref: "#{label})", type: "listitem",
+              xref: %[#{label}#{list_item_delim}], refer_list:,
+              container: list_anchor[:container] }
+          (li.xpath(ns(".//ol")) - li.xpath(ns(".//ol//ol"))).each do |ol|
+            list_item_anchor_names(ol, list_anchor, depth + 1, label,
+                                   refer_list)
+          end
+        end
+      end
+
       def list_item_value(entry, counter, depth, opts)
-        label1 = counter.increment(entry).listlabel(entry.parent, depth)
+        label = counter.increment(entry).listlabel(entry.parent, depth)
+        s = semx(entry, label)
+        [label,
+         list_item_anchor_label(s, opts[:list_anchor], opts[:prev_label],
+                                opts[:refer_list])]
+      end
+
+      def list_item_anchor_label(label, list_anchor, prev_label, refer_list)
+        prev_label.empty? or
+          label = @klass.connectives_spans(@i18n.list_nested_xref
+            .sub("%1", %[#{prev_label}#{list_item_delim}])
+            .sub("%2", label))
+        refer_list and
+          label = @klass.connectives_spans(@i18n.list_nested_xref
+            .sub("%1", list_anchor[:xref])
+            .sub("%2", label))
+        label
+      end
+=end
+
+=begin FROM ISO
+def list_anchor_names(sections)
+        sections.each do |s|
+          notes = s.xpath(ns(".//ol")) - s.xpath(ns(".//clause//ol")) -
+            s.xpath(ns(".//appendix//ol")) - s.xpath(ns(".//ol//ol"))
+          c = Counter.new
+          notes.noblank.each do |n|
+            n["id"] ||= "_#{UUIDTools::UUID.random_create}"
+            @anchors[n["id"]] = anchor_struct(increment_label(notes, n, c), n,
+                                              @labels["list"], "list",
+                                              { unnumb: false, container: true })
+            list_item_anchor_names(n, @anchors[n["id"]], 1, "",
+                                   !single_ol_for_xrefs?(notes))
+          end
+          list_anchor_names(s.xpath(ns(CHILD_SECTIONS)))
+        end
+=end
+
+
+      def list_item_value(entry, counter, depth, opts)
         if depth > 2
-          base = @c.decode(opts[:prev_label]).split(/\)\s*/) # List a) 1.1.1
-          label1 = "#{base[-1].sub(/^の/,'')}#{clause_sep}#{label1}"
-          [label1, list_item_anchor_label(label1, opts[:list_anchor],
-                                          base[0].sub(/[\p{Zs})]+$/, ""), opts[:refer_list])]
+#          require 'debug'; binding.b
+        label = counter.increment(entry).listlabel(entry.parent, depth)
+        s = semx(entry, label)
+          base = @c.decode(opts[:prev_label].gsub(%r{<[^>]+>}, "")).split(/\)\s*/) # List a) 1.1.1
+          label = "#{base[-1].sub(/^の/,'')}#{clause_sep}#{label}"
+          #[label, J=list_item_anchor_label(opts[:prev_label] + delim_wrap(clause_sep) + s, opts[:list_anchor], base[0].sub(/[\p{Zs})]+$/, ""), opts[:refer_list])]
+          [label, opts[:prev_label] + delim_wrap(clause_sep) + s]
         else
-          [label1, list_item_anchor_label(label1, opts[:list_anchor], opts[:prev_label],
-                                          opts[:refer_list])]
+          super
         end
       end
     end

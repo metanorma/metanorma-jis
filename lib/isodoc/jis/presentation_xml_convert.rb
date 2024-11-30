@@ -60,7 +60,8 @@ module IsoDoc
       def dl_to_para(node)
         ret = dl_to_para_name(node)
         ret += dl_to_para_terms(node)
-        node.elements.reject { |n| %w(dt dd name).include?(n.name) }.each do |x|
+        node.elements.reject { |n| %w(dt dd name fmt-name).include?(n.name) }
+          .each do |x|
           ret += x.to_xml
         end
         dl_id_insert(node, ret)
@@ -74,7 +75,7 @@ module IsoDoc
       end
 
       def dl_to_para_name(node)
-        e = node.at(ns("./name")) or return ""
+        e = node.at(ns("./fmt-name")) or return ""
         "<p class='ListTitle'>#{e.children.to_xml}</p>"
       end
 
@@ -96,7 +97,7 @@ module IsoDoc
       def table1(node)
         super
         cols = table_cols_count(node)
-        name = node.at(ns("./name"))
+        name = node.at(ns("./fmt-name"))
         thead = table_thead_pt(node, name)
         table_unit_note(node, thead, cols)
       end

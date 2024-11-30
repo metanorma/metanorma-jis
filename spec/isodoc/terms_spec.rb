@@ -65,125 +65,282 @@ RSpec.describe IsoDoc::Jis do
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-          <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
-           <preface>
-            <clause type="toc" id="_" displayorder="1">
-            <title depth="1">Contents</title>
-          </clause>
-        </preface>
-        <sections>
-                    <p class="JapaneseIndustrialStandard" displayorder="2">
-              日本工業規格
-              <tab/>
-              <tab/>
-              <tab/>
-              <tab/>
-              <tab/>
-              <tab/>
-              <tab/>
-              <span class="JIS">JIS</span>
-            </p>
-            <p class="StandardNumber" displayorder="3">
-              <tab/>
-            </p>
-            <p class="IDT" displayorder="4"/>
-          <terms id="_" obligation="normative" displayorder="5">
-            <title depth="1">
-              1
-              <tab/>
-              Terms and Definitions
-            </title>
-            <term id="paddy1">
-              <name>1.1</name>
-              <preferred>
-                <strong>paddy</strong>
-              </preferred>
-              <domain hidden="true">rice</domain>
-              <definition>
-                <p id="_">&lt;<domain>rice</domain>&gt; rice retaining its husk after threshing</p>
-              </definition>
-              <termexample id="_">
-                <name>EXAMPLE  1</name>
-                <p id="_">Foreign seeds, husks, bran, sand, dust.</p>
-                <ul>
-                  <li>A</li>
-                </ul>
-              </termexample>
-              <termexample id="_">
-                <name>EXAMPLE  2</name>
-                <ul>
-                  <li>A</li>
-                </ul>
-              </termexample>
-              <termsource status="modified">
-                [SOURCE:
-                <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
-                  <locality type="clause">
-                    <referenceFrom>3.1</referenceFrom>
-                  </locality>
-                  ISO 7301:2011,
-                  <span class="citesec">3.1</span>
-                </origin>
-                , modified &#x2014; The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
-              </termsource>
-            </term>
-            <term id="paddy">
-              <name>1.2</name>
-              <preferred>
-                <strong>paddy</strong>
-              </preferred>
-              <admitted>ADMITTED: paddy rice</admitted>
-              <admitted>ADMITTED: rough rice</admitted>
-              <deprecates>DEPRECATED: cargo rice</deprecates>
-              <definition>
-                <p id="_">rice retaining its husk after threshing</p>
-              </definition>
-              <termexample id="_">
-                <name>EXAMPLE</name>
-                <ul>
-                  <li>A</li>
-                </ul>
-              </termexample>
-              <termnote id="_">
-                <name>Note 1 to entry:</name>
-                <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
-              </termnote>
-              <termnote id="_">
-                <name>Note 2 to entry:</name>
-                <ul>
-                  <li>A</li>
-                </ul>
-                <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
-              </termnote>
-              <termsource status="identical">
-                [SOURCE:
-                <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
-                  <locality type="clause">
-                    <referenceFrom>3.1</referenceFrom>
-                  </locality>
-                  ISO 7301:2011,
-                  <span class="citesec">3.1</span>
-                </origin>
-                ]
-              </termsource>
-            </term>
-            <term id="A">
-              <name>1.3</name>
-              <preferred>
-                <strong>term1</strong>
-              </preferred>
-              <definition>term1 definition</definition>
-              <term id="B">
-                <name>1.3.1</name>
-                <preferred>
-                  <strong>term2</strong>
-                </preferred>
-                <definition>term2 definition</definition>
-              </term>
-            </term>
-          </terms>
-        </sections>
-      </iso-standard>
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+          <preface>
+             <clause type="toc" id="_" displayorder="1">
+                <fmt-title depth="1">Contents</fmt-title>
+             </clause>
+          </preface>
+          <sections>
+             <p class="JapaneseIndustrialStandard" displayorder="2">
+                日本工業規格
+                <tab/>
+                <tab/>
+                <tab/>
+                <tab/>
+                <tab/>
+                <tab/>
+                <tab/>
+                <span class="JIS">JIS</span>
+             </p>
+             <p class="StandardNumber" displayorder="3">
+                <tab/>
+             </p>
+             <p class="IDT" displayorder="4"/>
+             <terms id="_" obligation="normative" displayorder="5">
+                <title id="_">Terms and Definitions</title>
+                <fmt-title depth="1">
+                   <span class="fmt-caption-label">
+                      <semx element="autonum" source="_">1</semx>
+                   </span>
+                   <span class="fmt-caption-delim">
+                      <tab/>
+                   </span>
+                   <semx element="title" source="_">Terms and Definitions</semx>
+                </fmt-title>
+                <fmt-xref-label>
+                   <span class="fmt-element-name">Clause</span>
+                   <semx element="autonum" source="_">1</semx>
+                </fmt-xref-label>
+                <term id="paddy1">
+                   <fmt-name>
+                      <span class="fmt-caption-label">
+                         <semx element="autonum" source="_">1</semx>
+                         <span class="fmt-autonum-delim">.</span>
+                         <semx element="autonum" source="paddy1">1</semx>
+                      </span>
+                   </fmt-name>
+                   <fmt-xref-label>
+                      <semx element="autonum" source="_">1</semx>
+                      <span class="fmt-autonum-delim">.</span>
+                      <semx element="autonum" source="paddy1">1</semx>
+                   </fmt-xref-label>
+                   <preferred>
+                      <strong>paddy</strong>
+                   </preferred>
+                   <domain hidden="true">rice</domain>
+                   <definition>
+                      <p id="_">
+                         &lt;
+                         <domain>rice</domain>
+                         &gt; rice retaining its husk after threshing
+                      </p>
+                   </definition>
+                   <termexample id="_" autonum="1">
+                      <fmt-name>
+                         <span class="fmt-caption-label">
+                            <span class="fmt-element-name">EXAMPLE</span>
+                            <semx element="autonum" source="_">1</semx>
+                         </span>
+                      </fmt-name>
+                      <fmt-xref-label>
+                         <span class="fmt-element-name">Example</span>
+                         <semx element="autonum" source="_">1</semx>
+                      </fmt-xref-label>
+                      <fmt-xref-label container="paddy1">
+                         <span class="fmt-xref-container">
+                            <semx element="autonum" source="_">1</semx>
+                            <span class="fmt-autonum-delim">.</span>
+                            <semx element="autonum" source="paddy1">1</semx>
+                         </span>
+                         <span class="fmt-comma">,</span>
+                         <span class="fmt-element-name">Example</span>
+                         <semx element="autonum" source="_">1</semx>
+                      </fmt-xref-label>
+                      <p id="_">Foreign seeds, husks, bran, sand, dust.</p>
+                      <ul>
+                         <li>A</li>
+                      </ul>
+                   </termexample>
+                   <termexample id="_" autonum="2">
+                      <fmt-name>
+                         <span class="fmt-caption-label">
+                            <span class="fmt-element-name">EXAMPLE</span>
+                            <semx element="autonum" source="_">2</semx>
+                         </span>
+                      </fmt-name>
+                      <fmt-xref-label>
+                         <span class="fmt-element-name">Example</span>
+                         <semx element="autonum" source="_">2</semx>
+                      </fmt-xref-label>
+                      <fmt-xref-label container="paddy1">
+                         <span class="fmt-xref-container">
+                            <semx element="autonum" source="_">1</semx>
+                            <span class="fmt-autonum-delim">.</span>
+                            <semx element="autonum" source="paddy1">1</semx>
+                         </span>
+                         <span class="fmt-comma">,</span>
+                         <span class="fmt-element-name">Example</span>
+                         <semx element="autonum" source="_">2</semx>
+                      </fmt-xref-label>
+                      <ul>
+                         <li>A</li>
+                      </ul>
+                   </termexample>
+                   <termsource status="modified">
+                      [SOURCE:
+                      <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
+                         <locality type="clause">
+                            <referenceFrom>3.1</referenceFrom>
+                         </locality>
+                         ISO 7301:2011,
+                         <span class="citesec">3.1</span>
+                      </origin>
+                      , modified — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+                   </termsource>
+                </term>
+                <term id="paddy">
+                   <fmt-name>
+                      <span class="fmt-caption-label">
+                         <semx element="autonum" source="_">1</semx>
+                         <span class="fmt-autonum-delim">.</span>
+                         <semx element="autonum" source="paddy">2</semx>
+                      </span>
+                   </fmt-name>
+                   <fmt-xref-label>
+                      <semx element="autonum" source="_">1</semx>
+                      <span class="fmt-autonum-delim">.</span>
+                      <semx element="autonum" source="paddy">2</semx>
+                   </fmt-xref-label>
+                   <preferred>
+                      <strong>paddy</strong>
+                   </preferred>
+                   <admitted>ADMITTED: paddy rice</admitted>
+                   <admitted>ADMITTED: rough rice</admitted>
+                   <deprecates>DEPRECATED: cargo rice</deprecates>
+                   <definition>
+                      <p id="_">rice retaining its husk after threshing</p>
+                   </definition>
+                   <termexample id="_" autonum="">
+                      <fmt-name>
+                         <span class="fmt-caption-label">
+                            <span class="fmt-element-name">EXAMPLE</span>
+                         </span>
+                      </fmt-name>
+                      <fmt-xref-label>
+                         <span class="fmt-element-name">Example</span>
+                      </fmt-xref-label>
+                      <fmt-xref-label container="paddy">
+                         <span class="fmt-xref-container">
+                            <semx element="autonum" source="_">1</semx>
+                            <span class="fmt-autonum-delim">.</span>
+                            <semx element="autonum" source="paddy">2</semx>
+                         </span>
+                         <span class="fmt-comma">,</span>
+                         <span class="fmt-element-name">Example</span>
+                      </fmt-xref-label>
+                      <ul>
+                         <li>A</li>
+                      </ul>
+                   </termexample>
+                   <termnote id="_" autonum="1">
+                      <fmt-name>
+                         <span class="fmt-caption-label">
+                            Note
+                            <semx element="autonum" source="_">1</semx>
+                            to entry
+                         </span>
+                         <span class="fmt-label-delim">: </span>
+                      </fmt-name>
+                      <fmt-xref-label>
+                         <span class="fmt-element-name">Note</span>
+                         <semx element="autonum" source="_">1</semx>
+                      </fmt-xref-label>
+                      <fmt-xref-label container="paddy">
+                         <span class="fmt-xref-container">
+                            <semx element="autonum" source="_">1</semx>
+                            <span class="fmt-autonum-delim">.</span>
+                            <semx element="autonum" source="paddy">2</semx>
+                         </span>
+                         <span class="fmt-comma">,</span>
+                         <span class="fmt-element-name">Note</span>
+                         <semx element="autonum" source="_">1</semx>
+                      </fmt-xref-label>
+                      <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
+                   </termnote>
+                   <termnote id="_" autonum="2">
+                      <fmt-name>
+                         <span class="fmt-caption-label">
+                            Note
+                            <semx element="autonum" source="_">2</semx>
+                            to entry
+                         </span>
+                         <span class="fmt-label-delim">: </span>
+                      </fmt-name>
+                      <fmt-xref-label>
+                         <span class="fmt-element-name">Note</span>
+                         <semx element="autonum" source="_">2</semx>
+                      </fmt-xref-label>
+                      <fmt-xref-label container="paddy">
+                         <span class="fmt-xref-container">
+                            <semx element="autonum" source="_">1</semx>
+                            <span class="fmt-autonum-delim">.</span>
+                            <semx element="autonum" source="paddy">2</semx>
+                         </span>
+                         <span class="fmt-comma">,</span>
+                         <span class="fmt-element-name">Note</span>
+                         <semx element="autonum" source="_">2</semx>
+                      </fmt-xref-label>
+                      <ul>
+                         <li>A</li>
+                      </ul>
+                      <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
+                   </termnote>
+                   <termsource status="identical">
+                      [SOURCE:
+                      <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
+                         <locality type="clause">
+                            <referenceFrom>3.1</referenceFrom>
+                         </locality>
+                         ISO 7301:2011,
+                         <span class="citesec">3.1</span>
+                      </origin>
+                      ]
+                   </termsource>
+                </term>
+                <term id="A">
+                   <fmt-name>
+                      <span class="fmt-caption-label">
+                         <semx element="autonum" source="_">1</semx>
+                         <span class="fmt-autonum-delim">.</span>
+                         <semx element="autonum" source="A">3</semx>
+                      </span>
+                   </fmt-name>
+                   <fmt-xref-label>
+                      <semx element="autonum" source="_">1</semx>
+                      <span class="fmt-autonum-delim">.</span>
+                      <semx element="autonum" source="A">3</semx>
+                   </fmt-xref-label>
+                   <preferred>
+                      <strong>term1</strong>
+                   </preferred>
+                   <definition>term1 definition</definition>
+                   <term id="B">
+                      <fmt-name>
+                         <span class="fmt-caption-label">
+                            <semx element="autonum" source="_">1</semx>
+                            <span class="fmt-autonum-delim">.</span>
+                            <semx element="autonum" source="A">3</semx>
+                            <span class="fmt-autonum-delim">.</span>
+                            <semx element="autonum" source="B">1</semx>
+                         </span>
+                      </fmt-name>
+                      <fmt-xref-label>
+                         <semx element="autonum" source="_">1</semx>
+                         <span class="fmt-autonum-delim">.</span>
+                         <semx element="autonum" source="A">3</semx>
+                         <span class="fmt-autonum-delim">.</span>
+                         <semx element="autonum" source="B">1</semx>
+                      </fmt-xref-label>
+                      <preferred>
+                         <strong>term2</strong>
+                      </preferred>
+                      <definition>term2 definition</definition>
+                   </term>
+                </term>
+             </terms>
+          </sections>
+       </iso-standard>
     OUTPUT
 
     html = <<~OUTPUT
@@ -193,101 +350,95 @@ RSpec.describe IsoDoc::Jis do
         <h1 class="IntroTitle">Contents</h1>
       </div>
                   #{middle_title(false)}
-             <div id="_">
-               <h1>
-               1
-                
-               Terms and Definitions
-             </h1>
-               <p class="TermNum" id="paddy1">1.1</p>
-               <p class="Terms" style="text-align:left;">
-                 <b>paddy</b>
-               </p>
-               <p id="_">&lt;rice&gt; rice retaining its husk after threshing</p>
-               <div id="_" class="example">
-                 <p>
-                   <span class="example_label">EXAMPLE  1</span>
-                     Foreign seeds, husks, bran, sand, dust.
-                 </p>
-                 <div class="ul_wrap">
-                 <ul>
-                   <li>A</li>
-                 </ul>
-               </div>
-               </div>
-               <div id="_" class="example">
-                 <p>
-                   <span class="example_label">EXAMPLE  2</span>
-                    
-                 </p>
-                 <div class="ul_wrap">
-                 <ul>
-                   <li>A</li>
-                 </ul>
-               </div>
-               </div>
-               <p>
-                 [SOURCE: ISO 7301:2011,
-                 <span class="citesec">3.1</span>
-                 , modified &#x2014; The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
-               </p>
-               <p class="TermNum" id="paddy">1.2</p>
-               <p class="Terms" style="text-align:left;">
-                 <b>paddy</b>
-               </p>
-               <p class="AltTerms" style="text-align:left;">ADMITTED: paddy rice</p>
-               <p class="AltTerms" style="text-align:left;">ADMITTED: rough rice</p>
-               <p class="DeprecatedTerms" style="text-align:left;">DEPRECATED: cargo rice</p>
-               <p id="_">rice retaining its husk after threshing</p>
-               <div id="_" class="example">
-                 <p>
-                   <span class="example_label">EXAMPLE</span>
-                    
-                 </p>
-                 <div class="ul_wrap">
-                 <ul>
-                   <li>A</li>
-                 </ul>
-               </div>
-               </div>
-               <div id="_" class="Note">
-                 <p>
-                   <span class="note_label">Note 1 to entry:</span>
-                   The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.
-                 </p>
-               </div>
-               <div id="_" class="Note">
-                 <p>
-                   <span class="note_label">Note 2 to entry:</span>
-                   <div class="ul_wrap">
-                   <ul>
-                     <li>A</li>
-                   </ul>
+                  <div id="_">
+                   <h1>1  Terms and Definitions</h1>
+                   <p class="TermNum" id="paddy1">1.1</p>
+                   <p class="Terms" style="text-align:left;">
+                      <b>paddy</b>
+                   </p>
+                   <p id="_">&lt;rice&gt;  rice retaining its husk after threshing</p>
+                   <div id="_" class="example">
+                      <p>
+                         <span class="example_label">EXAMPLE 1</span>
+                           Foreign seeds, husks, bran, sand, dust.
+                      </p>
+                      <div class="ul_wrap">
+                         <ul>
+                            <li>A</li>
+                         </ul>
+                      </div>
                    </div>
-                   <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
-                 </p>
-               </div>
-               <p>
-                 [SOURCE: ISO 7301:2011,
-                 <span class="citesec">3.1</span>
-                 ]
-               </p>
-               <p class="TermNum" id="A">1.3</p>
-               <p class="Terms" style="text-align:left;">
-                 <b>term1</b>
-               </p>
-               term1 definition
-               <p class="TermNum" id="B">1.3.1</p>
-               <p class="Terms" style="text-align:left;">
-                 <b>term2</b>
-               </p>
-               term2 definition
+                   <div id="_" class="example">
+                      <p>
+                         <span class="example_label">EXAMPLE 2</span>
+                          
+                      </p>
+                      <div class="ul_wrap">
+                         <ul>
+                            <li>A</li>
+                         </ul>
+                      </div>
+                   </div>
+                   <p>
+                      [SOURCE: ISO 7301:2011,
+                      <span class="citesec">3.1</span>
+                      , modified — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+                   </p>
+                   <p class="TermNum" id="paddy">1.2</p>
+                   <p class="Terms" style="text-align:left;">
+                      <b>paddy</b>
+                   </p>
+                   <p class="AltTerms" style="text-align:left;">ADMITTED: paddy rice</p>
+                   <p class="AltTerms" style="text-align:left;">ADMITTED: rough rice</p>
+                   <p class="DeprecatedTerms" style="text-align:left;">DEPRECATED: cargo rice</p>
+                   <p id="_">rice retaining its husk after threshing</p>
+                   <div id="_" class="example">
+                      <p>
+                         <span class="example_label">EXAMPLE</span>
+                          
+                      </p>
+                      <div class="ul_wrap">
+                         <ul>
+                            <li>A</li>
+                         </ul>
+                      </div>
+                   </div>
+                   <div id="_" class="Note">
+                      <p>
+                         <span class="termnote_label">Note 1 to entry: </span>
+                         The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.
+                      </p>
+                   </div>
+                   <div id="_" class="Note">
+                      <p>
+                         <span class="termnote_label">Note 2 to entry: </span>
+                      </p>
+                      <div class="ul_wrap">
+                         <ul>
+                            <li>A</li>
+                         </ul>
+                      </div>
+                      <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
+                   </div>
+                   <p>
+                      [SOURCE: ISO 7301:2011,
+                      <span class="citesec">3.1</span>
+                      ]
+                   </p>
+                   <p class="TermNum" id="A">1.3</p>
+                   <p class="Terms" style="text-align:left;">
+                      <b>term1</b>
+                   </p>
+                   term1 definition
+                   <p class="TermNum" id="B">1.3.1</p>
+                   <p class="Terms" style="text-align:left;">
+                      <b>term2</b>
+                   </p>
+                   term2 definition
+                </div>
              </div>
-           </div>
-         </body>
+          </body>
        </html>
-
-
     OUTPUT
 
     word = <<~OUTPUT
@@ -312,112 +463,113 @@ RSpec.describe IsoDoc::Jis do
         </p>
         <div class="WordSection3">
                     #{middle_title(true)}
-          <div id="_">
-            <h1>
-              1
-              <span style="mso-tab-count:1">  </span>
-              Terms and Definitions
-            </h1>
-            <p class="TermNum" id="paddy1">1.1</p>
-            <p class="Terms" style="text-align:left;">
-              <b>paddy</b>
-            </p>
-            <p class="Definition" id="_">&lt;rice&gt; rice retaining its husk after threshing</p>
-            <div id="_" class="example">
-              <p>
-                <span class="example_label">EXAMPLE  1</span>
-                <span style="mso-tab-count:1">  </span>
-                Foreign seeds, husks, bran, sand, dust.
-              </p>
-              <div class="ul_wrap">
-              <ul>
-                <li>A</li>
-              </ul>
-            </div>
-            </div>
-            <div id="_" class="example">
-              <p>
-                <span class="example_label">EXAMPLE  2</span>
-                <span style="mso-tab-count:1">  </span>
-              </p>
-              <div class="ul_wrap">
-              <ul>
-                <li>A</li>
-              </ul>
-            </div>
-            </div>
-            <p class="Source">
-              [SOURCE: ISO 7301:2011,
-              <span class="citesec">3.1</span>
-              , modified &#x2014; The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
-            </p>
-            <p class="TermNum" id="paddy">1.2</p>
-            <p class="Terms" style="text-align:left;">
-              <b>paddy</b>
-            </p>
-            <p class="AltTerms" style="text-align:left;">ADMITTED: paddy rice</p>
-            <p class="AltTerms" style="text-align:left;">ADMITTED: rough rice</p>
-            <p class="DeprecatedTerms" style="text-align:left;">DEPRECATED: cargo rice</p>
-            <p class="Definition" id="_">rice retaining its husk after threshing</p>
-            <div id="_" class="example">
-              <p>
-                <span class="example_label">EXAMPLE</span>
-                <span style="mso-tab-count:1">  </span>
-              </p>
-              <div class="ul_wrap">
-              <ul>
-                <li>A</li>
-              </ul>
-            </div>
-            </div>
-            <div id="_" class="Note">
-              <p>
-                <span class="note_label">Note 1 to entry:</span>
-                The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.
-              </p>
-            </div>
-            <div id="_" class="Note">
-              <p>
-                <span class="note_label">Note 2 to entry:</span>
-                <div class="ul_wrap">
-                <ul>
-                  <li>A</li>
-                </ul>
+            <div id="_">
+                <h1>
+                   1
+                   <span style="mso-tab-count:1">  </span>
+                   Terms and Definitions
+                </h1>
+                <p class="TermNum" id="paddy1">1.1</p>
+                <p class="Terms" style="text-align:left;">
+                   <b>paddy</b>
+                </p>
+                <p class="Definition" id="_">&lt;rice&gt;  rice retaining its husk after threshing</p>
+                <div id="_" class="example">
+                   <p>
+                      <span class="example_label">EXAMPLE 1</span>
+                      <span style="mso-tab-count:1">  </span>
+                      Foreign seeds, husks, bran, sand, dust.
+                   </p>
+                   <div class="ul_wrap">
+                      <ul>
+                         <li>A</li>
+                      </ul>
+                   </div>
                 </div>
-                <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
-              </p>
-            </div>
-            <p class="Source">
-              [SOURCE: ISO 7301:2011,
-              <span class="citesec">3.1</span>
-              ]
-            </p>
-            <p class="TermNum" id="A">1.3</p>
-            <p class="Terms" style="text-align:left;">
-              <b>term1</b>
-            </p>
-            term1 definition
-            <p class="TermNum" id="B">1.3.1</p>
-            <p class="Terms" style="text-align:left;">
-              <b>term2</b>
-            </p>
-            term2 definition
+                <div id="_" class="example">
+                   <p>
+                      <span class="example_label">EXAMPLE 2</span>
+                      <span style="mso-tab-count:1">  </span>
+                   </p>
+                   <div class="ul_wrap">
+                      <ul>
+                         <li>A</li>
+                      </ul>
+                   </div>
+                </div>
+                <p class="Source">
+                   [SOURCE: ISO 7301:2011,
+                   <span class="citesec">3.1</span>
+                   , modified — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+                </p>
+                <p class="TermNum" id="paddy">1.2</p>
+                <p class="Terms" style="text-align:left;">
+                   <b>paddy</b>
+                </p>
+                <p class="AltTerms" style="text-align:left;">ADMITTED: paddy rice</p>
+                <p class="AltTerms" style="text-align:left;">ADMITTED: rough rice</p>
+                <p class="DeprecatedTerms" style="text-align:left;">DEPRECATED: cargo rice</p>
+                <p class="Definition" id="_">rice retaining its husk after threshing</p>
+                <div id="_" class="example">
+                   <p>
+                      <span class="example_label">EXAMPLE</span>
+                      <span style="mso-tab-count:1">  </span>
+                   </p>
+                   <div class="ul_wrap">
+                      <ul>
+                         <li>A</li>
+                      </ul>
+                   </div>
+                </div>
+                <div id="_" class="Note">
+                   <p class="Note">
+                      <span class="termnote_label">Note 1 to entry: </span>
+                      The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.
+                   </p>
+                </div>
+                <div id="_" class="Note">
+                   <p class="Note">
+                      <span class="termnote_label">Note 2 to entry: </span>
+                   </p>
+                   <div class="ul_wrap">
+                      <ul>
+                         <li>A</li>
+                      </ul>
+                   </div>
+                   <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
+                </div>
+                <p class="Source">
+                   [SOURCE: ISO 7301:2011,
+                   <span class="citesec">3.1</span>
+                   ]
+                </p>
+                <p class="TermNum" id="A">1.3</p>
+                <p class="Terms" style="text-align:left;">
+                   <b>term1</b>
+                </p>
+                term1 definition
+                <p class="TermNum" id="B">1.3.1</p>
+                <p class="Terms" style="text-align:left;">
+                   <b>term2</b>
+                </p>
+                term2 definition
+             </div>
           </div>
-        </div>
-        <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
-        <div class="colophon"/>
-      </body>
+          <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
+          <div class="colophon"/>
+       </body>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert.new(presxml_options)
-      .convert("test", input, true))))
+    pres_output = IsoDoc::Jis::PresentationXMLConvert.new(presxml_options)
+      .convert("test", input, true)
+    expect(Xml::C14n.format(strip_guid(pres_output)))
       .to be_equivalent_to Xml::C14n.format(presxml)
-    expect(Xml::C14n.format(IsoDoc::Jis::HtmlConvert.new({})
-      .convert("test", presxml, true)))
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
+      .convert("test", pres_output, true))))
       .to be_equivalent_to Xml::C14n.format(html)
-    expect(Xml::C14n.format(IsoDoc::Jis::WordConvert.new({})
-      .convert("test", presxml, true)
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::WordConvert.new({})
+      .convert("test", pres_output, true)
       .sub(/^.*<body/m, "<body")
-      .sub(%r{</body>.*$}m, "</body>")))
+      .sub(%r{</body>.*$}m, "</body>"))))
       .to be_equivalent_to Xml::C14n.format(word)
   end
 
@@ -492,7 +644,7 @@ RSpec.describe IsoDoc::Jis do
           </bibdata>
           <preface>
              <clause type="toc" id="_" displayorder="1">
-                <title depth="1">目　次</title>
+                <fmt-title depth="1">目　次</fmt-title>
              </clause>
           </preface>
           <sections>
@@ -512,47 +664,120 @@ RSpec.describe IsoDoc::Jis do
              </p>
              <p class="IDT" displayorder="4"/>
              <terms id="_" obligation="normative" displayorder="5">
-                <title depth="1">
-                   1
-                   <tab/>
-                   Terms and Definitions
-                </title>
+                <title id="_">Terms and Definitions</title>
+                <fmt-title depth="1">
+                   <span class="fmt-caption-label">
+                      <semx element="autonum" source="_">1</semx>
+                   </span>
+                   <span class="fmt-caption-delim">
+                      <tab/>
+                   </span>
+                   <semx element="title" source="_">Terms and Definitions</semx>
+                </fmt-title>
+                <fmt-xref-label>
+                   <span class="fmt-element-name">箇条</span>
+                   <semx element="autonum" source="_">1</semx>
+                </fmt-xref-label>
                 <term id="paddy1">
-                   <name>1.1</name>
+                   <fmt-name>
+                      <span class="fmt-caption-label">
+                         <semx element="autonum" source="_">1</semx>
+                         <span class="fmt-autonum-delim">.</span>
+                         <semx element="autonum" source="paddy1">1</semx>
+                      </span>
+                   </fmt-name>
+                   <fmt-xref-label>
+                      <semx element="autonum" source="_">1</semx>
+                      <span class="fmt-autonum-delim">.</span>
+                      <semx element="autonum" source="paddy1">1</semx>
+                   </fmt-xref-label>
                    <preferred>
                       <strong>paddy</strong>
                    </preferred>
                    <domain hidden="true">rice</domain>
                    <definition>
-                      <p id="_">&lt;<domain>rice</domain>&gt; rice retaining its husk after threshing</p>
+                      <p id="_">
+                         &lt;
+                         <domain>rice</domain>
+                         &gt; rice retaining its husk after threshing
+                      </p>
                    </definition>
-                   <termexample id="_">
-                      <name>例  1</name>
+                   <termexample id="_" autonum="1">
+                      <fmt-name>
+                         <span class="fmt-caption-label">
+                            <span class="fmt-element-name">例</span>
+                            <semx element="autonum" source="_">1</semx>
+                         </span>
+                      </fmt-name>
+                      <fmt-xref-label>
+                         <span class="fmt-element-name">例</span>
+                         <semx element="autonum" source="_">1</semx>
+                      </fmt-xref-label>
+                      <fmt-xref-label container="paddy1">
+                         <span class="fmt-xref-container">
+                            <semx element="autonum" source="_">1</semx>
+                            <span class="fmt-autonum-delim">.</span>
+                            <semx element="autonum" source="paddy1">1</semx>
+                         </span>
+                         <span class="fmt-conn">の</span>
+                         <span class="fmt-element-name">例</span>
+                         <semx element="autonum" source="_">1</semx>
+                      </fmt-xref-label>
                       <p id="_">Foreign seeds, husks, bran, sand, dust.</p>
                       <ul>
                          <li>A</li>
                       </ul>
                    </termexample>
-                   <termexample id="_">
-                      <name>例  2</name>
+                   <termexample id="_" autonum="2">
+                      <fmt-name>
+                         <span class="fmt-caption-label">
+                            <span class="fmt-element-name">例</span>
+                            <semx element="autonum" source="_">2</semx>
+                         </span>
+                      </fmt-name>
+                      <fmt-xref-label>
+                         <span class="fmt-element-name">例</span>
+                         <semx element="autonum" source="_">2</semx>
+                      </fmt-xref-label>
+                      <fmt-xref-label container="paddy1">
+                         <span class="fmt-xref-container">
+                            <semx element="autonum" source="_">1</semx>
+                            <span class="fmt-autonum-delim">.</span>
+                            <semx element="autonum" source="paddy1">1</semx>
+                         </span>
+                         <span class="fmt-conn">の</span>
+                         <span class="fmt-element-name">例</span>
+                         <semx element="autonum" source="_">2</semx>
+                      </fmt-xref-label>
                       <ul>
                          <li>A</li>
                       </ul>
                    </termexample>
                    <termsource status="modified">
-                      ［出典：
+                      ［出典:
                       <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
                          <locality type="clause">
                             <referenceFrom>3.1</referenceFrom>
                          </locality>
-                         ISO 7301:2011，
+                         ISO 7301:2011,
                          <span class="citesec">3.1</span>
                       </origin>
                       ，修正された — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
                    </termsource>
                 </term>
                 <term id="paddy">
-                   <name>1.2</name>
+                   <fmt-name>
+                      <span class="fmt-caption-label">
+                         <semx element="autonum" source="_">1</semx>
+                         <span class="fmt-autonum-delim">.</span>
+                         <semx element="autonum" source="paddy">2</semx>
+                      </span>
+                   </fmt-name>
+                   <fmt-xref-label>
+                      <semx element="autonum" source="_">1</semx>
+                      <span class="fmt-autonum-delim">.</span>
+                      <semx element="autonum" source="paddy">2</semx>
+                   </fmt-xref-label>
                    <preferred>
                       <strong>paddy</strong>
                    </preferred>
@@ -562,43 +787,125 @@ RSpec.describe IsoDoc::Jis do
                    <definition>
                       <p id="_">rice retaining its husk after threshing</p>
                    </definition>
-                   <termexample id="_">
-                      <name>例</name>
+                   <termexample id="_" autonum="">
+                      <fmt-name>
+                         <span class="fmt-caption-label">
+                            <span class="fmt-element-name">例</span>
+                         </span>
+                      </fmt-name>
+                      <fmt-xref-label>
+                         <span class="fmt-element-name">例</span>
+                      </fmt-xref-label>
+                      <fmt-xref-label container="paddy">
+                         <span class="fmt-xref-container">
+                            <semx element="autonum" source="_">1</semx>
+                            <span class="fmt-autonum-delim">.</span>
+                            <semx element="autonum" source="paddy">2</semx>
+                         </span>
+                         <span class="fmt-conn">の</span>
+                         <span class="fmt-element-name">例</span>
+                      </fmt-xref-label>
                       <ul>
                          <li>A</li>
                       </ul>
                    </termexample>
-                   <termnote id="_">
-                      <name>注釈1：</name>
+                   <termnote id="_" autonum="1">
+                      <fmt-name>
+                         <span class="fmt-caption-label">
+                            注釈
+                            <semx element="autonum" source="_">1</semx>
+                         </span>
+                         <span class="fmt-label-delim">： </span>
+                      </fmt-name>
+                      <fmt-xref-label>
+                         <span class="fmt-element-name">注記</span>
+                         <semx element="autonum" source="_">1</semx>
+                      </fmt-xref-label>
+                      <fmt-xref-label container="paddy">
+                         <span class="fmt-xref-container">
+                            <semx element="autonum" source="_">1</semx>
+                            <span class="fmt-autonum-delim">.</span>
+                            <semx element="autonum" source="paddy">2</semx>
+                         </span>
+                         <span class="fmt-conn">の</span>
+                         <span class="fmt-element-name">注記</span>
+                         <semx element="autonum" source="_">1</semx>
+                      </fmt-xref-label>
                       <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
                    </termnote>
-                   <termnote id="_">
-                      <name>注釈2：</name>
+                   <termnote id="_" autonum="2">
+                      <fmt-name>
+                         <span class="fmt-caption-label">
+                            注釈
+                            <semx element="autonum" source="_">2</semx>
+                         </span>
+                         <span class="fmt-label-delim">： </span>
+                      </fmt-name>
+                      <fmt-xref-label>
+                         <span class="fmt-element-name">注記</span>
+                         <semx element="autonum" source="_">2</semx>
+                      </fmt-xref-label>
+                      <fmt-xref-label container="paddy">
+                         <span class="fmt-xref-container">
+                            <semx element="autonum" source="_">1</semx>
+                            <span class="fmt-autonum-delim">.</span>
+                            <semx element="autonum" source="paddy">2</semx>
+                         </span>
+                         <span class="fmt-conn">の</span>
+                         <span class="fmt-element-name">注記</span>
+                         <semx element="autonum" source="_">2</semx>
+                      </fmt-xref-label>
                       <ul>
                          <li>A</li>
                       </ul>
                       <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
                    </termnote>
                    <termsource status="identical">
-                      ［出典：
+                      ［出典:
                       <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
                          <locality type="clause">
                             <referenceFrom>3.1</referenceFrom>
                          </locality>
-                         ISO 7301:2011，
+                         ISO 7301:2011,
                          <span class="citesec">3.1</span>
                       </origin>
-                      ］
+                      ]
                    </termsource>
                 </term>
                 <term id="A">
-                   <name>1.3</name>
+                   <fmt-name>
+                      <span class="fmt-caption-label">
+                         <semx element="autonum" source="_">1</semx>
+                         <span class="fmt-autonum-delim">.</span>
+                         <semx element="autonum" source="A">3</semx>
+                      </span>
+                   </fmt-name>
+                   <fmt-xref-label>
+                      <semx element="autonum" source="_">1</semx>
+                      <span class="fmt-autonum-delim">.</span>
+                      <semx element="autonum" source="A">3</semx>
+                   </fmt-xref-label>
                    <preferred>
                       <strong>term1</strong>
                    </preferred>
                    <definition>term1 definition</definition>
                    <term id="B">
-                      <name>1.3.1</name>
+                      <fmt-name>
+                         <span class="fmt-caption-label">
+                            <semx element="autonum" source="_">1</semx>
+                            <span class="fmt-autonum-delim">.</span>
+                            <semx element="autonum" source="A">3</semx>
+                            <span class="fmt-autonum-delim">.</span>
+                            <semx element="autonum" source="B">1</semx>
+                         </span>
+                      </fmt-name>
+                      <fmt-xref-label>
+                         <semx element="autonum" source="_">1</semx>
+                         <span class="fmt-autonum-delim">.</span>
+                         <semx element="autonum" source="A">3</semx>
+                         <span class="fmt-autonum-delim">.</span>
+                         <semx element="autonum" source="B">1</semx>
+                      </fmt-xref-label>
                       <preferred>
                          <strong>term2</strong>
                       </preferred>

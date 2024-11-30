@@ -20,7 +20,7 @@ module Relaton
           r = doc.relation.select { |x| x.type == "hasRepresentation" }
             .map { |x| @i18n.also_pub_as + render_single_bibitem(x.bibitem) }
           out = [render_single_bibitem(doc)] + r
-          @i18n.l10n(out.join(". ").gsub(".. ", ". ").sub(/\.\s*$/, ""))
+          @i18n.l10n(out.join(". ").gsub(/[.。]\. /, ". ").sub(/[.。]\s*$/, ""))
         end
 
         def render_all(bib, type: "author-date")
