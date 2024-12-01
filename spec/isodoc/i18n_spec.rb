@@ -933,7 +933,7 @@ RSpec.describe IsoDoc::Jis do
                    <fmt-title depth="2">
                       <span class="fmt-caption-label">
                          <semx element="autonum" source="H">三</semx>
-                         <span class="fmt-autonum-delim">．</span>
+                         <span class="fmt-autonum-delim">・</span>
                          <semx element="autonum" source="I">一</semx>
                       </span>
                       <span class="fmt-caption-delim">
@@ -943,24 +943,24 @@ RSpec.describe IsoDoc::Jis do
                    </fmt-title>
                    <fmt-xref-label>
                       <semx element="autonum" source="H">三</semx>
-                      <span class="fmt-autonum-delim">．</span>
+                      <span class="fmt-autonum-delim">・</span>
                       <semx element="autonum" source="I">一</semx>
                    </fmt-xref-label>
                    <term id="J">
                       <fmt-name>
                          <span class="fmt-caption-label">
                             <semx element="autonum" source="H">三</semx>
-                            <span class="fmt-autonum-delim">．</span>
+                            <span class="fmt-autonum-delim">・</span>
                             <semx element="autonum" source="I">一</semx>
-                            <span class="fmt-autonum-delim">．</span>
+                            <span class="fmt-autonum-delim">・</span>
                             <semx element="autonum" source="J">一</semx>
                          </span>
                       </fmt-name>
                       <fmt-xref-label>
                          <semx element="autonum" source="H">三</semx>
-                         <span class="fmt-autonum-delim">．</span>
+                         <span class="fmt-autonum-delim">・</span>
                          <semx element="autonum" source="I">一</semx>
-                         <span class="fmt-autonum-delim">．</span>
+                         <span class="fmt-autonum-delim">・</span>
                          <semx element="autonum" source="J">一</semx>
                       </fmt-xref-label>
                       <preferred>
@@ -973,7 +973,7 @@ RSpec.describe IsoDoc::Jis do
                    <fmt-title depth="2">
                       <span class="fmt-caption-label">
                          <semx element="autonum" source="H">三</semx>
-                         <span class="fmt-autonum-delim">．</span>
+                         <span class="fmt-autonum-delim">・</span>
                          <semx element="autonum" source="K">二</semx>
                       </span>
                       <span class="fmt-caption-delim">
@@ -983,7 +983,7 @@ RSpec.describe IsoDoc::Jis do
                    </fmt-title>
                    <fmt-xref-label>
                       <semx element="autonum" source="H">三</semx>
-                      <span class="fmt-autonum-delim">．</span>
+                      <span class="fmt-autonum-delim">・</span>
                       <semx element="autonum" source="K">二</semx>
                    </fmt-xref-label>
                    <dl>
@@ -1032,7 +1032,7 @@ RSpec.describe IsoDoc::Jis do
                    <fmt-title depth="2">
                       <span class="fmt-caption-label">
                          <semx element="autonum" source="M">五</semx>
-                         <span class="fmt-autonum-delim">．</span>
+                         <span class="fmt-autonum-delim">・</span>
                          <semx element="autonum" source="N">一</semx>
                       </span>
                       <span class="fmt-caption-delim">
@@ -1042,7 +1042,7 @@ RSpec.describe IsoDoc::Jis do
                    </fmt-title>
                    <fmt-xref-label>
                       <semx element="autonum" source="M">五</semx>
-                      <span class="fmt-autonum-delim">．</span>
+                      <span class="fmt-autonum-delim">・</span>
                       <semx element="autonum" source="N">一</semx>
                    </fmt-xref-label>
                 </clause>
@@ -1051,7 +1051,7 @@ RSpec.describe IsoDoc::Jis do
                    <fmt-title depth="2">
                       <span class="fmt-caption-label">
                          <semx element="autonum" source="M">五</semx>
-                         <span class="fmt-autonum-delim">．</span>
+                         <span class="fmt-autonum-delim">・</span>
                          <semx element="autonum" source="O">二</semx>
                       </span>
                       <span class="fmt-caption-delim">
@@ -1061,7 +1061,7 @@ RSpec.describe IsoDoc::Jis do
                    </fmt-title>
                    <fmt-xref-label>
                       <semx element="autonum" source="M">五</semx>
-                      <span class="fmt-autonum-delim">．</span>
+                      <span class="fmt-autonum-delim">・</span>
                       <semx element="autonum" source="O">二</semx>
                    </fmt-xref-label>
                 </clause>
@@ -1110,7 +1110,7 @@ RSpec.describe IsoDoc::Jis do
                 <fmt-title depth="2">
                    <span class="fmt-caption-label">
                       <semx element="autonum" source="P">A</semx>
-                      <span class="fmt-autonum-delim">.</span>
+                      <span class="fmt-autonum-delim">・</span>
                       <semx element="autonum" source="Q">一</semx>
                    </span>
                    <span class="fmt-caption-delim">
@@ -1120,7 +1120,7 @@ RSpec.describe IsoDoc::Jis do
                 </fmt-title>
                 <fmt-xref-label>
                    <semx element="autonum" source="P">A</semx>
-                   <span class="fmt-autonum-delim">.</span>
+                   <span class="fmt-autonum-delim">・</span>
                    <semx element="autonum" source="Q">一</semx>
                 </fmt-xref-label>
                 <clause id="Q1" inline-header="false" obligation="normative">
@@ -1128,10 +1128,10 @@ RSpec.describe IsoDoc::Jis do
                    <fmt-title depth="3">
                       <span class="fmt-caption-label">
                          <semx element="autonum" source="P">A</semx>
-                         <span class="fmt-autonum-delim">.</span>
+                         <span class="fmt-autonum-delim">・</span>
                          <semx element="autonum" source="Q">一</semx>
-                         <span class="fmt-autonum-delim">.</span>
-                         <semx element="autonum" source="Q1">1</semx>
+                         <span class="fmt-autonum-delim">・</span>
+                         <semx element="autonum" source="Q1">一</semx>
                       </span>
                       <span class="fmt-caption-delim">
                          <tab/>
@@ -1140,19 +1140,19 @@ RSpec.describe IsoDoc::Jis do
                    </fmt-title>
                    <fmt-xref-label>
                       <semx element="autonum" source="P">A</semx>
-                      <span class="fmt-autonum-delim">.</span>
+                      <span class="fmt-autonum-delim">・</span>
                       <semx element="autonum" source="Q">一</semx>
-                      <span class="fmt-autonum-delim">.</span>
-                      <semx element="autonum" source="Q1">1</semx>
+                      <span class="fmt-autonum-delim">・</span>
+                      <semx element="autonum" source="Q1">一</semx>
                    </fmt-xref-label>
                 </clause>
              </clause>
-             <appendix id="Q2" inline-header="false" obligation="normative" autonum="1">
+             <appendix id="Q2" inline-header="false" obligation="normative" autonum="一">
                 <title id="_">An Appendix</title>
                 <fmt-title depth="2">
                    <span class="fmt-caption-label">
                       <span class="fmt-element-name">Appendix</span>
-                      <semx element="autonum" source="Q2">1</semx>
+                      <semx element="autonum" source="Q2">一</semx>
                    </span>
                    <span class="fmt-caption-delim">
                       <tab/>
@@ -1161,7 +1161,7 @@ RSpec.describe IsoDoc::Jis do
                 </fmt-title>
                 <fmt-xref-label>
                    <span class="fmt-element-name">Appendix</span>
-                   <semx element="autonum" source="Q2">1</semx>
+                   <semx element="autonum" source="Q2">一</semx>
                 </fmt-xref-label>
                 <fmt-xref-label container="P">
                    <span class="fmt-xref-container">
@@ -1170,7 +1170,7 @@ RSpec.describe IsoDoc::Jis do
                    </span>
                    <span class="fmt-conn">の</span>
                    <span class="fmt-element-name">Appendix</span>
-                   <semx element="autonum" source="Q2">1</semx>
+                   <semx element="autonum" source="Q2">一</semx>
                 </fmt-xref-label>
              </appendix>
           </annex>
