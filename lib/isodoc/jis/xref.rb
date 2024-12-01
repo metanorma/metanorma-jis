@@ -24,19 +24,19 @@ module IsoDoc
     class Xref < IsoDoc::Iso::Xref
       attr_accessor :autonumbering_style
 
-      def clause_sep
+      def clausesep
         @autonumbering_style == :japanese ? "\u30fb" : "."
       end
 
       def clause_counter(num, opts = { })
         opts[:numerals] ||= @autonumbering_style
-        opts[:separator] ||= clause_sep
+        opts[:separator] ||= clausesep
         super
       end
 
       def list_counter(num, opts = { })
         opts[:numerals] ||= @autonumbering_style
-        opts[:separator] ||= clause_sep
+        opts[:separator] ||= clausesep
         IsoDoc::Jis::Counter.new(num, opts)
       end
 
@@ -91,6 +91,11 @@ def subfigure_anchor(elem, sublabel, label, klass, container: false)
 
       def annex_name_lbl(clause, num)
         super.gsub(%r{</?strong>}, "")
+      end
+
+      def annex_names1(clause, parentnum, num, level)
+        #require "debug"; binding.b if level == 2
+        super
       end
 
 =begin cf. isodoc:
@@ -330,9 +335,9 @@ def list_anchor_names(sections)
         label = counter.increment(entry).listlabel(entry.parent, depth)
         s = semx(entry, label)
           base = @c.decode(opts[:prev_label].gsub(%r{<[^>]+>}, "")).split(/\)\s*/) # List a) 1.1.1
-          label = "#{base[-1].sub(/^の/,'')}#{clause_sep}#{label}"
+          label = "#{base[-1].sub(/^の/,'')}#{clausesep}#{label}"
           #[label, J=list_item_anchor_label(opts[:prev_label] + delim_wrap(clause_sep) + s, opts[:list_anchor], base[0].sub(/[\p{Zs})]+$/, ""), opts[:refer_list])]
-          [label, opts[:prev_label] + delim_wrap(clause_sep) + s]
+          [label, opts[:prev_label] + delim_wrap(clausesep) + s]
         else
           super
         end
