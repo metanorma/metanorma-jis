@@ -337,7 +337,7 @@ RSpec.describe IsoDoc::Jis do
                       <span class="fmt-caption-label">
                          <semx element="autonum" source="C1">1</semx>
                          <span class="fmt-autonum-delim">.</span>
-                         <semx element="autonum" source="C2">1.1</semx>
+                         <semx element="autonum" source="C2">1</semx>
                       </span>
                       <span class="fmt-caption-delim">
                          <tab/>
@@ -348,7 +348,7 @@ RSpec.describe IsoDoc::Jis do
                       <span class="fmt-element-name">Clause</span>
                       <semx element="autonum" source="C1">1</semx>
                       <span class="fmt-autonum-delim">.</span>
-                      <semx element="autonum" source="C2">1.1</semx>
+                      <semx element="autonum" source="C2">1</semx>
                    </fmt-xref-label>
                    <fmt-xref-label container="C">
                       <span class="fmt-xref-container">
@@ -358,7 +358,7 @@ RSpec.describe IsoDoc::Jis do
                       <span class="fmt-element-name">Clause</span>
                       <semx element="autonum" source="C1">1</semx>
                       <span class="fmt-autonum-delim">.</span>
-                      <semx element="autonum" source="C2">1.1</semx>
+                      <semx element="autonum" source="C2">1</semx>
                    </fmt-xref-label>
                 </clause>
              </clause>
@@ -465,7 +465,7 @@ RSpec.describe IsoDoc::Jis do
                    <div id="C1">
                       <h2>1  First clause</h2>
                       <div id="C2">
-                         <h3>1.1.1  First subclause</h3>
+                         <h3>1.1  First subclause</h3>
                       </div>
                    </div>
                 </div>
@@ -606,7 +606,7 @@ RSpec.describe IsoDoc::Jis do
                          </h2>
                          <div id="C2">
                             <h3>
-                               1.1.1
+                               1.1
                                <span style="mso-tab-count:1">  </span>
                                First subclause
                             </h3>

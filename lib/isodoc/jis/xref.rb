@@ -203,7 +203,7 @@ end
         lbl = clause_number_semx(parentnum, clause, num)
         commentary_name_anchors(clause, lbl, root, level)
         clause.xpath(ns(SUBCLAUSES))
-          .each_with_object(clause_counter(0, prefix: num)) do |c, i|
+          .each_with_object(clause_counter(0)) do |c, i|
           commentary_names1(c, root, lbl, i.increment(c).print,
                             level + 1)
         end
