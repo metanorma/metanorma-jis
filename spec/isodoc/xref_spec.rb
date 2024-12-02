@@ -110,7 +110,7 @@ RSpec.describe IsoDoc::Jis do
                    <span class="fmt-element-name">Clause</span>
                    <semx element="autonum" source="V1">1</semx>
                    <span class="fmt-autonum-delim">.</span>
-                   <semx element="autonum" source="V2">1.1</semx>
+                   <semx element="autonum" source="V2">1</semx>
                 </span>
              </xref>
              <xref target="R">
