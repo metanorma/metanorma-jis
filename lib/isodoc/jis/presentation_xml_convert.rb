@@ -97,8 +97,9 @@ module IsoDoc
       def table1(node)
         super
         cols = table_cols_count(node)
-        name = node.at(ns("./fmt-name"))
-        thead = table_thead_pt(node, name)
+        ins = node.at(ns("./fmt-xref-label")) ||
+          node.at(ns("./fmt-name"))
+        thead = table_thead_pt(node, ins)
         table_unit_note(node, thead, cols)
       end
 
