@@ -14,14 +14,14 @@ RSpec.describe IsoDoc::Jis do
       </bibdata>
       <preface>
       <foreword id="_foreword" obligation="informative" displayorder="1">
-      <title>まえがき</title>
+      <fmt-title>まえがき</fmt-title>
       <p id="_553c5ce1-fd17-941b-b935-59caca87f267">This is a foreword</p>
       </foreword>
-      <clause type="toc"><title>目次</title></clause>
+      <clause type="toc"><fmt-title>目次</fmt-title></clause>
       </preface><sections>
       <clause id="_clause" inline-header="false" obligation="normative" displayorder="3">
-      <title depth="1">2<tab/>Clause</title>
-      <note id="_339b7abc-c95c-638c-54a9-750cef9ea065"><name>注記</name><p id="_977f50de-4e2f-4dfc-c48b-c35a3ff271cc">Para1</p>
+      <fmt-title depth="1">2<tab/>Clause</fmt-title>
+      <note id="_339b7abc-c95c-638c-54a9-750cef9ea065"><fmt-name>注記<tab/></fmt-name><p id="_977f50de-4e2f-4dfc-c48b-c35a3ff271cc">Para1</p>
 
       <p id="_6d6fb0cf-1924-fadf-4eed-18a5915a75d8">para2</p>
       </note>
@@ -29,7 +29,7 @@ RSpec.describe IsoDoc::Jis do
       <p id="_3cf332d1-0d92-ce94-f50d-8a0ba6150316"><strong>strong</strong></p>
       </clause>
       <references id="_normative_references" normative="true" obligation="informative" displayorder="2" displayorder="5">
-      <title depth="1">1<tab/>引用規格</title><p id="_375d89b0-e764-77b0-b84e-611678e3e3a8">次に掲げる引用規格は，この規格に引用されることによ>って
+      <fmt-title depth="1">1<tab/>引用規格</fmt-title><p id="_375d89b0-e764-77b0-b84e-611678e3e3a8">次に掲げる引用規格は，この規格に引用されることによ>って
       ，その一部又は全部がこの規格の要 求事項を構成している。これらの引用規格のうち，西暦年を付記してあるものは，記載の年の版を適 用し，その後>の改
       正版(追補を含む。)は適用しない。西暦年の付記がない引用規格は，その最新版(追 補を含む。)を適用する。</p>
 
@@ -37,13 +37,13 @@ RSpec.describe IsoDoc::Jis do
       <bibitem id="A"><formattedref format="application/x-isodoc+xml"/><docidentifier>B</docidentifier><biblio-tag>B, </biblio-tag></bibitem>
       </references>
       </sections>
-      <annex id="A" displayorder="4"><title>Annex</title>
-      <clause id="B"><title>Annex Clause</title>
-      <clause id="C"><title>Annex Clause Clause</title>
+      <annex id="A" displayorder="4"><fmt-title>Annex</fmt-title>
+      <clause id="B"><fmt-title>Annex Clause</fmt-title>
+      <clause id="C"><fmt-title>Annex Clause Clause</fmt-title>
       </clause></clause></annex>
       <bibliography>
       <references id="_bibliography" normative="false" obligation="informative" displayorder="6">
-      <title depth="1">参考文献</title>
+      <fmt-title depth="1">参考文献</fmt-title>
       <p id="_1dcfd70f-f687-ba32-9a43-3088add497fc">This is some boilerplate</p><bibitem id="C">
         <formattedref format="application/x-isodoc+xml"/><docidentifier type="metanorma-ordinal">[1]</docidentifier>
         <docidentifier>D</docidentifier>
@@ -96,8 +96,10 @@ RSpec.describe IsoDoc::Jis do
                <div>
                  <a name="_339b7abc-c95c-638c-54a9-750cef9ea065" id="_339b7abc-c95c-638c-54a9-750cef9ea065"/>
                  <p class="Note">
-                   <span class="note_label">注記</span>
-                   <span style="mso-tab-count:1">  </span>
+                   <span class="note_label">
+               注記
+               <span style="mso-tab-count:1">  </span>
+            </span>
                    Para1
                  </p>
                  <p class="NoteCont">
@@ -172,8 +174,8 @@ RSpec.describe IsoDoc::Jis do
       <abbreviation>JIS</abbreviation></organization></contributor><language current="true">ja</language><script current="true">Jpan</script><status><stage>60</stage><substage>60</substage></status>
       </bibdata>
       <preface>
-      <foreword displayorder="1"><title>Antauparolo</title></foreword>
-      <clause type="participants" displayorder="3"><title>Contributors</title><p>Contributors</p></clause>
+      <foreword displayorder="1"><fmt-title>Antauparolo</fmt-title></foreword>
+      <clause type="participants" displayorder="3"><fmt-title>Contributors</fmt-title><p>Contributors</p></clause>
       </preface>
       </jis-standard>
     INPUT
@@ -199,7 +201,7 @@ RSpec.describe IsoDoc::Jis do
       <iso-standard xmlns="http://riboseinc.com/isoxml">
         <sections>
         <clause id="A"><p>
-        <ol>
+        <ol id="B">
         <li><p>A</p></li>
         <li><p>B</p></li>
         <li><ol>
@@ -229,7 +231,7 @@ RSpec.describe IsoDoc::Jis do
         </ol></li>
         <li>R</li>
         </ol>
-        <ul>
+        <ul id="C">
         <li><p>A</p></li>
         <li><p>B</p></li>
         <li><p>B1</p><ul>

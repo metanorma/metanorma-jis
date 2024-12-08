@@ -10,7 +10,7 @@ module IsoDoc
         if t = elem.at(ns("./title"))
           t.children = "<strong>#{to_xml(t.children)}</strong>"
         end
-        prefix_name(elem, "<br/>", lbl, "title")
+        prefix_name(elem, { caption: "<br/>" }, lbl, "title")
       end
 
       def annex(docxml)
@@ -31,6 +31,7 @@ module IsoDoc
         t = elem.elements.first
         commentary_title_hdr(t)
         middle_title_main(t, "CommentaryStandardName")
+        prefix_name(elem, {}, nil, "title")
       end
 
       def commentary_title_hdr(elem)

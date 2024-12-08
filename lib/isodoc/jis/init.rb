@@ -20,12 +20,20 @@ module IsoDoc
       end
 
       def bibrenderer(options = {})
-        ::Relaton::Render::Jis::General.new(options.merge(language: @lang,
-                                                          i18nhash: @i18n.get))
+        ::Relaton::Render::Jis::General.new(options
+          .merge(language: @lang, i18nhash: @i18n.get))
       end
 
       def std_docid_semantic(text)
         text
+      end
+
+      def convert_i18n_init1(docxml)
+        b = docxml.at("//xmlns:bibdata") or return
+        lang = docxml.at("//xmlns:bibdata/xmlns:language") ||
+        (docxml << "<language/>")
+        %w(en ja).include?(lang&.text) or lang.content = "ja"
+        super
       end
     end
   end

@@ -14,7 +14,7 @@ module IsoDoc
         { units: node.at(ns("./note[@type = 'units']")),
           notes_etc: figure_notes_examples_paras(node
           .xpath(ns("./note[not(@type = 'units')] | ./example | ./p"))),
-          name: node.at(ns("./name")),
+          name: node.at(ns("./fmt-name")),
           key: node.xpath(ns("./p[@class = 'ListTitle' or @class = 'dl']")),
           img: node.at(ns("./image")),
           aside: node.at(ns("./aside")),
