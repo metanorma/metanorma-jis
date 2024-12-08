@@ -117,7 +117,7 @@ RSpec.describe IsoDoc do
                       <em>husked</em>
                       rice yield
                       <fn reference="1">
-                         <p id="_">Name footnote.</p>
+                         <p original-id="_">Name footnote.</p>
                       </fn>
                    </name>
                    <fmt-name>
@@ -289,13 +289,13 @@ RSpec.describe IsoDoc do
                    <span class="fmt-caption-delim"> — </span>
                    <semx element="name" source="_">Another table</semx>
                 </fmt-name>
-                <thead> </thead>
                 <fmt-xref-label>
                    <span class="fmt-element-name">Table</span>
                    <semx element="autonum" source="Annex">A</semx>
                    <span class="fmt-autonum-delim">.</span>
                    <semx element="autonum" source="AnnexTable">1</semx>
                 </fmt-xref-label>
+                <thead> </thead>
                 <tbody>
                    <tr>
                       <td>?</td>
