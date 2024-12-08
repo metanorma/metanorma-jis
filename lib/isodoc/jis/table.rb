@@ -6,7 +6,7 @@ module IsoDoc
         out.span do |s|
           s << @i18n.table_footnote
           out.span **attrs do |a|
-            a << "#{fnref})"
+            a << fnref.sub(/(?!<\))$/, ")") # TODO TO Presentation XML
           end
           insert_tab(s, 1)
         end

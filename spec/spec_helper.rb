@@ -45,7 +45,9 @@ end
 
 def strip_guid(xml)
   xml.gsub(%r{ id="_[^"]+"}, ' id="_"')
+    .gsub(%r{ original-id="_[^"]+"}, ' original-id="_"')
     .gsub(%r{ target="_[^"]+"}, ' target="_"')
+    .gsub(%r{ source="_[^"]+"}, ' source="_"')
     .gsub(%r{ name="_[^"]+"}, ' name="_"')
     .gsub(%r( href="#_?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12,13}"), ' href="#_"')
     .gsub(%r( href="#_?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12,13}a\)"), ' href="#_"')
@@ -131,11 +133,9 @@ def middle_title(word, number = "", year = "")
   YR
   <<~HDR
     <p class="JapaneseIndustrialStandard">
-      日本工業規格#{word ? '<span style="mso-tab-count:1">  </span>' * 7 : '              '}<span class="JIS">JIS</span>
+      日本工業規格#{word ? '<span style="mso-tab-count:1">  </span>' * 7 : '             '}<span class="JIS">JIS</span>
     </p>
-    <p class="StandardNumber">
-      #{word ? '<span style="mso-tab-count:1">  </span>' : ' '} #{number}#{yr}
-    </p>
+    <p class="StandardNumber">#{word ? '<span style="mso-tab-count:1">  </span>' : ' '} #{number}#{yr}</p>
     <p class="IDT"/>
   HDR
 end
