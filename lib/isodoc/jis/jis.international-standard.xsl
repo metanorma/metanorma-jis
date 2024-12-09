@@ -1952,7 +1952,7 @@
 
 	<xsl:template match="jis:termnote" priority="2">
 		<fo:block id="{@id}" xsl:use-attribute-sets="termnote-style">
-			<fo:list-block provisional-distance-between-starts="{14 + $text_indent}mm">
+			<fo:list-block provisional-distance-between-starts="{18 + $text_indent}mm">
 				<fo:list-item>
 					<fo:list-item-label start-indent="{$text_indent}mm" end-indent="label-end()">
 						<fo:block xsl:use-attribute-sets="note-name-style">
@@ -2101,7 +2101,7 @@
 		<xsl:copy-of select="."/>
 	</xsl:template>
 
-	<xsl:template match="text()" mode="update_xml_step0">
+	<xsl:template match="text()" mode="SKIP_update_xml_step0">
 		<!-- from https://github.com/metanorma/docs/blob/main/109.adoc -->
 		<!-- 
 		U+0028 LEFT PARENTHESIS (()
@@ -2222,6 +2222,52 @@
 
 		<xsl:value-of select="$text10"/>
 	</xsl:template>
+
+	<xsl:template match="text()" mode="update_xml_step0">
+		<!-- from https://github.com/metanorma/docs/blob/main/109.adoc -->
+		<!-- 
+		U+3001 IDEOGRAPHIC COMMA (、)
+		to
+		U+FE11 PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA (︑) 
+		
+		U+FE50 SMALL COMMA (﹐)
+		to
+		U+FE10 PRESENTATION FORM FOR VERTICAL COMMA (︐)
+		
+		U+FE51 SMALL IDEOGRAPHIC COMMA (﹑)
+		to
+		U+FE11 PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA (︑)
+		
+		U+FF0C FULLWIDTH COMMA (，)
+		to
+		U+FE10 PRESENTATION FORM FOR VERTICAL COMMA (︐)
+		-->
+		<xsl:variable name="text1" select="translate(.,'、﹐﹑，','︑︐︑︐')"/>
+
+		<!-- 
+		U+FF1A FULLWIDTH COLON (：)
+		to
+		U+FE13 PRESENTATION FORM FOR VERTICAL COLON (︓)
+		
+		U+FF1B FULLWIDTH SEMICOLON (；)
+		to
+		U+FE14 PRESENTATION FORM FOR VERTICAL SEMICOLON (︔)
+		-->
+		<xsl:variable name="text2" select="translate($text1,'：；','︓︔')"/>
+
+		<!-- 
+		U+FF01 FULLWIDTH EXCLAMATION MARK (！)
+		to
+		U+FE15 PRESENTATION FORM FOR VERTICAL EXCLAMATION MARK (︕)
+		
+		U+FF1F FULLWIDTH QUESTION MARK (？)
+		to
+		U+FE16 PRESENTATION FORM FOR VERTICAL QUESTION MARK (︖)
+		-->
+		<xsl:variable name="text3" select="translate($text2,'！？','︕︖')"/>
+		<xsl:value-of select="$text3"/>
+	</xsl:template>
+
 	<!-- =========================================================================== -->
 	<!-- END STEP 0: Replace characters with vertical form -->
 	<!-- =========================================================================== -->
@@ -2313,6 +2359,7 @@
 		<xsl:choose>
 			<!-- ( ) [ ] _ { } U+FF08 FULLWIDTH LEFT PARENTHESIS U+FF09 FULLWIDTH RIGHT PARENTHESIS-->
 			<!-- <xsl:when test="$vertical_layout = 'true'">((<xsl:value-of select="$regex_ja_spec"/>)|([^\u0028\u0029\u005B\u005D\u005F\u007B\u007D<xsl:value-of select="$regex_en_base"/>]){1,})</xsl:when> -->
+			<!-- regex for find characters to rotation -->
 			<xsl:when test="$vertical_layout = 'true'">((<xsl:value-of select="$regex_ja_spec"/>)|([^\u005F<xsl:value-of select="$regex_en_base"/>]){1,})</xsl:when> <!-- \u0028\u0029\u005B\u005D \u007B\u007D -->
 			<xsl:otherwise>([^<xsl:value-of select="$regex_en_base"/>]{1,})</xsl:otherwise>
 		</xsl:choose>
@@ -2328,6 +2375,17 @@
 	<xsl:variable name="element_name_font_en_vertical">font_en_vertical</xsl:variable>
 	<xsl:variable name="tag_font_en_vertical_open">###<xsl:value-of select="$element_name_font_en_vertical"/>###</xsl:variable>
 	<xsl:variable name="tag_font_en_vertical_close">###/<xsl:value-of select="$element_name_font_en_vertical"/>###</xsl:variable>
+
+	<xsl:template match="text()[not(ancestor::*[local-name() = 'bibdata']) and not(ancestor::jis:p[@class = 'zzSTDTitle2'])]" mode="update_xml_step1">
+		<xsl:choose>
+			<xsl:when test="$vertical_layout = 'true'">
+				<xsl:call-template name="enclose_text_in_vertical_tag"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="."/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
 
 	<xsl:template match="jis:p//text()[not(ancestor::jis:strong) and not(ancestor::jis:p[@class = 'zzSTDTitle2'])] |       jis:dt/text() |        jis:biblio-tag/text()" mode="update_xml_step1">
 		<xsl:choose>
@@ -2658,6 +2716,32 @@
 				<xsl:apply-templates/>
 			</fo:block>
 		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="*[local-name() = 'span'][@class = 'norotate']//text()" name="norotate" priority="3">
+		<xsl:param name="str" select="."/>
+		<xsl:choose>
+			<xsl:when test="$vertical_layout = 'true'">
+				<xsl:if test="string-length($str) &gt; 0">
+					<xsl:variable name="char" select="substring($str,1,1)"/>
+					<fo:inline-container text-align="center" alignment-baseline="central" width="1em" margin="0" padding="0" text-indent="0mm" last-line-end-indent="0mm" start-indent="0mm" end-indent="0mm" reference-orientation="0">
+						<fo:block-container width="1em">
+							<fo:block line-height="1em">
+								<xsl:value-of select="$char"/>
+							</fo:block>
+						</fo:block-container>
+					</fo:inline-container>
+					<xsl:call-template name="norotate">
+						<xsl:with-param name="str" select="substring($str, 2)"/>
+					</xsl:call-template>
+			 </xsl:if>
+			</xsl:when>
+			<xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="*[local-name() = 'span'][@class = 'halffontsize']" priority="3">
+		<fo:inline font-size="50%" baseline-shift="15%"><xsl:apply-templates/></fo:inline>
 	</xsl:template>
 
 	<xsl:template name="insertHeaderFooter">
@@ -14180,7 +14264,7 @@
 	</xsl:template>
 
 	<!-- Example with 'class': <span class="stdpublisher">ISO</span> <span class="stddocNumber">10303</span>-<span class="stddocPartNumber">1</span>:<span class="stdyear">1994</span> -->
-	<xsl:template match="*[local-name() = 'span'][@style or @class = 'stdpublisher' or @class = 'stddocNumber' or @class = 'stddocPartNumber' or @class = 'stdyear']" mode="update_xml_step1" priority="2">
+	<xsl:template match="*[local-name() = 'span'][@style or @class = 'stdpublisher' or @class = 'stddocNumber' or @class = 'stddocPartNumber' or @class = 'stdyear' or @class = 'horizontal' or @class = 'norotate' or @class = 'halffontsize']" mode="update_xml_step1" priority="2">
 		<xsl:copy>
 			<xsl:copy-of select="@*"/>
 			<xsl:apply-templates mode="update_xml_step1"/>
@@ -15864,36 +15948,122 @@
 	<!-- END: insert cover page image -->
 
 	<!-- https://github.com/metanorma/docs/blob/main/109.adoc -->
-	<!-- U+301A LEFT WHITE SQUARE BRACKET (〚) -->
-	<!-- U+301B RIGHT WHITE SQUARE BRACKET (〛) -->
-	<xsl:variable name="regex_ja_spec">[\u301A\u301B]</xsl:variable>
+	<xsl:variable name="regex_ja_spec_">[
+		<!-- Rotate 90° clockwise -->
+		\u0028  <!-- U+0028 LEFT PARENTHESIS (() -->
+		\uFF08 <!-- U+FF08 FULLWIDTH LEFT PARENTHESIS (（) -->
+		\u0029 <!-- U+0029 RIGHT PARENTHESIS ()) -->
+		\uFF09 <!-- U+FF09 FULLWIDTH RIGHT PARENTHESIS (）) -->
+		\u007B <!-- U+007B LEFT CURLY BRACKET ({) -->
+		\uFF5B <!-- U+FF5B FULLWIDTH LEFT CURLY BRACKET (｛) -->
+		\u007D <!-- U+007D RIGHT CURLY BRACKET (}) -->
+		\uFF5D <!-- U+FF5D FULLWIDTH RIGHT CURLY BRACKET (｝) -->
+		\u3014 <!-- U+3014 LEFT TORTOISE SHELL BRACKET (〔) -->
+		\u3015 <!-- U+3015 RIGHT TORTOISE SHELL BRACKET (〕) -->
+		\u3010 <!-- U+3010 LEFT BLACK LENTICULAR BRACKET (【) -->
+		\u3011 <!-- U+3011 RIGHT BLACK LENTICULAR BRACKET (】) -->
+		\u300A <!-- U+300A LEFT DOUBLE ANGLE BRACKET (《) -->
+		\u300B <!-- U+300B RIGHT DOUBLE ANGLE BRACKET (》) -->
+		\uFF62 <!-- U+FF62 HALFWIDTH LEFT CORNER BRACKET (｢) -->
+		\u300C <!-- U+300C LEFT CORNER BRACKET (「) -->
+		\uFF63 <!-- U+FF63 HALFWIDTH RIGHT CORNER BRACKET (｣) -->
+		\u300D <!-- U+300D RIGHT CORNER BRACKET (」) -->
+		\u300E <!-- U+300E LEFT WHITE CORNER BRACKET (『) -->
+		\u300F <!-- U+300F RIGHT WHITE CORNER BRACKET (』) -->
+		\u005B <!-- U+005B LEFT SQUARE BRACKET ([) -->
+		\uFF3B <!-- U+FF3B FULLWIDTH LEFT SQUARE BRACKET (［) -->
+		\u005D <!-- U+005D RIGHT SQUARE BRACKET (]) -->
+		\uFF3D <!-- U+FF3D FULLWIDTH RIGHT SQUARE BRACKET (］) -->
+		\u3008 <!-- U+3008 LEFT ANGLE BRACKET (〈) -->
+		\u3009 <!-- U+3009 RIGHT ANGLE BRACKET (〉) -->
+		\u3016 <!-- U+3016 LEFT WHITE LENTICULAR BRACKET (〖) -->
+		\u3017 <!-- U+3017 RIGHT WHITE LENTICULAR BRACKET (〗) -->
+
+		\u301A <!-- U+301A LEFT WHITE SQUARE BRACKET (〚) -->
+		\u301B <!-- U+301B RIGHT WHITE SQUARE BRACKET (〛) -->
+		\u301C <!-- U+301C WAVE DASH (〜) -->
+		\u3030 <!-- U+3030 WAVY DASH (〰 )-->
+		\u30FC <!-- U+30FC KATAKANA-HIRAGANA PROLONGED SOUND MARK (ー) -->
+		\u2329 <!-- U+2329 LEFT-POINTING ANGLE BRACKET (〈) -->
+		\u232A <!-- U+232A RIGHT-POINTING ANGLE BRACKET (〉) -->
+		\u3018 <!-- U+3018 LEFT WHITE TORTOISE SHELL BRACKET (〘) -->
+		\u3019 <!-- U+3019 RIGHT WHITE TORTOISE SHELL BRACKET (〙) -->
+		\u30A0 <!-- U+30A0 KATAKANA-HIRAGANA DOUBLE HYPHEN (゠) -->
+		\uFE59 <!-- U+FE59 SMALL LEFT PARENTHESIS (﹙) -->
+		\uFE5A <!-- U+FE5A SMALL RIGHT PARENTHESIS (﹚) -->
+		\uFE5B <!-- U+FE5B SMALL LEFT CURLY BRACKET (﹛) -->
+		\uFE5C <!-- U+FE5C SMALL RIGHT CURLY BRACKET (﹜) -->
+		\uFE5D <!-- U+FE5D SMALL LEFT TORTOISE SHELL BRACKET (﹝) -->
+		\uFE5E <!-- U+FE5E SMALL RIGHT TORTOISE SHELL BRACKET (﹞) -->
+		\uFF5C <!-- U+FF5C FULLWIDTH VERTICAL LINE (｜) -->
+		\uFF5F <!-- U+FF5F FULLWIDTH LEFT WHITE PARENTHESIS (｟) -->
+		\uFF60 <!-- U+FF60 FULLWIDTH RIGHT WHITE PARENTHESIS (｠) -->
+		\uFFE3 <!-- U+FFE3 FULLWIDTH MACRON (￣) -->
+		\uFF3F <!-- U+FF3F FULLWIDTH LOW LINE (＿) -->
+		\uFF5E <!-- U+FF5E FULLWIDTH TILDE (～) -->
+		<!-- Rotate 180° -->
+		\u309C <!-- U+309C KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK (゜) -->
+		\u3002 <!-- U+3002 IDEOGRAPHIC FULL STOP (。) -->
+		\uFE52 <!-- U+FE52 SMALL FULL STOP (﹒) -->
+		\uFF0E <!-- U+FF0E FULLWIDTH FULL STOP (．) -->
+		]</xsl:variable>
+	<xsl:variable name="regex_ja_spec"><xsl:value-of select="translate(normalize-space($regex_ja_spec_), ' ', '')"/></xsl:variable>
 	<xsl:template name="insertVerticalChar">
 		<xsl:param name="str"/>
 		<xsl:param name="writing-mode">lr-tb</xsl:param>
 		<xsl:param name="reference-orientation">90</xsl:param>
 		<xsl:param name="add_zero_width_space">false</xsl:param>
-		<xsl:if test="string-length($str) &gt; 0">
-			<xsl:variable name="char" select="substring($str,1,1)"/>
-			<fo:inline-container text-align="center" alignment-baseline="central" width="1em" margin="0" padding="0" text-indent="0mm" last-line-end-indent="0mm" start-indent="0mm" end-indent="0mm">
-				<xsl:if test="normalize-space($writing-mode) != ''">
-					<xsl:attribute name="writing-mode"><xsl:value-of select="$writing-mode"/></xsl:attribute>
-					<xsl:attribute name="reference-orientation">90</xsl:attribute>
+		<xsl:choose>
+			<xsl:when test="ancestor::*[local-name() = 'span'][@class = 'norotate']">
+				<xsl:value-of select="$str"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:if test="string-length($str) &gt; 0">
+					<xsl:variable name="horizontal_mode" select="normalize-space(ancestor::*[local-name() = 'span'][@class = 'horizontal'] and 1 = 1)"/>
+					<xsl:variable name="char" select="substring($str,1,1)"/>
+					<fo:inline-container text-align="center" alignment-baseline="central" width="1em" margin="0" padding="0" text-indent="0mm" last-line-end-indent="0mm" start-indent="0mm" end-indent="0mm">
+						<xsl:if test="normalize-space($writing-mode) != ''">
+							<xsl:attribute name="writing-mode"><xsl:value-of select="$writing-mode"/></xsl:attribute>
+							<xsl:attribute name="reference-orientation">90</xsl:attribute>
+						</xsl:if>
+						<xsl:if test="normalize-space(java:matches(java:java.lang.String.new($char), concat('(', $regex_ja_spec, '{1,})'))) = 'true'">
+							<xsl:attribute name="reference-orientation">0</xsl:attribute>
+						</xsl:if>
+						<xsl:if test="$char = '゜' or $char = '。' or $char = '﹒' or $char = '．'">
+							<!-- Rotate 180°: 
+								U+309C KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK (゜)
+								U+3002 IDEOGRAPHIC FULL STOP (。)
+								U+FE52 SMALL FULL STOP (﹒)
+								U+FF0E FULLWIDTH FULL STOP (．)
+							-->
+							<xsl:attribute name="reference-orientation">-90</xsl:attribute>
+						</xsl:if>
+						<fo:block-container width="1em">
+							<fo:block line-height="1em">
+								<xsl:choose>
+									<xsl:when test="$horizontal_mode = 'true'">
+										<xsl:value-of select="$str"/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="$char"/>
+									</xsl:otherwise>
+								</xsl:choose>
+							</fo:block>
+						</fo:block-container>
+					</fo:inline-container>
+					<xsl:if test="$add_zero_width_space = 'true' and ($char = ',' or $char = '.' or $char = ' ' or $char = '·' or $char = ')' or $char = ']' or $char = '}')"><xsl:value-of select="$zero_width_space"/></xsl:if>
+
+					<xsl:if test="$horizontal_mode = 'false'">
+						<xsl:call-template name="insertVerticalChar">
+							<xsl:with-param name="str" select="substring($str, 2)"/>
+							<xsl:with-param name="writing-mode" select="$writing-mode"/>
+							<xsl:with-param name="reference-orientation" select="$reference-orientation"/>
+							<xsl:with-param name="add_zero_width_space" select="$add_zero_width_space"/>
+						</xsl:call-template>
+					</xsl:if>
 				</xsl:if>
-				<xsl:if test="normalize-space(java:matches(java:java.lang.String.new($char), concat('(', $regex_ja_spec, '{1,})'))) = 'true'">
-					<xsl:attribute name="reference-orientation">0</xsl:attribute>
-				</xsl:if>
-				<fo:block-container width="1em">
-						<fo:block line-height="1em"><xsl:value-of select="$char"/></fo:block>
-				</fo:block-container>
-			</fo:inline-container>
-			<xsl:if test="$add_zero_width_space = 'true' and ($char = ',' or $char = '.' or $char = ' ' or $char = '·' or $char = ')' or $char = ']' or $char = '}')"><xsl:value-of select="$zero_width_space"/></xsl:if>
-			<xsl:call-template name="insertVerticalChar">
-				<xsl:with-param name="str" select="substring($str, 2)"/>
-				<xsl:with-param name="writing-mode" select="$writing-mode"/>
-				<xsl:with-param name="reference-orientation" select="$reference-orientation"/>
-				<xsl:with-param name="add_zero_width_space" select="$add_zero_width_space"/>
-			</xsl:call-template>
-		</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 
 	<xsl:template name="number-to-words">
