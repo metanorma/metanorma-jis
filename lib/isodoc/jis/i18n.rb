@@ -33,8 +33,9 @@ module IsoDoc
       end
 
       def japanese_year(time)
-        era_yr = time.era_year.to_i.localize(:ja)
-          .to_rbnf_s("SpelloutRules", "spellout-numbering-year")
+        era_yr = time.era_year.to_i
+          #.localize(:ja)
+          #.to_rbnf_s("SpelloutRules", "spellout-numbering-year")
         "#{time.strftime('%JN')}#{era_yr}年"
       rescue StandardError
         time.year.to_s

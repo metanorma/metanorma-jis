@@ -1938,9 +1938,9 @@ RSpec.describe IsoDoc::Jis do
       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
         <bibdata>
           <language current="true">ja</language>
-          <date type="created">令和二年10月11日</date>
-          <date type="issued">令和二年10月</date>
-          <date type="published">令和二年</date>
+        <date type="created">令和2年10月11日</date>
+      <date type="issued">令和2年10月</date>
+      <date type="published">令和2年</date>
         </bibdata>
       </iso-standard>
     OUTPUT
@@ -1964,9 +1964,12 @@ RSpec.describe IsoDoc::Jis do
       .sub(%r{<localized-strings>.*</localized-strings>}m, "")))
       .to be_equivalent_to Xml::C14n
         .format(output
-        .sub('<date type="created">令和二年10月11日</date>',
+        .sub('<date type="created">令和2年10月11日</date>',
              '<date type="created">令和二年十月十一日</date>')
-        .sub('<date type="issued">令和二年10月</date>',
-             '<date type="issued">令和二年十月</date>'))
+        .sub('<date type="issued">令和2年10月</date>',
+             '<date type="issued">令和二年十月</date>')
+        .sub('<date type="published">令和2年</date>',
+             '<date type="published">令和二年</date>')
+             )
   end
 end
