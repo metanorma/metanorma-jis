@@ -79,10 +79,10 @@ module IsoDoc
       end
 
       def participant_table(clause)
-        s, t, y = participant_table_prep(clause)
+        s, t, y, d = participant_table_prep(clause)
         s or return nil
         out1 = <<~OUTPUT
-          <clause id='_#{UUIDTools::UUID.random_create}'><title>#{t}</title>
+          <clause id='_#{UUIDTools::UUID.random_create}' type="participants"><title>#{t}</title>
           <table unnumbered='true'>
           <thead>
           <tr><th/><th>#{@i18n.full_name}</th><th>#{@i18n.affiliation}</th></tr>
@@ -90,7 +90,7 @@ module IsoDoc
           <tbody>
         OUTPUT
         out2 = <<~OUTPUT
-          </tbody></table></clause>
+          </tbody>#{d&.to_xml}</table></clause>
         OUTPUT
         "#{out1}#{participant_rows(y)}#{out2}"
       end
@@ -100,8 +100,9 @@ module IsoDoc
         t = clause.at(ns("./title"))&.children&.to_xml ||
           %(#{@meta.get[:"investigative-committee"]} #{@i18n.membership_table})
         y = YAML.safe_load(s.children.to_xml(encoding: "UTF-8"))
-        s && y.is_a?(Array) or return [nil, nil, nil]
-        [s, t, y]
+        d = clause.at(ns("./dl[@key = 'true']"))
+        s && y.is_a?(Array) or return [nil, nil, nil, nil]
+        [s, t, y, d]
       end
 
       def participant_rows(yaml)
