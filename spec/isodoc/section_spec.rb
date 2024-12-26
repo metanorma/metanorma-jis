@@ -683,13 +683,17 @@ RSpec.describe IsoDoc::Jis do
           surname: 宇治
           givenname: 公隆
         affiliation: 国立研究開発法人建築研究所</sourcecode>
+      <dl key="true">
+      <dt>GM</dt>
+      <dd>General Manager</dd>
+      </dl>
       </clause>
       </sections>
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
       <preface>
-         <clause id="_" displayorder="1">
+         <clause id="_" displayorder="1" type="participants">
             <title id="_">日本産業標準調査会 標準第一部会 Membership Table</title>
             <fmt-title depth="1">
                <semx element="title" source="_">日本産業標準調査会 標準第一部会 Membership Table</semx>
@@ -719,6 +723,7 @@ RSpec.describe IsoDoc::Jis do
                      <td>国立研究開発法人建築研究所</td>
                   </tr>
                </tbody>
+           <p class="dl">GM: General Manager</p>
             </table>
          </clause>
          <clause type="toc" id="_" displayorder="2">
@@ -735,7 +740,7 @@ RSpec.describe IsoDoc::Jis do
 
     presxml = <<~OUTPUT
       <preface>
-         <clause id="_" displayorder="1">
+         <clause id="_" displayorder="1" type="participants">
             <title id="_">日本産業標準調査会 標準第一部会 構成表</title>
             <fmt-title depth="1">
                <semx element="title" source="_">日本産業標準調査会 標準第一部会 構成表</semx>
@@ -765,6 +770,7 @@ RSpec.describe IsoDoc::Jis do
                      <td>国立研究開発法人建築研究所</td>
                   </tr>
                </tbody>
+            <p class="dl">GM: General Manager</p>
             </table>
          </clause>
          <clause type="toc" id="_" displayorder="2">
@@ -838,7 +844,7 @@ RSpec.describe IsoDoc::Jis do
     INPUT
     presxml = <<~OUTPUT
        <preface>
-          <clause id="_" displayorder="1">
+          <clause id="_" displayorder="1" type="participants">
              <title id="_">JSA-S1020 Working Group</title>
              <fmt-title depth="1">
                 <semx element="title" source="_">JSA-S1020 Working Group</semx>
@@ -870,7 +876,7 @@ RSpec.describe IsoDoc::Jis do
                 </tbody>
              </table>
           </clause>
-          <clause id="_" displayorder="2">
+          <clause id="_" displayorder="2" type="participants">
              <title id="_">日本産業標準調査会 標準第一部会 Membership Table</title>
              <fmt-title depth="1">
                 <semx element="title" source="_">日本産業標準調査会 標準第一部会 Membership Table</semx>
