@@ -530,18 +530,21 @@
 						<xsl:when test="$vertical_layout = 'true'">
 							<xsl:call-template name="insertCoverPage2024">
 								<xsl:with-param name="num" select="$num"/>
+								<xsl:with-param name="docidentifier_jis" select="$docidentifier_JIS_"/>
 							</xsl:call-template>
 						</xsl:when>
 						<xsl:when test="$doctype = 'technical-specification'">
 							<xsl:call-template name="insertCoverPageJSA">
 								<xsl:with-param name="num" select="$num"/>
 								<xsl:with-param name="doclang" select="$doclang"/>
+								<xsl:with-param name="docidentifier_jis" select="$docidentifier_JIS_"/>
 							</xsl:call-template>
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:call-template name="insertCoverPage">
 								<xsl:with-param name="num" select="$num"/>
 								<xsl:with-param name="copyrightText" select="$copyrightText"/>
+								<xsl:with-param name="docidentifier_jis" select="$docidentifier_JIS_"/>
 							</xsl:call-template>
 						</xsl:otherwise>
 					</xsl:choose>
@@ -585,6 +588,7 @@
 												<xsl:with-param name="title_ja" select="$title_ja"/>
 												<xsl:with-param name="i18n_JIS" select="$i18n_JIS"/>
 												<xsl:with-param name="docidentifier" select="concat('JIS ', $docidentifier_JIS)"/>
+												<xsl:with-param name="docidentifier_jis" select="$docidentifier_JIS_"/>
 												<xsl:with-param name="edition" select="$edition"/>
 												<xsl:with-param name="copyrightText">
 													<xsl:copy-of select="$copyrightText"/>
@@ -660,6 +664,7 @@
 													<xsl:with-param name="title_ja" select="$title_ja"/>
 													<xsl:with-param name="i18n_JIS" select="$i18n_JIS"/>
 													<xsl:with-param name="docidentifier" select="concat('JIS ', $docidentifier_JIS)"/>
+													<xsl:with-param name="docidentifier_jis" select="$docidentifier_JIS_"/>
 													<xsl:with-param name="edition" select="$edition"/>
 													<xsl:with-param name="copyrightText">
 														<xsl:copy-of select="$copyrightText"/>
@@ -855,6 +860,7 @@
 										<xsl:with-param name="title_ja" select="$title_ja"/>
 										<xsl:with-param name="i18n_JIS" select="$i18n_JIS"/>
 										<xsl:with-param name="docidentifier" select="concat('JIS ', $docidentifier_JIS)"/>
+										<xsl:with-param name="docidentifier_jis" select="$docidentifier_JIS_"/>
 										<xsl:with-param name="edition" select="$edition"/>
 										<xsl:with-param name="copyrightText">
 											<xsl:copy-of select="$copyrightText"/>
@@ -954,6 +960,7 @@
 							<xsl:with-param name="num" select="$num"/>
 							<xsl:with-param name="doclang" select="'en'"/>
 							<xsl:with-param name="first">false</xsl:with-param>
+							<xsl:with-param name="docidentifier_jis" select="$docidentifier_JIS_"/>
 						</xsl:call-template>
 					</xsl:if>
 
@@ -1081,18 +1088,18 @@
 				<xsl:attribute name="text-align">left</xsl:attribute>
 				<xsl:attribute name="font-weight">bold</xsl:attribute>
 				<!-- <xsl:attribute name="margin-top">26mm</xsl:attribute> -->
+				<!-- Contents -->
+				<!-- <xsl:call-template name="getLocalizedString">
+					<xsl:with-param name="key">table_of_contents</xsl:with-param>
+				</xsl:call-template> -->
+				<fo:marker marker-class-name="section_title">
+					<xsl:variable name="section_title_"><xsl:apply-templates/></xsl:variable>
+					<xsl:variable name="section_title" select="translate($section_title_, '　', '')"/>
+					<xsl:call-template name="insertVerticalChar">
+						<xsl:with-param name="str" select="$section_title"/>
+					</xsl:call-template>
+				</fo:marker>
 			</xsl:if>
-			<!-- Contents -->
-			<!-- <xsl:call-template name="getLocalizedString">
-				<xsl:with-param name="key">table_of_contents</xsl:with-param>
-			</xsl:call-template> -->
-			<fo:marker marker-class-name="section_title">
-				<xsl:variable name="section_title_"><xsl:apply-templates/></xsl:variable>
-				<xsl:variable name="section_title" select="translate($section_title_, '　', '')"/>
-				<xsl:call-template name="insertVerticalChar">
-					<xsl:with-param name="str" select="$section_title"/>
-				</xsl:call-template>
-			</fo:marker>
 			<xsl:apply-templates/>
 		</fo:block>
 		<fo:block text-align="right" margin-top="10mm">
@@ -1144,13 +1151,15 @@
 		</fo:block>
 	</xsl:template>
 
-	<!-- docidentifier, 3 part: number, colon and year-->
-	<xsl:variable name="docidentifier_jis" select="/*/jis:bibdata/jis:docidentifier[@type = 'JIS']"/>
-	<xsl:variable name="docidentifier_number" select="java:replaceAll(java:java.lang.String.new($docidentifier_jis), '^(.*)(:)(.*)$', '$1')"/>
-	<xsl:variable name="docidentifier_year" select="java:replaceAll(java:java.lang.String.new($docidentifier_jis), '^(.*)(:)(.*)$', '$3')"/>
 	<xsl:template name="insertCoverPage">
 		<xsl:param name="num"/>
 		<xsl:param name="copyrightText"/>
+		<xsl:param name="docidentifier_jis"/>
+
+		<!-- docidentifier, 3 part: number, colon and year-->
+		<xsl:variable name="docidentifier_number" select="java:replaceAll(java:java.lang.String.new($docidentifier_jis), '^(.*)(:)(.*)$', '$1')"/>
+		<xsl:variable name="docidentifier_year" select="java:replaceAll(java:java.lang.String.new($docidentifier_jis), '^(.*)(:)(.*)$', '$3')"/>
+
 		<fo:page-sequence master-reference="cover-page" force-page-count="no-force">
 			<xsl:call-template name="insertFooter">
 				<xsl:with-param name="copyrightText" select="$copyrightText"/>
@@ -1158,10 +1167,15 @@
 
 			<fo:flow flow-name="xsl-region-body">
 				<!-- JIS -->
-				<fo:block id="firstpage_id_{$num}">
-					<fo:instream-foreign-object content-width="81mm" fox:alt-text="JIS Logo">
-						<xsl:copy-of select="$JIS-Logo"/>
-					</fo:instream-foreign-object>
+				<fo:block>
+					<xsl:if test="$num = 1">
+						<xsl:attribute name="id">firstpage_id_0</xsl:attribute>
+					</xsl:if>
+					<fo:block id="firstpage_id_{$num}">
+						<fo:instream-foreign-object content-width="81mm" fox:alt-text="JIS Logo">
+							<xsl:copy-of select="$JIS-Logo"/>
+						</fo:instream-foreign-object>
+					</fo:block>
 				</fo:block>
 
 				<fo:block-container text-align="center">
@@ -1199,6 +1213,8 @@
 		<xsl:param name="num"/>
 		<xsl:param name="doclang"/>
 		<xsl:param name="first">true</xsl:param>
+		<xsl:param name="docidentifier_jis"/>
+
 		<fo:page-sequence master-reference="cover-page-JSA" force-page-count="no-force">
 			<fo:static-content flow-name="footer" font-family="IPAexGothic" font-size="10pt" line-height="1.7">
 				<fo:block text-align="center">
@@ -1240,7 +1256,7 @@
 
 				<fo:block-container text-align="center">
 					<fo:block font-family="IPAexGothic" font-size="15pt">
-						<xsl:value-of select="/*/jis:bibdata/jis:docidentifier[@type = 'JIS']"/>
+						<xsl:value-of select="$docidentifier_jis"/>
 					</fo:block>
 					<!-- title -->
 					<fo:block role="H1" font-family="IPAexGothic" font-size="32pt" line-height="1.3">
@@ -1260,6 +1276,11 @@
 	<xsl:variable name="i18n_JIS"><xsl:call-template name="getLocalizedString"><xsl:with-param name="key">JIS</xsl:with-param></xsl:call-template></xsl:variable>
 	<xsl:template name="insertCoverPage2024">
 		<xsl:param name="num"/>
+		<xsl:param name="docidentifier_jis"/>
+
+		<!-- docidentifier, 3 part: number, colon and year-->
+		<xsl:variable name="docidentifier_number" select="java:replaceAll(java:java.lang.String.new($docidentifier_jis), '^(.*)(:)(.*)$', '$1')"/>
+		<xsl:variable name="docidentifier_year" select="java:replaceAll(java:java.lang.String.new($docidentifier_jis), '^(.*)(:)(.*)$', '$3')"/>
 
 		<fo:page-sequence master-reference="cover-page_2024" force-page-count="no-force">
 
@@ -1941,7 +1962,7 @@
 						<xsl:call-template name="extractSection"/>
 					</xsl:variable>
 
-					<xsl:if test="$level = 1">
+					<xsl:if test="$level = 1 and $vertical_layout = 'true'">
 						<fo:marker marker-class-name="section_title">
 							<xsl:choose>
 								<xsl:when test="@ancestor = 'annex' and *[local-name() = 'br']">
@@ -3201,11 +3222,16 @@
 		<xsl:param name="cover_header_footer_background"/>
 		<xsl:param name="i18n_JIS"/>
 		<xsl:param name="docidentifier"/>
+		<xsl:param name="docidentifier_jis"/>
 		<xsl:param name="title_ja"/>
 		<xsl:param name="edition"/>
 		<xsl:param name="copyrightText"/>
 		<xsl:param name="insertLast"/>
 		<xsl:param name="bibdata"/>
+
+		<!-- docidentifier, 3 part: number, colon and year-->
+		<xsl:variable name="docidentifier_number" select="java:replaceAll(java:java.lang.String.new($docidentifier_jis), '^(.*)(:)(.*)$', '$1')"/>
+		<xsl:variable name="docidentifier_year" select="java:replaceAll(java:java.lang.String.new($docidentifier_jis), '^(.*)(:)(.*)$', '$3')"/>
 
 		<!-- header -->
 		<fo:static-content flow-name="right-region" role="artifact">
@@ -5424,8 +5450,21 @@
 
 			<!-- <xsl:strip-space elements="jis:xref"/> -->
 
-	<xsl:variable name="namespace_full" select="namespace-uri(/*)"/> <!-- example: https://www.metanorma.org/ns/iso -->
-	<xsl:variable name="root_element" select="local-name(/*)"/> <!-- example: iso-standard -->
+	<xsl:variable name="namespace_full_">
+		<xsl:choose>
+			<xsl:when test="local-name(/*) = 'metanorma-collection'"><xsl:value-of select="namespace-uri(//*[contains(local-name(), '-standard')][1])"/></xsl:when>
+			<xsl:otherwise><xsl:value-of select="namespace-uri(/*)"/></xsl:otherwise><!-- example: https://www.metanorma.org/ns/iso -->
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="namespace_full" select="normalize-space($namespace_full_)"/>
+
+	<xsl:variable name="root_element_">
+		<xsl:choose>
+			<xsl:when test="local-name(/*) = 'metanorma-collection'"><xsl:value-of select="local-name(//*[contains(local-name(), '-standard')][1])"/></xsl:when>
+			<xsl:otherwise><xsl:value-of select="local-name(/*)"/></xsl:otherwise><!-- example: iso-standard -->
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="root_element" select="normalize-space($root_element_)"/>
 
 	<xsl:variable name="document_scheme" select="normalize-space(//*[contains(local-name(), '-standard')]/*[local-name() = 'metanorma-extension']/*[local-name() = 'presentation-metadata'][*[local-name() = 'name'] = 'document-scheme']/*[local-name() = 'value'])"/>
 
