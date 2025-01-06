@@ -70,19 +70,19 @@ module IsoDoc
       end
 
       def move_participants(doc)
-        p = doc.at(ns("//clause[@type = 'participants']")) or return
-        t = participant_table(p) or return
-        p.remove
-        ins = make_preface(doc) or return nil
-        ins.add_first_child t
+        doc.xpath(ns("//clause[@type = 'participants']")).reverse_each do |p|
+          t = participant_table(p) or next
+          p.remove
+          ins = make_preface(doc) or next
+          ins.add_first_child t
+        end
       end
 
       def participant_table(clause)
-        s = clause.at(ns("./sourcecode")) or return nil
-        y = YAML.safe_load(s.children.to_xml(encoding: "UTF-8")) or return nil
-        y.is_a?(Array) or return nil
+        s, t, y, d = participant_table_prep(clause)
+        s or return nil
         out1 = <<~OUTPUT
-          <clause id='_#{UUIDTools::UUID.random_create}'><title>#{@meta.get[:"investigative-committee"]} #{@i18n.membership_table}</title>
+          <clause id='_#{UUIDTools::UUID.random_create}' type="participants"><title>#{t}</title>
           <table unnumbered='true'>
           <thead>
           <tr><th/><th>#{@i18n.full_name}</th><th>#{@i18n.affiliation}</th></tr>
@@ -90,9 +90,19 @@ module IsoDoc
           <tbody>
         OUTPUT
         out2 = <<~OUTPUT
-          </tbody></table></clause>
+          </tbody>#{d&.to_xml}</table></clause>
         OUTPUT
         "#{out1}#{participant_rows(y)}#{out2}"
+      end
+
+      def participant_table_prep(clause)
+        s = clause.at(ns("./sourcecode"))
+        t = clause.at(ns("./title"))&.children&.to_xml ||
+          %(#{@meta.get[:"investigative-committee"]} #{@i18n.membership_table})
+        y = YAML.safe_load(s.children.to_xml(encoding: "UTF-8"))
+        d = clause.at(ns("./dl[@key = 'true']"))
+        s && y.is_a?(Array) or return [nil, nil, nil, nil]
+        [s, t, y, d]
       end
 
       def participant_rows(yaml)
