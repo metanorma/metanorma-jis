@@ -4,22 +4,6 @@ require "metanorma-iso"
 module IsoDoc
   module Jis
     module BaseConvert
-      # KILL
-      def termnote_parsex(node, out)
-        name = node.at(ns("./name"))&.remove
-        out.div **note_attrs(node) do |div|
-          div.p do |p|
-            if name
-              p.span class: "note_label" do |s|
-                name.children.each { |n| parse(n, s) }
-              end
-              p << " "
-            end
-            para_then_remainder(node.first_element_child, node, p, div)
-          end
-        end
-      end
-
       def make_tr_attr(cell, row, totalrows, header, bordered)
         cell["border"] == "0" and bordered = false
         super

@@ -65,7 +65,7 @@ RSpec.describe IsoDoc::Jis do
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <preface>
              <clause type="toc" id="_" displayorder="1">
                 <fmt-title depth="1">Contents</fmt-title>
@@ -115,17 +115,33 @@ RSpec.describe IsoDoc::Jis do
                       <span class="fmt-autonum-delim">.</span>
                       <semx element="autonum" source="paddy1">1</semx>
                    </fmt-xref-label>
-                   <preferred>
-                      <strong>paddy</strong>
+                   <preferred id="_">
+                      <expression>
+                         <name>paddy</name>
+                      </expression>
                    </preferred>
-                   <domain hidden="true">rice</domain>
-                   <definition>
-                      <p id="_">
-                         &lt;
-                         <domain>rice</domain>
-                         &gt; rice retaining its husk after threshing
+                   <fmt-preferred>
+                      <p>
+                         <semx element="preferred" source="_">
+                            <strong>paddy</strong>
+                         </semx>
                       </p>
+                   </fmt-preferred>
+                   <domain id="_">rice</domain>
+                   <definition id="_">
+                      <verbal-definition>
+                         <p original-id="_">rice retaining its husk after threshing</p>
+                      </verbal-definition>
                    </definition>
+                   <fmt-definition>
+                      <semx element="definition" source="_">
+                         <p id="_">
+                            &lt;
+                            <semx element="domain" source="_">rice</semx>
+                            &gt; rice retaining its husk after threshing
+                         </p>
+                      </semx>
+                   </fmt-definition>
                    <termexample id="_" autonum="1">
                       <fmt-name>
                          <span class="fmt-caption-label">
@@ -177,17 +193,31 @@ RSpec.describe IsoDoc::Jis do
                          <li>A</li>
                       </ul>
                    </termexample>
-                   <termsource status="modified">
-                      [SOURCE:
+                   <termsource status="modified" id="_">
                       <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
                          <locality type="clause">
                             <referenceFrom>3.1</referenceFrom>
                          </locality>
-                         ISO 7301:2011,
-                         <span class="citesec">3.1</span>
                       </origin>
-                      , modified — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+                      <modification>
+                         <p original-id="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
+                      </modification>
                    </termsource>
+                   <fmt-termsource status="modified">
+                      [SOURCE:
+                      <semx element="termsource" source="_">
+                         <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
+                            <locality type="clause">
+                               <referenceFrom>3.1</referenceFrom>
+                            </locality>
+                            ISO 7301:2011,
+                            <span class="citesec">3.1</span>
+                         </origin>
+                         , modified —
+                         <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
+                      </semx>
+                      ]
+                   </fmt-termsource>
                 </term>
                 <term id="paddy">
                    <fmt-name>
@@ -202,15 +232,59 @@ RSpec.describe IsoDoc::Jis do
                       <span class="fmt-autonum-delim">.</span>
                       <semx element="autonum" source="paddy">2</semx>
                    </fmt-xref-label>
-                   <preferred>
-                      <strong>paddy</strong>
+                   <preferred id="_">
+                      <expression>
+                         <name>paddy</name>
+                      </expression>
                    </preferred>
-                   <admitted>ADMITTED: paddy rice</admitted>
-                   <admitted>ADMITTED: rough rice</admitted>
-                   <deprecates>DEPRECATED: cargo rice</deprecates>
-                   <definition>
-                      <p id="_">rice retaining its husk after threshing</p>
+                   <fmt-preferred>
+                      <p>
+                         <semx element="preferred" source="_">
+                            <strong>paddy</strong>
+                         </semx>
+                      </p>
+                   </fmt-preferred>
+                   <admitted id="_">
+                      <expression>
+                         <name>paddy rice</name>
+                      </expression>
+                   </admitted>
+                   <admitted id="_">
+                      <expression>
+                         <name>rough rice</name>
+                      </expression>
+                   </admitted>
+                   <fmt-admitted>
+                      <p>
+                         ADMITTED:
+                         <semx element="admitted" source="_">paddy rice</semx>
+                      </p>
+                      <p>
+                         ADMITTED:
+                         <semx element="admitted" source="_">rough rice</semx>
+                      </p>
+                   </fmt-admitted>
+                   <deprecates id="_">
+                      <expression>
+                         <name>cargo rice</name>
+                      </expression>
+                   </deprecates>
+                   <fmt-deprecates>
+                      <p>
+                         DEPRECATED:
+                         <semx element="deprecates" source="_">cargo rice</semx>
+                      </p>
+                   </fmt-deprecates>
+                   <definition id="_">
+                      <verbal-definition>
+                         <p original-id="_">rice retaining its husk after threshing</p>
+                      </verbal-definition>
                    </definition>
+                   <fmt-definition>
+                      <semx element="definition" source="_">
+                         <p id="_">rice retaining its husk after threshing</p>
+                      </semx>
+                   </fmt-definition>
                    <termexample id="_" autonum="">
                       <fmt-name>
                          <span class="fmt-caption-label">
@@ -286,17 +360,26 @@ RSpec.describe IsoDoc::Jis do
                       </ul>
                       <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
                    </termnote>
-                   <termsource status="identical">
-                      [SOURCE:
+                   <termsource status="identical" id="_">
                       <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
                          <locality type="clause">
                             <referenceFrom>3.1</referenceFrom>
                          </locality>
-                         ISO 7301:2011,
-                         <span class="citesec">3.1</span>
                       </origin>
-                      ]
                    </termsource>
+                   <fmt-termsource status="identical">
+                      [SOURCE:
+                      <semx element="termsource" source="_">
+                         <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
+                            <locality type="clause">
+                               <referenceFrom>3.1</referenceFrom>
+                            </locality>
+                            ISO 7301:2011,
+                            <span class="citesec">3.1</span>
+                         </origin>
+                      </semx>
+                      ]
+                   </fmt-termsource>
                 </term>
                 <term id="A">
                    <fmt-name>
@@ -311,10 +394,24 @@ RSpec.describe IsoDoc::Jis do
                       <span class="fmt-autonum-delim">.</span>
                       <semx element="autonum" source="A">3</semx>
                    </fmt-xref-label>
-                   <preferred>
-                      <strong>term1</strong>
+                   <preferred id="_">
+                      <expression>
+                         <name>term1</name>
+                      </expression>
                    </preferred>
-                   <definition>term1 definition</definition>
+                   <fmt-preferred>
+                      <p>
+                         <semx element="preferred" source="_">
+                            <strong>term1</strong>
+                         </semx>
+                      </p>
+                   </fmt-preferred>
+                   <definition id="_">
+                      <verbal-definition>term1 definition</verbal-definition>
+                   </definition>
+                   <fmt-definition>
+                      <semx element="definition" source="_">term1 definition</semx>
+                   </fmt-definition>
                    <term id="B">
                       <fmt-name>
                          <span class="fmt-caption-label">
@@ -332,10 +429,24 @@ RSpec.describe IsoDoc::Jis do
                          <span class="fmt-autonum-delim">.</span>
                          <semx element="autonum" source="B">1</semx>
                       </fmt-xref-label>
-                      <preferred>
-                         <strong>term2</strong>
+                      <preferred id="_">
+                         <expression>
+                            <name>term2</name>
+                         </expression>
                       </preferred>
-                      <definition>term2 definition</definition>
+                      <fmt-preferred>
+                         <p>
+                            <semx element="preferred" source="_">
+                               <strong>term2</strong>
+                            </semx>
+                         </p>
+                      </fmt-preferred>
+                      <definition id="_">
+                         <verbal-definition>term2 definition</verbal-definition>
+                      </definition>
+                      <fmt-definition>
+                         <semx element="definition" source="_">term2 definition</semx>
+                      </fmt-definition>
                    </term>
                 </term>
              </terms>
@@ -638,7 +749,7 @@ RSpec.describe IsoDoc::Jis do
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <bibdata>
              <language current="true">ja</language>
           </bibdata>
@@ -691,17 +802,33 @@ RSpec.describe IsoDoc::Jis do
                       <span class="fmt-autonum-delim">.</span>
                       <semx element="autonum" source="paddy1">1</semx>
                    </fmt-xref-label>
-                   <preferred>
-                      <strong>paddy</strong>
+                   <preferred id="_">
+                      <expression>
+                         <name>paddy</name>
+                      </expression>
                    </preferred>
-                   <domain hidden="true">rice</domain>
-                   <definition>
-                      <p id="_">
-                         &lt;
-                         <domain>rice</domain>
-                         &gt; rice retaining its husk after threshing
+                   <fmt-preferred>
+                      <p>
+                         <semx element="preferred" source="_">
+                            <strong>paddy</strong>
+                         </semx>
                       </p>
+                   </fmt-preferred>
+                   <domain id="_">rice</domain>
+                   <definition id="_">
+                      <verbal-definition>
+                         <p original-id="_">rice retaining its husk after threshing</p>
+                      </verbal-definition>
                    </definition>
+                   <fmt-definition>
+                      <semx element="definition" source="_">
+                         <p id="_">
+                            &lt;
+                            <semx element="domain" source="_">rice</semx>
+                            &gt; rice retaining its husk after threshing
+                         </p>
+                      </semx>
+                   </fmt-definition>
                    <termexample id="_" autonum="1">
                       <fmt-name>
                          <span class="fmt-caption-label">
@@ -753,17 +880,31 @@ RSpec.describe IsoDoc::Jis do
                          <li>A</li>
                       </ul>
                    </termexample>
-                   <termsource status="modified">
-                      ［出典:
+                   <termsource status="modified" id="_">
                       <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
                          <locality type="clause">
                             <referenceFrom>3.1</referenceFrom>
                          </locality>
-                         ISO 7301:2011,
-                         <span class="citesec">3.1</span>
                       </origin>
-                      ，修正された — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+                      <modification>
+                         <p original-id="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
+                      </modification>
                    </termsource>
+                   <fmt-termsource status="modified">
+                      ［出典:
+                      <semx element="termsource" source="_">
+                         <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
+                            <locality type="clause">
+                               <referenceFrom>3.1</referenceFrom>
+                            </locality>
+                            ISO 7301:2011,
+                            <span class="citesec">3.1</span>
+                         </origin>
+                         ，修正された —
+                         <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
+                      </semx>
+                      ]
+                   </fmt-termsource>
                 </term>
                 <term id="paddy">
                    <fmt-name>
@@ -778,15 +919,59 @@ RSpec.describe IsoDoc::Jis do
                       <span class="fmt-autonum-delim">.</span>
                       <semx element="autonum" source="paddy">2</semx>
                    </fmt-xref-label>
-                   <preferred>
-                      <strong>paddy</strong>
+                   <preferred id="_">
+                      <expression>
+                         <name>paddy</name>
+                      </expression>
                    </preferred>
-                   <admitted>代替用語： paddy rice</admitted>
-                   <admitted>代替用語： rough rice</admitted>
-                   <deprecates>推奨しない用語： cargo rice</deprecates>
-                   <definition>
-                      <p id="_">rice retaining its husk after threshing</p>
+                   <fmt-preferred>
+                      <p>
+                         <semx element="preferred" source="_">
+                            <strong>paddy</strong>
+                         </semx>
+                      </p>
+                   </fmt-preferred>
+                   <admitted id="_">
+                      <expression>
+                         <name>paddy rice</name>
+                      </expression>
+                   </admitted>
+                   <admitted id="_">
+                      <expression>
+                         <name>rough rice</name>
+                      </expression>
+                   </admitted>
+                   <fmt-admitted>
+                      <p>
+                         代替用語：
+                         <semx element="admitted" source="_">paddy rice</semx>
+                      </p>
+                      <p>
+                         代替用語：
+                         <semx element="admitted" source="_">rough rice</semx>
+                      </p>
+                   </fmt-admitted>
+                   <deprecates id="_">
+                      <expression>
+                         <name>cargo rice</name>
+                      </expression>
+                   </deprecates>
+                   <fmt-deprecates>
+                      <p>
+                         推奨しない用語：
+                         <semx element="deprecates" source="_">cargo rice</semx>
+                      </p>
+                   </fmt-deprecates>
+                   <definition id="_">
+                      <verbal-definition>
+                         <p original-id="_">rice retaining its husk after threshing</p>
+                      </verbal-definition>
                    </definition>
+                   <fmt-definition>
+                      <semx element="definition" source="_">
+                         <p id="_">rice retaining its husk after threshing</p>
+                      </semx>
+                   </fmt-definition>
                    <termexample id="_" autonum="">
                       <fmt-name>
                          <span class="fmt-caption-label">
@@ -860,17 +1045,26 @@ RSpec.describe IsoDoc::Jis do
                       </ul>
                       <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
                    </termnote>
-                   <termsource status="identical">
-                      ［出典:
+                   <termsource status="identical" id="_">
                       <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
                          <locality type="clause">
                             <referenceFrom>3.1</referenceFrom>
                          </locality>
-                         ISO 7301:2011,
-                         <span class="citesec">3.1</span>
                       </origin>
-                      ]
                    </termsource>
+                   <fmt-termsource status="identical">
+                      ［出典:
+                      <semx element="termsource" source="_">
+                         <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
+                            <locality type="clause">
+                               <referenceFrom>3.1</referenceFrom>
+                            </locality>
+                            ISO 7301:2011,
+                            <span class="citesec">3.1</span>
+                         </origin>
+                      </semx>
+                      ]
+                   </fmt-termsource>
                 </term>
                 <term id="A">
                    <fmt-name>
@@ -885,10 +1079,24 @@ RSpec.describe IsoDoc::Jis do
                       <span class="fmt-autonum-delim">.</span>
                       <semx element="autonum" source="A">3</semx>
                    </fmt-xref-label>
-                   <preferred>
-                      <strong>term1</strong>
+                   <preferred id="_">
+                      <expression>
+                         <name>term1</name>
+                      </expression>
                    </preferred>
-                   <definition>term1 definition</definition>
+                   <fmt-preferred>
+                      <p>
+                         <semx element="preferred" source="_">
+                            <strong>term1</strong>
+                         </semx>
+                      </p>
+                   </fmt-preferred>
+                   <definition id="_">
+                      <verbal-definition>term1 definition</verbal-definition>
+                   </definition>
+                   <fmt-definition>
+                      <semx element="definition" source="_">term1 definition</semx>
+                   </fmt-definition>
                    <term id="B">
                       <fmt-name>
                          <span class="fmt-caption-label">
@@ -906,10 +1114,24 @@ RSpec.describe IsoDoc::Jis do
                          <span class="fmt-autonum-delim">.</span>
                          <semx element="autonum" source="B">1</semx>
                       </fmt-xref-label>
-                      <preferred>
-                         <strong>term2</strong>
+                      <preferred id="_">
+                         <expression>
+                            <name>term2</name>
+                         </expression>
                       </preferred>
-                      <definition>term2 definition</definition>
+                      <fmt-preferred>
+                         <p>
+                            <semx element="preferred" source="_">
+                               <strong>term2</strong>
+                            </semx>
+                         </p>
+                      </fmt-preferred>
+                      <definition id="_">
+                         <verbal-definition>term2 definition</verbal-definition>
+                      </definition>
+                      <fmt-definition>
+                         <semx element="definition" source="_">term2 definition</semx>
+                      </fmt-definition>
                    </term>
                 </term>
              </terms>

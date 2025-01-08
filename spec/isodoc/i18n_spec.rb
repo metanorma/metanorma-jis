@@ -242,9 +242,18 @@ RSpec.describe IsoDoc::Jis do
                          <span class="fmt-autonum-delim">.</span>
                          <semx element="autonum" source="J">1</semx>
                       </fmt-xref-label>
-                      <preferred>
-                         <strong>Term2</strong>
+                      <preferred id="_">
+                         <expression>
+                            <name>Term2</name>
+                         </expression>
                       </preferred>
+                      <fmt-preferred>
+                         <p>
+                            <semx element="preferred" source="_">
+                               <strong>Term2</strong>
+                            </semx>
+                         </p>
+                      </fmt-preferred>
                    </term>
                 </terms>
                 <definitions id="K">
@@ -963,9 +972,18 @@ RSpec.describe IsoDoc::Jis do
                          <span class="fmt-autonum-delim">・</span>
                          <semx element="autonum" source="J">一</semx>
                       </fmt-xref-label>
-                      <preferred>
-                         <strong>Term2</strong>
+                      <preferred id="_">
+                         <expression>
+                            <name>Term2</name>
+                         </expression>
                       </preferred>
+                      <fmt-preferred>
+                         <p>
+                            <semx element="preferred" source="_">
+                               <strong>Term2</strong>
+                            </semx>
+                         </p>
+                      </fmt-preferred>
                    </term>
                 </terms>
                 <definitions id="K">
@@ -1422,7 +1440,6 @@ RSpec.describe IsoDoc::Jis do
                 <doctype language="en">International standard</doctype>
              </ext>
           </bibdata>
-          
           <preface>
              <foreword obligation="informative" displayorder="1">
                 <title id="_">Foreword</title>
@@ -1543,9 +1560,18 @@ RSpec.describe IsoDoc::Jis do
                          <span class="fmt-autonum-delim">.</span>
                          <semx element="autonum" source="J">1</semx>
                       </fmt-xref-label>
-                      <preferred>
-                         <strong>Term2</strong>
+                      <preferred id="_">
+                         <expression>
+                            <name>Term2</name>
+                         </expression>
                       </preferred>
+                      <fmt-preferred>
+                         <p>
+                            <semx element="preferred" source="_">
+                               <strong>Term2</strong>
+                            </semx>
+                         </p>
+                      </fmt-preferred>
                    </term>
                 </terms>
                 <definitions id="K">
