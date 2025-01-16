@@ -11,6 +11,13 @@
 	<xsl:variable name="vertical_layout" select="normalize-space(/*/jis:metanorma-extension/jis:presentation-metadata/jis:vertical-layout)"/>
 	<xsl:variable name="vertical_layout_rotate_clause_numbers" select="normalize-space(/*/jis:metanorma-extension/jis:presentation-metadata/jis:vertical-layout-rotate-clause-numbers)"/>
 
+	<xsl:variable name="autonumbering_style" select="normalize-space(/*/jis:metanorma-extension/jis:presentation-metadata/jis:autonumbering-style)"/>
+
+	<xsl:variable name="numbers_japanese_">
+		<xsl:copy-of select="/*/jis:localized-strings/jis:localized-string[starts-with(@key,'0') or starts-with(@key,'1') or starts-with(@key,'2') or starts-with(@key,'3') or     starts-with(@key,'4') or starts-with(@key,'5') or starts-with(@key,'6') or starts-with(@key,'7') or starts-with(@key,'8') or starts-with(@key,'9')]"/>
+	</xsl:variable>
+	<xsl:variable name="numbers_japanese" select="xalan:nodeset($numbers_japanese_)"/>
+
 	<xsl:variable name="contents_">
 		<xsl:variable name="bundle" select="count(//jis:jis-standard) &gt; 1"/>
 
@@ -6920,6 +6927,10 @@
 			<xsl:if test="not($vertical_layout = 'true')">
 				<xsl:attribute name="font-family">Times New Roman</xsl:attribute>
 			</xsl:if>
+			<xsl:if test="$vertical_layout = 'true'">
+				<xsl:attribute name="vertical-align">baseline</xsl:attribute>
+				<xsl:attribute name="font-size">100%</xsl:attribute>
+			</xsl:if>
 
 	</xsl:template> <!-- refine_fn-body-num-style -->
 
@@ -8953,9 +8964,14 @@
 		</xsl:variable>
 		<xsl:variable name="current_fn_number_text">
 
-					<xsl:value-of select="$current_fn_number"/>
-
-				<fo:inline font-weight="normal">)</fo:inline>
+					<xsl:choose>
+						<xsl:when test="$autonumbering_style = 'japanese'">
+							<xsl:text> </xsl:text>
+							<xsl:value-of select="$numbers_japanese//jis:localized-string[@key = $current_fn_number]"/>
+							<xsl:text> </xsl:text>
+						</xsl:when>
+						<xsl:otherwise><xsl:value-of select="$current_fn_number"/><fo:inline font-weight="normal">)</fo:inline></xsl:otherwise>
+					</xsl:choose>
 
 		</xsl:variable>
 
@@ -8987,6 +9003,11 @@
 									<xsl:if test="not($vertical_layout = 'true')">
 										<xsl:attribute name="font-family">Times New Roman</xsl:attribute>
 									</xsl:if>
+									<xsl:if test="$vertical_layout = 'true'">
+										<xsl:attribute name="vertical-align">baseline</xsl:attribute>
+										<xsl:attribute name="font-size">80%</xsl:attribute>
+										<xsl:attribute name="baseline-shift">20%</xsl:attribute>
+									</xsl:if>
 
 							</fn_styles>
 						</xsl:otherwise>
@@ -9005,7 +9026,18 @@
 					<xsl:with-param name="element">
 						<fo:basic-link internal-destination="{$ref_id}" fox:alt-text="footnote {$current_fn_number}"> <!-- note: role="Lbl" removed in https://github.com/metanorma/mn2pdf/issues/291 -->
 							<fo:inline role="Lbl"> <!-- need for https://github.com/metanorma/metanorma-iso/issues/1003 -->
+
+									<xsl:attribute name="keep-together.within-line">always</xsl:attribute>
+									<xsl:call-template name="insertVerticalChar">
+										<xsl:with-param name="str" select="'〔'"/>
+									</xsl:call-template>
+
 								<xsl:copy-of select="$current_fn_number_text"/>
+
+									<xsl:call-template name="insertVerticalChar">
+										<xsl:with-param name="str" select="'〕'"/>
+									</xsl:call-template>
+
 							</fo:inline>
 						</fo:basic-link>
 					</xsl:with-param>
@@ -9024,8 +9056,7 @@
 
 						<fo:block-container xsl:use-attribute-sets="fn-container-body-style" role="SKIP">
 
-							<fo:block xsl:use-attribute-sets="fn-body-style" role="SKIP">
-
+							<xsl:variable name="fn_block">
 								<xsl:call-template name="refine_fn-body-style"/>
 
 								<fo:inline id="{$ref_id}" xsl:use-attribute-sets="fn-body-num-style" role="Lbl">
@@ -9033,9 +9064,51 @@
 									<xsl:call-template name="refine_fn-body-num-style"/>
 
 									<xsl:value-of select="$current_fn_number_text"/>
+
 								</fo:inline>
 								<xsl:apply-templates/>
-							</fo:block>
+							</xsl:variable>
+
+									<xsl:choose>
+										<xsl:when test="$vertical_layout = 'true'">
+											<fo:list-block xsl:use-attribute-sets="fn-body-style" role="SKIP" provisional-distance-between-starts="25mm">
+												<xsl:call-template name="refine_fn-body-style"/>
+												<fo:list-item role="SKIP">
+													<fo:list-item-label start-indent="{$text_indent}mm" end-indent="label-end()" role="SKIP">
+														<fo:block role="SKIP">
+															<fo:inline id="{$ref_id}" xsl:use-attribute-sets="fn-body-num-style" role="Lbl">
+
+																<xsl:call-template name="refine_fn-body-num-style"/>
+
+																<xsl:call-template name="insertVerticalChar">
+																	<xsl:with-param name="str" select="'〔'"/>
+																</xsl:call-template>
+
+																<xsl:value-of select="$current_fn_number_text"/>
+
+																<xsl:call-template name="insertVerticalChar">
+																	<xsl:with-param name="str" select="'〕'"/>
+																</xsl:call-template>
+
+															</fo:inline>
+														</fo:block>
+													</fo:list-item-label>
+													<fo:list-item-body start-indent="body-start()" xsl:use-attribute-sets="table-fn-body-style" role="SKIP">
+														<fo:block role="SKIP">
+															<xsl:apply-templates/>
+														</fo:block>
+													</fo:list-item-body>
+												</fo:list-item>
+											</fo:list-block>
+										</xsl:when>
+										<xsl:otherwise>
+											<fo:block xsl:use-attribute-sets="fn-body-style" role="SKIP">
+												<xsl:copy-of select="$fn_block"/>
+											</fo:block>
+										</xsl:otherwise>
+									</xsl:choose>
+									<!-- jis -->
+
 						</fo:block-container>
 					</fo:footnote-body>
 				</fo:footnote>
