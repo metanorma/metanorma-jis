@@ -42,7 +42,10 @@ module IsoDoc
       end
 
       def admits(elem)
-        elem.children.first.previous = @i18n.l10n("#{@i18n.admitted}: ")
+        #elem.children.first.previous = @i18n.l10n("#{@i18n.admitted}: ")
+        elem.xpath(ns(".//semx[@element = 'admitted']")).each do |t|
+        t.previous = @i18n.l10n("#{@i18n.admitted}: ")
+      end
       end
 
       def dl(docxml)
@@ -127,12 +130,27 @@ module IsoDoc
         "<tr><td border='0' colspan='#{cols}'>#{elem}</td></tr>"
       end
 
+      # KILL
       def tablesource(elem)
         while elem&.next_element&.name == "source"
           elem << "; #{to_xml(elem.next_element.remove.children)}"
         end
         elem.children = l10n("#{@i18n.source}: #{to_xml(elem.children).strip}")
       end
+
+      # TODO preserve original Semantic XML source
+      def tablesource(elem)
+      ret = [semx_fmt_dup(elem)]
+      while elem&.next_element&.name == "source"
+        ret << semx_fmt_dup(elem.next_element.remove)
+      end
+      s = ret.map { |x| to_xml(x) }.map(&:strip).join("; ")
+      tablesource_label(elem, s)
+    end
+
+    def tablesource_label(elem, sources)
+      elem.children = l10n("#{@i18n.source}: #{sources}")
+    end
 
       def table_fn1(_table, fnote, _idx)
         fnote["reference"] += ")"
