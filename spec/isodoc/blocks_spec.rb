@@ -112,7 +112,7 @@ RSpec.describe IsoDoc::Jis do
              <source status="generalisation">
                 [SOURCE:
                 <xref type="inline" target="ISO712">ISO 712, Section 1</xref>
-                — with adjustments]
+                — <semx element="modification" source="_">with adjustments</semx>]
              </source>
              <note id="note1" autonum="">
                 <fmt-name>

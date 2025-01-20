@@ -198,26 +198,33 @@ RSpec.describe IsoDoc do
                       <semx element="name" source="_">Key</semx>
                    </p>
                    <p class="dl">Drago: A type of rice</p>
-                   <source status="generalisation">
+                   <source status="generalisation" id="_">
                       SOURCE:
-                      <origin bibitemid="ISO712" type="inline" citeas="">
-                         <localityStack>
-                            <locality type="section">
-                               <referenceFrom>1</referenceFrom>
-                            </locality>
-                         </localityStack>
-                         , Section 1
-                      </origin>
-                      — with adjustments ;
-                      <origin bibitemid="ISO713" type="inline" citeas="">
-                         <localityStack>
-                            <locality type="section">
-                               <referenceFrom>3</referenceFrom>
-                            </locality>
-                         </localityStack>
-                         , Section 3
-                      </origin>
-                      — with alterations
+               <semx element="source" source="_">
+                  <origin bibitemid="ISO712" type="inline" citeas="">
+                     <localityStack>
+                        <locality type="section">
+                           <referenceFrom>1</referenceFrom>
+                        </locality>
+                     </localityStack>
+                     , Section 1
+                  </origin>
+                  —
+                  <semx element="modification" source="_">with adjustments</semx>
+               </semx>
+               ;
+               <semx element="source" source="_">
+                  <origin bibitemid="ISO713" type="inline" citeas="">
+                     <localityStack>
+                        <locality type="section">
+                           <referenceFrom>3</referenceFrom>
+                        </locality>
+                     </localityStack>
+                     , Section 3
+                  </origin>
+                  —
+                  <semx element="modification" source="_">with alterations</semx>
+               </semx>
                    </source>
                    <note>
                       <fmt-name>
@@ -381,14 +388,7 @@ RSpec.describe IsoDoc do
                          <p class="ListTitle">Key</p>
                          <p class="dl">Drago: A type of rice</p>
                          <div class="BlockSource">
-                            <p>SOURCE: , Section 1
-          —
-           with adjustments
-
-       ;
-         , Section 3
-          —
-           with alterations</p>
+                            <p>SOURCE: , Section 1 — with adjustments; , Section 3 — with alterations</p>
                          </div>
                          <div class="Note">
                             <p>
@@ -525,18 +525,7 @@ RSpec.describe IsoDoc do
                 <tr>
                    <td colspan="5" style="border-top:0pt;mso-border-top-alt:0pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-left-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-right-alt:solid windowtext 1.5pt;">
                       <div class="BlockSource">
-                         <p class="MsoNormal">SOURCE:
-     
-     
-                    , Section 1
-     
-                    — with adjustments ;
-     
-     
-             , Section 3
-     
-           — with alterations
-                </p>
+                         <p class="MsoNormal">SOURCE: , Section 1 — with adjustments; , Section 3 — with alterations</p>
                       </div>
                       <div>
                          <p class="Note">
