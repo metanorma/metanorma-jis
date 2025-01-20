@@ -95,7 +95,7 @@ RSpec.describe Metanorma::Jis::Processor do
             <fmt-title>1&#xA0; Terms, Definitions, Symbols and Abbreviated Terms</fmt-title>
               <term id="J">
                 <fmt-name>1.1</fmt-name>
-                <preferred>Term2</preferred>
+                <fmt-preferred><p>Term2</p></fmt-preferred>
               </term>
             </terms>
           </sections>

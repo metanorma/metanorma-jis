@@ -11,6 +11,13 @@
 	<xsl:variable name="vertical_layout" select="normalize-space(/*/jis:metanorma-extension/jis:presentation-metadata/jis:vertical-layout)"/>
 	<xsl:variable name="vertical_layout_rotate_clause_numbers" select="normalize-space(/*/jis:metanorma-extension/jis:presentation-metadata/jis:vertical-layout-rotate-clause-numbers)"/>
 
+	<xsl:variable name="autonumbering_style" select="normalize-space(/*/jis:metanorma-extension/jis:presentation-metadata/jis:autonumbering-style)"/>
+
+	<xsl:variable name="numbers_japanese_">
+		<xsl:copy-of select="/*/jis:localized-strings/jis:localized-string[starts-with(@key,'0') or starts-with(@key,'1') or starts-with(@key,'2') or starts-with(@key,'3') or     starts-with(@key,'4') or starts-with(@key,'5') or starts-with(@key,'6') or starts-with(@key,'7') or starts-with(@key,'8') or starts-with(@key,'9')]"/>
+	</xsl:variable>
+	<xsl:variable name="numbers_japanese" select="xalan:nodeset($numbers_japanese_)"/>
+
 	<xsl:variable name="contents_">
 		<xsl:variable name="bundle" select="count(//jis:jis-standard) &gt; 1"/>
 
@@ -428,9 +435,9 @@
 			</xsl:if>
 
 			<xsl:variable name="updated_xml_step0">
-				<xsl:if test="$vertical_layout = 'true'">
-					<xsl:apply-templates mode="update_xml_step0"/>
-				</xsl:if>
+				<!-- <xsl:if test="$vertical_layout = 'true'"> -->
+				<xsl:apply-templates mode="update_xml_step0"/>
+				<!-- </xsl:if> -->
 			</xsl:variable>
 			<xsl:if test="$debug = 'true'">
 				<redirect:write file="update_xml_step0.xml">
@@ -439,14 +446,15 @@
 			</xsl:if>
 
 			<xsl:variable name="updated_xml_step1">
-				<xsl:choose>
+				<!-- <xsl:choose>
 					<xsl:when test="$vertical_layout = 'true'">
 						<xsl:apply-templates select="xalan:nodeset($updated_xml_step0)" mode="update_xml_step1"/>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:apply-templates mode="update_xml_step1"/>
 					</xsl:otherwise>
-				</xsl:choose>
+				</xsl:choose> -->
+				<xsl:apply-templates select="xalan:nodeset($updated_xml_step0)" mode="update_xml_step1"/>
 			</xsl:variable>
 			<!-- DEBUG: updated_xml_step1=<xsl:copy-of select="$updated_xml_step1"/> -->
 			<xsl:if test="$debug = 'true'">
@@ -492,13 +500,18 @@
 						<xsl:apply-templates select="xalan:nodeset($docidentifier__)/node()"/>
 					</xsl:variable>
 
-					<xsl:variable name="copyrightText">
-						<xsl:call-template name="getLocalizedString">
-							<xsl:with-param name="key">permission_footer</xsl:with-param>
-							<xsl:with-param name="formatted" select="$vertical_layout"/> <!-- $vertical_layout = 'true' -->
-							<xsl:with-param name="bibdata_updated" select="/*/jis:bibdata"/> <!-- $vertical_layout = 'true' -->
-						</xsl:call-template>
+					<xsl:variable name="copyrightText_">
+						<xsl:variable name="backpage_boilerplate_text" select="normalize-space(/*/jis:metanorma-extension/jis:presentation-metadata/jis:backpage-boilerplate-text)"/>
+						<xsl:value-of select="$backpage_boilerplate_text"/>
+						<xsl:if test="$backpage_boilerplate_text = ''">
+							<xsl:call-template name="getLocalizedString">
+								<xsl:with-param name="key">permission_footer</xsl:with-param>
+								<xsl:with-param name="formatted" select="$vertical_layout"/> <!-- $vertical_layout = 'true' -->
+								<xsl:with-param name="bibdata_updated" select="/*/jis:bibdata"/> <!-- $vertical_layout = 'true' -->
+							</xsl:call-template>
+						</xsl:if>
 					</xsl:variable>
+					<xsl:variable name="copyrightText" select="normalize-space($copyrightText_)"/>
 
 					<xsl:variable name="doctype" select="/*/jis:bibdata/jis:ext/jis:doctype"/>
 
@@ -1121,7 +1134,7 @@
 
 	<xsl:template name="insertTocItem">
 		<fo:block text-align-last="justify" role="SKIP">
-			<fo:basic-link internal-destination="{@id}" fox:alt-text="{title}">
+			<fo:basic-link internal-destination="{@id}" fox:alt-text="{normalize-space(title)}">
 				<fo:inline>
 					<xsl:if test="$vertical_layout = 'true'">
 						<xsl:attribute name="padding-right">7.5mm</xsl:attribute>
@@ -1273,7 +1286,15 @@
 		</fo:page-sequence>
 	</xsl:template> <!-- insertCoverPageJSA -->
 
-	<xsl:variable name="i18n_JIS"><xsl:call-template name="getLocalizedString"><xsl:with-param name="key">JIS</xsl:with-param></xsl:call-template></xsl:variable>
+	<xsl:variable name="i18n_JIS_">
+		<xsl:variable name="coverpage_header" select="normalize-space(/*/jis:metanorma-extension/jis:presentation-metadata/jis:coverpage-header)"/>
+		<xsl:value-of select="$coverpage_header"/>
+		<xsl:if test="$coverpage_header = ''">
+			<xsl:call-template name="getLocalizedString"><xsl:with-param name="key">JIS</xsl:with-param></xsl:call-template>
+		</xsl:if>
+	</xsl:variable>
+	<xsl:variable name="i18n_JIS" select="normalize-space($i18n_JIS_)"/>
+
 	<xsl:template name="insertCoverPage2024">
 		<xsl:param name="num"/>
 		<xsl:param name="docidentifier_jis"/>
@@ -1343,23 +1364,25 @@
 					<fo:table-column column-width="proportional-column-width(3)"/>
 					<fo:table-column column-width="proportional-column-width(2.2)"/>
 					<fo:table-column column-width="proportional-column-width(3)"/>
+					<xsl:variable name="publisher" select="/*/jis:bibdata/jis:contributor[jis:role/@type = 'publisher']/jis:organization/jis:name/jis:variant[@language = 'ja']"/>
+					<xsl:variable name="authorizer" select="/*/jis:bibdata/jis:contributor[jis:role/@type = 'authorizer']//jis:organization/jis:name"/>
 					<fo:table-body>
 						<fo:table-row height="50mm">
 							<fo:table-cell>
-								<fo:block><xsl:value-of select="/*/jis:bibdata/jis:contributor[jis:role/@type = 'publisher']/jis:organization/jis:name/jis:variant[@language = 'ja']"/></fo:block>
+								<fo:block><xsl:value-of select="$publisher"/></fo:block>
 							</fo:table-cell>
 							<fo:table-cell><fo:block> </fo:block></fo:table-cell>
 							<fo:table-cell>
-								<fo:block><xsl:value-of select="/*/jis:bibdata/jis:contributor[jis:role/@type = 'authorizer']//jis:organization/jis:name"/></fo:block>
+								<fo:block><xsl:value-of select="$authorizer"/></fo:block>
 							</fo:table-cell>
 						</fo:table-row>
 						<fo:table-row>
 							<fo:table-cell>
-								<fo:block>発行</fo:block>
+								<fo:block><xsl:if test="normalize-space($publisher) != ''">発行</xsl:if></fo:block>
 							</fo:table-cell>
 							<fo:table-cell><fo:block> </fo:block></fo:table-cell>
 							<fo:table-cell>
-								<fo:block>審議</fo:block>
+								<fo:block><xsl:if test="normalize-space($authorizer) != ''">審議</xsl:if></fo:block>
 							</fo:table-cell>
 						</fo:table-row>
 					</fo:table-body>
@@ -1448,7 +1471,8 @@
 				</fo:block>
 
 				<fo:block margin-top="6.5mm" font-size="8pt" font-weight="500">
-					<fo:inline padding-right="5mm"><xsl:apply-templates select="/*/jis:bibdata/jis:date[@type = 'published']/text()"/></fo:inline>改正
+					<xsl:variable name="revised_date"><xsl:apply-templates select="/*/jis:bibdata/jis:date[@type = 'revised']/text()"/></xsl:variable>
+					<xsl:if test="normalize-space($revised_date) != ''"><fo:inline padding-right="5mm"><xsl:copy-of select="$revised_date"/></fo:inline>改正</xsl:if>
 				</fo:block>
 
 			</fo:flow>
@@ -1477,19 +1501,31 @@
 			<fo:flow flow-name="xsl-region-body">
 				<!-- publication date -->
 				<fo:block font-size="8pt" margin-left="90mm" text-align-last="justify" letter-spacing="0.5mm">
-					<xsl:apply-templates select="/*/jis:bibdata/jis:date[@type = 'published']/text()"/>
-					<fo:inline keep-together.within-line="always">
-						<fo:leader leader-pattern="space"/>
-						<xsl:text>発行</xsl:text>
-					</fo:inline>
+					<xsl:variable name="date_published"><xsl:apply-templates select="/*/jis:bibdata/jis:date[@type = 'published']/text()"/></xsl:variable>
+					<xsl:copy-of select="$date_published"/>
+					<xsl:choose>
+						<xsl:when test="normalize-space($date_published) != ''">
+							<fo:inline keep-together.within-line="always">
+								<fo:leader leader-pattern="space"/>
+								<xsl:text>発行</xsl:text>
+							</fo:inline>
+						</xsl:when>
+						<xsl:otherwise> </xsl:otherwise>
+					</xsl:choose>
 				</fo:block>
 				<!-- revision date -->
 				<fo:block font-size="8pt" margin-left="90mm" text-align-last="justify" letter-spacing="0.5mm">
-					<xsl:apply-templates select="/*/jis:bibdata/jis:date[@type = 'revised']/text()"/>
-					<fo:inline keep-together.within-line="always">
-						<fo:leader leader-pattern="space"/>
-						<xsl:text>改正</xsl:text>
-					</fo:inline>
+					<xsl:variable name="date_revised"><xsl:apply-templates select="/*/jis:bibdata/jis:date[@type = 'revised']/text()"/></xsl:variable>
+					<xsl:copy-of select="$date_revised"/>
+					<xsl:choose>
+						<xsl:when test="normalize-space($date_revised) != ''">
+							<fo:inline keep-together.within-line="always">
+								<fo:leader leader-pattern="space"/>
+								<xsl:text>改正</xsl:text>
+							</fo:inline>
+						</xsl:when>
+						<xsl:otherwise> </xsl:otherwise>
+					</xsl:choose>
 				</fo:block>
 				<fo:block font-size="12pt" margin-top="7mm" text-align="right">
 					<!-- <xsl:value-of select="$copyrightText"/> -->
@@ -2441,58 +2477,78 @@
 		<xsl:value-of select="$text10"/>
 	</xsl:template>
 
+	<!-- enclose surrogate pair characters into the tag 'spair' -->
+	<xsl:variable name="element_name_spair">spair</xsl:variable>
+	<xsl:variable name="tag_spair_open">###<xsl:value-of select="$element_name_spair"/>###</xsl:variable>
+	<xsl:variable name="tag_spair_close">###/<xsl:value-of select="$element_name_spair"/>###</xsl:variable>
+
 	<!-- replace horizontal to vertical oriented character -->
 	<xsl:template match="text()" mode="update_xml_step0" name="replace_horizontal_to_vertical_form">
 		<xsl:param name="text" select="."/>
-		<xsl:choose>
-			<xsl:when test="$isGenerateTableIF = 'false'">
-				<!-- from https://github.com/metanorma/docs/blob/main/109.adoc -->
-				<!-- 
-				U+3001 IDEOGRAPHIC COMMA (、)
-				to
-				U+FE11 PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA (︑) 
-				
-				U+FE50 SMALL COMMA (﹐)
-				to
-				U+FE10 PRESENTATION FORM FOR VERTICAL COMMA (︐)
-				
-				U+FE51 SMALL IDEOGRAPHIC COMMA (﹑)
-				to
-				U+FE11 PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA (︑)
-				
-				U+FF0C FULLWIDTH COMMA (，)
-				to
-				U+FE10 PRESENTATION FORM FOR VERTICAL COMMA (︐)
-				-->
-				<xsl:variable name="text1" select="translate($text,'、﹐﹑，','︑︐︑︐')"/>
+		<xsl:variable name="text_replaced">
+			<xsl:choose>
+				<xsl:when test="$vertical_layout = 'true' and $isGenerateTableIF = 'false'">
+					<!-- from https://github.com/metanorma/docs/blob/main/109.adoc -->
+					<!-- 
+					U+3001 IDEOGRAPHIC COMMA (、)
+					to
+					U+FE11 PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA (︑) 
+					
+					U+FE50 SMALL COMMA (﹐)
+					to
+					U+FE10 PRESENTATION FORM FOR VERTICAL COMMA (︐)
+					
+					U+FE51 SMALL IDEOGRAPHIC COMMA (﹑)
+					to
+					U+FE11 PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA (︑)
+					
+					U+FF0C FULLWIDTH COMMA (，)
+					to
+					U+FE10 PRESENTATION FORM FOR VERTICAL COMMA (︐)
+					-->
+					<xsl:variable name="text1" select="translate($text,'、﹐﹑，','︑︐︑︐')"/>
 
-				<!-- 
-				U+FF1A FULLWIDTH COLON (：)
-				to
-				U+FE13 PRESENTATION FORM FOR VERTICAL COLON (︓)
-				
-				U+FF1B FULLWIDTH SEMICOLON (；)
-				to
-				U+FE14 PRESENTATION FORM FOR VERTICAL SEMICOLON (︔)
-				-->
-				<xsl:variable name="text2" select="translate($text1,'：；','︓︔')"/>
+					<!-- 
+					U+FF1A FULLWIDTH COLON (：)
+					to
+					U+FE13 PRESENTATION FORM FOR VERTICAL COLON (︓)
+					
+					U+FF1B FULLWIDTH SEMICOLON (；)
+					to
+					U+FE14 PRESENTATION FORM FOR VERTICAL SEMICOLON (︔)
+					-->
+					<xsl:variable name="text2" select="translate($text1,'：；','︓︔')"/>
 
-				<!-- 
-				U+FF01 FULLWIDTH EXCLAMATION MARK (！)
-				to
-				U+FE15 PRESENTATION FORM FOR VERTICAL EXCLAMATION MARK (︕)
-				
-				U+FF1F FULLWIDTH QUESTION MARK (？)
-				to
-				U+FE16 PRESENTATION FORM FOR VERTICAL QUESTION MARK (︖)
-				-->
-				<xsl:variable name="text3" select="translate($text2,'！？','︕︖')"/>
-				<xsl:value-of select="$text3"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="$text"/>
-			</xsl:otherwise>
-		</xsl:choose>
+					<!-- 
+					U+FF01 FULLWIDTH EXCLAMATION MARK (！)
+					to
+					U+FE15 PRESENTATION FORM FOR VERTICAL EXCLAMATION MARK (︕)
+					
+					U+FF1F FULLWIDTH QUESTION MARK (？)
+					to
+					U+FE16 PRESENTATION FORM FOR VERTICAL QUESTION MARK (︖)
+					-->
+					<xsl:variable name="text3" select="translate($text2,'！？','︕︖')"/>
+					<xsl:value-of select="$text3"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="$text"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+
+		<xsl:variable name="text_spair_" select="java:replaceAll(java:java.lang.String.new($text_replaced), $regex_surrogate_pairs, concat($tag_spair_open,'$1',$tag_spair_close))"/>
+		<xsl:variable name="text_spair">
+			<xsl:element name="text" namespace="{$namespace_full}">
+				<xsl:call-template name="replace_text_tags">
+					<xsl:with-param name="tag_open" select="$tag_spair_open"/>
+					<xsl:with-param name="tag_close" select="$tag_spair_close"/>
+					<xsl:with-param name="text" select="$text_spair_"/>
+				</xsl:call-template>
+			</xsl:element>
+		</xsl:variable>
+		<xsl:copy-of select="xalan:nodeset($text_spair)/*[local-name() = 'text']/node()"/>
+
 	</xsl:template>
 
 	<!-- =========================================================================== -->
@@ -2610,8 +2666,12 @@
 		<xsl:copy-of select="."/>
 	</xsl:template>
 
+	<!-- https://github.com/metanorma/laozi/issues/8 -->
+	<xsl:variable name="surrogate_pairs">\ud800\udc00-\udbff\udfff\ud800-\udfff</xsl:variable>
+	<xsl:variable name="regex_surrogate_pairs">([<xsl:value-of select="$surrogate_pairs"/>])</xsl:variable>
+
 	<!-- if vertical_layout = 'true', then font_en and font_en_bold are using for text rotation -->
-	<xsl:variable name="regex_en_base">\u00A0\u2002-\u200B\u3000-\u9FFF\uF900-\uFFFF</xsl:variable>
+	<xsl:variable name="regex_en_base">\u00A0\u2002-\u200B\u3000-\u9FFF\uF900-\uFFFF<xsl:value-of select="$surrogate_pairs"/></xsl:variable>
 	<xsl:variable name="regex_en_">
 		<xsl:choose>
 			<!-- ( ) [ ] _ { } U+FF08 FULLWIDTH LEFT PARENTHESIS U+FF09 FULLWIDTH RIGHT PARENTHESIS-->
@@ -3050,6 +3110,10 @@
 	<!-- ========================= -->
 	<!-- END: Allocate non-Japanese text -->
 	<!-- ========================= -->
+
+	<xsl:template match="*[local-name() = 'spair'][normalize-space() != '']">
+		<fo:inline><xsl:apply-templates/></fo:inline>
+	</xsl:template>
 
 	<!-- patch for correct list-item-label rendering: enclose each char in inline-container -->
 	<xsl:template match="*[local-name() = 'note' or local-name() = 'example']/*[local-name() = 'name']/text()" priority="3">
@@ -6735,6 +6799,9 @@
 
 	</xsl:attribute-set>
 
+	<xsl:attribute-set name="related-block-style" use-attribute-sets="preferred-block-style">
+	</xsl:attribute-set>
+
 	<xsl:attribute-set name="definition-style">
 
 			<xsl:attribute name="space-before">2pt</xsl:attribute>
@@ -6891,6 +6958,10 @@
 
 			<xsl:if test="not($vertical_layout = 'true')">
 				<xsl:attribute name="font-family">Times New Roman</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="$vertical_layout = 'true'">
+				<xsl:attribute name="vertical-align">baseline</xsl:attribute>
+				<xsl:attribute name="font-size">100%</xsl:attribute>
 			</xsl:if>
 
 	</xsl:template> <!-- refine_fn-body-num-style -->
@@ -8925,9 +8996,14 @@
 		</xsl:variable>
 		<xsl:variable name="current_fn_number_text">
 
-					<xsl:value-of select="$current_fn_number"/>
-
-				<fo:inline font-weight="normal">)</fo:inline>
+					<xsl:choose>
+						<xsl:when test="$autonumbering_style = 'japanese'">
+							<xsl:text> </xsl:text>
+							<xsl:value-of select="$numbers_japanese//jis:localized-string[@key = $current_fn_number]"/>
+							<xsl:text> </xsl:text>
+						</xsl:when>
+						<xsl:otherwise><xsl:value-of select="$current_fn_number"/><fo:inline font-weight="normal">)</fo:inline></xsl:otherwise>
+					</xsl:choose>
 
 		</xsl:variable>
 
@@ -8959,6 +9035,11 @@
 									<xsl:if test="not($vertical_layout = 'true')">
 										<xsl:attribute name="font-family">Times New Roman</xsl:attribute>
 									</xsl:if>
+									<xsl:if test="$vertical_layout = 'true'">
+										<xsl:attribute name="vertical-align">baseline</xsl:attribute>
+										<xsl:attribute name="font-size">80%</xsl:attribute>
+										<xsl:attribute name="baseline-shift">20%</xsl:attribute>
+									</xsl:if>
 
 							</fn_styles>
 						</xsl:otherwise>
@@ -8977,7 +9058,18 @@
 					<xsl:with-param name="element">
 						<fo:basic-link internal-destination="{$ref_id}" fox:alt-text="footnote {$current_fn_number}"> <!-- note: role="Lbl" removed in https://github.com/metanorma/mn2pdf/issues/291 -->
 							<fo:inline role="Lbl"> <!-- need for https://github.com/metanorma/metanorma-iso/issues/1003 -->
+
+									<xsl:attribute name="keep-together.within-line">always</xsl:attribute>
+									<xsl:call-template name="insertVerticalChar">
+										<xsl:with-param name="str" select="'〔'"/>
+									</xsl:call-template>
+
 								<xsl:copy-of select="$current_fn_number_text"/>
+
+									<xsl:call-template name="insertVerticalChar">
+										<xsl:with-param name="str" select="'〕'"/>
+									</xsl:call-template>
+
 							</fo:inline>
 						</fo:basic-link>
 					</xsl:with-param>
@@ -8996,8 +9088,7 @@
 
 						<fo:block-container xsl:use-attribute-sets="fn-container-body-style" role="SKIP">
 
-							<fo:block xsl:use-attribute-sets="fn-body-style" role="SKIP">
-
+							<xsl:variable name="fn_block">
 								<xsl:call-template name="refine_fn-body-style"/>
 
 								<fo:inline id="{$ref_id}" xsl:use-attribute-sets="fn-body-num-style" role="Lbl">
@@ -9005,9 +9096,51 @@
 									<xsl:call-template name="refine_fn-body-num-style"/>
 
 									<xsl:value-of select="$current_fn_number_text"/>
+
 								</fo:inline>
 								<xsl:apply-templates/>
-							</fo:block>
+							</xsl:variable>
+
+									<xsl:choose>
+										<xsl:when test="$vertical_layout = 'true'">
+											<fo:list-block xsl:use-attribute-sets="fn-body-style" role="SKIP" provisional-distance-between-starts="25mm">
+												<xsl:call-template name="refine_fn-body-style"/>
+												<fo:list-item role="SKIP">
+													<fo:list-item-label start-indent="{$text_indent}mm" end-indent="label-end()" role="SKIP">
+														<fo:block role="SKIP">
+															<fo:inline id="{$ref_id}" xsl:use-attribute-sets="fn-body-num-style" role="Lbl">
+
+																<xsl:call-template name="refine_fn-body-num-style"/>
+
+																<xsl:call-template name="insertVerticalChar">
+																	<xsl:with-param name="str" select="'〔'"/>
+																</xsl:call-template>
+
+																<xsl:value-of select="$current_fn_number_text"/>
+
+																<xsl:call-template name="insertVerticalChar">
+																	<xsl:with-param name="str" select="'〕'"/>
+																</xsl:call-template>
+
+															</fo:inline>
+														</fo:block>
+													</fo:list-item-label>
+													<fo:list-item-body start-indent="body-start()" xsl:use-attribute-sets="table-fn-body-style" role="SKIP">
+														<fo:block role="SKIP">
+															<xsl:apply-templates/>
+														</fo:block>
+													</fo:list-item-body>
+												</fo:list-item>
+											</fo:list-block>
+										</xsl:when>
+										<xsl:otherwise>
+											<fo:block xsl:use-attribute-sets="fn-body-style" role="SKIP">
+												<xsl:copy-of select="$fn_block"/>
+											</fo:block>
+										</xsl:otherwise>
+									</xsl:choose>
+									<!-- jis -->
+
 						</fo:block-container>
 					</fo:footnote-body>
 				</fo:footnote>
@@ -15061,14 +15194,17 @@
 		</fo:block>
 	</xsl:template>
 
-	<xsl:template match="*[local-name() = 'domain']">
+	<!-- <xsl:template match="*[local-name() = 'domain']"> -->
 		<!-- https://github.com/metanorma/isodoc/issues/607 
 		<fo:inline xsl:use-attribute-sets="domain-style">&lt;<xsl:apply-templates/>&gt;</fo:inline>
 		<xsl:text> </xsl:text> -->
-		<xsl:if test="not(@hidden = 'true')">
+		<!-- <xsl:if test="not(@hidden = 'true')">
 			<xsl:apply-templates/>
 		</xsl:if>
-	</xsl:template>
+	</xsl:template> -->
+
+	<!-- https://github.com/metanorma/isodoc/issues/632#issuecomment-2567163931 -->
+	<xsl:template match="*[local-name() = 'domain']"/>
 
 	<xsl:template match="*[local-name() = 'admitted']">
 		<fo:block xsl:use-attribute-sets="admitted-style">
@@ -15083,9 +15219,11 @@
 	</xsl:template>
 
 	<xsl:template name="setStyle_preferred">
-		<xsl:if test="*[local-name() = 'strong']">
-			<xsl:attribute name="font-weight">normal</xsl:attribute>
-		</xsl:if>
+
+				<xsl:if test="*[local-name() = 'strong']">
+					<xsl:attribute name="font-weight">normal</xsl:attribute>
+				</xsl:if>
+
 	</xsl:template>
 
 	<!-- regarding ISO 10241-1:2011,  If there is more than one preferred term, each preferred term follows the previous one on a new line. -->
@@ -15094,6 +15232,17 @@
 		<xsl:value-of select="java:replaceAll(java:java.lang.String.new(.), ';', $linebreak)"/>
 	</xsl:template>
 	<!--  End Preferred, admitted, deprecated -->
+
+	<xsl:template match="*[local-name() = 'fmt-related']">
+		<fo:block role="SKIP" xsl:use-attribute-sets="related-block-style">
+			<xsl:apply-templates/>
+		</fo:block>
+	</xsl:template>
+	<xsl:template match="*[local-name() = 'fmt-related']/*[local-name() = 'p']" priority="4">
+		<fo:block>
+			<xsl:apply-templates/>
+		</fo:block>
+	</xsl:template>
 
 	<!-- ========== -->
 	<!-- definition -->
@@ -16035,6 +16184,7 @@
 
 	<!-- Normative references -->
 	<xsl:template match="*[local-name() = 'references'][@normative='true']/*[local-name() = 'bibitem']" name="bibitem" priority="2">
+		<xsl:param name="skip" select="normalize-space(preceding-sibling::*[1][local-name() = 'bibitem'] and 1 = 1)"/> <!-- current bibiitem is non-first -->
 
 				<fo:block-container margin-left="6mm" role="SKIP">
 					<fo:block-container margin-left="0mm" role="SKIP">
@@ -16756,7 +16906,8 @@
 			<!-- add @id - first element with @id plus '_element_name' -->
 			<xsl:variable name="prefix_id_" select="(.//*[@id])[1]/@id"/>
 			<xsl:variable name="prefix_id"><xsl:value-of select="$prefix_id_"/><xsl:if test="normalize-space($prefix_id_) = ''"><xsl:value-of select="generate-id()"/></xsl:if></xsl:variable>
-			<xsl:attribute name="id"><xsl:value-of select="$prefix_id"/>_<xsl:value-of select="local-name()"/></xsl:attribute>
+			<xsl:variable name="document_suffix" select="ancestor::*[contains(local-name(), '-standard')]/@document_suffix"/>
+			<xsl:attribute name="id"><xsl:value-of select="concat($prefix_id, '_', local-name(), '_', $document_suffix)"/></xsl:attribute>
 		</xsl:if>
 	</xsl:template>
 
@@ -16813,6 +16964,31 @@
 	<xsl:template match="*[local-name() = 'name'][following-sibling::*[1][local-name() = 'fmt-name']]" mode="update_xml_pres"/>
 	<xsl:template match="*[local-name() = 'section-title'][following-sibling::*[1][local-name() = 'p'][@type = 'section-title' or @type = 'floating-title']]" mode="update_xml_step1"/>
 	<xsl:template match="*[local-name() = 'section-title'][following-sibling::*[1][local-name() = 'p'][@type = 'section-title' or @type = 'floating-title']]" mode="update_xml_pres"/>
+	<!-- <xsl:template match="*[local-name() = 'preferred'][following-sibling::*[not(local-name() = 'preferred')][1][local-name() = 'fmt-preferred']]" mode="update_xml_step1"/> -->
+	<xsl:template match="*[local-name() = 'preferred']" mode="update_xml_step1"/>
+	<!-- <xsl:template match="*[local-name() = 'preferred'][following-sibling::*[not(local-name() = 'preferred')][1][local-name() = 'fmt-preferred']]" mode="update_xml_pres"/> -->
+	<xsl:template match="*[local-name() = 'preferred']" mode="update_xml_pres"/>
+	<!-- <xsl:template match="*[local-name() = 'admitted'][following-sibling::*[not(local-name() = 'admitted')][1][local-name() = 'fmt-admitted']]" mode="update_xml_step1"/> -->
+	<xsl:template match="*[local-name() = 'admitted']" mode="update_xml_step1"/>
+	<!-- <xsl:template match="*[local-name() = 'admitted'][following-sibling::*[not(local-name() = 'admitted')][1][local-name() = 'fmt-admitted']]" mode="update_xml_pres"/> -->
+	<xsl:template match="*[local-name() = 'admitted']" mode="update_xml_pres"/>
+	<!-- <xsl:template match="*[local-name() = 'deprecates'][following-sibling::*[not(local-name() = 'deprecates')][1][local-name() = 'fmt-deprecates']]" mode="update_xml_step1"/> -->
+	<xsl:template match="*[local-name() = 'deprecates']" mode="update_xml_step1"/>
+	<xsl:template match="*[local-name() = 'related']" mode="update_xml_step1"/>
+	<!-- <xsl:template match="*[local-name() = 'deprecates'][following-sibling::*[not(local-name() = 'deprecates')][1][local-name() = 'fmt-deprecates']]" mode="update_xml_pres"/> -->
+	<xsl:template match="*[local-name() = 'deprecates']" mode="update_xml_pres"/>
+	<xsl:template match="*[local-name() = 'related']" mode="update_xml_pres"/>
+	<!-- <xsl:template match="*[local-name() = 'definition'][following-sibling::*[1][local-name() = 'fmt-definition']]" mode="update_xml_step1"/> -->
+	<xsl:template match="*[local-name() = 'definition']" mode="update_xml_step1"/>
+	<!-- <xsl:template match="*[local-name() = 'definition'][following-sibling::*[1][local-name() = 'fmt-definition']]" mode="update_xml_pres"/> -->
+	<xsl:template match="*[local-name() = 'definition']" mode="update_xml_pres"/>
+	<!-- <xsl:template match="*[local-name() = 'termsource'][following-sibling::*[1][local-name() = 'fmt-termsource']]" mode="update_xml_step1"/> -->
+	<xsl:template match="*[local-name() = 'termsource']" mode="update_xml_step1"/>
+	<!-- <xsl:template match="*[local-name() = 'termsource'][following-sibling::*[1][local-name() = 'fmt-termsource']]" mode="update_xml_pres"/> -->
+	<xsl:template match="*[local-name() = 'termsource']" mode="update_xml_pres"/>
+
+	<xsl:template match="*[local-name() = 'term'][@unnumbered = 'true'][not(.//*[starts-with(local-name(), 'fmt-')])]" mode="update_xml_step1"/>
+	<xsl:template match="*[local-name() = 'term'][@unnumbered = 'true'][not(.//*[starts-with(local-name(), 'fmt-')])]" mode="update_xml_pres"/>
 
 	<xsl:template match="*[local-name() = 'p'][@type = 'section-title' or @type = 'floating-title'][preceding-sibling::*[1][local-name() = 'section-title']]" mode="update_xml_step1">
 		<xsl:copy>
@@ -16852,6 +17028,94 @@
 	</xsl:template>
 	<xsl:template match="*[local-name() = 'fmt-name']" mode="update_xml_pres">
 		<xsl:element name="name" namespace="{$namespace_full}">
+			<xsl:copy-of select="@*"/>
+			<xsl:apply-templates mode="update_xml_pres"/>
+		</xsl:element>
+	</xsl:template>
+
+	<xsl:template match="*[local-name() = 'fmt-preferred']"/>
+	<xsl:template match="*[local-name() = 'fmt-preferred'][*[local-name() = 'p']]" mode="update_xml_step1">
+		<xsl:apply-templates mode="update_xml_step1"/>
+	</xsl:template>
+	<xsl:template match="*[local-name() = 'fmt-preferred'][not(*[local-name() = 'p'])] | *[local-name() = 'fmt-preferred']/*[local-name() = 'p']" mode="update_xml_step1">
+		<xsl:element name="preferred" namespace="{$namespace_full}">
+			<xsl:copy-of select="@*"/>
+			<xsl:apply-templates mode="update_xml_step1"/>
+		</xsl:element>
+	</xsl:template>
+	<xsl:template match="*[local-name() = 'fmt-preferred'][*[local-name() = 'p']]" mode="update_xml_pres">
+		<xsl:apply-templates mode="update_xml_pres"/>
+	</xsl:template>
+	<xsl:template match="*[local-name() = 'fmt-preferred'][not(*[local-name() = 'p'])] | *[local-name() = 'fmt-preferred']/*[local-name() = 'p']" mode="update_xml_pres">
+		<xsl:element name="preferred" namespace="{$namespace_full}">
+			<xsl:copy-of select="@*"/>
+			<xsl:apply-templates mode="update_xml_pres"/>
+		</xsl:element>
+	</xsl:template>
+
+	<xsl:template match="*[local-name() = 'fmt-admitted']"/>
+	<xsl:template match="*[local-name() = 'fmt-admitted'][*[local-name() = 'p']]" mode="update_xml_step1">
+		<xsl:apply-templates mode="update_xml_step1"/>
+	</xsl:template>
+	<xsl:template match="*[local-name() = 'fmt-admitted'][not(*[local-name() = 'p'])] | *[local-name() = 'fmt-admitted']/*[local-name() = 'p']" mode="update_xml_step1">
+		<xsl:element name="admitted" namespace="{$namespace_full}">
+			<xsl:copy-of select="@*"/>
+			<xsl:apply-templates mode="update_xml_step1"/>
+		</xsl:element>
+	</xsl:template>
+	<xsl:template match="*[local-name() = 'fmt-admitted'][*[local-name() = 'p']]" mode="update_xml_pres">
+		<xsl:apply-templates mode="update_xml_pres"/>
+	</xsl:template>
+	<xsl:template match="*[local-name() = 'fmt-admitted'][not(*[local-name() = 'p'])] | *[local-name() = 'fmt-admitted']/*[local-name() = 'p']" mode="update_xml_pres">
+		<xsl:element name="admitted" namespace="{$namespace_full}">
+			<xsl:copy-of select="@*"/>
+			<xsl:apply-templates mode="update_xml_pres"/>
+		</xsl:element>
+	</xsl:template>
+
+	<xsl:template match="*[local-name() = 'fmt-deprecates']"/>
+	<xsl:template match="*[local-name() = 'fmt-deprecates'][*[local-name() = 'p']]" mode="update_xml_step1">
+		<xsl:apply-templates mode="update_xml_step1"/>
+	</xsl:template>
+	<xsl:template match="*[local-name() = 'fmt-deprecates'][not(*[local-name() = 'p'])] | *[local-name() = 'fmt-deprecates']/*[local-name() = 'p']" mode="update_xml_step1">
+		<xsl:element name="deprecates" namespace="{$namespace_full}">
+			<xsl:copy-of select="@*"/>
+			<xsl:apply-templates mode="update_xml_step1"/>
+		</xsl:element>
+	</xsl:template>
+	<xsl:template match="*[local-name() = 'fmt-deprecates'][*[local-name() = 'p']]" mode="update_xml_pres">
+		<xsl:apply-templates mode="update_xml_pres"/>
+	</xsl:template>
+	<xsl:template match="*[local-name() = 'fmt-deprecates'][not(*[local-name() = 'p'])] | *[local-name() = 'fmt-deprecates']/*[local-name() = 'p']" mode="update_xml_pres">
+		<xsl:element name="deprecates" namespace="{$namespace_full}">
+			<xsl:copy-of select="@*"/>
+			<xsl:apply-templates mode="update_xml_pres"/>
+		</xsl:element>
+	</xsl:template>
+
+	<xsl:template match="*[local-name() = 'fmt-definition']"/>
+	<xsl:template match="*[local-name() = 'fmt-definition']" mode="update_xml_step1">
+		<xsl:element name="definition" namespace="{$namespace_full}">
+			<xsl:copy-of select="@*"/>
+			<xsl:apply-templates mode="update_xml_step1"/>
+		</xsl:element>
+	</xsl:template>
+	<xsl:template match="*[local-name() = 'fmt-definition']" mode="update_xml_pres">
+		<xsl:element name="definition" namespace="{$namespace_full}">
+			<xsl:copy-of select="@*"/>
+			<xsl:apply-templates mode="update_xml_pres"/>
+		</xsl:element>
+	</xsl:template>
+
+	<xsl:template match="*[local-name() = 'fmt-termsource']"/>
+	<xsl:template match="*[local-name() = 'fmt-termsource']" mode="update_xml_step1">
+		<xsl:element name="termsource" namespace="{$namespace_full}">
+			<xsl:copy-of select="@*"/>
+			<xsl:apply-templates mode="update_xml_step1"/>
+		</xsl:element>
+	</xsl:template>
+	<xsl:template match="*[local-name() = 'fmt-termsource']" mode="update_xml_pres">
+		<xsl:element name="termsource" namespace="{$namespace_full}">
 			<xsl:copy-of select="@*"/>
 			<xsl:apply-templates mode="update_xml_pres"/>
 		</xsl:element>
@@ -18102,7 +18366,7 @@
 	</xsl:template>
 
 	<xsl:template name="namespaceCheck">
-		<xsl:variable name="documentNS" select="namespace-uri(/*)"/>
+		<xsl:variable name="documentNS" select="$namespace_full"/> <!-- namespace-uri(/*) -->
 		<xsl:variable name="XSLNS">
 
 		</xsl:variable>
@@ -18189,6 +18453,9 @@
 			<xsl:choose>
 				<xsl:when test="$formatted = 'true' and string-length($bibdata_updated) != ''">
 					<xsl:apply-templates select="xalan:nodeset($bibdata_updated)//*[local-name() = 'localized-string'][@key = $key and @language = $curr_lang]"/>
+				</xsl:when>
+				<xsl:when test="string-length($bibdata_updated) != ''">
+					<xsl:value-of select="xalan:nodeset($bibdata_updated)//*[local-name() = 'localized-string'][@key = $key and @language = $curr_lang]"/>
 				</xsl:when>
 				<xsl:when test="$formatted = 'true'">
 					<xsl:apply-templates select="xalan:nodeset($bibdata)//*[local-name() = 'localized-string'][@key = $key and @language = $curr_lang]"/>
