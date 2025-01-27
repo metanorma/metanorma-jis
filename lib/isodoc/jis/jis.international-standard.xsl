@@ -1369,20 +1369,20 @@
 					<fo:table-body>
 						<fo:table-row height="50mm">
 							<fo:table-cell>
-								<fo:block><xsl:value-of select="$publisher"/></fo:block>
+								<fo:block id="__internal_layout__coverpage_footer_block1_{$num}_{generate-id()}"><xsl:value-of select="$publisher"/></fo:block>
 							</fo:table-cell>
-							<fo:table-cell><fo:block> </fo:block></fo:table-cell>
+							<fo:table-cell><fo:block id="__internal_layout__coverpage_footer_block2_{$num}_{generate-id()}"> </fo:block></fo:table-cell>
 							<fo:table-cell>
-								<fo:block><xsl:value-of select="$authorizer"/></fo:block>
+								<fo:block id="__internal_layout__coverpage_footer_block3_{$num}_{generate-id()}"><xsl:value-of select="$authorizer"/></fo:block>
 							</fo:table-cell>
 						</fo:table-row>
 						<fo:table-row>
 							<fo:table-cell>
-								<fo:block><xsl:if test="normalize-space($publisher) != ''">発行</xsl:if></fo:block>
+								<fo:block id="__internal_layout__coverpage_footer_block4_{$num}_{generate-id()}"><xsl:if test="normalize-space($publisher) != ''">発行</xsl:if></fo:block>
 							</fo:table-cell>
-							<fo:table-cell><fo:block> </fo:block></fo:table-cell>
+							<fo:table-cell><fo:block id="__internal_layout__coverpage_footer_block5_{$num}_{generate-id()}"> </fo:block></fo:table-cell>
 							<fo:table-cell>
-								<fo:block><xsl:if test="normalize-space($authorizer) != ''">審議</xsl:if></fo:block>
+								<fo:block id="__internal_layout__coverpage_footer_block6_{$num}_{generate-id()}"><xsl:if test="normalize-space($authorizer) != ''">審議</xsl:if></fo:block>
 							</fo:table-cell>
 						</fo:table-row>
 					</fo:table-body>
@@ -1433,7 +1433,7 @@
 								</xsl:for-each>
 							</xsl:variable>
 							<xsl:attribute name="width"><xsl:value-of select="sum(xalan:nodeset($blocksWidth)//width)"/>em</xsl:attribute>
-							<fo:block-container width="1em">
+							<fo:block-container width="1em" id="__internal_layout__coverpage_block1_{$num}_{generate-id()}">
 								<xsl:copy-of select="$blocks"/>
 							</fo:block-container>
 					</fo:inline-container>
@@ -1441,7 +1441,7 @@
 					<fo:inline font-size="8.16pt" baseline-shift="20%">:</fo:inline>
 
 					<fo:inline-container writing-mode="lr-tb" text-align="center" alignment-baseline="central" reference-orientation="90" width="1em" margin="0" padding="0" text-indent="0mm" last-line-end-indent="0mm" start-indent="0mm" end-indent="0mm">
-							<fo:block-container width="1em">
+							<fo:block-container width="1em" id="__internal_layout__coverpage_block2_{$num}_{generate-id()}">
 								<fo:block line-height="1em" margin-top="0.2em"/>
 								<fo:block font-size="8.16pt" baseline-shift="20%">
 									<xsl:call-template name="insertEachCharInBlock">
@@ -3349,7 +3349,7 @@
 			<fo:static-content flow-name="header-last" role="artifact">
 				<fo:block font-size="12pt" font-weight="bold" margin-left="10mm">
 					<fo:inline-container writing-mode="lr-tb" text-align="center" alignment-baseline="central" reference-orientation="90" width="1em" margin="0" padding="0" text-indent="0mm" last-line-end-indent="0mm" start-indent="0mm" end-indent="0mm">
-							<fo:block-container width="1em">
+							<fo:block-container width="1em" id="__internal_layout__lastpage_{generate-id()}">
 								<xsl:call-template name="insertEachCharInBlock">
 									<xsl:with-param name="str">JIS <xsl:value-of select="$docidentifier_number"/></xsl:with-param>
 									<xsl:with-param name="spaceIndent">0.5em</xsl:with-param>
