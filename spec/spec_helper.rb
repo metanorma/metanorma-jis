@@ -178,7 +178,7 @@ BOILERPLATE =
 
 BLANK_HDR = <<~"HDR".freeze
   <?xml version="1.0" encoding="UTF-8"?>
-  <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::Jis::VERSION}">
+  <metanorma xmlns="https://www.metanorma.org/ns/standoc" type="semantic" version="#{Metanorma::Jis::VERSION}">
   <bibdata type="standard">
       <docidentifier primary="true" type="JIS">0:#{Date.today.year}</docidentifier>
     <docnumber>0</docnumber>
