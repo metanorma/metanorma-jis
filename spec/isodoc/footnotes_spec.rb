@@ -71,7 +71,7 @@ RSpec.describe IsoDoc do
              <p class="page-break">
                <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
              </p>
-             <div>
+             <div id="_">
                <h1 class="ForewordTitle">Foreword</h1>
                <p class="ForewordText">
                  A.
@@ -105,10 +105,10 @@ RSpec.describe IsoDoc do
            </p>
            <div class="WordSection3">
              <aside id="ftn2">
-               <p id="_1e228e29-baef-4f38-b048-b05a051747e4">Formerly denoted as 15 % (m/m).</p>
+               <p id="_">Formerly denoted as 15 % (m/m).</p>
              </aside>
              <aside id="ftn1">
-               <p id="_1e228e29-baef-4f38-b048-b05a051747e4">Hello! denoted as 15 % (m/m).</p>
+               <p id="_">Hello! denoted as 15 % (m/m).</p>
              </aside>
            </div>
            <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
@@ -119,8 +119,8 @@ RSpec.describe IsoDoc do
     expect(Xml::C14n.format(IsoDoc::Jis::HtmlConvert.new({})
       .convert("test", input, true)))
       .to be_equivalent_to Xml::C14n.format(html)
-    expect(Xml::C14n.format(IsoDoc::Jis::WordConvert.new({})
-      .convert("test", input, true)
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::WordConvert.new({})
+      .convert("test", input, true))
       .gsub(/_Ref\d+/, "_Ref")))
       .to be_equivalent_to Xml::C14n.format(word)
   end

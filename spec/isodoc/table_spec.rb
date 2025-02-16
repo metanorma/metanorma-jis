@@ -86,7 +86,7 @@ RSpec.describe IsoDoc do
           <p id="_">with alterations</p>
         </modification>
       </source>
-              <note>
+              <note id="N1">
                 <p>This is a table about rice</p>
               </note>
             </table>
@@ -104,9 +104,9 @@ RSpec.describe IsoDoc do
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <preface>
-             <foreword displayorder="1">
+             <foreword id="_" displayorder="1">
                 <title id="_">Foreword</title>
                 <fmt-title depth="1">
                    <semx element="title" source="_">Foreword</semx>
@@ -181,9 +181,15 @@ RSpec.describe IsoDoc do
                       <tr>
                          <td align="left">
                             Reproducibility limit,
-                            <stem type="AsciiMath">R</stem>
+                            <stem type="AsciiMath" id="_">R</stem>
+                            <fmt-stem type="AsciiMath">
+                               <semx element="stem" source="_">R</semx>
+                            </fmt-stem>
                             (= 2,83
-                            <stem type="AsciiMath">s_R</stem>
+                            <stem type="AsciiMath" id="_">s_R</stem>
+                            <fmt-stem type="AsciiMath">
+                               <semx element="stem" source="_">s_R</semx>
+                            </fmt-stem>
                             )
                          </td>
                          <td align="center">2,89</td>
@@ -200,42 +206,69 @@ RSpec.describe IsoDoc do
                    <p class="dl">Drago: A type of rice</p>
                    <source status="generalisation" id="_">
                       SOURCE:
-               <semx element="source" source="_">
-                  <origin bibitemid="ISO712" type="inline" citeas="">
-                     <localityStack>
-                        <locality type="section">
-                           <referenceFrom>1</referenceFrom>
-                        </locality>
-                     </localityStack>
-                     , Section 1
-                  </origin>
-                  —
-                  <semx element="modification" source="_">with adjustments</semx>
-               </semx>
-               ;
-               <semx element="source" source="_">
-                  <origin bibitemid="ISO713" type="inline" citeas="">
-                     <localityStack>
-                        <locality type="section">
-                           <referenceFrom>3</referenceFrom>
-                        </locality>
-                     </localityStack>
-                     , Section 3
-                  </origin>
-                  —
-                  <semx element="modification" source="_">with alterations</semx>
-               </semx>
+                      <semx element="source" source="_">
+                         <origin bibitemid="ISO712" type="inline" citeas="" id="_">
+                            <localityStack>
+                               <locality type="section">
+                                  <referenceFrom>1</referenceFrom>
+                               </locality>
+                            </localityStack>
+                         </origin>
+                         <semx element="origin" source="_">
+                            <fmt-origin bibitemid="ISO712" type="inline" citeas="">
+                               <localityStack>
+                                  <locality type="section">
+                                     <referenceFrom>1</referenceFrom>
+                                  </locality>
+                               </localityStack>
+                               , Section 1
+                            </fmt-origin>
+                         </semx>
+                         —
+                         <semx element="modification" source="_">with adjustments</semx>
+                      </semx>
+                      ;
+                      <semx element="source" source="_">
+                         <origin bibitemid="ISO713" type="inline" citeas="" id="_">
+                            <localityStack>
+                               <locality type="section">
+                                  <referenceFrom>3</referenceFrom>
+                               </locality>
+                            </localityStack>
+                         </origin>
+                         <semx element="origin" source="_">
+                            <fmt-origin bibitemid="ISO713" type="inline" citeas="">
+                               <localityStack>
+                                  <locality type="section">
+                                     <referenceFrom>3</referenceFrom>
+                                  </locality>
+                               </localityStack>
+                               , Section 3
+                            </fmt-origin>
+                         </semx>
+                         —
+                         <semx element="modification" source="_">with alterations</semx>
+                      </semx>
                    </source>
-                   <note>
+                   <note id="N1" autonum="">
                       <fmt-name>
                          <span class="fmt-caption-label">
                             <span class="fmt-element-name">NOTE</span>
-                            <semx element="autonum" source="">1</semx>
                          </span>
                          <span class="fmt-label-delim">
                             <tab/>
                          </span>
                       </fmt-name>
+                      <fmt-xref-label>
+                         <span class="fmt-element-name">Note</span>
+                      </fmt-xref-label>
+                      <fmt-xref-label container="_">
+                         <span class="fmt-xref-container">
+                            <semx element="foreword" source="_">Foreword</semx>
+                         </span>
+                         <span class="fmt-comma">,</span>
+                         <span class="fmt-element-name">Note</span>
+                      </fmt-xref-label>
                       <p>This is a table about rice</p>
                    </note>
                 </table>
@@ -260,7 +293,17 @@ RSpec.describe IsoDoc do
                 <tab/>
              </p>
              <p class="IDT" displayorder="5"/>
-             <clause displayorder="6"/>
+             <clause id="_" displayorder="6">
+                <fmt-title depth="1">
+                   <span class="fmt-caption-label">
+                      <semx element="autonum" source="_">1</semx>
+                   </span>
+                </fmt-title>
+                <fmt-xref-label>
+                   <span class="fmt-element-name">Clause</span>
+                   <semx element="autonum" source="_">1</semx>
+                </fmt-xref-label>
+             </clause>
           </sections>
           <annex id="Annex" autonum="A" displayorder="7">
              <title id="_">
@@ -314,11 +357,14 @@ RSpec.describe IsoDoc do
     OUTPUT
 
     html = <<~OUTPUT
-          <main class="main-section">
+       <main class="main-section">
           <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
           <br/>
-          <div>
-             <h1 class="ForewordTitle" id="_">Foreword</h1>
+          <div id="_">
+             <h1 class="ForewordTitle" id="_">
+                <a class="anchor" href="#_"/>
+                <a class="header" href="#_">Foreword</a>
+             </h1>
              <table id="tableD-1" class="MsoISOTable" style="border-width:1px;border-spacing:0;" title="tool tip">
                 <caption>
                    <span style="display:none">long desc</span>
@@ -390,9 +436,9 @@ RSpec.describe IsoDoc do
                          <div class="BlockSource">
                             <p>SOURCE: , Section 1 — with adjustments; , Section 3 — with alterations</p>
                          </div>
-                         <div class="Note">
+                         <div id="N1" class="Note">
                             <p>
-                               <span class="note_label">NOTE 1  </span>
+                               <span class="note_label">NOTE  </span>
                                This is a table about rice
                             </p>
                          </div>
@@ -427,7 +473,12 @@ RSpec.describe IsoDoc do
           </div>
           <br/>
                      #{middle_title(false)}
-                     <div><h1/></div>
+                        <div id="_">
+      <h1 id="_">
+         <a class="anchor" href="#_"/>
+         <a class="header" href="#_">1</a>
+      </h1>
+      </div>
          <br/>
          <div id="Annex" class="Section3">
            <h1 class="Annex" id="_">
@@ -527,10 +578,10 @@ RSpec.describe IsoDoc do
                       <div class="BlockSource">
                          <p class="MsoNormal">SOURCE: , Section 1 — with adjustments; , Section 3 — with alterations</p>
                       </div>
-                      <div>
+                      <div><a name="N1" id="N1"/>
                          <p class="Note">
                             <span class="note_label">
-                        NOTE 1
+                        NOTE
                         <span style="mso-tab-count:1">  </span>
                      </span>
                             This is a table about rice
@@ -677,7 +728,7 @@ RSpec.describe IsoDoc do
     presxml = <<~OUTPUT
        <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <preface>
-             <foreword displayorder="1">
+             <foreword id="_" displayorder="1">
                 <title id="_">Foreword</title>
                 <fmt-title depth="1">
                    <semx element="title" source="_">Foreword</semx>
@@ -743,6 +794,14 @@ RSpec.describe IsoDoc do
                          <span class="fmt-element-name">Note</span>
                          <semx element="autonum" source="A">1</semx>
                       </fmt-xref-label>
+                      <fmt-xref-label container="_">
+                         <span class="fmt-xref-container">
+                            <semx element="foreword" source="_">Foreword</semx>
+                         </span>
+                         <span class="fmt-comma">,</span>
+                         <span class="fmt-element-name">Note</span>
+                         <semx element="autonum" source="A">1</semx>
+                      </fmt-xref-label>
                       Note 1
                    </note>
                    <note id="C" autonum="2">
@@ -756,6 +815,14 @@ RSpec.describe IsoDoc do
                          </span>
                       </fmt-name>
                       <fmt-xref-label>
+                         <span class="fmt-element-name">Note</span>
+                         <semx element="autonum" source="C">2</semx>
+                      </fmt-xref-label>
+                      <fmt-xref-label container="_">
+                         <span class="fmt-xref-container">
+                            <semx element="foreword" source="_">Foreword</semx>
+                         </span>
+                         <span class="fmt-comma">,</span>
                          <span class="fmt-element-name">Note</span>
                          <semx element="autonum" source="C">2</semx>
                       </fmt-xref-label>
@@ -784,14 +851,24 @@ RSpec.describe IsoDoc do
                 <tab/>
              </p>
              <p class="IDT" displayorder="5"/>
-             <clause displayorder="6"/>
+             <clause id="_" displayorder="6">
+                <fmt-title depth="1">
+                   <span class="fmt-caption-label">
+                      <semx element="autonum" source="_">1</semx>
+                   </span>
+                </fmt-title>
+                <fmt-xref-label>
+                   <span class="fmt-element-name">Clause</span>
+                   <semx element="autonum" source="_">1</semx>
+                </fmt-xref-label>
+             </clause>
           </sections>
        </iso-standard>
     OUTPUT
     html = <<~OUTPUT
       #{HTML_HDR}
             <br/>
-            <div>
+            <div id="_">
                                <h1 class="ForewordTitle">Foreword</h1>
                    <div align="right">
                       <b>Other units in sec</b>
@@ -849,8 +926,8 @@ RSpec.describe IsoDoc do
                    <h1 class="IntroTitle">Contents</h1>
                 </div>
                          #{middle_title(false)}
-                              <div>
-                <h1/>
+                              <div id="_">
+                <h1>1</h1>
               </div>
            </div>
          </body>
@@ -868,7 +945,7 @@ RSpec.describe IsoDoc do
              <p class="page-break">
                <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
              </p>
-             <div>
+             <div id="_">
                <h1 class="ForewordTitle">Foreword</h1>
                <div align="right">
                  <b>Other units in sec</b>
@@ -942,8 +1019,8 @@ RSpec.describe IsoDoc do
            </p>
            <div class="WordSection3">
                        #{middle_title(true)}
-                           <div>
-            <h1/>
+                           <div id="_">
+            <h1>1</h1>
           </div>
            </div>
            <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>

@@ -123,7 +123,7 @@ RSpec.describe IsoDoc::Jis do
           </bibdata>
           
           <preface>
-             <foreword obligation="informative" displayorder="1">
+             <foreword obligation="informative" displayorder="1" id="_">
                 <title id="_">Foreword</title>
                 <fmt-title depth="1">
                    <semx element="title" source="_">Foreword</semx>
@@ -493,7 +493,7 @@ RSpec.describe IsoDoc::Jis do
              <br/>
              <div class="main-section">
                 <br/>
-                <div>
+                <div id="_">
                    <h1 class="ForewordTitle">Foreword</h1>
                    <p id="A">This is a preamble</p>
                 </div>
@@ -622,7 +622,7 @@ RSpec.describe IsoDoc::Jis do
                 <p class="page-break">
                    <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
                 </p>
-                <div>
+                <div id="_">
                    <h1 class="ForewordTitle">Foreword</h1>
                    <p class="ForewordText" id="A">This is a preamble</p>
                 </div>
@@ -853,7 +853,7 @@ RSpec.describe IsoDoc::Jis do
           
           
           <preface>
-             <foreword obligation="informative" displayorder="1">
+             <foreword obligation="informative" displayorder="1" id="_">
                 <title id="_">Foreword</title>
                 <fmt-title depth="1">
                    <semx element="title" source="_">Foreword</semx>
@@ -1441,7 +1441,7 @@ RSpec.describe IsoDoc::Jis do
              </ext>
           </bibdata>
           <preface>
-             <foreword obligation="informative" displayorder="1">
+             <foreword obligation="informative" displayorder="1" id="_">
                 <title id="_">Foreword</title>
                 <fmt-title depth="1">
                    <semx element="title" source="_">Foreword</semx>
@@ -1811,7 +1811,7 @@ RSpec.describe IsoDoc::Jis do
              <br/>
              <div class="main-section">
                 <br/>
-                <div>
+                <div id="_">
                    <h1 class="ForewordTitle">Foreword</h1>
                    <p id="A">This is a preamble</p>
                 </div>
