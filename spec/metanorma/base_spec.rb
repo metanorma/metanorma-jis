@@ -102,7 +102,7 @@ RSpec.describe Metanorma::Jis do
       :investigative-committee: 日本産業標準調査会 標準第一部会
     INPUT
     output = <<~OUTPUT
-      <jis-standard type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc" flavor="jis">
                <bibdata type="standard">
            <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
            <title language="en" format="text/plain" type="title-intro">Introduction</title>
@@ -215,7 +215,7 @@ RSpec.describe Metanorma::Jis do
            </feedback-statement>
          </boilerplate>
          <sections> </sections>
-       </jis-standard>
+       </metanorma>
     OUTPUT
     xml = Nokogiri::XML(Asciidoctor.convert(input, *OPTIONS))
     xml.at("//xmlns:metanorma-extension")&.remove
@@ -228,7 +228,7 @@ RSpec.describe Metanorma::Jis do
                         ))
     xml.at("//xmlns:metanorma-extension")&.remove
     output = <<~OUTPUT
-      <jis-standard type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc" flavor="jis">
                <bibdata type="standard">
            <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
            <title language="en" format="text/plain" type="title-intro">Introduction</title>
@@ -340,7 +340,7 @@ RSpec.describe Metanorma::Jis do
            </feedback-statement>
          </boilerplate>
          <sections> </sections>
-       </jis-standard>
+       </metanorma>
     OUTPUT
     expect(Xml::C14n.format(strip_guid(xml.to_xml)))
       .to be_equivalent_to Xml::C14n.format(output)
@@ -363,7 +363,7 @@ RSpec.describe Metanorma::Jis do
       :publisher-abbr: Publisher Abbrev
     INPUT
     output = <<~OUTPUT
-      <jis-standard type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc" flavor="jis">
                <bibdata type="standard">
            <docidentifier primary="true" type="JIS">1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
@@ -430,7 +430,7 @@ RSpec.describe Metanorma::Jis do
            </feedback-statement>
          </boilerplate>
          <sections> </sections>
-      </jis-standard>
+      </metanorma>
     OUTPUT
     xml.at("//xmlns:metanorma-extension")&.remove
     expect(Xml::C14n.format(strip_guid(xml.to_xml)))
@@ -460,7 +460,7 @@ RSpec.describe Metanorma::Jis do
 
     INPUT
     output = <<~OUTPUT
-      <jis-standard type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc" flavor="jis">
          <bibdata type="standard">
            <docidentifier primary="true" type="JIS">TR 1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
@@ -556,7 +556,7 @@ RSpec.describe Metanorma::Jis do
            </feedback-statement>
          </boilerplate>
          <sections> </sections>
-       </jis-standard>
+       </metanorma>
     OUTPUT
     xml = Nokogiri::XML(Asciidoctor.convert(input, *OPTIONS))
     xml.at("//xmlns:metanorma-extension")&.remove
@@ -591,7 +591,7 @@ RSpec.describe Metanorma::Jis do
       :doctype: technical-specification
     INPUT
     output = <<~OUTPUT
-      <jis-standard type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/jis">
+      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc" flavor="jis">
          <bibdata type="standard">
            <docidentifier primary="true" type="JIS">TS 1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
@@ -642,7 +642,7 @@ RSpec.describe Metanorma::Jis do
            </ext>
          </bibdata>
          <sections> </sections>
-       </jis-standard>
+       </metanorma>
     OUTPUT
     xml.at("//xmlns:metanorma-extension")&.remove
     xml.at("//xmlns:boilerplate")&.remove
@@ -719,7 +719,7 @@ RSpec.describe Metanorma::Jis do
       :copyright-holder: Copyright Holder
     INPUT
     output = <<~OUTPUT
-          <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::Jis::VERSION}">
+          <metanorma xmlns="https://www.metanorma.org/ns/standoc" type="semantic" version="#{Metanorma::Jis::VERSION}" flavor="jis">
         <bibdata type="standard">
           <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
           <title language="en" format="text/plain" type="title-intro">Introduction</title>
@@ -793,7 +793,7 @@ RSpec.describe Metanorma::Jis do
           </ext>
         </bibdata>
         <sections> </sections>
-      </jis-standard>
+      </metanorma>
     OUTPUT
     xml.at("//xmlns:metanorma-extension")&.remove
     xml.at("//xmlns:boilerplate")&.remove
@@ -817,7 +817,7 @@ RSpec.describe Metanorma::Jis do
       :copyright-year: 2022
     INPUT
     output = <<~OUTPUT
-      <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::Jis::VERSION}">
+      <metanorma xmlns="https://www.metanorma.org/ns/standoc" type="semantic" version="#{Metanorma::Jis::VERSION}" flavor="jis">
                    <bibdata type="standard">
            <docidentifier primary="true" type="JIS">Z 1000-1:1980/AMD 3:2022</docidentifier>
            <docnumber>1000</docnumber>
@@ -871,7 +871,7 @@ RSpec.describe Metanorma::Jis do
            </ext>
          </bibdata>
          <sections> </sections>
-       </jis-standard>
+       </metanorma>
     OUTPUT
     xml.at("//xmlns:metanorma-extension")&.remove
     xml.at("//xmlns:boilerplate")&.remove
@@ -1009,7 +1009,7 @@ RSpec.describe Metanorma::Jis do
           </example>
         </clause>
       </sections>
-      </jis-standard>
+      </metanorma>
     OUTPUT
     expect(Xml::C14n.format(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
       .to be_equivalent_to Xml::C14n.format(output)
@@ -1083,7 +1083,7 @@ RSpec.describe Metanorma::Jis do
           </example>
         </clause>
       </sections>
-      </jis-standard>
+      </metanorma>
     OUTPUT
     expect(Xml::C14n.format(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
       .to be_equivalent_to Xml::C14n.format(output)
@@ -1153,7 +1153,7 @@ RSpec.describe Metanorma::Jis do
              </p>
            </clause>
          </sections>
-       </jis-standard>
+       </metanorma>
     OUTPUT
     expect(Xml::C14n.format(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
       .to be_equivalent_to Xml::C14n.format(output)
@@ -1179,7 +1179,7 @@ RSpec.describe Metanorma::Jis do
         <annex id="_" commentary="true" inline-header="false" obligation="informative">
           <title>Commentary</title>
         </annex>
-      </jis-standard>
+      </metanorma>
     OUTPUT
     expect(Xml::C14n.format(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
       .to be_equivalent_to Xml::C14n.format(output)
@@ -1209,7 +1209,7 @@ RSpec.describe Metanorma::Jis do
              </li>
            </ol>
          </sections>
-      </jis-standard>
+      </metanorma>
     OUTPUT
     expect(Xml::C14n.format(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
       .to be_equivalent_to Xml::C14n.format(output)

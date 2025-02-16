@@ -124,7 +124,7 @@ RSpec.describe Metanorma::Jis::Processor do
         #{BLANK_HDR}
         #{BOILERPLATE}
         <sections/>
-      </jis-standard>
+      </metanorma>
     OUTPUT
     expect(strip_guid(Xml::C14n.format(processor.input_to_isodoc(input, nil))))
       .to be_equivalent_to Xml::C14n.format(output)

@@ -48,6 +48,7 @@ def strip_guid(xml)
     .gsub(%r{ original-id="_[^"]+"}, ' original-id="_"')
     .gsub(%r{ target="_[^"]+"}, ' target="_"')
     .gsub(%r{ source="_[^"]+"}, ' source="_"')
+    .gsub(%r{ container="_[^"]+"}, ' container="_"')
     .gsub(%r{ name="_[^"]+"}, ' name="_"')
     .gsub(%r( href="#_?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12,13}"), ' href="#_"')
     .gsub(%r( href="#_?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12,13}a\)"), ' href="#_"')
@@ -178,7 +179,7 @@ BOILERPLATE =
 
 BLANK_HDR = <<~"HDR".freeze
   <?xml version="1.0" encoding="UTF-8"?>
-  <jis-standard xmlns="https://www.metanorma.org/ns/jis" type="semantic" version="#{Metanorma::Jis::VERSION}">
+  <metanorma xmlns="https://www.metanorma.org/ns/standoc" type="semantic" version="#{Metanorma::Jis::VERSION}" flavor="jis">
   <bibdata type="standard">
       <docidentifier primary="true" type="JIS">0:#{Date.today.year}</docidentifier>
     <docnumber>0</docnumber>
