@@ -60,7 +60,7 @@ RSpec.describe IsoDoc::Jis do
             </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-      <foreword displayorder="1" id="A">
+       <foreword id="A" displayorder="1">
           <title id="_">Foreword</title>
           <fmt-title depth="1">
              <semx element="title" source="_">Foreword</semx>
@@ -100,7 +100,10 @@ RSpec.describe IsoDoc::Jis do
              <fn reference="a)">
                 <p id="_">
                    The time
-                   <stem type="AsciiMath">t_90</stem>
+                   <stem type="AsciiMath" id="_">t_90</stem>
+                   <fmt-stem type="AsciiMath">
+                      <semx element="stem" source="_">t_90</semx>
+                   </fmt-stem>
                    was estimated to be 18,2 min for this example.
                 </p>
              </fn>
@@ -111,8 +114,19 @@ RSpec.describe IsoDoc::Jis do
              <p class="dl">A: B</p>
              <source status="generalisation">
                 [SOURCE:
-                <xref type="inline" target="ISO712">ISO 712, Section 1</xref>
-                — <semx element="modification" source="_">with adjustments</semx>]
+                <origin bibitemid="ISO712" type="inline" citeas="" id="_">
+                   <localityStack>
+                      <locality type="section">
+                         <referenceFrom>1</referenceFrom>
+                      </locality>
+                   </localityStack>
+                </origin>
+                <semx element="origin" source="_">
+                   <fmt-xref type="inline" target="ISO712">ISO 712, Section 1</fmt-xref>
+                </semx>
+                —
+                <semx element="modification" source="_">with adjustments</semx>
+                ]
              </source>
              <note id="note1" autonum="">
                 <fmt-name>
@@ -126,13 +140,13 @@ RSpec.describe IsoDoc::Jis do
                 <fmt-xref-label>
                    <span class="fmt-element-name">Note</span>
                 </fmt-xref-label>
-         <fmt-xref-label container="A">
-            <span class="fmt-xref-container">
-               <semx element="foreword" source="A">Foreword</semx>
-            </span>
-            <span class="fmt-comma">,</span>
-            <span class="fmt-element-name">Note</span>
-         </fmt-xref-label>
+                <fmt-xref-label container="A">
+                   <span class="fmt-xref-container">
+                      <semx element="foreword" source="A">Foreword</semx>
+                   </span>
+                   <span class="fmt-comma">,</span>
+                   <span class="fmt-element-name">Note</span>
+                </fmt-xref-label>
                 This is a note
              </note>
              <note id="note2" type="units">Units in mm</note>
@@ -339,7 +353,7 @@ RSpec.describe IsoDoc::Jis do
            </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-       <foreword displayorder="1">
+       <foreword displayorder="1" id="_">
           <title id="_">Foreword</title>
           <fmt-title depth="1">
              <semx element="title" source="_">Foreword</semx>
@@ -402,7 +416,7 @@ RSpec.describe IsoDoc::Jis do
     html = <<~OUTPUT
       #{HTML_HDR}
              <br/>
-             <div>
+             <div id="_">
                             <h1 class="ForewordTitle">Foreword</h1>
                <div id="figureA-1" class="figure" style="page-break-after: avoid;page-break-inside: avoid;">
                  <div id="note1" class="figure">
@@ -441,7 +455,7 @@ RSpec.describe IsoDoc::Jis do
             <p class="page-break">
               <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
             </p>
-            <div>
+            <div id="_">
               <h1 class="ForewordTitle">Foreword</h1>
               <table id="figureA-1" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;page-break-after: avoid;page-break-inside: avoid;" border="0" cellspacing="0" cellpadding="0">
                 <tr>
@@ -556,7 +570,7 @@ RSpec.describe IsoDoc::Jis do
     presxml = <<~INPUT
          <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
         <preface>
-          <foreword displayorder="1">
+          <foreword displayorder="1" id="_">
                    <title id="_">Foreword</title>
          <fmt-title depth="1">
             <semx element="title" source="_">Foreword</semx>
@@ -623,7 +637,7 @@ RSpec.describe IsoDoc::Jis do
              </presentation-metadata>
           </metanorma-extension>
           <preface>
-             <foreword displayorder="1">
+             <foreword displayorder="1" id="_">
          <title id="_">Foreword</title>
          <fmt-title depth="1">
             <semx element="title" source="_">Foreword</semx>
