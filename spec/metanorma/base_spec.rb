@@ -102,7 +102,7 @@ RSpec.describe Metanorma::Jis do
       :investigative-committee: 日本産業標準調査会 標準第一部会
     INPUT
     output = <<~OUTPUT
-      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc">
+      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc" flavor="jis">
                <bibdata type="standard">
            <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
            <title language="en" format="text/plain" type="title-intro">Introduction</title>
@@ -228,7 +228,7 @@ RSpec.describe Metanorma::Jis do
                         ))
     xml.at("//xmlns:metanorma-extension")&.remove
     output = <<~OUTPUT
-      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc">
+      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc" flavor="jis">
                <bibdata type="standard">
            <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
            <title language="en" format="text/plain" type="title-intro">Introduction</title>
@@ -363,7 +363,7 @@ RSpec.describe Metanorma::Jis do
       :publisher-abbr: Publisher Abbrev
     INPUT
     output = <<~OUTPUT
-      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc">
+      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc" flavor="jis">
                <bibdata type="standard">
            <docidentifier primary="true" type="JIS">1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
@@ -460,7 +460,7 @@ RSpec.describe Metanorma::Jis do
 
     INPUT
     output = <<~OUTPUT
-      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc">
+      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc" flavor="jis">
          <bibdata type="standard">
            <docidentifier primary="true" type="JIS">TR 1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
@@ -591,7 +591,7 @@ RSpec.describe Metanorma::Jis do
       :doctype: technical-specification
     INPUT
     output = <<~OUTPUT
-      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc">
+      <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc" flavor="jis">
          <bibdata type="standard">
            <docidentifier primary="true" type="JIS">TS 1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
@@ -719,7 +719,7 @@ RSpec.describe Metanorma::Jis do
       :copyright-holder: Copyright Holder
     INPUT
     output = <<~OUTPUT
-          <metanorma xmlns="https://www.metanorma.org/ns/standoc" type="semantic" version="#{Metanorma::Jis::VERSION}">
+          <metanorma xmlns="https://www.metanorma.org/ns/standoc" type="semantic" version="#{Metanorma::Jis::VERSION}" flavor="jis">
         <bibdata type="standard">
           <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
           <title language="en" format="text/plain" type="title-intro">Introduction</title>
@@ -817,7 +817,7 @@ RSpec.describe Metanorma::Jis do
       :copyright-year: 2022
     INPUT
     output = <<~OUTPUT
-      <metanorma xmlns="https://www.metanorma.org/ns/standoc" type="semantic" version="#{Metanorma::Jis::VERSION}">
+      <metanorma xmlns="https://www.metanorma.org/ns/standoc" type="semantic" version="#{Metanorma::Jis::VERSION}" flavor="jis">
                    <bibdata type="standard">
            <docidentifier primary="true" type="JIS">Z 1000-1:1980/AMD 3:2022</docidentifier>
            <docnumber>1000</docnumber>
