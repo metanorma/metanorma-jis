@@ -152,10 +152,6 @@ module IsoDoc
       elem.children = l10n("#{@i18n.source}: #{sources}")
     end
 
-      def table_fn1(_table, fnote, _idx)
-        fnote["reference"] += ")"
-      end
-
       def bibdata_i18n(bibdata)
         super
         @lang == "ja" and date_translate(bibdata)
@@ -204,16 +200,51 @@ module IsoDoc
       end
 
       def figure_fn(elem)
-        (elem.xpath(ns(".//fn")) - elem.xpath(ns("./name//fn")))
-          .each do |f|
-            table_fn1(elem, f, nil)
-          end
+        fns = footnote_collect((elem.xpath(ns(".//fn")) -
+                              elem.xpath(ns("./name//fn")))) and
+        elem << fns
       end
+
+       def table_fn(elem)
+      fns = footnote_collect(elem.xpath(ns(".//fn"))) and
+        elem << fns
+    end
 
       def omit_docid_prefix(prefix)
         prefix.nil? || prefix.empty? and return true
         super || %w(JIS).include?(prefix)
       end
+
+      def fn_ref_label(fnote)
+        if fnote.ancestors("table, figure").empty? ||
+            !fnote.ancestors("figure").empty? &&
+            !fnote.ancestors("name, fmt-name").empty?
+          "<sup>#{fn_label(fnote)}</sup>"
+        else
+          "<sup>#{fn_label(fnote)}" \
+            "<span class='fmt-label-delim'>)</span></sup>"
+        end
+      end
+
+       def fn_body_label(fnote)
+        if fnote.ancestors("table, figure").empty? ||
+            !fnote.ancestors("figure").empty? &&
+            !fnote.ancestors("name, fmt-name").empty?
+          "<sup>#{fn_label(fnote)}</sup>"
+        else
+          label = l10n("#{@i18n.table_footnote} #{fn_label(fnote)}")
+          "<sup>#{label}" \
+            "<span class='fmt-label-delim'>)</span></sup>"
+        end
+      end
+
+       def non_document_footnotes(docxml)
+      table_fns = docxml.xpath(ns("//table//fn"))
+      fig_fns = docxml.xpath(ns("//figure//fn")) -
+        docxml.xpath(ns("//figure/name//fn"))
+      table_fns + fig_fns
+    end
+
 
       include Init
     end
