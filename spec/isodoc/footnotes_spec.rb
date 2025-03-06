@@ -152,26 +152,24 @@ RSpec.describe IsoDoc do
                 <h1 class="ForewordTitle">Foreword</h1>
                 <p class="ForewordText">
                    A.
-                   <span style="mso-bookmark:_Ref">
-                      <a class="FootnoteRef" href="#ftn1" epub:type="footnote">
-                         <sup>1</sup>
-                      </a>
+                   <span style="mso-bookmark:_Ref" class="MsoFootnoteReference">
+                      <a class="FootnoteRef" epub:type="footnote" href="#ftn1">1</a>
                    </span>
                 </p>
                 <p class="ForewordText">
                    B.
-                   <span style="mso-element:field-begin"/>
-                   NOTEREF _Ref \\f \\h
-                   <span style="mso-element:field-separator"/>
-                   <span class="MsoFootnoteReference">1</span>
-                   <span style="mso-element:field-end"/>
+                   <span class="MsoFootnoteReference">
+                      <span style="mso-element:field-begin"/>
+                      NOTEREF _Ref \\f \\h
+                      <span style="mso-element:field-separator"/>
+                      1
+                      <span style="mso-element:field-end"/>
+                   </span>
                 </p>
                 <p class="ForewordText">
                    C.
-                   <span style="mso-bookmark:_Ref">
-                      <a class="FootnoteRef" href="#ftn2" epub:type="footnote">
-                         <sup>2</sup>
-                      </a>
+                   <span style="mso-bookmark:_Ref" class="MsoFootnoteReference">
+                      <a class="FootnoteRef" epub:type="footnote" href="#ftn2">2</a>
                    </span>
                 </p>
              </div>
