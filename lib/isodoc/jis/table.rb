@@ -1,7 +1,8 @@
 module IsoDoc
   module Jis
     class WordConvert < IsoDoc::Iso::WordConvert
-      def make_table_footnote_target(out, fnid, fnref)
+      # KILL
+      def make_table_footnote_targetx(out, fnid, fnref)
         attrs = { id: fnid, class: "TableFootnoteRef" }
         out.span do |s|
           s << @i18n.table_footnote

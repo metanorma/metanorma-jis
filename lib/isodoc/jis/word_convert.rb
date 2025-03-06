@@ -109,10 +109,9 @@ module IsoDoc
         end
       end
 
-      def footnote_parse(node, out)
+      # KILL
+      def footnote_parsex(node, out)
         return table_footnote_parse(node, out) if @in_table || @in_figure # &&
-
-        # !node.ancestors.map(&:name).include?("name")
 
         fn = node["reference"] || UUIDTools::UUID.random_create.to_s
         return seen_footnote_parse(node, out, fn) if @seen_footnote.include?(fn)
