@@ -200,14 +200,15 @@ module IsoDoc
       end
 
       def figure_fn(elem)
-        fns = footnote_collect((elem.xpath(ns(".//fn")) -
-                              elem.xpath(ns("./name//fn")))) and
-        elem << fns
+         fnotes = elem.xpath(ns(".//fn")) - elem.xpath(ns("./name//fn"))
+      ret = footnote_collect(fnotes)
+      f = footnote_container(fnotes, ret) and elem << f
       end
 
        def table_fn(elem)
-      fns = footnote_collect(elem.xpath(ns(".//fn"))) and
-        elem << fns
+         fnotes = elem.xpath(ns(".//fn"))
+      ret = footnote_collect(fnotes)
+      f = footnote_container(fnotes, ret) and elem << f
     end
 
       def omit_docid_prefix(prefix)

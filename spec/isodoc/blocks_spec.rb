@@ -324,10 +324,8 @@ RSpec.describe IsoDoc::Jis do
                       Figure 1 — Split-it-right
                       <i>sample</i>
                       divider
-                      <span style="mso-bookmark:_Ref">
-                         <a class="FootnoteRef" href="#ftn1" epub:type="footnote">
-                            <sup>1</sup>
-                         </a>
+                      <span style="mso-bookmark:_Ref" class="MsoFootnoteReference">
+                         <a class="FootnoteRef" epub:type="footnote" href="#ftn1">1</a>
                       </span>
                    </p>
                 </td>
