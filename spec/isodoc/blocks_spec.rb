@@ -171,8 +171,8 @@ RSpec.describe IsoDoc::Jis do
                    <semx element="fn" source="_">
                       <p id="_">
                          <fmt-fn-label>
+                            Footnote
                             <sup>
-                               Footnote
                                <semx element="autonum" source="_">a</semx>
                                <span class="fmt-label-delim">)</span>
                             </sup>
