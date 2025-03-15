@@ -42,12 +42,12 @@ module IsoDoc
       end
 
       def admits(elem)
-        #elem.children.first.previous = @i18n.l10n("#{@i18n.admitted}: ")
         elem.xpath(ns(".//semx[@element = 'admitted']")).each do |t|
-        t.previous = @i18n.l10n("#{@i18n.admitted}: ")
-      end
+          t.previous = @i18n.l10n("#{@i18n.admitted}: ")
+        end
       end
 
+      # TODO: move the table/figure key processing to Word, not Presentation XML
       def dl(docxml)
         super
         docxml.xpath(ns("//table//dl | //figure//dl")).each do |l|
@@ -130,27 +130,19 @@ module IsoDoc
         "<tr><td border='0' colspan='#{cols}'>#{elem}</td></tr>"
       end
 
-      # KILL
-      def tablesource(elem)
-        while elem&.next_element&.name == "source"
-          elem << "; #{to_xml(elem.next_element.remove.children)}"
-        end
-        elem.children = l10n("#{@i18n.source}: #{to_xml(elem.children).strip}")
-      end
-
       # TODO preserve original Semantic XML source
       def tablesource(elem)
-      ret = [semx_fmt_dup(elem)]
-      while elem&.next_element&.name == "source"
-        ret << semx_fmt_dup(elem.next_element.remove)
+        ret = [semx_fmt_dup(elem)]
+        while elem&.next_element&.name == "source"
+          ret << semx_fmt_dup(elem.next_element.remove)
+        end
+        s = ret.map { |x| to_xml(x) }.map(&:strip).join("; ")
+        tablesource_label(elem, s)
       end
-      s = ret.map { |x| to_xml(x) }.map(&:strip).join("; ")
-      tablesource_label(elem, s)
-    end
 
-    def tablesource_label(elem, sources)
-      elem.children = l10n("#{@i18n.source}: #{sources}")
-    end
+      def tablesource_label(elem, sources)
+        elem.children = l10n("#{@i18n.source}: #{sources}")
+      end
 
       def bibdata_i18n(bibdata)
         super
@@ -200,16 +192,16 @@ module IsoDoc
       end
 
       def figure_fn(elem)
-         fnotes = elem.xpath(ns(".//fn")) - elem.xpath(ns("./name//fn"))
-      ret = footnote_collect(fnotes)
-      f = footnote_container(fnotes, ret) and elem << f
+        fnotes = elem.xpath(ns(".//fn")) - elem.xpath(ns("./name//fn"))
+        ret = footnote_collect(fnotes)
+        f = footnote_container(fnotes, ret) and elem << f
       end
 
-       def table_fn(elem)
-         fnotes = elem.xpath(ns(".//fn"))
-      ret = footnote_collect(fnotes)
-      f = footnote_container(fnotes, ret) and elem << f
-    end
+      def table_fn(elem)
+        fnotes = elem.xpath(ns(".//fn"))
+        ret = footnote_collect(fnotes)
+        f = footnote_container(fnotes, ret) and elem << f
+      end
 
       def omit_docid_prefix(prefix)
         prefix.nil? || prefix.empty? and return true
@@ -219,7 +211,7 @@ module IsoDoc
       def fn_ref_label(fnote)
         if fnote.ancestors("table, figure").empty? ||
             !fnote.ancestors("figure").empty? &&
-            !fnote.ancestors("name, fmt-name").empty?
+                !fnote.ancestors("name, fmt-name").empty?
           "<sup>#{fn_label(fnote)}</sup>"
         else
           "<sup>#{fn_label(fnote)}" \
@@ -227,25 +219,24 @@ module IsoDoc
         end
       end
 
-       def fn_body_label(fnote)
+      def fn_body_label(fnote)
         if fnote.ancestors("table, figure").empty? ||
             !fnote.ancestors("figure").empty? &&
-            !fnote.ancestors("name, fmt-name").empty?
+                !fnote.ancestors("name, fmt-name").empty?
           "<sup>#{fn_label(fnote)}</sup>"
         else
-          label = l10n("#{@i18n.table_footnote} #{fn_label(fnote)}")
-          "<sup>#{label}" \
+          spc = %w(zh ja ko).include?(@lang) ? "" : " "
+          "#{@i18n.table_footnote}#{spc}<sup>#{fn_label(fnote)}" \
             "<span class='fmt-label-delim'>)</span></sup>"
         end
       end
 
-       def non_document_footnotes(docxml)
-      table_fns = docxml.xpath(ns("//table//fn"))
-      fig_fns = docxml.xpath(ns("//figure//fn")) -
-        docxml.xpath(ns("//figure/name//fn"))
-      table_fns + fig_fns
-    end
-
+      def non_document_footnotes(docxml)
+        table_fns = docxml.xpath(ns("//table//fn"))
+        fig_fns = docxml.xpath(ns("//figure//fn")) -
+          docxml.xpath(ns("//figure/name//fn"))
+        table_fns + fig_fns
+      end
 
       include Init
     end
