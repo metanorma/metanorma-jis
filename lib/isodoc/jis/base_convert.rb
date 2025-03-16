@@ -46,6 +46,8 @@ module IsoDoc
           .each { |p| parse(p, out) }
         node.xpath(ns("./source")).each { |n| parse(n, out) }
         node.xpath(ns("./note")).each { |n| parse(n, out) }
+        node.xpath(ns("./fmt-footnote-container/fmt-fn-body"))
+          .each { |n| parse(n, out) }
       end
 
       def table_thead_pt(node, name)
@@ -69,8 +71,8 @@ module IsoDoc
       def table_name(name, thead, cols)
         name or return
         thead.add_first_child full_row(
-          cols, "<p class='TableTitle' style='text-align:center;'> " \
-                         "#{name.remove.children.to_xml}</p>"
+          cols, "<fmt-name><p class='TableTitle' style='text-align:center;'> " \
+          "#{name.remove.children.to_xml}</p></fmt-name>"
         )
       end
 
@@ -85,6 +87,13 @@ module IsoDoc
             d.parent = insert_here
           end
         end
+      end
+
+         # table name footnote is formatted like other footnotes, since table name
+      # is a table row.
+      def footnote_parse(node, out)
+        return table_footnote_parse(node, out) if @in_table
+        super
       end
     end
   end
