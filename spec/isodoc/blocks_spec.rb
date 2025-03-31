@@ -210,136 +210,136 @@ RSpec.describe IsoDoc::Jis do
          B</pre>
           </figure>
        </foreword>
-       OUTPUT
+    OUTPUT
     html = <<~OUTPUT
-       <div id="A">
-          <h1 class="ForewordTitle">Foreword</h1>
-          <div align="right">
-             <b>Units in mm</b>
-          </div>
-          <div id="figureA-1" class="figure" style="page-break-after: avoid;page-break-inside: avoid;">
-             <img src="rice_images/rice_image1.png" height="20" width="30" title="titletxt" alt="alttext"/>
-             <img src="rice_images/rice_image1.png" height="20" width="auto"/>
-             <img src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7" height="20" width="auto"/>
-             <img src="data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjw/eG1sLXN0eWxlc2hlZXQgdHlwZT0idGV4dC94c2wiIGhyZWY9Ii4uLy4uLy4uL3hzbC9yZXNfZG9jL2ltZ2ZpbGUueHNsIj8+CjwhRE9DVFlQRSBpbWdmaWxlLmNvbnRlbnQgU1lTVEVNICIuLi8uLi8uLi9kdGQvdGV4dC5lbnQiPgo8aW1nZmlsZS5jb250ZW50IG1vZHVsZT0iZnVuZGFtZW50YWxzX29mX3Byb2R1Y3RfZGVzY3JpcHRpb25fYW5kX3N1cHBvcnQiIGZpbGU9ImFjdGlvbl9zY2hlbWFleHBnMS54bWwiPgo8aW1nIHNyYz0iYWN0aW9uX3NjaGVtYWV4cGcxLmdpZiI+CjxpbWcuYXJlYSBzaGFwZT0icmVjdCIgY29vcmRzPSIyMTAsMTg2LDM0MywyMjciIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9iYXNpY19hdHRyaWJ1dGVfc2NoZW1hL2Jhc2ljX2F0dHJpYnV0ZV9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMTAsMTAsOTYsNTEiIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9hY3Rpb25fc2NoZW1hL2FjdGlvbl9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMjEwLDI2NCwzNTgsMzA1IiBocmVmPSIuLi8uLi9yZXNvdXJjZXMvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEueG1sIiAvPgo8L2ltZz4KPC9pbWdmaWxlLmNvbnRlbnQ+Cg==" height="20" width="auto"/>
-             <a href="#figureA-1a" class="TableFootnoteRef">a)</a>
-             <p class="ListTitle">
-                Key
-                <a id="DL1"/>
-             </p>
-             <p class="dl">A: B</p>
-             <div class="BlockSource">
-                <p>
-                   [SOURCE:
-                   <a href="#ISO712">ISO 712, Section 1</a>
-                   — with adjustments]
-                </p>
-             </div>
-             <div id="note1" class="Note">
-                <p>
-                   <span class="note_label">NOTE  </span>
-                </p>
-                This is a note
-             </div>
-             <aside id="fn:figureA-1a" class="footnote">
-                <p id="_">
-                   <span class="TableFootnoteRef">Footnote a)</span>
-                     The time
-                   <span class="stem">(#(t_90)#)</span>
-                   was estimated to be 18,2 min for this example.
-                </p>
-             </aside>
-             <p class="FigureTitle" style="text-align:center;">
-                Figure 1 — Split-it-right
-                <i>sample</i>
-                divider
-                <a class="FootnoteRef" href="#fn:1">
-                   <sup>1</sup>
-                </a>
-             </p>
-          </div>
-          <div id="figure-B" class="figure">
-             <pre>A &lt;
-         B</pre>
-             <p class="FigureTitle" style="text-align:center;">Figure 2</p>
-          </div>
-          <div id="figure-C" class="figure">
-             <pre>A &lt;
-         B</pre>
-          </div>
-       </div>
+      <div id="A">
+         <h1 class="ForewordTitle">Foreword</h1>
+         <div align="right">
+            <b>Units in mm</b>
+         </div>
+         <div id="figureA-1" class="figure" style="page-break-after: avoid;page-break-inside: avoid;">
+            <img src="rice_images/rice_image1.png" height="20" width="30" title="titletxt" alt="alttext"/>
+            <img src="rice_images/rice_image1.png" height="20" width="auto"/>
+            <img src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7" height="20" width="auto"/>
+            <img src="data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjw/eG1sLXN0eWxlc2hlZXQgdHlwZT0idGV4dC94c2wiIGhyZWY9Ii4uLy4uLy4uL3hzbC9yZXNfZG9jL2ltZ2ZpbGUueHNsIj8+CjwhRE9DVFlQRSBpbWdmaWxlLmNvbnRlbnQgU1lTVEVNICIuLi8uLi8uLi9kdGQvdGV4dC5lbnQiPgo8aW1nZmlsZS5jb250ZW50IG1vZHVsZT0iZnVuZGFtZW50YWxzX29mX3Byb2R1Y3RfZGVzY3JpcHRpb25fYW5kX3N1cHBvcnQiIGZpbGU9ImFjdGlvbl9zY2hlbWFleHBnMS54bWwiPgo8aW1nIHNyYz0iYWN0aW9uX3NjaGVtYWV4cGcxLmdpZiI+CjxpbWcuYXJlYSBzaGFwZT0icmVjdCIgY29vcmRzPSIyMTAsMTg2LDM0MywyMjciIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9iYXNpY19hdHRyaWJ1dGVfc2NoZW1hL2Jhc2ljX2F0dHJpYnV0ZV9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMTAsMTAsOTYsNTEiIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9hY3Rpb25fc2NoZW1hL2FjdGlvbl9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMjEwLDI2NCwzNTgsMzA1IiBocmVmPSIuLi8uLi9yZXNvdXJjZXMvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEueG1sIiAvPgo8L2ltZz4KPC9pbWdmaWxlLmNvbnRlbnQ+Cg==" height="20" width="auto"/>
+            <a href="#figureA-1a" class="TableFootnoteRef">a)</a>
+            <p class="ListTitle">
+               Key
+               <a id="DL1"/>
+            </p>
+            <p class="dl">A: B</p>
+            <div class="BlockSource">
+               <p>
+                  [SOURCE:
+                  <a href="#ISO712">ISO 712, Section 1</a>
+                  — with adjustments]
+               </p>
+            </div>
+            <div id="note1" class="Note">
+               <p>
+                  <span class="note_label">NOTE  </span>
+               </p>
+               This is a note
+            </div>
+            <aside id="fn:figureA-1a" class="footnote">
+               <p id="_">
+                  <span class="TableFootnoteRef">Footnote a)</span>
+                    The time
+                  <span class="stem">(#(t_90)#)</span>
+                  was estimated to be 18,2 min for this example.
+               </p>
+            </aside>
+            <p class="FigureTitle" style="text-align:center;">
+               Figure 1 — Split-it-right
+               <i>sample</i>
+               divider
+               <a class="FootnoteRef" href="#fn:_">
+                  <sup>1</sup>
+               </a>
+            </p>
+         </div>
+         <div id="figure-B" class="figure">
+            <pre>A &lt;
+        B</pre>
+            <p class="FigureTitle" style="text-align:center;">Figure 2</p>
+         </div>
+         <div id="figure-C" class="figure">
+            <pre>A &lt;
+        B</pre>
+         </div>
+      </div>
     OUTPUT
     word = <<~OUTPUT
-       <div id="A">
-          <h1 class="ForewordTitle">Foreword</h1>
-          <table id="figureA-1" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;page-break-after: avoid;page-break-inside: avoid;" border="0" cellspacing="0" cellpadding="0">
-             <tr>
-                <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
-                   <p class="UnitStatement">Units in mm</p>
-                </td>
-             </tr>
-             <tr>
-                <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
-                   <p class="Figure">
-                      <img src="rice_images/rice_image1.png" height="20" alt="alttext" title="titletxt" width="30"/>
-                   </p>
-                </td>
-             </tr>
-             <tr>
-                <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
-                   <p class="ForewordText">
-                      Key
-                      <a id="DL1"/>
-                   </p>
-                   <p class="ForewordText">A: B</p>
-                </td>
-             </tr>
-             <tr>
-                <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
-                   <div id="note1" class="Note">
-                      <p class="Note">
-                         <span class="note_label">
-                            NOTE
-                            <span style="mso-tab-count:1">  </span>
-                         </span>
-                      </p>
-                      This is a note
-                   </div>
-                </td>
-             </tr>
-             <tr>
-                <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
-                   <div class="BlockSource">
-                      <p>
-                         [SOURCE:
-                         <a href="#ISO712">ISO 712, Section 1</a>
-                         — with adjustments]
-                      </p>
-                   </div>
-                </td>
-             </tr>
-             <tr>
-                <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
-                   <p class="Tabletitle" style="text-align:center;">
-                      Figure 1 — Split-it-right
-                      <i>sample</i>
-                      divider
-                      <span style="mso-bookmark:_Ref" class="MsoFootnoteReference">
-                         <a class="FootnoteRef" epub:type="footnote" href="#ftn1">1</a>
-                      </span>
-                   </p>
-                </td>
-             </tr>
-          </table>
-          <table id="figure-B" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0">
-             <tr>
-                <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
-                   <p class="Tabletitle" style="text-align:center;">Figure 2</p>
-                </td>
-             </tr>
-          </table>
-          <table id="figure-C" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0"/>
-       </div>
+      <div id="A">
+         <h1 class="ForewordTitle">Foreword</h1>
+         <table id="figureA-1" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;page-break-after: avoid;page-break-inside: avoid;" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+               <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
+                  <p class="UnitStatement">Units in mm</p>
+               </td>
+            </tr>
+            <tr>
+               <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
+                  <p class="Figure">
+                     <img src="rice_images/rice_image1.png" height="20" alt="alttext" title="titletxt" width="30"/>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
+                  <p class="ForewordText">
+                     Key
+                     <a id="DL1"/>
+                  </p>
+                  <p class="ForewordText">A: B</p>
+               </td>
+            </tr>
+            <tr>
+               <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
+                  <div id="note1" class="Note">
+                     <p class="Note">
+                        <span class="note_label">
+                           NOTE
+                           <span style="mso-tab-count:1">  </span>
+                        </span>
+                     </p>
+                     This is a note
+                  </div>
+               </td>
+            </tr>
+            <tr>
+               <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
+                  <div class="BlockSource">
+                     <p>
+                        [SOURCE:
+                        <a href="#ISO712">ISO 712, Section 1</a>
+                        — with adjustments]
+                     </p>
+                  </div>
+               </td>
+            </tr>
+            <tr>
+               <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
+                  <p class="Tabletitle" style="text-align:center;">
+                     Figure 1 — Split-it-right
+                     <i>sample</i>
+                     divider
+                     <span style="mso-bookmark:_Ref" class="MsoFootnoteReference">
+                        <a class="FootnoteRef" epub:type="footnote" href="#fn:_">1</a>
+                     </span>
+                  </p>
+               </td>
+            </tr>
+         </table>
+         <table id="figure-B" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+               <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
+                  <p class="Tabletitle" style="text-align:center;">Figure 2</p>
+               </td>
+            </tr>
+         </table>
+         <table id="figure-C" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0"/>
+      </div>
     OUTPUT
     pres_output = IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
@@ -347,12 +347,14 @@ RSpec.describe IsoDoc::Jis do
     expect(Xml::C14n.format(strip_guid(Nokogiri::XML(pres_output)
       .at("//xmlns:foreword").to_xml)))
       .to be_equivalent_to Xml::C14n.format(presxml)
-    expect(Xml::C14n.format(strip_guid(Nokogiri::XML(IsoDoc::Jis::HtmlConvert.new({})
+    expect(Xml::C14n.format(strip_guid(Nokogiri::XML(IsoDoc::Jis::HtmlConvert
+      .new({})
       .convert("test", pres_output, true))
       .at("//div[@id = 'A']").to_xml)))
       .to be_equivalent_to Xml::C14n.format(html)
     FileUtils.rm_rf "spec/assets/odf1.emf"
-    expect(Xml::C14n.format(strip_guid(Nokogiri::XML(IsoDoc::Jis::WordConvert.new({})
+    expect(Xml::C14n.format(strip_guid(Nokogiri::XML(IsoDoc::Jis::WordConvert
+      .new({})
       .convert("test", pres_output, true))
       .at("//div[@id = 'A']").to_xml)
       .gsub(/['"][^'".]+\.(gif|xml)['"]/, "'_.\\1'")
@@ -379,65 +381,65 @@ RSpec.describe IsoDoc::Jis do
            </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-       <foreword displayorder="1" id="_">
-          <title id="_">Foreword</title>
-          <fmt-title depth="1">
-             <semx element="title" source="_">Foreword</semx>
-          </fmt-title>
-          <figure id="figureA-1" keep-with-next="true" keep-lines-together="true" autonum="1">
-             <name id="_">Overall title</name>
-             <fmt-name>
-                <span class="fmt-caption-label">
-                   <span class="fmt-element-name">Figure</span>
-                   <semx element="autonum" source="figureA-1">1</semx>
-                </span>
-                <span class="fmt-caption-delim"> — </span>
-                <semx element="name" source="_">Overall title</semx>
-             </fmt-name>
-             <fmt-xref-label>
-                <span class="fmt-element-name">Figure</span>
-                <semx element="autonum" source="figureA-1">1</semx>
-             </fmt-xref-label>
-             <figure id="note1" autonum="1 a">
-                <name id="_">Subfigure 1</name>
-                <fmt-name>
-                   <span class="fmt-caption-label">
-                      <semx element="autonum" source="note1">a</semx>
-                      <span class="fmt-label-delim">)</span>
-                   </span>
-                   <span class="fmt-caption-delim">  </span>
-                   <semx element="name" source="_">Subfigure 1</semx>
-                </fmt-name>
-                <fmt-xref-label>
-                   <span class="fmt-element-name">Figure</span>
-                   <semx element="autonum" source="figureA-1">1</semx>
-                   <span class="fmt-autonum-delim"> </span>
-                   <semx element="autonum" source="note1">a</semx>
-                   <span class="fmt-autonum-delim">)</span>
-                </fmt-xref-label>
-                <image src="rice_images/rice_image1.png" height="20" width="30" id="_" mimetype="image/png" alt="alttext" title="titletxt"/>
-             </figure>
-             <figure id="note2" autonum="1 b">
-                <name id="_">Subfigure 2</name>
-                <fmt-name>
-                   <span class="fmt-caption-label">
-                      <semx element="autonum" source="note2">b</semx>
-                      <span class="fmt-label-delim">)</span>
-                   </span>
-                   <span class="fmt-caption-delim">  </span>
-                   <semx element="name" source="_">Subfigure 2</semx>
-                </fmt-name>
-                <fmt-xref-label>
-                   <span class="fmt-element-name">Figure</span>
-                   <semx element="autonum" source="figureA-1">1</semx>
-                   <span class="fmt-autonum-delim"> </span>
-                   <semx element="autonum" source="note2">b</semx>
-                   <span class="fmt-autonum-delim">)</span>
-                </fmt-xref-label>
-                <image src="rice_images/rice_image1.png" height="20" width="auto" id="_" mimetype="image/png"/>
-             </figure>
-          </figure>
-       </foreword>
+      <foreword displayorder="1" id="_">
+         <title id="_">Foreword</title>
+         <fmt-title depth="1">
+            <semx element="title" source="_">Foreword</semx>
+         </fmt-title>
+         <figure id="figureA-1" keep-with-next="true" keep-lines-together="true" autonum="1">
+            <name id="_">Overall title</name>
+            <fmt-name>
+               <span class="fmt-caption-label">
+                  <span class="fmt-element-name">Figure</span>
+                  <semx element="autonum" source="figureA-1">1</semx>
+               </span>
+               <span class="fmt-caption-delim"> — </span>
+               <semx element="name" source="_">Overall title</semx>
+            </fmt-name>
+            <fmt-xref-label>
+               <span class="fmt-element-name">Figure</span>
+               <semx element="autonum" source="figureA-1">1</semx>
+            </fmt-xref-label>
+            <figure id="note1" autonum="1 a">
+               <name id="_">Subfigure 1</name>
+               <fmt-name>
+                  <span class="fmt-caption-label">
+                     <semx element="autonum" source="note1">a</semx>
+                     <span class="fmt-label-delim">)</span>
+                  </span>
+                  <span class="fmt-caption-delim">  </span>
+                  <semx element="name" source="_">Subfigure 1</semx>
+               </fmt-name>
+               <fmt-xref-label>
+                  <span class="fmt-element-name">Figure</span>
+                  <semx element="autonum" source="figureA-1">1</semx>
+                  <span class="fmt-autonum-delim"> </span>
+                  <semx element="autonum" source="note1">a</semx>
+                  <span class="fmt-autonum-delim">)</span>
+               </fmt-xref-label>
+               <image src="rice_images/rice_image1.png" height="20" width="30" id="_" mimetype="image/png" alt="alttext" title="titletxt"/>
+            </figure>
+            <figure id="note2" autonum="1 b">
+               <name id="_">Subfigure 2</name>
+               <fmt-name>
+                  <span class="fmt-caption-label">
+                     <semx element="autonum" source="note2">b</semx>
+                     <span class="fmt-label-delim">)</span>
+                  </span>
+                  <span class="fmt-caption-delim">  </span>
+                  <semx element="name" source="_">Subfigure 2</semx>
+               </fmt-name>
+               <fmt-xref-label>
+                  <span class="fmt-element-name">Figure</span>
+                  <semx element="autonum" source="figureA-1">1</semx>
+                  <span class="fmt-autonum-delim"> </span>
+                  <semx element="autonum" source="note2">b</semx>
+                  <span class="fmt-autonum-delim">)</span>
+               </fmt-xref-label>
+               <image src="rice_images/rice_image1.png" height="20" width="auto" id="_" mimetype="image/png"/>
+            </figure>
+         </figure>
+      </foreword>
     OUTPUT
     html = <<~OUTPUT
       #{HTML_HDR}

@@ -105,19 +105,19 @@ RSpec.describe IsoDoc do
                    <h1 class="ForewordTitle">Foreword</h1>
                    <p>
                       A.
-                      <a class="FootnoteRef" href="#fn:1">
+                      <a class="FootnoteRef" href="#fn:_">
                          <sup>1</sup>
                       </a>
                    </p>
                    <p>
                       B.
-                      <a class="FootnoteRef" href="#fn:1">
+                      <a class="FootnoteRef" href="#fn:_">
                          <sup>1</sup>
                       </a>
                    </p>
                    <p>
                       C.
-                      <a class="FootnoteRef" href="#fn:2">
+                      <a class="FootnoteRef" href="#fn:_">
                          <sup>2</sup>
                       </a>
                    </p>
@@ -126,10 +126,10 @@ RSpec.describe IsoDoc do
                 <div id="_" class="TOC">
                    <h1 class="IntroTitle">Contents</h1>
                 </div>
-                <aside id="fn:1" class="footnote">
+                <aside id="fn:_" class="footnote">
                    <p id="_">Formerly denoted as 15 % (m/m).</p>
                 </aside>
-                <aside id="fn:2" class="footnote">
+                <aside id="fn:_" class="footnote">
                    <p id="_">Hello! denoted as 15 % (m/m).</p>
                 </aside>
              </div>
@@ -137,7 +137,7 @@ RSpec.describe IsoDoc do
        </html>
     OUTPUT
     word = <<~OUTPUT
-       <body lang="EN-US" link="blue" vlink="#954F72">
+      <body lang="EN-US" link="blue" vlink="#954F72">
           <div class="WordSection1">
              <p> </p>
           </div>
@@ -153,7 +153,7 @@ RSpec.describe IsoDoc do
                 <p class="ForewordText">
                    A.
                    <span style="mso-bookmark:_Ref" class="MsoFootnoteReference">
-                      <a class="FootnoteRef" epub:type="footnote" href="#ftn1">1</a>
+                      <a class="FootnoteRef" epub:type="footnote" href="#fn:_">1</a>
                    </span>
                 </p>
                 <p class="ForewordText">
@@ -169,7 +169,7 @@ RSpec.describe IsoDoc do
                 <p class="ForewordText">
                    C.
                    <span style="mso-bookmark:_Ref" class="MsoFootnoteReference">
-                      <a class="FootnoteRef" epub:type="footnote" href="#ftn2">2</a>
+                      <a class="FootnoteRef" epub:type="footnote" href="#fn:_">2</a>
                    </span>
                 </p>
              </div>
@@ -185,10 +185,10 @@ RSpec.describe IsoDoc do
              <br clear="all" class="section"/>
           </p>
           <div class="WordSection3">
-             <aside id="ftn1">
+             <aside id="fn:_">
                 <p id="_">Formerly denoted as 15 % (m/m).</p>
              </aside>
-             <aside id="ftn2">
+             <aside id="fn:_">
                 <p id="_">Hello! denoted as 15 % (m/m).</p>
              </aside>
           </div>
