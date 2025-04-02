@@ -109,26 +109,6 @@ module IsoDoc
         end
       end
 
-      # KILL
-      def footnote_parsex(node, out)
-        return table_footnote_parse(node, out) if @in_table || @in_figure # &&
-
-        fn = node["reference"] || UUIDTools::UUID.random_create.to_s
-        return seen_footnote_parse(node, out, fn) if @seen_footnote.include?(fn)
-
-        @fn_bookmarks[fn] = bookmarkid
-        out.span style: "mso-bookmark:_Ref#{@fn_bookmarks[fn]}" do |s|
-          s.a class: "FootnoteRef", "epub:type": "footnote",
-              href: "#ftn#{fn}" do |a|
-            a.sup { |sup| sup << fn }
-          end
-        end
-        @in_footnote = true
-        @footnotes << make_generic_footnote_text(node, fn)
-        @in_footnote = false
-        @seen_footnote << fn
-      end
-
       def annex(node, out)
         node["commentary"] == "true" and return commentary(node, out)
         amd?(node.document.root) and
