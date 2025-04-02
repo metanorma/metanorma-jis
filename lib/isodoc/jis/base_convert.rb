@@ -89,10 +89,11 @@ module IsoDoc
         end
       end
 
-         # table name footnote is formatted like other footnotes, since table name
+      # table name footnote is formatted like other footnotes, since table name
       # is a table row.
       def footnote_parse(node, out)
         return table_footnote_parse(node, out) if @in_table
+
         super
       end
     end
