@@ -552,6 +552,100 @@ RSpec.describe IsoDoc::Jis do
       .to be_equivalent_to Xml::C14n.format(word)
   end
 
+    it "processes unordered lists" do
+    input = <<~INPUT
+      <iso-standard xmlns="http://riboseinc.com/isoxml">
+          <preface>
+          <clause type="toc" id="_" displayorder="1"> <fmt-title depth="1">Table of contents</fmt-title> </clause>
+          <foreword displayorder="2" id="fwd"><fmt-title>Foreword</fmt-title>
+          <ul id="_61961034-0fb1-436b-b281-828857a59ddb"  keep-with-next="true" keep-lines-together="true">
+          <name>Caption</name>
+        <li>
+          <p id="_cb370dd3-8463-4ec7-aa1a-96f644e2e9a2">Level 1</p>
+        </li>
+        <li>
+          <p id="_60eb765c-1f6c-418a-8016-29efa06bf4f9">deletion of 4.3.</p>
+          <ul id="_61961034-0fb1-436b-b281-828857a59ddc"  keep-with-next="true" keep-lines-together="true">
+          <li>
+          <p id="_cb370dd3-8463-4ec7-aa1a-96f644e2e9a3">Level 2</p>
+          <ul id="_61961034-0fb1-436b-b281-828857a59ddc"  keep-with-next="true" keep-lines-together="true">
+          <li>
+          <p id="_cb370dd3-8463-4ec7-aa1a-96f644e2e9a3">Level 3</p>
+          <ul id="_61961034-0fb1-436b-b281-828857a59ddc"  keep-with-next="true" keep-lines-together="true">
+          <li>
+          <p id="_cb370dd3-8463-4ec7-aa1a-96f644e2e9a3">Level 4</p>
+        </li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+          </ul>
+        </li>
+      </ul>
+      </foreword></preface>
+      </iso-standard>
+    INPUT
+    presxml = <<~INPUT
+          <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+         <preface>
+            <foreword displayorder="1" id="fwd">
+               <title id="_">Foreword</title>
+               <fmt-title depth="1">Foreword</fmt-title>
+               <ul id="_" keep-with-next="true" keep-lines-together="true">
+                  <name id="_">Caption</name>
+                  <fmt-name>
+                     <semx element="name" source="_">Caption</semx>
+                  </fmt-name>
+                  <li>
+                     <fmt-name>
+                        <semx element="autonum" source="">－</semx>
+                     </fmt-name>
+                     <p id="_">Level 1</p>
+                  </li>
+                  <li>
+                     <fmt-name>
+                        <semx element="autonum" source="">－</semx>
+                     </fmt-name>
+                     <p id="_">deletion of 4.3.</p>
+                     <ul id="_" keep-with-next="true" keep-lines-together="true">
+                        <li>
+                           <fmt-name>
+                              <semx element="autonum" source="">・</semx>
+                           </fmt-name>
+                           <p id="_">Level 2</p>
+                           <ul id="_" keep-with-next="true" keep-lines-together="true">
+                              <li>
+                                 <fmt-name>
+                                    <semx element="autonum" source="">－</semx>
+                                 </fmt-name>
+                                 <p id="_">Level 3</p>
+                                 <ul id="_" keep-with-next="true" keep-lines-together="true">
+                                    <li>
+                                       <fmt-name>
+                                          <semx element="autonum" source="">・</semx>
+                                       </fmt-name>
+                                       <p id="_">Level 4</p>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </foreword>
+            <clause type="toc" id="_" displayorder="2">
+               <fmt-title depth="1">Table of contents</fmt-title>
+            </clause>
+         </preface>
+      </iso-standard>
+    INPUT
+    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+          .new(presxml_options)
+         .convert("test", input, true))))
+      .to be_equivalent_to Xml::C14n.format(presxml)
+  end
+
   it "processes ordered lists" do
     input = <<~INPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml">
@@ -596,55 +690,105 @@ RSpec.describe IsoDoc::Jis do
       </iso-standard>
     INPUT
     presxml = <<~INPUT
-         <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
-        <preface>
-          <foreword displayorder="1" id="_">
-                   <title id="_">Foreword</title>
-         <fmt-title depth="1">
-            <semx element="title" source="_">Foreword</semx>
-         </fmt-title>
-            <ol id="A" type="alphabet">
-              <li id="A1" label="a">
-                <ol id="B" type="arabic">
-                  <li id="B1" label="1">
-                    <ol id="C" type="arabic">
-                      <li id="C1" label="1.1">
-                        <ol id="D" type="arabic">
-                          <li id="D1" label="1.1.1">
-                            <ol id="E" type="arabic">
-                              <li id="E1" label="1.1.1.1">
-      </li>
-                              <li id="E2" label="1.1.1.2">
-      </li>
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+          <preface>
+             <foreword id="_" displayorder="1">
+                <title id="_">Foreword</title>
+                <fmt-title depth="1">
+                   <semx element="title" source="_">Foreword</semx>
+                </fmt-title>
+                <ol id="A" type="alphabet">
+                   <li id="A1">
+                      <fmt-name>
+                         <semx element="autonum" source="A1">a</semx>
+                         <span class="fmt-label-delim">)</span>
+                      </fmt-name>
+                      <ol id="B" type="arabic">
+                         <li id="B1">
+                            <fmt-name>
+                               <semx element="autonum" source="B1">1</semx>
+                               <span class="fmt-label-delim">)</span>
+                            </fmt-name>
+                            <ol id="C" type="arabic">
+                               <li id="C1">
+                                  <fmt-name>
+                                     <semx element="autonum" source="C1">1.1</semx>
+                                     <span class="fmt-label-delim">)</span>
+                                  </fmt-name>
+                                  <ol id="D" type="arabic">
+                                     <li id="D1">
+                                        <fmt-name>
+                                           <semx element="autonum" source="D1">1.1.1</semx>
+                                           <span class="fmt-label-delim">)</span>
+                                        </fmt-name>
+                                        <ol id="E" type="arabic">
+                                           <li id="E1">
+                                              <fmt-name>
+                                                 <semx element="autonum" source="E1">1.1.1.1</semx>
+                                                 <span class="fmt-label-delim">)</span>
+                                              </fmt-name>
+                                           </li>
+                                           <li id="E2">
+                                              <fmt-name>
+                                                 <semx element="autonum" source="E2">1.1.1.2</semx>
+                                                 <span class="fmt-label-delim">)</span>
+                                              </fmt-name>
+                                           </li>
+                                        </ol>
+                                     </li>
+                                     <li id="D2">
+                                        <fmt-name>
+                                           <semx element="autonum" source="D2">1.1.2</semx>
+                                           <span class="fmt-label-delim">)</span>
+                                        </fmt-name>
+                                     </li>
+                                  </ol>
+                               </li>
+                               <li id="C2">
+                                  <fmt-name>
+                                     <semx element="autonum" source="C2">1.2</semx>
+                                     <span class="fmt-label-delim">)</span>
+                                  </fmt-name>
+                               </li>
                             </ol>
-                          </li>
-                          <li id="D2" label="1.1.2">
-      </li>
-                        </ol>
-                      </li>
-                      <li id="C2" label="1.2">
-      </li>
-                    </ol>
-                  </li>
-                  <li id="B2" label="2">
-                    <ol id="CC" type="arabic">
-                      <li id="CC1" label="2.1"/>
-                    </ol>
-                  </li>
+                         </li>
+                         <li id="B2">
+                            <fmt-name>
+                               <semx element="autonum" source="B2">2</semx>
+                               <span class="fmt-label-delim">)</span>
+                            </fmt-name>
+                            <ol id="CC" type="arabic">
+                               <li id="CC1">
+                                  <fmt-name>
+                                     <semx element="autonum" source="CC1">2.1</semx>
+                                     <span class="fmt-label-delim">)</span>
+                                  </fmt-name>
+                               </li>
+                            </ol>
+                         </li>
+                      </ol>
+                   </li>
+                   <li id="A2">
+                      <fmt-name>
+                         <semx element="autonum" source="A2">b</semx>
+                         <span class="fmt-label-delim">)</span>
+                      </fmt-name>
+                      <ol id="BB" type="arabic">
+                         <li id="BB1">
+                            <fmt-name>
+                               <semx element="autonum" source="BB1">1</semx>
+                               <span class="fmt-label-delim">)</span>
+                            </fmt-name>
+                         </li>
+                      </ol>
+                   </li>
                 </ol>
-              </li>
-              <li id="A2" label="b">
-                <ol id="BB" type="arabic">
-                  <li id="BB1" label="1"/>
-                </ol>
-              </li>
-            </ol>
-          </foreword>
-          <clause type="toc" id="_" displayorder="2">
-            <fmt-title depth="1">Contents</fmt-title>
-          </clause>
-        </preface>
-      </iso-standard>
+             </foreword>
+             <clause type="toc" id="_" displayorder="2">
+                <fmt-title depth="1">Contents</fmt-title>
+             </clause>
+          </preface>
+       </iso-standard>
     INPUT
     expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
@@ -658,51 +802,101 @@ RSpec.describe IsoDoc::Jis do
     SUB
     )
     presxml = <<~INPUT
-      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <metanorma-extension>
              <presentation-metadata>
                 <autonumbering-style>japanese</autonumbering-style>
              </presentation-metadata>
           </metanorma-extension>
           <preface>
-             <foreword displayorder="1" id="_">
-         <title id="_">Foreword</title>
-         <fmt-title depth="1">
-            <semx element="title" source="_">Foreword</semx>
-         </fmt-title>
+             <foreword id="_" displayorder="1">
+                <title id="_">Foreword</title>
+                <fmt-title depth="1">
+                   <semx element="title" source="_">Foreword</semx>
+                </fmt-title>
                 <ol id="A" type="alphabet">
-                   <li id="A1" label="a">
+                   <li id="A1">
+                      <fmt-name>
+                         <semx element="autonum" source="A1">a</semx>
+                         <span class="fmt-label-delim">)</span>
+                      </fmt-name>
                       <ol id="B" type="arabic">
-                         <li id="B1" label="一">
+                         <li id="B1">
+                            <fmt-name>
+                               <semx element="autonum" source="B1">一</semx>
+                               <span class="fmt-label-delim">)</span>
+                            </fmt-name>
                             <ol id="C" type="arabic">
-                               <li id="C1" label="一・一">
+                               <li id="C1">
+                                  <fmt-name>
+                                     <semx element="autonum" source="C1">一・一</semx>
+                                     <span class="fmt-label-delim">)</span>
+                                  </fmt-name>
                                   <ol id="D" type="arabic">
-                                     <li id="D1" label="一・一・一">
+                                     <li id="D1">
+                                        <fmt-name>
+                                           <semx element="autonum" source="D1">一・一・一</semx>
+                                           <span class="fmt-label-delim">)</span>
+                                        </fmt-name>
                                         <ol id="E" type="arabic">
-                                           <li id="E1" label="一・一・一・一">
-       </li>
-                                           <li id="E2" label="一・一・一・二">
-       </li>
+                                           <li id="E1">
+                                              <fmt-name>
+                                                 <semx element="autonum" source="E1">一・一・一・一</semx>
+                                                 <span class="fmt-label-delim">)</span>
+                                              </fmt-name>
+                                           </li>
+                                           <li id="E2">
+                                              <fmt-name>
+                                                 <semx element="autonum" source="E2">一・一・一・二</semx>
+                                                 <span class="fmt-label-delim">)</span>
+                                              </fmt-name>
+                                           </li>
                                         </ol>
                                      </li>
-                                     <li id="D2" label="一・一・二">
-       </li>
+                                     <li id="D2">
+                                        <fmt-name>
+                                           <semx element="autonum" source="D2">一・一・二</semx>
+                                           <span class="fmt-label-delim">)</span>
+                                        </fmt-name>
+                                     </li>
                                   </ol>
                                </li>
-                               <li id="C2" label="一・二">
-       </li>
+                               <li id="C2">
+                                  <fmt-name>
+                                     <semx element="autonum" source="C2">一・二</semx>
+                                     <span class="fmt-label-delim">)</span>
+                                  </fmt-name>
+                               </li>
                             </ol>
                          </li>
-                         <li id="B2" label="二">
+                         <li id="B2">
+                            <fmt-name>
+                               <semx element="autonum" source="B2">二</semx>
+                               <span class="fmt-label-delim">)</span>
+                            </fmt-name>
                             <ol id="CC" type="arabic">
-                               <li id="CC1" label="二・一"/>
+                               <li id="CC1">
+                                  <fmt-name>
+                                     <semx element="autonum" source="CC1">二・一</semx>
+                                     <span class="fmt-label-delim">)</span>
+                                  </fmt-name>
+                               </li>
                             </ol>
                          </li>
                       </ol>
                    </li>
-                   <li id="A2" label="b">
+                   <li id="A2">
+                      <fmt-name>
+                         <semx element="autonum" source="A2">b</semx>
+                         <span class="fmt-label-delim">)</span>
+                      </fmt-name>
                       <ol id="BB" type="arabic">
-                         <li id="BB1" label="一"/>
+                         <li id="BB1">
+                            <fmt-name>
+                               <semx element="autonum" source="BB1">一</semx>
+                               <span class="fmt-label-delim">)</span>
+                            </fmt-name>
+                         </li>
                       </ol>
                    </li>
                 </ol>

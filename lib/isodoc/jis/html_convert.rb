@@ -35,20 +35,6 @@ module IsoDoc
         }
       end
 
-      # TODO to Presentation XML
-      # KILL
-      def make_table_footnote_targetx(out, fnid, fnref)
-        attrs = { id: fnid, class: "TableFootnoteRef" }
-        out.span do |s|
-         # TODO to Presentation XML
-          s << @i18n.table_footnote
-          out.span **attrs do |a|
-            a << fnref
-          end
-          insert_tab(s, 1)
-        end
-      end
-
       include BaseConvert
       include Init
     end

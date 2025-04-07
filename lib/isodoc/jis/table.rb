@@ -1,18 +1,6 @@
 module IsoDoc
   module Jis
     class WordConvert < IsoDoc::Iso::WordConvert
-      # KILL
-      def make_table_footnote_targetx(out, fnid, fnref)
-        attrs = { id: fnid, class: "TableFootnoteRef" }
-        out.span do |s|
-          s << @i18n.table_footnote
-          out.span **attrs do |a|
-            a << fnref.sub(/(?!<\))$/, ")") # TODO TO Presentation XML
-          end
-          insert_tab(s, 1)
-        end
-      end
-
       def table_title_parse(node, out); end
 
       def table_attrs(node)
