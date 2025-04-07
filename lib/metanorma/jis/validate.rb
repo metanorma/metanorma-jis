@@ -15,10 +15,8 @@ module Metanorma
                    "#{script} is not a recognised script")
       end
 
-      def validate(doc)
-        content_validate(doc)
-        schema_validate(formattedstr_strip(doc.dup),
-                        File.join(File.dirname(__FILE__), "jis.rng"))
+      def schema_file
+        "jis.rng"
       end
 
       def image_name_validate(xmldoc); end
