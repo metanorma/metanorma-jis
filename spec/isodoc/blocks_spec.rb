@@ -141,8 +141,7 @@ RSpec.describe IsoDoc::Jis do
                    <fmt-xref type="inline" target="ISO712">ISO 712, Section 1</fmt-xref>
                 </semx>
                 —
-                <semx element="modification" source="_">with adjustments</semx>
-                ]
+                >with adjustments]
              </source>
              <note id="note1" autonum="">
                 <fmt-name>

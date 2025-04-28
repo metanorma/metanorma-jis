@@ -29,9 +29,9 @@ module IsoDoc
       end
 
       def convert_i18n_init1(docxml)
-        b = docxml.at("//xmlns:bibdata") or return
+        docxml.at("//xmlns:bibdata") or return
         lang = docxml.at("//xmlns:bibdata/xmlns:language") ||
-        (docxml << "<language/>")
+          (docxml << "<language/>")
         %w(en ja).include?(lang&.text) or lang.content = "ja"
         super
       end
