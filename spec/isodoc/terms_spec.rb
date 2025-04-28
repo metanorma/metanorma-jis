@@ -209,7 +209,7 @@ RSpec.describe IsoDoc::Jis do
                             <referenceFrom>3.1</referenceFrom>
                          </locality>
                       </origin>
-                      <modification>
+                      <modification id="_">
                          <p original-id="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
                       </modification>
                    </termsource>
@@ -930,7 +930,7 @@ RSpec.describe IsoDoc::Jis do
                             <referenceFrom>3.1</referenceFrom>
                          </locality>
                       </origin>
-                      <modification>
+                      <modification id="_">
                          <p original-id="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
                       </modification>
                    </termsource>

@@ -249,7 +249,7 @@ RSpec.describe IsoDoc do
                             </fmt-origin>
                          </semx>
                          —
-                         <semx element="modification" source="_">with adjustments</semx>
+                         with adjustments
                       </semx>
                       ;
                       <semx element="source" source="_">
@@ -271,7 +271,7 @@ RSpec.describe IsoDoc do
                             </fmt-origin>
                          </semx>
                          —
-                         <semx element="modification" source="_">with alterations</semx>
+                         with alterations
                       </semx>
                    </source>
                    <note id="N1" autonum="">
