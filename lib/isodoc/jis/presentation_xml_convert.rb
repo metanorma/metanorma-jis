@@ -78,18 +78,28 @@ module IsoDoc
         "<tr><td border='0' colspan='#{cols}'>#{elem}</td></tr>"
       end
 
-      # TODO preserve original Semantic XML source
-      def tablesource(elem)
+      # KILL
+      def tablesourcex(elem)
         ret = [semx_fmt_dup(elem)]
-        while elem&.next_element&.name == "source"
-          ret << semx_fmt_dup(elem.next_element.remove)
+        n = elem
+        while n = n&.next_element
+          case n.name
+          when "source"
+          when "fmt-source"
+            ret << to_xml(n.remove.children)
+          else break
+          end
         end
-        s = ret.map { |x| to_xml(x) }.map(&:strip).join("; ")
+        s = ret.map(&:strip).join("; ")
         tablesource_label(elem, s)
       end
 
-      def tablesource_label(elem, sources)
+      def source1_label(elem, sources, ancestor)
+        case ancestor
+        when :table
         elem.children = l10n("#{@i18n.source}: #{sources}")
+        else super
+        end
       end
 
       def bibdata_i18n(bibdata)

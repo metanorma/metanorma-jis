@@ -22,12 +22,12 @@ RSpec.describe IsoDoc::Jis do
                 </ul>
               </termexample>
 
-              <termsource status="modified">
+              <source status="modified">
                 <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
                   <modification>
                   <p id="_e73a417d-ad39-417d-a4c8-20e4e2529489">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
                 </modification>
-              </termsource>
+              </source>
             </term>
 
             <term id="paddy">
@@ -48,9 +48,9 @@ RSpec.describe IsoDoc::Jis do
               <ul><li>A</li></ul>
                 <p id="_19830f33-e46c-42cc-94ca-a5ef101132d5">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
               </termnote>
-              <termsource status="identical">
+              <source status="identical">
                 <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
-              </termsource>
+              </source>
             </term>
             <term id="A">
               <preferred><expression><name>term1</name></expression></preferred>
@@ -203,7 +203,7 @@ RSpec.describe IsoDoc::Jis do
                          </li>
                       </ul>
                    </termexample>
-                   <termsource status="modified" id="_">
+                   <source status="modified" id="_">
                       <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
                          <locality type="clause">
                             <referenceFrom>3.1</referenceFrom>
@@ -212,10 +212,10 @@ RSpec.describe IsoDoc::Jis do
                       <modification id="_">
                          <p original-id="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
                       </modification>
-                   </termsource>
+                   </source>
                    <fmt-termsource status="modified">
                       [SOURCE:
-                      <semx element="termsource" source="_">
+                      <semx element="source" source="_">
                          <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011" id="_">
                             <locality type="clause">
                                <referenceFrom>3.1</referenceFrom>
@@ -387,16 +387,16 @@ RSpec.describe IsoDoc::Jis do
                       </ul>
                       <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
                    </termnote>
-                   <termsource status="identical" id="_">
+                   <source status="identical" id="_">
                       <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
                          <locality type="clause">
                             <referenceFrom>3.1</referenceFrom>
                          </locality>
                       </origin>
-                   </termsource>
+                   </source>
                    <fmt-termsource status="identical">
                       [SOURCE:
-                      <semx element="termsource" source="_">
+                      <semx element="source" source="_">
                          <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011" id="_">
                             <locality type="clause">
                                <referenceFrom>3.1</referenceFrom>
@@ -740,12 +740,12 @@ RSpec.describe IsoDoc::Jis do
                 </ul>
               </termexample>
 
-              <termsource status="modified">
+              <source status="modified">
                 <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
                   <modification>
                   <p id="_e73a417d-ad39-417d-a4c8-20e4e2529489">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
                 </modification>
-              </termsource>
+              </source>
             </term>
 
             <term id="paddy">
@@ -766,9 +766,9 @@ RSpec.describe IsoDoc::Jis do
               <ul><li>A</li></ul>
                 <p id="_19830f33-e46c-42cc-94ca-a5ef101132d5">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
               </termnote>
-              <termsource status="identical">
+              <source status="identical">
                 <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
-              </termsource>
+              </source>
             </term>
             <term id="A">
               <preferred><expression><name>term1</name></expression></preferred>
@@ -924,7 +924,7 @@ RSpec.describe IsoDoc::Jis do
                          </li>
                       </ul>
                    </termexample>
-                   <termsource status="modified" id="_">
+                   <source status="modified" id="_">
                       <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
                          <locality type="clause">
                             <referenceFrom>3.1</referenceFrom>
@@ -933,10 +933,10 @@ RSpec.describe IsoDoc::Jis do
                       <modification id="_">
                          <p original-id="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
                       </modification>
-                   </termsource>
+                   </source>
                    <fmt-termsource status="modified">
                       ［出典:
-                      <semx element="termsource" source="_">
+                      <semx element="source" source="_">
                          <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011" id="_">
                             <locality type="clause">
                                <referenceFrom>3.1</referenceFrom>
@@ -1106,16 +1106,16 @@ RSpec.describe IsoDoc::Jis do
                       </ul>
                       <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
                    </termnote>
-                   <termsource status="identical" id="_">
+                   <source status="identical" id="_">
                       <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011">
                          <locality type="clause">
                             <referenceFrom>3.1</referenceFrom>
                          </locality>
                       </origin>
-                   </termsource>
+                   </source>
                    <fmt-termsource status="identical">
                       ［出典:
-                      <semx element="termsource" source="_">
+                      <semx element="source" source="_">
                          <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011" id="_">
                             <locality type="clause">
                                <referenceFrom>3.1</referenceFrom>

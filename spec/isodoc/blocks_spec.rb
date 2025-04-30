@@ -60,7 +60,7 @@ RSpec.describe IsoDoc::Jis do
             </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-      <foreword id="A" displayorder="1">
+       <foreword id="A" displayorder="1">
           <title id="_">Foreword</title>
           <fmt-title depth="1">
              <semx element="title" source="_">Foreword</semx>
@@ -89,7 +89,7 @@ RSpec.describe IsoDoc::Jis do
                    Split-it-right
                    <em>sample</em>
                    divider
-                   <fn reference="1" original-reference="1" id="_" target="_">
+                   <fn reference="1" id="_" original-reference="1" target="_">
                       <p>X</p>
                       <fmt-fn-label>
                          <sup>
@@ -128,21 +128,36 @@ RSpec.describe IsoDoc::Jis do
                 <bookmark id="DL1"/>
              </p>
              <p class="dl">A: B</p>
-             <source status="generalisation">
-                [SOURCE:
-                <origin bibitemid="ISO712" type="inline" citeas="" id="_">
+             <source status="generalisation" id="_">
+                <origin bibitemid="ISO712" type="inline" citeas="">
                    <localityStack>
                       <locality type="section">
                          <referenceFrom>1</referenceFrom>
                       </locality>
                    </localityStack>
                 </origin>
-                <semx element="origin" source="_">
-                   <fmt-xref type="inline" target="ISO712">ISO 712, Section 1</fmt-xref>
-                </semx>
-                —
-                >with adjustments]
+                <modification id="_">
+                   <p original-id="_">with adjustments</p>
+                </modification>
              </source>
+             <fmt-source>
+                [SOURCE:
+                <semx element="source" source="_">
+                   <origin bibitemid="ISO712" type="inline" citeas="" id="_">
+                      <localityStack>
+                         <locality type="section">
+                            <referenceFrom>1</referenceFrom>
+                         </locality>
+                      </localityStack>
+                   </origin>
+                   <semx element="origin" source="_">
+                      <fmt-xref type="inline" target="ISO712">ISO 712, Section 1</fmt-xref>
+                   </semx>
+                   —
+                   <semx element="modification" source="_">with adjustments</semx>
+                </semx>
+                ]
+             </fmt-source>
              <note id="note1" autonum="">
                 <fmt-name>
                    <span class="fmt-caption-label">

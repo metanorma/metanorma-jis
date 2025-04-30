@@ -18,7 +18,7 @@ module IsoDoc
           key: node.xpath(ns("./p[@class = 'ListTitle' or @class = 'dl']")),
           img: node.at(ns("./image")),
           aside: node.at(ns("./aside")),
-          source: node.at(ns("./source")),
+          source: node.at(ns("./fmt-source")),
           subfigs: node.xpath(ns("./figure")).map { |n| figure_components(n) } }
       end
 

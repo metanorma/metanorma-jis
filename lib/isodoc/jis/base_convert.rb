@@ -44,7 +44,7 @@ module IsoDoc
       def table_parse_tail(node, out)
         node.xpath(ns("./p[@class = 'ListTitle' or @class = 'dl']"))
           .each { |p| parse(p, out) }
-        node.xpath(ns("./source")).each { |n| parse(n, out) }
+        node.xpath(ns("./fmt-source")).each { |n| parse(n, out) }
         node.xpath(ns("./note")).each { |n| parse(n, out) }
         node.xpath(ns("./fmt-footnote-container/fmt-fn-body"))
           .each { |n| parse(n, out) }
