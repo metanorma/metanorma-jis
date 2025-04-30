@@ -104,7 +104,7 @@ RSpec.describe IsoDoc do
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <preface>
              <foreword id="_" displayorder="1">
                 <title id="_">Foreword</title>
@@ -229,6 +229,18 @@ RSpec.describe IsoDoc do
                    </p>
                    <p class="dl">Drago: A type of rice</p>
                    <source status="generalisation" id="_">
+                      <origin bibitemid="ISO712" type="inline" citeas="">
+                         <localityStack>
+                            <locality type="section">
+                               <referenceFrom>1</referenceFrom>
+                            </locality>
+                         </localityStack>
+                      </origin>
+                      <modification id="_">
+                         <p original-id="_">with adjustments</p>
+                      </modification>
+                   </source>
+                   <fmt-source>
                       SOURCE:
                       <semx element="source" source="_">
                          <origin bibitemid="ISO712" type="inline" citeas="" id="_">
@@ -249,7 +261,7 @@ RSpec.describe IsoDoc do
                             </fmt-origin>
                          </semx>
                          —
-                         with adjustments
+                         <semx element="modification" source="_">with adjustments</semx>
                       </semx>
                       ;
                       <semx element="source" source="_">
@@ -271,8 +283,20 @@ RSpec.describe IsoDoc do
                             </fmt-origin>
                          </semx>
                          —
-                         with alterations
+                         <semx element="modification" source="_">with alterations</semx>
                       </semx>
+                   </fmt-source>
+                   <source status="generalisation" id="_">
+                      <origin bibitemid="ISO713" type="inline" citeas="">
+                         <localityStack>
+                            <locality type="section">
+                               <referenceFrom>3</referenceFrom>
+                            </locality>
+                         </localityStack>
+                      </origin>
+                      <modification id="_">
+                         <p original-id="_">with alterations</p>
+                      </modification>
                    </source>
                    <note id="N1" autonum="">
                       <fmt-name>
