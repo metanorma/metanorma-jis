@@ -46,13 +46,17 @@ module Metanorma
         options_preprocess(options)
         case format
         when :html
-          IsoDoc::Jis::HtmlConvert.new(options).convert(inname, xml, nil, outname)
+          IsoDoc::Jis::HtmlConvert.new(options)
+            .convert(inname, xml, nil, outname)
         when :doc
-          IsoDoc::Jis::WordConvert.new(options).convert(inname, xml, nil, outname)
+          IsoDoc::Jis::WordConvert.new(options)
+            .convert(inname, xml, nil, outname)
         when :pdf
-          IsoDoc::Jis::PdfConvert.new(options).convert(inname, xml, nil, outname)
+          IsoDoc::Jis::PdfConvert.new(options)
+            .convert(inname, xml, nil, outname)
         when :presentation
-          IsoDoc::Jis::PresentationXMLConvert.new(options).convert(inname, xml, nil, outname)
+          IsoDoc::Jis::PresentationXMLConvert.new(options)
+            .convert(inname, xml, nil, outname)
         else
           super
         end
