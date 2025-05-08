@@ -107,7 +107,7 @@ RSpec.describe Metanorma::Jis do
     INPUT
 
     out = Nokogiri::XML(Asciidoctor.convert(input, *OPTIONS))
-    expect(out.xpath("//xmlns:references/xmlns:bibitem/@id")
+    expect(out.xpath("//xmlns:references/xmlns:bibitem/@anchor")
       .map(&:value))
       .to be_equivalent_to ["ref11", "ref2", "ref1", "ref3", "ref5", "ref4",
                             "ref6", "ref8", "ref7", "ref9", "ref10"]
