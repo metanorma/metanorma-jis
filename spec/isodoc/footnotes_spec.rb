@@ -21,41 +21,47 @@ RSpec.describe IsoDoc do
           </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <preface>
              <foreword displayorder="1" id="_">
                 <title id="_">Foreword</title>
                 <fmt-title depth="1">Foreword</fmt-title>
                 <p>
                    A.
-                   <fn reference="1" original-reference="2" id="_" target="_">
+                   <fn reference="1" id="_" original-reference="2" target="_">
                       <p original-id="_">Formerly denoted as 15 % (m/m).</p>
                       <fmt-fn-label>
-                         <sup>
-                            <semx element="autonum" source="_">1</semx>
-                         </sup>
+                         <span class="fmt-caption-label">
+                            <sup>
+                               <semx element="autonum" source="_">1</semx>
+                            </sup>
+                         </span>
                       </fmt-fn-label>
                    </fn>
                 </p>
                 <p>
                    B.
-                   <fn reference="1" original-reference="2" id="_" target="_">
+                   <fn reference="1" id="_" original-reference="2" target="_">
                       <p id="_">Formerly denoted as 15 % (m/m).</p>
                       <fmt-fn-label>
-                         <sup>
-                            <semx element="autonum" source="_">1</semx>
-                         </sup>
+                         <span class="fmt-caption-label">
+                            <sup>
+                               <semx element="autonum" source="_">1</semx>
+                            </sup>
+                         </span>
                       </fmt-fn-label>
                    </fn>
                 </p>
                 <p>
                    C.
-                   <fn reference="2" original-reference="1" id="_" target="_">
+                   <fn reference="2" id="_" original-reference="1" target="_">
                       <p original-id="_">Hello! denoted as 15 % (m/m).</p>
                       <fmt-fn-label>
-                         <sup>
-                            <semx element="autonum" source="_">2</semx>
-                         </sup>
+                         <span class="fmt-caption-label">
+                            <sup>
+                               <semx element="autonum" source="_">2</semx>
+                            </sup>
+                         </span>
                       </fmt-fn-label>
                    </fn>
                 </p>
@@ -69,9 +75,11 @@ RSpec.describe IsoDoc do
                 <semx element="fn" source="_">
                    <p id="_">
                       <fmt-fn-label>
-                         <sup>
-                            <semx element="autonum" source="_">1</semx>
-                         </sup>
+                         <span class="fmt-caption-label">
+                            <sup>
+                               <semx element="autonum" source="_">1</semx>
+                            </sup>
+                         </span>
                          <span class="fmt-caption-delim">
                             <tab/>
                          </span>
@@ -84,9 +92,11 @@ RSpec.describe IsoDoc do
                 <semx element="fn" source="_">
                    <p id="_">
                       <fmt-fn-label>
-                         <sup>
-                            <semx element="autonum" source="_">2</semx>
-                         </sup>
+                         <span class="fmt-caption-label">
+                            <sup>
+                               <semx element="autonum" source="_">2</semx>
+                            </sup>
+                         </span>
                          <span class="fmt-caption-delim">
                             <tab/>
                          </span>

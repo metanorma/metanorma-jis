@@ -119,10 +119,12 @@ RSpec.describe IsoDoc do
                       <fn reference="1" target="_" original-id="_">
                          <p original-id="_">Name footnote.</p>
                          <fmt-fn-label>
-                            <sup>
-                               <semx element="autonum" source="_">1</semx>
-                               <span class="fmt-label-delim">)</span>
-                            </sup>
+                            <span class="fmt-caption-label">
+                               <sup>
+                                  <semx element="autonum" source="_">1</semx>
+                                  <span class="fmt-label-delim">)</span>
+                               </sup>
+                            </span>
                          </fmt-fn-label>
                       </fn>
                    </name>
@@ -139,10 +141,12 @@ RSpec.describe IsoDoc do
                          <fn reference="1" id="_" target="_">
                             <p original-id="_">Name footnote.</p>
                             <fmt-fn-label>
-                               <sup>
-                                  <semx element="autonum" source="_">1</semx>
-                                  <span class="fmt-label-delim">)</span>
-                               </sup>
+                               <span class="fmt-caption-label">
+                                  <sup>
+                                     <semx element="autonum" source="_">1</semx>
+                                     <span class="fmt-label-delim">)</span>
+                                  </sup>
+                               </span>
                             </fmt-fn-label>
                          </fn>
                       </semx>
@@ -163,10 +167,12 @@ RSpec.describe IsoDoc do
                             <fn reference="a" id="_" target="_">
                                <p original-id="_">Parboiled rice.</p>
                                <fmt-fn-label>
-                                  <sup>
-                                     <semx element="autonum" source="_">a</semx>
-                                     <span class="fmt-label-delim">)</span>
-                                  </sup>
+                                  <span class="fmt-caption-label">
+                                     <sup>
+                                        <semx element="autonum" source="_">a</semx>
+                                        <span class="fmt-label-delim">)</span>
+                                     </sup>
+                                  </span>
                                </fmt-fn-label>
                             </fn>
                          </td>
@@ -175,10 +181,12 @@ RSpec.describe IsoDoc do
                             <fn reference="a" id="_" target="_">
                                <p id="_">Parboiled rice.</p>
                                <fmt-fn-label>
-                                  <sup>
-                                     <semx element="autonum" source="_">a</semx>
-                                     <span class="fmt-label-delim">)</span>
-                                  </sup>
+                                  <span class="fmt-caption-label">
+                                     <sup>
+                                        <semx element="autonum" source="_">a</semx>
+                                        <span class="fmt-label-delim">)</span>
+                                     </sup>
+                                  </span>
                                </fmt-fn-label>
                             </fn>
                          </td>
@@ -324,11 +332,13 @@ RSpec.describe IsoDoc do
                          <semx element="fn" source="_">
                             <p id="_">
                                <fmt-fn-label>
-                                  Footnote
-                                  <sup>
-                                     <semx element="autonum" source="_">1</semx>
-                                     <span class="fmt-label-delim">)</span>
-                                  </sup>
+                                  <span class="fmt-caption-label">
+                                     Footnote
+                                     <sup>
+                                        <semx element="autonum" source="_">1</semx>
+                                        <span class="fmt-label-delim">)</span>
+                                     </sup>
+                                  </span>
                                   <span class="fmt-caption-delim">
                                      <tab/>
                                   </span>
@@ -341,11 +351,13 @@ RSpec.describe IsoDoc do
                          <semx element="fn" source="_">
                             <p id="_">
                                <fmt-fn-label>
-                                  Footnote
-                                  <sup>
-                                     <semx element="autonum" source="_">a</semx>
-                                     <span class="fmt-label-delim">)</span>
-                                  </sup>
+                                  <span class="fmt-caption-label">
+                                     Footnote
+                                     <sup>
+                                        <semx element="autonum" source="_">a</semx>
+                                        <span class="fmt-label-delim">)</span>
+                                     </sup>
+                                  </span>
                                   <span class="fmt-caption-delim">
                                      <tab/>
                                   </span>
