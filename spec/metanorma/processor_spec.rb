@@ -145,7 +145,7 @@ RSpec.describe Metanorma::Jis::Processor do
       #{BLANK_HDR}
       #{BOILERPLATE}
       <sections>
-          <clause id="_" anchor="_clause" inline-header="false" obligation="normative">
+          <clause id="_" inline-header="false" obligation="normative">
             <title>Clause</title>
           </clause>
         </sections>

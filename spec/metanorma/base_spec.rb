@@ -900,7 +900,7 @@ RSpec.describe Metanorma::Jis do
         #{BOILERPLATE}
         <sections></sections>
                  <bibliography>
-             <references id="_" anchor="_normative_references" normative="true" obligation="informative">
+             <references id="_" normative="true" obligation="informative">
                <title>引用規格</title>
                <p id="_">This is extraneous information</p>
                <bibitem id="_" anchor="iso216" type="standard">
@@ -976,7 +976,7 @@ RSpec.describe Metanorma::Jis do
           #{BLANK_HDR}
       #{BOILERPLATE}
             <sections>
-        <clause id="_" anchor="_clause" inline-header="false" obligation="normative">
+        <clause id="_" inline-header="false" obligation="normative">
           <title>Clause</title>
           <table id="_">
             <thead>
@@ -1050,7 +1050,7 @@ RSpec.describe Metanorma::Jis do
           #{BLANK_HDR}
       #{BOILERPLATE}
             <sections>
-        <clause id="_" anchor="_clause" inline-header="false" obligation="normative">
+        <clause id="_" inline-header="false" obligation="normative">
           <title>Clause</title>
           <table id="_">
             <thead>
@@ -1108,7 +1108,7 @@ RSpec.describe Metanorma::Jis do
       #{BLANK_HDR}
       #{BOILERPLATE}
                <sections>
-           <clause id="_" anchor="_clausenormal_flow" inline-header="false" obligation="normative">
+           <clause id="_" inline-header="false" obligation="normative">
              <title>
                Clause
                <fn reference="1">
@@ -1173,10 +1173,10 @@ RSpec.describe Metanorma::Jis do
       #{BLANK_HDR}
       #{BOILERPLATE}
       <sections/>
-        <annex id="_" anchor="_first_appendix" inline-header="false" obligation="normative">
+        <annex id="_" inline-header="false" obligation="normative">
           <title>First appendix</title>
         </annex>
-        <annex id="_" anchor="_commentary" commentary="true" inline-header="false" obligation="informative">
+        <annex id="_" commentary="true" inline-header="false" obligation="informative">
           <title>Commentary</title>
         </annex>
       </metanorma>
