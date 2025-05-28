@@ -75,29 +75,15 @@ module IsoDoc
       end
 
       def full_row(cols, elem)
-        "<tr><td border='0' colspan='#{cols}'>#{elem}</td></tr>"
-      end
-
-      # KILL
-      def tablesourcex(elem)
-        ret = [semx_fmt_dup(elem)]
-        n = elem
-        while n = n&.next_element
-          case n.name
-          when "source"
-          when "fmt-source"
-            ret << to_xml(n.remove.children)
-          else break
-          end
-        end
-        s = ret.map(&:strip).join("; ")
-        tablesource_label(elem, s)
+        <<~XML
+          <tr #{add_id_text}><td #{add_id_text} border='0' colspan='#{cols}'>#{elem}</td></tr>
+        XML
       end
 
       def source1_label(elem, sources, ancestor)
         case ancestor
         when :table
-        elem.children = l10n("#{@i18n.source}: #{sources}")
+          elem.children = l10n("#{@i18n.source}: #{sources}")
         else super
         end
       end
