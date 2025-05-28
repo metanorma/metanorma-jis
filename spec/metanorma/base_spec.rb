@@ -901,7 +901,7 @@ RSpec.describe Metanorma::Jis do
         <sections></sections>
                  <bibliography>
              <references id="_" normative="true" obligation="informative">
-               <title>引用規格</title>
+               <title id="_">引用規格</title>
                <p id="_">This is extraneous information</p>
                <bibitem id="_" anchor="iso216" type="standard">
                  <title format="text/plain">Reference</title>
@@ -977,16 +977,16 @@ RSpec.describe Metanorma::Jis do
       #{BOILERPLATE}
             <sections>
         <clause id="_" inline-header="false" obligation="normative">
-          <title>Clause</title>
+          <title id="_">Clause</title>
           <table id="_">
             <thead>
-              <tr>
+              <tr id="_">
                 <th id="_" valign="top" align="left">A</th>
                 <th id="_" valign="top" align="left">B</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr id="_">
                 <td id="_" valign="top" align="left">C</td>
                 <td id="_" valign="top" align="left">B</td>
               </tr>
@@ -1051,16 +1051,16 @@ RSpec.describe Metanorma::Jis do
       #{BOILERPLATE}
             <sections>
         <clause id="_" inline-header="false" obligation="normative">
-          <title>Clause</title>
+          <title id="_">Clause</title>
           <table id="_">
             <thead>
-              <tr>
+              <tr id="_">
                 <th id="_" valign="top" align="left">A</th>
                 <th id="_" valign="top" align="left">B</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr id="_">
                 <td id="_" valign="top" align="left">C</td>
                 <td id="_" valign="top" align="left">B</td>
               </tr>
@@ -1109,36 +1109,36 @@ RSpec.describe Metanorma::Jis do
       #{BOILERPLATE}
                <sections>
            <clause id="_" inline-header="false" obligation="normative">
-             <title>
+             <title id="_">
                Clause
-               <fn reference="1">
+               <fn id="_" reference="1">
                  <p id="_">Normal flow</p>
                </fn>
              </title>
              <table id="_">
-               <name>
+               <name id="_">
                  Table.
-                 <fn reference="a">
+                 <fn id="_" reference="a">
                    <p id="_">First</p>
                  </fn>
                </name>
                <thead>
-                 <tr>
+                 <tr id="_">
                    <th id="_" valign="top" align="left">A</th>
                    <th id="_" valign="top" align="left">
                      B
-                     <fn reference="b">
+                     <fn id="_" reference="b">
                        <p id="_">Second</p>
                      </fn>
                    </th>
                  </tr>
                </thead>
                <tbody>
-                 <tr>
+                 <tr id="_">
                    <td id="_" valign="top" align="left">C</td>
                    <td id="_" valign="top" align="left">
                      B
-                     <fn reference="c">
+                     <fn id="_" reference="c">
                        <p id="_">Third</p>
                      </fn>
                    </td>
@@ -1147,7 +1147,7 @@ RSpec.describe Metanorma::Jis do
              </table>
              <p id="_">
                Paragraph.
-               <fn reference="2">
+               <fn id="_" reference="2">
                  <p id="_">Normal flow #2</p>
                </fn>
              </p>
@@ -1174,10 +1174,10 @@ RSpec.describe Metanorma::Jis do
       #{BOILERPLATE}
       <sections/>
         <annex id="_" inline-header="false" obligation="normative">
-          <title>First appendix</title>
+          <title id="_">First appendix</title>
         </annex>
         <annex id="_" commentary="true" inline-header="false" obligation="informative">
-          <title>Commentary</title>
+          <title id="_">Commentary</title>
         </annex>
       </metanorma>
     OUTPUT
