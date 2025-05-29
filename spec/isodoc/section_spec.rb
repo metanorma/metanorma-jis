@@ -7,9 +7,9 @@ RSpec.describe IsoDoc::Jis do
       <iso-standard xmlns="http://riboseinc.com/isoxml">
        <bibliography>
        <clause id="R" normative="true" obligation="informative" displayorder="1">
-         <fmt-title>Normative References</fmt-title>
+         <fmt-title id="_">Normative References</fmt-title>
           <references id="R" normative="true" obligation="informative">
-         <fmt-title>Normative References 1</fmt-title>
+         <fmt-title id="_">Normative References 1</fmt-title>
        </references>
        </clause>
        </bibliography>
@@ -170,7 +170,7 @@ RSpec.describe IsoDoc::Jis do
          </bibdata>
          <preface>
             <clause type="toc" id="_" displayorder="1">
-               <fmt-title depth="1">Contents</fmt-title>
+               <fmt-title id="_" depth="1">Contents</fmt-title>
             </clause>
          </preface>
          <sections>
@@ -205,7 +205,7 @@ RSpec.describe IsoDoc::Jis do
             </p>
             <clause id="R" normative="true" obligation="informative" displayorder="9">
                <title id="_">Normative References</title>
-               <fmt-title depth="1">
+               <fmt-title id="_" depth="1">
                   <span class="fmt-caption-label">
                      <semx element="autonum" source="R">1</semx>
                   </span>
@@ -220,7 +220,7 @@ RSpec.describe IsoDoc::Jis do
                </fmt-xref-label>
                <references id="R1" normative="true" obligation="informative">
                   <title id="_">Normative References 1</title>
-                  <fmt-title depth="2">
+                  <fmt-title id="_" depth="2">
                      <span class="fmt-caption-label">
                         <semx element="autonum" source="R">1</semx>
                         <span class="fmt-autonum-delim">.</span>
@@ -243,7 +243,7 @@ RSpec.describe IsoDoc::Jis do
             <title id="_">
                <strong>First Annex</strong>
             </title>
-            <fmt-title>
+            <fmt-title id="_">
                <span class="fmt-caption-label">
                   <span class="fmt-element-name">Annex</span>
                   <semx element="autonum" source="A">A</semx>
@@ -266,7 +266,7 @@ RSpec.describe IsoDoc::Jis do
             <title id="_">
                <strong>Second Annex</strong>
             </title>
-            <fmt-title>
+            <fmt-title id="_">
                <span class="fmt-caption-label">
                   <span class="fmt-element-name">Annex</span>
                   <semx element="autonum" source="B">B</semx>
@@ -288,7 +288,7 @@ RSpec.describe IsoDoc::Jis do
          <bibliography>
             <references id="S" normative="false" obligation="informative" displayorder="12">
                <title id="_">Bibliography</title>
-               <fmt-title depth="1">
+               <fmt-title id="_" depth="1">
                   <semx element="title" source="_">Bibliography</semx>
                </fmt-title>
             </references>
@@ -305,12 +305,12 @@ RSpec.describe IsoDoc::Jis do
                <strong>Title Part</strong>
             </p>
             <title id="_">Commentary</title>
-            <fmt-title>
+            <fmt-title id="_">
                <semx element="title" source="_">Commentary</semx>
             </fmt-title>
             <clause id="C1">
                <title id="_">First clause</title>
-               <fmt-title depth="2">
+               <fmt-title id="_" depth="2">
                   <span class="fmt-caption-label">
                      <semx element="autonum" source="C1">1</semx>
                   </span>
@@ -333,7 +333,7 @@ RSpec.describe IsoDoc::Jis do
                </fmt-xref-label>
                <clause id="C2">
                   <title id="_">First subclause</title>
-                  <fmt-title depth="3">
+                  <fmt-title id="_" depth="3">
                      <span class="fmt-caption-label">
                         <semx element="autonum" source="C1">1</semx>
                         <span class="fmt-autonum-delim">.</span>
@@ -375,7 +375,7 @@ RSpec.describe IsoDoc::Jis do
                <strong>Title Part</strong>
             </p>
             <title id="_">Another Commentary</title>
-            <fmt-title>
+            <fmt-title id="_">
                <semx element="title" source="_">Another Commentary</semx>
             </fmt-title>
          </annex>
@@ -692,44 +692,44 @@ RSpec.describe IsoDoc::Jis do
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-      <preface>
-         <clause id="_" displayorder="1" type="participants">
-            <title id="_">日本産業標準調査会 標準第一部会 Membership Table</title>
-            <fmt-title depth="1">
-               <semx element="title" source="_">日本産業標準調査会 標準第一部会 Membership Table</semx>
-            </fmt-title>
-            <table unnumbered="true">
-               <thead>
-                  <tr>
-                     <th/>
-                     <th>Full Name</th>
-                     <th>Affiliation</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td>(部会長)</td>
-                     <td>信介 酒井</td>
-                     <td>横浜国立大学</td>
-                  </tr>
-                  <tr>
-                     <td>(委員)</td>
-                     <td>弘 伊藤</td>
-                     <td>国立研究開発法人建築研究所</td>
-                  </tr>
-                  <tr>
-                     <td/>
-                     <td>公隆 宇治</td>
-                     <td>国立研究開発法人建築研究所</td>
-                  </tr>
-               </tbody>
-           <p class="dl">GM: General Manager</p>
-            </table>
-         </clause>
-         <clause type="toc" id="_" displayorder="2">
-            <fmt-title depth="1">Contents</fmt-title>
-         </clause>
-      </preface>
+        <preface>
+          <clause id="_" type="participants" displayorder="1">
+             <title id="_">日本産業標準調査会 標準第一部会 Membership Table</title>
+             <fmt-title depth="1" id="_">
+                <semx element="title" source="_">日本産業標準調査会 標準第一部会 Membership Table</semx>
+             </fmt-title>
+             <table id="_" unnumbered="true">
+                <thead>
+                   <tr id="_">
+                      <th id="_"/>
+                      <th id="_">Full Name</th>
+                      <th id="_">Affiliation</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   <tr id="_">
+                      <td id="_">(部会長)</td>
+                      <td id="_">信介 酒井</td>
+                      <td id="_">横浜国立大学</td>
+                   </tr>
+                   <tr id="_">
+                      <td id="_">(委員)</td>
+                      <td id="_">弘 伊藤</td>
+                      <td id="_">国立研究開発法人建築研究所</td>
+                   </tr>
+                   <tr id="_">
+                      <td id="_"/>
+                      <td id="_">公隆 宇治</td>
+                      <td id="_">国立研究開発法人建築研究所</td>
+                   </tr>
+                </tbody>
+                <p class="dl">GM: General Manager</p>
+             </table>
+          </clause>
+          <clause type="toc" id="_" displayorder="2">
+             <fmt-title depth="1" id="_">Contents</fmt-title>
+          </clause>
+       </preface>
     OUTPUT
     pres_output = Nokogiri::XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
@@ -739,44 +739,44 @@ RSpec.describe IsoDoc::Jis do
       .to be_equivalent_to Xml::C14n.format(strip_guid(presxml))
 
     presxml = <<~OUTPUT
-      <preface>
-         <clause id="_" displayorder="1" type="participants">
-            <title id="_">日本産業標準調査会 標準第一部会 構成表</title>
-            <fmt-title depth="1">
-               <semx element="title" source="_">日本産業標準調査会 標準第一部会 構成表</semx>
-            </fmt-title>
-            <table unnumbered="true">
-               <thead>
-                  <tr>
-                     <th/>
-                     <th>氏名</th>
-                     <th>所属</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td>（部会長）</td>
-                     <td>酒井 信介</td>
-                     <td>横浜国立大学</td>
-                  </tr>
-                  <tr>
-                     <td>（委員）</td>
-                     <td>伊藤 弘</td>
-                     <td>国立研究開発法人建築研究所</td>
-                  </tr>
-                  <tr>
-                     <td/>
-                     <td>宇治 公隆</td>
-                     <td>国立研究開発法人建築研究所</td>
-                  </tr>
-               </tbody>
-            <p class="dl">GM: General Manager</p>
-            </table>
-         </clause>
-         <clause type="toc" id="_" displayorder="2">
-            <fmt-title depth="1">目　次</fmt-title>
-         </clause>
-      </preface>
+       <preface>
+          <clause id="_" type="participants" displayorder="1">
+             <title id="_">日本産業標準調査会 標準第一部会 構成表</title>
+             <fmt-title depth="1" id="_">
+                <semx element="title" source="_">日本産業標準調査会 標準第一部会 構成表</semx>
+             </fmt-title>
+             <table id="_" unnumbered="true">
+                <thead>
+                   <tr id="_">
+                      <th id="_"/>
+                      <th id="_">氏名</th>
+                      <th id="_">所属</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   <tr id="_">
+                      <td id="_">（部会長）</td>
+                      <td id="_">酒井 信介</td>
+                      <td id="_">横浜国立大学</td>
+                   </tr>
+                   <tr id="_">
+                      <td id="_">（委員）</td>
+                      <td id="_">伊藤 弘</td>
+                      <td id="_">国立研究開発法人建築研究所</td>
+                   </tr>
+                   <tr id="_">
+                      <td id="_"/>
+                      <td id="_">宇治 公隆</td>
+                      <td id="_">国立研究開発法人建築研究所</td>
+                   </tr>
+                </tbody>
+                <p class="dl">GM: General Manager</p>
+             </table>
+          </clause>
+          <clause type="toc" id="_" displayorder="2">
+             <fmt-title depth="1" id="_">目　次</fmt-title>
+          </clause>
+       </preface>
     OUTPUT
     pres_output = Nokogiri::XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
@@ -843,73 +843,73 @@ RSpec.describe IsoDoc::Jis do
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-       <preface>
-          <clause id="_" displayorder="1" type="participants">
+        <preface>
+          <clause id="_" type="participants" displayorder="1">
              <title id="_">JSA-S1020 Working Group</title>
-             <fmt-title depth="1">
+             <fmt-title depth="1" id="_">
                 <semx element="title" source="_">JSA-S1020 Working Group</semx>
              </fmt-title>
-             <table unnumbered="true">
+             <table id="_" unnumbered="true">
                 <thead>
-                   <tr>
-                      <th/>
-                      <th>Full Name</th>
-                      <th>Affiliation</th>
+                   <tr id="_">
+                      <th id="_"/>
+                      <th id="_">Full Name</th>
+                      <th id="_">Affiliation</th>
                    </tr>
                 </thead>
                 <tbody>
-                   <tr>
-                      <td>(部会長)</td>
-                      <td>信介 酒井</td>
-                      <td>横浜国立大学</td>
+                   <tr id="_">
+                      <td id="_">(部会長)</td>
+                      <td id="_">信介 酒井</td>
+                      <td id="_">横浜国立大学</td>
                    </tr>
-                   <tr>
-                      <td>(委員)</td>
-                      <td>弘 伊藤</td>
-                      <td>国立研究開発法人建築研究所</td>
+                   <tr id="_">
+                      <td id="_">(委員)</td>
+                      <td id="_">弘 伊藤</td>
+                      <td id="_">国立研究開発法人建築研究所</td>
                    </tr>
-                   <tr>
-                      <td/>
-                      <td>公隆 宇治</td>
-                      <td>国立研究開発法人建築研究所</td>
+                   <tr id="_">
+                      <td id="_"/>
+                      <td id="_">公隆 宇治</td>
+                      <td id="_">国立研究開発法人建築研究所</td>
                    </tr>
                 </tbody>
              </table>
           </clause>
-          <clause id="_" displayorder="2" type="participants">
+          <clause id="_" type="participants" displayorder="2">
              <title id="_">日本産業標準調査会 標準第一部会 Membership Table</title>
-             <fmt-title depth="1">
+             <fmt-title depth="1" id="_">
                 <semx element="title" source="_">日本産業標準調査会 標準第一部会 Membership Table</semx>
              </fmt-title>
-             <table unnumbered="true">
+             <table id="_" unnumbered="true">
                 <thead>
-                   <tr>
-                      <th/>
-                      <th>Full Name</th>
-                      <th>Affiliation</th>
+                   <tr id="_">
+                      <th id="_"/>
+                      <th id="_">Full Name</th>
+                      <th id="_">Affiliation</th>
                    </tr>
                 </thead>
                 <tbody>
-                   <tr>
-                      <td>(Chief)</td>
-                      <td>Fred Astair</td>
-                      <td>Engineer</td>
+                   <tr id="_">
+                      <td id="_">(Chief)</td>
+                      <td id="_">Fred Astair</td>
+                      <td id="_">Engineer</td>
                    </tr>
-                   <tr>
-                      <td>(Heels)</td>
-                      <td>Ginger Rogers</td>
-                      <td>Scientist</td>
+                   <tr id="_">
+                      <td id="_">(Heels)</td>
+                      <td id="_">Ginger Rogers</td>
+                      <td id="_">Scientist</td>
                    </tr>
-                   <tr>
-                      <td/>
-                      <td>Mr Bojangles</td>
-                      <td>Dancer</td>
+                   <tr id="_">
+                      <td id="_"/>
+                      <td id="_">Mr Bojangles</td>
+                      <td id="_">Dancer</td>
                    </tr>
                 </tbody>
              </table>
           </clause>
           <clause type="toc" id="_" displayorder="3">
-             <fmt-title depth="1">Contents</fmt-title>
+             <fmt-title depth="1" id="_">Contents</fmt-title>
           </clause>
        </preface>
     OUTPUT

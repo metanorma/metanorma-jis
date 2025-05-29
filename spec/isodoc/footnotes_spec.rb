@@ -6,7 +6,7 @@ RSpec.describe IsoDoc do
     input = <<~INPUT
           <iso-standard xmlns="http://riboseinc.com/isoxml">
           <preface>
-          <foreword displayorder="1"><fmt-title>Foreword</fmt-title>
+          <foreword displayorder="1"><fmt-title id="_">Foreword</fmt-title>
           <p>A.<fn reference="2">
         <p id="_1e228e29-baef-4f38-b048-b05a051747e4">Formerly denoted as 15 % (m/m).</p>
       </fn></p>
@@ -25,7 +25,7 @@ RSpec.describe IsoDoc do
           <preface>
              <foreword displayorder="1" id="_">
                 <title id="_">Foreword</title>
-                <fmt-title depth="1">Foreword</fmt-title>
+                <fmt-title id="_" depth="1">Foreword</fmt-title>
                 <p>
                    A.
                    <fn reference="1" id="_" original-reference="2" target="_">
@@ -67,7 +67,7 @@ RSpec.describe IsoDoc do
                 </p>
              </foreword>
              <clause type="toc" id="_" displayorder="2">
-                <fmt-title depth="1">Contents</fmt-title>
+                <fmt-title id="_" depth="1">Contents</fmt-title>
              </clause>
           </preface>
           <fmt-footnote-container>
