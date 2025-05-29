@@ -146,7 +146,7 @@ RSpec.describe Metanorma::Jis::Processor do
       #{BOILERPLATE}
       <sections>
           <clause id="_" inline-header="false" obligation="normative">
-            <title>Clause</title>
+            <title id="_">Clause</title>
           </clause>
         </sections>
       </ogc-standard>

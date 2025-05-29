@@ -2,24 +2,19 @@ module IsoDoc
   module Jis
     class PresentationXMLConvert < IsoDoc::Iso::PresentationXMLConvert
       def ol_depth(node)
-        depth == 1 and return :alphabet
-        :arabic
+        depth = node.ancestors("ol").size + 1
+        @counter.ol_type(node, depth) # defined in Xref::Counter
       end
 
-         def ol_depth(node)
-      depth = node.ancestors("ol").size + 1
-      @counter.ol_type(node, depth) # defined in Xref::Counter
-    end
+      def ul_label_list(_elem)
+        %w(&#xFF0D; &#x30FB;)
+      end
 
-         def ul_label_list(_elem)
-      %w(&#xFF0D; &#x30FB;)
-    end
-
-    def ul_label_value(elem)
-      depth = elem.ancestors("ul").size
-      val = ul_label_list(elem)
-      val[(depth - 1) % val.size]
-    end
+      def ul_label_value(elem)
+        depth = elem.ancestors("ul").size
+        val = ul_label_list(elem)
+        val[(depth - 1) % val.size]
+      end
 
       # TODO: move the table/figure key processing to Word, not Presentation XML
       def dl(docxml)

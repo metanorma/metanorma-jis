@@ -82,10 +82,10 @@ module IsoDoc
         s, t, y, d = participant_table_prep(clause)
         s or return nil
         out1 = <<~OUTPUT
-          <clause id='_#{UUIDTools::UUID.random_create}' type="participants"><title>#{t}</title>
-          <table unnumbered='true'>
+          <clause #{add_id_text} type="participants"><title>#{t}</title>
+          <table #{add_id_text} unnumbered='true'>
           <thead>
-          <tr><th/><th>#{@i18n.full_name}</th><th>#{@i18n.affiliation}</th></tr>
+          <tr #{add_id_text}><th #{add_id_text}/><th #{add_id_text}>#{@i18n.full_name}</th><th #{add_id_text}>#{@i18n.affiliation}</th></tr>
           </thead>
           <tbody>
         OUTPUT
@@ -110,11 +110,12 @@ module IsoDoc
           r = y["role"] ? @i18n.l10n("(#{y['role']})") : ""
           n = y["name"]
           if n.is_a?(Hash)
-            n =
-              if @lang == "ja" then "#{n['surname']} #{n['givenname']}"
-              else "#{n['givenname']} #{n['surname']}" end
+            n = if @lang == "ja" then "#{n['surname']} #{n['givenname']}"
+                else "#{n['givenname']} #{n['surname']}" end
           end
-          "<tr><td>#{r}</rd><td>#{n}</td><td>#{y['affiliation']}</td></tr>"
+          <<~XML
+            <tr #{add_id_text}><td #{add_id_text}>#{r}</td><td #{add_id_text}>#{n}</td><td #{add_id_text}>#{y['affiliation']}</td></tr>
+          XML
         end.join("\n")
       end
 
