@@ -1,13 +1,5 @@
 require "spec_helper"
 RSpec.describe Metanorma::Jis do
-  before do
-    # Force to download Relaton index file
-    allow_any_instance_of(Relaton::Index::Type).to receive(:actual?)
-      .and_return(false)
-    allow_any_instance_of(Relaton::Index::FileIO).to receive(:check_file)
-      .and_return(nil)
-  end
-
   it "has boilerplate for empty normative references" do
     input = <<~INPUT
       #{ISOBIB_BLANK_HDR}
@@ -24,69 +16,63 @@ RSpec.describe Metanorma::Jis do
   end
 
   it "has boilerplate for undated normative references" do
-    VCR.use_cassette "isobib_123_undated" do
-      input = <<~INPUT
-        #{ISOBIB_BLANK_HDR}
+    input = <<~INPUT
+      #{LOCAL_CACHED_ISOBIB_BLANK_HDR}
 
-        [bibliography]
-        == Normative references
+      [bibliography]
+      == Normative references
 
-         * [[[iso123, ISO 123]]] _Standard_
-         * [[[iso124, ISO 124]]] _Standard_
-         * [[[iso125, ISO 125]]] _Standard_
-      INPUT
-      xml = Nokogiri::XML(Asciidoctor.convert(input, *OPTIONS))
-      expect(Xml::C14n.format(strip_guid(xml.at(
-        "//xmlns:references/xmlns:p",
-      ).to_xml))).to be_equivalent_to <<~OUTPUT
-        <p id="_">次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要求事項 を構成している。これらの引用規格は，その最新版(追補を含む。)を適用する。</p>
-      OUTPUT
-    end
+       * [[[iso123, ISO 123]]] _Standard_
+       * [[[iso124, ISO 124]]] _Standard_
+       * [[[iso125, ISO 125]]] _Standard_
+    INPUT
+    xml = Nokogiri::XML(Asciidoctor.convert(input, *OPTIONS))
+    expect(Xml::C14n.format(strip_guid(xml.at(
+      "//xmlns:references/xmlns:p",
+    ).to_xml))).to be_equivalent_to <<~OUTPUT
+      <p id="_">次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要求事項 を構成している。これらの引用規格は，その最新版(追補を含む。)を適用する。</p>
+    OUTPUT
   end
 
   it "has boilerplate for dated normative references" do
-    VCR.use_cassette "isobib_123_dated" do
-      input = <<~INPUT
-        #{ISOBIB_BLANK_HDR}
+    input = <<~INPUT
+      #{LOCAL_CACHED_ISOBIB_BLANK_HDR}
 
-        [bibliography]
-        == Normative references
+      [bibliography]
+      == Normative references
 
-         * [[[iso123, ISO 123:1985]]] _Standard_
-         * [[[iso124, ISO 124:2014]]] _Standard_
-         * [[[iso125, ISO 125:2011]]] _Standard_
-      INPUT
-      xml = Nokogiri::XML(Asciidoctor.convert(input, *OPTIONS))
-      expect(Xml::C14n.format(strip_guid(xml.at(
-        "//xmlns:references/xmlns:p",
-      ).to_xml))).to be_equivalent_to <<~OUTPUT
-        <p id="_">次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要 求事項を構成している。これらの引用規格は，記載の年の版を適用し，その後の改正版(追補を含む。) は適用しない。</p>
-      OUTPUT
-    end
+       * [[[iso123, ISO 123:1985]]] _Standard_
+       * [[[iso124, ISO 124:2014]]] _Standard_
+       * [[[iso125, ISO 125:2011]]] _Standard_
+    INPUT
+    xml = Nokogiri::XML(Asciidoctor.convert(input, *OPTIONS))
+    expect(Xml::C14n.format(strip_guid(xml.at(
+      "//xmlns:references/xmlns:p",
+    ).to_xml))).to be_equivalent_to <<~OUTPUT
+      <p id="_">次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要 求事項を構成している。これらの引用規格は，記載の年の版を適用し，その後の改正版(追補を含む。) は適用しない。</p>
+    OUTPUT
   end
 
   it "has boilerplate for mixed dated and undated normative references" do
-    VCR.use_cassette "isobib_123_mix_dated" do
-      input = <<~INPUT
-        #{ISOBIB_BLANK_HDR}
+    input = <<~INPUT
+      #{LOCAL_CACHED_ISOBIB_BLANK_HDR}
 
-        [bibliography]
-        == Normative references
+      [bibliography]
+      == Normative references
 
-         * [[[iso123, ISO 123:1985]]] _Standard_
-         * [[[iso124, ISO 124]]] _Standard_
-         * [[[iso125, ISO 125:2011]]] _Standard_
-      INPUT
-      xml = Nokogiri::XML(Asciidoctor.convert(input, *OPTIONS))
-      expect(Xml::C14n.format(strip_guid(xml.at(
-        "//xmlns:references/xmlns:p",
-      ).to_xml))).to be_equivalent_to <<~OUTPUT
-        <p id="_">次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要 求事項を構成している。これらの引用規格のうち，西暦年を付記してあるものは，記載の年の版を適 用し，その後の改正版(追補を含む。)は適用しない。西暦年の付記がない引用規格は，その最新版(追 補を含む。)を適用する。</p>
-      OUTPUT
-    end
+       * [[[iso123, ISO 123:1985]]] _Standard_
+       * [[[iso124, ISO 124]]] _Standard_
+       * [[[iso125, ISO 125:2011]]] _Standard_
+    INPUT
+    xml = Nokogiri::XML(Asciidoctor.convert(input, *OPTIONS))
+    expect(Xml::C14n.format(strip_guid(xml.at(
+      "//xmlns:references/xmlns:p",
+    ).to_xml))).to be_equivalent_to <<~OUTPUT
+      <p id="_">次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要 求事項を構成している。これらの引用規格のうち，西暦年を付記してあるものは，記載の年の版を適 用し，その後の改正版(追補を含む。)は適用しない。西暦年の付記がない引用規格は，その最新版(追 補を含む。)を適用する。</p>
+    OUTPUT
   end
 
-  it "sorts referenes" do
+  it "sorts references" do
     input = <<~INPUT
       #{ASCIIDOC_BLANK_HDR}
 
