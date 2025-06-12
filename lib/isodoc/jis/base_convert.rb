@@ -76,6 +76,8 @@ module IsoDoc
         )
       end
 
+      # TODO: the approach taken in Plateau is more rational,
+      # of doing this in Presentation XML
       def table_note_cleanup(docxml)
         tn = ::IsoDoc::Function::Cleanup::TABLENOTE_CSS
         docxml.xpath("//table[dl or #{tn} or p[@class = 'dl']]").each do |t|

@@ -1,12 +1,5 @@
 require "spec_helper"
 RSpec.describe Metanorma::Jis do
-  before do
-    # Force to download Relaton index file
-    allow_any_instance_of(Relaton::Index::Type).to receive(:actual?)
-      .and_return(false)
-    allow_any_instance_of(Relaton::Index::FileIO).to receive(:check_file)
-      .and_return(nil)
-  end
 
   it "has a version number" do
     expect(Metanorma::Jis::VERSION).not_to be nil
@@ -880,7 +873,6 @@ RSpec.describe Metanorma::Jis do
   end
 
   it "preserves user-supplied boilerplate in Normative References" do
-    VCR.use_cassette "isobib_216" do
       input = <<~INPUT
         #{ASCIIDOC_BLANK_HDR}
         [bibliography]
@@ -939,7 +931,6 @@ RSpec.describe Metanorma::Jis do
       INPUT
       expect(Xml::C14n.format(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
         .to be_equivalent_to Xml::C14n.format(output)
-    end
   end
 
   it "adds examples and notes both to tables" do
