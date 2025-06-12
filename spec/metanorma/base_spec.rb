@@ -880,7 +880,6 @@ RSpec.describe Metanorma::Jis do
   end
 
   it "preserves user-supplied boilerplate in Normative References" do
-    VCR.use_cassette "isobib_216" do
       input = <<~INPUT
         #{ASCIIDOC_BLANK_HDR}
         [bibliography]
@@ -939,7 +938,6 @@ RSpec.describe Metanorma::Jis do
       INPUT
       expect(Xml::C14n.format(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
         .to be_equivalent_to Xml::C14n.format(output)
-    end
   end
 
   it "adds examples and notes both to tables" do
