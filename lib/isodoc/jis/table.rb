@@ -4,14 +4,15 @@ module IsoDoc
       def table_title_parse(node, out); end
 
       def table_attrs(node)
-        { id: node["id"], title: node["alt"],
-          summary: node["summary"], width: node["width"],
-          class: (node.text.length > 4000 ? "MsoTableGridBig" : "MsoTableGrid"),
-          style: "border-collapse:collapse;" \
+        style = node["style"] || "border-collapse:collapse;" \
                  "mso-table-anchor-horizontal:column;mso-table-overlap:never;" \
                  "border:none;mso-padding-alt: " \
                  "0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;" \
-                 "mso-border-insidev:none;#{keep_style(node)}",
+                 "mso-border-insidev:none;"
+        { id: node["id"], title: node["alt"],
+          summary: node["summary"], width: node["width"],
+          class: (node.text.length > 4000 ? "MsoTableGridBig" : "MsoTableGrid"),
+          style: style,
           border: 0, cellspacing: 0, cellpadding: 0 }
       end
 
