@@ -2,6 +2,7 @@ require_relative "init"
 require "isodoc"
 require_relative "presentation_section"
 require_relative "presentation_list"
+require_relative "presentation_table"
 require_relative "../../relaton/render-jis/general"
 
 module IsoDoc
@@ -44,40 +45,6 @@ module IsoDoc
 
       def strip_para(node)
         node.children.to_xml.gsub(%r{</?p( [^>]*)?>}, "")
-      end
-
-      def table1(node)
-        super
-        cols = table_cols_count(node)
-        ins = node.at(ns("./fmt-xref-label")) ||
-          node.at(ns("./fmt-name"))
-        thead = table_thead_pt(node, ins)
-        table_unit_note(node, thead, cols)
-      end
-
-      def table_thead_pt(node, name)
-        node.at(ns("./thead")) ||
-          name&.after("<thead> </thead>")&.next ||
-          node.elements.first.before("<thead> </thead>").previous
-      end
-
-      def table_cols_count(node)
-        cols = 0
-        node.at(ns(".//tr")).xpath(ns("./td | ./th")).each do |x|
-          cols += x["colspan"]&.to_i || 1
-        end
-        cols
-      end
-
-      def table_unit_note(node, thead, cols)
-        unit_note = node.at(ns(".//note[@type = 'units']")) or return
-        thead.children.first.previous = full_row(cols, unit_note.remove.to_xml)
-      end
-
-      def full_row(cols, elem)
-        <<~XML
-          <tr #{add_id_text}><td #{add_id_text} border='0' colspan='#{cols}'>#{elem}</td></tr>
-        XML
       end
 
       def source1_label(elem, sources, ancestor)

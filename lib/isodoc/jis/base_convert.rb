@@ -76,26 +76,10 @@ module IsoDoc
         )
       end
 
-      # TODO: the approach taken in Plateau is more rational,
-      # of doing this in Presentation XML
-      def table_note_cleanup(docxml)
-        tn = ::IsoDoc::Function::Cleanup::TABLENOTE_CSS
-        docxml.xpath("//table[dl or #{tn} or p[@class = 'dl']]").each do |t|
-          tfoot = table_get_or_make_tfoot(t)
-          insert_here = new_fullcolspan_row(t, tfoot)
-          t.xpath("dl | p[@class = 'ListTitle'] | #{tn} | " \
-                  "p[@class = 'dl']")
-            .each do |d|
-            d.parent = insert_here
-          end
-        end
-      end
-
       # table name footnote is formatted like other footnotes, since table name
       # is a table row.
       def footnote_parse(node, out)
-        return table_footnote_parse(node, out) if @in_table
-
+        @in_table and return table_footnote_parse(node, out)
         super
       end
     end
