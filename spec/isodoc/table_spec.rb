@@ -210,6 +210,14 @@ RSpec.describe IsoDoc do
                       </tr>
                    </tbody>
                    <tfoot>
+                      <tr id="_">
+                         <td id="_" colspan="5">
+                            <p class="ListTitle">
+                               <semx element="name" source="_">Key</semx>
+                            </p>
+                            <p class="dl">Drago: A type of rice</p>
+                         </td>
+                      </tr>
                       <tr>
                          <td align="left">
                             Reproducibility limit,
@@ -231,11 +239,118 @@ RSpec.describe IsoDoc do
                             <p class="dl">6,06: definition</p>
                          </td>
                       </tr>
+                      <tr id="_">
+                         <td id="_" colspan="5">
+                            <note id="N1" autonum="">
+                               <fmt-name id="_">
+                                  <span class="fmt-caption-label">
+                                     <span class="fmt-element-name">NOTE</span>
+                                  </span>
+                                  <span class="fmt-label-delim">
+                                     <tab/>
+                                  </span>
+                               </fmt-name>
+                               <fmt-xref-label>
+                                  <span class="fmt-element-name">Note</span>
+                               </fmt-xref-label>
+                               <fmt-xref-label container="_">
+                                  <span class="fmt-xref-container">
+                                     <semx element="foreword" source="_">Foreword</semx>
+                                  </span>
+                                  <span class="fmt-comma">,</span>
+                                  <span class="fmt-element-name">Note</span>
+                               </fmt-xref-label>
+                               <p>This is a table about rice</p>
+                            </note>
+                            <fmt-footnote-container>
+                               <fmt-fn-body id="_" target="_" reference="1">
+                                  <semx element="fn" source="_">
+                                     <p id="_">
+                                        <fmt-fn-label>
+                                           <span class="fmt-caption-label">
+                                              Footnote
+                                              <sup>
+                                                 <semx element="autonum" source="_">1</semx>
+                                                 <span class="fmt-label-delim">)</span>
+                                              </sup>
+                                           </span>
+                                           <span class="fmt-caption-delim">
+                                              <tab/>
+                                           </span>
+                                        </fmt-fn-label>
+                                        Name footnote.
+                                     </p>
+                                  </semx>
+                               </fmt-fn-body>
+                               <fmt-fn-body id="_" target="_" reference="a">
+                                  <semx element="fn" source="_">
+                                     <p id="_">
+                                        <fmt-fn-label>
+                                           <span class="fmt-caption-label">
+                                              Footnote
+                                              <sup>
+                                                 <semx element="autonum" source="_">a</semx>
+                                                 <span class="fmt-label-delim">)</span>
+                                              </sup>
+                                           </span>
+                                           <span class="fmt-caption-delim">
+                                              <tab/>
+                                           </span>
+                                        </fmt-fn-label>
+                                        Parboiled rice.
+                                     </p>
+                                  </semx>
+                               </fmt-fn-body>
+                            </fmt-footnote-container>
+                            <fmt-source>
+                               SOURCE:
+                               <semx element="source" source="_">
+                                  <origin bibitemid="ISO712" type="inline" citeas="" id="_">
+                                     <localityStack>
+                                        <locality type="section">
+                                           <referenceFrom>1</referenceFrom>
+                                        </locality>
+                                     </localityStack>
+                                  </origin>
+                                  <semx element="origin" source="_">
+                                     <fmt-origin bibitemid="ISO712" type="inline" citeas="">
+                                        <localityStack>
+                                           <locality type="section">
+                                              <referenceFrom>1</referenceFrom>
+                                           </locality>
+                                        </localityStack>
+                                        , Section 1
+                                     </fmt-origin>
+                                  </semx>
+                                  —
+                                  <semx element="modification" source="_">with adjustments</semx>
+                               </semx>
+                               ;
+                               <semx element="source" source="_">
+                                  <origin bibitemid="ISO713" type="inline" citeas="" id="_">
+                                     <localityStack>
+                                        <locality type="section">
+                                           <referenceFrom>3</referenceFrom>
+                                        </locality>
+                                     </localityStack>
+                                  </origin>
+                                  <semx element="origin" source="_">
+                                     <fmt-origin bibitemid="ISO713" type="inline" citeas="">
+                                        <localityStack>
+                                           <locality type="section">
+                                              <referenceFrom>3</referenceFrom>
+                                           </locality>
+                                        </localityStack>
+                                        , Section 3
+                                     </fmt-origin>
+                                  </semx>
+                                  —
+                                  <semx element="modification" source="_">with alterations</semx>
+                               </semx>
+                            </fmt-source>
+                         </td>
+                      </tr>
                    </tfoot>
-                   <p class="ListTitle">
-                      <semx element="name" source="_">Key</semx>
-                   </p>
-                   <p class="dl">Drago: A type of rice</p>
                    <source status="generalisation" id="_">
                       <origin bibitemid="ISO712" type="inline" citeas="">
                          <localityStack>
@@ -248,52 +363,6 @@ RSpec.describe IsoDoc do
                          <p id="_">with adjustments</p>
                       </modification>
                    </source>
-                   <fmt-source>
-                      SOURCE:
-                      <semx element="source" source="_">
-                         <origin bibitemid="ISO712" type="inline" citeas="" id="_">
-                            <localityStack>
-                               <locality type="section">
-                                  <referenceFrom>1</referenceFrom>
-                               </locality>
-                            </localityStack>
-                         </origin>
-                         <semx element="origin" source="_">
-                            <fmt-origin bibitemid="ISO712" type="inline" citeas="">
-                               <localityStack>
-                                  <locality type="section">
-                                     <referenceFrom>1</referenceFrom>
-                                  </locality>
-                               </localityStack>
-                               , Section 1
-                            </fmt-origin>
-                         </semx>
-                         —
-                         <semx element="modification" source="_">with adjustments</semx>
-                      </semx>
-                      ;
-                      <semx element="source" source="_">
-                         <origin bibitemid="ISO713" type="inline" citeas="" id="_">
-                            <localityStack>
-                               <locality type="section">
-                                  <referenceFrom>3</referenceFrom>
-                               </locality>
-                            </localityStack>
-                         </origin>
-                         <semx element="origin" source="_">
-                            <fmt-origin bibitemid="ISO713" type="inline" citeas="">
-                               <localityStack>
-                                  <locality type="section">
-                                     <referenceFrom>3</referenceFrom>
-                                  </locality>
-                               </localityStack>
-                               , Section 3
-                            </fmt-origin>
-                         </semx>
-                         —
-                         <semx element="modification" source="_">with alterations</semx>
-                      </semx>
-                   </fmt-source>
                    <source status="generalisation" id="_">
                       <origin bibitemid="ISO713" type="inline" citeas="">
                          <localityStack>
@@ -306,67 +375,6 @@ RSpec.describe IsoDoc do
                          <p original-id="_">with alterations</p>
                       </modification>
                    </source>
-                   <note id="N1" autonum="">
-                      <fmt-name id="_">
-                         <span class="fmt-caption-label">
-                            <span class="fmt-element-name">NOTE</span>
-                         </span>
-                         <span class="fmt-label-delim">
-                            <tab/>
-                         </span>
-                      </fmt-name>
-                      <fmt-xref-label>
-                         <span class="fmt-element-name">Note</span>
-                      </fmt-xref-label>
-                      <fmt-xref-label container="_">
-                         <span class="fmt-xref-container">
-                            <semx element="foreword" source="_">Foreword</semx>
-                         </span>
-                         <span class="fmt-comma">,</span>
-                         <span class="fmt-element-name">Note</span>
-                      </fmt-xref-label>
-                      <p>This is a table about rice</p>
-                   </note>
-                   <fmt-footnote-container>
-                      <fmt-fn-body id="_" target="_" reference="1">
-                         <semx element="fn" source="_">
-                            <p id="_">
-                               <fmt-fn-label>
-                                  <span class="fmt-caption-label">
-                                     Footnote
-                                     <sup>
-                                        <semx element="autonum" source="_">1</semx>
-                                        <span class="fmt-label-delim">)</span>
-                                     </sup>
-                                  </span>
-                                  <span class="fmt-caption-delim">
-                                     <tab/>
-                                  </span>
-                               </fmt-fn-label>
-                               Name footnote.
-                            </p>
-                         </semx>
-                      </fmt-fn-body>
-                      <fmt-fn-body id="_" target="_" reference="a">
-                         <semx element="fn" source="_">
-                            <p id="_">
-                               <fmt-fn-label>
-                                  <span class="fmt-caption-label">
-                                     Footnote
-                                     <sup>
-                                        <semx element="autonum" source="_">a</semx>
-                                        <span class="fmt-label-delim">)</span>
-                                     </sup>
-                                  </span>
-                                  <span class="fmt-caption-delim">
-                                     <tab/>
-                                  </span>
-                               </fmt-fn-label>
-                               Parboiled rice.
-                            </p>
-                         </semx>
-                      </fmt-fn-body>
-                   </fmt-footnote-container>
                 </table>
              </foreword>
              <clause type="toc" id="_" displayorder="2">
@@ -511,33 +519,41 @@ RSpec.describe IsoDoc do
                 </tbody>
                 <tfoot>
                    <tr>
-                      <td style="text-align:left;border-top:solid windowtext 1.5pt;border-bottom:0pt;">
+                      <td colspan="5" style="border-top:solid windowtext 1.5pt;border-bottom:0pt;">
+                         <p class="ListTitle">Key</p>
+                         <p class="dl">Drago: A type of rice</p>
+                      </td>
+                   </tr>
+                   <tr>
+                      <td style="text-align:left;border-top:none;border-bottom:0pt;">
                          Reproducibility limit,
                          <span class="stem">(#(R)#)</span>
                          (= 2,83
                          <span class="stem">(#(s_R)#)</span>
                          )
                       </td>
-                      <td style="text-align:center;border-top:solid windowtext 1.5pt;border-bottom:0pt;">2,89</td>
-                      <td style="text-align:center;border-top:solid windowtext 1.5pt;border-bottom:0pt;">0,57</td>
-                      <td style="text-align:center;border-top:solid windowtext 1.5pt;border-bottom:0pt;">2,26</td>
-                      <td style="text-align:center;border-top:solid windowtext 1.5pt;border-bottom:0pt;">
+                      <td style="text-align:center;border-top:none;border-bottom:0pt;">2,89</td>
+                      <td style="text-align:center;border-top:none;border-bottom:0pt;">0,57</td>
+                      <td style="text-align:center;border-top:none;border-bottom:0pt;">2,26</td>
+                      <td style="text-align:center;border-top:none;border-bottom:0pt;">
                          <p class="dl">6,06: definition</p>
                       </td>
                    </tr>
                    <tr>
-                      <td colspan="5" style="border-top:0pt;border-bottom:solid windowtext 1.5pt;">
-                         <p class="ListTitle">Key</p>
-                         <p class="dl">Drago: A type of rice</p>
-                         <div class="BlockSource">
-                            <p>SOURCE: , Section 1 — with adjustments; , Section 3 — with alterations</p>
-                         </div>
+                      <td colspan="5" style="border-top:none;border-bottom:0pt;">
                          <div id="N1" class="Note">
                             <p>
                                <span class="note_label">NOTE  </span>
                                This is a table about rice
                             </p>
                          </div>
+                         <div class="BlockSource">
+                            <p>SOURCE: , Section 1 — with adjustments; , Section 3 — with alterations</p>
+                         </div>
+                      </td>
+                   </tr>
+                   <tr>
+                      <td colspan="5" style="border-top:0pt;border-bottom:solid windowtext 1.5pt;">
                          <div id="fn:tableD-11" class="TableFootnote">
                             <p id="_" class="TableFootnote">
                                <span class="TableFootnoteRef">Footnote 1)</span>
@@ -594,7 +610,7 @@ RSpec.describe IsoDoc do
     OUTPUT
 
     doc = <<~OUTPUT
-      <div>
+       <div>
           <table xmlns:m="m" title="tool tip" summary="long desc" width="" class="MsoTableGrid" style="border-collapse:collapse;mso-table-anchor-horizontal:column;mso-table-overlap:never;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0">
              <a name="tableD-1" id="tableD-1"/>
              <thead>
@@ -643,28 +659,31 @@ RSpec.describe IsoDoc do
              </tbody>
              <tfoot>
                 <tr>
-                   <td align="left" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">
+                   <td colspan="5" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:avoid;">
+                      <p class="ForewordText" style="page-break-after:avoid">Key</p>
+                      <p class="ForewordText" style="page-break-after:avoid">Drago: A type of rice</p>
+                   </td>
+                </tr>
+                <tr>
+                   <td align="left" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:avoid;">
                       Reproducibility limit,
                       <span class="stem">(#(R)#)</span>
                       (= 2,83
                       <span class="stem">(#(s_R)#)</span>
                       )
                    </td>
-                   <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">2,89</td>
-                   <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">0,57</td>
-                   <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">2,26</td>
-                   <td align="center" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">
-                      <p class="ForewordText" style="text-align: center;page-break-after:auto">6,06: definition</p>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:avoid;">2,89</td>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:avoid;">0,57</td>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:avoid;">2,26</td>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:avoid;">
+                      <p class="ForewordText" style="text-align: center;page-break-after:avoid">6,06: definition</p>
                    </td>
                 </tr>
                 <tr>
-                   <td colspan="5" style="border-top:0pt;mso-border-top-alt:0pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-left-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-right-alt:solid windowtext 1.5pt;">
-                      <div class="BlockSource">
-                         <p class="MsoNormal">SOURCE: , Section 1 — with adjustments; , Section 3 — with alterations</p>
-                      </div>
-                      <div>
+                   <td colspan="5" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">
+                      <div style="page-break-after:auto">
                          <a name="N1" id="N1"/>
-                         <p class="Note">
+                         <p class="Note" style="page-break-after:auto">
                             <span class="note_label">
                                NOTE
                                <span style="mso-tab-count:1">  </span>
@@ -672,6 +691,13 @@ RSpec.describe IsoDoc do
                             This is a table about rice
                          </p>
                       </div>
+                      <div class="BlockSource" style="page-break-after:auto">
+                         <p style="page-break-after:auto" class="MsoNormal">SOURCE: , Section 1 — with adjustments; , Section 3 — with alterations</p>
+                      </div>
+                   </td>
+                </tr>
+                <tr>
+                   <td colspan="5" style="border-top:0pt;mso-border-top-alt:0pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-left-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-right-alt:solid windowtext 1.5pt;">
                       <div class="TableFootnote">
                          <a name="ftntableD-11" id="ftntableD-11"/>
                          <p class="ForewordText">
@@ -693,8 +719,6 @@ RSpec.describe IsoDoc do
                    </td>
                 </tr>
              </tfoot>
-             <p class="ForewordText">Key</p>
-             <p class="ForewordText">Drago: A type of rice</p>
           </table>
        </div>
     OUTPUT
@@ -828,6 +852,7 @@ RSpec.describe IsoDoc do
                       <tr id="_">
                          <td id="_" border="0" colspan="2">
                             <note id="B" type="units">Units in mm</note>
+                            <note id="D" type="units">Other units in sec</note>
                          </td>
                       </tr>
                       <tr>
@@ -845,6 +870,9 @@ RSpec.describe IsoDoc do
                          <td align="center">81,2</td>
                       </tr>
                    </tbody>
+                   <tfoot>
+               <tr id="_">
+                  <td id="_" colspan="2">
                    <p class="ListTitle">
                       <semx element="name" source="_">Key</semx>
                    </p>
@@ -897,7 +925,7 @@ RSpec.describe IsoDoc do
                       </fmt-xref-label>
                       Note 2
                    </note>
-                   <note id="D" type="units">Other units in sec</note>
+                   </td></tr></tfoot>
                 </table>
              </foreword>
              <clause type="toc" id="_" displayorder="2">
@@ -939,9 +967,6 @@ RSpec.describe IsoDoc do
             <br/>
             <div id="_">
                                <h1 class="ForewordTitle">Foreword</h1>
-                   <div align="right">
-                      <b>Other units in sec</b>
-                   </div>
                    <table id="tableD-1" class="MsoISOTable" style="border-width:1px;border-spacing:0;">
                       <thead>
                          <tr>
@@ -956,6 +981,7 @@ RSpec.describe IsoDoc do
                          <tr>
                             <td colspan="2" style="" scope="colgroup">
                                <div id="B" class="Note">Units in mm</div>
+                                <div id="D" class="Note">Other units in sec</div>
                             </td>
                          </tr>
                          <tr>
@@ -973,6 +999,9 @@ RSpec.describe IsoDoc do
                             <td style="text-align:center;border-top:none;border-bottom:solid windowtext 1.5pt;">81,2</td>
                          </tr>
                       </tbody>
+                      <tfoot>
+                 <tr>
+                    <td colspan="2" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">
                       <p class="ListTitle">Key</p>
                       <p class="dl">Drago: A type of rice</p>
                       <div id="A" class="Note">
@@ -987,7 +1016,7 @@ RSpec.describe IsoDoc do
                          </p>
                          Note 2
                       </div>
-                      <div id="D" class="Note">Other units in sec</div>
+                      </td></tr></tfoot>
                    </table>
                 </div>
                 <br/>
@@ -1016,9 +1045,6 @@ RSpec.describe IsoDoc do
              </p>
              <div id="_">
                <h1 class="ForewordTitle">Foreword</h1>
-               <div align="right">
-                 <b>Other units in sec</b>
-               </div>
                <div align="center" class="table_container">
                  <table id="tableD-1" title="" summary="" width="" class="MsoTableGrid" style="border-collapse:collapse;mso-table-anchor-horizontal:column;mso-table-overlap:never;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0">
                    <thead>
@@ -1034,6 +1060,7 @@ RSpec.describe IsoDoc do
                      <tr>
                        <td colspan="2" style="page-break-after:avoid;">
                          <div id="B" class="Note">Units in mm</div>
+                          <div id="D" class="Note">Other units in sec</div>
                        </td>
                      </tr>
                      <tr>
@@ -1051,6 +1078,8 @@ RSpec.describe IsoDoc do
                        <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">81,2</td>
                      </tr>
                    </tbody>
+                   <tfoot><tr>
+                   <td colspan="2" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">
                    <p class="ForewordText">Key</p>
                   <p class="ForewordText">Drago: A type of rice</p>
                    <div id="A" class="Note">
@@ -1071,7 +1100,7 @@ RSpec.describe IsoDoc do
                      </p>
                      Note 2
                    </div>
-            <div id="D" class="Note">Other units in sec</div>
+            </td></tr></tfoot>
                  </table>
                </div>
              </div>
