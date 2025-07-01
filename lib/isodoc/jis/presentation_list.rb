@@ -48,8 +48,11 @@ module IsoDoc
 
       def dl_to_para_name(node)
         e = node.at(ns("./fmt-name")) or return ""
-        node.parent.parent["type"] == "participants" and return ""
+        if node.parent.parent.parent.parent.parent["type"] == "participants"
+          ""
+        else
         "<p class='ListTitle'>#{e.children.to_xml}</p>"
+        end
       end
 
       def dl_to_para_terms(node)
