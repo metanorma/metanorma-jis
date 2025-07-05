@@ -23,6 +23,12 @@ module Metanorma
         @default_doctype = "japanese-industrial-standard"
       end
 
+      def ol_attrs(node)
+        ret = super
+        ret.delete(:type)
+        ret
+      end
+
       def section_attributes(node)
         ret = super
         if node.attr("style") == "appendix" && node.level == 1 &&
