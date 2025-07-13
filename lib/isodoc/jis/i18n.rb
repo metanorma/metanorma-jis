@@ -21,7 +21,7 @@ module IsoDoc
       # use Japanese ordinals for era years
       def japanese_date(date)
         date.nil? and return date
-        d = date.split(/-/).map(&:to_i)
+        d = date.split("-").map(&:to_i)
         time = Date.new(*d)
         yr = japanese_year(time)
         case d.size
