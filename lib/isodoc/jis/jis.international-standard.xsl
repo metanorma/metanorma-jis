@@ -86,7 +86,7 @@
 				<fo:region-end region-name="right-region" extent="22mm"/>
 			</fo:simple-page-master>
 
-			<fo:simple-page-master master-name="cover-page_2024" page-width="{$pageWidthA5}mm" page-height="{$pageHeightA5}mm">
+			<fo:simple-page-master master-name="cover-page_vertical_layout" page-width="{$pageWidthA5}mm" page-height="{$pageHeightA5}mm">
 				<!-- Note (for writing-mode="tb-rl", may be due the update for support 'tb-rl' mode):
 				 fo:region-body/@margin-top = left margin
 				 fo:region-body/@margin-bottom = right margin
@@ -170,7 +170,7 @@
 				<fo:region-end region-name="right-region" extent="{$marginLeftRight2}mm"/>
 			</fo:simple-page-master>
 
-			<fo:page-sequence-master master-name="document_toc">
+			<fo:page-sequence-master master-name="toc">
 				<fo:repeatable-page-master-alternatives>
 					<fo:conditional-page-master-reference page-position="first" master-reference="first_page_toc"/>
 					<fo:conditional-page-master-reference odd-or-even="even" master-reference="even"/>
@@ -179,7 +179,7 @@
 			</fo:page-sequence-master>
 
 			<xsl:if test="1 = 3">
-			<fo:simple-page-master master-name="document_toc_2024" page-width="{$pageHeight}mm" page-height="{$pageWidth}mm">
+			<fo:simple-page-master master-name="toc_vertical_layout" page-width="{$pageHeight}mm" page-height="{$pageWidth}mm">
 				<!-- Note (for writing-mode="tb-rl", may be due the update for support 'tb-rl' mode):
 				 fo:region-body/@margin-top = left margin
 				 fo:region-body/@margin-bottom = right margin
@@ -195,7 +195,7 @@
 			</fo:simple-page-master>
 			</xsl:if>
 
-			<fo:simple-page-master master-name="document_toc_2024" page-width="{$pageHeight}mm" page-height="{$pageWidth}mm">
+			<fo:simple-page-master master-name="toc_vertical_layout" page-width="{$pageHeight}mm" page-height="{$pageWidth}mm">
 				<!-- Note (for writing-mode="tb-rl", may be due the update for support 'tb-rl' mode):
 				 fo:region-body/@margin-top = left margin
 				 fo:region-body/@margin-bottom = right margin
@@ -210,7 +210,7 @@
 				<fo:region-end region-name="right-region" extent="{$marginLeftRight2}mm"/> <!--  background-color="red" -->
 			</fo:simple-page-master>
 
-			<fo:page-sequence-master master-name="document_preface">
+			<fo:page-sequence-master master-name="preface">
 				<fo:repeatable-page-master-alternatives>
 					<fo:conditional-page-master-reference odd-or-even="even" master-reference="even"/>
 					<fo:conditional-page-master-reference odd-or-even="odd" master-reference="odd"/>
@@ -232,7 +232,7 @@
 				</fo:repeatable-page-master-alternatives>
 			</fo:page-sequence-master>
 
-			<fo:simple-page-master master-name="document_2024" page-width="{$pageHeight}mm" page-height="{$pageWidth}mm">
+			<fo:simple-page-master master-name="document_vertical_layout" page-width="{$pageHeight}mm" page-height="{$pageWidth}mm">
 				<xsl:if test="$isGenerateTableIF = 'true'">
 					<xsl:attribute name="page-width"><xsl:value-of select="$pageWidth"/>mm</xsl:attribute>
 					<xsl:attribute name="page-height"><xsl:value-of select="$pageHeight"/>mm</xsl:attribute>
@@ -255,7 +255,7 @@
 				<fo:region-end region-name="right-region" extent="{$marginLeftRight2}mm"/> <!--  background-color="red" -->
 			</fo:simple-page-master>
 
-			<fo:simple-page-master master-name="document_2024_page" page-width="{$pageHeight}mm" page-height="{$pageWidth}mm">
+			<fo:simple-page-master master-name="document_vertical_layout_page" page-width="{$pageHeight}mm" page-height="{$pageWidth}mm">
 				<xsl:if test="$isGenerateTableIF = 'true'">
 					<xsl:attribute name="page-width"><xsl:value-of select="$pageWidth"/>mm</xsl:attribute>
 					<xsl:attribute name="page-height"><xsl:value-of select="$pageHeight"/>mm</xsl:attribute>
@@ -277,7 +277,7 @@
 				<fo:region-start region-name="left-region" extent="{$marginLeftRight1}mm"/> <!--  background-color="blue" -->
 				<fo:region-end region-name="right-region" extent="{$marginLeftRight2}mm"/> <!--  background-color="red" -->
 			</fo:simple-page-master>
-			<fo:simple-page-master master-name="document_2024_last" page-width="{$pageHeight}mm" page-height="{$pageWidth}mm">
+			<fo:simple-page-master master-name="document_vertical_layout_last" page-width="{$pageHeight}mm" page-height="{$pageWidth}mm">
 				<xsl:if test="$isGenerateTableIF = 'true'">
 					<xsl:attribute name="page-width"><xsl:value-of select="$pageWidth"/>mm</xsl:attribute>
 					<xsl:attribute name="page-height"><xsl:value-of select="$pageHeight"/>mm</xsl:attribute>
@@ -307,10 +307,10 @@
 				<fo:region-end region-name="right-region" extent="{$marginLeftRight2}mm"/> <!--  background-color="red" -->
 			</fo:simple-page-master>
 
-			<fo:page-sequence-master master-name="document_2024_with_last">
+			<fo:page-sequence-master master-name="document_vertical_layout_with_last">
 				<fo:repeatable-page-master-alternatives>
-					<fo:conditional-page-master-reference page-position="last" master-reference="document_2024_last"/>
-					<fo:conditional-page-master-reference page-position="any" master-reference="document_2024_page"/>
+					<fo:conditional-page-master-reference page-position="last" master-reference="document_vertical_layout_last"/>
+					<fo:conditional-page-master-reference page-position="any" master-reference="document_vertical_layout_page"/>
 				</fo:repeatable-page-master-alternatives>
 			</fo:page-sequence-master>
 
@@ -377,7 +377,7 @@
 				</fo:repeatable-page-master-alternatives>
 			</fo:page-sequence-master>
 
-			<fo:simple-page-master master-name="back-page_2024" page-width="{$pageWidthA5}mm" page-height="{$pageHeightA5}mm">
+			<fo:simple-page-master master-name="back-page" page-width="{$pageWidthA5}mm" page-height="{$pageHeightA5}mm">
 				<!-- Note (for writing-mode="tb-rl", may be due the update for support 'tb-rl' mode):
 				 fo:region-body/@margin-top = left margin
 				 fo:region-body/@margin-bottom = right margin
@@ -547,10 +547,10 @@
 
 						<xsl:choose>
 							<xsl:when test="self::mn:clause and @type = 'toc'">
-								<fo:page-sequence master-reference="document_toc" force-page-count="no-force">
+								<fo:page-sequence master-reference="toc" force-page-count="no-force">
 
 									<xsl:if test="$vertical_layout = 'true'">
-										<xsl:attribute name="master-reference">document_toc_2024</xsl:attribute>
+										<xsl:attribute name="master-reference">toc_vertical_layout</xsl:attribute>
 										<xsl:attribute name="format">一</xsl:attribute>
 									</xsl:if>
 
@@ -617,10 +617,10 @@
 
 								<xsl:if test="$paged_xml_preface/mn:page and count($paged_xml_preface/mn:page/*) != 0">
 									<!-- Preface pages -->
-									<fo:page-sequence master-reference="document_preface" force-page-count="no-force">
+									<fo:page-sequence master-reference="preface" force-page-count="no-force">
 
 										<xsl:if test="$vertical_layout = 'true'">
-											<xsl:attribute name="master-reference">document_2024</xsl:attribute>
+											<xsl:attribute name="master-reference">document_vertical_layout</xsl:attribute>
 											<xsl:attribute name="format">一</xsl:attribute>
 										</xsl:if>
 
@@ -679,7 +679,7 @@
 					<xsl:if test="not($vertical_layout = 'true') and not($doctype = 'technical-specification')">
 
 					<!-- Document type rendering -->
-					<fo:page-sequence master-reference="document_preface" force-page-count="no-force">
+					<fo:page-sequence master-reference="preface" force-page-count="no-force">
 						<xsl:call-template name="insertHeaderFooter">
 							<xsl:with-param name="docidentifier" select="$docidentifier"/>
 							<xsl:with-param name="copyrightText" select="$copyrightText"/>
@@ -779,9 +779,9 @@
 
 							<xsl:choose>
 								<xsl:when test="$vertical_layout = 'true'">
-									<xsl:attribute name="master-reference">document_2024</xsl:attribute>
+									<xsl:attribute name="master-reference">document_vertical_layout</xsl:attribute>
 									<xsl:if test="position() = last()">
-										<xsl:attribute name="master-reference">document_2024_with_last</xsl:attribute>
+										<xsl:attribute name="master-reference">document_vertical_layout_with_last</xsl:attribute>
 									</xsl:if>
 
 									<xsl:attribute name="format">一</xsl:attribute>
@@ -996,7 +996,7 @@
 			<xsl:variable name="copyrightText"><xsl:call-template name="get_copyrightText"/></xsl:variable>
 			<xsl:choose>
 				<xsl:when test="$vertical_layout = 'true'">
-					<xsl:call-template name="insertCoverPage2024">
+					<xsl:call-template name="insertCoverPageVerticalLayout">
 						<xsl:with-param name="num" select="$num"/>
 						<xsl:with-param name="docidentifier_jis" select="$docidentifier_JIS"/>
 					</xsl:call-template>
@@ -1319,7 +1319,7 @@
 	</xsl:variable>
 	<xsl:variable name="i18n_JIS" select="normalize-space($i18n_JIS_)"/>
 
-	<xsl:template name="insertCoverPage2024">
+	<xsl:template name="insertCoverPageVerticalLayout">
 		<xsl:param name="num"/>
 		<xsl:param name="docidentifier_jis"/>
 
@@ -1327,7 +1327,7 @@
 		<xsl:variable name="docidentifier_number" select="java:replaceAll(java:java.lang.String.new($docidentifier_jis), '^(.*)(:)(.*)$', '$1')"/>
 		<xsl:variable name="docidentifier_year" select="java:replaceAll(java:java.lang.String.new($docidentifier_jis), '^(.*)(:)(.*)$', '$3')"/>
 
-		<fo:page-sequence master-reference="cover-page_2024" force-page-count="no-force">
+		<fo:page-sequence master-reference="cover-page_vertical_layout" force-page-count="no-force">
 
 			<!-- <xsl:variable name="cover_page_background_1_value" select="normalize-space(//mn:metanorma/mn:metanorma-extension/mn:presentation-metadata/mn:color-cover-page-background-1)"/>
 			<xsl:variable name="cover_page_background_1_">
@@ -1501,7 +1501,7 @@
 
 			</fo:flow>
 		</fo:page-sequence>
-	</xsl:template> <!-- insertCoverPage2024 -->
+	</xsl:template> <!-- insertCoverPageVerticalLayout -->
 
 	<xsl:template name="back-page">
 		<xsl:param name="num"/>
@@ -1509,7 +1509,7 @@
 		<xsl:if test="$isGenerateTableIF = 'false'">
 			<xsl:if test="$vertical_layout = 'true'">
 
-				<fo:page-sequence master-reference="back-page_2024" force-page-count="no-force" font-family="Noto Serif JP" font-weight="500">
+				<fo:page-sequence master-reference="back-page" force-page-count="no-force" font-family="Noto Serif JP" font-weight="500">
 
 					<fo:static-content flow-name="header">
 						<xsl:variable name="presentation_metadata_image_name">
@@ -12745,7 +12745,10 @@
 
 	<xsl:template match="mn:note" name="note">
 		<xsl:call-template name="setNamedDestination"/>
-		<fo:block id="{@id}" xsl:use-attribute-sets="note-style" role="SKIP">
+		<fo:block xsl:use-attribute-sets="note-style" role="SKIP">
+			<xsl:if test="not(parent::mn:references)">
+				<xsl:copy-of select="@id"/>
+			</xsl:if>
 			<xsl:call-template name="setBlockSpanAll"/>
 
 			<xsl:call-template name="refine_note-style"/>
@@ -15676,16 +15679,6 @@
 							<xsl:call-template name="processBibitem">
 								<xsl:with-param name="biblio_tag_part">last</xsl:with-param>
 							</xsl:call-template>
-							<xsl:if test="self::mn:note">
-								<xsl:variable name="note_node">
-									<xsl:copy> <!-- skip @id -->
-										<xsl:copy-of select="node()"/>
-									</xsl:copy>
-								</xsl:variable>
-								<xsl:for-each select="xalan:nodeset($note_node)/*">
-									<xsl:call-template name="note"/>
-								</xsl:for-each>
-							</xsl:if>
 						</fo:block>
 					</fo:list-item-body>
 				</fo:list-item>
@@ -15711,7 +15704,24 @@
 		</fo:inline>
 		<xsl:apply-templates select="mn:formattedref"/>
 
+		<xsl:call-template name="processBibliographyNote"/>
 	</xsl:template> <!-- processBibitem (bibitem) -->
+
+	<xsl:template name="processBibliographyNote">
+		<xsl:if test="self::mn:note">
+			<xsl:variable name="note_node">
+				<xsl:element name="{local-name(..)}" namespace="{$namespace_full}"> <!-- save parent context node for determining styles -->
+					<xsl:copy> <!-- skip @id -->
+						<xsl:copy-of select="node()"/>
+					</xsl:copy>
+				</xsl:element>
+			</xsl:variable>
+			<!-- <xsl:for-each select="xalan:nodeset($note_node)//mn:note">
+				<xsl:call-template name="note"/>
+			</xsl:for-each> -->
+			<xsl:call-template name="note"/>
+		</xsl:if>
+	</xsl:template>
 
 	<xsl:template match="mn:title" mode="title">
 		<fo:inline><xsl:apply-templates/></fo:inline>
@@ -16257,6 +16267,48 @@
 	<!-- =================== -->
 	<!-- End Form's elements processing -->
 	<!-- =================== -->
+
+	<xsl:attribute-set name="toc-style">
+	</xsl:attribute-set>
+
+	<xsl:template name="refine_toc-style">
+	</xsl:template>
+
+	<xsl:attribute-set name="toc-title-style">
+	</xsl:attribute-set>
+
+	<xsl:attribute-set name="toc-title-page-style">
+	</xsl:attribute-set> <!-- toc-title-page-style -->
+
+	<xsl:attribute-set name="toc-item-block-style">
+	</xsl:attribute-set>
+
+	<xsl:template name="refine_toc-item-block-style">
+	</xsl:template>
+
+	<xsl:attribute-set name="toc-item-style">
+		<xsl:attribute name="role">TOCI</xsl:attribute>
+	</xsl:attribute-set> <!-- END: toc-item-style -->
+
+	<xsl:template name="refine_toc-item-style">
+	</xsl:template> <!-- END: refine_toc-item-style -->
+
+	<xsl:attribute-set name="toc-leader-style">
+	</xsl:attribute-set> <!-- END: toc-leader-style -->
+
+	<xsl:attribute-set name="toc-pagenumber-style">
+	</xsl:attribute-set>
+
+	<!-- List of Figures, Tables -->
+	<xsl:attribute-set name="toc-listof-title-style">
+	</xsl:attribute-set>
+
+	<xsl:attribute-set name="toc-listof-item-block-style">
+	</xsl:attribute-set>
+
+	<xsl:attribute-set name="toc-listof-item-style">
+		<xsl:attribute name="role">TOCI</xsl:attribute>
+	</xsl:attribute-set>
 
 	<xsl:template name="processPrefaceSectionsDefault_Contents">
 		<xsl:variable name="nodes_preface_">
