@@ -156,11 +156,11 @@ RSpec.describe IsoDoc::Jis do
     doc = Nokogiri::XML(output)
     doc.xpath("//xmlns:p[@class = 'MsoToc1']").each(&:remove)
     doc1 = doc.at("//xmlns:div[@class = 'WordSection2']")
-    expect(Xml::C14n.format(strip_guid(doc1.to_xml)))
-      .to be_equivalent_to Xml::C14n.format(strip_guid(word1))
+    expect(Canon.format_xml(strip_guid(doc1.to_xml)))
+      .to be_equivalent_to Canon.format_xml(strip_guid(word1))
     doc1 = doc.at("//xmlns:div[@class = 'WordSection3']")
-    expect(Xml::C14n.format(doc1.to_xml))
-      .to be_equivalent_to Xml::C14n.format(word2)
+    expect(Canon.format_xml(doc1.to_xml))
+      .to be_equivalent_to Canon.format_xml(word2)
   end
 
   it "moves content to inner cover" do
@@ -485,9 +485,9 @@ RSpec.describe IsoDoc::Jis do
     output = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
-    expect(Xml::C14n.format(strip_guid(Nokogiri::XML(output)
+    expect(Canon.format_xml(strip_guid(Nokogiri::XML(output)
       .at("//xmlns:div[@class = 'WordSection3']").to_xml)))
-      .to be_equivalent_to Xml::C14n.format(word)
+      .to be_equivalent_to Canon.format_xml(word)
   end
 
   it "deals with lists and paragraphs" do
@@ -541,8 +541,8 @@ RSpec.describe IsoDoc::Jis do
     output = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
-    expect(Xml::C14n.format(strip_guid(Nokogiri::XML(output)
+    expect(Canon.format_xml(strip_guid(Nokogiri::XML(output)
       .at("//xmlns:div[@class = 'WordSection3']").to_xml)))
-      .to be_equivalent_to Xml::C14n.format(word)
+      .to be_equivalent_to Canon.format_xml(word)
   end
 end

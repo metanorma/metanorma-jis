@@ -41,10 +41,10 @@ RSpec.describe IsoDoc::Jis do
          <div class="colophon"/>
        </body>
     OUTPUT
-    expect(Xml::C14n.format(IsoDoc::Jis::WordConvert.new({})
+    expect(Canon.format_xml(IsoDoc::Jis::WordConvert.new({})
           .convert("test", input, true)
           .sub(/^.*<body /m, "<body ").sub(%r{</body>.*$}m, "</body>")))
-      .to be_equivalent_to Xml::C14n.format(word)
+      .to be_equivalent_to Canon.format_xml(word)
   end
 
   it "renders commentaries" do
@@ -641,16 +641,16 @@ RSpec.describe IsoDoc::Jis do
     pres_output = IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)
-    expect(Xml::C14n.format(strip_guid(pres_output
+    expect(Canon.format_xml(strip_guid(pres_output
         .sub(%r{<localized-strings>.*</localized-strings>}m, ""))))
-      .to be_equivalent_to Xml::C14n.format(presxml)
-    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
+      .to be_equivalent_to Canon.format_xml(presxml)
+    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
         .convert("test", pres_output, true))))
-      .to be_equivalent_to Xml::C14n.format(html)
-    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::WordConvert.new({})
+      .to be_equivalent_to Canon.format_xml(html)
+    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::WordConvert.new({})
         .convert("test", pres_output, true)))
             .sub(/^.*<body /m, "<body ").sub(%r{</body>.*$}m, "</body>"))
-      .to be_equivalent_to Xml::C14n.format(word)
+      .to be_equivalent_to Canon.format_xml(word)
   end
 
   it "processes contributor table" do
@@ -741,8 +741,8 @@ RSpec.describe IsoDoc::Jis do
       .new(presxml_options)
       .convert("test", input, true))
     pres_output = pres_output.at("//xmlns:preface")
-    expect(Xml::C14n.format(strip_guid(pres_output.to_xml)))
-      .to be_equivalent_to Xml::C14n.format(strip_guid(presxml))
+    expect(Canon.format_xml(strip_guid(pres_output.to_xml)))
+      .to be_equivalent_to Canon.format_xml(strip_guid(presxml))
 
     presxml = <<~OUTPUT
        <preface>
@@ -795,8 +795,8 @@ RSpec.describe IsoDoc::Jis do
       .convert("test", input.sub("<language>en</language>",
                                  "<language>ja</language>"), true))
     pres_output = pres_output.at("//xmlns:preface")
-    expect(Xml::C14n.format(strip_guid(pres_output.to_xml)))
-      .to be_equivalent_to Xml::C14n.format(strip_guid(presxml))
+    expect(Canon.format_xml(strip_guid(pres_output.to_xml)))
+      .to be_equivalent_to Canon.format_xml(strip_guid(presxml))
   end
 
   it "processes multiple contributor tables" do
@@ -929,7 +929,7 @@ RSpec.describe IsoDoc::Jis do
       .new(presxml_options)
       .convert("test", input, true))
     pres_output = pres_output.at("//xmlns:preface")
-    expect(Xml::C14n.format(strip_guid(pres_output.to_xml)))
-      .to be_equivalent_to Xml::C14n.format(strip_guid(presxml))
+    expect(Canon.format_xml(strip_guid(pres_output.to_xml)))
+      .to be_equivalent_to Canon.format_xml(strip_guid(presxml))
     end
 end

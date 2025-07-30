@@ -706,16 +706,16 @@ RSpec.describe IsoDoc::Jis do
     OUTPUT
     pres_output = IsoDoc::Jis::PresentationXMLConvert.new(presxml_options)
       .convert("test", input, true)
-    expect(Xml::C14n.format(strip_guid(pres_output)))
-      .to be_equivalent_to Xml::C14n.format(presxml)
-    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
+    expect(Canon.format_xml(strip_guid(pres_output)))
+      .to be_equivalent_to Canon.format_xml(presxml)
+    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
       .convert("test", pres_output, true))))
-      .to be_equivalent_to Xml::C14n.format(html)
-    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::WordConvert.new({})
+      .to be_equivalent_to Canon.format_xml(html)
+    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::WordConvert.new({})
       .convert("test", pres_output, true)
       .sub(/^.*<body/m, "<body")
       .sub(%r{</body>.*$}m, "</body>"))))
-      .to be_equivalent_to Xml::C14n.format(word)
+      .to be_equivalent_to Canon.format_xml(word)
   end
 
   it "processes IsoXML terms in Japanese" do
@@ -1209,7 +1209,7 @@ RSpec.describe IsoDoc::Jis do
     xml = Nokogiri::XML(IsoDoc::Jis::PresentationXMLConvert.new(presxml_options)
       .convert("test", input, true))
     xml.at("//xmlns:localized-strings").remove
-    expect(Xml::C14n.format(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Xml::C14n.format(presxml)
+    expect(Canon.format_xml(strip_guid(xml.to_xml)))
+      .to be_equivalent_to Canon.format_xml(presxml)
   end
 end
