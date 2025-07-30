@@ -212,8 +212,8 @@ RSpec.describe Metanorma::Jis do
     OUTPUT
     xml = Nokogiri::XML(Asciidoctor.convert(input, *OPTIONS))
     xml.at("//xmlns:metanorma-extension")&.remove
-    expect(Xml::C14n.format(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Xml::C14n.format(output)
+    expect(Canon.format_xml(strip_guid(xml.to_xml)))
+      .to be_equivalent_to Canon.format_xml(output)
     xml = Nokogiri::XML(Asciidoctor.convert(
                           input.sub(":docfile: test.adoc",
                                     ":docfile: test.adoc\n:language: en"),
@@ -335,8 +335,8 @@ RSpec.describe Metanorma::Jis do
          <sections> </sections>
        </metanorma>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Xml::C14n.format(output)
+    expect(Canon.format_xml(strip_guid(xml.to_xml)))
+      .to be_equivalent_to Canon.format_xml(output)
   end
 
   it "processes metadata, multilingual values" do
@@ -426,8 +426,8 @@ RSpec.describe Metanorma::Jis do
       </metanorma>
     OUTPUT
     xml.at("//xmlns:metanorma-extension")&.remove
-    expect(Xml::C14n.format(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Xml::C14n.format(output)
+    expect(Canon.format_xml(strip_guid(xml.to_xml)))
+      .to be_equivalent_to Canon.format_xml(output)
   end
 
   it "processes metadata, technical report; personal role in investigative committee" do
@@ -553,8 +553,8 @@ RSpec.describe Metanorma::Jis do
     OUTPUT
     xml = Nokogiri::XML(Asciidoctor.convert(input, *OPTIONS))
     xml.at("//xmlns:metanorma-extension")&.remove
-    expect(Xml::C14n.format(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Xml::C14n.format(output)
+    expect(Canon.format_xml(strip_guid(xml.to_xml)))
+      .to be_equivalent_to Canon.format_xml(output)
     xml = Nokogiri::XML(Asciidoctor.convert(input
       .sub(":language: ja", ":language: en"), *OPTIONS))
     xml = xml.at("//xmlns:boilerplate")
@@ -568,8 +568,8 @@ RSpec.describe Metanorma::Jis do
            </feedback-statement>
          </boilerplate>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Xml::C14n.format(output)
+    expect(Canon.format_xml(strip_guid(xml.to_xml)))
+      .to be_equivalent_to Canon.format_xml(output)
   end
 
   it "processes metadata, technical specification" do
@@ -639,8 +639,8 @@ RSpec.describe Metanorma::Jis do
     OUTPUT
     xml.at("//xmlns:metanorma-extension")&.remove
     xml.at("//xmlns:boilerplate")&.remove
-    expect(Xml::C14n.format(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Xml::C14n.format(output)
+    expect(Canon.format_xml(strip_guid(xml.to_xml)))
+      .to be_equivalent_to Canon.format_xml(output)
   end
 
   it "processes metadata, unrecognised type" do
@@ -790,8 +790,8 @@ RSpec.describe Metanorma::Jis do
     OUTPUT
     xml.at("//xmlns:metanorma-extension")&.remove
     xml.at("//xmlns:boilerplate")&.remove
-    expect(Xml::C14n.format(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Xml::C14n.format(output)
+    expect(Canon.format_xml(strip_guid(xml.to_xml)))
+      .to be_equivalent_to Canon.format_xml(output)
   end
 
   it "processes metadata, amendment" do
@@ -868,8 +868,8 @@ RSpec.describe Metanorma::Jis do
     OUTPUT
     xml.at("//xmlns:metanorma-extension")&.remove
     xml.at("//xmlns:boilerplate")&.remove
-    expect(Xml::C14n.format(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Xml::C14n.format(output)
+    expect(Canon.format_xml(strip_guid(xml.to_xml)))
+      .to be_equivalent_to Canon.format_xml(output)
   end
 
   it "preserves user-supplied boilerplate in Normative References" do
@@ -912,8 +912,8 @@ RSpec.describe Metanorma::Jis do
            </bibliography>
         </standard-document>
       OUTPUT
-      expect(Xml::C14n.format(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-        .to be_equivalent_to Xml::C14n.format(output)
+      expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
+        .to be_equivalent_to Canon.format_xml(output)
 
       input = <<~INPUT
         #{ASCIIDOC_BLANK_HDR}
@@ -929,8 +929,8 @@ RSpec.describe Metanorma::Jis do
 
         This is also extraneous information
       INPUT
-      expect(Xml::C14n.format(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-        .to be_equivalent_to Xml::C14n.format(output)
+      expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
+        .to be_equivalent_to Canon.format_xml(output)
   end
 
   it "adds examples and notes both to tables" do
@@ -1002,8 +1002,8 @@ RSpec.describe Metanorma::Jis do
       </sections>
       </metanorma>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-      .to be_equivalent_to Xml::C14n.format(output)
+    expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
+      .to be_equivalent_to Canon.format_xml(output)
   end
 
   it "respects keep-separate on examples" do
@@ -1076,8 +1076,8 @@ RSpec.describe Metanorma::Jis do
       </sections>
       </metanorma>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-      .to be_equivalent_to Xml::C14n.format(output)
+    expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
+      .to be_equivalent_to Canon.format_xml(output)
   end
 
   it "renumbers footnotes in tables (including table titles)" do
@@ -1146,8 +1146,8 @@ RSpec.describe Metanorma::Jis do
          </sections>
        </metanorma>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-      .to be_equivalent_to Xml::C14n.format(output)
+    expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
+      .to be_equivalent_to Canon.format_xml(output)
   end
 
   it "processes commentaries" do
@@ -1172,8 +1172,8 @@ RSpec.describe Metanorma::Jis do
         </annex>
       </metanorma>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-      .to be_equivalent_to Xml::C14n.format(output)
+    expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
+      .to be_equivalent_to Canon.format_xml(output)
   end
 
   it "ignores ordered list styles" do
@@ -1202,7 +1202,7 @@ RSpec.describe Metanorma::Jis do
          </sections>
       </metanorma>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-      .to be_equivalent_to Xml::C14n.format(output)
+    expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
+      .to be_equivalent_to Canon.format_xml(output)
   end
 end

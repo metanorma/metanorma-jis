@@ -810,15 +810,15 @@ RSpec.describe IsoDoc::Jis do
     expect(pres_output).to include <<~STR
       <localized-string key="971" language="ja">&#x4E5D;&#x767E;&#x4E03;&#x5341;&#x4E00;</localized-string>
     STR
-    expect(Xml::C14n.format(strip_guid(pres_output))
+    expect(Canon.format_xml(strip_guid(pres_output))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to Xml::C14n.format(presxml)
-    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
+      .to be_equivalent_to Canon.format_xml(presxml)
+    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
       .convert("test", pres_output, true))))
-      .to be_equivalent_to Xml::C14n.format(html)
-    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::WordConvert.new({})
+      .to be_equivalent_to Canon.format_xml(html)
+    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::WordConvert.new({})
       .convert("test", pres_output, true))))
-      .to be_equivalent_to Xml::C14n.format(word)
+      .to be_equivalent_to Canon.format_xml(word)
 
     input.sub!("</bibdata>", <<~SUB
       </bibdata><metanorma-extension>
@@ -1208,12 +1208,12 @@ RSpec.describe IsoDoc::Jis do
           </bibliography>
        </iso-standard>
     PRESXML
-    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, "")
       .sub(%r{<metanorma-extension>.*</metanorma-extension>}m, ""))
-      .to be_equivalent_to Xml::C14n.format(presxml)
+      .to be_equivalent_to Canon.format_xml(presxml)
   end
 
   it "defaults to Japanese" do
@@ -1316,12 +1316,12 @@ RSpec.describe IsoDoc::Jis do
           </sections>
        </iso-standard>
       OUTPUT
-      expect(Xml::C14n.format(strip_guid(Nokogiri::XML(IsoDoc::Jis::PresentationXMLConvert
+      expect(Canon.format_xml(strip_guid(Nokogiri::XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
         .convert("test", input, true)).to_xml))
 .sub(%r{<localized-strings>.*</localized-strings>}m, "")
       .sub(%r{<metanorma-extension>.*</metanorma-extension>}m, ""))
-      .to be_equivalent_to Xml::C14n.format(output)
+      .to be_equivalent_to Canon.format_xml(output)
   end
 
   it "processes English" do
@@ -1926,12 +1926,12 @@ RSpec.describe IsoDoc::Jis do
     pres_output = IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)
-    expect(Xml::C14n.format(strip_guid(pres_output))
+    expect(Canon.format_xml(strip_guid(pres_output))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to Xml::C14n.format(presxml)
-    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
+      .to be_equivalent_to Canon.format_xml(presxml)
+    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
       .convert("test", pres_output, true))))
-      .to be_equivalent_to Xml::C14n.format(html)
+      .to be_equivalent_to Canon.format_xml(html)
   end
 
   it "internationalises dates in bibdata" do
@@ -1955,11 +1955,11 @@ RSpec.describe IsoDoc::Jis do
         </bibdata>
       </iso-standard>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to Xml::C14n.format(output)
+      .to be_equivalent_to Canon.format_xml(output)
     output = <<~OUTPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
         <bibdata>
@@ -1970,12 +1970,12 @@ RSpec.describe IsoDoc::Jis do
         </bibdata>
       </iso-standard>
     OUTPUT
-    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input.sub!("<language>en</language>",
                                   "<language>ja</language"), true)))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to Xml::C14n.format(output)
+      .to be_equivalent_to Canon.format_xml(output)
 
     input.sub!("</bibdata>", <<~SUB
       </bibdata><metanorma-extension>
@@ -1983,13 +1983,12 @@ RSpec.describe IsoDoc::Jis do
       </metanorma-extension>
     SUB
     )
-    expect(Xml::C14n.format(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))
       .sub(%r{<metanorma-extension>.*</metanorma-extension>}m, "")
       .sub(%r{<localized-strings>.*</localized-strings>}m, "")))
-      .to be_equivalent_to Xml::C14n
-        .format(output
+      .to be_equivalent_to Canon.format(output
         .sub('<date type="created">令和二年10月11日</date>',
              '<date type="created">令和二年十月十一日</date>')
         .sub('<date type="issued">令和二年10月</date>',
