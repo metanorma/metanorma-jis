@@ -125,6 +125,11 @@ RSpec.describe IsoDoc::Jis::Metadata do
             <stagename abbreviation="WD">Working Draft International Standard</stagename>
           </ext>
         </bibdata>
+        <metanorma-extension>
+        <semantic-metadata>
+        <stage-published>false</stage-published>
+        </semantic-metadata>
+        </metanorma-extension>
         <sections> </sections>
       </jis-standard>
     INPUT
