@@ -27,6 +27,66 @@ RSpec.describe IsoDoc::Jis::Metadata do
               <abbreviation>JIS</abbreviation>
             </organization>
           </contributor>
+                    <contributor>
+             <role type="author">
+                <description>committee</description>
+             </role>
+             <organization>
+                <name>International Electrotechnical Commission</name>
+                <subdivision type="Technical committee" subtype="TC">
+                   <name>Electrical equipment in medical practice</name>
+                   <identifier>TC 62</identifier>
+                   <identifier type="full">IEC TC 62</identifier>
+                </subdivision>
+                <abbreviation>IEC</abbreviation>
+             </organization>
+          </contributor>
+          <contributor>
+             <role type="author">
+                <description>committee</description>
+             </role>
+             <organization>
+                <name>International Organization for Standardization</name>
+                <subdivision type="Technical committee" subtype="TC">
+                   <name>Quality management and corresponding general aspects for medical devices</name>
+                   <identifier>TC 210</identifier>
+                   <identifier type="full">TC 210/SC 62A/WG 62A1</identifier>
+                </subdivision>
+                <subdivision type="Subcommittee" subtype="SC">
+                   <name>Common aspects of electrical equipment used in medical practice</name>
+                   <identifier>SC 62A</identifier>
+                </subdivision>
+                <subdivision type="Workgroup" subtype="WG">
+                   <name>Working group on defibulators</name>
+                   <identifier>WG 62A1</identifier>
+                </subdivision>
+                <abbreviation>ISO</abbreviation>
+             </organization>
+          </contributor>
+          <contributor>
+             <role type="author">
+                <description>committee</description>
+             </role>
+             <organization>
+                <name>Institute of Electrical and Electronic Engineers</name>
+                <subdivision type="Technical committee" subtype="TC">
+                   <name>The committee</name>
+                </subdivision>
+                <abbreviation>IEEE</abbreviation>
+             </organization>
+          </contributor>
+             <contributor>
+      <role type="author">
+         <description>secretariat</description>
+      </role>
+      <organization>
+         <name>International Organization for Standardization</name>
+         <subdivision type="Secretariat">
+            <name>GB</name>
+         </subdivision>
+         <abbreviation>ISO</abbreviation>
+      </organization>
+      </contributor>
           <contributor>
             <role type="publisher"/>
             <organization>
@@ -128,48 +188,48 @@ RSpec.describe IsoDoc::Jis::Metadata do
         <sections> </sections>
       </jis-standard>
     INPUT
-    output = #<<~OUTPUT
-      {:agency=>"JIS",
-      :docnumber=>"1000-1.3:2000",
-      :docnumber_undated=>"1000-1.3",
-      :docnumeric=>"1000",
-      :docsubtitle=>"Introduction Fran&#xe7;aise&#xa0;&#x2014; Titre Principal&#xa0;&#x2014; &#xa0;1: Part du Titre",
-      :docsubtitleintro=>"Introduction Fran&#xe7;aise",
-      :docsubtitlemain=>"Titre Principal",
-      :docsubtitlepart=>"Part du Titre",
-      :docsubtitlepartlabel=>"その&#xa0;1",
-      :doctitle=>"Introduction&#xa0;&#x2014; Main Title&#x2009;&#x2014;&#x2009;Title&#xa0;&#x2014; Part&#xa0;1: Title Part",
-      :doctitleintro=>"Introduction",
-      :doctitlemain=>"Main Title&#x2009;&#x2014;&#x2009;Title",
-      :doctitlepart=>"Title Part",
-      :doctitlepartlabel=>"Part&#xa0;1",
-      :doctype=>"Standard",
-      :doctype_display=>"Standard",
-      :docyear=>"2000",
-      :draft=>"0.3.4",
-      :draftinfo=>" (draft 0.3.4, 2000-01-01)",
-      :edition=>"2",
-      :horizontal=>"true",
-      :"investigative-committee"=>"Committee 123",
-      :"investigative-committee-representative-name"=>"KUROSAWA Akira",
-      :"investigative-committee-representative-role"=>"chairperson",
-      :"investigative-organization"=>"Japanese Industrial Standards Committee",
-      :lang=>"en",
-      :publisher=>"Japanese Industrial Standards",
-      :revdate=>"2000-01-01",
-      :revdate_monthyear=>"January 2000",
-      :sc=>"B 2",
-      :script=>"Latn",
-      :secretariat=>"SECRETARIAT",
-      :stage=>"20",
-      :stage_int=>20,
-      :stageabbr=>"WD",
-      :statusabbr=>"PreWD3",
-      :substage_int=>"20",
-      :tc=>"A 1",
-      :unpublished=>true,
-      :wg=>"C 3"}
-    #OUTPUT
+    output =
+      { agency: "JIS",
+        docnumber: "1000-1.3:2000",
+        docnumber_undated: "1000-1.3",
+        docnumeric: "1000",
+        docsubtitle: "Introduction Fran&#xe7;aise&#xa0;&#x2014; Titre Principal&#xa0;&#x2014; &#xa0;1: Part du Titre",
+        docsubtitleintro: "Introduction Fran&#xe7;aise",
+        docsubtitlemain: "Titre Principal",
+        docsubtitlepart: "Part du Titre",
+        docsubtitlepartlabel: "その&#xa0;1",
+        doctitle: "Introduction&#xa0;&#x2014; Main Title&#x2009;&#x2014;&#x2009;Title&#xa0;&#x2014; Part&#xa0;1: Title Part",
+        doctitleintro: "Introduction",
+        doctitlemain: "Main Title&#x2009;&#x2014;&#x2009;Title",
+        doctitlepart: "Title Part",
+        doctitlepartlabel: "Part&#xa0;1",
+        doctype: "Standard",
+        doctype_display: "Standard",
+        docyear: "2000",
+        draft: "0.3.4",
+        draftinfo: " (draft 0.3.4, 2000-01-01)",
+        edition: "2",
+        editorialgroup: "IEC TC 62 and TC 210/SC 62A/WG 62A1",
+        horizontal: "true",
+        "investigative-committee": "Committee 123",
+        "investigative-committee-representative-name": "KUROSAWA Akira",
+        "investigative-committee-representative-role": "chairperson",
+        "investigative-organization": "Japanese Industrial Standards Committee",
+        lang: "en",
+        publisher: "Japanese Industrial Standards",
+        revdate: "2000-01-01",
+        revdate_monthyear: "January 2000",
+        sc: "SC 62A",
+        script: "Latn",
+        secretariat: "GB",
+        stage: "20",
+        stage_int: 20,
+        stageabbr: "WD",
+        statusabbr: "PreWD3",
+        substage_int: "20",
+        tc: "TC 62",
+        unpublished: true,
+        wg: "WG 62A1" }
     expect(metadata(c.info(Nokogiri::XML(input),
                            nil))).to be_equivalent_to output
   end
