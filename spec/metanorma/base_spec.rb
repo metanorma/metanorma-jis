@@ -169,26 +169,6 @@ RSpec.describe Metanorma::Jis do
              <doctype>japanese-industrial-standard</doctype>
              <flavor>jis</flavor>
              <horizontal>true</horizontal>
-             <editorialgroup>
-               <agency>JIS</agency>
-               <technical-committee number="1" type="A">TC</technical-committee>
-               <technical-committee number="11" type="A1">TC1</technical-committee>
-               <subcommittee number="2" type="B">SC</subcommittee>
-               <subcommittee number="21" type="B1">SC1</subcommittee>
-               <workgroup number="3" type="C">WG</workgroup>
-               <workgroup number="31" type="C1">WG1</workgroup>
-               <secretariat>SECRETARIAT</secretariat>
-             </editorialgroup>
-             <approvalgroup>
-               <agency>ISO</agency>
-               <agency>IEC</agency>
-               <technical-committee number="1a" type="Aa">TCa</technical-committee>
-               <technical-committee number="11a" type="A1a">TC1a</technical-committee>
-               <subcommittee number="2a" type="Ba">SCa</subcommittee>
-               <subcommittee number="21a" type="B1a">SC1a</subcommittee>
-               <workgroup number="3a" type="Ca">WGa</workgroup>
-               <workgroup number="31a" type="C1a">WG1a</workgroup>
-             </approvalgroup>
              <structuredidentifier>
                <project-number part="1">1000</project-number>
              </structuredidentifier>
@@ -295,26 +275,6 @@ RSpec.describe Metanorma::Jis do
              <doctype>japanese-industrial-standard</doctype>
              <flavor>jis</flavor>
              <horizontal>true</horizontal>
-             <editorialgroup>
-               <agency>JIS</agency>
-               <technical-committee number="1" type="A">TC</technical-committee>
-               <technical-committee number="11" type="A1">TC1</technical-committee>
-               <subcommittee number="2" type="B">SC</subcommittee>
-               <subcommittee number="21" type="B1">SC1</subcommittee>
-               <workgroup number="3" type="C">WG</workgroup>
-               <workgroup number="31" type="C1">WG1</workgroup>
-               <secretariat>SECRETARIAT</secretariat>
-             </editorialgroup>
-             <approvalgroup>
-               <agency>ISO</agency>
-               <agency>IEC</agency>
-               <technical-committee number="1a" type="Aa">TCa</technical-committee>
-               <technical-committee number="11a" type="A1a">TC1a</technical-committee>
-               <subcommittee number="2a" type="Ba">SCa</subcommittee>
-               <subcommittee number="21a" type="B1a">SC1a</subcommittee>
-               <workgroup number="3a" type="Ca">WGa</workgroup>
-               <workgroup number="31a" type="C1a">WG1a</workgroup>
-             </approvalgroup>
              <structuredidentifier>
                <project-number part="1">1000</project-number>
              </structuredidentifier>
@@ -398,12 +358,6 @@ RSpec.describe Metanorma::Jis do
            <ext>
              <doctype>japanese-industrial-standard</doctype>
              <flavor>jis</flavor>
-             <editorialgroup>
-               <agency>Publisher Abbrev</agency>
-             </editorialgroup>
-             <approvalgroup>
-               <agency>JIS</agency>
-             </approvalgroup>
              <structuredidentifier>
                <project-number>1000</project-number>
              </structuredidentifier>
@@ -524,12 +478,6 @@ RSpec.describe Metanorma::Jis do
            <ext>
              <doctype>technical-report</doctype>
              <flavor>jis</flavor>
-             <editorialgroup>
-               <agency>JIS</agency>
-             </editorialgroup>
-             <approvalgroup>
-               <agency>JIS</agency>
-             </approvalgroup>
              <structuredidentifier>
                <project-number>1000</project-number>
              </structuredidentifier>
@@ -623,12 +571,6 @@ RSpec.describe Metanorma::Jis do
            <ext>
              <doctype>technical-specification</doctype>
              <flavor>jis</flavor>
-             <editorialgroup>
-               <agency>JIS</agency>
-             </editorialgroup>
-             <approvalgroup>
-               <agency>JIS</agency>
-             </approvalgroup>
              <structuredidentifier>
                <project-number>1000</project-number>
              </structuredidentifier>
@@ -760,26 +702,6 @@ RSpec.describe Metanorma::Jis do
             <doctype>expert-commentary</doctype>
              <flavor>jis</flavor>
             <horizontal>true</horizontal>
-            <editorialgroup>
-              <agency>Alternative Publisher</agency>
-              <technical-committee number="1" type="A">TC</technical-committee>
-              <technical-committee number="11" type="A1">TC1</technical-committee>
-              <subcommittee number="2" type="B">SC</subcommittee>
-              <subcommittee number="21" type="B1">SC1</subcommittee>
-              <workgroup number="3" type="C">WG</workgroup>
-              <workgroup number="31" type="C1">WG1</workgroup>
-              <secretariat>SECRETARIAT</secretariat>
-            </editorialgroup>
-            <approvalgroup>
-              <agency>ISO</agency>
-              <agency>IEC</agency>
-              <technical-committee number="1a" type="Aa">TCa</technical-committee>
-              <technical-committee number="11a" type="A1a">TC1a</technical-committee>
-              <subcommittee number="2a" type="Ba">SCa</subcommittee>
-              <subcommittee number="21a" type="B1a">SC1a</subcommittee>
-              <workgroup number="3a" type="Ca">WGa</workgroup>
-              <workgroup number="31a" type="C1a">WG1a</workgroup>
-            </approvalgroup>
             <structuredidentifier>
               <project-number part="1">1000</project-number>
             </structuredidentifier>
@@ -852,12 +774,6 @@ RSpec.describe Metanorma::Jis do
            <ext>
              <doctype>amendment</doctype>
              <flavor>jis</flavor>
-             <editorialgroup>
-               <agency>JIS</agency>
-             </editorialgroup>
-             <approvalgroup>
-               <agency>JIS</agency>
-             </approvalgroup>
              <structuredidentifier>
                <project-number amendment="3" origyr="1999-01-01">1000</project-number>
              </structuredidentifier>
