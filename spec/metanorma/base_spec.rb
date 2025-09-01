@@ -1,6 +1,5 @@
 require "spec_helper"
 RSpec.describe Metanorma::Jis do
-
   it "has a version number" do
     expect(Metanorma::Jis::VERSION).not_to be nil
   end
@@ -118,6 +117,14 @@ RSpec.describe Metanorma::Jis do
                <abbreviation>JIS</abbreviation>
              </organization>
            </contributor>
+                <contributor>
+        <role type="author">
+           <description>secretariat</description>
+        </role>
+        <organization>
+           <name>SECRETARIAT</name>
+        </organization>
+        </contributor>
            <contributor>
              <role type="publisher"/>
              <organization>
@@ -224,6 +231,14 @@ RSpec.describe Metanorma::Jis do
                <abbreviation>JIS</abbreviation>
              </organization>
            </contributor>
+                <contributor>
+        <role type="author">
+           <description>secretariat</description>
+        </role>
+        <organization>
+           <name>SECRETARIAT</name>
+        </organization>
+        </contributor>
            <contributor>
              <role type="publisher"/>
              <organization>
@@ -672,6 +687,14 @@ RSpec.describe Metanorma::Jis do
               <name>Alternative Publisher</name>
             </organization>
           </contributor>
+               <contributor>
+        <role type="author">
+           <description>secretariat</description>
+        </role>
+        <organization>
+           <name>SECRETARIAT</name>
+        </organization>
+        </contributor>
           <contributor>
             <role type="publisher"/>
             <organization>
