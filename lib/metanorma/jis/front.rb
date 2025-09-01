@@ -11,12 +11,7 @@ module Metanorma
         "JIS"
       end
 
-      def metadata_author(node, xml)
-        org_contributor(node, xml,
-                        { source: ["publisher", "pub"], role: "author",
-                          default: pub_hash })
-        personal_author(node, xml)
-      end
+      def committee_contributors(node, xml, default, opt); end
 
       def metadata_publisher(node, xml)
         [{ source: ["publisher", "pub"], role: "publisher", default: pub_hash },
@@ -27,6 +22,17 @@ module Metanorma
            source: ["investigative-committee"],
            desc: "Investigative committee" }].each do |o|
           org_contributor(node, xml, o)
+        end
+      end
+
+      def org_author(node, xml)
+        if node.attr("corporate-author")
+          org_contributor(node, xml, { source: ["corporate-author"],
+                                       role: "author" })
+        else
+          org_contributor(node, xml,
+                          { source: ["publisher", "pub"], role: "author",
+                            default: pub_hash })
         end
       end
 
@@ -186,6 +192,11 @@ module Metanorma
         base_pubid.create(**params)
       rescue StandardError => e
         clean_abort("Document identifier: #{e}", xml)
+      end
+
+      def personal_author(node, xml)
+        ::Metanorma::Standoc::Converter.instance_method(:personal_author).bind(self)
+          .call(node, xml)
       end
     end
   end

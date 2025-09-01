@@ -62,7 +62,7 @@ RSpec.describe IsoDoc::Jis do
     presxml = <<~OUTPUT
        <foreword id="A" displayorder="1">
           <title id="_">Foreword</title>
-          <fmt-title id="_" depth="1">
+          <fmt-title depth="1" id="_">
              <semx element="title" source="_">Foreword</semx>
           </fmt-title>
           <figure id="figureA-1" keep-with-next="true" keep-lines-together="true" autonum="1">
@@ -70,7 +70,7 @@ RSpec.describe IsoDoc::Jis do
                 Split-it-right
                 <em>sample</em>
                 divider
-                <fn reference="1" original-reference="1" target="_" original-id="_">
+                <fn reference="1" original-id="_" original-reference="1" id="_" target="_">
                    <p>X</p>
                    <fmt-fn-label>
                       <span class="fmt-caption-label">

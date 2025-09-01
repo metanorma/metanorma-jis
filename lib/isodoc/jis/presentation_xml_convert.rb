@@ -103,7 +103,8 @@ module IsoDoc
       end
 
       def figure_fn(elem)
-        fnotes = elem.xpath(ns(".//fn")) - elem.xpath(ns("./name//fn"))
+        fnotes = elem.xpath(ns(".//fn")) - elem.xpath(ns("./name//fn")) -
+          elem.xpath(ns("./fmt-name//fn"))
         ret = footnote_collect(fnotes)
         f = footnote_container(fnotes, ret) and elem << f
       end
@@ -145,7 +146,8 @@ module IsoDoc
       def non_document_footnotes(docxml)
         table_fns = docxml.xpath(ns("//table//fn"))
         fig_fns = docxml.xpath(ns("//figure//fn")) -
-          docxml.xpath(ns("//figure/name//fn"))
+          docxml.xpath(ns("//figure/name//fn")) -
+          docxml.xpath(ns("//figure/fmt-name//fn"))
         table_fns + fig_fns
       end
 
