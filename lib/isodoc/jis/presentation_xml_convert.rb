@@ -143,12 +143,8 @@ module IsoDoc
         end
       end
 
-      def non_document_footnotes(docxml)
-        table_fns = docxml.xpath(ns("//table//fn"))
-        fig_fns = docxml.xpath(ns("//figure//fn")) -
-          docxml.xpath(ns("//figure/name//fn")) -
-          docxml.xpath(ns("//figure/fmt-name//fn"))
-        table_fns + fig_fns
+      def table_footnotes(docxml)
+        docxml.xpath(ns("//table//fn"))
       end
 
       include Init
