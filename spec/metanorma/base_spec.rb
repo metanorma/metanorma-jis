@@ -96,14 +96,14 @@ RSpec.describe Metanorma::Jis do
     output = <<~OUTPUT
       <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc" flavor="jis">
                <bibdata type="standard">
-           <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
-           <title language="en" format="text/plain" type="title-intro">Introduction</title>
-           <title language="en" format="text/plain" type="title-main">Main Title — Title</title>
-           <title language="en" format="text/plain" type="title-part">Title Part</title>
-           <title language="ja" format="text/plain" type="main">Introduction Française — Titre Principal — Part du Titre</title>
-           <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
-           <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
-           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
+           <title language="en" type="main">Introduction — Main Title — Title — Title Part</title>
+           <title language="en" type="title-intro">Introduction</title>
+           <title language="en" type="title-main">Main Title — Title</title>
+           <title language="en" type="title-part">Title Part</title>
+           <title language="ja" type="main">Introduction Française — Titre Principal — Part du Titre</title>
+           <title language="ja" type="title-intro">Introduction Française</title>
+           <title language="ja" type="title-main">Titre Principal</title>
+           <title language="ja" type="title-part">Part du Titre</title>
            <docidentifier primary="true" type="JIS">Z 1000-1:2000</docidentifier>
            <docnumber>1000</docnumber>
            <date type="announced">
@@ -210,14 +210,14 @@ RSpec.describe Metanorma::Jis do
     output = <<~OUTPUT
       <metanorma type="semantic" version="#{Metanorma::Jis::VERSION}" xmlns="https://www.metanorma.org/ns/standoc" flavor="jis">
                <bibdata type="standard">
-           <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
-           <title language="en" format="text/plain" type="title-intro">Introduction</title>
-           <title language="en" format="text/plain" type="title-main">Main Title — Title</title>
-           <title language="en" format="text/plain" type="title-part">Title Part</title>
-           <title language="ja" format="text/plain" type="main">Introduction Française — Titre Principal — Part du Titre</title>
-           <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
-           <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
-           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
+           <title language="en" type="main">Introduction — Main Title — Title — Title Part</title>
+           <title language="en" type="title-intro">Introduction</title>
+           <title language="en" type="title-main">Main Title — Title</title>
+           <title language="en" type="title-part">Title Part</title>
+           <title language="ja" type="main">Introduction Française — Titre Principal — Part du Titre</title>
+           <title language="ja" type="title-intro">Introduction Française</title>
+           <title language="ja" type="title-main">Titre Principal</title>
+           <title language="ja" type="title-part">Part du Titre</title>
            <docidentifier primary="true" type="JIS">Z 1000-1:2000(E)</docidentifier>
            <docnumber>1000</docnumber>
            <date type="announced">
@@ -671,14 +671,14 @@ RSpec.describe Metanorma::Jis do
     output = <<~OUTPUT
           <metanorma xmlns="https://www.metanorma.org/ns/standoc" type="semantic" version="#{Metanorma::Jis::VERSION}" flavor="jis">
         <bibdata type="standard">
-          <title language="en" format="text/plain" type="main">Introduction — Main Title — Title — Title Part</title>
-          <title language="en" format="text/plain" type="title-intro">Introduction</title>
-          <title language="en" format="text/plain" type="title-main">Main Title — Title</title>
-          <title language="en" format="text/plain" type="title-part">Title Part</title>
-          <title language="ja" format="text/plain" type="main">Introduction Française — Titre Principal — Part du Titre</title>
-          <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
-          <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
-          <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
+          <title language="en" type="main">Introduction — Main Title — Title — Title Part</title>
+          <title language="en" type="title-intro">Introduction</title>
+          <title language="en" type="title-main">Main Title — Title</title>
+          <title language="en" type="title-part">Title Part</title>
+          <title language="ja" type="main">Introduction Française — Titre Principal — Part du Titre</title>
+          <title language="ja" type="title-intro">Introduction Française</title>
+          <title language="ja" type="title-main">Titre Principal</title>
+          <title language="ja" type="title-part">Part du Titre</title>
           <docidentifier primary="true" type="JIS">EXP</docidentifier>
           <docnumber>1000</docnumber>
           <contributor>
