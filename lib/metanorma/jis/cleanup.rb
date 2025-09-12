@@ -1,14 +1,15 @@
 module Metanorma
   module Jis
     class Converter < Iso::Converter
-      def norm_ref_preface(ref)
+      def norm_ref_preface(ref, isodoc)
         if ref.at("./note[@type = 'boilerplate']")
           unwrap_boilerplate_clauses(ref, ".")
         else
           pref = if ref_empty?(ref) then @i18n.norm_empty_pref
                  else @i18n.get[ref_dated(ref)]
                  end
-          ref.at("./title").next = "<p>#{pref}</p>"
+          #ref.at("./title").next = "<p>#{pref}</p>"
+          ref.at("./title").next = boilerplate_snippet_convert(pref, isodoc)
         end
       end
 

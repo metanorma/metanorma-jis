@@ -134,12 +134,12 @@ module Metanorma
 
       def title(node, xml)
         %w(en ja).each do |lang|
-          at = { language: lang, format: "text/plain" }
-          title_full(node, xml, lang, at)
-          title_intro(node, xml, lang, at)
-          title_main(node, xml, lang, at)
-          title_part(node, xml, lang, at)
-          title_amd(node, xml, lang, at) if @amd
+          title_full(node, xml, lang)
+          %w(intro main part).each do |w|
+            title_component(node, xml, lang, { name: w, abbr: w })
+          end
+          @amd and title_component(node, xml, lang,
+                                   { name: "amendment", abbr: "amd" })
         end
       end
 
