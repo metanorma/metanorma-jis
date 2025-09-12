@@ -10,10 +10,10 @@ RSpec.describe Metanorma::Jis::Processor do
   inputxml = <<~INPUT
     <iso-standard xmlns="http://riboseinc.com/isoxml">
     <bibdata type="standard">
-    <title language="en" format="text/plain" type="main">English</title>
-    <title language="en" format="text/plain" type="title-main">English</title>
-    <title language="fr" format="text/plain" type="main">French</title>
-    <title language="fr" format="text/plain" type="title-main">French</title>
+    <title language="en" type="main">English</title>
+    <title language="en" type="title-main">English</title>
+    <title language="fr" type="main">French</title>
+    <title language="fr" type="title-main">French</title>
     <docidentifier type="JIS">Z 100</docidentifier>
     <docnumber>1</docnumber>
     <contributor>
