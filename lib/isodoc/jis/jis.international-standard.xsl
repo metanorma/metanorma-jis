@@ -2869,7 +2869,7 @@
 	<!-- mn:term/mn:preferred2//text() | -->
 
 	<!-- <name>注記  1</name> to <name>注記<font_en>  1</font_en></name> -->
-	<xsl:template match="mn:title/text() | mn:fmt-title/text() |        mn:term/mn:name/text() | mn:term/mn:fmt-name/text() |        mn:note/mn:name/text() | mn:note/mn:fmt-name/text() |        mn:termnote/mn:name/text() |mn:termnote/mn:fmt-name/text() |       mn:table/mn:name/text() |mn:table/mn:fmt-name/text() |       mn:figure/mn:name/text() |mn:figure/mn:fmt-name/text() |       mn:termexample/mn:name/text() |mn:termexample/mn:fmtname/text() |       mn:xref//text() | mn:fmt-xref//text() |       mn:origin/text() | mn:fmt-origin/text()" mode="update_xml_step1">
+	<xsl:template match="mn:title/text() | mn:fmt-title/text() |        mn:term/mn:name/text() | mn:term/mn:fmt-name/text() |        mn:note/mn:name/text() | mn:note/mn:fmt-name/text() |        mn:termnote/mn:name/text() |mn:termnote/mn:fmt-name/text() |       mn:table/mn:name/text() |mn:table/mn:fmt-name/text() |       mn:figure/mn:name/text() |mn:figure/mn:fmt-name/text() |       mn:termexample/mn:name/text() |mn:termexample/mn:fmtname/text() |       mn:xref//text() | mn:fmt-xref//text() |       mn:origin/text() | mn:fmt-origin/text() |       mn:fmt-link/text()" mode="update_xml_step1">
 		<xsl:choose>
 			<xsl:when test="$vertical_layout = 'true'">
 				<xsl:choose>
