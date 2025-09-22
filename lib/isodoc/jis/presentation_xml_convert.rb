@@ -149,6 +149,26 @@ module IsoDoc
         docxml.xpath(ns("//table//fn"))
       end
 
+      # if termsource xref has no SDO identifier, cite instead by full reference
+      def citeas(xmldoc)
+        super
+        xmldoc.xpath(ns("//fmt-origin")).each do |e|
+          fmt_origin_cite_full?(e) or next
+          bibitem = @bibitem_lookup[e["bibitemid"]]
+          cit = bibitem.at(ns("./formattedref")) or next
+          e["citeas"] = citeas_cleanup(to_xml(cit.children))
+        end
+      end
+
+      def fmt_origin_cite_full?(elem)
+        sem_xml_descendant?(elem) and return
+        id = elem["bibitemid"] or return
+        b = @bibitem_lookup[id] or return
+        !b.at(ns(<<~XPATH))
+          ./docidentifier[not(#{SKIP_DOCID} or @scope = 'biblio-tag' or @type = 'metanorma' or @type = 'metanorma-ordinal' or @type='title')]
+        XPATH
+      end
+
       include Init
     end
   end
