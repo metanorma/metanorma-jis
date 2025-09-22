@@ -48,11 +48,13 @@ module IsoDoc
       end
 
       def source1_label(elem, sources, ancestor)
-        case ancestor
-        when :table
-          elem.children = l10n("#{@i18n.source}: #{sources}")
-        else super
-        end
+        elem.children = if ancestor == :table
+                          l10n("#{@i18n.source}: #{sources}")
+                        elsif /\(.+\)/.match?(sources)
+                          l10n("[#{@i18n.source}: #{sources}]")
+                        else
+                          l10n("(#{@i18n.source}: #{sources})")
+                        end
       end
 
       def bibdata_i18n(bibdata)
