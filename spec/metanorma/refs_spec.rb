@@ -30,7 +30,7 @@ RSpec.describe Metanorma::Jis do
     expect(Canon.format_xml(strip_guid(xml.at(
       "//xmlns:references/xmlns:p",
     ).to_xml))).to be_equivalent_to Canon.format_xml(<<~OUTPUT)
-      <p id="_">次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要求事項 を構成している。これらの引用規格は，その最新版（追補を含む。)を適用する。</p>
+    <p id="_">次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要求事項を構成している。これらの引用規格は，その最新版（追補を含む。）を適用する。</p>
     OUTPUT
   end
 
@@ -49,7 +49,7 @@ RSpec.describe Metanorma::Jis do
     expect(Canon.format_xml(strip_guid(xml.at(
       "//xmlns:references/xmlns:p",
     ).to_xml))).to be_equivalent_to <<~OUTPUT
-      <p id="_">次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要求事項を構成している。これらの引用規格は，記載の年の版を適用し，その後の改正版（追補を含む。) は適用しない。</p>
+    <p id="_">次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要求事項を構成している。これらの引用規格は，記載の年の版を適用し，その後の改正版（追補を含む。）は適用しない。</p>
     OUTPUT
   end
 
@@ -68,7 +68,7 @@ RSpec.describe Metanorma::Jis do
     expect(Canon.format_xml(strip_guid(xml.at(
       "//xmlns:references/xmlns:p",
     ).to_xml))).to be_equivalent_to <<~OUTPUT
-      <p id="_">次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要求事項を構成している。これらの引用規格のうち，西暦年を付記してあるものは，記載の年の版を適用し，その後の改正版（追補を含む。)は適用しない。西暦年の付記がない引用規格は，その最新版（追補を含む。)を適用する。</p>
+      <p id="_">次に掲げる引用規格は，この規格に引用されることによって，その一部又は全部がこの規格の要求事項を構成している。これらの引用規格のうち，西暦年を付記してあるものは，記載の年の版を適用し，その後の改正版（追補を含む。）は適用しない。西暦年の付記がない引用規格は，その最新版（追補を含む。）を適用する。</p>
     OUTPUT
   end
 

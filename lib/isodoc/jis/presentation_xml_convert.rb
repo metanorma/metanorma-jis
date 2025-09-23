@@ -169,6 +169,10 @@ module IsoDoc
         XPATH
       end
 
+      def termsource_join_delim(_elem)
+        @lang == "ja" ? "、" : "; "
+      end
+
       include Init
     end
   end
