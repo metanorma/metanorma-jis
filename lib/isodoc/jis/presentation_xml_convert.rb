@@ -156,7 +156,7 @@ module IsoDoc
           fmt_origin_cite_full?(e) or next
           bibitem = @bibitem_lookup[e["bibitemid"]]
           cit = bibitem.at(ns("./formattedref")) or next
-          e["citeas"] = citeas_cleanup(to_xml(cit.children))
+          e["citeas"] = citeas_cleanup(to_xml(cit.children).strip)
         end
       end
 
