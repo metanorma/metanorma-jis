@@ -173,6 +173,10 @@ module IsoDoc
         @lang == "ja" ? "、" : "; "
       end
 
+      def source_join_delim(_elem)
+        @lang == "ja" ? "、" : "; "
+      end
+
       include Init
     end
   end
