@@ -177,6 +177,8 @@ module IsoDoc
         @lang == "ja" ? "、" : "; "
       end
 
+      def bracketed_refs_processing(docxml); end
+
       include Init
     end
   end
