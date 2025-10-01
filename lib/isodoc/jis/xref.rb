@@ -69,8 +69,9 @@ module IsoDoc
         ) 
         if elem["unnumbered"] != "true"
           x = semx(elem, sublabel)
+          p = elem.at("./ancestor::xmlns:figure")
           @anchors[elem["id"]][:label] = x
-          @anchors[elem["id"]][:xref] = @anchors[elem.parent["id"]][:xref] + 
+          @anchors[elem["id"]][:xref] = @anchors[p["id"]][:xref] + 
             subfigure_separator(markup: true) + x + delim_wrap(subfigure_delim)
         end
       end 
