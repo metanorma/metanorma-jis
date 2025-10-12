@@ -64,7 +64,7 @@ RSpec.describe Relaton::Render::Jis do
       </bibitem>
     INPUT
     output = <<~OUTPUT
-      <formattedref><span class='stddocTitle'>Latex, rubber - Determination of total solids content</span></formattedref>
+      <formattedref><span class="stddocTitle">Latex、 rubber - Determination of total solids content</span></formattedref>
     OUTPUT
     p = renderer
     expect(p.render(input))
@@ -223,7 +223,7 @@ RSpec.describe Relaton::Render::Jis do
       </bibitem>
     INPUT
     output = <<~OUTPUT
-    <formattedref>S. Bradner. <span class="stddocTitle">Intellectual Property Rights in IETF Technology</span>. RFC Series. 入手先： <span class="biburl"><link target="https://www.rfc-editor.org/info/rfc3979">https://www.rfc-editor.org/info/rfc3979</link></span></formattedref>
+      <formattedref>S. Bradner。 <span class="stddocTitle">Intellectual Property Rights in IETF Technology</span>。 RFC Series。入手先： <span class="biburl"><link target="https://www.rfc-editor.org/info/rfc3979">https://www.rfc-editor.org/info/rfc3979</link></span></formattedref>
     OUTPUT
     p = renderer
     expect(p.render(input))
@@ -283,10 +283,13 @@ RSpec.describe Relaton::Render::Jis do
         </bibitem>
       </references>
     INPUT
-    output = #<<~OUTPUT
-      {"A"=>{citation: nil, formattedref: "Aluffi P. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday. 第1版。 (London Mathematical Society Lecture Note Series 472). Cambridge, UK: Cambridge University Press. 2022. 巻1"},
-      "B"=>{citation: nil, formattedref: "Aluffi P. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday. 第1版。 (London Mathematical Society Lecture Note Series 472). Cambridge, UK: Cambridge University Press. 2022. 巻1"}}
-    #OUTPUT
+    output =
+      {
+        "A" => { citation: "",
+                 formattedref: "Aluffi P. （編）。 Facets of Algebraic Geometry： A Collection in Honor of William Fulton's 80th Birthday。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1" },
+        "B" => { citation: "",
+                 formattedref: "Aluffi P. （編）。 Facets of Algebraic Geometry： A Collection in Honor of William Fulton's 80th Birthday。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1" },
+      }
     p = renderer
     expect(p.render_all(input, type: nil))
       .to be_equivalent_to output
