@@ -341,105 +341,115 @@ RSpec.describe IsoDoc::Jis do
        </iso-standard>
     INPUT
     output = <<~OUTPUT
-        <foreword obligation="informative" id="_" displayorder="1">
-           <title id="_">Foreword</title>
-           <fmt-title id="_" depth="1">
-              <semx element="title" source="_">Foreword</semx>
-           </fmt-title>
-           <p id="A">
-              This is a preamble
-              <xref target="P" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="P">
-                    <span class="fmt-xref-container">
-                       <span class="fmt-element-name">箇条</span>
-                       <semx element="autonum" source="A">1</semx>
-                    </span>
-                    <span class="fmt-conn">の</span>
-                    <span class="fmt-element-name">リスト</span>
-                    <semx element="autonum" source="L">1</semx>
-                    <span class="fmt-conn">の</span>
-                    <semx element="autonum" source="P">a</semx>
-                    <span class="fmt-autonum-delim">)</span>
-                 </fmt-xref>
-              </semx>
-              <xref target="Q" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="Q">
-                    <span class="fmt-xref-container">
-                       <span class="fmt-element-name">箇条</span>
-                       <semx element="autonum" source="A">1</semx>
-                    </span>
-                    <span class="fmt-conn">の</span>
-                    <span class="fmt-element-name">リスト</span>
-                    <semx element="autonum" source="L">1</semx>
-                    <span class="fmt-conn">の</span>
-                    <semx element="autonum" source="P">a</semx>
-                    <span class="fmt-autonum-delim">)</span>
-                    <span class="fmt-conn">の</span>
-                    <semx element="autonum" source="Q">1</semx>
-                    <span class="fmt-autonum-delim">)</span>
-                 </fmt-xref>
-              </semx>
-              <xref target="R" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="R">
-                    <span class="fmt-xref-container">
-                       <span class="fmt-element-name">箇条</span>
-                       <semx element="autonum" source="A">1</semx>
-                    </span>
-                    <span class="fmt-conn">の</span>
-                    <span class="fmt-element-name">リスト</span>
-                    <semx element="autonum" source="L">1</semx>
-                    <span class="fmt-conn">の</span>
-                    <semx element="autonum" source="P">a</semx>
-                    <span class="fmt-autonum-delim">)</span>
-                    <span class="fmt-conn">の</span>
-                    <semx element="autonum" source="Q">1</semx>
-                    <span class="fmt-autonum-delim">.</span>
-                    <semx element="autonum" source="R">1</semx>
-                    <span class="fmt-autonum-delim">)</span>
-                 </fmt-xref>
-              </semx>
-              <xref target="S" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="S">
-                    <span class="fmt-xref-container">
-                       <span class="fmt-element-name">箇条</span>
-                       <semx element="autonum" source="A">1</semx>
-                    </span>
-                    <span class="fmt-conn">の</span>
-                    <span class="fmt-element-name">リスト</span>
-                    <semx element="autonum" source="L">1</semx>
-                    <span class="fmt-conn">の</span>
-                    <semx element="autonum" source="P">a</semx>
-                    <span class="fmt-autonum-delim">)</span>
-                    <span class="fmt-conn">の</span>
-                    <semx element="autonum" source="Q">1</semx>
-                    <span class="fmt-autonum-delim">.</span>
-                    <semx element="autonum" source="R">1</semx>
-                    <span class="fmt-autonum-delim">.</span>
-                    <semx element="autonum" source="S">1</semx>
-                    <span class="fmt-autonum-delim">)</span>
-                 </fmt-xref>
-              </semx>
-              <xref target="P1" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="P1">
-                    <span class="fmt-xref-container">
-                       <span class="fmt-element-name">箇条</span>
-                       <semx element="autonum" source="A">1</semx>
-                    </span>
-                    <span class="fmt-conn">の</span>
-                    <span class="fmt-element-name">リスト</span>
-                    <semx element="autonum" source="L1">2</semx>
-                    <span class="fmt-conn">の</span>
-                    <semx element="autonum" source="P1">a</semx>
-                    <span class="fmt-autonum-delim">)</span>
-                 </fmt-xref>
-              </semx>
-           </p>
-        </foreword>
+       <foreword obligation="informative" id="_" displayorder="1">
+          <title id="_">Foreword</title>
+          <fmt-title depth="1" id="_">
+             <semx element="title" source="_">Foreword</semx>
+          </fmt-title>
+          <p id="A">
+             This is a preamble
+             <xref target="P" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="P">
+                   <span class="fmt-xref-container">
+                      <span class="fmt-element-name">箇条</span>
+                       
+                      <semx element="autonum" source="A">1</semx>
+                   </span>
+                   <span class="fmt-conn">の</span>
+                   <span class="fmt-element-name">リスト</span>
+                    
+                   <semx element="autonum" source="L">1</semx>
+                   <span class="fmt-conn">の</span>
+                   <semx element="autonum" source="P">a</semx>
+                   <span class="fmt-autonum-delim">)</span>
+                </fmt-xref>
+             </semx>
+             <xref target="Q" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="Q">
+                   <span class="fmt-xref-container">
+                      <span class="fmt-element-name">箇条</span>
+                       
+                      <semx element="autonum" source="A">1</semx>
+                   </span>
+                   <span class="fmt-conn">の</span>
+                   <span class="fmt-element-name">リスト</span>
+                    
+                   <semx element="autonum" source="L">1</semx>
+                   <span class="fmt-conn">の</span>
+                   <semx element="autonum" source="P">a</semx>
+                   <span class="fmt-autonum-delim">)</span>
+                   <span class="fmt-conn">の</span>
+                   <semx element="autonum" source="Q">1</semx>
+                   <span class="fmt-autonum-delim">)</span>
+                </fmt-xref>
+             </semx>
+             <xref target="R" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="R">
+                   <span class="fmt-xref-container">
+                      <span class="fmt-element-name">箇条</span>
+                       
+                      <semx element="autonum" source="A">1</semx>
+                   </span>
+                   <span class="fmt-conn">の</span>
+                   <span class="fmt-element-name">リスト</span>
+                    
+                   <semx element="autonum" source="L">1</semx>
+                   <span class="fmt-conn">の</span>
+                   <semx element="autonum" source="P">a</semx>
+                   <span class="fmt-autonum-delim">)</span>
+                   <span class="fmt-conn">の</span>
+                   <semx element="autonum" source="Q">1</semx>
+                   <span class="fmt-autonum-delim">.</span>
+                   <semx element="autonum" source="R">1</semx>
+                   <span class="fmt-autonum-delim">)</span>
+                </fmt-xref>
+             </semx>
+             <xref target="S" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="S">
+                   <span class="fmt-xref-container">
+                      <span class="fmt-element-name">箇条</span>
+                       
+                      <semx element="autonum" source="A">1</semx>
+                   </span>
+                   <span class="fmt-conn">の</span>
+                   <span class="fmt-element-name">リスト</span>
+                    
+                   <semx element="autonum" source="L">1</semx>
+                   <span class="fmt-conn">の</span>
+                   <semx element="autonum" source="P">a</semx>
+                   <span class="fmt-autonum-delim">)</span>
+                   <span class="fmt-conn">の</span>
+                   <semx element="autonum" source="Q">1</semx>
+                   <span class="fmt-autonum-delim">.</span>
+                   <semx element="autonum" source="R">1</semx>
+                   <span class="fmt-autonum-delim">.</span>
+                   <semx element="autonum" source="S">1</semx>
+                   <span class="fmt-autonum-delim">)</span>
+                </fmt-xref>
+             </semx>
+             <xref target="P1" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="P1">
+                   <span class="fmt-xref-container">
+                      <span class="fmt-element-name">箇条</span>
+                       
+                      <semx element="autonum" source="A">1</semx>
+                   </span>
+                   <span class="fmt-conn">の</span>
+                   <span class="fmt-element-name">リスト</span>
+                    
+                   <semx element="autonum" source="L1">2</semx>
+                   <span class="fmt-conn">の</span>
+                   <semx element="autonum" source="P1">a</semx>
+                   <span class="fmt-autonum-delim">)</span>
+                </fmt-xref>
+             </semx>
+          </p>
+       </foreword>
     OUTPUT
     expect(Canon.format_xml(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
        .new(presxml_options)
@@ -579,94 +589,99 @@ RSpec.describe IsoDoc::Jis do
        .at("//xmlns:foreword").to_xml)))
       .to be_equivalent_to Canon.format_xml(output)
     output = <<~OUTPUT
-       <foreword obligation="informative" id="_" displayorder="1">
-           <title id="_">Foreword</title>
-           <fmt-title id="_" depth="1">
-              <semx element="title" source="_">Foreword</semx>
-           </fmt-title>
-           <p id="A">
-              This is a preamble
-              <xref target="P" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="P">
-                    <span class="fmt-xref-container">
-                       <span class="fmt-element-name">附属書</span>
-                       <semx element="autonum" source="A1">A</semx>
-                    </span>
-                    <span class="fmt-conn">の</span>
-                    <span class="fmt-element-name">注記</span>
-                 </fmt-xref>
-              </semx>
-              <xref target="Q" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="Q">
-                    <span class="fmt-xref-container">
-                       <semx element="autonum" source="A1">A</semx>
-                       <span class="fmt-autonum-delim">.</span>
-                       <semx element="autonum" source="A2">1</semx>
-                    </span>
-                    <span class="fmt-conn">の</span>
-                    <span class="fmt-element-name">注記</span>
-                 </fmt-xref>
-              </semx>
-              <xref target="R" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="R">
-                    <span class="fmt-xref-container">
-                       <semx element="annex" source="A3">Commentary</semx>
-                    </span>
-                    <span class="fmt-conn">の</span>
-                    <span class="fmt-element-name">注記</span>
-                 </fmt-xref>
-              </semx>
-              <xref target="S" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="S">
-                    <span class="fmt-xref-container">
-                       <span class="fmt-xref-container">
-                          <semx element="annex" source="A3">Commentary</semx>
-                       </span>
-                       <span class="fmt-conn">の</span>
-                       <span class="fmt-element-name">箇条</span>
-                       <semx element="autonum" source="A4">1</semx>
-                    </span>
-                    <span class="fmt-conn">の</span>
-                    <span class="fmt-element-name">注記</span>
-                 </fmt-xref>
-              </semx>
-              <xref target="T" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="T">
-                    <span class="citetbl">
-                       <span class="fmt-xref-container">
-                          <semx element="annex" source="A3">Commentary</semx>
-                       </span>
-                       <span class="fmt-conn">の</span>
-                       <span class="fmt-element-name">表</span>
-                       <semx element="autonum" source="T">1</semx>
-                    </span>
-                 </fmt-xref>
-              </semx>
-              <xref target="U" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="U">
-                    <span class="citetbl">
-                       <span class="fmt-xref-container">
-                          <span class="fmt-xref-container">
-                             <semx element="annex" source="A3">Commentary</semx>
-                          </span>
-                          <span class="fmt-conn">の</span>
-                          <span class="fmt-element-name">箇条</span>
-                          <semx element="autonum" source="A4">1</semx>
-                       </span>
-                       <span class="fmt-conn">の</span>
-                       <span class="fmt-element-name">表</span>
-                       <semx element="autonum" source="U">2</semx>
-                    </span>
-                 </fmt-xref>
-              </semx>
-           </p>
-        </foreword>
+      <foreword obligation="informative" id="_" displayorder="1">
+          <title id="_">Foreword</title>
+          <fmt-title depth="1" id="_">
+             <semx element="title" source="_">Foreword</semx>
+          </fmt-title>
+          <p id="A">
+             This is a preamble
+             <xref target="P" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="P">
+                   <span class="fmt-xref-container">
+                      <span class="fmt-element-name">附属書</span>
+                       
+                      <semx element="autonum" source="A1">A</semx>
+                   </span>
+                   <span class="fmt-conn">の</span>
+                   <span class="fmt-element-name">注記</span>
+                </fmt-xref>
+             </semx>
+             <xref target="Q" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="Q">
+                   <span class="fmt-xref-container">
+                      <semx element="autonum" source="A1">A</semx>
+                      <span class="fmt-autonum-delim">.</span>
+                      <semx element="autonum" source="A2">1</semx>
+                   </span>
+                   <span class="fmt-conn">の</span>
+                   <span class="fmt-element-name">注記</span>
+                </fmt-xref>
+             </semx>
+             <xref target="R" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="R">
+                   <span class="fmt-xref-container">
+                      <semx element="annex" source="A3">Commentary</semx>
+                   </span>
+                   <span class="fmt-conn">の</span>
+                   <span class="fmt-element-name">注記</span>
+                </fmt-xref>
+             </semx>
+             <xref target="S" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="S">
+                   <span class="fmt-xref-container">
+                      <span class="fmt-xref-container">
+                         <semx element="annex" source="A3">Commentary</semx>
+                      </span>
+                      <span class="fmt-conn">の</span>
+                      <span class="fmt-element-name">箇条</span>
+                       
+                      <semx element="autonum" source="A4">1</semx>
+                   </span>
+                   <span class="fmt-conn">の</span>
+                   <span class="fmt-element-name">注記</span>
+                </fmt-xref>
+             </semx>
+             <xref target="T" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="T">
+                   <span class="citetbl">
+                      <span class="fmt-xref-container">
+                         <semx element="annex" source="A3">Commentary</semx>
+                      </span>
+                      <span class="fmt-conn">の</span>
+                      <span class="fmt-element-name">表</span>
+                       
+                      <semx element="autonum" source="T">1</semx>
+                   </span>
+                </fmt-xref>
+             </semx>
+             <xref target="U" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="U">
+                   <span class="citetbl">
+                      <span class="fmt-xref-container">
+                         <span class="fmt-xref-container">
+                            <semx element="annex" source="A3">Commentary</semx>
+                         </span>
+                         <span class="fmt-conn">の</span>
+                         <span class="fmt-element-name">箇条</span>
+                          
+                         <semx element="autonum" source="A4">1</semx>
+                      </span>
+                      <span class="fmt-conn">の</span>
+                      <span class="fmt-element-name">表</span>
+                       
+                      <semx element="autonum" source="U">2</semx>
+                   </span>
+                </fmt-xref>
+             </semx>
+          </p>
+       </foreword>
     OUTPUT
     input.sub!("<preface>",
                "<bibdata><language>ja</language></bibdata><preface>")
@@ -873,137 +888,148 @@ RSpec.describe IsoDoc::Jis do
            </p>
         </foreword>
     OUTPUT
+
     expect(Canon.format_xml(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))
       .at("//xmlns:foreword").to_xml)))
       .to be_equivalent_to Canon.format_xml(output)
+
     output = <<~OUTPUT
-        <foreword id="fwd" displayorder="1">
-           <title id="_">まえがき</title>
-           <fmt-title id="_" depth="1">
-              <semx element="title" source="_">まえがき</semx>
-           </fmt-title>
-           <p>
-              <xref target="N" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="N">
-                    <span class="citefig">
-                       <span class="fmt-element-name">図</span>
-                       <semx element="autonum" source="N">1</semx>
-                    </span>
-                 </fmt-xref>
-              </semx>
-              <xref target="note1" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="note1">
-                    <span class="citefig">
-                       <span class="fmt-element-name">図</span>
-                       <semx element="autonum" source="N">1</semx>
-                       <span class="fmt-autonum-delim">の</span>
-                       <semx element="autonum" source="note1">a</semx>
-                       <span class="fmt-autonum-delim">)</span>
-                    </span>
-                 </fmt-xref>
-              </semx>
-              <xref target="note2" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="note2">
-                    <span class="citefig">
-                       <span class="fmt-element-name">図</span>
-                       <semx element="autonum" source="N">1</semx>
-                       <span class="fmt-autonum-delim">の</span>
-                       <semx element="autonum" source="note2">b</semx>
-                       <span class="fmt-autonum-delim">)</span>
-                    </span>
-                 </fmt-xref>
-              </semx>
-              <xref target="AN" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="AN">
-                    <span class="citefig">
-                       <span class="fmt-element-name">図</span>
-                       <semx element="autonum" source="annex1">A</semx>
-                       <span class="fmt-autonum-delim">.</span>
-                       <semx element="autonum" source="AN">1</semx>
-                    </span>
-                 </fmt-xref>
-              </semx>
-              <xref target="Anote1" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="Anote1">
-                    <span class="citefig">
-                       <span class="fmt-element-name">図</span>
-                       <semx element="autonum" source="annex1">A</semx>
-                       <span class="fmt-autonum-delim">.</span>
-                       <semx element="autonum" source="AN">1</semx>
-                       <span class="fmt-autonum-delim">の</span>
-                       <semx element="autonum" source="Anote1">a</semx>
-                       <span class="fmt-autonum-delim">)</span>
-                    </span>
-                 </fmt-xref>
-              </semx>
-              <xref target="Anote2" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="Anote2">
-                    <span class="citefig">
-                       <span class="fmt-element-name">図</span>
-                       <semx element="autonum" source="annex1">A</semx>
-                       <span class="fmt-autonum-delim">.</span>
-                       <semx element="autonum" source="AN">1</semx>
-                       <span class="fmt-autonum-delim">の</span>
-                       <semx element="autonum" source="Anote2">b</semx>
-                       <span class="fmt-autonum-delim">)</span>
-                    </span>
-                 </fmt-xref>
-              </semx>
-              <xref target="AN1" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="AN1">
-                    <span class="citefig">
-                       <span class="fmt-xref-container">
-                          <semx element="references" source="biblio">Bibliographical Section</semx>
-                       </span>
-                       <span class="fmt-conn">の</span>
-                       <span class="fmt-element-name">図</span>
-                       <semx element="autonum" source="AN1">1</semx>
-                    </span>
-                 </fmt-xref>
-              </semx>
-              <xref target="Anote11" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="Anote11">
-                    <span class="citefig">
-                       <span class="fmt-xref-container">
-                          <semx element="references" source="biblio">Bibliographical Section</semx>
-                       </span>
-                       <span class="fmt-conn">の</span>
-                       <span class="fmt-element-name">図</span>
-                       <semx element="autonum" source="AN1">1</semx>
-                       <span class="fmt-autonum-delim">の</span>
-                       <semx element="autonum" source="Anote11">a</semx>
-                       <span class="fmt-autonum-delim">)</span>
-                    </span>
-                 </fmt-xref>
-              </semx>
-              <xref target="Anote21" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="Anote21">
-                    <span class="citefig">
-                       <span class="fmt-xref-container">
-                          <semx element="references" source="biblio">Bibliographical Section</semx>
-                       </span>
-                       <span class="fmt-conn">の</span>
-                       <span class="fmt-element-name">図</span>
-                       <semx element="autonum" source="AN1">1</semx>
-                       <span class="fmt-autonum-delim">の</span>
-                       <semx element="autonum" source="Anote21">b</semx>
-                       <span class="fmt-autonum-delim">)</span>
-                    </span>
-                 </fmt-xref>
-              </semx>
-           </p>
-        </foreword>
+      <foreword id="fwd" displayorder="1">
+          <title id="_">まえがき</title>
+          <fmt-title depth="1" id="_">
+             <semx element="title" source="_">まえがき</semx>
+          </fmt-title>
+          <p>
+             <xref target="N" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="N">
+                   <span class="citefig">
+                      <span class="fmt-element-name">図</span>
+                       
+                      <semx element="autonum" source="N">1</semx>
+                   </span>
+                </fmt-xref>
+             </semx>
+             <xref target="note1" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="note1">
+                   <span class="citefig">
+                      <span class="fmt-element-name">図</span>
+                       
+                      <semx element="autonum" source="N">1</semx>
+                      <span class="fmt-autonum-delim">の</span>
+                      <semx element="autonum" source="note1">a</semx>
+                      <span class="fmt-autonum-delim">)</span>
+                   </span>
+                </fmt-xref>
+             </semx>
+             <xref target="note2" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="note2">
+                   <span class="citefig">
+                      <span class="fmt-element-name">図</span>
+                       
+                      <semx element="autonum" source="N">1</semx>
+                      <span class="fmt-autonum-delim">の</span>
+                      <semx element="autonum" source="note2">b</semx>
+                      <span class="fmt-autonum-delim">)</span>
+                   </span>
+                </fmt-xref>
+             </semx>
+             <xref target="AN" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="AN">
+                   <span class="citefig">
+                      <span class="fmt-element-name">図</span>
+                       
+                      <semx element="autonum" source="annex1">A</semx>
+                      <span class="fmt-autonum-delim">.</span>
+                      <semx element="autonum" source="AN">1</semx>
+                   </span>
+                </fmt-xref>
+             </semx>
+             <xref target="Anote1" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="Anote1">
+                   <span class="citefig">
+                      <span class="fmt-element-name">図</span>
+                       
+                      <semx element="autonum" source="annex1">A</semx>
+                      <span class="fmt-autonum-delim">.</span>
+                      <semx element="autonum" source="AN">1</semx>
+                      <span class="fmt-autonum-delim">の</span>
+                      <semx element="autonum" source="Anote1">a</semx>
+                      <span class="fmt-autonum-delim">)</span>
+                   </span>
+                </fmt-xref>
+             </semx>
+             <xref target="Anote2" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="Anote2">
+                   <span class="citefig">
+                      <span class="fmt-element-name">図</span>
+                       
+                      <semx element="autonum" source="annex1">A</semx>
+                      <span class="fmt-autonum-delim">.</span>
+                      <semx element="autonum" source="AN">1</semx>
+                      <span class="fmt-autonum-delim">の</span>
+                      <semx element="autonum" source="Anote2">b</semx>
+                      <span class="fmt-autonum-delim">)</span>
+                   </span>
+                </fmt-xref>
+             </semx>
+             <xref target="AN1" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="AN1">
+                   <span class="citefig">
+                      <span class="fmt-xref-container">
+                         <semx element="references" source="biblio">Bibliographical Section</semx>
+                      </span>
+                      <span class="fmt-conn">の</span>
+                      <span class="fmt-element-name">図</span>
+                       
+                      <semx element="autonum" source="AN1">1</semx>
+                   </span>
+                </fmt-xref>
+             </semx>
+             <xref target="Anote11" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="Anote11">
+                   <span class="citefig">
+                      <span class="fmt-xref-container">
+                         <semx element="references" source="biblio">Bibliographical Section</semx>
+                      </span>
+                      <span class="fmt-conn">の</span>
+                      <span class="fmt-element-name">図</span>
+                       
+                      <semx element="autonum" source="AN1">1</semx>
+                      <span class="fmt-autonum-delim">の</span>
+                      <semx element="autonum" source="Anote11">a</semx>
+                      <span class="fmt-autonum-delim">)</span>
+                   </span>
+                </fmt-xref>
+             </semx>
+             <xref target="Anote21" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="Anote21">
+                   <span class="citefig">
+                      <span class="fmt-xref-container">
+                         <semx element="references" source="biblio">Bibliographical Section</semx>
+                      </span>
+                      <span class="fmt-conn">の</span>
+                      <span class="fmt-element-name">図</span>
+                       
+                      <semx element="autonum" source="AN1">1</semx>
+                      <span class="fmt-autonum-delim">の</span>
+                      <semx element="autonum" source="Anote21">b</semx>
+                      <span class="fmt-autonum-delim">)</span>
+                   </span>
+                </fmt-xref>
+             </semx>
+          </p>
+       </foreword>
     OUTPUT
     expect(Canon.format_xml(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
@@ -1126,7 +1152,6 @@ OUTPUT
       .at("//xmlns:foreword").to_xml)))
       .to be_equivalent_to Canon.format_xml(presxml)
     end
-
 
   it "labels and cross-references nested requirements" do
     input = <<~INPUT
@@ -1368,185 +1393,202 @@ OUTPUT
            </p>
         </foreword>
     OUTPUT
+
     expect(Canon.format_xml(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))
       .at("//xmlns:foreword").to_xml)))
       .to be_equivalent_to Canon.format_xml(output)
+
     output = <<~OUTPUT
-        <foreword id="_" displayorder="1">
-           <title id="_">まえがき</title>
-           <fmt-title id="_" depth="1">
-              <semx element="title" source="_">まえがき</semx>
-           </fmt-title>
-           <p>
-              <xref target="N1" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="N1">
-                    <span class="fmt-element-name">許可</span>
-                    <semx element="autonum" source="N1">1</semx>
-                 </fmt-xref>
-              </semx>
-              <xref target="N2" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="N2">
-                    <span class="fmt-element-name">許可</span>
-                    <semx element="autonum" source="N1">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="N2">1</semx>
-                 </fmt-xref>
-              </semx>
-              <xref target="N" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="N">
-                    <span class="fmt-element-name">許可</span>
-                    <semx element="autonum" source="N1">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="N2">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="N">1</semx>
-                 </fmt-xref>
-              </semx>
-              <xref target="Q1" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="Q1">
-                    <span class="fmt-element-name">要求</span>
-                    <semx element="autonum" source="N1">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="Q1">1</semx>
-                 </fmt-xref>
-              </semx>
-              <xref target="R1" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="R1">
-                    <span class="fmt-element-name">推奨</span>
-                    <semx element="autonum" source="N1">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="R1">1</semx>
-                 </fmt-xref>
-              </semx>
-              <xref target="AN1" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="AN1">
-                    <span class="fmt-element-name">許可</span>
-                    <semx element="autonum" source="Axyz">A</semx>
-                    <span class="fmt-autonum-delim">.</span>
-                    <semx element="autonum" source="AN1">1</semx>
-                 </fmt-xref>
-              </semx>
-              <xref target="AN2" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="AN2">
-                    <span class="fmt-element-name">許可</span>
-                    <semx element="autonum" source="Axyz">A</semx>
-                    <span class="fmt-autonum-delim">.</span>
-                    <semx element="autonum" source="AN1">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="AN2">1</semx>
-                 </fmt-xref>
-              </semx>
-              <xref target="AN" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="AN">
-                    <span class="fmt-element-name">許可</span>
-                    <semx element="autonum" source="Axyz">A</semx>
-                    <span class="fmt-autonum-delim">.</span>
-                    <semx element="autonum" source="AN1">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="AN2">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="AN">1</semx>
-                 </fmt-xref>
-              </semx>
-              <xref target="AQ1" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="AQ1">
-                    <span class="fmt-element-name">要求</span>
-                    <semx element="autonum" source="Axyz">A</semx>
-                    <span class="fmt-autonum-delim">.</span>
-                    <semx element="autonum" source="AN1">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="AQ1">1</semx>
-                 </fmt-xref>
-              </semx>
-              <xref target="AR1" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="AR1">
-                    <span class="fmt-element-name">推奨</span>
-                    <semx element="autonum" source="Axyz">A</semx>
-                    <span class="fmt-autonum-delim">.</span>
-                    <semx element="autonum" source="AN1">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="AR1">1</semx>
-                 </fmt-xref>
-              </semx>
-              <xref target="BN1" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="BN1">
-                    <span class="fmt-xref-container">
-                       <semx element="references" source="biblio">Bibliographical Section</semx>
-                    </span>
-                    <span class="fmt-conn">の</span>
-                    <span class="fmt-element-name">許可</span>
-                    <semx element="autonum" source="BN1">1</semx>
-                 </fmt-xref>
-              </semx>
-              <xref target="BN2" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="BN2">
-                    <span class="fmt-xref-container">
-                       <semx element="references" source="biblio">Bibliographical Section</semx>
-                    </span>
-                    <span class="fmt-conn">の</span>
-                    <span class="fmt-element-name">許可</span>
-                    <semx element="autonum" source="BN1">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="BN2">1</semx>
-                 </fmt-xref>
-              </semx>
-              <xref target="BN" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="BN">
-                    <span class="fmt-xref-container">
-                       <semx element="references" source="biblio">Bibliographical Section</semx>
-                    </span>
-                    <span class="fmt-conn">の</span>
-                    <span class="fmt-element-name">許可</span>
-                    <semx element="autonum" source="BN1">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="BN2">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="BN">1</semx>
-                 </fmt-xref>
-              </semx>
-              <xref target="BQ1" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="BQ1">
-                    <span class="fmt-xref-container">
-                       <semx element="references" source="biblio">Bibliographical Section</semx>
-                    </span>
-                    <span class="fmt-conn">の</span>
-                    <span class="fmt-element-name">要求</span>
-                    <semx element="autonum" source="BN1">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="BQ1">1</semx>
-                 </fmt-xref>
-              </semx>
-              <xref target="BR1" id="_"/>
-              <semx element="xref" source="_">
-                 <fmt-xref target="BR1">
-                    <span class="fmt-xref-container">
-                       <semx element="references" source="biblio">Bibliographical Section</semx>
-                    </span>
-                    <span class="fmt-conn">の</span>
-                    <span class="fmt-element-name">推奨</span>
-                    <semx element="autonum" source="BN1">1</semx>
-                    <span class="fmt-autonum-delim">の</span>
-                    <semx element="autonum" source="BR1">1</semx>
-                 </fmt-xref>
-              </semx>
-           </p>
-        </foreword>
+      <foreword id="_" displayorder="1">
+          <title id="_">まえがき</title>
+          <fmt-title depth="1" id="_">
+             <semx element="title" source="_">まえがき</semx>
+          </fmt-title>
+          <p>
+             <xref target="N1" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="N1">
+                   <span class="fmt-element-name">許可</span>
+                    
+                   <semx element="autonum" source="N1">1</semx>
+                </fmt-xref>
+             </semx>
+             <xref target="N2" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="N2">
+                   <span class="fmt-element-name">許可</span>
+                    
+                   <semx element="autonum" source="N1">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="N2">1</semx>
+                </fmt-xref>
+             </semx>
+             <xref target="N" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="N">
+                   <span class="fmt-element-name">許可</span>
+                    
+                   <semx element="autonum" source="N1">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="N2">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="N">1</semx>
+                </fmt-xref>
+             </semx>
+             <xref target="Q1" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="Q1">
+                   <span class="fmt-element-name">要求</span>
+                    
+                   <semx element="autonum" source="N1">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="Q1">1</semx>
+                </fmt-xref>
+             </semx>
+             <xref target="R1" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="R1">
+                   <span class="fmt-element-name">推奨</span>
+                    
+                   <semx element="autonum" source="N1">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="R1">1</semx>
+                </fmt-xref>
+             </semx>
+             <xref target="AN1" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="AN1">
+                   <span class="fmt-element-name">許可</span>
+                    
+                   <semx element="autonum" source="Axyz">A</semx>
+                   <span class="fmt-autonum-delim">.</span>
+                   <semx element="autonum" source="AN1">1</semx>
+                </fmt-xref>
+             </semx>
+             <xref target="AN2" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="AN2">
+                   <span class="fmt-element-name">許可</span>
+                    
+                   <semx element="autonum" source="Axyz">A</semx>
+                   <span class="fmt-autonum-delim">.</span>
+                   <semx element="autonum" source="AN1">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="AN2">1</semx>
+                </fmt-xref>
+             </semx>
+             <xref target="AN" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="AN">
+                   <span class="fmt-element-name">許可</span>
+                    
+                   <semx element="autonum" source="Axyz">A</semx>
+                   <span class="fmt-autonum-delim">.</span>
+                   <semx element="autonum" source="AN1">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="AN2">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="AN">1</semx>
+                </fmt-xref>
+             </semx>
+             <xref target="AQ1" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="AQ1">
+                   <span class="fmt-element-name">要求</span>
+                    
+                   <semx element="autonum" source="Axyz">A</semx>
+                   <span class="fmt-autonum-delim">.</span>
+                   <semx element="autonum" source="AN1">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="AQ1">1</semx>
+                </fmt-xref>
+             </semx>
+             <xref target="AR1" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="AR1">
+                   <span class="fmt-element-name">推奨</span>
+                    
+                   <semx element="autonum" source="Axyz">A</semx>
+                   <span class="fmt-autonum-delim">.</span>
+                   <semx element="autonum" source="AN1">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="AR1">1</semx>
+                </fmt-xref>
+             </semx>
+             <xref target="BN1" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="BN1">
+                   <span class="fmt-xref-container">
+                      <semx element="references" source="biblio">Bibliographical Section</semx>
+                   </span>
+                   <span class="fmt-conn">の</span>
+                   <span class="fmt-element-name">許可</span>
+                    
+                   <semx element="autonum" source="BN1">1</semx>
+                </fmt-xref>
+             </semx>
+             <xref target="BN2" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="BN2">
+                   <span class="fmt-xref-container">
+                      <semx element="references" source="biblio">Bibliographical Section</semx>
+                   </span>
+                   <span class="fmt-conn">の</span>
+                   <span class="fmt-element-name">許可</span>
+                    
+                   <semx element="autonum" source="BN1">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="BN2">1</semx>
+                </fmt-xref>
+             </semx>
+             <xref target="BN" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="BN">
+                   <span class="fmt-xref-container">
+                      <semx element="references" source="biblio">Bibliographical Section</semx>
+                   </span>
+                   <span class="fmt-conn">の</span>
+                   <span class="fmt-element-name">許可</span>
+                    
+                   <semx element="autonum" source="BN1">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="BN2">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="BN">1</semx>
+                </fmt-xref>
+             </semx>
+             <xref target="BQ1" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="BQ1">
+                   <span class="fmt-xref-container">
+                      <semx element="references" source="biblio">Bibliographical Section</semx>
+                   </span>
+                   <span class="fmt-conn">の</span>
+                   <span class="fmt-element-name">要求</span>
+                    
+                   <semx element="autonum" source="BN1">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="BQ1">1</semx>
+                </fmt-xref>
+             </semx>
+             <xref target="BR1" id="_"/>
+             <semx element="xref" source="_">
+                <fmt-xref target="BR1">
+                   <span class="fmt-xref-container">
+                      <semx element="references" source="biblio">Bibliographical Section</semx>
+                   </span>
+                   <span class="fmt-conn">の</span>
+                   <span class="fmt-element-name">推奨</span>
+                    
+                   <semx element="autonum" source="BN1">1</semx>
+                   <span class="fmt-autonum-delim">の</span>
+                   <semx element="autonum" source="BR1">1</semx>
+                </fmt-xref>
+             </semx>
+          </p>
+       </foreword>
     OUTPUT
     expect(Canon.format_xml(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)

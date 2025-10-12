@@ -866,6 +866,7 @@ RSpec.describe IsoDoc::Jis do
                 </fmt-title>
                 <fmt-xref-label>
                    <span class="fmt-element-name">箇条</span>
+                    
                    <semx element="autonum" source="_">1</semx>
                 </fmt-xref-label>
                 <term id="paddy1">
@@ -912,11 +913,13 @@ RSpec.describe IsoDoc::Jis do
                       <fmt-name id="_">
                          <span class="fmt-caption-label">
                             <span class="fmt-element-name">例</span>
+                             
                             <semx element="autonum" source="_">1</semx>
                          </span>
                       </fmt-name>
                       <fmt-xref-label>
                          <span class="fmt-element-name">例</span>
+                          
                          <semx element="autonum" source="_">1</semx>
                       </fmt-xref-label>
                       <fmt-xref-label container="paddy1">
@@ -927,6 +930,7 @@ RSpec.describe IsoDoc::Jis do
                          </span>
                          <span class="fmt-conn">の</span>
                          <span class="fmt-element-name">例</span>
+                          
                          <semx element="autonum" source="_">1</semx>
                       </fmt-xref-label>
                       <p id="_">Foreign seeds, husks, bran, sand, dust.</p>
@@ -943,11 +947,13 @@ RSpec.describe IsoDoc::Jis do
                       <fmt-name id="_">
                          <span class="fmt-caption-label">
                             <span class="fmt-element-name">例</span>
+                             
                             <semx element="autonum" source="_">2</semx>
                          </span>
                       </fmt-name>
                       <fmt-xref-label>
                          <span class="fmt-element-name">例</span>
+                          
                          <semx element="autonum" source="_">2</semx>
                       </fmt-xref-label>
                       <fmt-xref-label container="paddy1">
@@ -958,6 +964,7 @@ RSpec.describe IsoDoc::Jis do
                          </span>
                          <span class="fmt-conn">の</span>
                          <span class="fmt-element-name">例</span>
+                          
                          <semx element="autonum" source="_">2</semx>
                       </fmt-xref-label>
                       <ul>
@@ -990,7 +997,7 @@ RSpec.describe IsoDoc::Jis do
                       </modification>
                    </source>
                    <fmt-termsource status="modified">
-                      ［出典：
+                      ［出典： 
                       <semx element="source" source="_">
                          <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011" id="_">
                             <locality type="clause">
@@ -1002,11 +1009,11 @@ RSpec.describe IsoDoc::Jis do
                                <locality type="clause">
                                   <referenceFrom>3.1</referenceFrom>
                                </locality>
-                               ISO 7301:2011,
-                               <span class="citesec">3.1</span>
+                               ISO 7301:2011、
+                               <span class="citesec">第3.1</span>
                             </fmt-origin>
                          </semx>
-                         , 修正された —
+                         、修正された —
                          <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
                       </semx>
                       、
@@ -1021,14 +1028,14 @@ RSpec.describe IsoDoc::Jis do
                                <locality type="clause">
                                   <referenceFrom>3.1</referenceFrom>
                                </locality>
-                               ISO 7301:2011,
-                               <span class="citesec">3.1</span>
+                               ISO 7301:2011、
+                               <span class="citesec">第3.1</span>
                             </fmt-origin>
                          </semx>
-                         , 修正された —
+                         、修正された —
                          <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
                       </semx>
-                      ]
+                      ］
                    </fmt-termsource>
                 </term>
                 <term id="paddy">
@@ -1134,6 +1141,7 @@ RSpec.describe IsoDoc::Jis do
                       </fmt-name>
                       <fmt-xref-label>
                          <span class="fmt-element-name">注記</span>
+                          
                          <semx element="autonum" source="_">1</semx>
                       </fmt-xref-label>
                       <fmt-xref-label container="paddy">
@@ -1144,6 +1152,7 @@ RSpec.describe IsoDoc::Jis do
                          </span>
                          <span class="fmt-conn">の</span>
                          <span class="fmt-element-name">注記</span>
+                          
                          <semx element="autonum" source="_">1</semx>
                       </fmt-xref-label>
                       <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
@@ -1158,6 +1167,7 @@ RSpec.describe IsoDoc::Jis do
                       </fmt-name>
                       <fmt-xref-label>
                          <span class="fmt-element-name">注記</span>
+                          
                          <semx element="autonum" source="_">2</semx>
                       </fmt-xref-label>
                       <fmt-xref-label container="paddy">
@@ -1168,6 +1178,7 @@ RSpec.describe IsoDoc::Jis do
                          </span>
                          <span class="fmt-conn">の</span>
                          <span class="fmt-element-name">注記</span>
+                          
                          <semx element="autonum" source="_">2</semx>
                       </fmt-xref-label>
                       <ul>
@@ -1188,7 +1199,7 @@ RSpec.describe IsoDoc::Jis do
                       </origin>
                    </source>
                    <fmt-termsource status="identical">
-                      ［出典：
+                      ［出典： 
                       <semx element="source" source="_">
                          <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011" id="_">
                             <locality type="clause">
@@ -1200,12 +1211,12 @@ RSpec.describe IsoDoc::Jis do
                                <locality type="clause">
                                   <referenceFrom>3.1</referenceFrom>
                                </locality>
-                               ISO 7301:2011,
-                               <span class="citesec">3.1</span>
+                               ISO 7301:2011、
+                               <span class="citesec">第3.1</span>
                             </fmt-origin>
                          </semx>
                       </semx>
-                      ]
+                      ］
                    </fmt-termsource>
                 </term>
                 <term id="A">

@@ -172,12 +172,23 @@ module IsoDoc
           label = counter.increment(entry).listlabel(entry.parent, depth)
           s = semx(entry, label)
           base = @c.decode(opts[:prev_label].gsub(%r{<[^>]+>}, "")).split(/\)\s*/) # List a) 1.1.1
-          label = "#{base[-1].sub(/^の/,'')}#{clausesep}#{label}"
+          label = "#{base[-1].sub(/^の/,'')}<esc>#{clausesep}</esc>#{label}"
           [label, opts[:prev_label] + delim_wrap(clausesep) + s]
         else
           super
         end
       end
+
+      def hierarchical_figure_names(clause, num)
+        #require "debug"; binding.b
+        super
+      end
+
+      def localise_anchors(type = nil)
+        #require "debug"; binding.b
+        super
+      end
+
     end
   end
 end
