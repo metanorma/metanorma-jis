@@ -154,9 +154,7 @@ module IsoDoc
         super
         xmldoc.xpath(ns("//fmt-origin")).each do |e|
           fmt_origin_cite_full?(e) or next
-          bibitem = @bibitem_lookup[e["bibitemid"]]
-          cit = bibitem.at(ns("./formattedref")) or next
-          e["citeas"] = citeas_cleanup(to_xml(cit.children).strip)
+          e["citeas"] = @i18n.l10n(citeas_cleanup(@ref_renderings[e["bibitemid"]][:citation][:short]&.strip))
         end
       end
 

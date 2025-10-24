@@ -8,7 +8,6 @@ module Metanorma
           pref = if ref_empty?(ref) then @i18n.norm_empty_pref
                  else @i18n.get[ref_dated(ref)]
                  end
-          #ref.at("./title").next = "<p>#{pref}</p>"
           ref.at("./title").next = boilerplate_snippet_convert(pref, isodoc)
         end
       end
