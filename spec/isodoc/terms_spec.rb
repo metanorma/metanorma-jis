@@ -1337,22 +1337,61 @@ RSpec.describe IsoDoc::Jis do
         </contributor>
       </bibitem>
       <bibitem id="ISO713" type="standard">
-        <title format="text/plain">Cereals or cereal products</title>
-        <title type="main" format="text/plain">Cereals and cereal products</title>
-        <docidentifier type="title">Cereals, cereal products</docidentifier>
-        <contributor>
-          <role type="publisher"/>
-          <organization>
-            <name>International Organization for Standardization</name>
-          </organization>
-        </contributor>
+              <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
+              <uri type="src">https://www.iso.org/standard/4766.html</uri>
+              <docidentifier type="DOI">https://doi.org/10.1017/9781108877831</docidentifier>
+              <docidentifier type="ISBN">9781108877831</docidentifier>
+              <date type="published"><on>2022</on></date>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Aluffi</surname><forename>Paolo</forename></name>
+                </person>
+              </contributor>
+                      <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Anderson</surname><forename>David</forename></name>
+                </person>
+              </contributor>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Hering</surname><forename>Milena</forename></name>
+                </person>
+              </contributor>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Mustaţă</surname><forename>Mircea</forename></name>
+                </person>
+              </contributor>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Payne</surname><forename>Sam</forename></name>
+                </person>
+              </contributor>
+              <edition>1</edition>
+              <series>
+              <title>London Mathematical Society Lecture Note Series</title>
+              <number>472</number>
+              </series>
+                  <contributor>
+                    <role type="publisher"/>
+                    <organization>
+                      <name>Cambridge University Press</name>
+                    </organization>
+                  </contributor>
+                  <place>Cambridge, UK</place>
+                <size><value type="volume">1</value></size>
       </bibitem>
       </references>
       </bibliography>
       </iso-standard>
     INPUT
     output = <<~OUTPUT
-      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <preface>
              <clause type="toc" id="_" displayorder="1">
                 <fmt-title depth="1" id="_">Contents</fmt-title>
@@ -1524,8 +1563,9 @@ RSpec.describe IsoDoc::Jis do
                          </origin>
                          <semx element="origin" source="_">
                             <fmt-xref type="inline" target="ISO713">
-                               <span class="stddocTitle">Cereals and cereal products</span>
-                               ,
+                               Aluffi P., Anderson D., Hering M., Mustaţă M.,  Payne S. 
+                               <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>
+                               . Version 1. Cambridge University Press.,
                                <span class="citesec">3.1</span>
                             </fmt-xref>
                          </semx>
@@ -1568,18 +1608,84 @@ RSpec.describe IsoDoc::Jis do
                       <tab/>
                    </biblio-tag>
                    <formattedref>
-                      <span class="stddocTitle">Cereals and cereal products</span>
+                      Aluffi P., Anderson D., Hering M., Mustaţă M., &amp; Payne S.
+                      <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>
+                      . Version 1. Cambridge University Press. Available from:
+                      <span class="biburl">
+                         <link target="https://www.iso.org/standard/4766.html" id="_">https://www.iso.org/standard/4766.html</link>
+                         <semx element="link" source="_">
+                            <fmt-link target="https://www.iso.org/standard/4766.html">https://www.iso.org/standard/4766.html</fmt-link>
+                         </semx>
+                      </span>
                    </formattedref>
-                   <title format="text/plain">Cereals or cereal products</title>
-                   <title type="main" format="text/plain">Cereals and cereal products</title>
+                   <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
+                   <uri type="src">https://www.iso.org/standard/4766.html</uri>
                    <docidentifier type="metanorma-ordinal">[2]</docidentifier>
-                   <docidentifier type="title">Cereals, cereal products</docidentifier>
+                   <docidentifier type="DOI">DOI https://doi.org/10.1017/9781108877831</docidentifier>
+                   <docidentifier type="ISBN">ISBN 9781108877831</docidentifier>
+                   <date type="published">
+                      <on>2022</on>
+                   </date>
+                   <contributor>
+                      <role type="editor"/>
+                      <person>
+                         <name>
+                            <surname>Aluffi</surname>
+                            <forename>Paolo</forename>
+                         </name>
+                      </person>
+                   </contributor>
+                   <contributor>
+                      <role type="editor"/>
+                      <person>
+                         <name>
+                            <surname>Anderson</surname>
+                            <forename>David</forename>
+                         </name>
+                      </person>
+                   </contributor>
+                   <contributor>
+                      <role type="editor"/>
+                      <person>
+                         <name>
+                            <surname>Hering</surname>
+                            <forename>Milena</forename>
+                         </name>
+                      </person>
+                   </contributor>
+                   <contributor>
+                      <role type="editor"/>
+                      <person>
+                         <name>
+                            <surname>Mustaţă</surname>
+                            <forename>Mircea</forename>
+                         </name>
+                      </person>
+                   </contributor>
+                   <contributor>
+                      <role type="editor"/>
+                      <person>
+                         <name>
+                            <surname>Payne</surname>
+                            <forename>Sam</forename>
+                         </name>
+                      </person>
+                   </contributor>
+                   <edition>1</edition>
+                   <series>
+                      <title>London Mathematical Society Lecture Note Series</title>
+                      <number>472</number>
+                   </series>
                    <contributor>
                       <role type="publisher"/>
                       <organization>
-                         <name>International Organization for Standardization</name>
+                         <name>Cambridge University Press</name>
                       </organization>
                    </contributor>
+                   <place>Cambridge, UK</place>
+                   <size>
+                      <value type="volume">1</value>
+                   </size>
                 </bibitem>
              </references>
           </bibliography>
