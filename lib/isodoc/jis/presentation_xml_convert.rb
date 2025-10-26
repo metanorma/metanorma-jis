@@ -173,6 +173,21 @@ module IsoDoc
         @lang == "ja" ? "、" : "; "
       end
 
+      def termsource_mod_text_delim(_elem)
+        @lang == "ja" ? "，" : ", "
+      end
+
+      def termsource_modification(elem)
+      elem.xpath(".//text()[normalize-space() = '']").each(&:remove)
+      origin = elem.at(ns("./origin"))
+      mod = elem.at(ns("./modification"))
+      s = termsource_status(elem["status"])
+      mod && elem["status"] == "modified" and s = @i18n.modified_detail
+      s and origin.next = l10n(", #{s}", @lang, @script, { prev: origin.text })
+      mod or return
+      termsource_add_modification_text(mod)
+    end
+
       def bracketed_refs_processing(docxml); end
 
       include Init

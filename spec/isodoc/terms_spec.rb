@@ -30,9 +30,6 @@ RSpec.describe IsoDoc::Jis do
               </source>
               <source status="modified">
                 <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
-                  <modification>
-                  <p id="_e73a417d-ad39-417d-a4c8-20e4e2529489">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
-                </modification>
               </source>
             </term>
 
@@ -71,7 +68,7 @@ RSpec.describe IsoDoc::Jis do
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <preface>
              <clause type="toc" id="_" displayorder="1">
                 <fmt-title depth="1" id="_">Contents</fmt-title>
@@ -225,9 +222,6 @@ RSpec.describe IsoDoc::Jis do
                             <referenceFrom>3.1</referenceFrom>
                          </locality>
                       </origin>
-                      <modification id="_">
-                         <p original-id="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
-                      </modification>
                    </source>
                    <fmt-termsource status="modified">
                       [SOURCE:
@@ -246,7 +240,7 @@ RSpec.describe IsoDoc::Jis do
                                <span class="citesec">3.1</span>
                             </fmt-origin>
                          </semx>
-                         , modified —
+                         , modified,
                          <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
                       </semx>
                       ;
@@ -265,8 +259,7 @@ RSpec.describe IsoDoc::Jis do
                                <span class="citesec">3.1</span>
                             </fmt-origin>
                          </semx>
-                         , modified —
-                         <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
+                         , modified
                       </semx>
                       ]
                    </fmt-termsource>
@@ -530,7 +523,7 @@ RSpec.describe IsoDoc::Jis do
         <h1 class="IntroTitle">Contents</h1>
       </div>
                   #{middle_title(false)}
-                  <div id="_">
+                <div id="_">
                    <h1>1  Terms and Definitions</h1>
                    <p class="TermNum" id="paddy1">1.1</p>
                    <p class="Terms" style="text-align:left;">
@@ -551,7 +544,7 @@ RSpec.describe IsoDoc::Jis do
                    <div id="_" class="example">
                       <p>
                          <span class="example_label">EXAMPLE 2</span>
-      #{'                    '}
+                          
                       </p>
                       <div class="ul_wrap">
                          <ul>
@@ -562,9 +555,9 @@ RSpec.describe IsoDoc::Jis do
                    <p>
                       [SOURCE: ISO 7301:2011,
                       <span class="citesec">3.1</span>
-              , modified — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here; ISO 7301:2011,
+                      , modified, The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here; ISO 7301:2011,
                       <span class="citesec">3.1</span>
-                      , modified — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+                      , modified]
                    </p>
                    <p class="TermNum" id="paddy">1.2</p>
                    <p class="Terms" style="text-align:left;">
@@ -577,7 +570,7 @@ RSpec.describe IsoDoc::Jis do
                    <div id="_" class="example">
                       <p>
                          <span class="example_label">EXAMPLE</span>
-      #{'                    '}
+                          
                       </p>
                       <div class="ul_wrap">
                          <ul>
@@ -645,7 +638,7 @@ RSpec.describe IsoDoc::Jis do
        </p>
        <div class="WordSection3">
                    #{middle_title(true)}
-                   <div id="_">
+             <div id="_">
                 <h1>
                    1
                    <span style="mso-tab-count:1">  </span>
@@ -682,9 +675,9 @@ RSpec.describe IsoDoc::Jis do
                 <p class="Source">
                    [SOURCE: ISO 7301:2011,
                    <span class="citesec">3.1</span>
-                   , modified — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here; ISO 7301:2011,
+                   , modified, The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here; ISO 7301:2011,
                    <span class="citesec">3.1</span>
-                   , modified — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+                   , modified]
                 </p>
                 <p class="TermNum" id="paddy">1.2</p>
                 <p class="Terms" style="text-align:left;">
@@ -787,9 +780,6 @@ RSpec.describe IsoDoc::Jis do
               </source>
               <source status="modified">
                 <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
-                  <modification>
-                  <p id="_e73a417d-ad39-417d-a4c8-20e4e2529489">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
-                </modification>
               </source>
             </term>
 
@@ -992,9 +982,6 @@ RSpec.describe IsoDoc::Jis do
                             <referenceFrom>3.1</referenceFrom>
                          </locality>
                       </origin>
-                      <modification id="_">
-                         <p original-id="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
-                      </modification>
                    </source>
                    <fmt-termsource status="modified">
                       ［出典： 
@@ -1013,7 +1000,7 @@ RSpec.describe IsoDoc::Jis do
                                <span class="citesec">第3.1</span>
                             </fmt-origin>
                          </semx>
-                         、修正された —
+                         、を一部変更し，
                          <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
                       </semx>
                       、
@@ -1032,8 +1019,7 @@ RSpec.describe IsoDoc::Jis do
                                <span class="citesec">第3.1</span>
                             </fmt-origin>
                          </semx>
-                         、修正された —
-                         <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
+                         、を変更
                       </semx>
                       ］
                    </fmt-termsource>
@@ -1505,7 +1491,7 @@ RSpec.describe IsoDoc::Jis do
                                <span class="citesec">3.1</span>
                             </fmt-xref>
                          </semx>
-                         , modified —
+                         , modified,
                          <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
                       </semx>
                       ]
@@ -1574,7 +1560,7 @@ RSpec.describe IsoDoc::Jis do
                             <fmt-xref type="inline" style="short" target="ISO713">
                                Aluffi P., Anderson D., Hering M., Mustaţă M., &amp; Payne S.
                                <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>
-                               . Version 1. Cambridge University Press.,
+                               . Version 1. Cambridge University Press,
                                <span class="citesec">3.1</span>
                             </fmt-xref>
                          </semx>
