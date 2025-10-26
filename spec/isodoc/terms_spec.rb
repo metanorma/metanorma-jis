@@ -1321,6 +1321,15 @@ RSpec.describe IsoDoc::Jis do
                 <origin bibitemid="ISO713" type="inline" citeas="ISO 713"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
               </source>
             </term>
+
+            <term id="paddy2">
+              <preferred><expression><name>paddy</name></expression></preferred>
+              <definition><verbal-definition><p id="_eb29b35e-123e-4d1c-b50b-2714d41e747f">rice retaining its husk after threshing  <eref bibitem="ISO713" citeas="ISO 713"/></p></verbal-definition></definition>
+              <source status="identical">
+                <origin bibitemid="ISO713" type="inline" style="reference_tag" citeas="ISO 713"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
+              </source>
+            </term>
+
           </terms>
         </sections>
         <bibliography>
@@ -1562,10 +1571,79 @@ RSpec.describe IsoDoc::Jis do
                             </locality>
                          </origin>
                          <semx element="origin" source="_">
-                            <fmt-xref type="inline" target="ISO713">
-                               Aluffi P., Anderson D., Hering M., Mustaţă M.,  Payne S. 
-                               <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>
-                               . Version 1. Cambridge University Press.,
+                            <fmt-xref type="inline" style="short" target="ISO713">
+                               Aluffi P., Anderson D., Hering M., Mustaţă M., &amp; Payne S.
+                               <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>
+                               . Version 1. Cambridge University Press.,
+                               <span class="citesec">3.1</span>
+                            </fmt-xref>
+                         </semx>
+                      </semx>
+                      ]
+                   </fmt-termsource>
+                </term>
+                <term id="paddy2">
+                   <fmt-name id="_">
+                      <span class="fmt-caption-label">
+                         <semx element="autonum" source="_">1</semx>
+                         <span class="fmt-autonum-delim">.</span>
+                         <semx element="autonum" source="paddy2">3</semx>
+                      </span>
+                   </fmt-name>
+                   <fmt-xref-label>
+                      <semx element="autonum" source="_">1</semx>
+                      <span class="fmt-autonum-delim">.</span>
+                      <semx element="autonum" source="paddy2">3</semx>
+                   </fmt-xref-label>
+                   <preferred id="_">
+                      <expression>
+                         <name>paddy</name>
+                      </expression>
+                   </preferred>
+                   <fmt-preferred>
+                      <p>
+                         <semx element="preferred" source="_">
+                            <strong>paddy</strong>
+                         </semx>
+                      </p>
+                   </fmt-preferred>
+                   <definition id="_">
+                      <verbal-definition>
+                         <p original-id="_">
+                            rice retaining its husk after threshing
+                            <eref bibitem="ISO713" citeas="ISO 713"/>
+                         </p>
+                      </verbal-definition>
+                   </definition>
+                   <fmt-definition id="_">
+                      <semx element="definition" source="_">
+                         <p id="_">
+                            rice retaining its husk after threshing
+                            <eref bibitem="ISO713" citeas="ISO 713" id="_"/>
+                            <semx element="eref" source="_">
+                               <fmt-eref bibitem="ISO713" citeas="ISO 713">ISO 713</fmt-eref>
+                            </semx>
+                         </p>
+                      </semx>
+                   </fmt-definition>
+                   <source status="identical" id="_">
+                      <origin bibitemid="ISO713" type="inline" style="reference_tag" citeas="ISO 713">
+                         <locality type="clause">
+                            <referenceFrom>3.1</referenceFrom>
+                         </locality>
+                      </origin>
+                   </source>
+                   <fmt-termsource status="identical">
+                      [SOURCE:
+                      <semx element="source" source="_">
+                         <origin bibitemid="ISO713" type="inline" style="reference_tag" citeas="ISO 713" id="_">
+                            <locality type="clause">
+                               <referenceFrom>3.1</referenceFrom>
+                            </locality>
+                         </origin>
+                         <semx element="origin" source="_">
+                            <fmt-xref type="inline" style="reference_tag" target="ISO713">
+                               [2],
                                <span class="citesec">3.1</span>
                             </fmt-xref>
                          </semx>
