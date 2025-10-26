@@ -150,12 +150,10 @@ module IsoDoc
       end
 
       # if termsource xref has no SDO identifier, cite instead by full reference
-      def citeas(xmldoc)
+      def anchor_linkend(node, linkend)
+        node.name == "fmt-origin" && fmt_origin_cite_full?(node) and
+          node["style"] ||= "short"
         super
-        xmldoc.xpath(ns("//fmt-origin")).each do |e|
-          fmt_origin_cite_full?(e) or next
-          e["citeas"] = @i18n.l10n(citeas_cleanup(@ref_renderings[e["bibitemid"]][:citation][:short]&.strip))
-        end
       end
 
       def fmt_origin_cite_full?(elem)
