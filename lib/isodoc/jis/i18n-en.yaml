@@ -24,3 +24,9 @@ doctype_dict:
   directive: Directive
 stage_dict:
   international-standard: International standard
+punct:
+  open-title: 
+  close-title: 
+  open-secondary-title:
+  close-secondary-title:
+
