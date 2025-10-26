@@ -28,3 +28,9 @@ doctype_dict:
   directive: Directive
 stage_dict:
   international-standard: 日本産業規格
+punct:
+  open-title: 
+  close-title: 
+  open-secondary-title:
+  close-secondary-title:
+
