@@ -322,7 +322,7 @@ RSpec.describe IsoDoc do
                                         , Section 1
                                      </fmt-origin>
                                   </semx>
-                                  —
+                                  ,
                                   <semx element="modification" source="_">with adjustments</semx>
                                </semx>
                                ;
@@ -344,7 +344,7 @@ RSpec.describe IsoDoc do
                                         , Section 3
                                      </fmt-origin>
                                   </semx>
-                                  —
+                                  ,
                                   <semx element="modification" source="_">with alterations</semx>
                                </semx>
                             </fmt-source>
@@ -409,7 +409,7 @@ RSpec.describe IsoDoc do
                 </fmt-xref-label>
              </clause>
           </sections>
-                    <annex id="Annex" autonum="A" displayorder="7">
+          <annex id="Annex" autonum="A" displayorder="7">
              <title id="_">
                 <strong>Annex</strong>
              </title>
@@ -548,7 +548,7 @@ RSpec.describe IsoDoc do
                             </p>
                          </div>
                          <div class="BlockSource">
-                            <p>SOURCE: , Section 1 — with adjustments; , Section 3 — with alterations</p>
+                         <p>SOURCE: ,  Section 1, with adjustments; ,  Section 3, with alterations</p>
                          </div>
                       </td>
                    </tr>
@@ -692,7 +692,7 @@ RSpec.describe IsoDoc do
                          </p>
                       </div>
                       <div class="BlockSource" style="page-break-after:auto">
-                         <p style="page-break-after:auto" class="MsoNormal">SOURCE: , Section 1 — with adjustments; , Section 3 — with alterations</p>
+                      <p style="page-break-after:auto" class="MsoNormal">SOURCE: ,  Section 1, with adjustments; ,  Section 3, with alterations</p>
                       </div>
                    </td>
                 </tr>
@@ -881,7 +881,7 @@ RSpec.describe IsoDoc do
                 <fmt-title depth="1" id="_">
                    <semx element="title" source="_">Foreword</semx>
                 </fmt-title>
-                <table alt="tool tip" id="tableD-1" summary="long desc" autonum="1" plain="true">
+                <table alt="tool tip" id="tableD-1" summary="long desc" plain="true" autonum="1">
                    <name id="_">
                       Repeatability and reproducibility of
                       <em>husked</em>
@@ -1092,7 +1092,7 @@ RSpec.describe IsoDoc do
                                         , Section 1
                                      </fmt-origin>
                                   </semx>
-                                  —
+                                  ,
                                   <semx element="modification" source="_">with adjustments</semx>
                                </semx>
                                ;
@@ -1114,7 +1114,7 @@ RSpec.describe IsoDoc do
                                         , Section 3
                                      </fmt-origin>
                                   </semx>
-                                  —
+                                  ,
                                   <semx element="modification" source="_">with alterations</semx>
                                </semx>
                             </fmt-source>
@@ -1270,7 +1270,7 @@ RSpec.describe IsoDoc do
                             </p>
                          </div>
                          <div class="BlockSource">
-                            <p>SOURCE: , Section 1 — with adjustments; , Section 3 — with alterations</p>
+                            <p>SOURCE: ,  Section 1, with adjustments; ,  Section 3, with alterations</p>
                          </div>
                       </td>
                    </tr>
@@ -1387,7 +1387,7 @@ RSpec.describe IsoDoc do
                          </p>
                       </div>
                       <div class="BlockSource" style="page-break-after:auto">
-                         <p style="page-break-after:auto" class="MsoNormal">SOURCE: , Section 1 — with adjustments; , Section 3 — with alterations</p>
+                      <p style="page-break-after:auto" class="MsoNormal">SOURCE: ,  Section 1, with adjustments; ,  Section 3, with alterations</p>
                       </div>
                    </td>
                 </tr>

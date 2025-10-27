@@ -150,14 +150,10 @@ module IsoDoc
       end
 
       # if termsource xref has no SDO identifier, cite instead by full reference
-      def citeas(xmldoc)
+      def anchor_linkend(node, linkend)
+        node.name == "fmt-origin" && fmt_origin_cite_full?(node) and
+          node["style"] ||= "short"
         super
-        xmldoc.xpath(ns("//fmt-origin")).each do |e|
-          fmt_origin_cite_full?(e) or next
-          bibitem = @bibitem_lookup[e["bibitemid"]]
-          cit = bibitem.at(ns("./formattedref")) or next
-          e["citeas"] = citeas_cleanup(to_xml(cit.children).strip)
-        end
       end
 
       def fmt_origin_cite_full?(elem)
@@ -176,6 +172,21 @@ module IsoDoc
       def source_join_delim(_elem)
         @lang == "ja" ? "、" : "; "
       end
+
+      def termsource_mod_text_delim(_elem)
+        @lang == "ja" ? "，" : ", "
+      end
+
+      def termsource_modification(elem)
+      elem.xpath(".//text()[normalize-space() = '']").each(&:remove)
+      origin = elem.at(ns("./origin"))
+      mod = elem.at(ns("./modification"))
+      s = termsource_status(elem["status"])
+      mod && elem["status"] == "modified" and s = @i18n.modified_detail
+      s and origin.next = l10n(", #{s}", @lang, @script, { prev: origin.text })
+      mod or return
+      termsource_add_modification_text(mod)
+    end
 
       def bracketed_refs_processing(docxml); end
 

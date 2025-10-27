@@ -30,9 +30,6 @@ RSpec.describe IsoDoc::Jis do
               </source>
               <source status="modified">
                 <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
-                  <modification>
-                  <p id="_e73a417d-ad39-417d-a4c8-20e4e2529489">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
-                </modification>
               </source>
             </term>
 
@@ -71,7 +68,7 @@ RSpec.describe IsoDoc::Jis do
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <preface>
              <clause type="toc" id="_" displayorder="1">
                 <fmt-title depth="1" id="_">Contents</fmt-title>
@@ -225,9 +222,6 @@ RSpec.describe IsoDoc::Jis do
                             <referenceFrom>3.1</referenceFrom>
                          </locality>
                       </origin>
-                      <modification id="_">
-                         <p original-id="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
-                      </modification>
                    </source>
                    <fmt-termsource status="modified">
                       [SOURCE:
@@ -246,7 +240,7 @@ RSpec.describe IsoDoc::Jis do
                                <span class="citesec">3.1</span>
                             </fmt-origin>
                          </semx>
-                         , modified —
+                         , modified,
                          <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
                       </semx>
                       ;
@@ -265,8 +259,7 @@ RSpec.describe IsoDoc::Jis do
                                <span class="citesec">3.1</span>
                             </fmt-origin>
                          </semx>
-                         , modified —
-                         <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
+                         , modified
                       </semx>
                       ]
                    </fmt-termsource>
@@ -530,7 +523,7 @@ RSpec.describe IsoDoc::Jis do
         <h1 class="IntroTitle">Contents</h1>
       </div>
                   #{middle_title(false)}
-                  <div id="_">
+                <div id="_">
                    <h1>1  Terms and Definitions</h1>
                    <p class="TermNum" id="paddy1">1.1</p>
                    <p class="Terms" style="text-align:left;">
@@ -551,7 +544,7 @@ RSpec.describe IsoDoc::Jis do
                    <div id="_" class="example">
                       <p>
                          <span class="example_label">EXAMPLE 2</span>
-      #{'                    '}
+                          
                       </p>
                       <div class="ul_wrap">
                          <ul>
@@ -562,9 +555,9 @@ RSpec.describe IsoDoc::Jis do
                    <p>
                       [SOURCE: ISO 7301:2011,
                       <span class="citesec">3.1</span>
-              , modified — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here; ISO 7301:2011,
+                      , modified, The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here; ISO 7301:2011,
                       <span class="citesec">3.1</span>
-                      , modified — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+                      , modified]
                    </p>
                    <p class="TermNum" id="paddy">1.2</p>
                    <p class="Terms" style="text-align:left;">
@@ -577,7 +570,7 @@ RSpec.describe IsoDoc::Jis do
                    <div id="_" class="example">
                       <p>
                          <span class="example_label">EXAMPLE</span>
-      #{'                    '}
+                          
                       </p>
                       <div class="ul_wrap">
                          <ul>
@@ -645,7 +638,7 @@ RSpec.describe IsoDoc::Jis do
        </p>
        <div class="WordSection3">
                    #{middle_title(true)}
-                   <div id="_">
+             <div id="_">
                 <h1>
                    1
                    <span style="mso-tab-count:1">  </span>
@@ -682,9 +675,9 @@ RSpec.describe IsoDoc::Jis do
                 <p class="Source">
                    [SOURCE: ISO 7301:2011,
                    <span class="citesec">3.1</span>
-                   , modified — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here; ISO 7301:2011,
+                   , modified, The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here; ISO 7301:2011,
                    <span class="citesec">3.1</span>
-                   , modified — The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here]
+                   , modified]
                 </p>
                 <p class="TermNum" id="paddy">1.2</p>
                 <p class="Terms" style="text-align:left;">
@@ -787,9 +780,6 @@ RSpec.describe IsoDoc::Jis do
               </source>
               <source status="modified">
                 <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
-                  <modification>
-                  <p id="_e73a417d-ad39-417d-a4c8-20e4e2529489">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
-                </modification>
               </source>
             </term>
 
@@ -992,9 +982,6 @@ RSpec.describe IsoDoc::Jis do
                             <referenceFrom>3.1</referenceFrom>
                          </locality>
                       </origin>
-                      <modification id="_">
-                         <p original-id="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
-                      </modification>
                    </source>
                    <fmt-termsource status="modified">
                       ［出典： 
@@ -1013,7 +1000,7 @@ RSpec.describe IsoDoc::Jis do
                                <span class="citesec">第3.1</span>
                             </fmt-origin>
                          </semx>
-                         、修正された —
+                         、を一部変更し，
                          <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
                       </semx>
                       、
@@ -1032,8 +1019,7 @@ RSpec.describe IsoDoc::Jis do
                                <span class="citesec">第3.1</span>
                             </fmt-origin>
                          </semx>
-                         、修正された —
-                         <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
+                         、を変更
                       </semx>
                       ］
                    </fmt-termsource>
@@ -1321,6 +1307,15 @@ RSpec.describe IsoDoc::Jis do
                 <origin bibitemid="ISO713" type="inline" citeas="ISO 713"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
               </source>
             </term>
+
+            <term id="paddy2">
+              <preferred><expression><name>paddy</name></expression></preferred>
+              <definition><verbal-definition><p id="_eb29b35e-123e-4d1c-b50b-2714d41e747f">rice retaining its husk after threshing  <eref bibitem="ISO713" citeas="ISO 713"/></p></verbal-definition></definition>
+              <source status="identical">
+                <origin bibitemid="ISO713" type="inline" style="reference_tag" citeas="ISO 713"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
+              </source>
+            </term>
+
           </terms>
         </sections>
         <bibliography>
@@ -1337,22 +1332,61 @@ RSpec.describe IsoDoc::Jis do
         </contributor>
       </bibitem>
       <bibitem id="ISO713" type="standard">
-        <title format="text/plain">Cereals or cereal products</title>
-        <title type="main" format="text/plain">Cereals and cereal products</title>
-        <docidentifier type="title">Cereals, cereal products</docidentifier>
-        <contributor>
-          <role type="publisher"/>
-          <organization>
-            <name>International Organization for Standardization</name>
-          </organization>
-        </contributor>
+              <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
+              <uri type="src">https://www.iso.org/standard/4766.html</uri>
+              <docidentifier type="DOI">https://doi.org/10.1017/9781108877831</docidentifier>
+              <docidentifier type="ISBN">9781108877831</docidentifier>
+              <date type="published"><on>2022</on></date>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Aluffi</surname><forename>Paolo</forename></name>
+                </person>
+              </contributor>
+                      <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Anderson</surname><forename>David</forename></name>
+                </person>
+              </contributor>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Hering</surname><forename>Milena</forename></name>
+                </person>
+              </contributor>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Mustaţă</surname><forename>Mircea</forename></name>
+                </person>
+              </contributor>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Payne</surname><forename>Sam</forename></name>
+                </person>
+              </contributor>
+              <edition>1</edition>
+              <series>
+              <title>London Mathematical Society Lecture Note Series</title>
+              <number>472</number>
+              </series>
+                  <contributor>
+                    <role type="publisher"/>
+                    <organization>
+                      <name>Cambridge University Press</name>
+                    </organization>
+                  </contributor>
+                  <place>Cambridge, UK</place>
+                <size><value type="volume">1</value></size>
       </bibitem>
       </references>
       </bibliography>
       </iso-standard>
     INPUT
     output = <<~OUTPUT
-      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <preface>
              <clause type="toc" id="_" displayorder="1">
                 <fmt-title depth="1" id="_">Contents</fmt-title>
@@ -1457,7 +1491,7 @@ RSpec.describe IsoDoc::Jis do
                                <span class="citesec">3.1</span>
                             </fmt-xref>
                          </semx>
-                         , modified —
+                         , modified,
                          <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
                       </semx>
                       ]
@@ -1523,9 +1557,79 @@ RSpec.describe IsoDoc::Jis do
                             </locality>
                          </origin>
                          <semx element="origin" source="_">
-                            <fmt-xref type="inline" target="ISO713">
-                               <span class="stddocTitle">Cereals and cereal products</span>
-                               ,
+                            <fmt-xref type="inline" style="short" target="ISO713">
+                               Aluffi P., Anderson D., Hering M., Mustaţă M., &amp; Payne S.
+                               <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>
+                               . Version 1. Cambridge University Press,
+                               <span class="citesec">3.1</span>
+                            </fmt-xref>
+                         </semx>
+                      </semx>
+                      ]
+                   </fmt-termsource>
+                </term>
+                <term id="paddy2">
+                   <fmt-name id="_">
+                      <span class="fmt-caption-label">
+                         <semx element="autonum" source="_">1</semx>
+                         <span class="fmt-autonum-delim">.</span>
+                         <semx element="autonum" source="paddy2">3</semx>
+                      </span>
+                   </fmt-name>
+                   <fmt-xref-label>
+                      <semx element="autonum" source="_">1</semx>
+                      <span class="fmt-autonum-delim">.</span>
+                      <semx element="autonum" source="paddy2">3</semx>
+                   </fmt-xref-label>
+                   <preferred id="_">
+                      <expression>
+                         <name>paddy</name>
+                      </expression>
+                   </preferred>
+                   <fmt-preferred>
+                      <p>
+                         <semx element="preferred" source="_">
+                            <strong>paddy</strong>
+                         </semx>
+                      </p>
+                   </fmt-preferred>
+                   <definition id="_">
+                      <verbal-definition>
+                         <p original-id="_">
+                            rice retaining its husk after threshing
+                            <eref bibitem="ISO713" citeas="ISO 713"/>
+                         </p>
+                      </verbal-definition>
+                   </definition>
+                   <fmt-definition id="_">
+                      <semx element="definition" source="_">
+                         <p id="_">
+                            rice retaining its husk after threshing
+                            <eref bibitem="ISO713" citeas="ISO 713" id="_"/>
+                            <semx element="eref" source="_">
+                               <fmt-eref bibitem="ISO713" citeas="ISO 713">ISO 713</fmt-eref>
+                            </semx>
+                         </p>
+                      </semx>
+                   </fmt-definition>
+                   <source status="identical" id="_">
+                      <origin bibitemid="ISO713" type="inline" style="reference_tag" citeas="ISO 713">
+                         <locality type="clause">
+                            <referenceFrom>3.1</referenceFrom>
+                         </locality>
+                      </origin>
+                   </source>
+                   <fmt-termsource status="identical">
+                      [SOURCE:
+                      <semx element="source" source="_">
+                         <origin bibitemid="ISO713" type="inline" style="reference_tag" citeas="ISO 713" id="_">
+                            <locality type="clause">
+                               <referenceFrom>3.1</referenceFrom>
+                            </locality>
+                         </origin>
+                         <semx element="origin" source="_">
+                            <fmt-xref type="inline" style="reference_tag" target="ISO713">
+                               [2],
                                <span class="citesec">3.1</span>
                             </fmt-xref>
                          </semx>
@@ -1568,18 +1672,84 @@ RSpec.describe IsoDoc::Jis do
                       <tab/>
                    </biblio-tag>
                    <formattedref>
-                      <span class="stddocTitle">Cereals and cereal products</span>
+                      Aluffi P., Anderson D., Hering M., Mustaţă M., &amp; Payne S.
+                      <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>
+                      . Version 1. Cambridge University Press. Available from:
+                      <span class="biburl">
+                         <link target="https://www.iso.org/standard/4766.html" id="_">https://www.iso.org/standard/4766.html</link>
+                         <semx element="link" source="_">
+                            <fmt-link target="https://www.iso.org/standard/4766.html">https://www.iso.org/standard/4766.html</fmt-link>
+                         </semx>
+                      </span>
                    </formattedref>
-                   <title format="text/plain">Cereals or cereal products</title>
-                   <title type="main" format="text/plain">Cereals and cereal products</title>
+                   <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
+                   <uri type="src">https://www.iso.org/standard/4766.html</uri>
                    <docidentifier type="metanorma-ordinal">[2]</docidentifier>
-                   <docidentifier type="title">Cereals, cereal products</docidentifier>
+                   <docidentifier type="DOI">DOI https://doi.org/10.1017/9781108877831</docidentifier>
+                   <docidentifier type="ISBN">ISBN 9781108877831</docidentifier>
+                   <date type="published">
+                      <on>2022</on>
+                   </date>
+                   <contributor>
+                      <role type="editor"/>
+                      <person>
+                         <name>
+                            <surname>Aluffi</surname>
+                            <forename>Paolo</forename>
+                         </name>
+                      </person>
+                   </contributor>
+                   <contributor>
+                      <role type="editor"/>
+                      <person>
+                         <name>
+                            <surname>Anderson</surname>
+                            <forename>David</forename>
+                         </name>
+                      </person>
+                   </contributor>
+                   <contributor>
+                      <role type="editor"/>
+                      <person>
+                         <name>
+                            <surname>Hering</surname>
+                            <forename>Milena</forename>
+                         </name>
+                      </person>
+                   </contributor>
+                   <contributor>
+                      <role type="editor"/>
+                      <person>
+                         <name>
+                            <surname>Mustaţă</surname>
+                            <forename>Mircea</forename>
+                         </name>
+                      </person>
+                   </contributor>
+                   <contributor>
+                      <role type="editor"/>
+                      <person>
+                         <name>
+                            <surname>Payne</surname>
+                            <forename>Sam</forename>
+                         </name>
+                      </person>
+                   </contributor>
+                   <edition>1</edition>
+                   <series>
+                      <title>London Mathematical Society Lecture Note Series</title>
+                      <number>472</number>
+                   </series>
                    <contributor>
                       <role type="publisher"/>
                       <organization>
-                         <name>International Organization for Standardization</name>
+                         <name>Cambridge University Press</name>
                       </organization>
                    </contributor>
+                   <place>Cambridge, UK</place>
+                   <size>
+                      <value type="volume">1</value>
+                   </size>
                 </bibitem>
              </references>
           </bibliography>
