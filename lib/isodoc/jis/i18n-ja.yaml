@@ -15,6 +15,7 @@ membership_table: 構成表
 full_name: 氏名
 affiliation: 所属
 toc_page: 頁
+modified_detail: を一部変更し
 doctype_dict:
   international-standard: 日本産業規格
   japanese-industrial-standard: 日本産業規格
@@ -28,3 +29,9 @@ doctype_dict:
   directive: Directive
 stage_dict:
   international-standard: 日本産業規格
+punct:
+  open-title: 
+  close-title: 
+  open-secondary-title:
+  close-secondary-title:
+

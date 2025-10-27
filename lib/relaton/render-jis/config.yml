@@ -16,28 +16,75 @@ nametemplate:
 # etal_count: 5
 seriestemplate: "{% if series_formatted %}{{ series_formatted }}{%else%}{% if series_abbr %}{{series_abbr}}{% else %}{{series_title}}{% endif %} ({{series_run}}) {{series_num}}|({{series_partnumber}}){%endif%}"
 journaltemplate: "{% if series_abbr %}{{series_abbr}}{% else %}{{series_title}}{% endif %} ({{series_run}}) {{ labels['volume'] }}_{{series_num}} {{ labels['part'] }}_{{series_partnumber}}"
+
+citetemplate:
+  author_date: "{{ author }} {{ date}}"
+  author_date_br: "{{ author }} ({{ date}})"
+  author: "{{ author }}"
+  date: "{{ date }}"
+  reference_tag: "{{ biblio_tag }}"
+  title: "{{ title }}"
+  title_reference_tag: "{{ title }} {{ biblio_tag }}"
+  short:
+    standard: "{% if home_standard %}<span_class='stddocTitle'>{{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}}</span> ,_{{ extent }}{% else %}{{ creatornames }}. <span_class='stddocTitle'>{{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}}</span> ,_{{ extent }} .  {{ labels['version'] | capitalize }}_{{ edition_raw }}. {{labels['updated'] | capitalize }}_{{date_updated}}. {{status | capitalize}}. {{ authorizer }}.{% endif %}"
+    website: "{{ creatornames }} ({{ role }}) . <span_class='stddocTitle'>{{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}}</span> [{{ labels['website'] }}]. {{ labels['version'] | capitalize }}_{{ edition_raw }}. {{place}}: {{ publisher }}. {{date}}. {{ labels['updated'] | capitalize }}:_{{date_updated}}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>."
+    book: "{{ creatornames }} ({{role}}) . {{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}} . {{ edition | capitalize_first }}. ({{ series }}). {% if place %}{{place}}{%else%}{{ labels['no_place']}}{%endif%}: {{publisher}}. {{date}}. {{size}}. {{extent}}."
+    booklet: book
+    manual: book
+    techreport: book
+    proceedings: book
+    inbook: "{{ creatornames }} ({{role}}) . {{labels['punct']['open-secondarytitle']}}{{ title }}{{labels['punct']['close-secondary-title']}} . {{labels['punct']['open-title']}}{{host_title}}{{labels['punct']['close-title']}} ({{host_role}} {{ host_creatornames}}). {{ edition | capitalize_first }}. ({{ series }}). {% if place %}{{place}}{%else%}{{ labels['no_place']}}{%endif%}: {{publisher}}. {{date}}. {{size}}. {{extent}}."
+    inproceedings: inbook
+    incollection: inbook
+    journal: "{{labels['punct']['open-title']}}{{ title}}{{labels['punct']['close-title']}} . {{ edition | capitalize_first }}. {{place}}: {{publisher}}. {{date}}. {{size}}. {{extent}}."
+    article: "{{ creatornames }} ({{role}}) . {{labels['punct']['open-secondary-title']}}{{ title }}{{labels['punct']['close-secondary-title']}}. {{labels['punct']['open-title']}}{{ series }}{{labels['punct']['close-title']}} . {{date}}, {{ extent }}. {{ labels['updated'] | capitalize }}:_{{date_updated}}."
+    software: "{{ creatornames }} ({{ role}}) . {{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}} . {{ labels['version'] | capitalize }}_{{ edition_raw }}. {{medium | capitalize}}. {{place}}: {{publisher}}. {{date}}. {{size}}. {{extent}}. {{ labels['updated'] | capitalize }}:_{{date_updated}}."
+    electronic resource:  software
+    dataset: "{{ creatornames }} ({{ role }}) . {{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}} . {{ labels['version'] | capitalize }}_{{ edition_raw }}. {{medium | capitalize }}. {{ labels['in'] | capitalize }}:_{{series}}. {{date}}. {{ labels['updated'] | capitalize }}:_{{date_updated}}. {{ authoritative_identifier | join '. ' }}. {{ other_identifier | join '. ' }}.  {{ size }}. {{ extent}}. [{{ labels['viewed'] }}:_{{date_accessed}}]. "
+    webresource: website
+    unpublished: "{{ creatornames }} ({{ role }}) . {{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}} . {{ medium | capitalize }}. {{ date }}. {{ labels['at'] | capitalize}}:_{{ access_location }}."
+    presentation: unpublished
+    thesis: "{{ creatornames }} ({{ role }}) . {{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}} . {{ medium | capitalize }}. {{place}}: {{ publisher }}. {{ date }}."
+    misc:  "{{ creatornames }} ({{ role }}) . {{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}} . {{ date }}."
+    # following are # unsupported types:
+    map: misc
+    audiovisual: misc
+    film: misc
+    video: misc
+    broadcast: misc
+    graphic_work: misc
+    music: misc
+    performance: misc
+    patent: misc
+    archival: misc
+    social_media: misc
+    alert: misc
+    message: misc
+    conversation: misc
+    internal: misc
+
 template:
   # skip standardidentifier, it is inserted in front of formattedref within metanorma
-  standard: "{% if home_standard %}<span_class='stddocTitle'>{{ title }}</span> ,_{{ extent }}{% else %}{{ creatornames }}. <span_class='stddocTitle'>{{ title }}</span> ,_{{ extent }} .  {{ labels['version'] | capitalize }}_{{ edition_raw }}. {{labels['updated'] | capitalize }}_{{date_updated}}. {{status | capitalize}}. {{ authorizer }}. {{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>.{% endif %}"
-  website: "{{ creatornames }} ({{ role }}) . <span_class='stddocTitle'>{{ title }}</span> [{{ labels['website'] }}]. {{ labels['version'] | capitalize }}_{{ edition_raw }}. {{place}}: {{ publisher }}. {{date}}. {{ labels['updated'] | capitalize }}:_{{date_updated}}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. [{{ labels['viewed'] }}:_{{date_accessed}}]. "
-  book: "{{ creatornames }} ({{role}}) . {{ title }} . {{ edition | capitalize_first }}. ({{ series }}). {% if place %}{{place}}{%else%}{{ labels['no_place']}}{%endif%}: {{publisher}}. {{date}}. {{size}}. {{extent}}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. {{ labels['at'] | capitalize}}:_{{ access_location }}. [{{ labels['viewed'] }}:_{{date_accessed}}]."
+  standard: "{% if home_standard %}<span_class='stddocTitle'>{{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}}</span> ,_{{ extent }}{% else %}{{ creatornames }}. <span_class='stddocTitle'>{{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}}</span> ,_{{ extent }} .  {{ labels['version'] | capitalize }}_{{ edition_raw }}. {{labels['updated'] | capitalize }}_{{date_updated}}. {{status | capitalize}}. {{ authorizer }}. {{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>.{% endif %}"
+  website: "{{ creatornames }} ({{ role }}) . <span_class='stddocTitle'>{{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}}</span> [{{ labels['website'] }}]. {{ labels['version'] | capitalize }}_{{ edition_raw }}. {{place}}: {{ publisher }}. {{date}}. {{ labels['updated'] | capitalize }}:_{{date_updated}}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. [{{ labels['viewed'] }}:_{{date_accessed}}]. "
+  book: "{{ creatornames }} ({{role}}) . {{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}} . {{ edition | capitalize_first }}. ({{ series }}). {% if place %}{{place}}{%else%}{{ labels['no_place']}}{%endif%}: {{publisher}}. {{date}}. {{size}}. {{extent}}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. {{ labels['at'] | capitalize}}:_{{ access_location }}. [{{ labels['viewed'] }}:_{{date_accessed}}]."
   booklet: book
   manual: book
   techreport: book
   proceedings: book
-  inbook: "{{ creatornames }} ({{role}}) . {{ title }} . {{host_title}} ({{host_role}} {{ host_creatornames}}). {{ edition | capitalize_first }}. ({{ series }}). {% if place %}{{place}}{%else%}{{ labels['no_place']}}{%endif%}: {{publisher}}. {{date}}. {{size}}. {{extent}}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. {{ labels['at'] | capitalize}}:_{{ access_location }}. [{{ labels['viewed'] }}:_{{date_accessed}}]."
+  inbook: "{{ creatornames }} ({{role}}) . {{labels['punct']['open-secondary-title']}}{{ title }}{{labels['punct']['close-secondary-title']}} . {{host_title}} ({{host_role}} {{ host_creatornames}}). {{ edition | capitalize_first }}. ({{ series }}). {% if place %}{{place}}{%else%}{{ labels['no_place']}}{%endif%}: {{publisher}}. {{date}}. {{size}}. {{extent}}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. {{ labels['at'] | capitalize}}:_{{ access_location }}. [{{ labels['viewed'] }}:_{{date_accessed}}]."
   inproceedings: inbook
   incollection: inbook
-  journal: "{{ title}} . {{ edition | capitalize_first }}. {{place}}: {{publisher}}. {{date}}. {{size}}. {{extent}}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. {{ labels['at'] | capitalize}}:_{{ access_location }}. [{{ labels['viewed'] }}:_{{date_accessed}}]."
-  article: "{{ creatornames }} ({{role}}) . {{ title }}. {{ series }} . {{date}}, {{ extent }}. {{ labels['updated'] | capitalize }}:_{{date_updated}}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. {{ labels['at'] | capitalize}}:_{{ access_location }}. [{{ labels['viewed'] }}:_{{date_accessed}}]."
-  software: "{{ creatornames }} ({{ role}}) . {{ title }} . {{ labels['version'] | capitalize }}_{{ edition_raw }}. {{medium | capitalize}}. {{place}}: {{publisher}}. {{date}}. {{size}}. {{extent}}. {{ labels['updated'] | capitalize }}:_{{date_updated}}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. [{{ labels['viewed'] }}:_{{date_accessed}}]. "
+  journal: "{{labels['punct']['open-title']}}{{ title}}{{labels['punct']['close-title']}} . {{ edition | capitalize_first }}. {{place}}: {{publisher}}. {{date}}. {{size}}. {{extent}}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. {{ labels['at'] | capitalize}}:_{{ access_location }}. [{{ labels['viewed'] }}:_{{date_accessed}}]."
+  article: "{{ creatornames }} ({{role}}) . {{labels['punct']['open-secondary-title']}}{{ title }}{{labels['punct']['close-secondary-title']}}. {{labels['punct']['open-title']}}{{ series }}{{labels['punct']['close-title']}} . {{date}}, {{ extent }}. {{ labels['updated'] | capitalize }}:_{{date_updated}}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. {{ labels['at'] | capitalize}}:_{{ access_location }}. [{{ labels['viewed'] }}:_{{date_accessed}}]."
+  software: "{{ creatornames }} ({{ role}}) . {{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}} . {{ labels['version'] | capitalize }}_{{ edition_raw }}. {{medium | capitalize}}. {{place}}: {{publisher}}. {{date}}. {{size}}. {{extent}}. {{ labels['updated'] | capitalize }}:_{{date_updated}}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. [{{ labels['viewed'] }}:_{{date_accessed}}]. "
   electronic resource:  software
-  dataset: "{{ creatornames }} ({{ role }}) . {{ title }} . {{ labels['version'] | capitalize }}_{{ edition_raw }}. {{medium | capitalize }}. {{ labels['in'] | capitalize }}:_{{series}}. {{date}}. {{ labels['updated'] | capitalize }}:_{{date_updated}}. {{ authoritative_identifier | join '. ' }}. {{ other_identifier | join '. ' }}.  ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. {{ size }}. {{ extent}}. [{{ labels['viewed'] }}:_{{date_accessed}}]. "
+  dataset: "{{ creatornames }} ({{ role }}) . {{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}} . {{ labels['version'] | capitalize }}_{{ edition_raw }}. {{medium | capitalize }}. {{ labels['in'] | capitalize }}:_{{series}}. {{date}}. {{ labels['updated'] | capitalize }}:_{{date_updated}}. {{ authoritative_identifier | join '. ' }}. {{ other_identifier | join '. ' }}.  ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. {{ size }}. {{ extent}}. [{{ labels['viewed'] }}:_{{date_accessed}}]. "
   webresource: website
-  unpublished: "{{ creatornames }} ({{ role }}) . {{ title }} . {{ medium | capitalize }}. {{ date }}. {{ labels['at'] | capitalize}}:_{{ access_location }}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. [{{ labels['viewed'] }}:_{{date_accessed}}]."
+  unpublished: "{{ creatornames }} ({{ role }}) . {{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}} . {{ medium | capitalize }}. {{ date }}. {{ labels['at'] | capitalize}}:_{{ access_location }}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. [{{ labels['viewed'] }}:_{{date_accessed}}]."
   presentation: unpublished
-  thesis: "{{ creatornames }} ({{ role }}) . {{ title }} . {{ medium | capitalize }}. {{place}}: {{ publisher }}. {{ date }}. {{ labels['at'] | capitalize}}:_{{ access_location }}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. [{{ labels['viewed'] }}:_{{date_accessed}}]."
-  misc:  "{{ creatornames }} ({{ role }}) . {{ title }} . {{ date }}."
+  thesis: "{{ creatornames }} ({{ role }}) . {{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}} . {{ medium | capitalize }}. {{place}}: {{ publisher }}. {{ date }}. {{ labels['at'] | capitalize}}:_{{ access_location }}. ._{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>. [{{ labels['viewed'] }}:_{{date_accessed}}]."
+  misc:  "{{ creatornames }} ({{ role }}) . {{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}} . {{ date }}."
   # following are # unsupported types:
   map: misc
   audiovisual: misc
