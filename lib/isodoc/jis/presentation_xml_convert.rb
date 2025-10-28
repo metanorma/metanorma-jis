@@ -87,7 +87,7 @@ module IsoDoc
 
       def convert1(xml, filename, dir)
         j = xml.at(ns("//metanorma-extension/presentation-metadata/" \
-                     "autonumbering-style"))&.text
+                      "autonumbering-style"))&.text
         j ||= "arabic"
         @autonumbering_style = j.to_sym
         @xrefs.autonumbering_style = j.to_sym
@@ -125,7 +125,7 @@ module IsoDoc
       def fn_ref_label(fnote)
         if fnote.ancestors("table, figure").empty? ||
             !fnote.ancestors("figure").empty? &&
-                !fnote.ancestors("name, fmt-name").empty?
+            !fnote.ancestors("name, fmt-name").empty?
           "<sup>#{fn_label(fnote)}</sup>"
         else
           "<sup>#{fn_label(fnote)}" \
@@ -136,7 +136,7 @@ module IsoDoc
       def fn_body_label(fnote)
         if fnote.ancestors("table, figure").empty? ||
             !fnote.ancestors("figure").empty? &&
-                !fnote.ancestors("name, fmt-name").empty?
+            !fnote.ancestors("name, fmt-name").empty?
           "<sup>#{fn_label(fnote)}</sup>"
         else
           spc = %w(zh ja ko).include?(@lang) ? "" : " "
@@ -178,15 +178,15 @@ module IsoDoc
       end
 
       def termsource_modification(elem)
-      elem.xpath(".//text()[normalize-space() = '']").each(&:remove)
-      origin = elem.at(ns("./origin"))
-      mod = elem.at(ns("./modification"))
-      s = termsource_status(elem["status"])
-      mod && elem["status"] == "modified" and s = @i18n.modified_detail
-      s and origin.next = l10n(", #{s}", @lang, @script, { prev: origin.text })
-      mod or return
-      termsource_add_modification_text(mod)
-    end
+        elem.xpath(".//text()[normalize-space() = '']").each(&:remove)
+        origin = elem.at(ns("./origin"))
+        mod = elem.at(ns("./modification"))
+        s = termsource_status(elem["status"])
+        mod && elem["status"] == "modified" and s = @i18n.modified_detail
+        s and origin.next = l10n(", #{s}", @lang, @script, { prev: origin.text })
+        mod or return
+        termsource_add_modification_text(mod)
+      end
 
       def bracketed_refs_processing(docxml); end
 

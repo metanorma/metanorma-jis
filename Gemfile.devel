@@ -3,7 +3,7 @@ gem "isodoc", git: "https://github.com/metanorma/isodoc", branch: "features/conf
 gem "metanorma-standoc", git: "https://github.com/metanorma/metanorma-standoc", branch: "features/log-config"
 gem "metanorma-iso", git: "https://github.com/metanorma/metanorma-iso", branch: "features/log-config"
 gem "metanorma-utils", git: "https://github.com/metanorma/metanorma-utils", branch: "main"
-gem "relaton-render", git: "https://github.com/relaton/relaton-render", branch: "features/configure-cite"
+gem "relaton-render", git: "https://github.com/relaton/relaton-render", branch: "feature/field-delim"
 
 
 
