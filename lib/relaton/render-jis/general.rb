@@ -2,6 +2,7 @@ require "relaton-render"
 require "metanorma-iso"
 require "isodoc"
 require_relative "parse"
+require_relative "fields"
 
 module Relaton
   module Render
@@ -14,6 +15,7 @@ module Relaton
         def klass_initialize(_options)
           super
           @parseklass = Relaton::Render::Jis::Parse
+          @fieldsklass = Relaton::Render::Jis::Fields
         end
 
         # KILL
