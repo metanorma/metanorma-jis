@@ -1900,57 +1900,6 @@
 			<xsl:call-template name="getLevel"/>
 		</xsl:variable>
 
-		<xsl:variable name="font-family">
-			<xsl:choose>
-				<xsl:when test="$vertical_layout = 'true'">Noto Sans JP</xsl:when>
-				<xsl:otherwise>IPAexGothic</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-
-		<xsl:variable name="font-size">
-			<xsl:choose>
-				<xsl:when test="$vertical_layout = 'true'">12pt</xsl:when>
-				<xsl:otherwise>
-					<xsl:choose>
-						<xsl:when test="@type = 'section-title'">18pt</xsl:when>
-						<xsl:when test="@ancestor = 'foreword' and $level = '1'">14pt</xsl:when>
-						<xsl:when test="@ancestor = 'annex' and $level = '1' and preceding-sibling::mn:annex[1][@commentary = 'true']">16pt</xsl:when>
-						<xsl:when test="@ancestor = 'annex' and $level = '1'">14pt</xsl:when>
-						<xsl:otherwise>10pt</xsl:otherwise>
-					</xsl:choose>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-
-		<xsl:variable name="font-weight">
-			<xsl:choose>
-				<xsl:when test="$vertical_layout = 'true'">500</xsl:when> <!-- bold, or 500 (medium) ? -->
-				<xsl:otherwise>normal</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-
-		<xsl:variable name="text-align">
-			<xsl:choose>
-				<xsl:when test="@ancestor = 'foreword' and $level = 1">center</xsl:when>
-				<xsl:when test="@ancestor = 'annex' and $level = 1">center</xsl:when>
-				<xsl:otherwise>left</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-
-		<xsl:variable name="margin-top">
-			<xsl:choose>
-				<xsl:when test="@ancestor = 'foreword' and $level = 1">9mm</xsl:when>
-				<xsl:when test="@ancestor = 'annex' and $level = '1' and preceding-sibling::mn:annex[1][@commentary = 'true']">1mm</xsl:when>
-				<xsl:when test="$level = 1">6.5mm</xsl:when>
-				<xsl:when test="@ancestor = 'foreword' and $level = 2">0mm</xsl:when>
-				<xsl:when test="@ancestor = 'annex' and $level = 2">4.5mm</xsl:when>
-				<xsl:when test="@ancestor = 'bibliography' and $level = 2">0mm</xsl:when>
-				<xsl:when test="$level = 2">2mm</xsl:when>
-				<xsl:when test="$level &gt;= 3">2mm</xsl:when>
-				<xsl:otherwise>0mm</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-
 		<xsl:variable name="element-name">
 			<xsl:choose>
 				<xsl:when test="@inline-header = 'true'">fo:inline</xsl:when>
@@ -1958,23 +1907,10 @@
 			</xsl:choose>
 		</xsl:variable>
 
-		<xsl:variable name="margin-bottom">
-			<xsl:choose>
-				<xsl:when test="@ancestor = 'foreword' and $level = 1">9mm</xsl:when>
-				<xsl:when test="@ancestor = 'annex' and $level = '1' and preceding-sibling::mn:annex[1][@commentary = 'true']">7mm</xsl:when>
-				<xsl:when test="$level = 1 and following-sibling::mn:clause">8pt</xsl:when>
-				<xsl:when test="$level = 1">12pt</xsl:when>
-				<xsl:when test="$level = 2 and following-sibling::mn:clause">8pt</xsl:when>
-				<xsl:when test="$level &gt;= 2">12pt</xsl:when>
-				<xsl:when test="@type = 'section-title'">6mm</xsl:when>
-				<xsl:when test="@inline-header = 'true'">0pt</xsl:when>
-				<xsl:when test="@ancestor = 'annex' and $level = 1">6mm</xsl:when>
-				<xsl:otherwise>0mm</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-
 		<!-- to space-before Foreword -->
 		<xsl:if test="@ancestor = 'foreword' and $level = '1'"><fo:block/></xsl:if>
+
+		<xsl:variable name="title_styles"><styles xsl:use-attribute-sets="title-style"><xsl:call-template name="refine_title-style"/></styles></xsl:variable>
 
 		<xsl:choose>
 			<xsl:when test="@inline-header = 'true' and following-sibling::*[1][self::mn:p]">
@@ -1988,25 +1924,7 @@
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:element name="{$element-name}">
-					<xsl:attribute name="font-family"><xsl:value-of select="$font-family"/></xsl:attribute>
-					<xsl:attribute name="font-size"><xsl:value-of select="$font-size"/></xsl:attribute>
-					<xsl:attribute name="font-weight"><xsl:value-of select="$font-weight"/></xsl:attribute>
-					<xsl:attribute name="text-align"><xsl:value-of select="$text-align"/></xsl:attribute>
-					<xsl:attribute name="space-before"><xsl:value-of select="$margin-top"/></xsl:attribute>
-					<xsl:attribute name="margin-bottom"><xsl:value-of select="$margin-bottom"/></xsl:attribute>
-					<xsl:attribute name="keep-with-next">always</xsl:attribute>
-					<xsl:attribute name="role">H<xsl:value-of select="$level"/></xsl:attribute>
-
-					<xsl:if test="@type = 'floating-title' or @type = 'section-title'">
-						<xsl:copy-of select="@id"/>
-					</xsl:if>
-
-					<xsl:if test="$vertical_layout = 'true'">
-						<!-- <xsl:attribute name="letter-spacing">1mm</xsl:attribute> -->
-						<xsl:if test="not($text-align = 'center')">
-							<xsl:attribute name="margin-left">-6mm</xsl:attribute>
-						</xsl:if>
-					</xsl:if>
+					<xsl:copy-of select="xalan:nodeset($title_styles)/styles/@*"/>
 
 					<!-- if first and last childs are `add` ace-tag, then move start ace-tag before title -->
 					<xsl:if test="mn:tab[1]/following-sibling::node()[last()][self::mn:add][starts-with(text(), $ace_tag)]">
@@ -18010,6 +17928,13 @@
 
 	<xsl:attribute-set name="title-style">
 		<!-- Note: font-size for level 1 title -->
+		<xsl:attribute name="font-family">IPAexGothic</xsl:attribute>
+		<xsl:attribute name="font-size">10pt</xsl:attribute>
+		<xsl:attribute name="font-weight">normal</xsl:attribute>
+		<xsl:attribute name="text-align">left</xsl:attribute>
+		<xsl:attribute name="space-before">6.5mm</xsl:attribute>
+		<xsl:attribute name="margin-bottom">12pt</xsl:attribute>
+		<xsl:attribute name="keep-with-next">always</xsl:attribute>
 	</xsl:attribute-set> <!-- title-style -->
 
 	<xsl:template name="refine_title-style">
@@ -18017,6 +17942,75 @@
 		<xsl:variable name="level">
 			<xsl:call-template name="getLevel"/>
 		</xsl:variable>
+
+		<xsl:if test="@inline-header = 'true'">
+			<xsl:attribute name="margin-bottom">0pt</xsl:attribute>
+		</xsl:if>
+
+		<xsl:if test="@type = 'section-title'">
+			<xsl:attribute name="margin-bottom">6mm</xsl:attribute>
+		</xsl:if>
+
+		<xsl:if test="$level = 1">
+			<xsl:if test="following-sibling::mn:clause">
+				<xsl:attribute name="margin-bottom">8pt</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="@ancestor = 'foreword'">
+				<xsl:attribute name="font-size">14pt</xsl:attribute>
+				<xsl:attribute name="text-align">center</xsl:attribute>
+				<xsl:attribute name="space-before">9mm</xsl:attribute>
+				<xsl:attribute name="margin-bottom">9mm</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="@ancestor = 'annex'">
+				<xsl:attribute name="font-size">14pt</xsl:attribute>
+				<xsl:attribute name="text-align">center</xsl:attribute>
+				<xsl:if test="preceding-sibling::mn:annex[1][@commentary = 'true']">
+					<xsl:attribute name="font-size">16pt</xsl:attribute>
+					<xsl:attribute name="space-before">1mm</xsl:attribute>
+					<xsl:attribute name="margin-bottom">7mm</xsl:attribute>
+				</xsl:if>
+			</xsl:if>
+		</xsl:if>
+
+		<xsl:if test="$level = 2">
+			<xsl:attribute name="space-before">2mm</xsl:attribute>
+			<xsl:attribute name="margin-bottom">12pt</xsl:attribute>
+			<xsl:if test="@ancestor = 'foreword'">
+				<xsl:attribute name="space-before">0mm</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="@ancestor = 'annex'">
+				<xsl:attribute name="space-before">4.5mm</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="@ancestor = 'bibliography'">
+				<xsl:attribute name="space-before">0mm</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="following-sibling::mn:clause">
+				<xsl:attribute name="margin-bottom">8pt</xsl:attribute>
+			</xsl:if>
+		</xsl:if>
+
+		<xsl:if test="$level &gt;= 3">
+			<xsl:attribute name="space-before">2mm</xsl:attribute>
+			<xsl:attribute name="margin-bottom">12pt</xsl:attribute>
+		</xsl:if>
+
+		<xsl:if test="@type = 'section-title'">
+			<xsl:attribute name="font-size">18pt</xsl:attribute>
+		</xsl:if>
+
+		<xsl:if test="@type = 'floating-title' or @type = 'section-title'">
+			<xsl:copy-of select="@id"/>
+		</xsl:if>
+
+		<xsl:if test="$vertical_layout = 'true'">
+			<xsl:attribute name="font-family">Noto Sans JP</xsl:attribute>
+			<xsl:attribute name="font-size">12pt</xsl:attribute>
+			<xsl:attribute name="font-weight">500</xsl:attribute>
+			<xsl:if test="not($level = 1 and (@ancestor = 'foreword' or @ancestor = 'annex'))">
+				<xsl:attribute name="margin-left">-6mm</xsl:attribute>
+			</xsl:if>
+		</xsl:if>
+		<!-- $namespace = 'jis' -->
 		<xsl:attribute name="role">H<xsl:value-of select="$level"/></xsl:attribute>
 	</xsl:template> <!-- refine_title-style -->
 
