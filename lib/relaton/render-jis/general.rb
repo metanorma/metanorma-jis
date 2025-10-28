@@ -16,7 +16,8 @@ module Relaton
           @parseklass = Relaton::Render::Jis::Parse
         end
 
-        def render1(doc)
+        # KILL
+        def render1x(doc, terminator)
           r = doc.relation.select { |x| x.type == "hasRepresentation" }
             .map { |x| @i18n.also_pub_as + render_single_bibitem(x.bibitem) }
           out = [render_single_bibitem(doc)] + r
