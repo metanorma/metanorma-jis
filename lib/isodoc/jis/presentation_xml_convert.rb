@@ -50,7 +50,7 @@ module IsoDoc
       def source1_label(elem, sources, ancestor)
         elem.children = if ancestor == :table
                           l10n("#{@i18n.source}: #{sources}")
-                        elsif /\(.+\)/.match?(sources)
+                        elsif /\(.+\)|（.+）/.match?(sources)
                           l10n("[#{@i18n.source}: #{sources}]")
                         else
                           l10n("(#{@i18n.source}: #{sources})")
@@ -125,7 +125,7 @@ module IsoDoc
       def fn_ref_label(fnote)
         if fnote.ancestors("table, figure").empty? ||
             !fnote.ancestors("figure").empty? &&
-            !fnote.ancestors("name, fmt-name").empty?
+                !fnote.ancestors("name, fmt-name").empty?
           "<sup>#{fn_label(fnote)}</sup>"
         else
           "<sup>#{fn_label(fnote)}" \
@@ -136,7 +136,7 @@ module IsoDoc
       def fn_body_label(fnote)
         if fnote.ancestors("table, figure").empty? ||
             !fnote.ancestors("figure").empty? &&
-            !fnote.ancestors("name, fmt-name").empty?
+                !fnote.ancestors("name, fmt-name").empty?
           "<sup>#{fn_label(fnote)}</sup>"
         else
           spc = %w(zh ja ko).include?(@lang) ? "" : " "
@@ -183,9 +183,18 @@ module IsoDoc
         mod = elem.at(ns("./modification"))
         s = termsource_status(elem["status"])
         mod && elem["status"] == "modified" and s = @i18n.modified_detail
-        s and origin.next = l10n(", #{s}", @lang, @script, { prev: origin.text })
+        s and origin.next = l10n(", #{s}", @lang, @script,
+                                 { prev: origin.text })
         mod or return
         termsource_add_modification_text(mod)
+      end
+
+      def termsource_label(elem, sources)
+        if /\(.+\)|（.+）/.match?(sources)
+          elem.replace(l10n("[#{@i18n.source}: <esc>#{sources}</esc>]"))
+        else
+          elem.replace(l10n("(#{@i18n.source}: <esc>#{sources}</esc>)"))
+        end
       end
 
       def bracketed_refs_processing(docxml); end

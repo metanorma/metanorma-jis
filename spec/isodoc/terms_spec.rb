@@ -25,7 +25,7 @@ RSpec.describe IsoDoc::Jis do
               <source status="modified">
                 <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
                   <modification>
-                  <p id="_e73a417d-ad39-417d-a4c8-20e4e2529489">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
+                  <p id="_e73a417d-ad39-417d-a4c8-20e4e2529489">The term "cargo rice" (and similar terms) is shown as deprecated, and Note 1 to entry is not included here</p>
                 </modification>
               </source>
               <source status="modified">
@@ -68,7 +68,7 @@ RSpec.describe IsoDoc::Jis do
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <preface>
              <clause type="toc" id="_" displayorder="1">
                 <fmt-title depth="1" id="_">Contents</fmt-title>
@@ -213,7 +213,7 @@ RSpec.describe IsoDoc::Jis do
                          </locality>
                       </origin>
                       <modification id="_">
-                         <p id="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
+                         <p id="_">The term "cargo rice" (and similar terms) is shown as deprecated, and Note 1 to entry is not included here</p>
                       </modification>
                    </source>
                    <source status="modified" id="_">
@@ -241,7 +241,7 @@ RSpec.describe IsoDoc::Jis do
                             </fmt-origin>
                          </semx>
                          , modified,
-                         <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
+                         <semx element="modification" source="_">The term "cargo rice" (and similar terms) is shown as deprecated, and Note 1 to entry is not included here</semx>
                       </semx>
                       ;
                       <semx element="source" source="_">
@@ -423,7 +423,7 @@ RSpec.describe IsoDoc::Jis do
                       </origin>
                    </source>
                    <fmt-termsource status="identical">
-                      [SOURCE:
+                      (SOURCE:
                       <semx element="source" source="_">
                          <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011" id="_">
                             <locality type="clause">
@@ -440,7 +440,7 @@ RSpec.describe IsoDoc::Jis do
                             </fmt-origin>
                          </semx>
                       </semx>
-                      ]
+                      )
                    </fmt-termsource>
                 </term>
                 <term id="A">
@@ -523,7 +523,7 @@ RSpec.describe IsoDoc::Jis do
         <h1 class="IntroTitle">Contents</h1>
       </div>
                   #{middle_title(false)}
-                <div id="_">
+               <div id="_">
                    <h1>1  Terms and Definitions</h1>
                    <p class="TermNum" id="paddy1">1.1</p>
                    <p class="Terms" style="text-align:left;">
@@ -555,7 +555,7 @@ RSpec.describe IsoDoc::Jis do
                    <p>
                       [SOURCE: ISO 7301:2011,
                       <span class="citesec">3.1</span>
-                      , modified, The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here; ISO 7301:2011,
+                      , modified, The term "cargo rice" (and similar terms) is shown as deprecated, and Note 1 to entry is not included here; ISO 7301:2011,
                       <span class="citesec">3.1</span>
                       , modified]
                    </p>
@@ -596,9 +596,9 @@ RSpec.describe IsoDoc::Jis do
                       <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
                    </div>
                    <p>
-                      [SOURCE: ISO 7301:2011,
+                      (SOURCE: ISO 7301:2011,
                       <span class="citesec">3.1</span>
-                      ]
+                      )
                    </p>
                    <p class="TermNum" id="A">1.3</p>
                    <p class="Terms" style="text-align:left;">
@@ -675,7 +675,7 @@ RSpec.describe IsoDoc::Jis do
                 <p class="Source">
                    [SOURCE: ISO 7301:2011,
                    <span class="citesec">3.1</span>
-                   , modified, The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here; ISO 7301:2011,
+                   , modified, The term "cargo rice" (and similar terms) is shown as deprecated, and Note 1 to entry is not included here; ISO 7301:2011,
                    <span class="citesec">3.1</span>
                    , modified]
                 </p>
@@ -716,9 +716,9 @@ RSpec.describe IsoDoc::Jis do
                    <p id="_">The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.</p>
                 </div>
                 <p class="Source">
-                   [SOURCE: ISO 7301:2011,
+                   (SOURCE: ISO 7301:2011,
                    <span class="citesec">3.1</span>
-                   ]
+                   )
                 </p>
                 <p class="TermNum" id="A">1.3</p>
                 <p class="Terms" style="text-align:left;">
@@ -775,7 +775,7 @@ RSpec.describe IsoDoc::Jis do
               <source status="modified">
                 <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
                   <modification>
-                  <p id="_e73a417d-ad39-417d-a4c8-20e4e2529489">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
+                  <p id="_e73a417d-ad39-417d-a4c8-20e4e2529489">The term "cargo rice" （および類似の用語） is shown as deprecated, and Note 1 to entry is not included here</p>
                 </modification>
               </source>
               <source status="modified">
@@ -973,7 +973,7 @@ RSpec.describe IsoDoc::Jis do
                          </locality>
                       </origin>
                       <modification id="_">
-                         <p id="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
+                         <p id="_">The term "cargo rice" （および類似の用語） is shown as deprecated, and Note 1 to entry is not included here</p>
                       </modification>
                    </source>
                    <source status="modified" id="_">
@@ -1001,7 +1001,7 @@ RSpec.describe IsoDoc::Jis do
                             </fmt-origin>
                          </semx>
                          、を一部変更し，
-                         <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
+                         <semx element="modification" source="_">The term "cargo rice" （および類似の用語） is shown as deprecated, and Note 1 to entry is not included here</semx>
                       </semx>
                       、
                       <semx element="source" source="_">
@@ -1185,7 +1185,7 @@ RSpec.describe IsoDoc::Jis do
                       </origin>
                    </source>
                    <fmt-termsource status="identical">
-                      ［出典： 
+                      （出典： 
                       <semx element="source" source="_">
                          <origin bibitemid="ISO7301" type="inline" citeas="ISO 7301:2011" id="_">
                             <locality type="clause">
@@ -1202,7 +1202,7 @@ RSpec.describe IsoDoc::Jis do
                             </fmt-origin>
                          </semx>
                       </semx>
-                      ］
+                      ）
                    </fmt-termsource>
                 </term>
                 <term id="A">
@@ -1386,7 +1386,7 @@ RSpec.describe IsoDoc::Jis do
       </iso-standard>
     INPUT
     output = <<~OUTPUT
-       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <preface>
              <clause type="toc" id="_" displayorder="1">
                 <fmt-title depth="1" id="_">Contents</fmt-title>
@@ -1478,7 +1478,7 @@ RSpec.describe IsoDoc::Jis do
                       </modification>
                    </source>
                    <fmt-termsource status="modified">
-                      [SOURCE:
+                      (SOURCE:
                       <semx element="source" source="_">
                          <origin bibitemid="ISO712" type="inline" citeas="ISO 712" id="_">
                             <locality type="clause">
@@ -1494,7 +1494,7 @@ RSpec.describe IsoDoc::Jis do
                          , modified,
                          <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
                       </semx>
-                      ]
+                      )
                    </fmt-termsource>
                 </term>
                 <term id="paddy">
@@ -1549,7 +1549,7 @@ RSpec.describe IsoDoc::Jis do
                       </origin>
                    </source>
                    <fmt-termsource status="identical">
-                      [SOURCE:
+                      (SOURCE:
                       <semx element="source" source="_">
                          <origin bibitemid="ISO713" type="inline" citeas="ISO 713" id="_">
                             <locality type="clause">
@@ -1565,7 +1565,7 @@ RSpec.describe IsoDoc::Jis do
                             </fmt-xref>
                          </semx>
                       </semx>
-                      ]
+                      )
                    </fmt-termsource>
                 </term>
                 <term id="paddy2">
@@ -1620,7 +1620,7 @@ RSpec.describe IsoDoc::Jis do
                       </origin>
                    </source>
                    <fmt-termsource status="identical">
-                      [SOURCE:
+                      (SOURCE:
                       <semx element="source" source="_">
                          <origin bibitemid="ISO713" type="inline" style="reference_tag" citeas="ISO 713" id="_">
                             <locality type="clause">
@@ -1634,7 +1634,7 @@ RSpec.describe IsoDoc::Jis do
                             </fmt-xref>
                          </semx>
                       </semx>
-                      ]
+                      )
                    </fmt-termsource>
                 </term>
              </terms>
