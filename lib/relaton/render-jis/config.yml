@@ -23,8 +23,8 @@ citetemplate:
   author: "{{ author }}"
   date: "{{ date }}"
   reference_tag: "{{ biblio_tag }}"
-  title: "{{ title }}"
-  title_reference_tag: "{{ title }} {{ biblio_tag }}"
+  title: "{{labels['punct']['open-title']}}|{{ title }}|{{labels['punct']['close-title']}}"
+  title_reference_tag: "{{labels['punct']['open-title']}}|{{ title }}|{{labels['punct']['close-title']}} {{ biblio_tag }}"
   short:
     standard: "{% if home_standard %}<span_class='stddocTitle'>{{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}}</span> ,_{{ extent }}{% else %}{{ creatornames }}$$$ <span_class='stddocTitle'>{{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}}</span> ,_{{ extent }} $$$  {{ version }}$$$ {{labels['updated'] | capitalize }}_{{date_updated}}$$$ {{status | capitalize}}$$$ {{ authorizer }}$$${% endif %}"
     website: "{{ creatornames }} ({{ role }}) $$$ <span_class='stddocTitle'>{{labels['punct']['open-title']}}{{ title }}{{labels['punct']['close-title']}}</span> [{{ labels['website'] }}]$$$ {{ version }}$$$ {{place}}: {{ publisher }}$$$ {{date}}$$$ {{ labels['updated'] | capitalize }}:_{{date_updated}}$$$ $$$_{{ labels['availablefrom'] }}:_<span_class='biburl'>{{ uri }}</span>"
