@@ -591,7 +591,7 @@ RSpec.describe IsoDoc::Jis do
                       <fmt-xref type="inline" target="ISO712">ISO 712、  第2 セクション</fmt-xref>
                    </semx>
                    ，
-                   <semx element="modification" source="_">(with adjustments)</semx>
+                   <semx element="modification" source="_">（with adjustments）</semx>
                 </semx>
                 ］
              </fmt-source>

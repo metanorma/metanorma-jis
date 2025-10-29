@@ -191,9 +191,9 @@ module IsoDoc
 
       def termsource_label(elem, sources)
         if /\(.+\)|（.+）/.match?(sources)
-          elem.replace(l10n("[#{@i18n.source}: <esc>#{sources}</esc>]"))
+          elem.replace(l10n("[#{@i18n.source}: #{esc sources}]"))
         else
-          elem.replace(l10n("(#{@i18n.source}: <esc>#{sources}</esc>)"))
+          elem.replace(l10n("(#{@i18n.source}: #{esc sources})"))
         end
       end
 
