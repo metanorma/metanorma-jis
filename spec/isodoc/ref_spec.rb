@@ -864,10 +864,10 @@ RSpec.describe IsoDoc do
                    <semx element="eref" source="_">
                       <fmt-xref target="ref10">［5］</fmt-xref>
                    </semx>
-                               <eref bibitemid="ref11" style="title" id="_"/>
-            <semx element="eref" source="_">
-               <fmt-xref style="title" target="ref11">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</fmt-xref>
-            </semx>
+                   <eref bibitemid="ref11" style="title" id="_"/>
+                   <semx element="eref" source="_">
+                      <fmt-xref style="title" target="ref11">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</fmt-xref>
+                   </semx>
                    <eref bibitemid="ref12" id="_"/>
                    <semx element="eref" source="_">
                       <fmt-xref target="ref12">Citn</fmt-xref>
@@ -943,7 +943,7 @@ RSpec.describe IsoDoc do
                       ,
                    </biblio-tag>
                    <formattedref>
-                      <span class="stddocTitle">Cereals、 pulses、 milled cereal products、 xxxx、 oilseeds and animal feeding stuffs</span>
+                      <span class="stddocTitle">Cereals, pulses, milled cereal products, xxxx, oilseeds and animal feeding stuffs</span>
                    </formattedref>
                    <title format="text/plain" language="x">Cereals, pulses, milled cereal products, xxxx, oilseeds and animal feeding stuffs</title>
                    <title format="text/plain" language="en">Cereals, pulses, milled cereal products, oilseeds and animal feeding stuffs</title>
@@ -1159,7 +1159,7 @@ RSpec.describe IsoDoc do
                       [3]
                       <tab/>
                    </biblio-tag>
-                   <formattedref>Aluffi P.、 Anderson D.、 Hering M.、 Mustaţă M.、  Payne S. （編）。 Facets of Algebraic Geometry： A Collection in Honor of William Fulton's 80th Birthday。 London Mathematical Society Lecture Note Series （N。S。）。 2022、巻1 いいえ7、 89〜112頁</formattedref>
+                   <formattedref>Aluffi P.、 Anderson D.、 Hering M.、 Mustaţă M.、  Payne S. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。 London Mathematical Society Lecture Note Series （N.S.）。 2022、巻1 いいえ7、 89〜112頁</formattedref>
                    <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
                    <docidentifier type="metanorma-ordinal">[3]</docidentifier>
                    <docidentifier type="DOI">DOI https://doi.org/10.1017/9781108877831</docidentifier>
@@ -1308,7 +1308,7 @@ RSpec.describe IsoDoc do
                       IETF RFC 10,
                    </biblio-tag>
                    <formattedref>
-                      <span class="stddocTitle">Internet Calendaring and Scheduling Core Object Specification （iCalendar）</span>
+                      <span class="stddocTitle">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</span>
                    </formattedref>
                    <title>Internet Calendaring and Scheduling Core Object Specification (iCalendar)</title>
                    <docidentifier type="metanorma-ordinal">[6]</docidentifier>
