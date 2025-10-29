@@ -1001,7 +1001,7 @@ RSpec.describe IsoDoc::Jis do
                             </fmt-origin>
                          </semx>
                          、を一部変更し，
-                         <semx element="modification" source="_">The term "cargo rice" （および類似の用語） is shown as deprecated, and Note 1 to entry is not included here</semx>
+                         <semx element="modification" source="_">The term "cargo rice" （および類似の用語） is shown as deprecated、 and Note 1 to entry is not included here</semx>
                       </semx>
                       、
                       <semx element="source" source="_">
