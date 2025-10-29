@@ -846,15 +846,15 @@ RSpec.describe IsoDoc do
                    </semx>
                    <eref bibitemid="ISBN" id="_"/>
                    <semx element="eref" source="_">
-                      <fmt-xref target="ISBN">［1］</fmt-xref>
+                      <fmt-xref target="ISBN">[1]</fmt-xref>
                    </semx>
                    <eref bibitemid="ISSN" id="_"/>
                    <semx element="eref" source="_">
-                      <fmt-xref target="ISSN">［3］</fmt-xref>
+                      <fmt-xref target="ISSN">[3]</fmt-xref>
                    </semx>
                    <eref bibitemid="ISO16634" id="_"/>
                    <semx element="eref" source="_">
-                      <fmt-xref target="ISO16634">ISO 16634：-- （規格群）</fmt-xref>
+                      <fmt-xref target="ISO16634">ISO 16634:-- (規格群)</fmt-xref>
                    </semx>
                    <eref bibitemid="ref1" id="_"/>
                    <semx element="eref" source="_">
@@ -862,7 +862,7 @@ RSpec.describe IsoDoc do
                    </semx>
                    <eref bibitemid="ref10" id="_"/>
                    <semx element="eref" source="_">
-                      <fmt-xref target="ref10">［5］</fmt-xref>
+                      <fmt-xref target="ref10">[5]</fmt-xref>
                    </semx>
                    <eref bibitemid="ref11" style="title" id="_"/>
                    <semx element="eref" source="_">
@@ -912,7 +912,7 @@ RSpec.describe IsoDoc do
                 </fmt-xref-label>
                 <p>The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</p>
                 <bibitem id="ISO712" type="standard">
-                   <biblio-tag>ISO 712, </biblio-tag>
+                   <biblio-tag>ISO 712、 </biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Cereals and cereal products</span>
                    </formattedref>
@@ -931,7 +931,7 @@ RSpec.describe IsoDoc do
                    <biblio-tag>
                       ISO 16634:-- (規格群)
                       <fn id="_" reference="1" original-reference="1" target="_">
-                         <p>Under preparation. (Stage at the time of publication ISO/DIS 16634)</p>
+                         <p>Under preparation。（Stage at the time of publication ISO/DIS 16634）</p>
                          <fmt-fn-label>
                             <span class="fmt-caption-label">
                                <sup>
@@ -940,7 +940,7 @@ RSpec.describe IsoDoc do
                             </span>
                          </fmt-fn-label>
                       </fn>
-                      ,
+                      、
                    </biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Cereals, pulses, milled cereal products, xxxx, oilseeds and animal feeding stuffs</span>
@@ -964,7 +964,7 @@ RSpec.describe IsoDoc do
                    </extent>
                 </bibitem>
                 <bibitem id="ISO20483" type="standard">
-                   <biblio-tag>ISO 20483:2013-2014, </biblio-tag>
+                   <biblio-tag>ISO 20483:2013-2014、 </biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Cereals and pulses</span>
                    </formattedref>
@@ -983,7 +983,7 @@ RSpec.describe IsoDoc do
                    </contributor>
                 </bibitem>
                 <bibitem id="ref1">
-                   <biblio-tag>ICC 167, </biblio-tag>
+                   <biblio-tag>ICC 167、 </biblio-tag>
                    <formattedref format="application/x-isodoc+xml">
                       <smallcap>Standard No I.C.C 167</smallcap>
                       .
@@ -1037,7 +1037,7 @@ RSpec.describe IsoDoc do
                    <biblio-tag>
                       [2]
                       <tab/>
-                      ISO 1234 / B,
+                      ISO 1234 / B、
                    </biblio-tag>
                    <formattedref>
                       Wozniak S.、 Jobs S.、 Hoover J.E.。 
@@ -1267,7 +1267,7 @@ RSpec.describe IsoDoc do
                    <biblio-tag>
                       [4]
                       <tab/>
-                      ISO 3696,
+                      ISO 3696、
                    </biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Water for analytical laboratory use</span>
@@ -1305,7 +1305,7 @@ RSpec.describe IsoDoc do
                    <biblio-tag>
                       [6]
                       <tab/>
-                      IETF RFC 10,
+                      IETF RFC 10、
                    </biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</span>
@@ -1319,7 +1319,7 @@ RSpec.describe IsoDoc do
                    <biblio-tag>
                       Citn
                       <tab/>
-                      IETF RFC 20,
+                      IETF RFC 20、
                    </biblio-tag>
                    <formattedref format="application/x-isodoc+xml">
                       CitationWorks. 2019.
@@ -1346,7 +1346,7 @@ RSpec.describe IsoDoc do
                             <tab/>
                          </span>
                       </fmt-fn-label>
-                      Under preparation. (Stage at the time of publication ISO/DIS 16634)
+                      Under preparation。（Stage at the time of publication ISO/DIS 16634）
                    </p>
                 </semx>
              </fmt-fn-body>
