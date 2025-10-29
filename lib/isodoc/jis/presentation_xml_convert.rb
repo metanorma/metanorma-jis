@@ -49,11 +49,11 @@ module IsoDoc
 
       def source1_label(elem, sources, ancestor)
         elem.children = if ancestor == :table
-                          l10n("#{@i18n.source}: #{sources}")
+                          l10n("#{@i18n.source}: #{esc sources}")
                         elsif /\(.+\)|（.+）/.match?(sources)
-                          l10n("[#{@i18n.source}: #{sources}]")
+                          l10n("[#{@i18n.source}: #{esc sources}]")
                         else
-                          l10n("(#{@i18n.source}: #{sources})")
+                          l10n("(#{@i18n.source}: #{esc sources})")
                         end
       end
 
