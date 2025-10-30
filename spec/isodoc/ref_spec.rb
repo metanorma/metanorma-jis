@@ -832,6 +832,7 @@ RSpec.describe IsoDoc do
       .sub(%r{<localized-strings>.*</localized-strings>}m, "")
       .gsub(/reference="[^"]+"/, 'reference="1"'))))
       .to be_equivalent_to Canon.format_xml(presxml)
+
     presxml = <<~OUTPUT
        <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <bibdata>
@@ -916,7 +917,7 @@ RSpec.describe IsoDoc do
                 </fmt-xref-label>
                 <p>The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</p>
                 <bibitem id="ISO712" type="standard">
-                   <biblio-tag>ISO 712、 </biblio-tag>
+                   <biblio-tag>ISO 712, </biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Cereals and cereal products</span>
                    </formattedref>
@@ -944,7 +945,7 @@ RSpec.describe IsoDoc do
                             </span>
                          </fmt-fn-label>
                       </fn>
-                      、
+                      ,
                    </biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Cereals, pulses, milled cereal products, xxxx, oilseeds and animal feeding stuffs</span>
@@ -989,7 +990,7 @@ RSpec.describe IsoDoc do
                    <script>Jpan</script>
                 </bibitem>
                 <bibitem id="ref1">
-                   <biblio-tag>ICC 167、 </biblio-tag>
+                   <biblio-tag>ICC 167, </biblio-tag>
                    <formattedref format="application/x-isodoc+xml">
                       <smallcap>Standard No I.C.C 167</smallcap>
                       .
