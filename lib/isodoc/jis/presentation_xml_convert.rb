@@ -200,7 +200,7 @@ module IsoDoc
       def bracketed_refs_processing(docxml); end
 
       def norm_ref_entry_code(_ordinal, idents, _ids, _standard, datefn, bib)
-        delim = bib.at(ns("./language"))&.text == "ja" ? "&#x3000;" : ", "
+        delim = bib.at(ns("./language"))&.text == "ja" ? "&#x3000;" : "<esc>,</esc> "
         ret = (idents[:ordinal] || idents[:metanorma] || idents[:sdo]).to_s
         ret = esc(ret)
         (idents[:ordinal] || idents[:metanorma]) && idents[:sdo] and
