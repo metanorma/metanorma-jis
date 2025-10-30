@@ -67,6 +67,8 @@ RSpec.describe IsoDoc do
                   <name>International Organization for Standardization</name>
                 </organization>
               </contributor>
+              <language>ja</language>
+              <script>Jpan</script>
             </bibitem>
             <bibitem id="ref1">
               <formattedref format="application/x-isodoc+xml">
@@ -432,7 +434,7 @@ RSpec.describe IsoDoc do
                    </extent>
                 </bibitem>
                 <bibitem id="ISO20483" type="standard">
-                   <biblio-tag>ISO 20483:2013-2014, </biblio-tag>
+                   <biblio-tag>ISO 20483:2013-2014　</biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Cereals and pulses</span>
                    </formattedref>
@@ -449,6 +451,8 @@ RSpec.describe IsoDoc do
                          <name>International Organization for Standardization</name>
                       </organization>
                    </contributor>
+                    <language>ja</language>
+                    <script>Jpan</script>
                 </bibitem>
                 <bibitem id="ref1">
                    <biblio-tag>ICC 167, </biblio-tag>
@@ -964,7 +968,7 @@ RSpec.describe IsoDoc do
                    </extent>
                 </bibitem>
                 <bibitem id="ISO20483" type="standard">
-                   <biblio-tag>ISO 20483:2013-2014、 </biblio-tag>
+                   <biblio-tag>ISO 20483:2013-2014　</biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Cereals and pulses</span>
                    </formattedref>
@@ -981,6 +985,8 @@ RSpec.describe IsoDoc do
                          <name>International Organization for Standardization</name>
                       </organization>
                    </contributor>
+                   <language>ja</language>
+                   <script>Jpan</script>
                 </bibitem>
                 <bibitem id="ref1">
                    <biblio-tag>ICC 167、 </biblio-tag>
