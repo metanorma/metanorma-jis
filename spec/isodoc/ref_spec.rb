@@ -271,6 +271,8 @@ RSpec.describe IsoDoc do
                   <name>ISO</name>
                 </organization>
               </contributor>
+              <language>ja</language>
+              <script>Jpan</script>
             </bibitem>
             <bibitem id="ref10">
               <formattedref format="application/x-isodoc+xml">
@@ -300,7 +302,7 @@ RSpec.describe IsoDoc do
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <bibdata>
              <language current="true">en</language>
           </bibdata>
@@ -335,10 +337,10 @@ RSpec.describe IsoDoc do
                    <semx element="eref" source="_">
                       <fmt-xref target="ref10">[5]</fmt-xref>
                    </semx>
-                               <eref bibitemid="ref11" style="title" id="_"/>
-            <semx element="eref" source="_">
-               <fmt-xref style="title" target="ref11">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</fmt-xref>
-            </semx>
+                   <eref bibitemid="ref11" style="title" id="_"/>
+                   <semx element="eref" source="_">
+                      <fmt-xref style="title" target="ref11">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</fmt-xref>
+                   </semx>
                    <eref bibitemid="ref12" id="_"/>
                    <semx element="eref" source="_">
                       <fmt-xref target="ref12">Citn</fmt-xref>
@@ -451,8 +453,8 @@ RSpec.describe IsoDoc do
                          <name>International Organization for Standardization</name>
                       </organization>
                    </contributor>
-                    <language>ja</language>
-                    <script>Jpan</script>
+                   <language>ja</language>
+                   <script>Jpan</script>
                 </bibitem>
                 <bibitem id="ref1">
                    <biblio-tag>ICC 167, </biblio-tag>
@@ -739,7 +741,7 @@ RSpec.describe IsoDoc do
                    <biblio-tag>
                       [4]
                       <tab/>
-                      ISO 3696,
+                      ISO 3696　
                    </biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Water for analytical laboratory use</span>
@@ -754,6 +756,8 @@ RSpec.describe IsoDoc do
                          <name>ISO</name>
                       </organization>
                    </contributor>
+                   <language>ja</language>
+                   <script>Jpan</script>
                 </bibitem>
                 <bibitem id="ref10">
                    <biblio-tag>
@@ -834,7 +838,7 @@ RSpec.describe IsoDoc do
       .to be_equivalent_to Canon.format_xml(presxml)
 
     presxml = <<~OUTPUT
-       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
           <bibdata>
              <language current="true">ja</language>
           </bibdata>
@@ -1044,7 +1048,7 @@ RSpec.describe IsoDoc do
                    <biblio-tag>
                       [2]
                       <tab/>
-                      ISO 1234 / B、
+                      ISO 1234 / B,
                    </biblio-tag>
                    <formattedref>
                       Wozniak S.、 Jobs S.、 Hoover J.E.。 
@@ -1274,7 +1278,7 @@ RSpec.describe IsoDoc do
                    <biblio-tag>
                       [4]
                       <tab/>
-                      ISO 3696、
+                      ISO 3696　
                    </biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Water for analytical laboratory use</span>
@@ -1289,6 +1293,8 @@ RSpec.describe IsoDoc do
                          <name>ISO</name>
                       </organization>
                    </contributor>
+                   <language>ja</language>
+                   <script>Jpan</script>
                 </bibitem>
                 <bibitem id="ref10">
                    <biblio-tag>
@@ -1312,7 +1318,7 @@ RSpec.describe IsoDoc do
                    <biblio-tag>
                       [6]
                       <tab/>
-                      IETF RFC 10、
+                      IETF RFC 10,
                    </biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</span>
@@ -1326,7 +1332,7 @@ RSpec.describe IsoDoc do
                    <biblio-tag>
                       Citn
                       <tab/>
-                      IETF RFC 20、
+                      IETF RFC 20,
                    </biblio-tag>
                    <formattedref format="application/x-isodoc+xml">
                       CitationWorks. 2019.

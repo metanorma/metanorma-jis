@@ -212,6 +212,18 @@ module IsoDoc
         ret
       end
 
+      def biblio_ref_entry_code(ordinal, ids, _id, _standard, datefn, bib)
+        delim = bib.at(ns("./language"))&.text == "ja" ? "&#x3000;" : "<esc>,</esc> "
+        ret = esc(ids[:ordinal]) || esc(ids[:metanorma]) || "[#{esc ordinal.to_s}]"
+        if ids[:sdo] && !ids[:sdo].empty?
+          ret = prefix_bracketed_ref(ret)
+          ret += "#{esc ids[:sdo]}#{datefn}#{delim}"
+        else
+          ret = prefix_bracketed_ref("#{ret}#{datefn}")
+        end
+        ret
+      end
+
       include Init
     end
   end
