@@ -47,10 +47,14 @@ module IsoDoc
         node.children.to_xml.gsub(%r{</?p( [^>]*)?>}, "")
       end
 
+      def contains_para?(text)
+        /\([^()]+\)|（[^（）].+）/.match?(text)
+      end
+
       def source1_label(elem, sources, ancestor)
         elem.children = if ancestor == :table
                           l10n("#{@i18n.source}: #{esc sources}")
-                        elsif /\(.+\)|（.+）/.match?(sources)
+                        elsif contains_para?(sources)
                           l10n("[#{@i18n.source}: #{esc sources}]")
                         else
                           l10n("(#{@i18n.source}: #{esc sources})")
@@ -190,7 +194,7 @@ module IsoDoc
       end
 
       def termsource_label(elem, sources)
-        if /\(.+\)|（.+）/.match?(sources)
+        if contains_para?(sources)
           elem.replace(l10n("[#{@i18n.source}: #{esc sources}]"))
         else
           elem.replace(l10n("(#{@i18n.source}: #{esc sources})"))
