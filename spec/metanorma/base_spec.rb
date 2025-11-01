@@ -845,6 +845,8 @@ RSpec.describe Metanorma::Jis do
                      <abbreviation>ISO</abbreviation>
                    </organization>
                  </contributor>
+                 <language>ja</language>
+                <script>Jpan</script>
                </bibitem>
                <p id="_">This is also extraneous information</p>
              </references>

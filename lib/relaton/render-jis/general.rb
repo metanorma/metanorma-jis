@@ -2,6 +2,7 @@ require "relaton-render"
 require "metanorma-iso"
 require "isodoc"
 require_relative "parse"
+require_relative "fields"
 
 module Relaton
   module Render
@@ -14,13 +15,7 @@ module Relaton
         def klass_initialize(_options)
           super
           @parseklass = Relaton::Render::Jis::Parse
-        end
-
-        def render1(doc)
-          r = doc.relation.select { |x| x.type == "hasRepresentation" }
-            .map { |x| @i18n.also_pub_as + render_single_bibitem(x.bibitem) }
-          out = [render_single_bibitem(doc)] + r
-          @i18n.l10n(out.join(". ").gsub(/[.。]\. /, ". ").sub(/[.。]\s*$/, ""))
+          @fieldsklass = Relaton::Render::Jis::Fields
         end
 
         def render_all(bib, type: "author-date")
