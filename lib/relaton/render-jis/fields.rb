@@ -6,12 +6,12 @@ module Relaton
       class Fields < ::Relaton::Render::Fields
         def edition_fields_format(hash)
           super
-          hash[:version] = versionformat(hash[:edition_raw])
+          hash[:version] = versionformat(hash[:edition_raw], hash)
         end
 
-        def versionformat(edn)
+        def versionformat(edn, context)
           edn && !edn.empty? or return
-          @r.i18n.populate("version_cardinal", { "var1" => edn })
+          @r.i18n.select(context).populate("version_cardinal", { "var1" => edn })
         end
       end
     end
