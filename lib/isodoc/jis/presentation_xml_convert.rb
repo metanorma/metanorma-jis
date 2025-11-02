@@ -209,6 +209,8 @@ module IsoDoc
         ret = esc(ret)
         (idents[:ordinal] || idents[:metanorma]) && idents[:sdo] and
           ret += "#{delim}<strong>#{esc idents[:sdo]}</strong>"
+        !idents[:ordinal] && !idents[:metanorma] && idents[:sdo] and
+          ret = "<strong>#{ret}</ret>"
         ret += datefn
         ret.empty? and return ret
         idents[:sdo] and ret += delim
