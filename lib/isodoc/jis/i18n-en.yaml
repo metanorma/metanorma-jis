@@ -12,6 +12,7 @@ affiliation: Affiliation
 norm_with_refs_pref_all_dated: The following reference standards, when cited in this Standard, constitute the requirements of this Standard in whole or in part. The editions of these reference standards in the years indicated apply, and subsequent revisions (including amendments) do not apply.
 norm_with_refs_pref_none_dated: The following reference standards, when incorporated into this Standard, constitute requirements of this Standard in whole or in part. The latest editions (including amendments) of these reference standards shall apply.
 modified_detail: modified
+version_cardinal: "Version {{ var1 }}"
 doctype_dict:
   international-standard: International standard
   japanese-industrial-standard: International standard
@@ -30,4 +31,3 @@ punct:
   close-title: 
   open-secondary-title:
   close-secondary-title:
-
