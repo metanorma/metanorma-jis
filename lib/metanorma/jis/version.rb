@@ -1,6 +1,6 @@
 module Metanorma
   module Jis
-    VERSION = "0.6.7".freeze
+    VERSION = "1.0.0".freeze
   end
 end
 
