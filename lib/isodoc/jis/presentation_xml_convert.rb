@@ -47,13 +47,17 @@ module IsoDoc
         node.children.to_xml.gsub(%r{</?p( [^>]*)?>}, "")
       end
 
+      def contains_para?(text)
+        /\([^()]+\)|（[^（）].+）/.match?(text)
+      end
+
       def source1_label(elem, sources, ancestor)
         elem.children = if ancestor == :table
-                          l10n("#{@i18n.source}: #{sources}")
-                        elsif /\(.+\)/.match?(sources)
-                          l10n("[#{@i18n.source}: #{sources}]")
+                          l10n("#{@i18n.source}: #{esc sources}")
+                        elsif contains_para?(sources)
+                          l10n("[#{@i18n.source}: #{esc sources}]")
                         else
-                          l10n("(#{@i18n.source}: #{sources})")
+                          l10n("(#{@i18n.source}: #{esc sources})")
                         end
       end
 
@@ -87,7 +91,7 @@ module IsoDoc
 
       def convert1(xml, filename, dir)
         j = xml.at(ns("//metanorma-extension/presentation-metadata/" \
-                     "autonumbering-style"))&.text
+                      "autonumbering-style"))&.text
         j ||= "arabic"
         @autonumbering_style = j.to_sym
         @xrefs.autonumbering_style = j.to_sym
@@ -178,17 +182,53 @@ module IsoDoc
       end
 
       def termsource_modification(elem)
-      elem.xpath(".//text()[normalize-space() = '']").each(&:remove)
-      origin = elem.at(ns("./origin"))
-      mod = elem.at(ns("./modification"))
-      s = termsource_status(elem["status"])
-      mod && elem["status"] == "modified" and s = @i18n.modified_detail
-      s and origin.next = l10n(", #{s}", @lang, @script, { prev: origin.text })
-      mod or return
-      termsource_add_modification_text(mod)
-    end
+        elem.xpath(".//text()[normalize-space() = '']").each(&:remove)
+        origin = elem.at(ns("./origin"))
+        mod = elem.at(ns("./modification"))
+        s = termsource_status(elem["status"])
+        mod && elem["status"] == "modified" and s = @i18n.modified_detail
+        s and origin.next = l10n(", #{s}", @lang, @script,
+                                 { prev: origin.text })
+        mod or return
+        termsource_add_modification_text(mod)
+      end
+
+      def termsource_label(elem, sources)
+        if contains_para?(sources)
+          elem.replace(l10n("[#{@i18n.source}: #{esc sources}]"))
+        else
+          elem.replace(l10n("(#{@i18n.source}: #{esc sources})"))
+        end
+      end
 
       def bracketed_refs_processing(docxml); end
+
+      def norm_ref_entry_code(_ordinal, idents, _ids, _standard, datefn, bib)
+        delim = bib.at(ns("./language"))&.text == "ja" ? "&#x3000;" : "<esc>,</esc> "
+        ret = (idents[:ordinal] || idents[:metanorma] || idents[:sdo]).to_s
+        ret = esc(ret)
+        (idents[:ordinal] || idents[:metanorma]) && idents[:sdo] and
+          ret += "#{delim}<strong>#{esc idents[:sdo]}</strong>"
+        !idents[:ordinal] && !idents[:metanorma] && idents[:sdo] and
+          ret = "<strong>#{ret}</ret>"
+        ret += datefn
+        ret.empty? and return ret
+        idents[:sdo] and ret += delim
+        ret.sub(delim, "").strip.empty? and return ""
+        ret
+      end
+
+      def biblio_ref_entry_code(ordinal, ids, _id, _standard, datefn, bib)
+        delim = bib.at(ns("./language"))&.text == "ja" ? "&#x3000;" : "<esc>,</esc> "
+        ret = esc(ids[:ordinal]) || esc(ids[:metanorma]) || "[#{esc ordinal.to_s}]"
+        if ids[:sdo] && !ids[:sdo].empty?
+          ret = prefix_bracketed_ref(ret)
+          ret += "#{esc ids[:sdo]}#{datefn}#{delim}"
+        else
+          ret = prefix_bracketed_ref("#{ret}#{datefn}")
+        end
+        ret
+      end
 
       include Init
     end
