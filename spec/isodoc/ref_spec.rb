@@ -518,10 +518,7 @@ RSpec.describe IsoDoc do
                       <em>Work</em>
                       . Collected Essays UNICEF). Fourth edition. (Bibliographers Anonymous). Geneva: International Standardization Organization. 1996. vol. 4 p. 19. Available from:
                       <span class="biburl">
-                         <link target="http://www.example.com" id="_">http://www.example.com</link>
-                         <semx element="link" source="_">
-                            <fmt-link target="http://www.example.com">http://www.example.com</fmt-link>
-                         </semx>
+                      <fmt-link target="http://www.example.com">http://www.example.com</fmt-link>
                       </span>
                    </formattedref>
                    <title>
@@ -1057,10 +1054,7 @@ RSpec.describe IsoDoc do
                       <em>Work</em>
                       。 Collected Essays UNICEF）。第4版。（Bibliographers Anonymous）。 Geneva： International Standardization Organization。 1996。巻4 19頁。入手先： 
                       <span class="biburl">
-                         <link target="http://www.example.com" id="_">http://www.example.com</link>
-                         <semx element="link" source="_">
-                            <fmt-link target="http://www.example.com">http://www.example.com</fmt-link>
-                         </semx>
+                      <fmt-link target="http://www.example.com">http://www.example.com</fmt-link>
                       </span>
                    </formattedref>
                    <title>
