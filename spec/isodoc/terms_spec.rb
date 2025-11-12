@@ -1676,10 +1676,7 @@ RSpec.describe IsoDoc::Jis do
                       <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>
                       . Version 1. Cambridge University Press. Available from:
                       <span class="biburl">
-                         <link target="https://www.iso.org/standard/4766.html" id="_">https://www.iso.org/standard/4766.html</link>
-                         <semx element="link" source="_">
-                            <fmt-link target="https://www.iso.org/standard/4766.html">https://www.iso.org/standard/4766.html</fmt-link>
-                         </semx>
+                      <fmt-link target="https://www.iso.org/standard/4766.html">https://www.iso.org/standard/4766.html</fmt-link>
                       </span>
                    </formattedref>
                    <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>

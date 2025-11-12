@@ -100,13 +100,11 @@ module Metanorma
       def multiling_noko_value(value, tag, xml)
         if value.is_a?(Hash)
           value.each do |k, v|
-            xml.send tag, language: k do |x|
-              x << v
-            end
+            add_noko_elem(xml, tag, v, language: k)
           end
         elsif value.is_a?(Array)
-          value.each { |a| xml.send tag, a }
-        else xml.send tag, value
+          value.each { |a| add_noko_elem(xml, tag, a) }
+        else add_noko_elem(xml, tag, value)
         end
       end
 
@@ -121,7 +119,7 @@ module Metanorma
         abbr = org[:abbr]
         abbr ||= org_abbrev[name_str]
         default_org && b = node&.attr("subdivision-abbr") and abbr = b
-        abbr and xml.abbreviation abbr
+        add_noko_elem(xml, "abbreviation", abbr)
       end
 
       def copyright_parse(node)
@@ -145,8 +143,8 @@ module Metanorma
 
       def metadata_id(node, xml)
         if id = node.attr("docidentifier")
-          xml.docidentifier id.sub(/^JIS /, ""),
-                            **attr_code(type: "JIS", primary: "true")
+          add_noko_elem(xml, "docidentifier", id.sub(/^JIS /, ""),
+                        **attr_code(type: "JIS", primary: "true"))
         else iso_id(node, xml)
         end
       end
@@ -185,7 +183,8 @@ module Metanorma
 
       def iso_id_out(xml, params, _with_prf)
         id = iso_id_default(params).to_s(with_publisher: false)
-        xml.docidentifier id.strip, type: "JIS", primary: "true"
+        add_noko_elem(xml, "docidentifier", id.strip, type: "JIS",
+                                                      primary: "true")
       end
 
       def iso_id_default(params)
