@@ -718,6 +718,25 @@ RSpec.describe IsoDoc::Jis do
                          <span style="mso-tab-count:1">  </span>
                          記号
                       </h2>
+                      <div align="left">
+                         <table class="dl">
+                            <tr>
+                               <td valign="top" align="left">
+                                  <p align="left" style="margin-left:0pt;text-align:left;">Symbol</p>
+                               </td>
+                               <td valign="top">Definition</td>
+                            </tr>
+                         </table>
+                      </div>
+                   </div>
+                </div>
+                <div id="L" class="Symbols">
+                   <h1>
+                      4
+                      <span style="mso-tab-count:1">  </span>
+                      記　号
+                   </h1>
+                   <div align="left">
                       <table class="dl">
                          <tr>
                             <td valign="top" align="left">
@@ -727,21 +746,6 @@ RSpec.describe IsoDoc::Jis do
                          </tr>
                       </table>
                    </div>
-                </div>
-                <div id="L" class="Symbols">
-                   <h1>
-                      4
-                      <span style="mso-tab-count:1">  </span>
-                      記　号
-                   </h1>
-                   <table class="dl">
-                      <tr>
-                         <td valign="top" align="left">
-                            <p align="left" style="margin-left:0pt;text-align:left;">Symbol</p>
-                         </td>
-                         <td valign="top">Definition</td>
-                      </tr>
-                   </table>
                 </div>
                 <div id="M">
                    <h1>
@@ -769,7 +773,7 @@ RSpec.describe IsoDoc::Jis do
                 </p>
                 <div id="P" class="Section3">
                    <h1 class="Annex">
-                   附属書 A
+                      附属書 A
                       <br/>
                       <span class="obligation">（規定）</span>
                       <br/>
