@@ -21,7 +21,8 @@ module IsoDoc
 
       def bibrenderer(options = {})
         ::Relaton::Render::Jis::General.new(options
-          .merge(language: @lang, script: @script, i18nhash: @i18n.get))
+          .merge(language: @lang, script: @script, i18nhash: @i18n.get,
+                 config: @relatonrenderconfig))
       end
 
       def std_docid_semantic(text)
