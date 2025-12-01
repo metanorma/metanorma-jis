@@ -212,6 +212,7 @@ RSpec.describe IsoDoc::Jis::Metadata do
         doctype_display: "Standard",
         docyear: "2000",
         draft: "0.3.4",
+
         draftinfo: " (draft 0.3.4, 2000-01-01)",
         edition: "2",
         editorialgroup: "IEC TC 62 and TC 210/SC 62A/WG 62A1",
@@ -226,6 +227,58 @@ RSpec.describe IsoDoc::Jis::Metadata do
         revdate_monthyear: "January 2000",
         sc: "SC 62A",
         script: "Latn",
+        secretariat: "GB",
+        stage: "20",
+        stage_int: 20,
+        stageabbr: "WD",
+        statusabbr: "PreWD3",
+        substage_int: "20",
+        tc: "TC 62",
+        unpublished: true,
+        wg: "WG 62A1" }
+    expect(metadata(c.info(Nokogiri::XML(input),
+                           nil))).to be_equivalent_to output
+    c = IsoDoc::Jis::HtmlConvert.new({})
+    _ = c.convert_init(<<~"INPUT", "test", false)
+      <iso-standard xmlns="http://riboseinc.com/isoxml">
+       <bibdata>
+          <language>ja</language>
+        </bibdata>
+      </iso-standard>
+    INPUT
+    output =
+      { agency: "JIS",
+        docnumber: "1000-1.3:2000",
+        docnumber_undated: "1000-1.3",
+        docnumeric: "1000",
+        docsubtitle: "Introduction&#xa0;&#x2014; Main Title — Title&#xa0;&#x2014; Part&#xa0;1: Title Part",
+        docsubtitleintro: "Introduction",
+        docsubtitlemain: "Main Title&#x2009;&#x2014;&#x2009;Title",
+        docsubtitlepart: "Title Part",
+        docsubtitlepartlabel: "Part&#xa0;1",
+        doctitle: "Introduction Française&#xa0;&#x2014; Titre Principal&#xa0;&#x2014; &#xa0;1: Part du Titre",
+        doctitleintro: "Introduction Fran&#xE7;aise",
+        doctitlemain: "Titre Principal",
+        doctitlepart: "Part du Titre",
+        doctitlepartlabel: "その&#xa0;1",
+        doctype: "Standard",
+        doctype_display: "Standard",
+        docyear: "2000",
+        draft: "0.3.4",
+        draftinfo: " （案 0.3.4、平成十二年1月1日）",
+        edition: "2",
+        editorialgroup: "IEC TC 62 及び TC 210/SC 62A/WG 62A1",
+        horizontal: "true",
+        "investigative-committee": "Committee 123",
+        "investigative-committee-representative-name": "KUROSAWA Akira",
+        "investigative-committee-representative-role": "&#x59d4;&#x54e1;&#x4f1a;&#x9577;",
+        "investigative-organization": "&#x65e5;&#x672c;&#x7523;&#x696d;&#x6a19;&#x6e96;&#x8abf;&#x67fb;&#x4f1a;",
+        lang: "ja",
+        publisher: "Japanese Industrial Standards",
+        revdate: "平成十二年1月1日",
+        revdate_monthyear: "1月 2000",
+        sc: "SC 62A",
+        script: "Jpan",
         secretariat: "GB",
         stage: "20",
         stage_int: 20,
