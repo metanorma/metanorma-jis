@@ -343,7 +343,7 @@ RSpec.describe IsoDoc do
                    </semx>
                    <eref bibitemid="ref12" id="_"/>
                    <semx element="eref" source="_">
-                      <fmt-xref target="ref12">Citn</fmt-xref>
+                      <fmt-xref target="ref12">[Citn]</fmt-xref>
                    </semx>
                 </p>
              </foreword>
@@ -790,7 +790,7 @@ RSpec.describe IsoDoc do
                 </bibitem>
                 <bibitem id="ref12">
                    <biblio-tag>
-                      Citn
+                      [Citn]
                       <tab/>
                       IETF RFC 20,
                    </biblio-tag>
@@ -876,7 +876,7 @@ RSpec.describe IsoDoc do
                    </semx>
                    <eref bibitemid="ref12" id="_"/>
                    <semx element="eref" source="_">
-                      <fmt-xref target="ref12">Citn</fmt-xref>
+                      <fmt-xref target="ref12">[Citn]</fmt-xref>
                    </semx>
                 </p>
              </foreword>
@@ -1326,7 +1326,7 @@ RSpec.describe IsoDoc do
                 </bibitem>
                 <bibitem id="ref12">
                    <biblio-tag>
-                      Citn
+                      [Citn]
                       <tab/>
                       IETF RFC 20,
                    </biblio-tag>

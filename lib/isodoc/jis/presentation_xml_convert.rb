@@ -165,7 +165,7 @@ module IsoDoc
         id = elem["bibitemid"] or return
         b = @bibitem_lookup[id] or return
         !b.at(ns(<<~XPATH))
-          ./docidentifier[not(#{SKIP_DOCID} or @scope = 'biblio-tag' or @type = 'metanorma' or @type = 'metanorma-ordinal' or @type='title')]
+          ./docidentifier[not(#{SERIAL_NUM_DOCID} or @scope = 'biblio-tag' or @type = 'metanorma' or @type = 'metanorma-ordinal' or @type='title')]
         XPATH
       end
 
@@ -205,24 +205,24 @@ module IsoDoc
 
       def short_style_origin(docxml); end
 
-      def norm_ref_entry_code(_ordinal, idents, _ids, _standard, datefn, bib)
+      def norm_ref_entry_code(_ordinal, ids, _standard, datefn, bib)
         delim = bib.at(ns("./language"))&.text == "ja" ? "&#x3000;" : "<esc>,</esc> "
-        ret = (idents[:ordinal] || idents[:metanorma] || idents[:sdo]).to_s
+        ret = (ids[:ordinal] || ids[:content] || ids[:metanorma] || ids[:sdo]).to_s
         ret = esc(ret)
-        (idents[:ordinal] || idents[:metanorma]) && idents[:sdo] and
-          ret += "#{delim}<strong>#{esc idents[:sdo]}</strong>"
-        !idents[:ordinal] && !idents[:metanorma] && idents[:sdo] and
+        (ids[:ordinal] || ids[:content] || ids[:metanorma]) && ids[:sdo] and
+          ret += "#{delim}<strong>#{esc ids[:sdo]}</strong>"
+        !ids[:ordinal] && !ids[:content] && !ids[:metanorma] && ids[:sdo] and
           ret = "<strong>#{ret}</ret>"
         ret += datefn
         ret.empty? and return ret
-        idents[:sdo] and ret += delim
+        ids[:sdo] and ret += delim
         ret.sub(delim, "").strip.empty? and return ""
         ret
       end
 
-      def biblio_ref_entry_code(ordinal, ids, _id, _standard, datefn, bib)
+      def biblio_ref_entry_code(ordinal, ids, _standard, datefn, bib)
         delim = bib.at(ns("./language"))&.text == "ja" ? "&#x3000;" : "<esc>,</esc> "
-        ret = esc(ids[:ordinal]) || esc(ids[:metanorma]) || "[#{esc ordinal.to_s}]"
+        ret = esc(ids[:ordinal]) || esc(ids[:content]) || esc(ids[:metanorma]) || "[#{esc ordinal.to_s}]"
         if ids[:sdo] && !ids[:sdo].empty?
           ret = prefix_bracketed_ref(ret)
           ret += "#{esc ids[:sdo]}#{datefn}#{delim}"

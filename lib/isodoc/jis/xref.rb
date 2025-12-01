@@ -178,17 +178,6 @@ module IsoDoc
           super
         end
       end
-
-      def hierarchical_figure_names(clause, num)
-        #require "debug"; binding.b
-        super
-      end
-
-      def localise_anchors(type = nil)
-        #require "debug"; binding.b
-        super
-      end
-
     end
   end
 end
