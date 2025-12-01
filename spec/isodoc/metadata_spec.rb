@@ -20,6 +20,8 @@ RSpec.describe IsoDoc::Jis::Metadata do
           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
           <docidentifier type="JIS">1000-1.3:2000</docidentifier>
           <docnumber>1000</docnumber>
+          <date type="created">1900-01-02</date>
+          <date type="published">Doomsday</date>
           <contributor>
             <role type="author"/>
             <organization>
@@ -195,6 +197,7 @@ RSpec.describe IsoDoc::Jis::Metadata do
     INPUT
     output =
       { agency: "JIS",
+        createddate: "1900-01-02",
         docnumber: "1000-1.3:2000",
         docnumber_undated: "1000-1.3",
         docnumeric: "1000",
@@ -222,6 +225,7 @@ RSpec.describe IsoDoc::Jis::Metadata do
         "investigative-committee-representative-role": "chairperson",
         "investigative-organization": "Japanese Industrial Standards Committee",
         lang: "en",
+        publisheddate: "Doomsday",
         publisher: "Japanese Industrial Standards",
         revdate: "2000-01-01",
         revdate_monthyear: "January 2000",
@@ -248,6 +252,7 @@ RSpec.describe IsoDoc::Jis::Metadata do
     INPUT
     output =
       { agency: "JIS",
+        createddate: "明治三十三年1月2日",
         docnumber: "1000-1.3:2000",
         docnumber_undated: "1000-1.3",
         docnumeric: "1000",
@@ -274,6 +279,7 @@ RSpec.describe IsoDoc::Jis::Metadata do
         "investigative-committee-representative-role": "&#x59d4;&#x54e1;&#x4f1a;&#x9577;",
         "investigative-organization": "&#x65e5;&#x672c;&#x7523;&#x696d;&#x6a19;&#x6e96;&#x8abf;&#x67fb;&#x4f1a;",
         lang: "ja",
+        publisheddate: "Doomsday",
         publisher: "Japanese Industrial Standards",
         revdate: "平成十二年1月1日",
         revdate_monthyear: "1月 2000",

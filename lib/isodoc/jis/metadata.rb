@@ -53,7 +53,8 @@ module IsoDoc
       def bibdate(isoxml, _out)
         isoxml.xpath(ns("//bibdata/date")).each do |d|
           val = Common::date_range(d)
-          @lang == "ja" and val = @i18n.japanese_date(val)
+          @lang == "ja" && /^\d+[0-9-]+$/.match?(val) and
+            val = @i18n.japanese_date(val)
           set("#{d['type'].tr('-', '_')}date".to_sym, val)
         end
       end
