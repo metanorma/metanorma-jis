@@ -197,6 +197,7 @@ RSpec.describe IsoDoc::Jis::Metadata do
     INPUT
     output =
       { agency: "JIS",
+        authorizer: ["Japanese Industrial Standards Committee"],
         createddate: "1900-01-02",
         docnumber: "1000-1.3:2000",
         docnumber_undated: "1000-1.3",
@@ -252,6 +253,7 @@ RSpec.describe IsoDoc::Jis::Metadata do
     INPUT
     output =
       { agency: "JIS",
+        authorizer: ["日本産業標準調査会"],
         createddate: "明治三十三年1月2日",
         docnumber: "1000-1.3:2000",
         docnumber_undated: "1000-1.3",
