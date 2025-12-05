@@ -223,7 +223,7 @@ RSpec.describe Relaton::Render::Jis do
       </bibitem>
     INPUT
     output = <<~OUTPUT
-    <formattedref>S. Bradner。 <span class="stddocTitle">Intellectual Property Rights in IETF Technology</span>。 RFC Series。入手先： <span class="biburl"><fmt-link target="https://www.rfc-editor.org/info/rfc3979">https://www.rfc-editor.org/info/rfc3979</fmt-link></span></formattedref>
+      <formattedref>S. Bradner。 <span class="stddocTitle">Intellectual Property Rights in IETF Technology</span>。 RFC Series。入手先： <span class="biburl"><fmt-link target="https://www.rfc-editor.org/info/rfc3979">https://www.rfc-editor.org/info/rfc3979</fmt-link></span></formattedref>
     OUTPUT
     p = renderer
     expect(p.render(input))
@@ -294,6 +294,54 @@ RSpec.describe Relaton::Render::Jis do
       .to be_equivalent_to output
   end
 
+  it "generates references with multiple authors" do
+    input = <<~INPUT
+      <bibitem type="book" id="A">
+        <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
+        <docidentifier>ABC1</docidentifier>
+        <date type="published"><on>2022</on></date>
+        <contributor>
+          <role type="editor"/>
+          <person>
+            <name><surname>Aluffi</surname><forename>Paolo</forename></name>
+          </person>
+        </contributor>
+        <contributor>
+          <role type="editor"/>
+          <person>
+            <name><surname>Aluffi</surname><forename>Paolo</forename></name>
+          </person>
+        </contributor>
+        <contributor>
+          <role type="editor"/>
+          <person>
+            <name><surname>Aluffi</surname><forename>Paolo</forename></name>
+          </person>
+        </contributor>
+        <edition>1</edition>
+            <contributor>
+              <role type="publisher"/>
+              <organization>
+                <name>Cambridge University Press</name>
+              </organization>
+            </contributor>
+            <place>Cambridge, UK</place>
+      </bibitem>
+    INPUT
+    output = <<~XML
+      <formattedref>Aluffi P.、 Aluffi P.、 Aluffi P. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。第1版。 Cambridge、 UK： Cambridge University Press。 2022</formattedref>
+    XML
+    p = renderer
+    expect(p.render(input))
+      .to be_equivalent_to output
+    output = <<~XML
+      <formattedref>Aluffi P., Aluffi P. &#x26; Aluffi P. (eds.). Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday. First edition. Cambridge, UK: Cambridge University Press. 2022</formattedref>
+    XML
+    p = renderer_en
+    expect(p.render(input))
+      .to be_equivalent_to output
+  end
+
   private
 
   def renderer
@@ -301,5 +349,12 @@ RSpec.describe Relaton::Render::Jis do
       .new("language" => "ja", "script" => "Jpan",
            "i18nhash" => IsoDoc::Jis::PresentationXMLConvert.new({})
       .i18n_init("ja", "Jpan", nil).get)
+  end
+
+  def renderer_en
+    Relaton::Render::Jis::General
+      .new("language" => "en", "script" => "Latn",
+           "i18nhash" => IsoDoc::Jis::PresentationXMLConvert.new({})
+      .i18n_init("en", "Latn", nil).get)
   end
 end
