@@ -232,6 +232,10 @@ module IsoDoc
         ret
       end
 
+      def url_note_process(_data)
+        ""
+      end
+
       include Init
     end
   end
