@@ -77,16 +77,15 @@ module IsoDoc
         end
       end
 
-      def edition_translate(bibdata)
-        x = bibdata.at(ns("./edition")) or return
+      def edition_integer?(bibdata)
+        x = bibdata.at(ns("./edition[not(@language) or @language = '']"))
+        x or return
         /^\d+$/.match?(x.text) or return
-        @i18n.edition_ordinal or return
         num = x.text.to_i
         @autonumbering_style == :japanese and num = num.localize(:ja).spellout
         x.next =
           %(<edition language="#{@lang}" numberonly="true">#{num}</edition>)
-        tag_translate(x, @lang, @i18n
-          .populate("edition_ordinal", { "var1" => num }))
+        num
       end
 
       def convert1(xml, filename, dir)
@@ -235,6 +234,8 @@ module IsoDoc
       def url_note_process(_data)
         ""
       end
+
+      def edition_translate_iso(bibdata); end
 
       include Init
     end
