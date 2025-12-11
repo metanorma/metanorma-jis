@@ -1674,7 +1674,7 @@ RSpec.describe IsoDoc::Jis do
                    <formattedref>
                       Aluffi P., Anderson D., Hering M., Mustaţă M. &amp; Payne S.
                       <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>
-                      . Version 1. Cambridge University Press. Available from:
+                      . Version 1. Cambridge University Press. Available at:
                       <span class="biburl">
                       <fmt-link target="https://www.iso.org/standard/4766.html">https://www.iso.org/standard/4766.html</fmt-link>
                       </span>
