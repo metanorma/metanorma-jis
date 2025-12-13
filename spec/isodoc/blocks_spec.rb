@@ -573,7 +573,7 @@ RSpec.describe IsoDoc::Jis do
                       </localityStack>
                    </origin>
                    <semx element="origin" source="_">
-                      <fmt-xref type="inline" target="ISO712">ISO 712、  第1 セクション</fmt-xref>
+                   <fmt-xref type="inline" target="ISO712">ISO 712、  セクション 1</fmt-xref>
                    </semx>
                    ，
                    <semx element="modification" source="_">with adjustments</semx>
@@ -588,7 +588,7 @@ RSpec.describe IsoDoc::Jis do
                       </localityStack>
                    </origin>
                    <semx element="origin" source="_">
-                      <fmt-xref type="inline" target="ISO712">ISO 712、  第2 セクション</fmt-xref>
+                   <fmt-xref type="inline" target="ISO712">ISO 712、  セクション 2</fmt-xref>
                    </semx>
                    ，
                    <semx element="modification" source="_">（with adjustments）</semx>
@@ -698,7 +698,7 @@ RSpec.describe IsoDoc::Jis do
                       </localityStack>
                    </origin>
                    <semx element="origin" source="_">
-                      <fmt-xref type="inline" target="ISO712">ISO 712、  第1 セクション</fmt-xref>
+                      <fmt-xref type="inline" target="ISO712">ISO 712、  セクション 1</fmt-xref>
                    </semx>
                    ，
                    <semx element="modification" source="_">with adjustments</semx>
