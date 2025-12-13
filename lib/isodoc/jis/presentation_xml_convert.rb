@@ -63,7 +63,7 @@ module IsoDoc
 
       def bibdata_i18n(bibdata)
         super
-        @lang == "ja" and date_translate(bibdata)
+        date_translate(bibdata)
       end
 
       def date_translate(bibdata)
