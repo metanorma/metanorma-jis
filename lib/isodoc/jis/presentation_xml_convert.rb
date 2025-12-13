@@ -67,14 +67,19 @@ module IsoDoc
       end
 
       def date_translate(bibdata)
+        @lang == "ja" or return
         bibdata.xpath(ns("./date")).each do |d|
-          j = @i18n.japanese_date(d.text.strip)
-          @autonumbering_style == :japanese and
-            j.gsub!(/(\d+)/) do
-              $1.to_i.localize(:ja).spellout
-            end
-          d.children = j
+          d.children = date_translate1(d.text)
         end
+      end
+
+      def date_translate1(date)
+        j = @i18n.japanese_date(date.strip)
+        @autonumbering_style == :japanese and
+          j.gsub!(/(\d+)/) do
+            $1.to_i.localize(:ja).spellout
+          end
+        j
       end
 
       def edition_integer?(bibdata)
