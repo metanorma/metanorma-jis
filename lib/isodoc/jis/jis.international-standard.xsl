@@ -506,7 +506,7 @@
 
 					<xsl:variable name="copyrightText"><xsl:call-template name="get_copyrightText"/></xsl:variable>
 
-					<xsl:variable name="doctype"><xsl:call-template name="get_doctype"/></xsl:variable>
+					<xsl:variable name="doctype"><xsl:call-template name="getDoctype"/></xsl:variable>
 
 					<xsl:variable name="title_ja" select="/*/mn:bibdata/mn:title[@language = 'ja' and @type = 'main']"/>
 					<xsl:variable name="title_en" select="/*/mn:bibdata/mn:title[@language = 'en' and @type = 'main']"/>
@@ -964,9 +964,6 @@
 		</fo:root>
 	</xsl:template>
 
-	<xsl:template name="get_doctype">
-		<xsl:value-of select="/*/mn:bibdata/mn:ext/mn:doctype"/>
-	</xsl:template>
 	<xsl:template name="get_docidentifier_JIS">
 		<xsl:value-of select="/*/mn:bibdata/mn:docidentifier[@type = 'JIS']"/>
 	</xsl:template>
@@ -995,7 +992,7 @@
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:if test="$isGenerateTableIF = 'false'">
-					<xsl:variable name="doctype"><xsl:call-template name="get_doctype"/></xsl:variable>
+					<xsl:variable name="doctype"><xsl:call-template name="getDoctype"/></xsl:variable>
 					<xsl:variable name="docidentifier_JIS"><xsl:call-template name="get_docidentifier_JIS"/></xsl:variable>
 					<xsl:variable name="doclang"><xsl:call-template name="getLang"/></xsl:variable>
 					<xsl:variable name="copyrightText"><xsl:call-template name="get_copyrightText"/></xsl:variable>
@@ -19259,6 +19256,23 @@
 
 	<xsl:template name="getDocumentId_fromCurrentNode">
 		<xsl:call-template name="getLang_fromCurrentNode"/><xsl:value-of select=".//mn:p[1]/@id"/>
+	</xsl:template>
+
+	<xsl:template name="getDoctype">
+		<xsl:variable name="doctype_alias" select="normalize-space(/mn:metanorma/mn:metanorma-extension/mn:presentation-metadata/mn:doctype-alias)"/>
+		<xsl:value-of select="$doctype_alias"/>
+		<xsl:if test="$doctype_alias = ''"><xsl:value-of select="/mn:metanorma/mn:bibdata/mn:ext/mn:doctype[not(@language) or @language = '']"/></xsl:if>
+	</xsl:template>
+
+	<xsl:template name="getDoctypeTitle">
+		<xsl:variable name="doctype_i18n" select="normalize-space(/mn:metanorma/mn:bibdata/mn:ext/mn:doctype[@language = $lang])"/>
+		<xsl:value-of select="$doctype_i18n"/>
+		<xsl:if test="$doctype_i18n = ''">
+			<xsl:variable name="doctype"><xsl:call-template name="getDoctype"/></xsl:variable>
+			<xsl:call-template name="capitalizeWords">
+				<xsl:with-param name="str" select="$doctype"/>
+			</xsl:call-template>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template name="setId">
