@@ -138,6 +138,7 @@ module Metanorma
           end
           @amd and title_component(node, xml, lang,
                                    { name: "amendment", abbr: "amd" })
+          title_nums(node, xml, lang)
         end
       end
 
