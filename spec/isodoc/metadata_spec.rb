@@ -18,6 +18,8 @@ RSpec.describe IsoDoc::Jis::Metadata do
           <title language="ja" format="text/plain" type="title-intro">Introduction Française</title>
           <title language="ja" format="text/plain" type="title-main">Titre Principal</title>
           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
+          <title language="en" type="title-part-prefix">Part 1</title>
+          <title language="ja" type="title-part-prefix">その 1</title>
           <docidentifier type="JIS">1000-1.3:2000</docidentifier>
           <docnumber>1000</docnumber>
           <date type="created">1900-01-02</date>
@@ -202,12 +204,12 @@ RSpec.describe IsoDoc::Jis::Metadata do
         docnumber: "1000-1.3:2000",
         docnumber_undated: "1000-1.3",
         docnumeric: "1000",
-        docsubtitle: "Introduction Fran&#xe7;aise&#xa0;&#x2014; Titre Principal&#xa0;&#x2014; &#xa0;1: Part du Titre",
+        docsubtitle: "Introduction Française&#xa0;&#x2014; Titre Principal&#xa0;&#x2014; その 1： Part du Titre",
         docsubtitleintro: "Introduction Fran&#xe7;aise",
         docsubtitlemain: "Titre Principal",
         docsubtitlepart: "Part du Titre",
         docsubtitlepartlabel: "その&#xa0;1",
-        doctitle: "Introduction&#xa0;&#x2014; Main Title&#x2009;&#x2014;&#x2009;Title&#xa0;&#x2014; Part&#xa0;1: Title Part",
+        doctitle: "Introduction&#xa0;&#x2014; Main Title — Title&#xa0;&#x2014; Part 1: Title Part",
         doctitleintro: "Introduction",
         doctitlemain: "Main Title&#x2009;&#x2014;&#x2009;Title",
         doctitlepart: "Title Part",
@@ -216,7 +218,6 @@ RSpec.describe IsoDoc::Jis::Metadata do
         doctype_display: "Standard",
         docyear: "2000",
         draft: "0.3.4",
-
         draftinfo: " (draft 0.3.4, 2000-01-01)",
         edition: "2",
         editorialgroup: "IEC TC 62 and TC 210/SC 62A/WG 62A1",
@@ -258,12 +259,12 @@ RSpec.describe IsoDoc::Jis::Metadata do
         docnumber: "1000-1.3:2000",
         docnumber_undated: "1000-1.3",
         docnumeric: "1000",
-        docsubtitle: "Introduction&#xa0;&#x2014; Main Title — Title&#xa0;&#x2014; Part&#xa0;1: Title Part",
+        docsubtitle: "Introduction&#xa0;&#x2014; Main Title — Title&#xa0;&#x2014; Part 1: Title Part",
         docsubtitleintro: "Introduction",
         docsubtitlemain: "Main Title&#x2009;&#x2014;&#x2009;Title",
         docsubtitlepart: "Title Part",
         docsubtitlepartlabel: "Part&#xa0;1",
-        doctitle: "Introduction Française&#xa0;&#x2014; Titre Principal&#xa0;&#x2014; &#xa0;1: Part du Titre",
+        doctitle: "Introduction Française&#xa0;&#x2014; Titre Principal&#xa0;&#x2014; その 1： Part du Titre",
         doctitleintro: "Introduction Fran&#xE7;aise",
         doctitlemain: "Titre Principal",
         doctitlepart: "Part du Titre",

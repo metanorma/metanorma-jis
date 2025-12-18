@@ -152,13 +152,11 @@ RSpec.describe IsoDoc::Jis do
             <p class="IDT" displayorder="5"/>
             <p class="zzSTDTitle1" displayorder="6">Introduction Française — Titre Principal — </p>
             <p class="zzSTDTitle1" displayorder="7">
-               その :
                <br/>
                <strong>Part du Titre</strong>
             </p>
             <p class="zzSTDTitle2" displayorder="8">Introduction — Main Title — Title — </p>
             <p class="zzSTDTitle2" displayorder="9">
-               Part :
                <br/>
                <strong>Title Part</strong>
             </p>
@@ -517,13 +515,11 @@ RSpec.describe IsoDoc::Jis do
                <p class="IDT"/>
                <p class="zzSTDTitle1">Introduction Française — Titre Principal — </p>
                <p class="zzSTDTitle1">
-                  その :
                   <br/>
                   <b>Part du Titre</b>
                </p>
                <p class="zzSTDTitle2">Introduction — Main Title — Title — </p>
                <p class="zzSTDTitle2">
-                  Part :
                   <br/>
                   <b>Title Part</b>
                </p>
@@ -663,13 +659,11 @@ RSpec.describe IsoDoc::Jis do
                <p class="IDT"/>
                <p class="zzSTDTitle1">Introduction Française — Titre Principal — </p>
                <p class="zzSTDTitle1">
-                  その :
                   <br/>
                   <b>Part du Titre</b>
                </p>
                <p class="zzSTDTitle2">Introduction — Main Title — Title — </p>
                <p class="zzSTDTitle2">
-                  Part :
                   <br/>
                   <b>Title Part</b>
                </p>
@@ -894,13 +888,11 @@ RSpec.describe IsoDoc::Jis do
              <p class="IDT" displayorder="5"/>
              <p class="zzSTDTitle1" displayorder="6">Introduction Française — Titre Principal — </p>
              <p class="zzSTDTitle1" displayorder="7">
-                その :
                 <br/>
                 <strong>Part du Titre</strong>
              </p>
              <p class="zzSTDTitle2" displayorder="8">Introduction — Main Title — Title — </p>
              <p class="zzSTDTitle2" displayorder="9">
-                Part :
                 <br/>
                 <strong>Title Part</strong>
              </p>
@@ -1491,13 +1483,11 @@ RSpec.describe IsoDoc::Jis do
             <p class="IDT" displayorder="5"/>
             <p class="zzSTDTitle1" displayorder="6">Introduction — Main Title — Title — </p>
             <p class="zzSTDTitle1" displayorder="7">
-               Part :
                <br/>
                <strong>Title Part</strong>
             </p>
             <p class="zzSTDTitle2" displayorder="8">Introduction Française — Titre Principal — </p>
             <p class="zzSTDTitle2" displayorder="9">
-               その :
                <br/>
                <strong>Part du Titre</strong>
             </p>
@@ -1848,13 +1838,11 @@ RSpec.describe IsoDoc::Jis do
                 <p class="IDT"/>
                 <p class="zzSTDTitle1">Introduction — Main Title — Title — </p>
                 <p class="zzSTDTitle1">
-                   Part :
                    <br/>
                    <b>Title Part</b>
                 </p>
                 <p class="zzSTDTitle2">Introduction Française — Titre Principal — </p>
                 <p class="zzSTDTitle2">
-                   その :
                    <br/>
                    <b>Part du Titre</b>
                 </p>
