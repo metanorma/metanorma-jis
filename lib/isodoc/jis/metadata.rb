@@ -10,14 +10,14 @@ module IsoDoc
         tp = title_parts(isoxml, lang)
         tn = title_nums(isoxml)
         tp[:main] and set(:doctitlemain, tp[:main].children.to_xml)
+        tp[:intro] and set(:doctitleintro, tp[:intro].children.to_xml)
+        set(:doctitlepartlabel, title_part_prefix(isoxml, "part", lang))
+        tp[:part] and set(:doctitlepart, tp[:part].children.to_xml)
+        tn[:amd] and set(:doctitleamdlabel, title_part_prefix(isoxml, "amendment", lang))
+        tp[:amd] and set(:doctitleamd, tp[:amd].children.to_xml)
+        tn[:corr] and set(:doctitlecorrlabel, title_part_prefix(isoxml, "corrigendum", lang))
         main = compose_title(tp, tn, lang)
         set(:doctitle, main)
-        tp[:intro] and set(:doctitleintro, tp[:intro].children.to_xml)
-        set(:doctitlepartlabel, part_prefix(tn, lang))
-        tp[:part] and set(:doctitlepart, tp[:part].children.to_xml)
-        set(:doctitleamdlabel, amd_prefix(tn, lang)) if tn[:amd]
-        tp[:amd] and set(:doctitleamd, tp[:amd].children.to_xml)
-        set(:doctitlecorrlabel, corr_prefix(tn, lang)) if tn[:corr]
       end
 
       def subtitle(isoxml, _out)
@@ -25,14 +25,14 @@ module IsoDoc
         tp = title_parts(isoxml, lang)
         tn = title_nums(isoxml)
         tp[:main] and set(:docsubtitlemain, tp[:main].children.to_xml)
+        tp[:intro] and set(:docsubtitleintro, tp[:intro].children.to_xml)
+        set(:docsubtitlepartlabel, title_part_prefix(isoxml, "part", lang))
+        tp[:part] and set(:docsubtitlepart, tp[:part].children.to_xml)
+        tn[:amd] and set(:docsubtitleamdlabel, title_part_prefix(isoxml, "amendment", lang))
+        tp[:amd] and set(:docsubtitleamd, tp[:amd].children.to_xml)
+        tn[:corr] and set(:docsubtitlecorrlabel, title_part_prefix(isoxml, "corrigendum", lang))
         main = compose_title(tp, tn, lang)
         set(:docsubtitle, main)
-        tp[:intro] and set(:docsubtitleintro, tp[:intro].children.to_xml)
-        set(:docsubtitlepartlabel, part_prefix(tn, lang))
-        tp[:part] and set(:docsubtitlepart, tp[:part].children.to_xml)
-        set(:docsubtitleamdlabel, amd_prefix(tn, lang)) if tn[:amd]
-        tp[:amd] and set(:docsubtitleamd, tp[:amd].children.to_xml)
-        set(:docsubtitlecorrlabel, corr_prefix(tn, lang)) if tn[:corr]
       end
 
       def set_encoded(name, field)
@@ -40,8 +40,6 @@ module IsoDoc
         field.respond_to?(:text) and field = field.text
         set(name, @c.encode(field, :hexadecimal))
       end
-
-      PART_LABEL = { en: "Part", ja: "その" }.freeze
 
       def docid(isoxml, _out)
         id = isoxml.at(ns("//bibdata/docidentifier[@type = 'JIS']"))&.text or
