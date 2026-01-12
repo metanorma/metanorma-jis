@@ -1557,12 +1557,12 @@ RSpec.describe IsoDoc::Jis do
                             </locality>
                          </origin>
                          <semx element="origin" source="_">
-                            <fmt-xref type="inline" style="short" target="ISO713">
-                               Aluffi P., Anderson D., Hering M., Mustaţă M. &amp; Payne S.
+                                              <fmt-origin bibitemid="ISO713" type="inline" citeas="[2]" style="short">
+                        <fmt-xref target="ISO713">Aluffi P., Anderson D., Hering M., Mustaţă M. &amp; Payne S</fmt-xref>.
                                <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>
                                . Version 1. Cambridge University Press,
                                <span class="citesec">3.1</span>
-                            </fmt-xref>
+                            </fmt-origin>
                          </semx>
                       </semx>
                       )

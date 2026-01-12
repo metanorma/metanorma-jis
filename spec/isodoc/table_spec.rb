@@ -1191,7 +1191,7 @@ RSpec.describe IsoDoc do
                 <a class="anchor" href="#_"/>
                 <a class="header" href="#_">Foreword</a>
              </h1>
-             <table id="tableD-1" title="tool tip">
+             <table id="tableD-1" title="tool tip" class="plain">
                 <caption>
                    <span style="display:none">long desc</span>
                 </caption>
@@ -1275,7 +1275,7 @@ RSpec.describe IsoDoc do
                       </td>
                    </tr>
                    <tr>
-                      <td colspan="5">
+                      <td colspan="5"  style="border-top:0pt;border-bottom:solid windowtext 1.5pt;">
                          <div id="fn:tableD-11" class="TableFootnote">
                             <p id="_" class="TableFootnote">
                                <span class="TableFootnoteRef">Footnote 1)</span>
