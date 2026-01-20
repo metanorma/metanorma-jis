@@ -58,10 +58,12 @@ RSpec.describe IsoDoc do
                   <td align="center"><dl><dt>6,06</dt><dd>definition</dd></dl></td>
                 </tr>
               </tfoot>
-              <dl key="true">
+              <key>
+              <dl>
                 <dt>Drago</dt>
                 <dd>A type of rice</dd>
               </dl>
+              </key>
               <source status="generalisation">
         <origin bibitemid="ISO712" type="inline" citeas="">
           <localityStack>
@@ -212,10 +214,10 @@ RSpec.describe IsoDoc do
                    <tfoot>
                       <tr id="_">
                          <td id="_" colspan="5">
-                            <p class="ListTitle">
-                               <semx element="name" source="_">Key</semx>
-                            </p>
-                            <p class="dl">Drago: A type of rice</p>
+                     <key>
+                        <name>Key</name>
+                        <p class="dl">Drago: A type of rice</p>
+                     </key>
                          </td>
                       </tr>
                       <tr>
@@ -520,8 +522,12 @@ RSpec.describe IsoDoc do
                 <tfoot>
                    <tr>
                       <td colspan="5" style="border-top:solid windowtext 1.5pt;border-bottom:0pt;">
-                         <p class="ListTitle">Key</p>
-                         <p class="dl">Drago: A type of rice</p>
+                  <div class="key">
+                     <p style="page-break-after: avoid;">
+                        <b>Key</b>
+                     </p>
+                     <p class="dl">Drago: A type of rice</p>
+                  </div>
                       </td>
                    </tr>
                    <tr>
@@ -660,8 +666,12 @@ RSpec.describe IsoDoc do
              <tfoot>
                 <tr>
                    <td colspan="5" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:avoid;">
-                      <p class="ForewordText" style="page-break-after:avoid">Key</p>
-                      <p class="ForewordText" style="page-break-after:avoid">Drago: A type of rice</p>
+               <div class="key" style="page-break-after:avoid">
+                  <p style="page-break-after: avoid;page-break-after:avoid" class="MsoNormal">
+                     <span class="Strong">Key</span>
+                  </p>
+                  <p class="ForewordText" style="page-break-after:avoid">Drago: A type of rice</p>
+               </div>
                    </td>
                 </tr>
                 <tr>
@@ -834,10 +844,12 @@ RSpec.describe IsoDoc do
                   <td align="center"><dl><dt>6,06</dt><dd>definition</dd></dl></td>
                 </tr>
               </tfoot>
-              <dl key="true">
+              <key>
+              <dl>
                 <dt>Drago</dt>
                 <dd>A type of rice</dd>
               </dl>
+              </key>
               <source status="generalisation">
         <origin bibitemid="ISO712" type="inline" citeas="">
           <localityStack>
@@ -982,10 +994,10 @@ RSpec.describe IsoDoc do
                    <tfoot>
                       <tr id="_">
                          <td id="_" colspan="5">
-                            <p class="ListTitle">
-                               <semx element="name" source="_">Key</semx>
-                            </p>
-                            <p class="dl">Drago: A type of rice</p>
+                         <key>
+                        <name>Key</name>
+                        <p class="dl">Drago: A type of rice</p>
+                     </key>
                          </td>
                       </tr>
                       <tr>
@@ -1242,8 +1254,12 @@ RSpec.describe IsoDoc do
                 <tfoot>
                    <tr>
                       <td colspan="5" style="">
-                         <p class="ListTitle">Key</p>
-                         <p class="dl">Drago: A type of rice</p>
+                      <div class="key">
+                     <p style="page-break-after: avoid;">
+                        <b>Key</b>
+                     </p>
+                     <p class="dl">Drago: A type of rice</p>
+                  </div>
                       </td>
                    </tr>
                    <tr>
@@ -1355,8 +1371,12 @@ RSpec.describe IsoDoc do
              <tfoot>
                 <tr>
                    <td colspan="5" style="page-break-after:avoid;">
-                      <p class="ForewordText" style="page-break-after:avoid">Key</p>
-                      <p class="ForewordText" style="page-break-after:avoid">Drago: A type of rice</p>
+               <div class="key" style="page-break-after:avoid">
+                  <p style="page-break-after: avoid;page-break-after:avoid" class="MsoNormal">
+                     <span class="Strong">Key</span>
+                  </p>
+                  <p class="ForewordText" style="page-break-after:avoid">Drago: A type of rice</p>
+               </div>
                    </td>
                 </tr>
                 <tr>
@@ -1463,10 +1483,12 @@ RSpec.describe IsoDoc do
                   <td align="center">81,2</td>
                 </tr>
               </tbody>
-              <dl key="true">
+              <key>
+              <dl>
                 <dt>Drago</dt>
                 <dd>A type of rice</dd>
               </dl>
+              </key>
               <note id="A">Note 1</note>
               <note id="B" type="units">Units in mm</note>
               <note id="C">Note 2</note>
@@ -1534,10 +1556,10 @@ RSpec.describe IsoDoc do
                    <tfoot>
                <tr id="_">
                   <td id="_" colspan="2">
-                   <p class="ListTitle">
-                      <semx element="name" source="_">Key</semx>
-                   </p>
-                   <p class="dl">Drago: A type of rice</p>
+                     <key>
+                        <name>Key</name>
+                        <p class="dl">Drago: A type of rice</p>
+                     </key>
                    <note id="A" autonum="1">
                       <fmt-name id="_">
                          <span class="fmt-caption-label">
@@ -1663,8 +1685,12 @@ RSpec.describe IsoDoc do
                       <tfoot>
                  <tr>
                     <td colspan="2" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">
-                      <p class="ListTitle">Key</p>
-                      <p class="dl">Drago: A type of rice</p>
+                        <div class="key">
+                           <p style="page-break-after: avoid;">
+                              <b>Key</b>
+                           </p>
+                           <p class="dl">Drago: A type of rice</p>
+                        </div>
                       <div id="A" class="Note">
                          <p>
                             <span class="note_label">NOTE 1  </span>
@@ -1741,8 +1767,12 @@ RSpec.describe IsoDoc do
                    </tbody>
                    <tfoot><tr>
                    <td colspan="2" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">
-                   <p class="ForewordText">Key</p>
-                  <p class="ForewordText">Drago: A type of rice</p>
+                        <div class="key">
+                           <p style="page-break-after: avoid;">
+                              <b>Key</b>
+                           </p>
+                           <p class="ForewordText">Drago: A type of rice</p>
+                        </div>
                    <div id="A" class="Note">
                      <p class="Note">
                      <span class="note_label">

@@ -13,9 +13,9 @@ module IsoDoc
       end
 
       def table_dl_to_tfoot(node)
-        node.at(ns("./dl")) or return
+        node.at(ns("./key")) or return
         tf = initial_tfoot_cell(node)
-        node.xpath(ns("./dl")).reverse_each do |x|
+        node.xpath(ns("./key")).reverse_each do |x|
           tf.children.first.previous = x.remove
         end
       end
