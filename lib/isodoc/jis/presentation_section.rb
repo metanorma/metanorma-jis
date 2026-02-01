@@ -100,7 +100,7 @@ module IsoDoc
         t = clause.at(ns("./title"))&.children&.to_xml ||
           %(#{@meta.get[:"investigative-committee"]} #{@i18n.membership_table})
         y = YAML.safe_load(s.children.to_xml(encoding: "UTF-8"))
-        d = clause.at(ns("./dl[@key = 'true']"))
+        d = clause.at(ns("./key/dl")) || clause.at(ns("./dl"))
         s && y.is_a?(Array) or return [nil, nil, nil, nil]
         [s, t, y, d]
       end

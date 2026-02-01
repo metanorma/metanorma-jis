@@ -671,10 +671,12 @@ RSpec.describe IsoDoc::Jis do
           surname: 宇治
           givenname: 公隆
         affiliation: 国立研究開発法人建築研究所</sourcecode>
-      <dl key="true">
+      <key>
+      <dl>
       <dt>GM</dt>
       <dd>General Manager</dd>
       </dl>
+      </key>
       </clause>
       </sections>
       </iso-standard>
