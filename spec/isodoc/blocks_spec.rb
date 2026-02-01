@@ -84,7 +84,7 @@ RSpec.describe IsoDoc::Jis do
             </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-      <foreword id="A" displayorder="1">
+       <foreword id="A" displayorder="1">
           <title id="_">Foreword</title>
           <fmt-title depth="1" id="_">
              <semx element="title" source="_">Foreword</semx>
@@ -220,9 +220,10 @@ RSpec.describe IsoDoc::Jis do
                 <fmt-xref-label>
                    <span class="fmt-element-name">Note</span>
                 </fmt-xref-label>
-                <fmt-xref-label container="A">
+                <fmt-xref-label container="figureA-1">
                    <span class="fmt-xref-container">
-                      <semx element="foreword" source="A">Foreword</semx>
+                      <span class="fmt-element-name">Figure</span>
+                      <semx element="autonum" source="figureA-1">1</semx>
                    </span>
                    <span class="fmt-comma">,</span>
                    <span class="fmt-element-name">Note</span>
