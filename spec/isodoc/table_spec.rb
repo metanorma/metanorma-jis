@@ -214,10 +214,10 @@ RSpec.describe IsoDoc do
                    <tfoot>
                       <tr id="_">
                          <td id="_" colspan="5">
-                     <key>
-                        <name>Key</name>
-                        <p class="dl">Drago: A type of rice</p>
-                     </key>
+                            <key>
+                               <name>Key</name>
+                               <p class="dl">Drago: A type of rice</p>
+                            </key>
                          </td>
                       </tr>
                       <tr>
@@ -255,9 +255,10 @@ RSpec.describe IsoDoc do
                                <fmt-xref-label>
                                   <span class="fmt-element-name">Note</span>
                                </fmt-xref-label>
-                               <fmt-xref-label container="_">
+                               <fmt-xref-label container="tableD-1">
                                   <span class="fmt-xref-container">
-                                     <semx element="foreword" source="_">Foreword</semx>
+                                     <span class="fmt-element-name">Table</span>
+                                     <semx element="autonum" source="tableD-1">1</semx>
                                   </span>
                                   <span class="fmt-comma">,</span>
                                   <span class="fmt-element-name">Note</span>
@@ -994,10 +995,10 @@ RSpec.describe IsoDoc do
                    <tfoot>
                       <tr id="_">
                          <td id="_" colspan="5">
-                         <key>
-                        <name>Key</name>
-                        <p class="dl">Drago: A type of rice</p>
-                     </key>
+                            <key>
+                               <name>Key</name>
+                               <p class="dl">Drago: A type of rice</p>
+                            </key>
                          </td>
                       </tr>
                       <tr>
@@ -1035,9 +1036,10 @@ RSpec.describe IsoDoc do
                                <fmt-xref-label>
                                   <span class="fmt-element-name">Note</span>
                                </fmt-xref-label>
-                               <fmt-xref-label container="_">
+                               <fmt-xref-label container="tableD-1">
                                   <span class="fmt-xref-container">
-                                     <semx element="foreword" source="_">Foreword</semx>
+                                     <span class="fmt-element-name">Table</span>
+                                     <semx element="autonum" source="tableD-1">1</semx>
                                   </span>
                                   <span class="fmt-comma">,</span>
                                   <span class="fmt-element-name">Note</span>
@@ -1506,7 +1508,7 @@ RSpec.describe IsoDoc do
           <preface>
              <foreword id="_" displayorder="1">
                 <title id="_">Foreword</title>
-                <fmt-title id="_" depth="1">
+                <fmt-title depth="1" id="_">
                    <semx element="title" source="_">Foreword</semx>
                 </fmt-title>
                 <table id="tableD-1" autonum="1">
@@ -1554,65 +1556,69 @@ RSpec.describe IsoDoc do
                       </tr>
                    </tbody>
                    <tfoot>
-               <tr id="_">
-                  <td id="_" colspan="2">
-                     <key>
-                        <name>Key</name>
-                        <p class="dl">Drago: A type of rice</p>
-                     </key>
-                   <note id="A" autonum="1">
-                      <fmt-name id="_">
-                         <span class="fmt-caption-label">
-                            <span class="fmt-element-name">NOTE</span>
-                            <semx element="autonum" source="A">1</semx>
-                         </span>
-                         <span class="fmt-label-delim">
-                            <tab/>
-                         </span>
-                      </fmt-name>
-                      <fmt-xref-label>
-                         <span class="fmt-element-name">Note</span>
-                         <semx element="autonum" source="A">1</semx>
-                      </fmt-xref-label>
-                      <fmt-xref-label container="_">
-                         <span class="fmt-xref-container">
-                            <semx element="foreword" source="_">Foreword</semx>
-                         </span>
-                         <span class="fmt-comma">,</span>
-                         <span class="fmt-element-name">Note</span>
-                         <semx element="autonum" source="A">1</semx>
-                      </fmt-xref-label>
-                      Note 1
-                   </note>
-                   <note id="C" autonum="2">
-                      <fmt-name id="_">
-                         <span class="fmt-caption-label">
-                            <span class="fmt-element-name">NOTE</span>
-                            <semx element="autonum" source="C">2</semx>
-                         </span>
-                         <span class="fmt-label-delim">
-                            <tab/>
-                         </span>
-                      </fmt-name>
-                      <fmt-xref-label>
-                         <span class="fmt-element-name">Note</span>
-                         <semx element="autonum" source="C">2</semx>
-                      </fmt-xref-label>
-                      <fmt-xref-label container="_">
-                         <span class="fmt-xref-container">
-                            <semx element="foreword" source="_">Foreword</semx>
-                         </span>
-                         <span class="fmt-comma">,</span>
-                         <span class="fmt-element-name">Note</span>
-                         <semx element="autonum" source="C">2</semx>
-                      </fmt-xref-label>
-                      Note 2
-                   </note>
-                   </td></tr></tfoot>
+                      <tr id="_">
+                         <td id="_" colspan="2">
+                            <key>
+                               <name>Key</name>
+                               <p class="dl">Drago: A type of rice</p>
+                            </key>
+                            <note id="A" autonum="1">
+                               <fmt-name id="_">
+                                  <span class="fmt-caption-label">
+                                     <span class="fmt-element-name">NOTE</span>
+                                     <semx element="autonum" source="A">1</semx>
+                                  </span>
+                                  <span class="fmt-label-delim">
+                                     <tab/>
+                                  </span>
+                               </fmt-name>
+                               <fmt-xref-label>
+                                  <span class="fmt-element-name">Note</span>
+                                  <semx element="autonum" source="A">1</semx>
+                               </fmt-xref-label>
+                               <fmt-xref-label container="tableD-1">
+                                  <span class="fmt-xref-container">
+                                     <span class="fmt-element-name">Table</span>
+                                     <semx element="autonum" source="tableD-1">1</semx>
+                                  </span>
+                                  <span class="fmt-comma">,</span>
+                                  <span class="fmt-element-name">Note</span>
+                                  <semx element="autonum" source="A">1</semx>
+                               </fmt-xref-label>
+                               Note 1
+                            </note>
+                            <note id="C" autonum="2">
+                               <fmt-name id="_">
+                                  <span class="fmt-caption-label">
+                                     <span class="fmt-element-name">NOTE</span>
+                                     <semx element="autonum" source="C">2</semx>
+                                  </span>
+                                  <span class="fmt-label-delim">
+                                     <tab/>
+                                  </span>
+                               </fmt-name>
+                               <fmt-xref-label>
+                                  <span class="fmt-element-name">Note</span>
+                                  <semx element="autonum" source="C">2</semx>
+                               </fmt-xref-label>
+                               <fmt-xref-label container="tableD-1">
+                                  <span class="fmt-xref-container">
+                                     <span class="fmt-element-name">Table</span>
+                                     <semx element="autonum" source="tableD-1">1</semx>
+                                  </span>
+                                  <span class="fmt-comma">,</span>
+                                  <span class="fmt-element-name">Note</span>
+                                  <semx element="autonum" source="C">2</semx>
+                               </fmt-xref-label>
+                               Note 2
+                            </note>
+                         </td>
+                      </tr>
+                   </tfoot>
                 </table>
              </foreword>
              <clause type="toc" id="_" displayorder="2">
-                <fmt-title id="_" depth="1">Contents</fmt-title>
+                <fmt-title depth="1" id="_">Contents</fmt-title>
              </clause>
           </preface>
           <sections>
@@ -1632,7 +1638,7 @@ RSpec.describe IsoDoc do
              </p>
              <p class="IDT" displayorder="5"/>
              <clause id="_" displayorder="6">
-                <fmt-title id="_" depth="1">
+                <fmt-title depth="1" id="_">
                    <span class="fmt-caption-label">
                       <semx element="autonum" source="_">1</semx>
                    </span>

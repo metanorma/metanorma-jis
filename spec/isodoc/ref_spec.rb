@@ -384,7 +384,10 @@ RSpec.describe IsoDoc do
                 </fmt-xref-label>
                 <p>The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</p>
                 <bibitem id="ISO712" type="standard">
-                   <biblio-tag><strong>ISO 712</strong>, </biblio-tag>
+                   <biblio-tag>
+                      <strong>ISO 712</strong>
+                      ,
+                   </biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Cereals and cereal products</span>
                    </formattedref>
@@ -436,7 +439,10 @@ RSpec.describe IsoDoc do
                    </extent>
                 </bibitem>
                 <bibitem id="ISO20483" type="standard">
-                   <biblio-tag><strong>ISO 20483:2013-2014</strong>　</biblio-tag>
+                   <biblio-tag>
+                      <strong>ISO 20483:2013-2014</strong>
+                      　
+                   </biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Cereals and pulses</span>
                    </formattedref>
@@ -457,7 +463,10 @@ RSpec.describe IsoDoc do
                    <script>Jpan</script>
                 </bibitem>
                 <bibitem id="ref1">
-                   <biblio-tag><strong>ICC 167</strong>, </biblio-tag>
+                   <biblio-tag>
+                      <strong>ICC 167</strong>
+                      ,
+                   </biblio-tag>
                    <formattedref format="application/x-isodoc+xml">
                       <smallcap>Standard No I.C.C 167</smallcap>
                       .
@@ -468,21 +477,41 @@ RSpec.describe IsoDoc do
                          <fmt-link target="http://www.icc.or.at"/>
                       </semx>
                       )
+                      <note type="display" id="_" autonum="">
+                         <fmt-name id="_">
+                            <span class="fmt-caption-label">
+                               <span class="fmt-element-name">NOTE</span>
+                            </span>
+                            <span class="fmt-label-delim">
+                               <tab/>
+                            </span>
+                         </fmt-name>
+                         <fmt-xref-label>
+                            <span class="fmt-element-name">Note</span>
+                         </fmt-xref-label>
+                         <fmt-xref-label container="ref1">
+                            <span class="fmt-xref-container">
+                               <span class="fmt-xref-container">
+                                  <span class="fmt-element-name">Clause</span>
+                                  <semx element="autonum" source="_">1</semx>
+                               </span>
+                               <span class="fmt-comma">,</span>
+                               ICC 167
+                            </span>
+                            <span class="fmt-comma">,</span>
+                            <span class="fmt-element-name">Note</span>
+                         </fmt-xref-label>
+                         <semx element="note" source="_">
+                            <p>This is an annotation of ISO 20483:2013-2014</p>
+                         </semx>
+                      </note>
                    </formattedref>
                    <docidentifier type="ICC">ICC 167</docidentifier>
                    <docidentifier scope="biblio-tag">ICC 167</docidentifier>
+                   <note type="display" original-id="_" id="_">
+                      <p>This is an annotation of ISO 20483:2013-2014</p>
+                   </note>
                 </bibitem>
-                <note>
-                   <fmt-name id="_">
-                      <span class="fmt-caption-label">
-                         <span class="fmt-element-name">NOTE</span>
-                      </span>
-                      <span class="fmt-label-delim">
-                         <tab/>
-                      </span>
-                   </fmt-name>
-                   <p>This is an annotation of ISO 20483:2013-2014</p>
-                </note>
              </references>
           </sections>
           <bibliography>
@@ -518,7 +547,7 @@ RSpec.describe IsoDoc do
                       <em>Work</em>
                       . Collected Essays UNICEF). Fourth edition. (Bibliographers Anonymous). Geneva: International Standardization Organization. 1996. vol. 4 p. 19. Available at:
                       <span class="biburl">
-                      <fmt-link target="http://www.example.com">http://www.example.com</fmt-link>
+                         <fmt-link target="http://www.example.com">http://www.example.com</fmt-link>
                       </span>
                    </formattedref>
                    <title>
@@ -630,7 +659,69 @@ RSpec.describe IsoDoc do
                       [3]
                       <tab/>
                    </biblio-tag>
-                   <formattedref>Aluffi P., Anderson D., Hering M., Mustaţă M. &amp; Payne S. (eds.). Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday. London Mathematical Society Lecture Note Series (N.S.). 2022, vol. 1 no. 7, pp. 89–112</formattedref>
+                   <formattedref>
+                      Aluffi P., Anderson D., Hering M., Mustaţă M. &amp; Payne S. (eds.). Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday. London Mathematical Society Lecture Note Series (N.S.). 2022, vol. 1 no. 7, pp. 89–112
+                      <note type="display" id="_" autonum="1">
+                         <fmt-name id="_">
+                            <span class="fmt-caption-label">
+                               <span class="fmt-element-name">NOTE</span>
+                               <semx element="autonum" source="_">1</semx>
+                            </span>
+                            <span class="fmt-label-delim">
+                               <tab/>
+                            </span>
+                         </fmt-name>
+                         <fmt-xref-label>
+                            <span class="fmt-element-name">Note</span>
+                            <semx element="autonum" source="_">1</semx>
+                         </fmt-xref-label>
+                         <fmt-xref-label container="ISSN">
+                            <span class="fmt-xref-container">
+                               <span class="fmt-xref-container">
+                                  <semx element="references" source="_">Bibliography</semx>
+                               </span>
+                               <span class="fmt-comma">,</span>
+                               [3]
+                            </span>
+                            <span class="fmt-comma">,</span>
+                            <span class="fmt-element-name">Note</span>
+                            <semx element="autonum" source="_">1</semx>
+                         </fmt-xref-label>
+                         <semx element="note" source="_">
+                            <p>This is an annotation of document ISSN.</p>
+                         </semx>
+                      </note>
+                      <note type="display" id="_" autonum="2">
+                         <fmt-name id="_">
+                            <span class="fmt-caption-label">
+                               <span class="fmt-element-name">NOTE</span>
+                               <semx element="autonum" source="_">2</semx>
+                            </span>
+                            <span class="fmt-label-delim">
+                               <tab/>
+                            </span>
+                         </fmt-name>
+                         <fmt-xref-label>
+                            <span class="fmt-element-name">Note</span>
+                            <semx element="autonum" source="_">2</semx>
+                         </fmt-xref-label>
+                         <fmt-xref-label container="ISSN">
+                            <span class="fmt-xref-container">
+                               <span class="fmt-xref-container">
+                                  <semx element="references" source="_">Bibliography</semx>
+                               </span>
+                               <span class="fmt-comma">,</span>
+                               [3]
+                            </span>
+                            <span class="fmt-comma">,</span>
+                            <span class="fmt-element-name">Note</span>
+                            <semx element="autonum" source="_">2</semx>
+                         </fmt-xref-label>
+                         <semx element="note" source="_">
+                            <p>This is another annotation of document ISSN.</p>
+                         </semx>
+                      </note>
+                   </formattedref>
                    <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
                    <docidentifier type="metanorma-ordinal">[3]</docidentifier>
                    <docidentifier type="DOI">DOI https://doi.org/10.1017/9781108877831</docidentifier>
@@ -711,29 +802,13 @@ RSpec.describe IsoDoc do
                          </locality>
                       </localityStack>
                    </extent>
+                   <note type="display" original-id="_" id="_" autonum="1">
+                      <p>This is an annotation of document ISSN.</p>
+                   </note>
+                   <note type="display" original-id="_" id="_" autonum="2">
+                      <p>This is another annotation of document ISSN.</p>
+                   </note>
                 </bibitem>
-                <note>
-                   <fmt-name id="_">
-                      <span class="fmt-caption-label">
-                         <span class="fmt-element-name">NOTE</span>
-                      </span>
-                      <span class="fmt-label-delim">
-                         <tab/>
-                      </span>
-                   </fmt-name>
-                   <p>This is an annotation of document ISSN.</p>
-                </note>
-                <note>
-                   <fmt-name id="_">
-                      <span class="fmt-caption-label">
-                         <span class="fmt-element-name">NOTE</span>
-                      </span>
-                      <span class="fmt-label-delim">
-                         <tab/>
-                      </span>
-                   </fmt-name>
-                   <p>This is another annotation of document ISSN.</p>
-                </note>
                 <bibitem id="ISO3696" type="standard">
                    <biblio-tag>
                       [4]
@@ -918,7 +993,10 @@ RSpec.describe IsoDoc do
                 </fmt-xref-label>
                 <p>The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</p>
                 <bibitem id="ISO712" type="standard">
-                   <biblio-tag><strong>ISO 712</strong>, </biblio-tag>
+                   <biblio-tag>
+                      <strong>ISO 712</strong>
+                      ,
+                   </biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Cereals and cereal products</span>
                    </formattedref>
@@ -936,8 +1014,8 @@ RSpec.describe IsoDoc do
                 <bibitem id="ISO16634" type="standard">
                    <biblio-tag>
                       <strong>ISO 16634:-- (</strong>
-               <span style="font-family:&quot;MS Gothic&quot;">規格群</span>
-               <strong>)</strong>
+                      <span style="font-family:&quot;MS Gothic&quot;">規格群</span>
+                      <strong>)</strong>
                       <fn id="_" reference="1" original-reference="1" target="_">
                          <p>Under preparation。（Stage at the time of publication ISO/DIS 16634）</p>
                          <fmt-fn-label>
@@ -972,7 +1050,10 @@ RSpec.describe IsoDoc do
                    </extent>
                 </bibitem>
                 <bibitem id="ISO20483" type="standard">
-                   <biblio-tag><strong>ISO 20483:2013-2014</strong>　</biblio-tag>
+                   <biblio-tag>
+                      <strong>ISO 20483:2013-2014</strong>
+                      　
+                   </biblio-tag>
                    <formattedref>
                       <span class="stddocTitle">Cereals and pulses</span>
                    </formattedref>
@@ -993,7 +1074,10 @@ RSpec.describe IsoDoc do
                    <script>Jpan</script>
                 </bibitem>
                 <bibitem id="ref1">
-                   <biblio-tag><strong>ICC 167</strong>, </biblio-tag>
+                   <biblio-tag>
+                      <strong>ICC 167</strong>
+                      ,
+                   </biblio-tag>
                    <formattedref format="application/x-isodoc+xml">
                       <smallcap>Standard No I.C.C 167</smallcap>
                       .
@@ -1004,21 +1088,42 @@ RSpec.describe IsoDoc do
                          <fmt-link target="http://www.icc.or.at"/>
                       </semx>
                       )
+                      <note type="display" id="_" autonum="">
+                         <fmt-name id="_">
+                            <span class="fmt-caption-label">
+                               <span class="fmt-element-name">注記</span>
+                            </span>
+                            <span class="fmt-label-delim">
+                               <tab/>
+                            </span>
+                         </fmt-name>
+                         <fmt-xref-label>
+                            <span class="fmt-element-name">注記</span>
+                         </fmt-xref-label>
+                         <fmt-xref-label container="ref1">
+                            <span class="fmt-xref-container">
+                               <span class="fmt-xref-container">
+                                  <span class="fmt-element-name">箇条</span>
+                                   
+                                  <semx element="autonum" source="_">1</semx>
+                               </span>
+                               <span class="fmt-conn">の</span>
+                               ICC 167
+                            </span>
+                            <span class="fmt-conn">の</span>
+                            <span class="fmt-element-name">注記</span>
+                         </fmt-xref-label>
+                         <semx element="note" source="_">
+                            <p>This is an annotation of ISO 20483:2013-2014</p>
+                         </semx>
+                      </note>
                    </formattedref>
                    <docidentifier type="ICC">ICC 167</docidentifier>
                    <docidentifier scope="biblio-tag">ICC 167</docidentifier>
+                   <note type="display" original-id="_" id="_">
+                      <p>This is an annotation of ISO 20483:2013-2014</p>
+                   </note>
                 </bibitem>
-                <note>
-                   <fmt-name id="_">
-                      <span class="fmt-caption-label">
-                         <span class="fmt-element-name">注記</span>
-                      </span>
-                      <span class="fmt-label-delim">
-                         <tab/>
-                      </span>
-                   </fmt-name>
-                   <p>This is an annotation of ISO 20483:2013-2014</p>
-                </note>
              </references>
           </sections>
           <bibliography>
@@ -1050,11 +1155,11 @@ RSpec.describe IsoDoc do
                       ISO 1234 / B,
                    </biblio-tag>
                    <formattedref>
-                   Wozniak S.、 Jobs S.、 Hoover J.E.。 
+                      Wozniak S.、 Jobs S.、 Hoover J.E.。 
                       <em>Work</em>
                       。 Collected Essays UNICEF）。第4版。（Bibliographers Anonymous）。 Geneva： International Standardization Organization。 1996。巻4 19頁。入手先： 
                       <span class="biburl">
-                      <fmt-link target="http://www.example.com">http://www.example.com</fmt-link>
+                         <fmt-link target="http://www.example.com">http://www.example.com</fmt-link>
                       </span>
                    </formattedref>
                    <title>
@@ -1166,7 +1271,75 @@ RSpec.describe IsoDoc do
                       [3]
                       <tab/>
                    </biblio-tag>
-                   <formattedref>Aluffi P.、 Anderson D.、 Hering M.、 Mustaţă M.、 Payne S. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。 London Mathematical Society Lecture Note Series （N.S.）。 2022、巻1 いいえ7、 89〜112頁</formattedref>
+                   <formattedref>
+                      Aluffi P.、 Anderson D.、 Hering M.、 Mustaţă M.、 Payne S. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。 London Mathematical Society Lecture Note Series （N.S.）。 2022、巻1 いいえ7、 89〜112頁
+                      <note type="display" id="_" autonum="1">
+                         <fmt-name id="_">
+                            <span class="fmt-caption-label">
+                               <span class="fmt-element-name">注記</span>
+                                
+                               <semx element="autonum" source="_">1</semx>
+                            </span>
+                            <span class="fmt-label-delim">
+                               <tab/>
+                            </span>
+                         </fmt-name>
+                         <fmt-xref-label>
+                            <span class="fmt-element-name">注記</span>
+                             
+                            <semx element="autonum" source="_">1</semx>
+                         </fmt-xref-label>
+                         <fmt-xref-label container="ISSN">
+                            <span class="fmt-xref-container">
+                               <span class="fmt-xref-container">
+                                  <semx element="references" source="_">Bibliography</semx>
+                               </span>
+                               <span class="fmt-conn">の</span>
+                               ［3］
+                            </span>
+                            <span class="fmt-conn">の</span>
+                            <span class="fmt-element-name">注記</span>
+                             
+                            <semx element="autonum" source="_">1</semx>
+                         </fmt-xref-label>
+                         <semx element="note" source="_">
+                            <p>This is an annotation of document ISSN.</p>
+                         </semx>
+                      </note>
+                      <note type="display" id="_" autonum="2">
+                         <fmt-name id="_">
+                            <span class="fmt-caption-label">
+                               <span class="fmt-element-name">注記</span>
+                                
+                               <semx element="autonum" source="_">2</semx>
+                            </span>
+                            <span class="fmt-label-delim">
+                               <tab/>
+                            </span>
+                         </fmt-name>
+                         <fmt-xref-label>
+                            <span class="fmt-element-name">注記</span>
+                             
+                            <semx element="autonum" source="_">2</semx>
+                         </fmt-xref-label>
+                         <fmt-xref-label container="ISSN">
+                            <span class="fmt-xref-container">
+                               <span class="fmt-xref-container">
+                                  <semx element="references" source="_">Bibliography</semx>
+                               </span>
+                               <span class="fmt-conn">の</span>
+                               ［3］
+                            </span>
+                            <span class="fmt-conn">の</span>
+                            <span class="fmt-element-name">注記</span>
+                             
+                            <semx element="autonum" source="_">2</semx>
+                         </fmt-xref-label>
+                         <semx element="note" source="_">
+                            <p>This is another annotation of document ISSN.</p>
+                         </semx>
+                      </note>
+                   </formattedref>
                    <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
                    <docidentifier type="metanorma-ordinal">[3]</docidentifier>
                    <docidentifier type="DOI">DOI https://doi.org/10.1017/9781108877831</docidentifier>
@@ -1247,29 +1420,13 @@ RSpec.describe IsoDoc do
                          </locality>
                       </localityStack>
                    </extent>
+                   <note type="display" original-id="_" id="_" autonum="1">
+                      <p>This is an annotation of document ISSN.</p>
+                   </note>
+                   <note type="display" original-id="_" id="_" autonum="2">
+                      <p>This is another annotation of document ISSN.</p>
+                   </note>
                 </bibitem>
-                <note>
-                   <fmt-name id="_">
-                      <span class="fmt-caption-label">
-                         <span class="fmt-element-name">注記</span>
-                      </span>
-                      <span class="fmt-label-delim">
-                         <tab/>
-                      </span>
-                   </fmt-name>
-                   <p>This is an annotation of document ISSN.</p>
-                </note>
-                <note>
-                   <fmt-name id="_">
-                      <span class="fmt-caption-label">
-                         <span class="fmt-element-name">注記</span>
-                      </span>
-                      <span class="fmt-label-delim">
-                         <tab/>
-                      </span>
-                   </fmt-name>
-                   <p>This is another annotation of document ISSN.</p>
-                </note>
                 <bibitem id="ISO3696" type="standard">
                    <biblio-tag>
                       [4]

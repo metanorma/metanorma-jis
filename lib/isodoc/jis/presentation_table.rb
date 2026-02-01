@@ -13,7 +13,7 @@ module IsoDoc
       end
 
       def table_dl_to_tfoot(node)
-        dl = node.at(ns("./key"))&.elements || node.xpath(ns("./dl")) or return
+        dl = node.xpath(ns("./key")) || node.xpath(ns("./dl")) or return
         dl.text.strip.empty? and return
         tf = initial_tfoot_cell(node)
         dl.reverse_each do |x|

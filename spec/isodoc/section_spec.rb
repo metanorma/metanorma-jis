@@ -713,10 +713,13 @@ RSpec.describe IsoDoc::Jis do
                       <td id="_">国立研究開発法人建築研究所</td>
                    </tr>
                 </tbody>
-                         <tfoot>
+              <tfoot>
             <tr id="_">
                <td id="_" colspan="3">
-                  <p class="dl">GM: General Manager</p>
+                  <key>
+                     <name>Key</name>
+                     <p class="dl">GM: General Manager</p>
+                  </key>
                </td>
             </tr>
          </tfoot>
@@ -769,7 +772,10 @@ RSpec.describe IsoDoc::Jis do
                         <tfoot>
            <tr id="_">
               <td id="_" colspan="3">
-                 <p class="dl">GM: General Manager</p>
+                  <key>
+                     <name>記号説明</name>
+                     <p class="dl">GM: General Manager</p>
+                  </key>
               </td>
            </tr>
         </tfoot>
