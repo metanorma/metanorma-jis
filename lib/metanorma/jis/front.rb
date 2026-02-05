@@ -142,12 +142,15 @@ module Metanorma
         end
       end
 
-      def metadata_id(node, xml)
-        if id = node.attr("docidentifier")
-          add_noko_elem(xml, "docidentifier", id.sub(/^JIS /, ""),
-                        **attr_code(type: "JIS", primary: "true"))
-        else iso_id(node, xml)
-        end
+      def metadata_id_docidentifier(node, xml)
+        add_noko_elem(xml, "docidentifier", node.attr("docidentifier").sub(/^JIS /, ""),
+                      primary: "true",
+                      boilerplate: true,
+                      type: metadata_id_primary_type(node))
+      end
+
+      def metadata_id_primary_type(node)
+        "JIS"
       end
 
       def get_typeabbr(node, amd: false)
