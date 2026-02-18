@@ -96,7 +96,7 @@ module IsoDoc
       end
 
       def participant_table_prep(clause)
-        s = clause.at(ns("./sourcecode"))
+        s = clause.at(ns("./sourcecode/body"))
         t = clause.at(ns("./title"))&.children&.to_xml ||
           %(#{@meta.get[:"investigative-committee"]} #{@i18n.membership_table})
         y = YAML.safe_load(s.children.to_xml(encoding: "UTF-8"))
