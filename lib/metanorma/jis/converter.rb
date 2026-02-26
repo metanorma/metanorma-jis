@@ -44,10 +44,6 @@ module Metanorma
           .merge("keep-separate": node.attr("keep-separate")))
       end
 
-      def boilerplate_file(_x_orig)
-        File.join(@libdir, "boilerplate-#{@lang}.adoc")
-      end
-
       def document_scheme(node)
         node.attr("document-scheme")
       end
