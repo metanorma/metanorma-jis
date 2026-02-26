@@ -1,6 +1,17 @@
 module Metanorma
   module Jis
     class Cleanup < Iso::Cleanup
+      def self.delegator_methods
+        super + %i[pub_hash]
+      end
+
+      # Set up delegators using the class method
+      def_delegators :@converter, *delegator_methods
+
+      def boilerplate_file(_x_orig)
+        File.join(@libdir, "boilerplate-#{@lang}.adoc")
+      end
+
       def norm_ref_preface(ref, isodoc)
         if ref.at("./note[@type = 'boilerplate']")
           unwrap_boilerplate_clauses(ref, ".")
