@@ -1,13 +1,6 @@
 module Metanorma
   module Jis
     class Cleanup < Iso::Cleanup
-      def self.delegator_methods
-        super + %i[pub_hash]
-      end
-
-      # Set up delegators using the class method
-      def_delegators :@converter, *delegator_methods
-
       def boilerplate_file(_x_orig)
         File.join(@libdir, "boilerplate-#{@lang}.adoc")
       end
@@ -108,8 +101,8 @@ module Metanorma
           bib.at("#{PUBLISHER}[name = 'International " \
                                    "Electrotechnical Commission']")
         jis = bib.at("#{PUBLISHER}[abbreviation = 'JIS']") ||
-          bib.at("#{PUBLISHER}[name = '#{pub_hash['ja']}']") ||
-          bib.at("#{PUBLISHER}[name = '#{pub_hash['en']}']")
+          bib.at("#{PUBLISHER}[name = '#{@converter.pub_hash['ja']}']") ||
+          bib.at("#{PUBLISHER}[name = '#{@converter.pub_hash['en']}']")
         [iso, iec, jis]
       end
 
