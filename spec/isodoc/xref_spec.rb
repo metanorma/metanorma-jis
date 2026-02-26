@@ -167,7 +167,7 @@ RSpec.describe IsoDoc::Jis do
       <preface>
       <foreword obligation="informative">
          <title>Foreword</title>
-         <p id="A">This is a preamble
+         <p id="A0">This is a preamble
          <xref target="P"/>
          <xref target="Q"/>
          <xref target="R"/>
@@ -207,7 +207,7 @@ RSpec.describe IsoDoc::Jis do
            <fmt-title id="_" depth="1">
               <semx element="title" source="_">Foreword</semx>
            </fmt-title>
-           <p id="A">
+           <p id="A0">
               This is a preamble
               <xref target="P" id="_"/>
               <semx element="xref" source="_">
@@ -306,7 +306,7 @@ RSpec.describe IsoDoc::Jis do
       <preface>
       <foreword obligation="informative">
          <title>Foreword</title>
-         <p id="A">This is a preamble
+         <p id="A0">This is a preamble
          <xref target="P"/>
          <xref target="Q"/>
          <xref target="R"/>
@@ -346,7 +346,7 @@ RSpec.describe IsoDoc::Jis do
           <fmt-title depth="1" id="_">
              <semx element="title" source="_">Foreword</semx>
           </fmt-title>
-          <p id="A">
+          <p id="A0">
              This is a preamble
              <xref target="P" id="_"/>
              <semx element="xref" source="_">

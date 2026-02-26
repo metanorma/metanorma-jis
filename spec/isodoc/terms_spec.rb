@@ -1462,7 +1462,7 @@ RSpec.describe IsoDoc::Jis do
                             rice retaining its husk after threshing,
                             <eref bibitem="ISO712" citeas="ISO 712" id="_"/>
                             <semx element="eref" source="_">
-                               <fmt-eref bibitem="ISO712" citeas="ISO 712">ISO 712</fmt-eref>
+                            <fmt-xref bibitem="ISO712" target="">ISO 712</fmt-xref>
                             </semx>
                          </p>
                       </semx>
@@ -1536,7 +1536,7 @@ RSpec.describe IsoDoc::Jis do
                             rice retaining its husk after threshing
                             <eref bibitem="ISO713" citeas="ISO 713" id="_"/>
                             <semx element="eref" source="_">
-                               <fmt-eref bibitem="ISO713" citeas="ISO 713">ISO 713</fmt-eref>
+                            <fmt-xref bibitem="ISO713" target="">ISO 713</fmt-xref>
                             </semx>
                          </p>
                       </semx>
@@ -1607,7 +1607,7 @@ RSpec.describe IsoDoc::Jis do
                             rice retaining its husk after threshing
                             <eref bibitem="ISO713" citeas="ISO 713" id="_"/>
                             <semx element="eref" source="_">
-                               <fmt-eref bibitem="ISO713" citeas="ISO 713">ISO 713</fmt-eref>
+                            <fmt-xref bibitem="ISO713" target="">ISO 713</fmt-xref>
                             </semx>
                          </p>
                       </semx>

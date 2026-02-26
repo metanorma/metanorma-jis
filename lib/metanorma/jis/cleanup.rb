@@ -1,6 +1,6 @@
 module Metanorma
   module Jis
-    class Converter < Iso::Converter
+    class Cleanup < Iso::Cleanup
       def norm_ref_preface(ref, isodoc)
         if ref.at("./note[@type = 'boilerplate']")
           unwrap_boilerplate_clauses(ref, ".")
@@ -79,7 +79,7 @@ module Metanorma
       end
 
       def ol_cleanup(doc)
-        ::Metanorma::Standoc::Converter.instance_method(:ol_cleanup).bind(self)
+        ::Metanorma::Standoc::Cleanup.instance_method(:ol_cleanup).bind(self)
           .call(doc)
       end
 
