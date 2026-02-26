@@ -1,8 +1,6 @@
 require "asciidoctor"
 require "metanorma-iso"
 require_relative "front"
-require_relative "validate"
-require_relative "cleanup"
 
 module Metanorma
   module Jis
