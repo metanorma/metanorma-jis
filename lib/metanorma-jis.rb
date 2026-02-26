@@ -1,5 +1,7 @@
 require "asciidoctor" unless defined? Asciidoctor::Converter
 require_relative "metanorma/jis/converter"
+require_relative "metanorma/jis/cleanup"
+require_relative "metanorma/jis/validate"
 require_relative "metanorma/jis/version"
 require "isodoc/jis/html_convert"
 require "isodoc/jis/word_convert"
