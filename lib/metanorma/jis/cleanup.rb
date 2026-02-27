@@ -101,8 +101,8 @@ module Metanorma
           bib.at("#{PUBLISHER}[name = 'International " \
                                    "Electrotechnical Commission']")
         jis = bib.at("#{PUBLISHER}[abbreviation = 'JIS']") ||
-          bib.at("#{PUBLISHER}[name = '#{@converter.pub_hash['ja']}']") ||
-          bib.at("#{PUBLISHER}[name = '#{@converter.pub_hash['en']}']")
+          bib.at("#{PUBLISHER}[name = '#{@conv.pub_hash['ja']}']") ||
+          bib.at("#{PUBLISHER}[name = '#{@conv.pub_hash['en']}']")
         [iso, iec, jis]
       end
 
