@@ -16,7 +16,7 @@ module Metanorma
         super
       end
 
-      def init_misc(node)
+      def init_metadata(node)
         super
         @default_doctype = "japanese-industrial-standard"
       end
