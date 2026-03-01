@@ -81,6 +81,14 @@ module IsoDoc
         end
       end
 
+      def figure_name_parse(_node, div, name)
+        name.nil? and return
+        div.p class: "Tabletitle",
+              style: "text-align:center;" do |p|
+          name.children.each { |n| parse(n, p) }
+        end
+      end
+
       def units_render(note, cell)
         para = note.at(ns("./p")) and note = para
         cell.p class: "UnitStatement" do |p|
