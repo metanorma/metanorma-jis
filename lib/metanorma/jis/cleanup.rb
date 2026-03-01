@@ -1,6 +1,10 @@
 module Metanorma
   module Jis
-    class Converter < Iso::Converter
+    class Cleanup < Iso::Cleanup
+      def boilerplate_file(_x_orig)
+        File.join(@libdir, "boilerplate-#{@lang}.adoc")
+      end
+
       def norm_ref_preface(ref, isodoc)
         if ref.at("./note[@type = 'boilerplate']")
           unwrap_boilerplate_clauses(ref, ".")
@@ -79,7 +83,7 @@ module Metanorma
       end
 
       def ol_cleanup(doc)
-        ::Metanorma::Standoc::Converter.instance_method(:ol_cleanup).bind(self)
+        ::Metanorma::Standoc::Cleanup.instance_method(:ol_cleanup).bind(self)
           .call(doc)
       end
 
@@ -97,8 +101,8 @@ module Metanorma
           bib.at("#{PUBLISHER}[name = 'International " \
                                    "Electrotechnical Commission']")
         jis = bib.at("#{PUBLISHER}[abbreviation = 'JIS']") ||
-          bib.at("#{PUBLISHER}[name = '#{pub_hash['ja']}']") ||
-          bib.at("#{PUBLISHER}[name = '#{pub_hash['en']}']")
+          bib.at("#{PUBLISHER}[name = '#{@conv.pub_hash['ja']}']") ||
+          bib.at("#{PUBLISHER}[name = '#{@conv.pub_hash['en']}']")
         [iso, iec, jis]
       end
 

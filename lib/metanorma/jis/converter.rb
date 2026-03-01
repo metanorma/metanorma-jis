@@ -1,8 +1,6 @@
 require "asciidoctor"
 require "metanorma-iso"
 require_relative "front"
-require_relative "validate"
-require_relative "cleanup"
 
 module Metanorma
   module Jis
@@ -18,7 +16,7 @@ module Metanorma
         super
       end
 
-      def init_misc(node)
+      def init_metadata(node)
         super
         @default_doctype = "japanese-industrial-standard"
       end
@@ -42,10 +40,6 @@ module Metanorma
       def example_attrs(node)
         attr_code(id_unnum_attrs(node).merge(keep_attrs(node))
           .merge("keep-separate": node.attr("keep-separate")))
-      end
-
-      def boilerplate_file(_x_orig)
-        File.join(@libdir, "boilerplate-#{@lang}.adoc")
       end
 
       def document_scheme(node)
