@@ -2,8 +2,8 @@ require_relative "base_convert"
 require "isodoc"
 require_relative "init"
 require_relative "word_cleanup"
-require_relative "figure"
-require_relative "table"
+require_relative "word_figure"
+require_relative "word_table"
 
 module IsoDoc
   module Jis
