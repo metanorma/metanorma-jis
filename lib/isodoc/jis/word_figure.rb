@@ -53,13 +53,6 @@ module IsoDoc
         end
       end
 
-      def figure_name_parse(_node, div, name)
-        name.nil? and return
-        div.p class: "Tabletitle", style: "text-align:center;" do |p|
-          name.children.each { |n| parse(n, p) }
-        end
-      end
-
       def figure_row(node, table, hash, key)
         key != :notes_etc && (
         hash[key].nil? || (hash[key].is_a?(Array) && hash[key].empty?)) and
