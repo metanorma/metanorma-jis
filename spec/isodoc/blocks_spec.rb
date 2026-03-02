@@ -311,10 +311,10 @@ RSpec.describe IsoDoc::Jis do
     html = <<~OUTPUT
       <div id="A">
           <h1 class="ForewordTitle">Foreword</h1>
+          <figure id="figureA-1" class="figure" style="page-break-after: avoid;page-break-inside: avoid;">
           <div align="right">
              <b>Units in mm</b>
           </div>
-          <div id="figureA-1" class="figure" style="page-break-after: avoid;page-break-inside: avoid;">
              <img src="rice_images/rice_image1.png" height="20" width="30" title="titletxt" alt="alttext"/>
              <img src="rice_images/rice_image1.png" height="20" width="auto"/>
              <img src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7" height="20" width="auto"/>
@@ -348,21 +348,21 @@ RSpec.describe IsoDoc::Jis do
                    was estimated to be 18,2 min for this example.
                 </p>
              </aside>
-             <p class="FigureTitle" style="text-align:center;">
+             <figcaption>
                 Figure 1 — Split-it-right
                 <i>sample</i>
                 divider
                 <a class="FootnoteRef" href="#fn:_">
                    <sup>1</sup>
                 </a>
-             </p>
-          </div>
-          <div id="figure-B" class="figure">
+             </figcaption>
+          </figure>
+          <figure id="figure-B" class="figure">
              <pre>A &lt;
          B</pre>
-             <p class="FigureTitle" style="text-align:center;">Figure 2</p>
-          </div>
-          <div id="figure-C" class="figure">
+             <figcaption>Figure 2</figcaption>
+          </figure>
+          <figure id="figure-C" class="figure">
              <pre>A &lt;
          B</pre>
              <div class="BlockSource">
@@ -372,7 +372,7 @@ RSpec.describe IsoDoc::Jis do
                    , with adjustments)
                 </p>
              </div>
-          </div>
+          </figure>
        </div>
     OUTPUT
     word = <<~OUTPUT
@@ -804,17 +804,17 @@ RSpec.describe IsoDoc::Jis do
              <br/>
              <div id="_">
                             <h1 class="ForewordTitle">Foreword</h1>
-               <div id="figureA-1" class="figure" style="page-break-after: avoid;page-break-inside: avoid;">
-                 <div id="note1" class="figure">
+               <figure id="figureA-1" class="figure" style="page-break-after: avoid;page-break-inside: avoid;">
+                 <figure id="note1" class="figure">
                    <img src="rice_images/rice_image1.png" height="20" width="30" title="titletxt" alt="alttext"/>
-                   <p class="FigureTitle" style="text-align:center;">a)  Subfigure 1</p>
-                 </div>
-                 <div id="note2" class="figure">
+                   <figcaption>a)  Subfigure 1</figcaption>
+                 </figure>
+                 <figure id="note2" class="figure">
                    <img src="rice_images/rice_image1.png" height="20" width="auto"/>
-                   <p class="FigureTitle" style="text-align:center;">b)  Subfigure 2</p>
-                 </div>
-                 <p class="FigureTitle" style="text-align:center;">Figure 1 — Overall title</p>
-               </div>
+                   <figcaption>b)  Subfigure 2</figcaption>
+                 </figure>
+                 <figcaption>Figure 1 — Overall title</figcaption>
+               </figure>
              </div>
                    <br/>
       <div id="_" class="TOC">
