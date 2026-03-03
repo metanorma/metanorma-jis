@@ -120,13 +120,15 @@ RSpec.describe IsoDoc::Jis do
                    </fmt-xref-label>
                    <preferred id="_">
                       <expression>
-                         <name>paddy</name>
+                         <name id="_">paddy</name>
                       </expression>
                    </preferred>
                    <fmt-preferred>
                       <p>
                          <semx element="preferred" source="_">
-                            <strong>paddy</strong>
+                            <strong>
+                               <semx element="expression/name" source="_">paddy</semx>
+                            </strong>
                          </semx>
                       </p>
                    </fmt-preferred>
@@ -279,45 +281,53 @@ RSpec.describe IsoDoc::Jis do
                    </fmt-xref-label>
                    <preferred id="_">
                       <expression>
-                         <name>paddy</name>
+                         <name id="_">paddy</name>
                       </expression>
                    </preferred>
                    <fmt-preferred>
                       <p>
                          <semx element="preferred" source="_">
-                            <strong>paddy</strong>
+                            <strong>
+                               <semx element="expression/name" source="_">paddy</semx>
+                            </strong>
                          </semx>
                       </p>
                    </fmt-preferred>
                    <admitted id="_">
                       <expression>
-                         <name>paddy rice</name>
+                         <name id="_">paddy rice</name>
                       </expression>
                    </admitted>
                    <admitted id="_">
                       <expression>
-                         <name>rough rice</name>
+                         <name id="_">rough rice</name>
                       </expression>
                    </admitted>
                    <fmt-admitted>
                       <p>
                          ADMITTED:
-                         <semx element="admitted" source="_">paddy rice</semx>
+                         <semx element="admitted" source="_">
+                            <semx element="expression/name" source="_">paddy rice</semx>
+                         </semx>
                       </p>
                       <p>
                          ADMITTED:
-                         <semx element="admitted" source="_">rough rice</semx>
+                         <semx element="admitted" source="_">
+                            <semx element="expression/name" source="_">rough rice</semx>
+                         </semx>
                       </p>
                    </fmt-admitted>
                    <deprecates id="_">
                       <expression>
-                         <name>cargo rice</name>
+                         <name id="_">cargo rice</name>
                       </expression>
                    </deprecates>
                    <fmt-deprecates>
                       <p>
                          DEPRECATED:
-                         <semx element="deprecates" source="_">cargo rice</semx>
+                         <semx element="deprecates" source="_">
+                            <semx element="expression/name" source="_">cargo rice</semx>
+                         </semx>
                       </p>
                    </fmt-deprecates>
                    <definition id="_">
@@ -458,13 +468,15 @@ RSpec.describe IsoDoc::Jis do
                    </fmt-xref-label>
                    <preferred id="_">
                       <expression>
-                         <name>term1</name>
+                         <name id="_">term1</name>
                       </expression>
                    </preferred>
                    <fmt-preferred>
                       <p>
                          <semx element="preferred" source="_">
-                            <strong>term1</strong>
+                            <strong>
+                               <semx element="expression/name" source="_">term1</semx>
+                            </strong>
                          </semx>
                       </p>
                    </fmt-preferred>
@@ -493,13 +505,15 @@ RSpec.describe IsoDoc::Jis do
                       </fmt-xref-label>
                       <preferred id="_">
                          <expression>
-                            <name>term2</name>
+                            <name id="_">term2</name>
                          </expression>
                       </preferred>
                       <fmt-preferred>
                          <p>
                             <semx element="preferred" source="_">
-                               <strong>term2</strong>
+                               <strong>
+                                  <semx element="expression/name" source="_">term2</semx>
+                               </strong>
                             </semx>
                          </p>
                       </fmt-preferred>
@@ -523,11 +537,13 @@ RSpec.describe IsoDoc::Jis do
         <h1 class="IntroTitle">Contents</h1>
       </div>
                   #{middle_title(false)}
-               <div id="_">
+                <div id="_">
                    <h1>1  Terms and Definitions</h1>
                    <p class="TermNum" id="paddy1">1.1</p>
                    <p class="Terms" style="text-align:left;">
-                      <b>paddy</b>
+                      <b>
+                         <dfn>paddy</dfn>
+                      </b>
                    </p>
                    <p id="_">&lt;rice&gt;  rice retaining its husk after threshing</p>
                    <div id="_" class="example">
@@ -561,11 +577,22 @@ RSpec.describe IsoDoc::Jis do
                    </p>
                    <p class="TermNum" id="paddy">1.2</p>
                    <p class="Terms" style="text-align:left;">
-                      <b>paddy</b>
+                      <b>
+                         <dfn>paddy</dfn>
+                      </b>
                    </p>
-                   <p class="AltTerms" style="text-align:left;">ADMITTED: paddy rice</p>
-                   <p class="AltTerms" style="text-align:left;">ADMITTED: rough rice</p>
-                   <p class="DeprecatedTerms" style="text-align:left;">DEPRECATED: cargo rice</p>
+                   <p class="AltTerms" style="text-align:left;">
+                      ADMITTED:
+                      <dfn>paddy rice</dfn>
+                   </p>
+                   <p class="AltTerms" style="text-align:left;">
+                      ADMITTED:
+                      <dfn>rough rice</dfn>
+                   </p>
+                   <p class="DeprecatedTerms" style="text-align:left;">
+                      DEPRECATED:
+                      <dfn>cargo rice</dfn>
+                   </p>
                    <p id="_">rice retaining its husk after threshing</p>
                    <div id="_" class="example">
                       <p>
@@ -602,12 +629,16 @@ RSpec.describe IsoDoc::Jis do
                    </p>
                    <p class="TermNum" id="A">1.3</p>
                    <p class="Terms" style="text-align:left;">
-                      <b>term1</b>
+                      <b>
+                         <dfn>term1</dfn>
+                      </b>
                    </p>
                    term1 definition
                    <p class="TermNum" id="B">1.3.1</p>
                    <p class="Terms" style="text-align:left;">
-                      <b>term2</b>
+                      <b>
+                         <dfn>term2</dfn>
+                      </b>
                    </p>
                    term2 definition
                 </div>
@@ -843,7 +874,7 @@ RSpec.describe IsoDoc::Jis do
                 <tab/>
              </p>
              <p class="IDT" displayorder="4"/>
-             <terms id="_" obligation="normative" displayorder="5">
+            <terms id="_" obligation="normative" displayorder="5">
                 <title id="_">Terms and Definitions</title>
                 <fmt-title depth="1" id="_">
                    <span class="fmt-caption-label">
@@ -874,13 +905,15 @@ RSpec.describe IsoDoc::Jis do
                    </fmt-xref-label>
                    <preferred id="_">
                       <expression>
-                         <name>paddy</name>
+                         <name id="_">paddy</name>
                       </expression>
                    </preferred>
                    <fmt-preferred>
                       <p>
                          <semx element="preferred" source="_">
-                            <strong>paddy</strong>
+                            <strong>
+                               <semx element="expression/name" source="_">paddy</semx>
+                            </strong>
                          </semx>
                       </p>
                    </fmt-preferred>
@@ -1039,45 +1072,53 @@ RSpec.describe IsoDoc::Jis do
                    </fmt-xref-label>
                    <preferred id="_">
                       <expression>
-                         <name>paddy</name>
+                         <name id="_">paddy</name>
                       </expression>
                    </preferred>
                    <fmt-preferred>
                       <p>
                          <semx element="preferred" source="_">
-                            <strong>paddy</strong>
+                            <strong>
+                               <semx element="expression/name" source="_">paddy</semx>
+                            </strong>
                          </semx>
                       </p>
                    </fmt-preferred>
                    <admitted id="_">
                       <expression>
-                         <name>paddy rice</name>
+                         <name id="_">paddy rice</name>
                       </expression>
                    </admitted>
                    <admitted id="_">
                       <expression>
-                         <name>rough rice</name>
+                         <name id="_">rough rice</name>
                       </expression>
                    </admitted>
                    <fmt-admitted>
                       <p>
                          代替用語：
-                         <semx element="admitted" source="_">paddy rice</semx>
+                         <semx element="admitted" source="_">
+                            <semx element="expression/name" source="_">paddy rice</semx>
+                         </semx>
                       </p>
                       <p>
                          代替用語：
-                         <semx element="admitted" source="_">rough rice</semx>
+                         <semx element="admitted" source="_">
+                            <semx element="expression/name" source="_">rough rice</semx>
+                         </semx>
                       </p>
                    </fmt-admitted>
                    <deprecates id="_">
                       <expression>
-                         <name>cargo rice</name>
+                         <name id="_">cargo rice</name>
                       </expression>
                    </deprecates>
                    <fmt-deprecates>
                       <p>
                          推奨しない用語：
-                         <semx element="deprecates" source="_">cargo rice</semx>
+                         <semx element="deprecates" source="_">
+                            <semx element="expression/name" source="_">cargo rice</semx>
+                         </semx>
                       </p>
                    </fmt-deprecates>
                    <definition id="_">
@@ -1220,13 +1261,15 @@ RSpec.describe IsoDoc::Jis do
                    </fmt-xref-label>
                    <preferred id="_">
                       <expression>
-                         <name>term1</name>
+                         <name id="_">term1</name>
                       </expression>
                    </preferred>
                    <fmt-preferred>
                       <p>
                          <semx element="preferred" source="_">
-                            <strong>term1</strong>
+                            <strong>
+                               <semx element="expression/name" source="_">term1</semx>
+                            </strong>
                          </semx>
                       </p>
                    </fmt-preferred>
@@ -1255,13 +1298,15 @@ RSpec.describe IsoDoc::Jis do
                       </fmt-xref-label>
                       <preferred id="_">
                          <expression>
-                            <name>term2</name>
+                            <name id="_">term2</name>
                          </expression>
                       </preferred>
                       <fmt-preferred>
                          <p>
                             <semx element="preferred" source="_">
-                               <strong>term2</strong>
+                               <strong>
+                                  <semx element="expression/name" source="_">term2</semx>
+                               </strong>
                             </semx>
                          </p>
                       </fmt-preferred>
@@ -1438,13 +1483,15 @@ RSpec.describe IsoDoc::Jis do
                    </fmt-xref-label>
                    <preferred id="_">
                       <expression>
-                         <name>paddy</name>
+                         <name id="_">paddy</name>
                       </expression>
                    </preferred>
                    <fmt-preferred>
                       <p>
                          <semx element="preferred" source="_">
-                            <strong>paddy</strong>
+                            <strong>
+                               <semx element="expression/name" source="_">paddy</semx>
+                            </strong>
                          </semx>
                       </p>
                    </fmt-preferred>
@@ -1462,7 +1509,7 @@ RSpec.describe IsoDoc::Jis do
                             rice retaining its husk after threshing,
                             <eref bibitem="ISO712" citeas="ISO 712" id="_"/>
                             <semx element="eref" source="_">
-                            <fmt-xref bibitem="ISO712" target="">ISO 712</fmt-xref>
+                               <fmt-xref bibitem="ISO712" target="">ISO 712</fmt-xref>
                             </semx>
                          </p>
                       </semx>
@@ -1512,13 +1559,15 @@ RSpec.describe IsoDoc::Jis do
                    </fmt-xref-label>
                    <preferred id="_">
                       <expression>
-                         <name>paddy</name>
+                         <name id="_">paddy</name>
                       </expression>
                    </preferred>
                    <fmt-preferred>
                       <p>
                          <semx element="preferred" source="_">
-                            <strong>paddy</strong>
+                            <strong>
+                               <semx element="expression/name" source="_">paddy</semx>
+                            </strong>
                          </semx>
                       </p>
                    </fmt-preferred>
@@ -1536,7 +1585,7 @@ RSpec.describe IsoDoc::Jis do
                             rice retaining its husk after threshing
                             <eref bibitem="ISO713" citeas="ISO 713" id="_"/>
                             <semx element="eref" source="_">
-                            <fmt-xref bibitem="ISO713" target="">ISO 713</fmt-xref>
+                               <fmt-xref bibitem="ISO713" target="">ISO 713</fmt-xref>
                             </semx>
                          </p>
                       </semx>
@@ -1557,8 +1606,9 @@ RSpec.describe IsoDoc::Jis do
                             </locality>
                          </origin>
                          <semx element="origin" source="_">
-                                              <fmt-origin bibitemid="ISO713" type="inline" citeas="[2]" style="short">
-                        <fmt-xref target="ISO713">Aluffi P., Anderson D., Hering M., Mustaţă M. &amp; Payne S</fmt-xref>.
+                            <fmt-origin bibitemid="ISO713" type="inline" citeas="[2]" style="short">
+                               <fmt-xref target="ISO713">Aluffi P., Anderson D., Hering M., Mustaţă M. &amp; Payne S</fmt-xref>
+                               .
                                <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>
                                . Version 1. Cambridge University Press,
                                <span class="citesec">3.1</span>
@@ -1583,13 +1633,15 @@ RSpec.describe IsoDoc::Jis do
                    </fmt-xref-label>
                    <preferred id="_">
                       <expression>
-                         <name>paddy</name>
+                         <name id="_">paddy</name>
                       </expression>
                    </preferred>
                    <fmt-preferred>
                       <p>
                          <semx element="preferred" source="_">
-                            <strong>paddy</strong>
+                            <strong>
+                               <semx element="expression/name" source="_">paddy</semx>
+                            </strong>
                          </semx>
                       </p>
                    </fmt-preferred>
@@ -1607,7 +1659,7 @@ RSpec.describe IsoDoc::Jis do
                             rice retaining its husk after threshing
                             <eref bibitem="ISO713" citeas="ISO 713" id="_"/>
                             <semx element="eref" source="_">
-                            <fmt-xref bibitem="ISO713" target="">ISO 713</fmt-xref>
+                               <fmt-xref bibitem="ISO713" target="">ISO 713</fmt-xref>
                             </semx>
                          </p>
                       </semx>
@@ -1676,7 +1728,7 @@ RSpec.describe IsoDoc::Jis do
                       <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>
                       . Version 1. Cambridge University Press. Available at:
                       <span class="biburl">
-                      <fmt-link target="https://www.iso.org/standard/4766.html">https://www.iso.org/standard/4766.html</fmt-link>
+                         <fmt-link target="https://www.iso.org/standard/4766.html">https://www.iso.org/standard/4766.html</fmt-link>
                       </span>
                    </formattedref>
                    <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
