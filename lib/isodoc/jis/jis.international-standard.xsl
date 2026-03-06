@@ -619,16 +619,8 @@
 
 								<xsl:if test="$paged_xml_preface/mn:page and count($paged_xml_preface/mn:page/*) != 0">
 									<!-- Preface pages -->
-									<fo:page-sequence master-reference="preface" force-page-count="no-force">
-
-										<xsl:if test="$vertical_layout = 'true'">
-											<xsl:attribute name="master-reference">document_vertical_layout</xsl:attribute>
-											<xsl:attribute name="format">一</xsl:attribute>
-										</xsl:if>
-
-										<xsl:if test="position() = 1">
-											<xsl:attribute name="initial-page-number">1</xsl:attribute>
-										</xsl:if>
+									<fo:page-sequence xsl:use-attribute-sets="page-sequence-preface">
+										<xsl:call-template name="refine_page-sequence-preface"/>
 
 										<fo:static-content flow-name="xsl-footnote-separator" role="artifact">
 											<fo:block text-align="center" margin-bottom="6pt">
@@ -681,7 +673,7 @@
 					<xsl:if test="not($vertical_layout = 'true') and not($doctype = 'technical-specification')">
 
 					<!-- Document type rendering -->
-					<fo:page-sequence master-reference="preface" force-page-count="no-force">
+					<fo:page-sequence xsl:use-attribute-sets="page-sequence-preface">
 						<xsl:call-template name="insertHeaderFooter">
 							<xsl:with-param name="docidentifier" select="$docidentifier"/>
 							<xsl:with-param name="copyrightText" select="$copyrightText"/>
@@ -777,33 +769,8 @@
 
 						<xsl:variable name="isCommentary" select="normalize-space(.//mn:annex[@commentary = 'true'] and 1 = 1)"/> <!-- true or false -->
 						<!-- DEBUG: <xsl:copy-of select="."/> -->
-						<fo:page-sequence master-reference="document" force-page-count="no-force">
-
-							<xsl:choose>
-								<xsl:when test="$vertical_layout = 'true'">
-									<xsl:attribute name="master-reference">document_vertical_layout</xsl:attribute>
-									<xsl:if test="position() = last()">
-										<xsl:attribute name="master-reference">document_vertical_layout_with_last</xsl:attribute>
-									</xsl:if>
-
-									<xsl:attribute name="format">一</xsl:attribute>
-									<!-- <xsl:attribute name="fox:number-conversion-features">&#x30A2;</xsl:attribute> -->
-								</xsl:when>
-								<xsl:otherwise>
-									<xsl:if test="position() = 1">
-										<xsl:attribute name="master-reference">document_first_section</xsl:attribute>
-									</xsl:if>
-									<xsl:if test="@orientation = 'landscape'">
-										<xsl:attribute name="master-reference">document-<xsl:value-of select="@orientation"/></xsl:attribute>
-									</xsl:if>
-									<xsl:if test="$isCommentary = 'true'">
-										<xsl:attribute name="master-reference">document_commentary_section</xsl:attribute>
-									</xsl:if>
-									<xsl:if test="position() = 1">
-										<xsl:attribute name="initial-page-number">1</xsl:attribute>
-									</xsl:if>
-								</xsl:otherwise>
-							</xsl:choose>
+						<fo:page-sequence xsl:use-attribute-sets="page-sequence-main">
+							<xsl:call-template name="refine_page-sequence-main"/>
 
 							<xsl:call-template name="insertFootnoteSeparatorCommon">
 								<xsl:with-param name="leader_length">15%</xsl:with-param>
@@ -1156,13 +1123,7 @@
 					<xsl:apply-templates select="mnx:title"/>
 				</fo:inline>
 				<fo:inline keep-together.within-line="always">
-					<fo:leader xsl:use-attribute-sets="toc-leader-style">
-						<xsl:if test="$vertical_layout = 'true'">
-							<xsl:attribute name="leader-pattern">rule</xsl:attribute>
-							<xsl:attribute name="rule-thickness">0.5pt</xsl:attribute>
-							<xsl:attribute name="baseline-shift">60%</xsl:attribute>
-						</xsl:if>
-					</fo:leader>
+					<fo:leader xsl:use-attribute-sets="toc-leader-style"><xsl:call-template name="refine_toc-leader-style"/></fo:leader>
 					<fo:inline>
 						<xsl:if test="not($vertical_layout = 'true')">
 							<xsl:attribute name="font-size">8pt</xsl:attribute>
@@ -5791,20 +5752,59 @@
 	</xsl:variable>
 
 	<xsl:attribute-set name="page-sequence-preface">
-		<xsl:attribute name="format">i</xsl:attribute>
-	</xsl:attribute-set>
+		<xsl:attribute name="master-reference">preface</xsl:attribute>
+		<xsl:attribute name="force-page-count">no-force</xsl:attribute>
+	</xsl:attribute-set> <!-- page-sequence-preface -->
 
 	<xsl:template name="refine_page-sequence-preface">
 		<xsl:param name="layoutVersion"/>
-	</xsl:template>
+		<xsl:param name="doctype"/>
+		<xsl:param name="num"/>
+		<xsl:param name="skip_force_page_count">false</xsl:param>
+		<xsl:if test="$vertical_layout = 'true'">
+			<xsl:attribute name="master-reference">document_vertical_layout</xsl:attribute>
+			<xsl:attribute name="format">一</xsl:attribute>
+		</xsl:if>
+
+		<xsl:if test="position() = 1">
+			<xsl:attribute name="initial-page-number">1</xsl:attribute>
+		</xsl:if>
+	</xsl:template> <!-- refine_page-sequence-preface -->
 
 	<xsl:attribute-set name="page-sequence-main">
-
-	</xsl:attribute-set>
+		<xsl:attribute name="master-reference">document</xsl:attribute>
+		<xsl:attribute name="force-page-count">no-force</xsl:attribute>
+	</xsl:attribute-set> <!-- page-sequence-main -->
 
 	<xsl:template name="refine_page-sequence-main">
 		<xsl:param name="layoutVersion"/>
-	</xsl:template>
+		<xsl:param name="doctype"/>
+		<xsl:choose>
+			<xsl:when test="$vertical_layout = 'true'">
+				<xsl:attribute name="master-reference">document_vertical_layout</xsl:attribute>
+				<xsl:if test="position() = last()">
+					<xsl:attribute name="master-reference">document_vertical_layout_with_last</xsl:attribute>
+				</xsl:if>
+				<xsl:attribute name="format">一</xsl:attribute>
+				<!-- <xsl:attribute name="fox:number-conversion-features">&#x30A2;</xsl:attribute> -->
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:if test="position() = 1">
+					<xsl:attribute name="master-reference">document_first_section</xsl:attribute>
+				</xsl:if>
+				<xsl:if test="@orientation = 'landscape'">
+					<xsl:attribute name="master-reference">document-<xsl:value-of select="@orientation"/></xsl:attribute>
+				</xsl:if>
+				<xsl:variable name="isCommentary" select="normalize-space(.//mn:annex[@commentary = 'true'] and 1 = 1)"/>
+				<xsl:if test="$isCommentary = 'true'">
+					<xsl:attribute name="master-reference">document_commentary_section</xsl:attribute>
+				</xsl:if>
+				<xsl:if test="position() = 1">
+					<xsl:attribute name="initial-page-number">1</xsl:attribute>
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template> <!-- refine_page-sequence-main -->
 
 	<xsl:variable name="font_noto_sans">Noto Sans, Noto Sans HK, Noto Sans JP, Noto Sans KR, Noto Sans SC, Noto Sans TC</xsl:variable>
 	<xsl:variable name="font_noto_sans_mono">Noto Sans Mono, Noto Sans Mono CJK HK, Noto Sans Mono CJK JP, Noto Sans Mono CJK KR, Noto Sans Mono CJK SC, Noto Sans Mono CJK TC</xsl:variable>
@@ -16987,6 +16987,11 @@
 	</xsl:attribute-set> <!-- END: toc-leader-style -->
 
 	<xsl:template name="refine_toc-leader-style">
+		<xsl:if test="$vertical_layout = 'true'">
+			<xsl:attribute name="leader-pattern">rule</xsl:attribute>
+			<xsl:attribute name="rule-thickness">0.5pt</xsl:attribute>
+			<xsl:attribute name="baseline-shift">60%</xsl:attribute>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:attribute-set name="toc-pagenumber-style">
@@ -18893,16 +18898,17 @@
 	<!-- insert fo:basic-link, if external-destination or internal-destination is non-empty, otherwise insert fo:inline -->
 	<xsl:template name="insert_basic_link">
 		<xsl:param name="element"/>
+		<xsl:param name="wrapper">true</xsl:param>
 		<xsl:variable name="element_node" select="xalan:nodeset($element)"/>
 		<xsl:variable name="external-destination" select="normalize-space(count($element_node/fo:basic-link/@external-destination[. != '']) = 1)"/>
 		<xsl:variable name="internal-destination" select="normalize-space(count($element_node/fo:basic-link/@internal-destination[. != '']) = 1)"/>
 		<xsl:choose>
-			<xsl:when test="$internal-destination = 'true'">
+			<xsl:when test="$internal-destination = 'true' and $wrapper = 'true'">
 				<fo:wrapper role="Reference">
 					<xsl:copy-of select="$element_node"/>
 				</fo:wrapper>
 			</xsl:when>
-			<xsl:when test="$external-destination = 'true'">
+			<xsl:when test="$internal-destination = 'true' or $external-destination = 'true'">
 				<xsl:copy-of select="$element_node"/>
 			</xsl:when>
 			<xsl:otherwise>
