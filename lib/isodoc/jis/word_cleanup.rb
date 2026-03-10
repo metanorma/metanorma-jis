@@ -64,7 +64,6 @@ module IsoDoc
 
       def to_word1(result, filename, dir, header)
         result or return
-        result = from_xhtml(result).gsub(/-DOUBLE_HYPHEN_ESCAPE-/, "--")
         ::Html2Doc::Jis.new(
           filename: filename, imagedir: @localdir,
           stylesheet: @wordstylesheet&.path,
@@ -76,7 +75,11 @@ module IsoDoc
 
       def word_split(xml)
         b = xml.dup
-        { _cover: cover_split(xml), "": main_split(b) }
+        { _cover: cover_split(xml),
+          "": main_split(b) }.transform_values do |x|
+            unescape_amp_in_hrefs(from_xhtml(x)
+              .gsub("-DOUBLE_HYPHEN_ESCAPE-", "--"))
+          end
       end
 
       def cover_split(xml)
