@@ -31,7 +31,7 @@ module IsoDoc
         @autonumbering_style == :japanese ? "\u30fb" : "."
       end
 
-      def clause_counter(num, opts = { })
+      def clause_counter(num = 0, opts = { })
         opts[:numerals] ||= @autonumbering_style
         opts[:separator] ||= clausesep
         super
