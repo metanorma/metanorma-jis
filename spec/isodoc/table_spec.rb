@@ -413,9 +413,7 @@ RSpec.describe IsoDoc do
              </clause>
           </sections>
           <annex id="Annex" autonum="A" displayorder="7">
-             <title id="_">
-                <strong>Annex</strong>
-             </title>
+             <title id="_">Annex</title>
              <fmt-title id="_">
                 <span class="fmt-caption-label">
                    <span class="fmt-element-name">Annex</span>
@@ -434,6 +432,16 @@ RSpec.describe IsoDoc do
                 <span class="fmt-element-name">Annex</span>
                 <semx element="autonum" source="Annex">A</semx>
              </fmt-xref-label>
+      <variant-title type="toc">
+         <span class="fmt-caption-label">
+            <span class="fmt-element-name">Annex</span>
+            <semx element="autonum" source="Annex">A</semx>
+         </span>
+         <span class="fmt-caption-delim">
+            <tab/>
+         </span>
+         <semx element="title" source="_">Annex</semx>
+      </variant-title>
              <table id="AnnexTable" autonum="A.1">
                 <name id="_">Another table</name>
                 <fmt-name id="_">
@@ -598,6 +606,7 @@ RSpec.describe IsoDoc do
              <b>Annex</b>
              </a>
            </h1>
+           <p style="display:none;" class="variant-title-toc">Annex A  Annex</p>
            <table id="AnnexTable" class="MsoISOTable" style="border-width:1px;border-spacing:0;">
              <thead>
                <tr>
@@ -743,6 +752,11 @@ RSpec.describe IsoDoc do
            <br/>
            <span class="Strong">Annex</span>
          </p>
+         <p style="display:none;" class="variant-title-toc">
+          Annex A
+          <span style="mso-tab-count:1">  </span>
+          Annex
+      </p>
          <div align="center" class="table_container">
            <table title="" summary="" width="" class="MsoTableGrid" style="border-collapse:collapse;mso-table-anchor-horizontal:column;mso-table-overlap:never;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0">
              <a name="AnnexTable" id="AnnexTable"/>
