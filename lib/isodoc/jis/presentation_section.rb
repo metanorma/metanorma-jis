@@ -6,11 +6,11 @@ module IsoDoc
     class PresentationXMLConvert < IsoDoc::Iso::PresentationXMLConvert
       def annex1(elem)
         elem["commentary"] == "true" and return commentary(elem)
-        lbl = @xrefs.anchor(elem["id"], :label)
-        if t = elem.at(ns("./title"))
-          t.children = "<strong>#{to_xml(t.children)}</strong>"
-        end
-        prefix_name(elem, { caption: "<br/>" }, lbl, "title")
+        super
+      end
+
+      def annex_delim(_elem)
+        "<br/>"
       end
 
       def annex(docxml)
@@ -101,7 +101,7 @@ module IsoDoc
           %(#{@meta.get[:"investigative-committee"]} #{@i18n.membership_table})
         y = YAML.safe_load(s.children.to_xml(encoding: "UTF-8"))
         d = clause.at(ns("./key")) || clause.at(ns("./dl"))
-        s && y.is_a?(Array) or return [nil, nil, nil, nil]
+        (s && y.is_a?(Array)) or return [nil, nil, nil, nil]
         [s, t, y, d]
       end
 
@@ -111,7 +111,8 @@ module IsoDoc
           n = y["name"]
           if n.is_a?(Hash)
             n = if @lang == "ja" then "#{n['surname']} #{n['givenname']}"
-                else "#{n['givenname']} #{n['surname']}" end
+                else "#{n['givenname']} #{n['surname']}"
+                end
           end
           <<~XML
             <tr #{add_id_text}><td #{add_id_text}>#{r}</td><td #{add_id_text}>#{n}</td><td #{add_id_text}>#{y['affiliation']}</td></tr>

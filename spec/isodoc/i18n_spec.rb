@@ -377,9 +377,7 @@ RSpec.describe IsoDoc::Jis do
              </references>
           </sections>
           <annex id="P" inline-header="false" obligation="normative" autonum="A" displayorder="16">
-             <title id="_">
-                <strong>Annex</strong>
-             </title>
+             <title id="_">Annex</title>
              <fmt-title id="_">
                 <span class="fmt-caption-label">
                    <span class="fmt-element-name">附属書</span>
@@ -400,6 +398,17 @@ RSpec.describe IsoDoc::Jis do
                  
                 <semx element="autonum" source="P">A</semx>
              </fmt-xref-label>
+      <variant-title type="toc">
+         <span class="fmt-caption-label">
+            <span class="fmt-element-name">附属書</span>
+             
+            <semx element="autonum" source="P">A</semx>
+         </span>
+         <span class="fmt-caption-delim">
+            <tab/>
+         </span>
+         <semx element="title" source="_">Annex</semx>
+      </variant-title>
              <clause id="Q" inline-header="false" obligation="normative">
                 <title id="_">Annex A.1</title>
                 <fmt-title depth="2" id="_">
@@ -590,6 +599,7 @@ RSpec.describe IsoDoc::Jis do
                      <br/>
                      <b>Annex</b>
                   </h1>
+                  <p style="display:none;" class="variant-title-toc">附属書 A　Annex</p>
                   <div id="Q">
                      <h2>A.1　Annex A.1</h2>
                      <div id="Q1">
@@ -775,6 +785,11 @@ RSpec.describe IsoDoc::Jis do
                      <br/>
                      <b>Annex</b>
                   </h1>
+            <p style="display:none;" class="variant-title-toc">
+               附属書 A
+               <span style="mso-tab-count:1">  </span>
+               Annex
+            </p>
                   <div id="Q">
                      <h2>
                         A.1
@@ -1110,9 +1125,7 @@ RSpec.describe IsoDoc::Jis do
              </references>
           </sections>
           <annex id="P" inline-header="false" obligation="normative" autonum="A" displayorder="16">
-             <title id="_">
-                <strong>Annex</strong>
-             </title>
+             <title id="_">Annex</title>
              <fmt-title id="_">
                 <span class="fmt-caption-label">
                    <span class="fmt-element-name">附属書</span>
@@ -1133,6 +1146,17 @@ RSpec.describe IsoDoc::Jis do
                  
                 <semx element="autonum" source="P">A</semx>
              </fmt-xref-label>
+      <variant-title type="toc">
+         <span class="fmt-caption-label">
+            <span class="fmt-element-name">附属書</span>
+             
+            <semx element="autonum" source="P">A</semx>
+         </span>
+         <span class="fmt-caption-delim">
+            <tab/>
+         </span>
+         <semx element="title" source="_">Annex</semx>
+      </variant-title>
              <clause id="Q" inline-header="false" obligation="normative">
                 <title id="_">Annex A.1</title>
                 <fmt-title depth="2" id="_">
@@ -1306,9 +1330,7 @@ RSpec.describe IsoDoc::Jis do
                <p id="E">Text</p>
             </clause>
             <annex id="P" inline-header="false" obligation="normative" autonum="A" displayorder="6">
-               <title id="_">
-                  <strong>First Annex</strong>
-               </title>
+               <title id="_">First Annex</title>
                <fmt-title id="_">
                   <span class="fmt-caption-label">
                      <span class="fmt-element-name">附属書</span>
@@ -1329,6 +1351,17 @@ RSpec.describe IsoDoc::Jis do
       #{'             '}
                   <semx element="autonum" source="P">A</semx>
                </fmt-xref-label>
+         <variant-title type="toc">
+            <span class="fmt-caption-label">
+               <span class="fmt-element-name">附属書</span>
+                
+               <semx element="autonum" source="P">A</semx>
+            </span>
+            <span class="fmt-caption-delim">
+               <tab/>
+            </span>
+            <semx element="title" source="_">First Annex</semx>
+         </variant-title>
             </annex>
          </sections>
       </iso-standard>
@@ -1708,9 +1741,7 @@ RSpec.describe IsoDoc::Jis do
              </references>
           </sections>
           <annex id="P" inline-header="false" obligation="normative" autonum="A" displayorder="16">
-             <title id="_">
-                <strong>Annex</strong>
-             </title>
+             <title id="_">Annex</title>
              <fmt-title id="_">
                 <span class="fmt-caption-label">
                    <span class="fmt-element-name">Annex</span>
@@ -1729,6 +1760,16 @@ RSpec.describe IsoDoc::Jis do
                 <span class="fmt-element-name">Annex</span>
                 <semx element="autonum" source="P">A</semx>
              </fmt-xref-label>
+      <variant-title type="toc">
+         <span class="fmt-caption-label">
+            <span class="fmt-element-name">Annex</span>
+            <semx element="autonum" source="P">A</semx>
+         </span>
+         <span class="fmt-caption-delim">
+            <tab/>
+         </span>
+         <semx element="title" source="_">Annex</semx>
+      </variant-title>
              <clause id="Q" inline-header="false" obligation="normative">
                 <title id="_">Annex A.1</title>
                 <fmt-title depth="2" id="_">
@@ -1918,6 +1959,7 @@ RSpec.describe IsoDoc::Jis do
                       <br/>
                       <b>Annex</b>
                    </h1>
+                    <p style="display:none;" class="variant-title-toc">Annex A  Annex</p>
                    <div id="Q">
                       <h2>A.1  Annex A.1</h2>
                       <div id="Q1">
