@@ -41,10 +41,10 @@ RSpec.describe IsoDoc::Jis do
          <div class="colophon"/>
        </body>
     OUTPUT
-    expect(Canon.format_xml(IsoDoc::Jis::WordConvert.new({})
+    expect(IsoDoc::Jis::WordConvert.new({})
           .convert("test", input, true)
-          .sub(/^.*<body /m, "<body ").sub(%r{</body>.*$}m, "</body>")))
-      .to be_equivalent_to Canon.format_xml(word)
+          .sub(/^.*<body /m, "<body ").sub(%r{</body>.*$}m, "</body>"))
+      .to be_xml_equivalent_to word
   end
 
   it "renders commentaries" do
@@ -498,175 +498,175 @@ RSpec.describe IsoDoc::Jis do
        </html>
     OUTPUT
     word = <<~OUTPUT
-       <body lang="EN-US" link="blue" vlink="#954F72">
-             <div class="WordSection1">
-                <p> </p>
-             </div>
-             <p class="section-break">
-                <br clear="all" class="section"/>
-             </p>
-             <div class="WordSection2">
-                <p class="page-break">
-                   <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-                </p>
-                <div id="_" type="toc" class="TOC">
-                   <p class="zzContents">Contents</p>
-                </div>
-                <p> </p>
-             </div>
-             <p class="section-break">
-                <br clear="all" class="section"/>
-             </p>
-             <div class="WordSection3">
-                <p class="JapaneseIndustrialStandard">
-                   日本工業規格
-                   <span style="mso-tab-count:1">  </span>
-                   <span style="mso-tab-count:1">  </span>
-                   <span style="mso-tab-count:1">  </span>
-                   <span style="mso-tab-count:1">  </span>
-                   <span style="mso-tab-count:1">  </span>
-                   <span style="mso-tab-count:1">  </span>
-                   <span style="mso-tab-count:1">  </span>
-                   <span class="JIS">JIS</span>
-                </p>
-                <p class="StandardNumber">
-                   <span style="mso-tab-count:1">  </span>
-                   Z 1000-1.3:
-                   <span class="EffectiveYear">2000</span>
-                </p>
-                <p class="IDT"/>
-                <p class="zzSTDTitle1">Introduction — Main Title — Title — </p>
-                <p class="zzSTDTitle1">
-                   <br/>
-                   <b>Title Part</b>
-                </p>
-                <p class="zzSTDTitle2">Introduction Française — Titre Principal — </p>
-                <p class="zzSTDTitle2">
-                   <br/>
-                   <b>Part du Titre</b>
-                </p>
-                <div id="R">
-                   <h1>
-                      1
-                      <span style="mso-tab-count:1">  </span>
-                      Normative References
-                   </h1>
-                   <div>
-                      <h2 class="BiblioTitle">
-                         1.1
-                         <span style="mso-tab-count:1">  </span>
-                         Normative References 1
-                      </h2>
-                   </div>
-                </div>
-                <p class="page-break">
-                   <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-                </p>
-                <div id="A" class="Section3">
-                   <h1 class="Annex">
-                      Annex A
-                      <br/>
-                      <span class="obligation">(normative)</span>
-                      <br/>
-                      <b>First Annex</b>
-                   </h1>
-                   <p style="display:none;" class="variant-title-toc">
-                      Annex A
-                      <span style="mso-tab-count:1">  </span>
-                      First Annex
-                   </p>
-                </div>
-                <p class="page-break">
-                   <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-                </p>
-                <div id="B" class="Section3">
-                   <h1 class="Annex">
-                      Annex B
-                      <br/>
-                      <span class="obligation">(informative)</span>
-                      <br/>
-                      <b>Second Annex</b>
-                   </h1>
-                   <p style="display:none;" class="variant-title-toc">
-                      Annex B
-                      <span style="mso-tab-count:1">  </span>
-                      Second Annex
-                   </p>
-                </div>
-                <p class="page-break">
-                   <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
-                </p>
-                <div class="bibliography">
-                   <h1 class="Section3">Bibliography</h1>
-                </div>
-                <span style="mso-bookmark:PRECOMMENTARYPAGEREF"/>
-                <p class="section-break">
-                   <br clear="all" class="section"/>
-                </p>
-                <div class="WordSectionCommentary">
-                   <div id="C" class="Section3">
-                      <p class="CommentaryStandardNumber">
-                         JIS Z 1000-1.3 :
-                         <span class="CommentaryEffectiveYear">2000</span>
-                      </p>
-                      <p class="CommentaryStandardName">Introduction — Main Title — Title — </p>
-                      <p class="zzSTDTitle1">
-                         <br/>
-                         <b>Title Part</b>
-                      </p>
-                      <h1 class="Annex">Commentary</h1>
-                      <div id="C1">
-                         <h2>
-                            1
-                            <span style="mso-tab-count:1">  </span>
-                            First clause
-                         </h2>
-                         <div id="C2">
-                            <h3>
-                               1.1
-                               <span style="mso-tab-count:1">  </span>
-                               First subclause
-                            </h3>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-                <span style="mso-bookmark:PRECOMMENTARYPAGEREF"/>
-                <p class="section-break">
-                   <br clear="all" class="section"/>
-                </p>
-                <div class="WordSectionCommentary">
-                   <div id="D" class="Section3">
-                      <p class="CommentaryStandardNumber">
-                         JIS Z 1000-1.3 :
-                         <span class="CommentaryEffectiveYear">2000</span>
-                      </p>
-                      <p class="CommentaryStandardName">Introduction — Main Title — Title — </p>
-                      <p class="zzSTDTitle1">
-                         <br/>
-                         <b>Title Part</b>
-                      </p>
-                      <h1 class="Annex">Another Commentary</h1>
-                   </div>
-                </div>
-             </div>
-             <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
-             <div class="colophon"/>
-          </body>
+      <body lang="EN-US" link="blue" vlink="#954F72">
+            <div class="WordSection1">
+               <p> </p>
+            </div>
+            <p class="section-break">
+               <br clear="all" class="section"/>
+            </p>
+            <div class="WordSection2">
+               <p class="page-break">
+                  <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+               </p>
+               <div id="_" type="toc" class="TOC">
+                  <p class="zzContents">Contents</p>
+               </div>
+               <p> </p>
+            </div>
+            <p class="section-break">
+               <br clear="all" class="section"/>
+            </p>
+            <div class="WordSection3">
+               <p class="JapaneseIndustrialStandard">
+                  日本工業規格
+                  <span style="mso-tab-count:1">  </span>
+                  <span style="mso-tab-count:1">  </span>
+                  <span style="mso-tab-count:1">  </span>
+                  <span style="mso-tab-count:1">  </span>
+                  <span style="mso-tab-count:1">  </span>
+                  <span style="mso-tab-count:1">  </span>
+                  <span style="mso-tab-count:1">  </span>
+                  <span class="JIS">JIS</span>
+               </p>
+               <p class="StandardNumber">
+                  <span style="mso-tab-count:1">  </span>
+                  Z 1000-1.3:
+                  <span class="EffectiveYear">2000</span>
+               </p>
+               <p class="IDT"/>
+               <p class="zzSTDTitle1">Introduction — Main Title — Title — </p>
+               <p class="zzSTDTitle1">
+                  <br/>
+                  <b>Title Part</b>
+               </p>
+               <p class="zzSTDTitle2">Introduction Française — Titre Principal — </p>
+               <p class="zzSTDTitle2">
+                  <br/>
+                  <b>Part du Titre</b>
+               </p>
+               <div id="R">
+                  <h1>
+                     1
+                     <span style="mso-tab-count:1">  </span>
+                     Normative References
+                  </h1>
+                  <div>
+                     <h2 class="BiblioTitle">
+                        1.1
+                        <span style="mso-tab-count:1">  </span>
+                        Normative References 1
+                     </h2>
+                  </div>
+               </div>
+               <p class="page-break">
+                  <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+               </p>
+               <div id="A" class="Section3">
+                  <h1 class="Annex">
+                     Annex A
+                     <br/>
+                     <span class="obligation">(normative)</span>
+                     <br/>
+                     <b>First Annex</b>
+                  </h1>
+                  <p style="display:none;" class="variant-title-toc">
+                     Annex A
+                     <span style="mso-tab-count:1">  </span>
+                     First Annex
+                  </p>
+               </div>
+               <p class="page-break">
+                  <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+               </p>
+               <div id="B" class="Section3">
+                  <h1 class="Annex">
+                     Annex B
+                     <br/>
+                     <span class="obligation">(informative)</span>
+                     <br/>
+                     <b>Second Annex</b>
+                  </h1>
+                  <p style="display:none;" class="variant-title-toc">
+                     Annex B
+                     <span style="mso-tab-count:1">  </span>
+                     Second Annex
+                  </p>
+               </div>
+               <p class="page-break">
+                  <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
+               </p>
+               <div class="bibliography">
+                  <h1 class="Section3">Bibliography</h1>
+               </div>
+               <span style="mso-bookmark:PRECOMMENTARYPAGEREF"/>
+               <p class="section-break">
+                  <br clear="all" class="section"/>
+               </p>
+               <div class="WordSectionCommentary">
+                  <div id="C" class="Section3">
+                     <p class="CommentaryStandardNumber">
+                        JIS Z 1000-1.3 :
+                        <span class="CommentaryEffectiveYear">2000</span>
+                     </p>
+                     <p class="CommentaryStandardName">Introduction — Main Title — Title — </p>
+                     <p class="zzSTDTitle1">
+                        <br/>
+                        <b>Title Part</b>
+                     </p>
+                     <h1 class="Annex">Commentary</h1>
+                     <div id="C1">
+                        <h2>
+                           1
+                           <span style="mso-tab-count:1">  </span>
+                           First clause
+                        </h2>
+                        <div id="C2">
+                           <h3>
+                              1.1
+                              <span style="mso-tab-count:1">  </span>
+                              First subclause
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <span style="mso-bookmark:PRECOMMENTARYPAGEREF"/>
+               <p class="section-break">
+                  <br clear="all" class="section"/>
+               </p>
+               <div class="WordSectionCommentary">
+                  <div id="D" class="Section3">
+                     <p class="CommentaryStandardNumber">
+                        JIS Z 1000-1.3 :
+                        <span class="CommentaryEffectiveYear">2000</span>
+                     </p>
+                     <p class="CommentaryStandardName">Introduction — Main Title — Title — </p>
+                     <p class="zzSTDTitle1">
+                        <br/>
+                        <b>Title Part</b>
+                     </p>
+                     <h1 class="Annex">Another Commentary</h1>
+                  </div>
+               </div>
+            </div>
+            <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
+            <div class="colophon"/>
+         </body>
     OUTPUT
     pres_output = IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)
-    expect(Canon.format_xml(strip_guid(pres_output
-        .sub(%r{<localized-strings>.*</localized-strings>}m, ""))))
-      .to be_equivalent_to Canon.format_xml(presxml)
-    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
-        .convert("test", pres_output, true))))
-      .to be_equivalent_to Canon.format_xml(html)
-    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::WordConvert.new({})
-        .convert("test", pres_output, true)))
-            .sub(/^.*<body /m, "<body ").sub(%r{</body>.*$}m, "</body>"))
-      .to be_equivalent_to Canon.format_xml(word)
+    expect(strip_guid(pres_output
+      .sub(%r{<localized-strings>.*</localized-strings>}m, "")))
+      .to be_xml_equivalent_to presxml
+    expect(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
+      .convert("test", pres_output, true)))
+      .to be_html5_equivalent_to html
+    expect(strip_guid(IsoDoc::Jis::WordConvert.new({})
+      .convert("test", pres_output, true))
+      .sub(/^.*<body /m, "<body ").sub(%r{</body>.*$}m, "</body>"))
+      .to be_html4_equivalent_to word
   end
 
   it "processes contributor table" do
@@ -762,8 +762,8 @@ RSpec.describe IsoDoc::Jis do
       .new(presxml_options)
       .convert("test", input, true))
     pres_output = pres_output.at("//xmlns:preface")
-    expect(Canon.format_xml(strip_guid(pres_output.to_xml)))
-      .to be_equivalent_to Canon.format_xml(strip_guid(presxml))
+    expect(strip_guid(pres_output.to_xml))
+      .to be_xml_equivalent_to strip_guid(presxml)
 
     presxml = <<~OUTPUT
       <preface>
@@ -819,8 +819,8 @@ RSpec.describe IsoDoc::Jis do
       .convert("test", input.sub("<language>en</language>",
                                  "<language>ja</language>"), true))
     pres_output = pres_output.at("//xmlns:preface")
-    expect(Canon.format_xml(strip_guid(pres_output.to_xml)))
-      .to be_equivalent_to Canon.format_xml(strip_guid(presxml))
+    expect(strip_guid(pres_output.to_xml))
+      .to be_xml_equivalent_to strip_guid(presxml)
   end
 
   it "processes multiple contributor tables" do
@@ -953,7 +953,7 @@ RSpec.describe IsoDoc::Jis do
       .new(presxml_options)
       .convert("test", input, true))
     pres_output = pres_output.at("//xmlns:preface")
-    expect(Canon.format_xml(strip_guid(pres_output.to_xml)))
-      .to be_equivalent_to Canon.format_xml(strip_guid(presxml))
+    expect(strip_guid(pres_output.to_xml))
+      .to be_xml_equivalent_to strip_guid(presxml)
   end
 end

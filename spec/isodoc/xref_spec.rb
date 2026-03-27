@@ -154,11 +154,11 @@ RSpec.describe IsoDoc::Jis do
            </p>
         </foreword>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))
-      .at("//xmlns:foreword").to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+      .at("//xmlns:foreword").to_xml))
+      .to be_xml_equivalent_to output
   end
 
   it "cross-references list items" do
@@ -294,11 +294,11 @@ RSpec.describe IsoDoc::Jis do
            </p>
         </foreword>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
        .new(presxml_options)
        .convert("test", input, true))
-       .at("//xmlns:foreword").to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+       .at("//xmlns:foreword").to_xml))
+      .to be_xml_equivalent_to output
 
     input = <<~INPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml">
@@ -451,11 +451,11 @@ RSpec.describe IsoDoc::Jis do
           </p>
        </foreword>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
        .new(presxml_options)
        .convert("test", input, true))
-       .at("//xmlns:foreword").to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+       .at("//xmlns:foreword").to_xml))
+      .to be_xml_equivalent_to output
   end
 
   it "cross-references assets in commentaries" do
@@ -583,11 +583,11 @@ RSpec.describe IsoDoc::Jis do
            </p>
         </foreword>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
        .new(presxml_options)
        .convert("test", input, true))
-       .at("//xmlns:foreword").to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+       .at("//xmlns:foreword").to_xml))
+      .to be_xml_equivalent_to output
     output = <<~OUTPUT
       <foreword obligation="informative" id="_" displayorder="1">
           <title id="_">Foreword</title>
@@ -685,11 +685,11 @@ RSpec.describe IsoDoc::Jis do
     OUTPUT
     input.sub!("<preface>",
                "<bibdata><language>ja</language></bibdata><preface>")
-    expect(Canon.format_xml(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))
-       .at("//xmlns:foreword").to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+       .at("//xmlns:foreword").to_xml))
+      .to be_xml_equivalent_to output
   end
 
   it "cross-references subfigures" do
@@ -889,11 +889,11 @@ RSpec.describe IsoDoc::Jis do
         </foreword>
     OUTPUT
 
-    expect(Canon.format_xml(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))
-      .at("//xmlns:foreword").to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+      .at("//xmlns:foreword").to_xml))
+      .to be_xml_equivalent_to output
 
     output = <<~OUTPUT
       <foreword id="fwd" displayorder="1">
@@ -1031,11 +1031,11 @@ RSpec.describe IsoDoc::Jis do
           </p>
        </foreword>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input.sub(">en<", ">ja<"), true))
-      .at("//xmlns:foreword").to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+      .at("//xmlns:foreword").to_xml))
+      .to be_xml_equivalent_to output
   end
 
       it "cross-references tabular subfigures" do
@@ -1148,9 +1148,9 @@ OUTPUT
    pres_output = IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)
-    expect(Canon.format_xml(strip_guid(Nokogiri::XML(pres_output)
-      .at("//xmlns:foreword").to_xml)))
-      .to be_equivalent_to Canon.format_xml(presxml)
+    expect(strip_guid(Nokogiri::XML(pres_output)
+      .at("//xmlns:foreword").to_xml))
+      .to be_xml_equivalent_to presxml
     end
 
   it "labels and cross-references nested requirements" do
@@ -1394,11 +1394,11 @@ OUTPUT
         </foreword>
     OUTPUT
 
-    expect(Canon.format_xml(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))
-      .at("//xmlns:foreword").to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+      .at("//xmlns:foreword").to_xml))
+      .to be_xml_equivalent_to output
 
     output = <<~OUTPUT
       <foreword id="_" displayorder="1">
@@ -1590,10 +1590,10 @@ OUTPUT
           </p>
        </foreword>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(Nokogiri.XML(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input.sub(">en<", ">ja<"), true))
-      .at("//xmlns:foreword").to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+      .at("//xmlns:foreword").to_xml))
+      .to be_xml_equivalent_to output
   end
 end
