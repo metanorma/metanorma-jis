@@ -121,7 +121,7 @@ RSpec.describe IsoDoc::Jis do
                 <doctype language="ja">日本産業規格</doctype>
              </ext>
           </bibdata>
-          
+      #{'    '}
           <preface>
              <foreword obligation="informative" id="_" displayorder="1">
                 <title id="_">Foreword</title>
@@ -186,7 +186,7 @@ RSpec.describe IsoDoc::Jis do
                 </fmt-title>
                 <fmt-xref-label>
                    <span class="fmt-element-name">箇条</span>
-                    
+      #{'              '}
                    <semx element="autonum" source="D">1</semx>
                 </fmt-xref-label>
                 <p id="E">Text</p>
@@ -204,7 +204,7 @@ RSpec.describe IsoDoc::Jis do
                 </fmt-title>
                 <fmt-xref-label>
                    <span class="fmt-element-name">箇条</span>
-                    
+      #{'              '}
                    <semx element="autonum" source="H">3</semx>
                 </fmt-xref-label>
                 <terms id="I" obligation="normative">
@@ -295,7 +295,7 @@ RSpec.describe IsoDoc::Jis do
                 </fmt-title>
                 <fmt-xref-label>
                    <span class="fmt-element-name">箇条</span>
-                    
+      #{'              '}
                    <semx element="autonum" source="L">4</semx>
                 </fmt-xref-label>
                 <dl>
@@ -316,7 +316,7 @@ RSpec.describe IsoDoc::Jis do
                 </fmt-title>
                 <fmt-xref-label>
                    <span class="fmt-element-name">箇条</span>
-                    
+      #{'              '}
                    <semx element="autonum" source="M">5</semx>
                 </fmt-xref-label>
                 <clause id="N" inline-header="false" obligation="normative">
@@ -371,7 +371,7 @@ RSpec.describe IsoDoc::Jis do
                 </fmt-title>
                 <fmt-xref-label>
                    <span class="fmt-element-name">箇条</span>
-                    
+      #{'              '}
                    <semx element="autonum" source="R">2</semx>
                 </fmt-xref-label>
              </references>
@@ -381,7 +381,7 @@ RSpec.describe IsoDoc::Jis do
              <fmt-title id="_">
                 <span class="fmt-caption-label">
                    <span class="fmt-element-name">附属書</span>
-                    
+      #{'              '}
                    <semx element="autonum" source="P">A</semx>
                 </span>
                 <br/>
@@ -395,13 +395,13 @@ RSpec.describe IsoDoc::Jis do
              </fmt-title>
              <fmt-xref-label>
                 <span class="fmt-element-name">附属書</span>
-                 
+      #{'           '}
                 <semx element="autonum" source="P">A</semx>
              </fmt-xref-label>
       <variant-title type="toc">
          <span class="fmt-caption-label">
             <span class="fmt-element-name">附属書</span>
-             
+      #{'       '}
             <semx element="autonum" source="P">A</semx>
          </span>
          <span class="fmt-caption-delim">
@@ -470,7 +470,7 @@ RSpec.describe IsoDoc::Jis do
                 <fmt-xref-label container="P">
                    <span class="fmt-xref-container">
                       <span class="fmt-element-name">附属書</span>
-                       
+      #{'                 '}
                       <semx element="autonum" source="P">A</semx>
                    </span>
                    <span class="fmt-conn">の</span>
@@ -833,15 +833,15 @@ RSpec.describe IsoDoc::Jis do
     expect(pres_output).to include <<~STR
       <localized-string key="971" language="ja">&#x4E5D;&#x767E;&#x4E03;&#x5341;&#x4E00;</localized-string>
     STR
-    expect(Canon.format_xml(strip_guid(pres_output))
+    expect(strip_guid(pres_output)
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to Canon.format_xml(presxml)
-    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
-      .convert("test", pres_output, true))))
-      .to be_equivalent_to Canon.format_xml(html)
-    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::WordConvert.new({})
-      .convert("test", pres_output, true))))
-      .to be_equivalent_to Canon.format_xml(word)
+      .to be_equivalent_to presxml
+    expect(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
+      .convert("test", pres_output, true)))
+      .to be_html5_equivalent_to html
+    expect(strip_guid(IsoDoc::Jis::WordConvert.new({})
+      .convert("test", pres_output, true)))
+      .to be_html4_equivalent_to word
 
     input.sub!("</bibdata>", <<~SUB
       </bibdata><metanorma-extension>
@@ -873,8 +873,8 @@ RSpec.describe IsoDoc::Jis do
                 <doctype language="ja">日本産業規格</doctype>
              </ext>
           </bibdata>
-          
-          
+      #{'    '}
+      #{'    '}
           <preface>
              <foreword obligation="informative" id="_" displayorder="1">
                 <title id="_">Foreword</title>
@@ -1129,7 +1129,7 @@ RSpec.describe IsoDoc::Jis do
              <fmt-title id="_">
                 <span class="fmt-caption-label">
                    <span class="fmt-element-name">附属書</span>
-                    
+      #{'              '}
                    <semx element="autonum" source="P">A</semx>
                 </span>
                 <br/>
@@ -1143,13 +1143,13 @@ RSpec.describe IsoDoc::Jis do
              </fmt-title>
              <fmt-xref-label>
                 <span class="fmt-element-name">附属書</span>
-                 
+      #{'           '}
                 <semx element="autonum" source="P">A</semx>
              </fmt-xref-label>
       <variant-title type="toc">
          <span class="fmt-caption-label">
             <span class="fmt-element-name">附属書</span>
-             
+      #{'       '}
             <semx element="autonum" source="P">A</semx>
          </span>
          <span class="fmt-caption-delim">
@@ -1204,7 +1204,7 @@ RSpec.describe IsoDoc::Jis do
                 <fmt-title depth="2" id="_">
                    <span class="fmt-caption-label">
                       <span class="fmt-element-name">Appendix</span>
-                       
+      #{'                 '}
                       <semx element="autonum" source="Q2">一</semx>
                    </span>
                    <span class="fmt-caption-delim">
@@ -1214,18 +1214,18 @@ RSpec.describe IsoDoc::Jis do
                 </fmt-title>
                 <fmt-xref-label>
                    <span class="fmt-element-name">Appendix</span>
-                    
+      #{'              '}
                    <semx element="autonum" source="Q2">一</semx>
                 </fmt-xref-label>
                 <fmt-xref-label container="P">
                    <span class="fmt-xref-container">
                       <span class="fmt-element-name">附属書</span>
-                       
+      #{'                 '}
                       <semx element="autonum" source="P">A</semx>
                    </span>
                    <span class="fmt-conn">の</span>
                    <span class="fmt-element-name">Appendix</span>
-                    
+      #{'              '}
                    <semx element="autonum" source="Q2">一</semx>
                 </fmt-xref-label>
              </appendix>
@@ -1246,12 +1246,12 @@ RSpec.describe IsoDoc::Jis do
           </bibliography>
        </iso-standard>
     PRESXML
-    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
-      .convert("test", input, true)))
+      .convert("test", input, true))
       .sub(%r{<localized-strings>.*</localized-strings>}m, "")
       .sub(%r{<metanorma-extension>.*</metanorma-extension>}m, ""))
-      .to be_equivalent_to Canon.format_xml(presxml)
+      .to be_xml_equivalent_to presxml
   end
 
   it "defaults to Japanese" do
@@ -1354,7 +1354,7 @@ RSpec.describe IsoDoc::Jis do
          <variant-title type="toc">
             <span class="fmt-caption-label">
                <span class="fmt-element-name">附属書</span>
-                
+      #{'          '}
                <semx element="autonum" source="P">A</semx>
             </span>
             <span class="fmt-caption-delim">
@@ -1366,12 +1366,12 @@ RSpec.describe IsoDoc::Jis do
          </sections>
       </iso-standard>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(Nokogiri::XML(IsoDoc::Jis::PresentationXMLConvert
-    .new(presxml_options)
-      .convert("test", input, true)).to_xml))
-.sub(%r{<localized-strings>.*</localized-strings>}m, "")
-    .sub(%r{<metanorma-extension>.*</metanorma-extension>}m, ""))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(Nokogiri::XML(IsoDoc::Jis::PresentationXMLConvert
+      .new(presxml_options)
+      .convert("test", input, true)).to_xml)
+      .sub(%r{<localized-strings>.*</localized-strings>}m, "")
+      .sub(%r{<metanorma-extension>.*</metanorma-extension>}m, ""))
+      .to be_xml_equivalent_to output
   end
 
   it "processes English" do
@@ -1490,7 +1490,7 @@ RSpec.describe IsoDoc::Jis do
                 <doctype language="en">International standard</doctype>
              </ext>
           </bibdata>
-          
+      #{'    '}
           <preface>
              <foreword obligation="informative" id="_" displayorder="1">
                 <title id="_">Foreword</title>
@@ -1984,12 +1984,12 @@ RSpec.describe IsoDoc::Jis do
     pres_output = IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)
-    expect(Canon.format_xml(strip_guid(pres_output))
+    expect(strip_guid(pres_output)
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to Canon.format_xml(presxml)
-    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
-      .convert("test", pres_output, true))))
-      .to be_equivalent_to Canon.format_xml(html)
+      .to be_xml_equivalent_to presxml
+    expect(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
+      .convert("test", pres_output, true)))
+      .to be_xml_equivalent_to html
   end
 
   it "internationalises dates in bibdata" do
@@ -2013,11 +2013,11 @@ RSpec.describe IsoDoc::Jis do
         </bibdata>
       </iso-standard>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
-      .convert("test", input, true)))
+      .convert("test", input, true))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to Canon.format_xml(output)
+      .to be_xml_equivalent_to output
     output = <<~OUTPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
         <bibdata>
@@ -2028,12 +2028,12 @@ RSpec.describe IsoDoc::Jis do
         </bibdata>
       </iso-standard>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input.sub!("<language>en</language>",
-                                  "<language>ja</language"), true)))
+                                  "<language>ja</language"), true))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to Canon.format_xml(output)
+      .to be_xml_equivalent_to output
 
     input.sub!("</bibdata>", <<~SUB
       </bibdata><metanorma-extension>
@@ -2041,16 +2041,16 @@ RSpec.describe IsoDoc::Jis do
       </metanorma-extension>
     SUB
     )
-    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))
       .sub(%r{<metanorma-extension>.*</metanorma-extension>}m, "")
-      .sub(%r{<localized-strings>.*</localized-strings>}m, "")))
-      .to be_equivalent_to Canon.format(output
+      .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
+      .to be_xml_equivalent_to output
         .sub('<date type="created">令和二年10月11日</date>',
              '<date type="created">令和二年十月十一日</date>')
         .sub('<date type="issued">令和二年10月</date>',
-             '<date type="issued">令和二年十月</date>'))
+             '<date type="issued">令和二年十月</date>')
   end
 
   it "processes non-numeric editions" do
@@ -2071,11 +2071,11 @@ RSpec.describe IsoDoc::Jis do
         </bibdata>
       </iso-standard>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
-      .convert("test", input, true)))
+      .convert("test", input, true))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to Canon.format_xml(output)
+      .to be_xml_equivalent_to output
 
     output = <<~OUTPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
@@ -2086,12 +2086,12 @@ RSpec.describe IsoDoc::Jis do
         </bibdata>
       </iso-standard>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input.sub!("<language>en</language>",
-                                  "<language>ja</language"), true)))
+                                  "<language>ja</language"), true))
       .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
-      .to be_equivalent_to Canon.format_xml(output)
+      .to be_xml_equivalent_to output
 
     input.sub!("</bibdata>", <<~SUB
       </bibdata><metanorma-extension>
@@ -2099,11 +2099,11 @@ RSpec.describe IsoDoc::Jis do
       </metanorma-extension>
     SUB
     )
-    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::PresentationXMLConvert
+    expect(strip_guid(IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true))
       .sub(%r{<metanorma-extension>.*</metanorma-extension>}m, "")
-      .sub(%r{<localized-strings>.*</localized-strings>}m, "")))
-      .to be_equivalent_to Canon.format(output)
+      .sub(%r{<localized-strings>.*</localized-strings>}m, ""))
+      .to be_xml_equivalent_to output
   end
 end

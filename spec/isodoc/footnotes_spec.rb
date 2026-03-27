@@ -21,92 +21,92 @@ RSpec.describe IsoDoc do
           </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
-          <preface>
-             <foreword displayorder="1" id="_">
-                <title id="_">Foreword</title>
-                <fmt-title id="_" depth="1">Foreword</fmt-title>
-                <p>
-                   A.
-                   <fn reference="1" id="_" original-reference="2" target="_">
-                      <p original-id="_">Formerly denoted as 15 % (m/m).</p>
-                      <fmt-fn-label>
-                         <span class="fmt-caption-label">
-                            <sup>
-                               <semx element="autonum" source="_">1</semx>
-                            </sup>
-                         </span>
-                      </fmt-fn-label>
-                   </fn>
-                </p>
-                <p>
-                   B.
-                   <fn reference="1" id="_" original-reference="2" target="_">
-                      <p id="_">Formerly denoted as 15 % (m/m).</p>
-                      <fmt-fn-label>
-                         <span class="fmt-caption-label">
-                            <sup>
-                               <semx element="autonum" source="_">1</semx>
-                            </sup>
-                         </span>
-                      </fmt-fn-label>
-                   </fn>
-                </p>
-                <p>
-                   C.
-                   <fn reference="2" id="_" original-reference="1" target="_">
-                      <p original-id="_">Hello! denoted as 15 % (m/m).</p>
-                      <fmt-fn-label>
-                         <span class="fmt-caption-label">
-                            <sup>
-                               <semx element="autonum" source="_">2</semx>
-                            </sup>
-                         </span>
-                      </fmt-fn-label>
-                   </fn>
-                </p>
-             </foreword>
-             <clause type="toc" id="_" displayorder="2">
-                <fmt-title id="_" depth="1">Contents</fmt-title>
-             </clause>
-          </preface>
-          <fmt-footnote-container>
-             <fmt-fn-body id="_" target="_" reference="1">
-                <semx element="fn" source="_">
-                   <p id="_">
-                      <fmt-fn-label>
-                         <span class="fmt-caption-label">
-                            <sup>
-                               <semx element="autonum" source="_">1</semx>
-                            </sup>
-                         </span>
-                         <span class="fmt-caption-delim">
-                            <tab/>
-                         </span>
-                      </fmt-fn-label>
-                      Formerly denoted as 15 % (m/m).
-                   </p>
-                </semx>
-             </fmt-fn-body>
-             <fmt-fn-body id="_" target="_" reference="2">
-                <semx element="fn" source="_">
-                   <p id="_">
-                      <fmt-fn-label>
-                         <span class="fmt-caption-label">
-                            <sup>
-                               <semx element="autonum" source="_">2</semx>
-                            </sup>
-                         </span>
-                         <span class="fmt-caption-delim">
-                            <tab/>
-                         </span>
-                      </fmt-fn-label>
-                      Hello! denoted as 15 % (m/m).
-                   </p>
-                </semx>
-             </fmt-fn-body>
-          </fmt-footnote-container>
-       </iso-standard>
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+         <preface>
+            <foreword displayorder="1" id="_">
+               <title id="_">Foreword</title>
+               <fmt-title id="_" depth="1">Foreword</fmt-title>
+               <p>
+                  A.
+                  <fn reference="1" id="_" original-reference="2" target="_">
+                     <p original-id="_">Formerly denoted as 15 % (m/m).</p>
+                     <fmt-fn-label>
+                        <span class="fmt-caption-label">
+                           <sup>
+                              <semx element="autonum" source="_">1</semx>
+                           </sup>
+                        </span>
+                     </fmt-fn-label>
+                  </fn>
+               </p>
+               <p>
+                  B.
+                  <fn reference="1" id="_" original-reference="2" target="_">
+                     <p id="_">Formerly denoted as 15 % (m/m).</p>
+                     <fmt-fn-label>
+                        <span class="fmt-caption-label">
+                           <sup>
+                              <semx element="autonum" source="_">1</semx>
+                           </sup>
+                        </span>
+                     </fmt-fn-label>
+                  </fn>
+               </p>
+               <p>
+                  C.
+                  <fn reference="2" id="_" original-reference="1" target="_">
+                     <p original-id="_">Hello! denoted as 15 % (m/m).</p>
+                     <fmt-fn-label>
+                        <span class="fmt-caption-label">
+                           <sup>
+                              <semx element="autonum" source="_">2</semx>
+                           </sup>
+                        </span>
+                     </fmt-fn-label>
+                  </fn>
+               </p>
+            </foreword>
+            <clause type="toc" id="_" displayorder="2">
+               <fmt-title id="_" depth="1">Contents</fmt-title>
+            </clause>
+         </preface>
+         <fmt-footnote-container>
+            <fmt-fn-body id="_" target="_" reference="1">
+               <semx element="fn" source="_">
+                  <p id="_">
+                     <fmt-fn-label>
+                        <span class="fmt-caption-label">
+                           <sup>
+                              <semx element="autonum" source="_">1</semx>
+                           </sup>
+                        </span>
+                        <span class="fmt-caption-delim">
+                           <tab/>
+                        </span>
+                     </fmt-fn-label>
+                     Formerly denoted as 15 % (m/m).
+                  </p>
+               </semx>
+            </fmt-fn-body>
+            <fmt-fn-body id="_" target="_" reference="2">
+               <semx element="fn" source="_">
+                  <p id="_">
+                     <fmt-fn-label>
+                        <span class="fmt-caption-label">
+                           <sup>
+                              <semx element="autonum" source="_">2</semx>
+                           </sup>
+                        </span>
+                        <span class="fmt-caption-delim">
+                           <tab/>
+                        </span>
+                     </fmt-fn-label>
+                     Hello! denoted as 15 % (m/m).
+                  </p>
+               </semx>
+            </fmt-fn-body>
+         </fmt-footnote-container>
+      </iso-standard>
     OUTPUT
     html = <<~OUTPUT
       #{HTML_HDR}
@@ -206,18 +206,18 @@ RSpec.describe IsoDoc do
           <div class="colophon"/>
        </body>
     OUTPUT
-        pres_output = IsoDoc::Jis::PresentationXMLConvert
+    pres_output = IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
-       .convert("test", input, true)
-    expect(Canon.format_xml(strip_guid(pres_output)))
-       .to be_equivalent_to Canon.format_xml(presxml)
-    expect(Canon.format_xml(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
-      .convert("test", pres_output, true))))
-      .to be_equivalent_to Canon.format_xml(html)
-    expect(Canon.format_xml(strip_guid(Nokogiri::XML(IsoDoc::Jis::WordConvert.new({})
+      .convert("test", input, true)
+    expect(strip_guid(pres_output))
+      .to be_xml_equivalent_to presxml
+    expect(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
+      .convert("test", pres_output, true)))
+      .to be_html5_equivalent_to html
+    expect(strip_guid(Nokogiri::XML(IsoDoc::Jis::WordConvert.new({})
       .convert("test", pres_output, true))
       .at("//body").to_xml)
-      .gsub(/_Ref\d+/, "_Ref")))
-      .to be_equivalent_to Canon.format_xml(word)
+      .gsub(/_Ref\d+/, "_Ref"))
+      .to be_html4_equivalent_to word
   end
 end

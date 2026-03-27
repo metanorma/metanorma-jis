@@ -201,8 +201,8 @@ RSpec.describe Metanorma::Jis do
     OUTPUT
     xml = Nokogiri::XML(Asciidoctor.convert(input, *OPTIONS))
     xml.at("//xmlns:metanorma-extension")&.remove
-    expect(Canon.format_xml(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(xml.to_xml))
+      .to be_xml_equivalent_to output
     xml = Nokogiri::XML(Asciidoctor.convert(
                           input.sub(":docfile: test.adoc",
                                     ":docfile: test.adoc\n:language: en"),
@@ -314,8 +314,8 @@ RSpec.describe Metanorma::Jis do
          <sections> </sections>
        </metanorma>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(xml.to_xml))
+      .to be_xml_equivalent_to output
   end
 
   it "processes metadata, multilingual values" do
@@ -399,8 +399,8 @@ RSpec.describe Metanorma::Jis do
       </metanorma>
     OUTPUT
     xml.at("//xmlns:metanorma-extension")&.remove
-    expect(Canon.format_xml(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(xml.to_xml))
+      .to be_xml_equivalent_to output
   end
 
   it "processes metadata, technical report; personal role in investigative committee" do
@@ -439,14 +439,6 @@ RSpec.describe Metanorma::Jis do
              </organization>
            </contributor>
            <contributor>
-             <role type="publisher"/>
-             <organization>
-                  <name language="ja">日本工業規格</name>
-                  <name language="en">Japanese Industrial Standards</name>
-               <abbreviation>JIS</abbreviation>
-             </organization>
-           </contributor>
-           <contributor>
              <role type="authorizer">
                <description>investigative committee</description>
              </role>
@@ -477,6 +469,14 @@ RSpec.describe Metanorma::Jis do
                  </organization>
                </affiliation>
              </person>
+           </contributor>
+           <contributor>
+             <role type="publisher"/>
+             <organization>
+                  <name language="ja">日本工業規格</name>
+                  <name language="en">Japanese Industrial Standards</name>
+               <abbreviation>JIS</abbreviation>
+             </organization>
            </contributor>
            <language>ja</language>
            <script>Jpan</script>
@@ -520,8 +520,8 @@ RSpec.describe Metanorma::Jis do
     OUTPUT
     xml = Nokogiri::XML(Asciidoctor.convert(input, *OPTIONS))
     xml.at("//xmlns:metanorma-extension")&.remove
-    expect(Canon.format_xml(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(xml.to_xml))
+      .to be_xml_equivalent_to output
     xml = Nokogiri::XML(Asciidoctor.convert(input
       .sub(":language: ja", ":language: en"), *OPTIONS))
     xml = xml.at("//xmlns:boilerplate")
@@ -535,8 +535,8 @@ RSpec.describe Metanorma::Jis do
            </feedback-statement>
          </boilerplate>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(xml.to_xml))
+      .to be_xml_equivalent_to output
   end
 
   it "processes metadata, technical specification" do
@@ -600,8 +600,8 @@ RSpec.describe Metanorma::Jis do
     OUTPUT
     xml.at("//xmlns:metanorma-extension")&.remove
     xml.at("//xmlns:boilerplate")&.remove
-    expect(Canon.format_xml(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(xml.to_xml))
+      .to be_xml_equivalent_to output
   end
 
   it "processes metadata, unrecognised type" do
@@ -741,8 +741,8 @@ RSpec.describe Metanorma::Jis do
     OUTPUT
     xml.at("//xmlns:metanorma-extension")&.remove
     xml.at("//xmlns:boilerplate")&.remove
-    expect(Canon.format_xml(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(xml.to_xml))
+      .to be_xml_equivalent_to output
   end
 
   it "processes metadata, amendment" do
@@ -815,71 +815,71 @@ RSpec.describe Metanorma::Jis do
     OUTPUT
     xml.at("//xmlns:metanorma-extension")&.remove
     xml.at("//xmlns:boilerplate")&.remove
-    expect(Canon.format_xml(strip_guid(xml.to_xml)))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(xml.to_xml))
+      .to be_xml_equivalent_to output
   end
 
   it "preserves user-supplied boilerplate in Normative References" do
-      input = <<~INPUT
-        #{ASCIIDOC_BLANK_HDR}
-        [bibliography]
-        == Normative References
+    input = <<~INPUT
+      #{ASCIIDOC_BLANK_HDR}
+      [bibliography]
+      == Normative References
 
-        [NOTE,type=boilerplate]
-        --
-        This is extraneous information
-        --
+      [NOTE,type=boilerplate]
+      --
+      This is extraneous information
+      --
 
-        * [[[iso216,ISO 216]]], _Reference_
+      * [[[iso216,ISO 216]]], _Reference_
 
-        This is also extraneous information
-      INPUT
-      output = <<~OUTPUT
-        #{BLANK_HDR}
-        #{BOILERPLATE}
-        <sections></sections>
-                 <bibliography>
-             <references id="_" normative="true" obligation="informative">
-               <title id="_">引用規格</title>
-               <p id="_">This is extraneous information</p>
-               <bibitem id="_" anchor="iso216" type="standard">
-                 <title format="text/plain">Reference</title>
-                 <docidentifier>ISO 216</docidentifier>
-                 <docnumber>216</docnumber>
-                 <contributor>
-                   <role type="publisher"/>
-                   <organization>
-                     <name>International Organization for Standardization</name>
-                     <abbreviation>ISO</abbreviation>
-                   </organization>
-                 </contributor>
-                 <language>ja</language>
-                <script>Jpan</script>
-               </bibitem>
-               <p id="_">This is also extraneous information</p>
-             </references>
-           </bibliography>
-        </standard-document>
-      OUTPUT
-      expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-        .to be_equivalent_to Canon.format_xml(output)
+      This is also extraneous information
+    INPUT
+    output = <<~OUTPUT
+      #{BLANK_HDR}
+      #{BOILERPLATE}
+      <sections></sections>
+               <bibliography>
+           <references id="_" normative="true" obligation="informative">
+             <title id="_">引用規格</title>
+             <p id="_">This is extraneous information</p>
+             <bibitem id="_" anchor="iso216" type="standard">
+               <title format="text/plain">Reference</title>
+               <docidentifier>ISO 216</docidentifier>
+               <docnumber>216</docnumber>
+               <contributor>
+                 <role type="publisher"/>
+                 <organization>
+                   <name>International Organization for Standardization</name>
+                   <abbreviation>ISO</abbreviation>
+                 </organization>
+               </contributor>
+               <language>ja</language>
+              <script>Jpan</script>
+             </bibitem>
+             <p id="_">This is also extraneous information</p>
+           </references>
+         </bibliography>
+      </standard-document>
+    OUTPUT
+    expect(strip_guid(Asciidoctor.convert(input, *OPTIONS)))
+      .to be_xml_equivalent_to output
 
-      input = <<~INPUT
-        #{ASCIIDOC_BLANK_HDR}
-        [bibliography]
-        == Normative References
+    input = <<~INPUT
+      #{ASCIIDOC_BLANK_HDR}
+      [bibliography]
+      == Normative References
 
-        [.boilerplate]
-        --
-        This is extraneous information
-        --
+      [.boilerplate]
+      --
+      This is extraneous information
+      --
 
-        * [[[iso216,ISO 216]]], _Reference_
+      * [[[iso216,ISO 216]]], _Reference_
 
-        This is also extraneous information
-      INPUT
-      expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-        .to be_equivalent_to Canon.format_xml(output)
+      This is also extraneous information
+    INPUT
+    expect(strip_guid(Asciidoctor.convert(input, *OPTIONS)))
+      .to be_xml_equivalent_to output
   end
 
   it "adds examples and notes both to tables" do
@@ -951,8 +951,8 @@ RSpec.describe Metanorma::Jis do
       </sections>
       </metanorma>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(Asciidoctor.convert(input, *OPTIONS)))
+      .to be_xml_equivalent_to output
   end
 
   it "respects keep-separate on examples" do
@@ -1025,8 +1025,8 @@ RSpec.describe Metanorma::Jis do
       </sections>
       </metanorma>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(Asciidoctor.convert(input, *OPTIONS)))
+      .to be_xml_equivalent_to output
   end
 
   it "renumbers footnotes in tables (including table titles)" do
@@ -1095,8 +1095,8 @@ RSpec.describe Metanorma::Jis do
          </sections>
        </metanorma>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(Asciidoctor.convert(input, *OPTIONS)))
+      .to be_xml_equivalent_to output
   end
 
   it "processes commentaries" do
@@ -1121,8 +1121,8 @@ RSpec.describe Metanorma::Jis do
         </annex>
       </metanorma>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(Asciidoctor.convert(input, *OPTIONS)))
+      .to be_xml_equivalent_to output
   end
 
   it "ignores ordered list styles" do
@@ -1151,7 +1151,7 @@ RSpec.describe Metanorma::Jis do
          </sections>
       </metanorma>
     OUTPUT
-    expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(Asciidoctor.convert(input, *OPTIONS)))
+      .to be_xml_equivalent_to output
   end
 end
