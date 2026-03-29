@@ -150,7 +150,7 @@ RSpec.describe IsoDoc do
              <version>draft</version>
              <note>Also available in paperback.</note>
              <abstract>This is a <em>journey</em> into sound</abstract>
-             <place>Geneva</place>
+             <place><formattedPlace>Geneva</formattedPlace></place>
              <relation type="includedIn">
                <bibitem type="book">
                  <title>Collected Essays</title>
@@ -244,7 +244,7 @@ RSpec.describe IsoDoc do
                 <name>Cambridge University Press</name>
               </organization>
             </contributor>
-            <place>Cambridge, UK</place>
+            <place><formattedPlace>Cambridge, UK</formattedPlace></place>
             <extent>
                 <localityStack>
                   <locality type="volume"><referenceFrom>1</referenceFrom></locality>
@@ -608,7 +608,7 @@ RSpec.describe IsoDoc do
                       <em>journey</em>
                       into sound
                    </abstract>
-                   <place>Geneva</place>
+                   <place><formattedPlace>Geneva</formattedPlace></place>
                    <relation type="includedIn">
                       <bibitem type="book">
                          <title>Collected Essays</title>
@@ -787,7 +787,7 @@ RSpec.describe IsoDoc do
                          <name>Cambridge University Press</name>
                       </organization>
                    </contributor>
-                   <place>Cambridge, UK</place>
+                   <place><formattedPlace>Cambridge, UK</formattedPlace></place>
                    <extent>
                       <localityStack>
                          <locality type="volume">
@@ -1220,7 +1220,7 @@ RSpec.describe IsoDoc do
                       <em>journey</em>
                       into sound
                    </abstract>
-                   <place>Geneva</place>
+                   <place><formattedPlace>Geneva</formattedPlace></place>
                    <relation type="includedIn">
                       <bibitem type="book">
                          <title>Collected Essays</title>
@@ -1405,7 +1405,7 @@ RSpec.describe IsoDoc do
                          <name>Cambridge University Press</name>
                       </organization>
                    </contributor>
-                   <place>Cambridge, UK</place>
+                   <place><formattedPlace>Cambridge, UK</formattedPlace></place>
                    <extent>
                       <localityStack>
                          <locality type="volume">
