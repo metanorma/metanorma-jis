@@ -10,7 +10,7 @@ require "rspec/matchers"
 require "equivalent-xml"
 require "metanorma"
 require "metanorma/jis"
-require "relaton_iso"
+require "relaton/iso"
 require "canon"
 
 RSpec.configure do |config|
