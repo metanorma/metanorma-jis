@@ -254,7 +254,7 @@ RSpec.describe Relaton::Render::Jis do
                   <name>Cambridge University Press</name>
                 </organization>
               </contributor>
-              <place>Cambridge, UK</place>
+              <place><formattedPlace>Cambridge, UK</formattedPlace></place>
             <size><value type="volume">1</value></size>
         </bibitem>
         <bibitem type="book" id="B">
@@ -278,7 +278,7 @@ RSpec.describe Relaton::Render::Jis do
                   <name>Cambridge University Press</name>
                 </organization>
               </contributor>
-              <place>Cambridge, UK</place>
+              <place><formattedPlace>Cambridge, UK</formattedPlace></place>
             <size><value type="volume">1</value></size>
         </bibitem>
       </references>
@@ -320,7 +320,7 @@ RSpec.describe Relaton::Render::Jis do
                 <name>Cambridge University Press</name>
               </organization>
             </contributor>
-            <place>Cambridge, UK</place>
+            <place><formattedPlace>Cambridge, UK</formattedPlace></place>
       </bibitem>
     INPUT
     output = <<~XML
