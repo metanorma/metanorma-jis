@@ -633,7 +633,7 @@ RSpec.describe IsoDoc::Jis do
                          <dfn>term1</dfn>
                       </b>
                    </p>
-                   term1 definition
+                  term1 definition
                    <p class="TermNum" id="B">1.3.1</p>
                    <p class="Terms" style="text-align:left;">
                       <b>
@@ -670,11 +670,7 @@ RSpec.describe IsoDoc::Jis do
       <div class="WordSection3">
                   #{middle_title(true)}
             <div id="_">
-               <h1>
-                  1
-                  <span style="mso-tab-count:1">  </span>
-                  Terms and Definitions
-               </h1>
+               <h1>1<span style="mso-tab-count:1">  </span>Terms and Definitions</h1>
                <p class="TermNum" id="paddy1">1.1</p>
                <p class="Terms" style="text-align:left;">
                   <b>paddy</b>
@@ -755,12 +751,13 @@ RSpec.describe IsoDoc::Jis do
                <p class="Terms" style="text-align:left;">
                   <b>term1</b>
                </p>
-               term1 definition
-               <p class="TermNum" id="B">1.3.1</p>
+              term1 definition
+              <p class="TermNum" id="B">1.3.1</p>
                <p class="Terms" style="text-align:left;">
                   <b>term2</b>
                </p>
-               term2 definition
+              term2 definition
+
             </div>
          </div>
          <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>

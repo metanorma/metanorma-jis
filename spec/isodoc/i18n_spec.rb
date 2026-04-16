@@ -1952,9 +1952,7 @@ RSpec.describe IsoDoc::Jis do
                 </div>
                 <br/>
                 <div id="P" class="Section3">
-                   <h1 class="Annex">
-                      Annex A
-                      <br/>
+                   <h1 class="Annex">Annex A<br/>
                       <span class="obligation">(normative)</span>
                       <br/>
                       <b>Annex</b>
