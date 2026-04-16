@@ -4,7 +4,7 @@ require "nokogiri"
 RSpec.describe IsoDoc::Jis::Metadata do
   it "processes IsoXML metadata" do
     c = IsoDoc::Jis::HtmlConvert.new({})
-    _ = c.convert_init(<<~"INPUT", "test", false)
+    _ = c.convert_init(<<~INPUT, "test", false)
       <iso-standard xmlns="http://riboseinc.com/isoxml">
     INPUT
     input = <<~INPUT
@@ -243,9 +243,9 @@ RSpec.describe IsoDoc::Jis::Metadata do
         unpublished: true,
         wg: "WG 62A1" }
     expect(metadata(c.info(Nokogiri::XML(input),
-                           nil))).to be_equivalent_to output
+                           nil))).to be_xml_equivalent_to output
     c = IsoDoc::Jis::HtmlConvert.new({})
-    _ = c.convert_init(<<~"INPUT", "test", false)
+    _ = c.convert_init(<<~INPUT, "test", false)
       <iso-standard xmlns="http://riboseinc.com/isoxml">
        <bibdata>
           <language>ja</language>
@@ -263,12 +263,12 @@ RSpec.describe IsoDoc::Jis::Metadata do
         docsubtitleintro: "Introduction",
         docsubtitlemain: "Main Title&#x2009;&#x2014;&#x2009;Title",
         docsubtitlepart: "Title Part",
-        docsubtitlepartlabel: "Part&#xa0;1",
+        docsubtitlepartlabel: "Part\u00a01",
         doctitle: "Introduction Française&#xa0;&#x2014; Titre Principal&#xa0;&#x2014; その 1： Part du Titre",
         doctitleintro: "Introduction Fran&#xE7;aise",
         doctitlemain: "Titre Principal",
         doctitlepart: "Part du Titre",
-        doctitlepartlabel: "その&#xa0;1",
+        doctitlepartlabel: "その\u00a01",
         doctype: "Standard",
         doctype_display: "Standard",
         docyear: "2000",

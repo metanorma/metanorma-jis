@@ -107,9 +107,10 @@ RSpec.describe Metanorma::Jis::Processor do
   end
 
   it "registers output formats against metanorma" do
-    expect(processor.output_formats.sort.to_s).to be_equivalent_to <<~OUTPUT
+    output = <<~OUTPUT
       [[:doc, "doc"], [:html, "html"], [:pdf, "pdf"], [:presentation, "presentation.xml"], [:rxl, "rxl"], [:xml, "xml"]]
     OUTPUT
+    expect(processor.output_formats.sort.to_s).to be_equivalent_to output.strip
   end
 
   it "registers version against metanorma" do
@@ -126,8 +127,8 @@ RSpec.describe Metanorma::Jis::Processor do
         <sections/>
       </metanorma>
     OUTPUT
-    expect(strip_guid(Canon.format_xml(processor.input_to_isodoc(input, nil))))
-      .to be_equivalent_to Canon.format_xml(output)
+    expect(strip_guid(processor.input_to_isodoc(input, nil)))
+      .to be_xml_equivalent_to output
   end
 
   it "converts a blank document" do
@@ -141,7 +142,7 @@ RSpec.describe Metanorma::Jis::Processor do
       == Clause
     INPUT
 
-    output = Canon.format_xml(<<~"OUTPUT")
+    output = <<~"OUTPUT"
       #{BLANK_HDR}
       #{BOILERPLATE}
       <sections>
@@ -155,8 +156,8 @@ RSpec.describe Metanorma::Jis::Processor do
     FileUtils.rm_f "test.html"
     FileUtils.rm_f "test.doc"
     FileUtils.rm_f "test.pdf"
-    expect(Canon.format_xml(strip_guid(Asciidoctor.convert(input, *OPTIONS))))
-      .to be_equivalent_to output
+    expect(strip_guid(Asciidoctor.convert(input, *OPTIONS)))
+      .to be_xml_equivalent_to output
     expect(File.exist?("test.html")).to be true
     expect(File.exist?("test.doc")).to be true
     expect(File.exist?("test.pdf")).to be true
@@ -166,10 +167,10 @@ RSpec.describe Metanorma::Jis::Processor do
     FileUtils.rm_f "test.xml"
     FileUtils.rm_f "test.html"
     processor.output(inputxml, "test.xml", "test.html", :html)
-    expect(Canon.format_xml(strip_guid(File.read("test.html", encoding: "utf-8")
+    expect(strip_guid(File.read("test.html", encoding: "utf-8")
       .gsub(%r{^.*<main}m, "<main")
-      .gsub(%r{</main>.*}m, "</main>"))))
-      .to be_equivalent_to Canon.format_xml(<<~OUTPUT)
+      .gsub(%r{</main>.*}m, "</main>")))
+      .to be_xml_equivalent_to <<~OUTPUT
         <main class="main-section">
           <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
           <div class="authority">
