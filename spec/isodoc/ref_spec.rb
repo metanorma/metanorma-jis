@@ -904,10 +904,10 @@ RSpec.describe IsoDoc do
     pres_output = IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input, true)
-    expect(Canon.format_xml(strip_guid(pres_output
+    expect(strip_guid(pres_output
       .sub(%r{<localized-strings>.*</localized-strings>}m, "")
-      .gsub(/reference="[^"]+"/, 'reference="1"'))))
-      .to be_equivalent_to Canon.format_xml(presxml)
+      .gsub(/reference="[^"]+"/, 'reference="1"')))
+      .to be_xml_equivalent_to presxml
 
     presxml = <<~OUTPUT
       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
@@ -1522,10 +1522,10 @@ RSpec.describe IsoDoc do
     pres_output = IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
       .convert("test", input.sub("<language>en</language>", "<language>ja</language>"), true)
-    expect(Canon.format_xml(strip_guid(pres_output
+    expect(strip_guid(pres_output
       .sub(%r{<localized-strings>.*</localized-strings>}m, "")
-      .gsub(/reference="[^"]+"/, 'reference="1"'))))
-      .to be_equivalent_to Canon.format_xml(presxml)
+      .gsub(/reference="[^"]+"/, 'reference="1"')))
+      .to be_xml_equivalent_to presxml
 
   end
 end
