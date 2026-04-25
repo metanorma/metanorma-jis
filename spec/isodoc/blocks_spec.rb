@@ -839,6 +839,7 @@ RSpec.describe IsoDoc::Jis do
     word = <<~OUTPUT
          <html xmlns:epub="http://www.idpf.org/2007/ops" lang="en">
        <head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
          <style> </style>
          <style> </style>
        </head>
