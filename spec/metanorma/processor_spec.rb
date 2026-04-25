@@ -1,5 +1,5 @@
 require "spec_helper"
-require "metanorma-core"
+require "metanorma"
 require "fileutils"
 
 RSpec.describe Metanorma::Jis::Processor do

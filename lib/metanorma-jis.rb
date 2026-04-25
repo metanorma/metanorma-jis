@@ -9,7 +9,7 @@ require "isodoc/jis/pdf_convert"
 require "isodoc/jis/presentation_xml_convert"
 require "isodoc/jis/metadata"
 require "isodoc/jis/xref"
-require "metanorma-core"
+require "metanorma"
 
 if defined? Metanorma::Registry
   require_relative "metanorma/jis"

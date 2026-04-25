@@ -475,13 +475,13 @@ RSpec.describe IsoDoc::Jis do
     expect(strip_guid(Nokogiri::XML(pres_output)
       .at("//xmlns:foreword").to_xml))
       .to be_xml_equivalent_to presxml
-    expect(strip_guid(Nokogiri::HTML5(IsoDoc::Jis::HtmlConvert
+    expect(strip_guid(Nokogiri::XML(IsoDoc::Jis::HtmlConvert
       .new({})
       .convert("test", pres_output, true))
       .at("//div[@id = 'A']").to_xml))
       .to be_xml_equivalent_to html
     FileUtils.rm_rf "spec/assets/odf1.emf"
-    expect(strip_guid(Nokogiri::HTML5(IsoDoc::Jis::WordConvert
+    expect(strip_guid(Nokogiri::XML(IsoDoc::Jis::WordConvert
       .new({})
       .convert("test", pres_output, true))
       .at("//div[@id = 'A']").to_xml)
