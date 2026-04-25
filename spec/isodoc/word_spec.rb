@@ -153,7 +153,7 @@ RSpec.describe IsoDoc::Jis do
     output = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
-    doc = Nokogiri::XML(output)
+    doc = Nokogiri::HTML5(output)
     doc.xpath("//xmlns:p[@class = 'MsoToc1']").each(&:remove)
     doc1 = doc.at("//xmlns:div[@class = 'WordSection2']")
     expect(strip_guid(doc1.to_xml))
@@ -187,7 +187,7 @@ RSpec.describe IsoDoc::Jis do
     word = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
-    doc = Nokogiri::XML(word)
+    doc = Nokogiri::HTML5(word)
     doc.xpath("//xmlns:p[@class = 'MsoToc1']").each(&:remove)
     expect(doc.to_xml).to include("Antauparolo")
     expect(doc.to_xml).not_to include("Contributors")
@@ -485,7 +485,7 @@ RSpec.describe IsoDoc::Jis do
     output = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
-    expect(strip_guid(Nokogiri::XML(output)
+    expect(strip_guid(Nokogiri::HTML5(output)
       .at("//xmlns:div[@class = 'WordSection3']").to_xml))
       .to be_xml_equivalent_to word
   end
@@ -541,7 +541,7 @@ RSpec.describe IsoDoc::Jis do
     output = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
-    expect(strip_guid(Nokogiri::XML(output)
+    expect(strip_guid(Nokogiri::HTML5(output)
       .at("//xmlns:div[@class = 'WordSection3']").to_xml))
       .to be_xml_equivalent_to word
   end
