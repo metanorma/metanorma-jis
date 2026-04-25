@@ -214,7 +214,7 @@ RSpec.describe IsoDoc do
     expect(strip_guid(IsoDoc::Jis::HtmlConvert.new({})
       .convert("test", pres_output, true)))
       .to be_html5_equivalent_to html
-    expect(strip_guid(Nokogiri::XML(IsoDoc::Jis::WordConvert.new({})
+    expect(strip_guid(Nokogiri::HTML5(IsoDoc::Jis::WordConvert.new({})
       .convert("test", pres_output, true))
       .at("//body").to_xml)
       .gsub(/_Ref\d+/, "_Ref"))
