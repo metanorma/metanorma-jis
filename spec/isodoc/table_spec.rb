@@ -528,62 +528,59 @@ RSpec.describe IsoDoc do
                       <td style="text-align:center;border-top:none;border-bottom:solid windowtext 1.5pt;">77,7</td>
                    </tr>
                 </tbody>
-                <tfoot>
-                   <tr>
-                      <td colspan="5" style="border-top:solid windowtext 1.5pt;border-bottom:0pt;">
-                  <div class="key">
-                     <p style="page-break-after: avoid;">
-                        <b>Key</b>
-                     </p>
-                     <p class="dl">Drago: A type of rice</p>
-                  </div>
-                      </td>
-                   </tr>
-                   <tr>
-                      <td style="text-align:left;border-top:none;border-bottom:0pt;">
-                         Reproducibility limit,
-                         <span class="stem">(#(R)#)</span>
-                         (= 2,83
-                         <span class="stem">(#(s_R)#)</span>
-                         )
-                      </td>
-                      <td style="text-align:center;border-top:none;border-bottom:0pt;">2,89</td>
-                      <td style="text-align:center;border-top:none;border-bottom:0pt;">0,57</td>
-                      <td style="text-align:center;border-top:none;border-bottom:0pt;">2,26</td>
-                      <td style="text-align:center;border-top:none;border-bottom:0pt;">
-                         <p class="dl">6,06: definition</p>
-                      </td>
-                   </tr>
-                   <tr>
-                      <td colspan="5" style="border-top:none;border-bottom:0pt;">
-                         <div id="N1" class="Note">
-                            <p>
-                               <span class="note_label">NOTE  </span>
-                               This is a table about rice
-                            </p>
-                         </div>
-                         <div class="BlockSource">
-                         <p>SOURCE: ,  Section 1, with adjustments; ,  Section 3, with alterations</p>
-                         </div>
-                      </td>
-                   </tr>
-                   <tr>
-                      <td colspan="5" style="border-top:0pt;border-bottom:solid windowtext 1.5pt;">
-                         <div id="fn:tableD-11" class="TableFootnote">
-                            <p id="_" class="TableFootnote">
-                               <span class="TableFootnoteRef">Footnote 1)</span>
-                                 Name footnote.
-                            </p>
-                         </div>
-                         <div id="fn:tableD-1a" class="TableFootnote">
-                            <p id="_" class="TableFootnote">
-                               <span class="TableFootnoteRef">Footnote a)</span>
-                                 Parboiled rice.
-                            </p>
-                         </div>
-                      </td>
-                   </tr>
-                </tfoot>
+               <tfoot>
+                 <tr>
+                  <td colspan="5" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+                     <div class="key">
+                       <p style="page-break-after: avoid;">
+                         <b>Key</b>
+                       </p>
+                       <p class="dl">Drago: A type of rice</p>
+                     </div>
+                   </td>
+                 </tr>
+                 <tr>
+                  <td style="text-align:left;border-top:none;border-bottom:solid windowtext 1.0pt;">
+                     Reproducibility limit,
+                     <span class="stem">(#(R)#)</span>
+                     (= 2,83
+                     <span class="stem">(#(s_R)#)</span>
+                     )
+                   </td>
+                  <td style="text-align:center;border-top:none;border-bottom:solid windowtext 1.0pt;">2,89</td>
+                 <td style="text-align:center;border-top:none;border-bottom:solid windowtext 1.0pt;">0,57</td>
+                  <td style="text-align:center;border-top:none;border-bottom:solid windowtext 1.0pt;">2,26</td>
+                  <td style="text-align:center;border-top:none;border-bottom:solid windowtext 1.0pt;">
+                     <p class="dl">6,06: definition</p>
+                   </td>
+                 </tr>
+                 <tr>
+                  <td colspan="5" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+                     <div class="Note" id="N1">
+                       <p>
+                         <span class="note_label">NOTE  </span>
+                         This is a table about rice
+                       </p>
+                     </div>
+                     <div class="TableFootnote" id="fn:tableD-11">
+                       <p class="TableFootnote" id="_">
+                         <span class="TableFootnoteRef">Footnote 1)</span>
+                           Name footnote.
+                       </p>
+                       </div>
+                     <div class="TableFootnote" id="fn:tableD-1a">
+                       <p class="TableFootnote" id="_">
+                         <span class="TableFootnoteRef">Footnote a)</span>
+                           Parboiled rice.
+                       </p>
+                    </div>
+                    <div class="BlockSource">
+                      <p>SOURCE: ,  Section 1, with adjustments; ,  Section 3, with alterations</p>
+                     </div>
+                   </td>
+                 </tr>
+               </tfoot>
+
              </table>
           </div>
           <br/>
@@ -673,72 +670,68 @@ RSpec.describe IsoDoc do
                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">77,7</td>
                </tr>
             </tbody>
-            <tfoot>
+             <tfoot>
                <tr>
-                  <td colspan="5" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:avoid;">
-              <div class="key" style="page-break-after:avoid">
-                 <p style="page-break-after: avoid;page-break-after:avoid" class="MsoNormal">
-                    <span class="Strong">Key</span>
-                 </p>
-                 <p class="ForewordText" style="page-break-after:avoid">Drago: A type of rice</p>
-              </div>
-                  </td>
+                <td colspan="5" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">
+                   <div class="key" style="page-break-after:avoid">
+                     <p class="MsoNormal" style="page-break-after: avoid;page-break-after:avoid">
+                       <span class="Strong">Key</span>
+                     </p>
+                     <p class="ForewordText" style="page-break-after:avoid">Drago: A type of rice</p>
+                   </div>
+                 </td>
                </tr>
                <tr>
-                  <td align="left" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:avoid;">
-                     Reproducibility limit,
-                     <span class="stem">(#(R)#)</span>
-                     (= 2,83
-                     <span class="stem">(#(s_R)#)</span>
-                     )
-                  </td>
-                  <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:avoid;">2,89</td>
-                  <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:avoid;">0,57</td>
-                  <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:avoid;">2,26</td>
-                  <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:avoid;">
-                     <p class="ForewordText" style="text-align: center;page-break-after:avoid">6,06: definition</p>
-                  </td>
+                <td align="left" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">
+                   Reproducibility limit,
+                   <span class="stem">(#(R)#)</span>
+                   (= 2,83
+                   <span class="stem">(#(s_R)#)</span>
+                   )
+                 </td>
+                <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">2,89</td>
+                <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">0,57</td>
+                <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">2,26</td>
+                <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">
+                   <p class="ForewordText" style="text-align: center;page-break-after:avoid">6,06: definition</p>
+                 </td>
                </tr>
                <tr>
-                  <td colspan="5" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:0pt;mso-border-bottom-alt:0pt;page-break-after:auto;">
-                     <div style="page-break-after:auto">
-                        <a name="N1" id="N1"/>
-                        <p class="Note" style="page-break-after:auto">
-                           <span class="note_label">
-                              NOTE
-                              <span style="mso-tab-count:1">  </span>
-                           </span>
-                           This is a table about rice
-                        </p>
-                     </div>
-                     <div class="BlockSource" style="page-break-after:auto">
-                     <p style="page-break-after:auto" class="MsoNormal">SOURCE: ,  Section 1, with adjustments; ,  Section 3, with alterations</p>
-                     </div>
-                  </td>
+                <td colspan="5" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">
+                   <div style="page-break-after:auto">
+                     <a id="N1" name="N1"/>
+                     <p class="Note" style="page-break-after:auto">
+                       <span class="note_label">
+                         NOTE
+                         <span style="mso-tab-count:1">  </span>
+                       </span>
+                       This is a table about rice
+                     </p>
+                   </div>
+                  <div class="TableFootnote" style="page-break-after:auto">
+                     <a id="ftntableD-11" name="ftntableD-11"/>
+                    <p class="ForewordText" style="page-break-after:auto">
+                       <a id="_" name="_"/>
+                       <span class="TableFootnoteRef">Footnote 1)</span>
+                       <span style="mso-tab-count:1">  </span>
+                       Name footnote.
+                     </p>
+                   </div>
+                  <div class="TableFootnote" style="page-break-after:auto">
+                     <a id="ftntableD-1a" name="ftntableD-1a"/>
+                    <p class="ForewordText" style="page-break-after:auto">
+                       <a id="_" name="_"/>
+                       <span class="TableFootnoteRef">Footnote a)</span>
+                       <span style="mso-tab-count:1">  </span>
+                       Parboiled rice.
+                     </p>
+                  </div>
+                  <div class="BlockSource" style="page-break-after:auto">
+                    <p class="MsoNormal" style="page-break-after:auto">SOURCE: ,  Section 1, with adjustments; ,  Section 3, with alterations</p>
+                   </div>
+                 </td>
                </tr>
-               <tr>
-                  <td colspan="5" style="border-top:0pt;mso-border-top-alt:0pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-left-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-right-alt:solid windowtext 1.5pt;">
-                     <div class="TableFootnote">
-                        <a name="ftntableD-11" id="ftntableD-11"/>
-                        <p class="ForewordText">
-                           <a name="_" id="_"/>
-                           <span class="TableFootnoteRef">Footnote 1)</span>
-                           <span style="mso-tab-count:1">  </span>
-                           Name footnote.
-                        </p>
-                     </div>
-                     <div class="TableFootnote">
-                        <a name="ftntableD-1a" id="ftntableD-1a"/>
-                        <p class="ForewordText">
-                           <a name="_" id="_"/>
-                           <span class="TableFootnoteRef">Footnote a)</span>
-                           <span style="mso-tab-count:1">  </span>
-                           Parboiled rice.
-                        </p>
-                     </div>
-                  </td>
-               </tr>
-            </tfoot>
+             </tfoot>
          </table>
       </div>
     OUTPUT
@@ -1301,13 +1294,6 @@ RSpec.describe IsoDoc do
                                   This is a table about rice
                                </p>
                             </div>
-                            <div class="BlockSource">
-                               <p>SOURCE: ,  Section 1, with adjustments; ,  Section 3, with alterations</p>
-                            </div>
-                         </td>
-                      </tr>
-                      <tr>
-                         <td colspan="5"  style="border-top:0pt;border-bottom:solid windowtext 1.5pt;">
                             <div id="fn:tableD-11" class="TableFootnote">
                                <p id="_" class="TableFootnote">
                                   <span class="TableFootnoteRef">Footnote 1)</span>
@@ -1319,6 +1305,9 @@ RSpec.describe IsoDoc do
                                   <span class="TableFootnoteRef">Footnote a)</span>
                                     Parboiled rice.
                                </p>
+                            </div>
+                            <div class="BlockSource">
+                               <p>SOURCE: ,  Section 1, with adjustments; ,  Section 3, with alterations</p>
                             </div>
                          </td>
                       </tr>
@@ -1422,30 +1411,26 @@ RSpec.describe IsoDoc do
                            This is a table about rice
                         </p>
                      </div>
-                     <div class="BlockSource" style="page-break-after:auto">
-                     <p style="page-break-after:auto" class="MsoNormal">SOURCE: ,  Section 1, with adjustments; ,  Section 3, with alterations</p>
-                     </div>
-                  </td>
-               </tr>
-               <tr>
-                  <td colspan="5" style="border-top:0pt;mso-border-top-alt:0pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.5pt;mso-border-left-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-right-alt:solid windowtext 1.5pt;">
-                     <div class="TableFootnote">
+                     <div class="TableFootnote" style="page-break-after:auto">
                         <a name="ftntableD-11" id="ftntableD-11"/>
-                        <p class="ForewordText">
+                        <p class="ForewordText" style="page-break-after:auto">
                            <a name="_" id="_"/>
                            <span class="TableFootnoteRef">Footnote 1)</span>
                            <span style="mso-tab-count:1">  </span>
                            Name footnote.
                         </p>
                      </div>
-                     <div class="TableFootnote">
+                     <div class="TableFootnote" style="page-break-after:auto">
                         <a name="ftntableD-1a" id="ftntableD-1a"/>
-                        <p class="ForewordText">
+                        <p class="ForewordText" style="page-break-after:auto">
                            <a name="_" id="_"/>
                            <span class="TableFootnoteRef">Footnote a)</span>
                            <span style="mso-tab-count:1">  </span>
                            Parboiled rice.
                         </p>
+                     </div>
+                     <div class="BlockSource" style="page-break-after:auto">
+                     <p style="page-break-after:auto" class="MsoNormal">SOURCE: ,  Section 1, with adjustments; ,  Section 3, with alterations</p>
                      </div>
                   </td>
                </tr>
