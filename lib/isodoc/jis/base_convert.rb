@@ -16,7 +16,8 @@ module IsoDoc
         out.div **attr_code(annex_attrs(node)) do |s|
           node.elements.each do |c1|
             if c1.name == "fmt-title" then annex_name(node, c1, s)
-            else parse(c1, s) end
+            else parse(c1, s)
+            end
           end
         end
         amd?(isoxml) and @suppressheadingnumbers = true
@@ -42,12 +43,17 @@ module IsoDoc
       end
 
       def table_parse_tail(node, out)
-        node.xpath(ns("./p[@class = 'ListTitle' or @class = 'dl']"))
-          .each { |p| parse(p, out) }
-        node.xpath(ns("./fmt-source")).each { |n| parse(n, out) }
-        node.xpath(ns("./note")).each { |n| parse(n, out) }
-        node.xpath(ns("./fmt-footnote-container/fmt-fn-body"))
-          .each { |n| parse(n, out) }
+        table_parse_tail?(node) or return
+        tfoot = table_get_or_make_tfoot(out.parent)
+        [["./key", "./fmt-source", "./note"],
+         ["./fmt-footnote-container/fmt-fn-body"]].each do |e|
+          e.any? { |x| node.at(ns(x)) } or next
+          ins = new_fullcolspan_row(out.parent, tfoot)
+          b = Nokogiri::XML::Builder.with(ins)
+          e.each do |k|
+            node.xpath(ns(k)).each { |n| parse(n, b) }
+          end
+        end
       end
 
       def table_thead_pt(node, name)
@@ -72,7 +78,7 @@ module IsoDoc
         name or return
         thead.add_first_child full_row(
           cols, "<fmt-name><p class='TableTitle' style='text-align:center;'> " \
-          "#{name.remove.children.to_xml}</p></fmt-name>"
+                "#{name.remove.children.to_xml}</p></fmt-name>"
         )
       end
 
