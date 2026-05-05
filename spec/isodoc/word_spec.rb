@@ -77,10 +77,9 @@ RSpec.describe IsoDoc::Jis do
                  <span style="mso-tab-count:1">  </span>
                  引用規格
                </h1>
-               <p class="NormRefText">
-                 <a name="_375d89b0-e764-77b0-b84e-611678e3e3a8" id="_375d89b0-e764-77b0-b84e-611678e3e3a8"/>
-                 次に掲げる引用規格は，この規格に引用されることによって ，その一部又は全部がこの規格の要 求事項を構成している。これらの引用規格のうち，西暦年を付記してあるものは，記載の年の版を適 用し，その後の改 正版(追補を含む。)は適用しない。西暦年の付記がない引用規格は，その最新版(追 補を含む。)を適用する。
-               </p>
+                      <p class="NormRefText"><a name="_375d89b0-e764-77b0-b84e-611678e3e3a8" id="_375d89b0-e764-77b0-b84e-611678e3e3a8"/>次に掲げる引用規格は，この規格に引用されることによ&gt;って
+       ，その一部又は全部がこの規格の要 求事項を構成している。これらの引用規格のうち，西暦年を付記してあるものは，記載の年の版を適 用し，その後&gt;の改
+       正版(追補を含む。)は適用しない。西暦年の付記がない引用規格は，その最新版(追 補を含む。)を適用する。</p>
                <p class="NormRef">
                  <a name="A" id="A"/>
                  B,
@@ -153,14 +152,14 @@ RSpec.describe IsoDoc::Jis do
     output = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
-    doc = Nokogiri::HTML5(output)
-    doc.xpath("//xmlns:p[@class = 'MsoToc1']").each(&:remove)
-    doc1 = doc.at("//xmlns:div[@class = 'WordSection2']")
+    doc = Nokogiri::HTML(output)
+    doc.xpath("//p[@class = 'MsoToc1']").each(&:remove)
+    doc1 = doc.at("//div[@class = 'WordSection2']")
     expect(strip_guid(doc1.to_xml))
-      .to be_xml_equivalent_to strip_guid(word1)
-    doc1 = doc.at("//xmlns:div[@class = 'WordSection3']")
+      .to be_html4_equivalent_to strip_guid(word1)
+    doc1 = doc.at("//div[@class = 'WordSection3']")
     expect(doc1.to_xml)
-      .to be_xml_equivalent_to word2
+      .to be_html4_equivalent_to word2
   end
 
   it "moves content to inner cover" do
@@ -187,8 +186,8 @@ RSpec.describe IsoDoc::Jis do
     word = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
-    doc = Nokogiri::HTML5(word)
-    doc.xpath("//xmlns:p[@class = 'MsoToc1']").each(&:remove)
+    doc = Nokogiri::HTML(word)
+    doc.xpath("//p[@class = 'MsoToc1']").each(&:remove)
     expect(doc.to_xml).to include("Antauparolo")
     expect(doc.to_xml).not_to include("Contributors")
     word = File.read("test_cover.doc", encoding: "UTF-8")
@@ -268,214 +267,73 @@ RSpec.describe IsoDoc::Jis do
     word = <<~OUTPUT
       <div class="WordSection3">
                   #{middle_title(true)}
-          <div>
-             <a name="A" id="A"/>
-             <h1>1</h1>
-             <p class="MsoNormal">
-                <div class="ol_wrap">
-                   <p class="MsoList" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l8 level1 lfo2;">
-                      <a name="_" id="_"/>
-                      A
-                   </p>
-                   <p class="MsoList" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l8 level1 lfo2;">
-                      <a name="_" id="_"/>
-                      B
-                   </p>
-                   <p style="mso-list:l8 level1 lfo2;" class="margin-left: 36.0pt;text-indent:-18.0pt;">
-                      <a name="_" id="_"/>
-                      <div class="ol_wrap">
-                         <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;">
-                            <a name="_" id="_"/>
-                            C
-                         </p>
-                         <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;">
-                            <a name="_" id="_"/>
-                            D
-                         </p>
-                         <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;">
-                            <a name="_" id="_"/>
-                            <div class="ol_wrap">
-                               <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;">
-                                  <a name="_" id="_"/>
-                                  E
-                               </p>
-                               <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;">
-                                  <a name="_" id="_"/>
-                                  F
-                               </p>
-                               <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;">
-                                  <a name="_" id="_"/>
-                                  <div class="ol_wrap">
-                                     <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;">
-                                        <a name="_" id="_"/>
-                                        G
-                                     </p>
-                                     <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;">
-                                        <a name="_" id="_"/>
-                                        H
-                                     </p>
-                                     <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;">
-                                        <a name="_" id="_"/>
-                                        <div class="ol_wrap">
-                                           <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;">
-                                              <a name="_" id="_"/>
-                                              I
-                                           </p>
-                                           <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;">
-                                              <a name="_" id="_"/>
-                                              J
-                                           </p>
-                                           <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;">
-                                              <a name="_" id="_"/>
-                                              <div class="ol_wrap">
-                                                 <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;">
-                                                    <a name="_" id="_"/>
-                                                    K
-                                                 </p>
-                                                 <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;">
-                                                    <a name="_" id="_"/>
-                                                    L
-                                                 </p>
-                                                 <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;">
-                                                    <a name="_" id="_"/>
-                                                    M
-                                                 </p>
-                                              </div>
-                                           </p>
-                                           <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;">
-                                              <a name="_" id="_"/>
-                                              N
-                                           </p>
-                                        </div>
-                                     </p>
-                                     <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;">
-                                        <a name="_" id="_"/>
-                                        O
-                                     </p>
-                                  </div>
-                               </p>
-                               <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;">
-                                  <a name="_" id="_"/>
-                                  P
-                               </p>
-                            </div>
-                         </p>
-                         <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;">
-                            <a name="_" id="_"/>
-                            Q
-                         </p>
-                      </div>
-                   </p>
-                   <p style="mso-list:l8 level1 lfo2;" class="margin-left: 36.0pt;text-indent:-18.0pt;">
-                      <a name="_" id="_"/>
-                      R
-                   </p>
-                </div>
-                <div class="ul_wrap">
-                   <p class="MsoListBullet" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l9 level1 lfo1;">
-                      <a name="_" id="_"/>
-                      A
-                   </p>
-                   <p class="MsoListBullet" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l9 level1 lfo1;">
-                      <a name="_" id="_"/>
-                      B
-                   </p>
-                   <p class="MsoListBullet" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l9 level1 lfo1;">
-                      <a name="_" id="_"/>
-                      B1
-                   </p>
-                   <div class="ListContLevel1">
-                      <div class="ul_wrap">
-                         <p style="mso-list:l9 level2 lfo1;" class="margin-left: 45.95pt;text-indent:-18.0pt;">
-                            <a name="_" id="_"/>
-                            C
-                         </p>
-                         <p style="mso-list:l9 level2 lfo1;" class="margin-left: 45.95pt;text-indent:-18.0pt;">
-                            <a name="_" id="_"/>
-                            D
-                         </p>
-                         <p style="mso-list:l9 level2 lfo1;" class="margin-left: 45.95pt;text-indent:-18.0pt;">
-                            <a name="_" id="_"/>
-                            <div class="ul_wrap">
-                               <p style="mso-list:l9 level3 lfo1;" class="margin-left: 72.0pt;text-indent:-18.0pt;">
-                                  <a name="_" id="_"/>
-                                  E
-                               </p>
-                               <p style="mso-list:l9 level3 lfo1;" class="margin-left: 72.0pt;text-indent:-18.0pt;">
-                                  <a name="_" id="_"/>
-                                  F
-                               </p>
-                               <p style="mso-list:l9 level3 lfo1;" class="margin-left: 72.0pt;text-indent:-18.0pt;">
-                                  <a name="_" id="_"/>
-                                  <div class="ul_wrap">
-                                     <p style="mso-list:l9 level4 lfo1;" class="margin-left: 90.0pt;text-indent:-18.0pt;">
-                                        <a name="_" id="_"/>
-                                        G
-                                     </p>
-                                     <p style="mso-list:l9 level4 lfo1;" class="margin-left: 90.0pt;text-indent:-18.0pt;">
-                                        <a name="_" id="_"/>
-                                        H
-                                     </p>
-                                     <p style="mso-list:l9 level4 lfo1;" class="margin-left: 90.0pt;text-indent:-18.0pt;">
-                                        <a name="_" id="_"/>
-                                        <div class="ul_wrap">
-                                           <p style="mso-list:l9 level5 lfo1;" class="margin-left: 108.0pt;text-indent:-18.0pt;">
-                                              <a name="_" id="_"/>
-                                              I
-                                           </p>
-                                           <p style="mso-list:l9 level5 lfo1;" class="margin-left: 108.0pt;text-indent:-18.0pt;">
-                                              <a name="_" id="_"/>
-                                              J
-                                           </p>
-                                           <p style="mso-list:l9 level5 lfo1;" class="margin-left: 108.0pt;text-indent:-18.0pt;">
-                                              <a name="_" id="_"/>
-                                              <div class="ul_wrap">
-                                                 <p style="mso-list:l9 level6 lfo1;" class="margin-left: 126.0pt;text-indent:-18.0pt;">
-                                                    <a name="_" id="_"/>
-                                                    K
-                                                 </p>
-                                                 <p style="mso-list:l9 level6 lfo1;" class="margin-left: 126.0pt;text-indent:-18.0pt;">
-                                                    <a name="_" id="_"/>
-                                                    L
-                                                 </p>
-                                                 <p style="mso-list:l9 level6 lfo1;" class="margin-left: 126.0pt;text-indent:-18.0pt;">
-                                                    <a name="_" id="_"/>
-                                                    M
-                                                 </p>
-                                              </div>
-                                           </p>
-                                           <p style="mso-list:l9 level5 lfo1;" class="margin-left: 108.0pt;text-indent:-18.0pt;">
-                                              <a name="_" id="_"/>
-                                              N
-                                           </p>
-                                        </div>
-                                     </p>
-                                     <p style="mso-list:l9 level4 lfo1;" class="margin-left: 90.0pt;text-indent:-18.0pt;">
-                                        <a name="_" id="_"/>
-                                        O
-                                     </p>
-                                  </div>
-                               </p>
-                               <p style="mso-list:l9 level3 lfo1;" class="margin-left: 72.0pt;text-indent:-18.0pt;">
-                                  <a name="_" id="_"/>
-                                  P
-                               </p>
-                            </div>
-                         </p>
-                         <p style="mso-list:l9 level2 lfo1;" class="margin-left: 45.95pt;text-indent:-18.0pt;">
-                            <a name="_" id="_"/>
-                            Q
-                         </p>
-                      </div>
-                   </div>
-                   <p style="mso-list:l9 level1 lfo1;" class="margin-left: 36.0pt;text-indent:-18.0pt;">
-                      <a name="_" id="_"/>
-                      R
-                   </p>
-                </div>
-             </p>
-          </div>
-       </div>
+             <div>
+               <a name="A" id="A"/>
+               <h1>1</h1>
+               <p class="MsoNormal">
+         </p><div class="ol_wrap">
+         <p class="MsoList" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l8 level1 lfo2;"><a name="_" id="_"/>A</p>
+         <p class="MsoList" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l8 level1 lfo2;"><a name="_" id="_"/>B</p>
+         <p style="mso-list:l8 level1 lfo2;" class="margin-left: 36.0pt;text-indent:-18.0pt;"><a name="_" id="_"/></p><div class="ol_wrap">
+         <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>C</p>
+         <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>D</p>
+         <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;"><a name="_" id="_"/></p><div class="ol_wrap">
+         <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>E</p>
+         <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>F</p>
+         <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;"><a name="_" id="_"/></p><div class="ol_wrap">
+         <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>G</p>
+         <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>H</p>
+         <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;"><a name="_" id="_"/></p><div class="ol_wrap">
+         <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>I</p>
+         <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>J</p>
+         <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;"><a name="_" id="_"/></p><div class="ol_wrap">
+         <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>K</p>
+         <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>L</p>
+         <p style="mso-list:l8 level6 lfo2;" class="margin-left: 126.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>M</p>
+         </div>
+         <p style="mso-list:l8 level5 lfo2;" class="margin-left: 108.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>N</p>
+         </div>
+         <p style="mso-list:l8 level4 lfo2;" class="margin-left: 90.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>O</p>
+         </div>
+         <p style="mso-list:l8 level3 lfo2;" class="margin-left: 72.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>P</p>
+         </div>
+         <p style="mso-list:l8 level2 lfo2;" class="margin-left: 54.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>Q</p>
+         </div>
+         <p style="mso-list:l8 level1 lfo2;" class="margin-left: 36.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>R</p>
+         </div>
+         <div class="ul_wrap">
+         <p class="MsoListBullet" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l9 level1 lfo1;"><a name="_" id="_"/>A</p>
+         <p class="MsoListBullet" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l9 level1 lfo1;"><a name="_" id="_"/>B</p>
+         <p class="MsoListBullet" style="margin-left: 36.0pt;text-indent:-18.0pt;;mso-list:l9 level1 lfo1;"><a name="_" id="_"/>B1</p><div class="ListContLevel1"><div class="ul_wrap">
+         <p style="mso-list:l9 level2 lfo1;" class="margin-left: 45.95pt;text-indent:-18.0pt;"><a name="_" id="_"/>C</p>
+         <p style="mso-list:l9 level2 lfo1;" class="margin-left: 45.95pt;text-indent:-18.0pt;"><a name="_" id="_"/>D</p>
+         <p style="mso-list:l9 level2 lfo1;" class="margin-left: 45.95pt;text-indent:-18.0pt;"><a name="_" id="_"/></p><div class="ul_wrap">
+         <p style="mso-list:l9 level3 lfo1;" class="margin-left: 72.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>E</p>
+         <p style="mso-list:l9 level3 lfo1;" class="margin-left: 72.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>F</p>
+         <p style="mso-list:l9 level3 lfo1;" class="margin-left: 72.0pt;text-indent:-18.0pt;"><a name="_" id="_"/></p><div class="ul_wrap">
+         <p style="mso-list:l9 level4 lfo1;" class="margin-left: 90.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>G</p>
+         <p style="mso-list:l9 level4 lfo1;" class="margin-left: 90.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>H</p>
+         <p style="mso-list:l9 level4 lfo1;" class="margin-left: 90.0pt;text-indent:-18.0pt;"><a name="_" id="_"/></p><div class="ul_wrap">
+         <p style="mso-list:l9 level5 lfo1;" class="margin-left: 108.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>I</p>
+         <p style="mso-list:l9 level5 lfo1;" class="margin-left: 108.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>J</p>
+         <p style="mso-list:l9 level5 lfo1;" class="margin-left: 108.0pt;text-indent:-18.0pt;"><a name="_" id="_"/></p><div class="ul_wrap">
+         <p style="mso-list:l9 level6 lfo1;" class="margin-left: 126.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>K</p>
+         <p style="mso-list:l9 level6 lfo1;" class="margin-left: 126.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>L</p>
+         <p style="mso-list:l9 level6 lfo1;" class="margin-left: 126.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>M</p>
+         </div>
+         <p style="mso-list:l9 level5 lfo1;" class="margin-left: 108.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>N</p>
+         </div>
+         <p style="mso-list:l9 level4 lfo1;" class="margin-left: 90.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>O</p>
+         </div>
+         <p style="mso-list:l9 level3 lfo1;" class="margin-left: 72.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>P</p>
+         </div>
+         <p style="mso-list:l9 level2 lfo1;" class="margin-left: 45.95pt;text-indent:-18.0pt;"><a name="_" id="_"/>Q</p>
+         </div></div>
+         <p style="mso-list:l9 level1 lfo1;" class="margin-left: 36.0pt;text-indent:-18.0pt;"><a name="_" id="_"/>R</p>
+         </div>
+         
+             </div>
+           </div>
     OUTPUT
     FileUtils.rm_f "test.doc"
     presxml = IsoDoc::Jis::PresentationXMLConvert.new(presxml_options)
@@ -485,9 +343,9 @@ RSpec.describe IsoDoc::Jis do
     output = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
-    expect(strip_guid(Nokogiri::HTML5(output)
-      .at("//xmlns:div[@class = 'WordSection3']").to_xml))
-      .to be_xml_equivalent_to word
+    expect(strip_guid(Nokogiri::HTML(output)
+      .at("//div[@class = 'WordSection3']").to_xml))
+      .to be_html4_equivalent_to word
   end
 
   it "deals with lists and paragraphs" do
@@ -541,8 +399,8 @@ RSpec.describe IsoDoc::Jis do
     output = File.read("test.doc", encoding: "UTF-8")
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
-    expect(strip_guid(Nokogiri::HTML5(output)
-      .at("//xmlns:div[@class = 'WordSection3']").to_xml))
-      .to be_xml_equivalent_to word
+    expect(strip_guid(Nokogiri::HTML(output)
+      .at("//div[@class = 'WordSection3']").to_xml))
+      .to be_html4_equivalent_to word
   end
 end
