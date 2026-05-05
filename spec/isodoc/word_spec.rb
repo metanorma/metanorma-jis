@@ -155,10 +155,10 @@ RSpec.describe IsoDoc::Jis do
     doc = Nokogiri::HTML(output)
     doc.xpath("//p[@class = 'MsoToc1']").each(&:remove)
     doc1 = doc.at("//div[@class = 'WordSection2']")
-    expect(strip_guid(doc1.to_xml))
+    expect(strip_guid(doc1.to_xhtml))
       .to be_html4_equivalent_to strip_guid(word1)
     doc1 = doc.at("//div[@class = 'WordSection3']")
-    expect(doc1.to_xml)
+    expect(doc1.to_xhtml)
       .to be_html4_equivalent_to word2
   end
 
@@ -188,8 +188,8 @@ RSpec.describe IsoDoc::Jis do
       .sub(/<\/html>.*$/m, "</html>")
     doc = Nokogiri::HTML(word)
     doc.xpath("//p[@class = 'MsoToc1']").each(&:remove)
-    expect(doc.to_xml).to include("Antauparolo")
-    expect(doc.to_xml).not_to include("Contributors")
+    expect(doc.to_xhtml).to include("Antauparolo")
+    expect(doc.to_xhtml).not_to include("Contributors")
     word = File.read("test_cover.doc", encoding: "UTF-8")
     expect(word).not_to include("Antauparolo")
     expect(word).to include("Contributors")
@@ -344,7 +344,7 @@ RSpec.describe IsoDoc::Jis do
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
     expect(strip_guid(Nokogiri::HTML(output)
-      .at("//div[@class = 'WordSection3']").to_xml))
+      .at("//div[@class = 'WordSection3']").to_xhtml))
       .to be_html4_equivalent_to word
   end
 
@@ -400,7 +400,7 @@ RSpec.describe IsoDoc::Jis do
       .sub(/^.*<html/m, "<html")
       .sub(/<\/html>.*$/m, "</html>")
     expect(strip_guid(Nokogiri::HTML(output)
-      .at("//div[@class = 'WordSection3']").to_xml))
+      .at("//div[@class = 'WordSection3']").to_xhtml))
       .to be_html4_equivalent_to word
   end
 end
