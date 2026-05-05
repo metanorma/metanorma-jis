@@ -761,7 +761,7 @@ RSpec.describe IsoDoc::Jis do
             </div>
          </div>
          <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
-         <div class="colophon"/>
+         <div class="colophon"></div>
       </body>
     OUTPUT
     pres_output = IsoDoc::Jis::PresentationXMLConvert.new(presxml_options)

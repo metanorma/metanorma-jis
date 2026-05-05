@@ -169,11 +169,11 @@ RSpec.describe IsoDoc do
                 <p class="ForewordText">
                    B.
                    <span class="MsoFootnoteReference">
-                      <span style="mso-element:field-begin"/>
+                      <span style="mso-element:field-begin"></span>
                       NOTEREF _Ref \\f \\h
-                      <span style="mso-element:field-separator"/>
+                      <span style="mso-element:field-separator"></span>
                       1
-                      <span style="mso-element:field-end"/>
+                      <span style="mso-element:field-end"></span>
                    </span>
                 </p>
                 <p class="ForewordText">
@@ -203,7 +203,7 @@ RSpec.describe IsoDoc do
              </aside>
           </div>
           <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
-          <div class="colophon"/>
+          <div class="colophon"></div>
        </body>
     OUTPUT
     pres_output = IsoDoc::Jis::PresentationXMLConvert
@@ -216,7 +216,7 @@ RSpec.describe IsoDoc do
       .to be_html5_equivalent_to html
     expect(strip_guid(Nokogiri::HTML(IsoDoc::Jis::WordConvert.new({})
       .convert("test", pres_output, true))
-      .at("//body").to_xml)
+      .at("//body").to_xhtml)
       .gsub(/_Ref\d+/, "_Ref"))
       .to be_html4_equivalent_to word
   end
