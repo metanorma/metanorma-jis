@@ -498,7 +498,7 @@ RSpec.describe IsoDoc::Jis do
 
     html = <<~OUTPUT
       <html lang="ja">
-         <head/>
+         <head></hea>
          <body lang="ja">
             <div class="title-section">
                <p> </p>
@@ -518,22 +518,13 @@ RSpec.describe IsoDoc::Jis do
                <div id="_" class="TOC">
                   <h1 class="IntroTitle">目　次</h1>
                </div>
-               <p class="JapaneseIndustrialStandard">
-                  日本工業規格#{'　　　　　　　'}
-                  <span class="JIS">JIS</span>
-               </p>
+               <p class="JapaneseIndustrialStandard">日本工業規格#{'　　　　　　　'}<span class="JIS">JIS</span></p>
                <p class="StandardNumber">　</p>
-               <p class="IDT"/>
+               <p class="IDT"></p>
                <p class="zzSTDTitle1">Introduction Française — Titre Principal — </p>
-               <p class="zzSTDTitle1">
-                  <br/>
-                  <b>Part du Titre</b>
-               </p>
+               <p class="zzSTDTitle1"><br/><b>Part du Titre</b></p>
                <p class="zzSTDTitle2">Introduction — Main Title — Title — </p>
-               <p class="zzSTDTitle2">
-                  <br/>
-                  <b>Title Part</b>
-               </p>
+               <p class="zzSTDTitle2"><br/><b>Title Part</b></p>
                <br/>
                <div class="Section3" id="B">
                   <h1 class="IntroTitle">Introduction</h1>
@@ -592,13 +583,7 @@ RSpec.describe IsoDoc::Jis do
                </div>
                <br/>
                <div id="P" class="Section3">
-                  <h1 class="Annex">
-                     附属書 A
-                     <br/>
-                     <span class="obligation">（規定）</span>
-                     <br/>
-                     <b>Annex</b>
-                  </h1>
+                  <h1 class="Annex">附属書 A<br/><span class="obligation">（規定）</span><br/><b>Annex</b></h1>
                   <p style="display:none;" class="variant-title-toc">附属書 A　Annex</p>
                   <div id="Q">
                      <h2>A.1　Annex A.1</h2>
@@ -655,31 +640,13 @@ RSpec.describe IsoDoc::Jis do
                <br clear="all" class="section"/>
             </p>
             <div class="WordSection3">
-               <p class="JapaneseIndustrialStandard">
-                  日本工業規格
-                  <span style="mso-tab-count:1">  </span>
-                  <span style="mso-tab-count:1">  </span>
-                  <span style="mso-tab-count:1">  </span>
-                  <span style="mso-tab-count:1">  </span>
-                  <span style="mso-tab-count:1">  </span>
-                  <span style="mso-tab-count:1">  </span>
-                  <span style="mso-tab-count:1">  </span>
-                  <span class="JIS">JIS</span>
-               </p>
-               <p class="StandardNumber">
-                  <span style="mso-tab-count:1">  </span>
-               </p>
-               <p class="IDT"/>
+               <p class="JapaneseIndustrialStandard">日本工業規格<span style="mso-tab-count:1">  </span><span style="mso-tab-count:1">  </span><span style="mso-tab-count:1">  </span><span style="mso-tab-count:1">  </span><span style="mso-tab-count:1">  </span><span style="mso-tab-count:1">  </span><span style="mso-tab-count:1">  </span><span class="JIS">JIS</span></p>
+               <p class="StandardNumber"><span style="mso-tab-count:1">  </span></p>
+               <p class="IDT"></p>
                <p class="zzSTDTitle1">Introduction Française — Titre Principal — </p>
-               <p class="zzSTDTitle1">
-                  <br/>
-                  <b>Part du Titre</b>
-               </p>
+               <p class="zzSTDTitle1"><br/><b>Part du Titre</b></p>
                <p class="zzSTDTitle2">Introduction — Main Title — Title — </p>
-               <p class="zzSTDTitle2">
-                  <br/>
-                  <b>Title Part</b>
-               </p>
+               <p class="zzSTDTitle2"><br/><b>Title Part</b></p>
                <div class="Section3" id="B">
                   <h1 class="IntroTitle">Introduction</h1>
                   <div id="C">
@@ -688,43 +655,21 @@ RSpec.describe IsoDoc::Jis do
                   <p>This is patent boilerplate</p>
                </div>
                <div id="D">
-                  <h1>
-                     1
-                     <span style="mso-tab-count:1">  </span>
-                     Scope
-                  </h1>
+                  <h1>1<span style="mso-tab-count:1">  </span>Scope</h1>
                   <p id="E">Text</p>
                </div>
                <div class="normref_div">
-                  <h1>
-                     2
-                     <span style="mso-tab-count:1">  </span>
-                     Normative References
-                  </h1>
+                  <h1>2<span style="mso-tab-count:1">  </span>Normative References</h1>
                </div>
                <div id="H">
-                  <h1>
-                     3
-                     <span style="mso-tab-count:1">  </span>
-                     Terms, definitions, symbols and abbreviated terms
-                  </h1>
+                  <h1>3<span style="mso-tab-count:1">  </span>Terms, definitions, symbols and abbreviated terms</h1>
                   <div id="I">
-                     <h2>
-                        3.1
-                        <span style="mso-tab-count:1">  </span>
-                        Normal Terms
-                     </h2>
+                     <h2>3.1<span style="mso-tab-count:1">  </span>Normal Terms</h2>
                      <p class="TermNum" id="J">3.1.1</p>
-                     <p class="Terms" style="text-align:left;">
-                        <b>Term2</b>
-                     </p>
+                     <p class="Terms" style="text-align:left;"><b>Term2</b></p>
                   </div>
                   <div id="K">
-                     <h2>
-                        3.2
-                        <span style="mso-tab-count:1">  </span>
-                        記号
-                     </h2>
+                     <h2>3.2<span style="mso-tab-count:1">  </span>記号</h2>
                      <div align="left">
                         <table class="dl">
                            <tr>
@@ -738,11 +683,7 @@ RSpec.describe IsoDoc::Jis do
                   </div>
                </div>
                <div id="L" class="Symbols">
-                  <h1>
-                     4
-                     <span style="mso-tab-count:1">  </span>
-                     記　号
-                  </h1>
+                  <h1>4<span style="mso-tab-count:1">  </span>記　号</h1>
                   <div align="left">
                      <table class="dl">
                         <tr>
@@ -755,62 +696,28 @@ RSpec.describe IsoDoc::Jis do
                   </div>
                </div>
                <div id="M">
-                  <h1>
-                     5
-                     <span style="mso-tab-count:1">  </span>
-                     Clause 4
-                  </h1>
+                  <h1>5<span style="mso-tab-count:1">  </span>Clause 4</h1>
                   <div id="N">
-                     <h2>
-                        5.1
-                        <span style="mso-tab-count:1">  </span>
-                        Introduction
-                     </h2>
+                     <h2>5.1<span style="mso-tab-count:1">  </span>Introduction</h2>
                   </div>
                   <div id="O">
-                     <h2>
-                        5.2
-                        <span style="mso-tab-count:1">  </span>
-                        Clause 4.2
-                     </h2>
+                     <h2>5.2<span style="mso-tab-count:1">  </span>Clause 4.2</h2>
                   </div>
                </div>
                <p class="page-break">
                   <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
                </p>
                <div id="P" class="Section3">
-                  <h1 class="Annex">
-                     附属書 A
-                     <br/>
-                     <span class="obligation">（規定）</span>
-                     <br/>
-                     <b>Annex</b>
-                  </h1>
-            <p style="display:none;" class="variant-title-toc">
-               附属書 A
-               <span style="mso-tab-count:1">  </span>
-               Annex
-            </p>
+                  <h1 class="Annex">附属書 A<br/><span class="obligation">（規定）</span><br/><b>Annex</b></h1>
+            <p style="display:none;" class="variant-title-toc">附属書 A<span style="mso-tab-count:1">  </span>Annex</p>
                   <div id="Q">
-                     <h2>
-                        A.1
-                        <span style="mso-tab-count:1">  </span>
-                        Annex A.1
-                     </h2>
+                     <h2>A.1<span style="mso-tab-count:1">  </span>Annex A.1</h2>
                      <div id="Q1">
-                        <h3>
-                           A.1.1
-                           <span style="mso-tab-count:1">  </span>
-                           Annex A.1a
-                        </h3>
+                        <h3>A.1.1<span style="mso-tab-count:1">  </span>Annex A.1a</h3>
                      </div>
                   </div>
                   <div id="Q2">
-                     <h2>
-                        Appendix 1
-                        <span style="mso-tab-count:1">  </span>
-                        An Appendix
-                     </h2>
+                     <h2>Appendix 1<span style="mso-tab-count:1">  </span>An Appendix</h2>
                   </div>
                </div>
                <p class="page-break">
@@ -824,7 +731,7 @@ RSpec.describe IsoDoc::Jis do
                </div>
             </div>
             <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
-            <div class="colophon"/>
+            <div class="colophon"></div>
          </body>
       </html>
     WORD
@@ -1859,7 +1766,7 @@ RSpec.describe IsoDoc::Jis do
 
     html = <<~OUTPUT
       <html lang="en">
-          <head/>
+          <head></hea>
           <body lang="en">
              <div class="title-section">
                 <p> </p>
@@ -1884,7 +1791,7 @@ RSpec.describe IsoDoc::Jis do
                    <span class="JIS">JIS</span>
                 </p>
                 <p class="StandardNumber">  </p>
-                <p class="IDT"/>
+                <p class="IDT"></p>
                 <p class="zzSTDTitle1">Introduction — Main Title — Title — </p>
                 <p class="zzSTDTitle1">
                    <br/>

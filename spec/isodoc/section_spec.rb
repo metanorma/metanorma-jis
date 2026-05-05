@@ -38,7 +38,7 @@ RSpec.describe IsoDoc::Jis do
            </div>
          </div>
          <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
-         <div class="colophon"/>
+         <div class="colophon"></div>
        </body>
     OUTPUT
     expect(IsoDoc::Jis::WordConvert.new({})
@@ -395,7 +395,7 @@ RSpec.describe IsoDoc::Jis do
     OUTPUT
     html = <<~OUTPUT
       <html lang="en">
-          <head/>
+          <head></hea>
           <body lang="en">
              <div class="title-section">
                 <p> </p>
@@ -418,17 +418,11 @@ RSpec.describe IsoDoc::Jis do
                      Z 1000-1.3:
                    <span class="EffectiveYear">2000</span>
                 </p>
-                <p class="IDT"/>
+                <p class="IDT"></p>
                 <p class="zzSTDTitle1">Introduction — Main Title — Title — </p>
-                <p class="zzSTDTitle1">
-                   <br/>
-                   <b>Title Part</b>
-                </p>
+                <p class="zzSTDTitle1"><br/><b>Title Part</b></p>
                 <p class="zzSTDTitle2">Introduction Française — Titre Principal — </p>
-                <p class="zzSTDTitle2">
-                   <br/>
-                   <b>Part du Titre</b>
-                </p>
+                <p class="zzSTDTitle2"><br/><b>Part du Titre</b></p>
                 <div id="R">
                    <h1>1  Normative References</h1>
                    <div>
@@ -437,24 +431,12 @@ RSpec.describe IsoDoc::Jis do
                 </div>
                 <br/>
                 <div id="A" class="Section3">
-                   <h1 class="Annex">
-                      Annex A
-                      <br/>
-                      <span class="obligation">(normative)</span>
-                      <br/>
-                      <b>First Annex</b>
-                   </h1>
+                   <h1 class="Annex">Annex A<br/><span class="obligation">(normative)</span><br/><b>First Annex</b></h1>
                    <p style="display:none;" class="variant-title-toc">Annex A  First Annex</p>
                 </div>
                 <br/>
                 <div id="B" class="Section3">
-                   <h1 class="Annex">
-                      Annex B
-                      <br/>
-                      <span class="obligation">(informative)</span>
-                      <br/>
-                      <b>Second Annex</b>
-                   </h1>
+                   <h1 class="Annex">Annex B<br/><span class="obligation">(informative)</span><br/><b>Second Annex</b></h1>
                    <p style="display:none;" class="variant-title-toc">Annex B  Second Annex</p>
                 </div>
                 <br/>
@@ -463,15 +445,9 @@ RSpec.describe IsoDoc::Jis do
                 </div>
                 <br/>
                 <div id="C" class="Section3">
-                   <p class="CommentaryStandardNumber">
-                      JIS Z 1000-1.3 :
-                      <span class="CommentaryEffectiveYear">2000</span>
-                   </p>
+                   <p class="CommentaryStandardNumber">JIS Z 1000-1.3 : <span class="CommentaryEffectiveYear">2000</span></p>
                    <p class="CommentaryStandardName">Introduction — Main Title — Title — </p>
-                   <p class="zzSTDTitle1">
-                      <br/>
-                      <b>Title Part</b>
-                   </p>
+                   <p class="zzSTDTitle1"><br/><b>Title Part</b></p>
                    <h1 class="Annex">Commentary</h1>
                    <div id="C1">
                       <h2>1  First clause</h2>
@@ -482,15 +458,9 @@ RSpec.describe IsoDoc::Jis do
                 </div>
                 <br/>
                 <div id="D" class="Section3">
-                   <p class="CommentaryStandardNumber">
-                      JIS Z 1000-1.3 :
-                      <span class="CommentaryEffectiveYear">2000</span>
-                   </p>
+                   <p class="CommentaryStandardNumber">JIS Z 1000-1.3 :<span class="CommentaryEffectiveYear">2000</span></p>
                    <p class="CommentaryStandardName">Introduction — Main Title — Title — </p>
-                   <p class="zzSTDTitle1">
-                      <br/>
-                      <b>Title Part</b>
-                   </p>
+                   <p class="zzSTDTitle1"><br/><b>Title Part</b></p>
                    <h1 class="Annex">Another Commentary</h1>
                 </div>
              </div>
@@ -518,80 +488,33 @@ RSpec.describe IsoDoc::Jis do
                <br clear="all" class="section"/>
             </p>
             <div class="WordSection3">
-               <p class="JapaneseIndustrialStandard">
-                  日本工業規格
-                  <span style="mso-tab-count:1">  </span>
-                  <span style="mso-tab-count:1">  </span>
-                  <span style="mso-tab-count:1">  </span>
-                  <span style="mso-tab-count:1">  </span>
-                  <span style="mso-tab-count:1">  </span>
-                  <span style="mso-tab-count:1">  </span>
-                  <span style="mso-tab-count:1">  </span>
-                  <span class="JIS">JIS</span>
-               </p>
-               <p class="StandardNumber">
-                  <span style="mso-tab-count:1">  </span>
-                  Z 1000-1.3:
-                  <span class="EffectiveYear">2000</span>
-               </p>
-               <p class="IDT"/>
+               <p class="JapaneseIndustrialStandard">日本工業規格<span style="mso-tab-count:1">  </span><span style="mso-tab-count:1">  </span><span style="mso-tab-count:1">  </span><span style="mso-tab-count:1">  </span><span style="mso-tab-count:1">  </span><span style="mso-tab-count:1">  </span><span style="mso-tab-count:1">  </span><span class="JIS">JIS</span></p>
+               <p class="StandardNumber"><span style="mso-tab-count:1">  </span>Z 1000-1.3:<span class="EffectiveYear">2000</span></p>
+               <p class="IDT"></p>
                <p class="zzSTDTitle1">Introduction — Main Title — Title — </p>
-               <p class="zzSTDTitle1">
-                  <br/>
-                  <b>Title Part</b>
+               <p class="zzSTDTitle1"><br/><b>Title Part</b>
                </p>
                <p class="zzSTDTitle2">Introduction Française — Titre Principal — </p>
-               <p class="zzSTDTitle2">
-                  <br/>
-                  <b>Part du Titre</b>
-               </p>
+               <p class="zzSTDTitle2"><br/><b>Part du Titre</b></p>
                <div id="R">
-                  <h1>
-                     1
-                     <span style="mso-tab-count:1">  </span>
-                     Normative References
-                  </h1>
+                  <h1>1<span style="mso-tab-count:1">  </span>Normative References</h1>
                   <div>
-                     <h2 class="BiblioTitle">
-                        1.1
-                        <span style="mso-tab-count:1">  </span>
-                        Normative References 1
-                     </h2>
+                     <h2 class="BiblioTitle">1.1<span style="mso-tab-count:1">  </span>Normative References 1</h2>
                   </div>
                </div>
                <p class="page-break">
                   <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
                </p>
                <div id="A" class="Section3">
-                  <h1 class="Annex">
-                     Annex A
-                     <br/>
-                     <span class="obligation">(normative)</span>
-                     <br/>
-                     <b>First Annex</b>
-                  </h1>
-                  <p style="display:none;" class="variant-title-toc">
-                     Annex A
-                     <span style="mso-tab-count:1">  </span>
-                     First Annex
-                  </p>
+                  <h1 class="Annex">Annex A<br/><span class="obligation">(normative)</span><br/><b>First Annex</b></h1>
+                  <p style="display:none;" class="variant-title-toc">Annex A<span style="mso-tab-count:1">  </span>First Annex</p>
                </div>
                <p class="page-break">
                   <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
                </p>
                <div id="B" class="Section3">
-                  <h1 class="Annex">
-                     Annex B
-                     <br/>
-                     <span class="obligation">(informative)</span>
-                     <br/>
-                     <b>Second Annex</b>
-                  </h1>
-                  <p style="display:none;" class="variant-title-toc">
-                     Annex B
-                     <span style="mso-tab-count:1">  </span>
-                     Second Annex
-                  </p>
+                  <h1 class="Annex">Annex B<br/><span class="obligation">(informative)</span><br/><b>Second Annex</b></h1>
+                  <p style="display:none;" class="variant-title-toc">Annex B<span style="mso-tab-count:1">  </span>Second Annex</p>
                </div>
                <p class="page-break">
                   <br clear="all" style="mso-special-character:line-break;page-break-before:always"/>
@@ -599,59 +522,39 @@ RSpec.describe IsoDoc::Jis do
                <div class="bibliography">
                   <h1 class="Section3">Bibliography</h1>
                </div>
-               <span style="mso-bookmark:PRECOMMENTARYPAGEREF"/>
+               <span style="mso-bookmark:PRECOMMENTARYPAGEREF"></span>
                <p class="section-break">
                   <br clear="all" class="section"/>
                </p>
                <div class="WordSectionCommentary">
                   <div id="C" class="Section3">
-                     <p class="CommentaryStandardNumber">
-                        JIS Z 1000-1.3 :
-                        <span class="CommentaryEffectiveYear">2000</span>
-                     </p>
+                     <p class="CommentaryStandardNumber">JIS Z 1000-1.3 :<span class="CommentaryEffectiveYear">2000</span></p>
                      <p class="CommentaryStandardName">Introduction — Main Title — Title — </p>
-                     <p class="zzSTDTitle1">
-                        <br/>
-                        <b>Title Part</b>
-                     </p>
+                     <p class="zzSTDTitle1"><br/><b>Title Part</b></p>
                      <h1 class="Annex">Commentary</h1>
                      <div id="C1">
-                        <h2>
-                           1
-                           <span style="mso-tab-count:1">  </span>
-                           First clause
-                        </h2>
+                        <h2>1<span style="mso-tab-count:1">  </span>First clause</h2>
                         <div id="C2">
-                           <h3>
-                              1.1
-                              <span style="mso-tab-count:1">  </span>
-                              First subclause
-                           </h3>
+                           <h3>1.1<span style="mso-tab-count:1">  </span>First subclause</h3>
                         </div>
                      </div>
                   </div>
                </div>
-               <span style="mso-bookmark:PRECOMMENTARYPAGEREF"/>
+               <span style="mso-bookmark:PRECOMMENTARYPAGEREF"></span>
                <p class="section-break">
                   <br clear="all" class="section"/>
                </p>
                <div class="WordSectionCommentary">
                   <div id="D" class="Section3">
-                     <p class="CommentaryStandardNumber">
-                        JIS Z 1000-1.3 :
-                        <span class="CommentaryEffectiveYear">2000</span>
-                     </p>
+                     <p class="CommentaryStandardNumber">JIS Z 1000-1.3 :<span class="CommentaryEffectiveYear">2000</span></p>
                      <p class="CommentaryStandardName">Introduction — Main Title — Title — </p>
-                     <p class="zzSTDTitle1">
-                        <br/>
-                        <b>Title Part</b>
-                     </p>
+                     <p class="zzSTDTitle1"><br/><b>Title Part</b></p>
                      <h1 class="Annex">Another Commentary</h1>
                   </div>
                </div>
             </div>
             <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
-            <div class="colophon"/>
+            <div class="colophon"></div>
          </body>
     OUTPUT
     pres_output = IsoDoc::Jis::PresentationXMLConvert

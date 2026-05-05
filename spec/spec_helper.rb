@@ -125,11 +125,11 @@ def middle_title(word, number = "", year = "")
       <span class="EffectiveYear">#{year}</span>
   YR
   <<~HDR
-    <p class="JapaneseIndustrialStandard">
-      日本工業規格#{word ? '<span style="mso-tab-count:1">  </span>' * 7 : '             '}<span class="JIS">JIS</span>
+    <p class="JapaneseIndustrialStandard">日本工業規格#{word ? '<span style="mso-tab-count:1">  </span>' * 7 : '             '}<span class="JIS">JIS</span></p>
+    <p class="StandardNumber">
+        #{word ? '<span style="mso-tab-count:1">  </span>' : ' '} #{number}#{yr}
     </p>
-    <p class="StandardNumber">#{word ? '<span style="mso-tab-count:1">  </span>' : ' '} #{number}#{yr}</p>
-    <p class="IDT"/>
+    <p class="IDT"></p>
   HDR
 end
 
