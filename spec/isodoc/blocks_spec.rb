@@ -318,7 +318,7 @@ RSpec.describe IsoDoc::Jis do
            <picture><img src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7" height="20" width="auto"/></picture>
            <picture><img src="data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjw/eG1sLXN0eWxlc2hlZXQgdHlwZT0idGV4dC94c2wiIGhyZWY9Ii4uLy4uLy4uL3hzbC9yZXNfZG9jL2ltZ2ZpbGUueHNsIj8+CjwhRE9DVFlQRSBpbWdmaWxlLmNvbnRlbnQgU1lTVEVNICIuLi8uLi8uLi9kdGQvdGV4dC5lbnQiPgo8aW1nZmlsZS5jb250ZW50IG1vZHVsZT0iZnVuZGFtZW50YWxzX29mX3Byb2R1Y3RfZGVzY3JpcHRpb25fYW5kX3N1cHBvcnQiIGZpbGU9ImFjdGlvbl9zY2hlbWFleHBnMS54bWwiPgo8aW1nIHNyYz0iYWN0aW9uX3NjaGVtYWV4cGcxLmdpZiI+CjxpbWcuYXJlYSBzaGFwZT0icmVjdCIgY29vcmRzPSIyMTAsMTg2LDM0MywyMjciIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9iYXNpY19hdHRyaWJ1dGVfc2NoZW1hL2Jhc2ljX2F0dHJpYnV0ZV9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMTAsMTAsOTYsNTEiIGhyZWY9Ii4uLy4uL3Jlc291cmNlcy9hY3Rpb25fc2NoZW1hL2FjdGlvbl9zY2hlbWEueG1sIiAvPgo8aW1nLmFyZWEgc2hhcGU9InJlY3QiIGNvb3Jkcz0iMjEwLDI2NCwzNTgsMzA1IiBocmVmPSIuLi8uLi9yZXNvdXJjZXMvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEvc3VwcG9ydF9yZXNvdXJjZV9zY2hlbWEueG1sIiAvPgo8L2ltZz4KPC9pbWdmaWxlLmNvbnRlbnQ+Cg==" height="20" width="auto"/></picture>
            <a href="#figureA-1a" class="TableFootnoteRef">a)</a>
-           <p class="ListTitle">Key<a id="DL1"/></p><p class="dl">A: B</p>
+           <p class="ListTitle">Key<a id="DL1"></a></p><p class="dl">A: B</p>
                  <div class="BlockSource"><p>[SOURCE: <a href="#ISO712">ISO 712,  Section 1</a>, with adjustments; <a href="#ISO712">ISO 712,  Section 2</a>, (with adjustments)]</p></div>
      
          <div id="note1" class="Note"><p><span class="note_label">NOTE  </span></p>This is a note</div>
@@ -357,7 +357,7 @@ RSpec.describe IsoDoc::Jis do
                <td valign="top" style="padding:0cm 5.4pt 0cm 5.4pt">
                   <p class="ForewordText">
                      Key
-                     <a id="DL1"/>
+                     <a id="DL1"></a>
                   </p>
                   <p class="ForewordText">A: B</p>
                </td>
@@ -432,13 +432,13 @@ RSpec.describe IsoDoc::Jis do
     expect(strip_guid(Nokogiri::HTML(IsoDoc::Jis::HtmlConvert
       .new({})
       .convert("test", pres_output, true))
-      .at("//div[@id = 'A']").to_xml))
+      .at("//div[@id = 'A']").to_xhtml))
       .to be_html5_equivalent_to html
     FileUtils.rm_rf "spec/assets/odf1.emf"
     expect(strip_guid(Nokogiri::HTML(IsoDoc::Jis::WordConvert
       .new({})
       .convert("test", pres_output, true))
-      .at("//div[@id = 'A']").to_xml)
+      .at("//div[@id = 'A']").to_xhtml)
       .gsub(/['"][^'".]+\.(gif|xml)['"]/, "'_.\\1'")
       .gsub(/mso-bookmark:_Ref\d+/, "mso-bookmark:_Ref"))
       .to be_html4_equivalent_to word
@@ -856,7 +856,7 @@ RSpec.describe IsoDoc::Jis do
           <div class="WordSection3">
           </div>
           <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
-          <div class="colophon"/>
+          <div class="colophon"></div>
         </body>
       </html>
     OUTPUT
