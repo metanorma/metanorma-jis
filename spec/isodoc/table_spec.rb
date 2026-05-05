@@ -472,14 +472,9 @@ RSpec.describe IsoDoc do
     OUTPUT
 
     html = <<~OUTPUT
-       <main class="main-section">
-          <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-          <br/>
+       <main class="main-section"><button onclick="topFunction()" id="myBtn" title="Go to top">Top</button><br/>
           <div id="_">
-             <h1 class="ForewordTitle" id="_">
-                <a class="anchor" href="#_"/>
-                <a class="header" href="#_">Foreword</a>
-             </h1>
+             <h1 class="ForewordTitle" id="_"><a class="anchor" href="#_"></a><a class="header" href="#_">Foreword</a></h1>
              <table id="tableD-1" class="MsoISOTable" style="border-width:1px;border-spacing:0;" title="tool tip">
                 <caption>
                    <span style="display:none">long desc</span>
@@ -586,22 +581,11 @@ RSpec.describe IsoDoc do
           <br/>
                      #{middle_title(false)}
                         <div id="_">
-      <h1 id="_">
-         <a class="anchor" href="#_"/>
-         <a class="header" href="#_">1</a>
-      </h1>
+      <h1 id="_"><a class="anchor" href="#_"></a><a class="header" href="#_">1</a></h1>
       </div>
          <br/>
          <div id="Annex" class="Section3">
-           <h1 class="Annex" id="_">
-          <a class="anchor" href="#Annex"/>
-          <a class="header" href="#Annex">
-             Annex A
-             <br/>
-             <span class="obligation">(informative)</span>
-             <br/>
-             <b>Annex</b>
-             </a>
+           <h1 class="Annex" id="_"><a class="anchor" href="#Annex"></a><a class="header" href="#Annex">Annex A<br/><span class="obligation">(informative)</span><br/><b>Annex</b></a>
            </h1>
            <p style="display:none;" class="variant-title-toc">Annex A  Annex</p>
            <table id="AnnexTable" class="MsoISOTable" style="border-width:1px;border-spacing:0;">
@@ -625,16 +609,11 @@ RSpec.describe IsoDoc do
     doc = <<~OUTPUT
       <div>
          <table xmlns:m="https://m" title="tool tip" summary="long desc" width="" class="MsoTableGrid" style="border-collapse:collapse;mso-table-anchor-horizontal:column;mso-table-overlap:never;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0">
-            <a name="tableD-1" id="tableD-1"/>
+            <a name="tableD-1" id="tableD-1"></a>
             <thead>
                <tr>
                   <td colspan="5" style="page-break-after:avoid;" align="center" valign="middle">
-                     <p class="ForewordText" style="text-align:center;;text-align: center;page-break-after:avoid">
-                        Table 1 — Repeatability and reproducibility of
-                        <i>husked</i>
-                        rice yield
-                        <a href="#tableD-11" class="TableFootnoteRef">1)</a>
-                     </p>
+                     <p class="ForewordText" style="text-align:center;;text-align: center;page-break-after:avoid">Table 1 — Repeatability and reproducibility of <i>husked</i> rice yield <a href="#tableD-11" class="TableFootnoteRef">1)</a></p>
                   </td>
                </tr>
                <tr>
@@ -670,89 +649,63 @@ RSpec.describe IsoDoc do
                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">77,7</td>
                </tr>
             </tbody>
-             <tfoot>
-               <tr>
-                <td colspan="5" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">
-                   <div class="key" style="page-break-after:avoid">
-                     <p class="MsoNormal" style="page-break-after: avoid;page-break-after:avoid">
-                       <span class="Strong">Key</span>
-                     </p>
-                     <p class="ForewordText" style="page-break-after:avoid">Drago: A type of rice</p>
-                   </div>
-                 </td>
-               </tr>
-               <tr>
-                <td align="left" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">
-                   Reproducibility limit,
-                   <span class="stem">(#(R)#)</span>
-                   (= 2,83
-                   <span class="stem">(#(s_R)#)</span>
-                   )
-                 </td>
-                <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">2,89</td>
-                <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">0,57</td>
-                <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">2,26</td>
-                <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">
-                   <p class="ForewordText" style="text-align: center;page-break-after:avoid">6,06: definition</p>
-                 </td>
-               </tr>
-               <tr>
-                <td colspan="5" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">
-                   <div style="page-break-after:auto">
-                     <a id="N1" name="N1"/>
-                     <p class="Note" style="page-break-after:auto">
-                       <span class="note_label">
-                         NOTE
-                         <span style="mso-tab-count:1">  </span>
-                       </span>
-                       This is a table about rice
-                     </p>
-                   </div>
-                  <div class="TableFootnote" style="page-break-after:auto">
-                     <a id="ftntableD-11" name="ftntableD-11"/>
-                    <p class="ForewordText" style="page-break-after:auto">
-                       <a id="_" name="_"/>
-                       <span class="TableFootnoteRef">Footnote 1)</span>
-                       <span style="mso-tab-count:1">  </span>
-                       Name footnote.
-                     </p>
-                   </div>
-                  <div class="TableFootnote" style="page-break-after:auto">
-                     <a id="ftntableD-1a" name="ftntableD-1a"/>
-                    <p class="ForewordText" style="page-break-after:auto">
-                       <a id="_" name="_"/>
-                       <span class="TableFootnoteRef">Footnote a)</span>
-                       <span style="mso-tab-count:1">  </span>
-                       Parboiled rice.
-                     </p>
-                  </div>
-                  <div class="BlockSource" style="page-break-after:auto">
-                    <p class="MsoNormal" style="page-break-after:auto">SOURCE: ,  Section 1, with adjustments; ,  Section 3, with alterations</p>
-                   </div>
-                 </td>
-               </tr>
-             </tfoot>
-         </table>
-      </div>
+               <tfoot>
+                 <tr>
+                   <td colspan="5" style="border-top:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">
+                     <div class="key" style="page-break-after:avoid">
+                       <p style="page-break-after: avoid;page-break-after:avoid" class="MsoNormal">
+                         <span class="Strong">Key</span>
+                       </p>
+                       <p class="ForewordText" style="page-break-after:avoid">Drago: A type of rice</p>
+                     </div>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td align="left" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">Reproducibility limit,
+                     <span class="stem">(#(R)#)</span>
+                     (= 2,83
+                     <span class="stem">(#(s_R)#)</span>
+                     )</td>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">2,89</td>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">0,57</td>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">2,26</td>
+                   <td align="center" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-top-alt:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext 1.0pt;page-break-after:avoid;">
+                     <p class="ForewordText" style="text-align: center;page-break-after:avoid">6,06: definition</p>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td colspan="5" style="border-top:none;mso-border-top-alt:none;border-left:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;mso-border-bottom-alt:solid windowtext 1.5pt;page-break-after:auto;">
+                     <div style="page-break-after:auto">
+                       <a name="N1" id="N1"></a>
+                       <p class="Note" style="page-break-after:auto"><span class="note_label">NOTE<span style="mso-tab-count:1">&#xA0; </span></span>This is a table about rice</p>
+                     </div>
+                     <div class="TableFootnote" style="page-break-after:auto">
+                       <a name="ftntableD-11" id="ftntableD-11"></a>
+                       <p class="ForewordText" style="page-break-after:auto"><a name="_" id="_"></a><span class="TableFootnoteRef">Footnote 1)</span><span style="mso-tab-count:1">&#xA0; </span>Name footnote.</p>
+                     </div>
+                     <div class="TableFootnote" style="page-break-after:auto">
+                       <a name="ftntableD-1a" id="ftntableD-1a"></a>
+                       <p class="ForewordText" style="page-break-after:auto"><a name="_" id="_"></a><span class="TableFootnoteRef">Footnote a)</span><span style="mso-tab-count:1">&#xA0; </span>Parboiled rice.</p>
+                     </div>
+                     <div class="BlockSource" style="page-break-after:auto">
+                       <p style="page-break-after:auto" class="MsoNormal">SOURCE: ,  Section 1, with adjustments; ,  Section 3, with alterations</p>
+                     </div>
+                   </td>
+                 </tr>
+               </tfoot>
+             </table>
+           </div>
+         </body>
+       </html>
     OUTPUT
     doc2 = <<~OUTPUT
       <div class="Section3">
-         <a name="Annex" id="Annex"/>
-         <p class="Annex">
-           Annex A
-           <br/>
-           <span class="obligation">(informative)</span>
-           <br/>
-           <span class="Strong">Annex</span>
-         </p>
-         <p style="display:none;" class="variant-title-toc">
-          Annex A
-          <span style="mso-tab-count:1">  </span>
-          Annex
-      </p>
+         <a name="Annex" id="Annex"></a>
+         <p class="Annex">Annex A<br/><span class="obligation">(informative)</span><br/><span class="Strong">Annex</span></p>
+         <p style="display:none;" class="variant-title-toc">Annex A<span style="mso-tab-count:1">  </span>Annex</p>
          <div align="center" class="table_container">
            <table title="" summary="" width="" class="MsoTableGrid" style="border-collapse:collapse;mso-table-anchor-horizontal:column;mso-table-overlap:never;border:none;mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none;" border="0" cellspacing="0" cellpadding="0">
-             <a name="AnnexTable" id="AnnexTable"/>
+             <a name="AnnexTable" id="AnnexTable"></a>
              <thead>
                <tr>
                  <td colspan="1" style="page-break-after:avoid;" align="center" valign="middle">
@@ -1204,14 +1157,9 @@ RSpec.describe IsoDoc do
     OUTPUT
 
     html = <<~OUTPUT
-              <main class="main-section">
-             <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-             <br/>
+              <main class="main-section"><button onclick="topFunction()" id="myBtn" title="Go to top">Top</button><br/>
              <div id="_">
-                <h1 class="ForewordTitle" id="_">
-                   <a class="anchor" href="#_"/>
-                   <a class="header" href="#_">Foreword</a>
-                </h1>
+                <h1 class="ForewordTitle" id="_"><a class="anchor" href="#_"></a><a class="header" href="#_">Foreword</a></h1>
                 <table id="tableD-1" title="tool tip" class="plain">
                    <caption>
                       <span style="display:none">long desc</span>
@@ -1317,10 +1265,7 @@ RSpec.describe IsoDoc do
              <br/>
                         #{middle_title(false)}
                            <div id="_">
-         <h1 id="_">
-            <a class="anchor" href="#_"/>
-            <a class="header" href="#_">1</a>
-         </h1>
+         <h1 id="_"><a class="anchor" href="#_"></a><a class="header" href="#_">1</a></h1>
       </div>
           </main>
     OUTPUT
@@ -1328,7 +1273,7 @@ RSpec.describe IsoDoc do
     doc = <<~OUTPUT
       <div>
          <table xmlns:m="https://m" title="tool tip" summary="long desc" width="" class="" style="" border="0" cellspacing="0" cellpadding="0">
-            <a name="tableD-1" id="tableD-1"/>
+            <a name="tableD-1" id="tableD-1"></a>
             <thead>
                <tr>
                   <td colspan="5" style="page-break-after:avoid;" align="center" valign="middle">
@@ -1402,7 +1347,7 @@ RSpec.describe IsoDoc do
                <tr>
                   <td colspan="5" style="page-break-after:auto;">
                      <div style="page-break-after:auto">
-                        <a name="N1" id="N1"/>
+                        <a name="N1" id="N1"></a>
                         <p class="Note" style="page-break-after:auto">
                            <span class="note_label">
                               NOTE
@@ -1412,18 +1357,18 @@ RSpec.describe IsoDoc do
                         </p>
                      </div>
                      <div class="TableFootnote" style="page-break-after:auto">
-                        <a name="ftntableD-11" id="ftntableD-11"/>
+                        <a name="ftntableD-11" id="ftntableD-11"></a>
                         <p class="ForewordText" style="page-break-after:auto">
-                           <a name="_" id="_"/>
+                           <a name="_" id="_"></a>
                            <span class="TableFootnoteRef">Footnote 1)</span>
                            <span style="mso-tab-count:1">  </span>
                            Name footnote.
                         </p>
                      </div>
                      <div class="TableFootnote" style="page-break-after:auto">
-                        <a name="ftntableD-1a" id="ftntableD-1a"/>
+                        <a name="ftntableD-1a" id="ftntableD-1a"></a>
                         <p class="ForewordText" style="page-break-after:auto">
-                           <a name="_" id="_"/>
+                           <a name="_" id="_"></a>
                            <span class="TableFootnoteRef">Footnote a)</span>
                            <span style="mso-tab-count:1">  </span>
                            Parboiled rice.
@@ -1818,7 +1763,7 @@ RSpec.describe IsoDoc do
           </div>
            </div>
            <br clear="all" style="page-break-before:left;mso-break-type:section-break"/>
-           <div class="colophon"/>
+           <div class="colophon"></div>
          </body>
     OUTPUT
     pres_output = IsoDoc::Jis::PresentationXMLConvert
