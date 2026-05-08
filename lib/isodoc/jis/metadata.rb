@@ -13,9 +13,11 @@ module IsoDoc
         tp[:intro] and set(:doctitleintro, tp[:intro].children.to_xml)
         set(:doctitlepartlabel, title_part_prefix(isoxml, "part", lang))
         tp[:part] and set(:doctitlepart, tp[:part].children.to_xml)
-        tn[:amd] and set(:doctitleamdlabel, title_part_prefix(isoxml, "amendment", lang))
+        tn[:amd] and set(:doctitleamdlabel,
+                         title_part_prefix(isoxml, "amendment", lang))
         tp[:amd] and set(:doctitleamd, tp[:amd].children.to_xml)
-        tn[:corr] and set(:doctitlecorrlabel, title_part_prefix(isoxml, "corrigendum", lang))
+        tn[:corr] and set(:doctitlecorrlabel,
+                          title_part_prefix(isoxml, "corrigendum", lang))
         main = compose_title(tp, tn, lang)
         set(:doctitle, main)
       end
@@ -28,9 +30,11 @@ module IsoDoc
         tp[:intro] and set(:docsubtitleintro, tp[:intro].children.to_xml)
         set(:docsubtitlepartlabel, title_part_prefix(isoxml, "part", lang))
         tp[:part] and set(:docsubtitlepart, tp[:part].children.to_xml)
-        tn[:amd] and set(:docsubtitleamdlabel, title_part_prefix(isoxml, "amendment", lang))
+        tn[:amd] and set(:docsubtitleamdlabel,
+                         title_part_prefix(isoxml, "amendment", lang))
         tp[:amd] and set(:docsubtitleamd, tp[:amd].children.to_xml)
-        tn[:corr] and set(:docsubtitlecorrlabel, title_part_prefix(isoxml, "corrigendum", lang))
+        tn[:corr] and set(:docsubtitlecorrlabel,
+                          title_part_prefix(isoxml, "corrigendum", lang))
         main = compose_title(tp, tn, lang)
         set(:docsubtitle, main)
       end
@@ -53,15 +57,18 @@ module IsoDoc
           val = Common::date_range(d)
           @lang == "ja" && /^\d+[0-9-]+$/.match?(val) and
             val = @i18n.japanese_date(val)
-          set("#{d['type'].tr('-', '_')}date".to_sym, val)
+          set(:"#{d['type'].tr('-', '_')}date", val)
         end
       end
 
       def version(isoxml, out)
         super
         @lang == "ja" or return
-        revdate = @i18n.japanese_date(isoxml
-          .at(ns("//bibdata/version/revision-date"))&.text)
+        revdate = if revdate = isoxml.at(ns("//bibdata/date[@type = 'updated']/on"))
+                    @i18n.japanese_date(revdate.text)
+                  else
+                    isoxml.at(ns("//bibdata/date[@type = 'updated']"))&.text
+                  end
         set(:revdate, revdate)
         set(:draftinfo, draftinfo(get[:draft], revdate))
       end

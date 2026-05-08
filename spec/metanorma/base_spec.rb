@@ -111,6 +111,9 @@ RSpec.describe Metanorma::Jis do
            <date type="announced">
               <on>2000-02-01</on>
            </date>
+           <date type="updated">
+              <on>2000-01-01</on>
+           </date>
            <contributor>
              <role type="author"/>
              <organization>
@@ -153,10 +156,7 @@ RSpec.describe Metanorma::Jis do
              </organization>
            </contributor>
            <edition>2</edition>
-           <version>
-             <revision-date>2000-01-01</revision-date>
-             <draft>0.3.4</draft>
-           </version>
+           <version>0.3.4</version>
            <language>ja</language>
            <script>Jpan</script>
            <status>
@@ -227,6 +227,9 @@ RSpec.describe Metanorma::Jis do
            <date type="announced">
               <on>2000-02-01</on>
            </date>
+           <date type="updated">
+              <on>2000-01-01</on>
+           </date>
            <contributor>
              <role type="author"/>
              <organization>
@@ -269,10 +272,7 @@ RSpec.describe Metanorma::Jis do
              </organization>
            </contributor>
            <edition>2</edition>
-           <version>
-             <revision-date>2000-01-01</revision-date>
-             <draft>0.3.4</draft>
-           </version>
+           <version>0.3.4</version>
            <language>en</language>
            <script>Latn</script>
            <status>
@@ -339,6 +339,9 @@ RSpec.describe Metanorma::Jis do
                <bibdata type="standard">
            <docidentifier primary="true" type="JIS">1000:#{Date.today.year}</docidentifier>
            <docnumber>1000</docnumber>
+           <date type="updated">
+              <on>2000-01-01</on>
+           </date>
            <contributor>
              <role type="author"/>
              <organization>
@@ -355,9 +358,7 @@ RSpec.describe Metanorma::Jis do
                <abbreviation>Publisher Abbrev</abbreviation>
              </organization>
            </contributor>
-           <version>
-             <revision-date>2000-01-01</revision-date>
-           </version>
+           <version>2000-01-01</version>
            <language>ja</language>
            <script>Jpan</script>
            <status>
@@ -687,6 +688,9 @@ RSpec.describe Metanorma::Jis do
           <title language="ja" type="title-part-prefix">その 1</title>
           <docidentifier primary="true" type="JIS">EXP</docidentifier>
           <docnumber>1000</docnumber>
+           <date type="updated">
+              <on>2000-01-01</on>
+           </date>
           <contributor>
             <role type="author"/>
             <organization>
@@ -708,10 +712,7 @@ RSpec.describe Metanorma::Jis do
             </organization>
           </contributor>
           <edition>2</edition>
-          <version>
-            <revision-date>2000-01-01</revision-date>
-            <draft>0.3.4</draft>
-          </version>
+          <version>0.3.4</version>
           <language>ja</language>
           <script>Jpan</script>
           <status>
