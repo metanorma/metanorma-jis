@@ -24,6 +24,7 @@ RSpec.describe IsoDoc::Jis::Metadata do
           <docnumber>1000</docnumber>
           <date type="created">1900-01-02</date>
           <date type="published">Doomsday</date>
+          <date type="updated"><on>2000-01-01</on></date>
           <contributor>
             <role type="author"/>
             <organization>
@@ -140,10 +141,7 @@ RSpec.describe IsoDoc::Jis::Metadata do
              </person>
            </contributor>
           <edition>2</edition>
-          <version>
-            <revision-date>2000-01-01</revision-date>
-            <draft>0.3.4</draft>
-          </version>
+          <version>0.3.4</version>
           <language>ja</language>
           <script>Jpan</script>
           <status>
@@ -241,6 +239,7 @@ RSpec.describe IsoDoc::Jis::Metadata do
         substage_int: "20",
         tc: "TC 62",
         unpublished: true,
+        updateddate: "平成十二年1月1日",
         wg: "WG 62A1" }
     expect(metadata(c.info(Nokogiri::XML(input),
                            nil))).to be_xml_equivalent_to output
@@ -296,6 +295,7 @@ RSpec.describe IsoDoc::Jis::Metadata do
         substage_int: "20",
         tc: "TC 62",
         unpublished: true,
+        updateddate: "平成十二年1月1日",
         wg: "WG 62A1" }
     expect(metadata(c.info(Nokogiri::XML(input),
                            nil))).to be_equivalent_to output

@@ -61,6 +61,7 @@ RSpec.describe IsoDoc::Jis do
           <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
           <docidentifier type="JIS">Z 1000-1.3:2000</docidentifier>
           <docnumber>1000</docnumber>
+          <date type="updated"><on>2000-01-01</on></date>
           <contributor>
             <role type="author"/>
             <organization>
@@ -76,10 +77,7 @@ RSpec.describe IsoDoc::Jis do
             </organization>
           </contributor>
           <edition>2</edition>
-          <version>
-            <revision-date>2000-01-01</revision-date>
-            <draft>0.3.4</draft>
-          </version>
+          <version>0.3.4</version>
           <language>en</language>
           <script>Latn</script>
           <copyright>
@@ -135,6 +133,7 @@ RSpec.describe IsoDoc::Jis do
             <title language="ja" format="text/plain" type="title-part">Part du Titre</title>
             <docidentifier type="JIS">Z 1000-1.3:2000</docidentifier>
             <docnumber>1000</docnumber>
+          <date type="updated"><on>2000-01-01</on></date>
             <contributor>
                <role type="author"/>
                <organization>
@@ -152,10 +151,7 @@ RSpec.describe IsoDoc::Jis do
             <edition language="">2</edition>
             <edition language="en">second edition</edition>
             <edition language="en" numberonly="true">2</edition>
-            <version>
-               <revision-date>2000-01-01</revision-date>
-               <draft>0.3.4</draft>
-            </version>
+            <version>0.3.4</version>
             <language current="true">en</language>
             <script current="true">Latn</script>
             <copyright>
