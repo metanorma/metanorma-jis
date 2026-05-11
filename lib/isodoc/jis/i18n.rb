@@ -18,26 +18,21 @@ module IsoDoc
         end
       end
 
-      # use Japanese ordinals for era years
-      def japanese_date(date)
-        date.nil? and return date
+      def japanese_date(date, japanese_numbering: false)
+        return date if date.nil?
+
         d = date.split("-").map(&:to_i)
-        time = Date.new(*d)
-        yr = japanese_year(time)
-        case d.size
-        when 1 then yr
-        when 2 then yr + time.strftime("%-m月")
-        when 3 then yr + time.strftime("%-m月%-d日")
-        else date
-        end
+        fmt = japanese_date_format(d.size, japanese_numbering) or return date
+        IsoDoc::ExtendedDateFormatter.format(Date.new(*d), fmt, lang: "ja")
+      rescue StandardError
+        date
       end
 
-      def japanese_year(time)
-        era_yr = time.era_year.to_i.localize(:ja)
-          .to_rbnf_s("SpelloutRules", "spellout-numbering-year")
-        "#{time.strftime('%JN')}#{era_yr}年"
-      rescue StandardError
-        time.year.to_s
+      def japanese_date_format(arity, japanese_numbering)
+        return nil unless (1..3).cover?(arity)
+
+        branch = japanese_numbering ? "japanese_numbering" : "default"
+        @labels.dig("date_format", branch, %w[year year_month full][arity - 1])
       end
     end
   end
