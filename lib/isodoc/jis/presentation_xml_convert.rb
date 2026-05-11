@@ -74,12 +74,8 @@ module IsoDoc
       end
 
       def date_translate1(date)
-        j = @i18n.japanese_date(date.strip)
-        @autonumbering_style == :japanese and
-          j.gsub!(/(\d+)/) do
-            $1.to_i.localize(:ja).spellout
-          end
-        j
+        ja = @autonumbering_style == :japanese
+        @i18n.japanese_date(date.strip, japanese_numbering: ja)
       end
 
       def edition_integer?(bibdata)
