@@ -19,20 +19,15 @@ module IsoDoc
       end
 
       def japanese_date(date, japanese_numbering: false)
-        return date if date.nil?
-
-        d = date.split("-").map(&:to_i)
-        fmt = japanese_date_format(d.size, japanese_numbering) or return date
-        IsoDoc::ExtendedDateFormatter.format(Date.new(*d), fmt, lang: "ja")
-      rescue StandardError
-        date
-      end
-
-      def japanese_date_format(arity, japanese_numbering)
-        return nil unless (1..3).cover?(arity)
-
         branch = japanese_numbering ? "japanese_numbering" : "default"
-        @labels.dig("date_format", branch, %w[year year_month full][arity - 1])
+        fmts = @labels.dig("date_format", branch) || {}
+        IsoDoc::ExtendedDateFormatter.format_iso_date(
+          date,
+          lang: "ja",
+          year: fmts["year"],
+          year_month: fmts["year_month"],
+          full: fmts["full"],
+        )
       end
     end
   end
