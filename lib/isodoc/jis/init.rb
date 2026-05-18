@@ -24,8 +24,8 @@ module IsoDoc
           .merge(language: @lang, script: @script, i18nhash: @i18n.get))
       end
 
-      def std_docid_semantic(text)
-        text
+      def annotate_docid?(_id)
+        false
       end
 
       def convert_i18n_init1(docxml)
