@@ -203,15 +203,15 @@ RSpec.describe IsoDoc::Jis::Metadata do
         docnumber_undated: "1000-1.3",
         docnumeric: "1000",
         docsubtitle: "Introduction Française&#xa0;&#x2014; Titre Principal&#xa0;&#x2014; その 1： Part du Titre",
-        docsubtitleintro: "Introduction Fran&#xe7;aise",
+        docsubtitleintro: "Introduction Fran&#xE7;aise",
         docsubtitlemain: "Titre Principal",
         docsubtitlepart: "Part du Titre",
-        docsubtitlepartlabel: "その&#xa0;1",
+        docsubtitlepartlabel: "その 1",
         doctitle: "Introduction&#xa0;&#x2014; Main Title — Title&#xa0;&#x2014; Part 1: Title Part",
         doctitleintro: "Introduction",
         doctitlemain: "Main Title&#x2009;&#x2014;&#x2009;Title",
         doctitlepart: "Title Part",
-        doctitlepartlabel: "Part&#xa0;1",
+        doctitlepartlabel: "Part 1",
         doctype: "Standard",
         doctype_display: "Standard",
         docyear: "2000",
@@ -239,10 +239,10 @@ RSpec.describe IsoDoc::Jis::Metadata do
         substage_int: "20",
         tc: "TC 62",
         unpublished: true,
-        updateddate: "平成十二年1月1日",
+        updateddate: "2000-01-01",
         wg: "WG 62A1" }
     expect(metadata(c.info(Nokogiri::XML(input),
-                           nil))).to be_xml_equivalent_to output
+                           nil))).to be_equivalent_to output
     c = IsoDoc::Jis::HtmlConvert.new({})
     _ = c.convert_init(<<~INPUT, "test", false)
       <iso-standard xmlns="http://riboseinc.com/isoxml">
