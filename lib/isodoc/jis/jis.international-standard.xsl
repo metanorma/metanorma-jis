@@ -9613,6 +9613,7 @@
 	     text line 1
 			 text line 2
 	-->
+	<xsl:variable name="example_display_in"><!-- don't change here, only for override xsl --></xsl:variable> <!-- block or inline -->
 	<xsl:template match="mn:example" name="example">
 		<xsl:call-template name="setNamedDestination"/>
 		<fo:block id="{@id}" xsl:use-attribute-sets="example-style" role="SKIP">
