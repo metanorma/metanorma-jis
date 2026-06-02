@@ -22,12 +22,12 @@ doctype_dict:
   japanese-industrial-standard: 日本産業規格
   technical-specification: 標準仕様書
   technical-report: 標準報告書
-  publicly-available-specification: Publicly Available Specification
-  international-workshop-agreement: International Workshop Agreement
+  publicly-available-specification: 公開仕様書
+  international-workshop-agreement: 国際ワークショップ協定
   guide: ガイドブック
   amendment: 追補
-  technical-corrigendum: Technical Corrigendum
-  directive: Directive
+  technical-corrigendum: 技術正誤票
+  directive: 指令
 stage_dict:
   international-standard: 日本産業規格
 punct:
