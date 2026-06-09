@@ -1613,8 +1613,8 @@ RSpec.describe IsoDoc do
                          </tr>
                          <tr>
                             <td colspan="2" style="" scope="colgroup">
-                               <div id="B" class="Note">Units in mm</div>
-                                <div id="D" class="Note">Other units in sec</div>
+                               <div id="B" class="units Note">Units in mm</div>
+                                <div id="D" class="units Note">Other units in sec</div>
                             </td>
                          </tr>
                          <tr>
@@ -1696,8 +1696,8 @@ RSpec.describe IsoDoc do
                      </tr>
                      <tr>
                        <td colspan="2" style="page-break-after:avoid;">
-                         <div id="B" class="Note">Units in mm</div>
-                          <div id="D" class="Note">Other units in sec</div>
+                         <div id="B" class="units Note">Units in mm</div>
+                          <div id="D" class="units Note">Other units in sec</div>
                        </td>
                      </tr>
                      <tr>
