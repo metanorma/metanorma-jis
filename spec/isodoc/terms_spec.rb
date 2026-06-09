@@ -857,7 +857,7 @@ RSpec.describe IsoDoc::Jis do
          </preface>
          <sections>
             <p class="JapaneseIndustrialStandard" displayorder="2">
-               日本工業規格
+               日本産業規格
                <tab/>
                <tab/>
                <tab/>

@@ -961,7 +961,7 @@ RSpec.describe IsoDoc do
           </preface>
           <sections>
              <p class="JapaneseIndustrialStandard" displayorder="3">
-                日本工業規格
+                日本産業規格
                 <tab/>
                 <tab/>
                 <tab/>

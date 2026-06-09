@@ -105,7 +105,7 @@ RSpec.describe Metanorma::Jis do
            <title language="ja" type="title-intro">Introduction Française</title>
            <title language="ja" type="title-main">Titre Principal</title>
            <title language="ja" type="title-part">Part du Titre</title>
-           <title language="ja" type="title-part-prefix">その 1</title>
+           <title language="ja" type="title-part-prefix">第1部</title>
            <docidentifier primary="true" type="JIS">Z 1000-1:2000</docidentifier>
            <docnumber>1000</docnumber>
            <date type="announced">
@@ -221,7 +221,7 @@ RSpec.describe Metanorma::Jis do
            <title language="ja" type="title-intro">Introduction Française</title>
            <title language="ja" type="title-main">Titre Principal</title>
            <title language="ja" type="title-part">Part du Titre</title>
-           <title language="ja" type="title-part-prefix">その 1</title>
+           <title language="ja" type="title-part-prefix">第1部</title>
            <docidentifier primary="true" type="JIS">Z 1000-1:2000(E)</docidentifier>
            <docnumber>1000</docnumber>
            <date type="announced">
@@ -685,7 +685,7 @@ RSpec.describe Metanorma::Jis do
           <title language="ja" type="title-intro">Introduction Française</title>
           <title language="ja" type="title-main">Titre Principal</title>
           <title language="ja" type="title-part">Part du Titre</title>
-          <title language="ja" type="title-part-prefix">その 1</title>
+          <title language="ja" type="title-part-prefix">第1部</title>
           <docidentifier primary="true" type="JIS">EXP</docidentifier>
           <docnumber>1000</docnumber>
            <date type="updated">
@@ -765,7 +765,7 @@ RSpec.describe Metanorma::Jis do
       <metanorma xmlns="https://www.metanorma.org/ns/standoc" type="semantic" version="#{Metanorma::Jis::VERSION}" flavor="jis">
                    <bibdata type="standard">
       <title language="en" type="title-amendment-prefix">AMENDMENT 3</title>
-      <title language="ja" type="title-amendment-prefix">Amendment 3</title>
+      <title language="ja" type="title-amendment-prefix">追補3</title>
            <docidentifier primary="true" type="JIS">Z 1000-1:1980/AMD 3:2022</docidentifier>
            <docnumber>1000</docnumber>
            <date type="created">
