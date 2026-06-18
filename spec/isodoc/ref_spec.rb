@@ -865,7 +865,7 @@ RSpec.describe IsoDoc do
                 </bibitem>
                 <bibitem id="ref12">
                    <biblio-tag>
-                      [Citn]
+                      [7]
                       <tab/>
                       IETF RFC 20,
                    </biblio-tag>
@@ -874,6 +874,7 @@ RSpec.describe IsoDoc do
                       <em>How to cite a reference</em>
                       .
                    </formattedref>
+                   <docidentifier type="metanorma-ordinal">[7]</docidentifier>
                    <docidentifier type="metanorma">[Citn]</docidentifier>
                    <docidentifier type="IETF">IETF RFC 20</docidentifier>
                    <docidentifier scope="biblio-tag">IETF RFC 20</docidentifier>
@@ -1137,7 +1138,7 @@ RSpec.describe IsoDoc do
                       [1]
                       <tab/>
                    </biblio-tag>
-                   <formattedref>Chemicals for analytical laboratory use。都市はありません。：日付なし</formattedref>
+                   <formattedref>Chemicals for analytical laboratory use。出版地不明：日付なし</formattedref>
                    <title format="text/plain">Chemicals for analytical laboratory use</title>
                    <docidentifier type="metanorma-ordinal">[1]</docidentifier>
                    <docidentifier type="ISBN">ISBN</docidentifier>
@@ -1272,7 +1273,7 @@ RSpec.describe IsoDoc do
                       <tab/>
                    </biblio-tag>
                    <formattedref>
-                      Aluffi P.、 Anderson D.、 Hering M.、 Mustaţă M.、 Payne S. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。 London Mathematical Society Lecture Note Series （N.S.）。 2022、巻1 いいえ7、 89〜112頁
+                   Aluffi P.、 Anderson D.、 Hering M.、 Mustaţă M.、 Payne S. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。 London Mathematical Society Lecture Note Series （N.S.）。 2022、巻1 7号、 89〜112頁
                       <note type="display" id="_" autonum="1">
                          <fmt-name id="_">
                             <span class="fmt-caption-label">
@@ -1483,7 +1484,7 @@ RSpec.describe IsoDoc do
                 </bibitem>
                 <bibitem id="ref12">
                    <biblio-tag>
-                      [Citn]
+                      [7]
                       <tab/>
                       IETF RFC 20,
                    </biblio-tag>
@@ -1492,6 +1493,7 @@ RSpec.describe IsoDoc do
                       <em>How to cite a reference</em>
                       .
                    </formattedref>
+                   <docidentifier type="metanorma-ordinal">[7]</docidentifier>
                    <docidentifier type="metanorma">[Citn]</docidentifier>
                    <docidentifier type="IETF">IETF RFC 20</docidentifier>
                    <docidentifier scope="biblio-tag">IETF RFC 20</docidentifier>
