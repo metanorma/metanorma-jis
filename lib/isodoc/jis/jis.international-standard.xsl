@@ -13447,21 +13447,38 @@
 	<!-- ====== -->
 	<!-- ====== -->
 
-	<xsl:attribute-set name="quote-style">
+	<xsl:attribute-set name="quote-container-style">
 		<xsl:attribute name="margin-left">12mm</xsl:attribute>
 		<xsl:attribute name="margin-right">12mm</xsl:attribute>
+		<xsl:attribute name="role">SKIP</xsl:attribute>
+		<xsl:attribute name="margin-bottom">6pt</xsl:attribute>
 		<xsl:attribute name="margin-left">0mm</xsl:attribute>
 		<xsl:attribute name="margin-right">0mm</xsl:attribute>
-	</xsl:attribute-set> <!-- quote-style -->
+	</xsl:attribute-set>
 
-	<xsl:template name="refine_quote-style">
+	<xsl:template name="refine_quote-container-style">
+		<xsl:if test="parent::mn:note">
+			<xsl:if test="not(ancestor::mn:table)">
+				<xsl:attribute name="margin-left">5mm</xsl:attribute>
+			</xsl:if>
+		</xsl:if>
 		<xsl:if test="ancestor::mn:li">
 			<xsl:attribute name="margin-left">7.5mm</xsl:attribute>
 		</xsl:if>
+	</xsl:template>
+
+	<xsl:attribute-set name="quote-style">
+		<xsl:attribute name="margin-left">0mm</xsl:attribute>
+		<xsl:attribute name="margin-right">0mm</xsl:attribute>
+
+	</xsl:attribute-set> <!-- quote-style -->
+
+	<xsl:template name="refine_quote-style">
 	</xsl:template> <!-- refine_quote-style -->
 
 	<xsl:attribute-set name="quote-source-style">
 		<xsl:attribute name="text-align">right</xsl:attribute>
+		<xsl:attribute name="margin-right">-12mm</xsl:attribute>
 	</xsl:attribute-set> <!-- quote-source-style -->
 
 	<xsl:template name="refine_quote-source-style">
@@ -13484,12 +13501,9 @@
 
 			<xsl:call-template name="setBlockSpanAll"/>
 
-			<xsl:if test="parent::mn:note">
-				<xsl:if test="not(ancestor::mn:table)">
-					<xsl:attribute name="margin-left">5mm</xsl:attribute>
-				</xsl:if>
-			</xsl:if>
-			<fo:block-container margin-left="0mm" role="SKIP">
+			<fo:block-container xsl:use-attribute-sets="quote-container-style">
+				<xsl:call-template name="refine_quote-container-style"/>
+
 				<fo:block-container xsl:use-attribute-sets="quote-style" role="SKIP">
 
 					<xsl:call-template name="refine_quote-style"/>
@@ -13501,14 +13515,16 @@
 					</fo:block-container>
 				</fo:block-container>
 				<xsl:if test="mn:author or mn:fmt-source or mn:attribution">
-					<fo:block xsl:use-attribute-sets="quote-source-style">
-						<xsl:call-template name="refine_quote-source-style"/>
-						<!-- — ISO, ISO 7301:2011, Clause 1 -->
-						<xsl:apply-templates select="mn:author"/>
-						<xsl:apply-templates select="mn:fmt-source"/>
-						<!-- added for https://github.com/metanorma/isodoc/issues/607 -->
-						<xsl:apply-templates select="mn:attribution/mn:p/node()"/>
-					</fo:block>
+					<fo:block-container margin-left="0mm" margin-right="0mm" role="SKIP">
+						<fo:block xsl:use-attribute-sets="quote-source-style">
+							<xsl:call-template name="refine_quote-source-style"/>
+							<!-- — ISO, ISO 7301:2011, Clause 1 -->
+							<xsl:apply-templates select="mn:author"/>
+							<xsl:apply-templates select="mn:fmt-source"/>
+							<!-- added for https://github.com/metanorma/isodoc/issues/607 -->
+							<xsl:apply-templates select="mn:attribution/mn:p/node()"/>
+						</fo:block>
+					</fo:block-container>
 				</xsl:if>
 				<!-- render footnotes after references -->
 				<xsl:apply-templates select=".//mn:fn[generate-id(.)=generate-id(key('kfn',@reference)[1])]" mode="fn_after_element">
