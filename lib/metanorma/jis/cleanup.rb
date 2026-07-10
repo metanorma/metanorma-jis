@@ -93,29 +93,31 @@ module Metanorma
         end
       end
 
-      def pub_class_prep(bib)
-        iso = bib.at("#{PUBLISHER}[abbreviation = 'ISO']") ||
-          bib.at("#{PUBLISHER}[name = 'International Organization " \
-                                   "for Standardization']")
-        iec = bib.at("#{PUBLISHER}[abbreviation = 'IEC']") ||
-          bib.at("#{PUBLISHER}[name = 'International " \
-                                   "Electrotechnical Commission']")
-        jis = bib.at("#{PUBLISHER}[abbreviation = 'JIS']") ||
-          bib.at("#{PUBLISHER}[name = '#{@conv.pub_hash['ja']}']") ||
-          bib.at("#{PUBLISHER}[name = '#{@conv.pub_hash['en']}']")
-        [iso, iec, jis]
+      # JIS first, then ISO, then IEC, then other standards, then everything
+      # else. A co-publisher is ordered by the secondary key (see
+      # Standoc::Ref#publisher_sort_second), which reproduces the historical
+      # JIS ordering: JIS+IEC before JIS+ISO, JIS+IEC+ISO alongside JIS+IEC.
+      # Built at runtime because the JIS publisher name is language-dependent
+      # (@conv.pub_hash). Overridable per-document / per-taste via
+      # :sort-biblio-<abbrev>:.
+      def default_publisher_sort
+        [
+          { abbrev: "JIS",
+            name: [@conv.pub_hash["ja"], @conv.pub_hash["en"]].compact,
+            rank: 1 },
+          { abbrev: "ISO",
+            name: "International Organization for Standardization", rank: 2 },
+          { abbrev: "IEC", name: "International Electrotechnical Commission",
+            rank: 3 },
+        ]
       end
 
       def pub_class(bib)
-        iso, iec, jis = pub_class_prep(bib)
-        jis && iec && iso and return 2
-        jis && iec and return 2
-        jis && iso and return 3
-        jis and return 1
-        iso && iec and return 4
-        iso and return 4
-        iec and return 5
-        6
+        publisher_sort_rank(bib, default_publisher_sort)
+      end
+
+      def second_pub_class(bib, _first_pub = nil)
+        publisher_sort_second(bib, default_publisher_sort)
       end
     end
   end
