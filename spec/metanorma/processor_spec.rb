@@ -108,7 +108,7 @@ RSpec.describe Metanorma::Jis::Processor do
 
   it "registers output formats against metanorma" do
     output = <<~OUTPUT
-      [[:doc, "doc"], [:html, "html"], [:pdf, "pdf"], [:presentation, "presentation.xml"], [:rxl, "rxl"], [:xml, "xml"]]
+      [[:docx, "docx"], [:html, "html"], [:pdf, "pdf"], [:presentation, "presentation.xml"], [:rxl, "rxl"], [:xml, "xml"]]
     OUTPUT
     expect(processor.output_formats.sort.to_s).to be_equivalent_to output.strip
   end
