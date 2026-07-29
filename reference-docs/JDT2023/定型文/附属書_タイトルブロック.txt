@@ -1,0 +1,5 @@
+[standard]
+attachment_1=附属書n§附属書見出し
+attachment_2=（参考）§附属書見出し
+attachment_3=<blue>附属書タイトル</blue>§附属書見出し
+
