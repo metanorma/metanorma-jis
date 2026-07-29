@@ -1,0 +1,6 @@
+[standard]
+commentary_1=%‹KŠi”Ô†%<k_hakkounen>F%¼—ï”N%</k_hakkounen>˜‰ğàQ‹KŠi”Ô†
+commentary_2=i%‘Ûˆê’v‹KŠi”Ô†%<k_hakkounen>F%¼—ï”N%</k_hakkounen>j˜‰ğàQIDT”Ô†
+commentary_3=%‹KŠi–¼Ì%<br/>‰ğ@à˜‰ğàQ‹KŠi–¼Ì
+
+
