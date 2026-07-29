@@ -14,7 +14,7 @@ module Metanorma
         super.merge(
           html: "html",
           pdf: "pdf",
-          doc: "doc",
+          docx: "docx",
         )
       end
 
@@ -23,14 +23,8 @@ module Metanorma
           "STIX Two Math" => nil,
           "IPAexGothic" => nil,
           "IPAexMincho" => nil,
-=begin
-          "Noto Serif JP" => nil,
-          "Noto Serif JP ExtraLight" => nil,
-          "Noto Serif JP Medium" => nil,
-          "Noto Serif JP Black" => nil,
-          "Noto Sans JP Thin" => nil,
-          "Noto Sans JP Medium" => nil,
-=end
+          "MS Mincho" => nil,
+          "MS Gothic" => nil,
           "Courier New" => nil,
           "Cambria Math" => nil,
           "Times New Roman" => nil,
@@ -42,15 +36,20 @@ module Metanorma
         "Metanorma::Jis #{Metanorma::Jis::VERSION}"
       end
 
+      def use_presentation_xml(ext)
+        return true if ext == :docx
+
+        super
+      end
+
       def output(xml, inname, outname, format, options = {})
         options_preprocess(options)
         case format
         when :html
           IsoDoc::Jis::HtmlConvert.new(options)
             .convert(inname, xml, nil, outname)
-        when :doc
-          IsoDoc::Jis::WordConvert.new(options)
-            .convert(inname, xml, nil, outname)
+        when :docx
+          ::IsoDoc::Jis::Docx::Adapter.new.convert(xml, outname)
         when :pdf
           IsoDoc::Jis::PdfConvert.new(options)
             .convert(inname, xml, nil, outname)

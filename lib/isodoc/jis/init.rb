@@ -1,7 +1,3 @@
-require "isodoc"
-require_relative "metadata"
-require_relative "i18n"
-
 module IsoDoc
   module Jis
     module Init
