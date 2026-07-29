@@ -31,8 +31,10 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = Gem::Requirement.new(">= 3.3.0")
 
   spec.add_dependency "japanese_calendar", "~> 0"
+  spec.add_dependency "liquid", "~> 5.4"
   spec.add_dependency "metanorma-iso", "~> 3.4.2"
   spec.add_dependency "pubid"
+  spec.add_dependency "uniword", "~> 1.5"
 
   spec.add_development_dependency "canon"# , "= 0.2.3"
   spec.add_development_dependency "debug"

@@ -1,0 +1,34 @@
+= Changelog
+
+== Unreleased
+
+=== Breaking changes
+
+* Removed `.doc` (MHTML) output. The legacy Word path (`IsoDoc::Jis::WordConvert`, `Html2Doc::Jis`) has been deleted. Use `.docx` instead.
+
+=== Added
+
+* Native DOCX output via `IsoDoc::Jis::Docx::Adapter` — visually faithful to the JDT2023 template.
+** Builds the OOXML package programmatically from `data/jis/*.yml` (no committed `.docx` template).
+** Per-section assembly: cover, body, annexes, bibliography, index, commentary.
+** JIS-specific renderers for cover (4 doctypes), commentary, dual-alphabet index, list flattening.
+* `Metanorma::Jis::Document` — vendored document model with typed `Cover`, `JisCommentarySection`, `JisIndexSection`, etc. Uses lutaml-model exclusively.
+* `Metanorma::Jis::Boilerplate` — Liquid-based boilerplate rendering. Replaces JDT2023's VBA macros. Templates for cover (JIS/TR/TS/追補), foreword, body title block, commentary preface.
+* `Metanorma::Jis::StyleCheck` — terminology and citation checker. Emits findings via `Metanorma::Jis::Log` with stable rule IDs.
+* `data/jis/` — extracted facts from JDT2023 DOTX/DOTM: 925 unique stylesIds, 50+ header/footer XMLs, 9 section layouts, Shift_JIS-decoded style-rule files.
+* Scripts: `scripts/extract_jis_templates.rb`, `scripts/validate_style_mapping.rb`.
+* Code-quality regression specs (`spec/code_quality_spec.rb`) — enforces no `require_relative`, no `send` on private methods, no `instance_variable_set/get`, no `respond_to?`, no `double()`.
+
+=== Changed
+
+* Refactored every internal load to Ruby `autoload`. Removed all `require_relative` from `lib/`.
+* `presentation_section.rb`, `presentation_list.rb`, `presentation_table.rb` converted from class-reopens to autoloadable modules included in `PresentationXMLConvert`.
+* `front.rb`, `log.rb` converted to autoloadable `Front`, `Log` modules included in `Converter`.
+* `Processor#output_formats`: `:doc` → `:docx`.
+
+=== Removed
+
+* `lib/isodoc/jis/word_convert.rb`, `word_cleanup.rb`, `word_table.rb`, `word_figure.rb`.
+* `lib/html2doc/lists.rb` (and `lib/html2doc/` directory).
+* `lib/isodoc/jis/html/word_jis_intro.html`, `word_jis_titlepage.html`, `wordstyle.scss`.
+* `spec/isodoc/word_spec.rb` and other WordConvert-dependent spec files.

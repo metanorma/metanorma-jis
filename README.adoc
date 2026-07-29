@@ -2,80 +2,188 @@
 
 image:https://img.shields.io/gem/v/metanorma-jis.svg["Gem Version", link="https://rubygems.org/gems/metanorma-jis"]
 image:https://github.com/metanorma/metanorma-jis/workflows/rake/badge.svg["Build Status", link="https://github.com/metanorma/metanorma-jis/actions?workflow=rake"]
-// image:https://codeclimate.com/github/metanorma/metanorma-jis/badges/gpa.svg["Code Climate", link="https://codeclimate.com/github/metanorma/metanorma-jis"]
-image:https://img.shields.io/github/issues-pr-raw/metanorma/metanorma-jis.svg["Pull Requests", link="https://github.com/metanorma/metanorma-jis/pulls"]
-image:https://img.shields.io/github/commits-since/metanorma/metanorma-jis/latest.svg["Commits since latest",link="https://github.com/metanorma/metanorma-jis/releases"]
+image:https://img.shields.io/github/issues-pr-raw/metanorma-mn/jis.svg["Pull Requests", link="https://github.com/metanorma/metanorma-jis/pulls"]
+image:https://img.shields.io/github/commits-since/metanorma-mn/jis/latest.svg["Commits since latest",link="https://github.com/metanorma/metanorma-jis/releases"]
 
 == Functionality
 
 This gem processes https://www.metanorma.com[Metanorma documents] following
 the Metanorma model for generating JIS standards.
 
-The gem is basically the https://github.com/metanorma/metanorma-iso gem, with some tweaking of rendering to meet the particular requirements of the JIS.
-
-It provides the following functions:
-
-. Compiles Metanorma input into the Metanorma-JIS XML format (which is identical to Metanorma-ISO, since the two standards share the same document model)
-. Validates XML output against the Metanorma-JIS document model
-** Errors are reported to console against the XML, and are intended for users to
-check that they have provided all necessary components of the
-document.
-. Metanorma-JIS XML is then converted into desired output formats.
+The gem is a thin flavor on top of the https://github.com/metanorma/metanorma-iso
+gem. It adds JIS-specific presentation semantics: the JIS XML namespace,
+the JIS document model, and DOCX output that faithfully reproduces the
+JDT2023 template distribution.
 
 The following outputs are supported:
 
-* Primary: the canonical Metanorma-JIS XML representation (`.xml`).
-* Secondary: the Metanorma-JIS XML representation is processed to generate the following outputs
-as end deliverable JIS documents.
-** HTML (`.html`)
-** Word (`.doc`)
-** PDF (`.pdf`)
+* `.xml` — canonical Metanorma-JIS XML representation (root tag `jis-standard`)
+* `.html` — HTML rendering
+* `.docx` — native Word DOCX produced via Uniword from `data/jis/template.docx`
+* `.pdf` — PDF rendering
 
-== Structure
+The legacy `.doc` (MHTML) output has been removed. Use `.docx` instead.
 
-This gem inherits from the https://github.com/metanorma/metanorma-iso
-gem, and aligns closely to it.
+== Required fonts
 
+JIS documents use Japanese-specific fonts. The DOCX output declares:
 
-=== Quickstart
+* `MS Mincho`, `MS Gothic` (Windows; the template's native fonts)
+* `IPAexMincho`, `IPAexGothic` (cross-platform open-source equivalents)
 
-Please see https://www.metanorma.com for instructions to get started.
+Authors on macOS/Linux should install the IPAex family for accurate rendering.
 
-You will need to setup your Git credentials for bundler or for HTTPS in order
-to fetch the software. Please refer to the following articles for details:
+== Architecture
 
-* https://depfu.com/blog/2017/08/02/bundler-and-private-dependencies[Setting up bundler for private dependencies]
-* https://bundler.io/v1.16/bundle_config.html#CREDENTIALS-FOR-GEM-SOURCES[Bundler credentials for gem sources]
-* https://help.github.com/articles/caching-your-github-password-in-git[GitHub - Caching your GitHub credentials in Git]
+The gem has three layers, each with a single responsibility. The
+layers communicate via typed interfaces — no layer reaches into
+another's internals.
 
+=== Layer 1 — AsciiDoc → JIS presentation XML
 
-== Usage
+`Metanorma::Jis::Converter` (a subclass of `Metanorma::Iso::Converter`)
+parses the AsciiDoc input and produces a JIS presentation XML tree.
+The XML uses the JIS namespace (`https://www.metanorma.org/ns/jis`)
+and the JIS root tag (`jis-standard`).
 
-Using the `metanorma` CLI:
+=== Layer 2 — JIS presentation XML → typed model
+
+`Metanorma::Jis::Document::Root.from_xml` parses the presentation XML
+into a typed lutaml-model model. The model is the single source of
+truth for the DOCX Adapter.
+
+```
+presentation XML
+    ↓ Root.from_xml (lutaml-model)
+typed model
+    (Bibdata → Cover, Preface → JisClauseSection,
+     Sections → JisSections → JisClauseSection[] → ...)
+```
+
+=== Layer 3 — Typed model → DOCX (via Uniword)
+
+`IsoDoc::Jis::Docx::Adapter` is the only entry point for DOCX
+output. It composes Uniword's typed OOXML model:
+
+```
+typed model
+    ↓ Adapter#convert(xml, path)
+Uniword.load(template.docx) → clear body
+    ↓ CoverRenderer.render (cover from Bibdata model)
+    ↓ BodyRenderer.render (walk JisSections → clauses → paragraphs)
+        InlineRenderer.render (walk each_mixed_content → RunBuilder)
+    ↓ Uniword::DocumentWriter.save(path)
+template.docx + body content → valid .docx
+```
+
+The DOCX Adapter is intentionally narrow: it does **not** parse the
+presentation XML, does **not** access Nokogiri, and does **not** hand-roll
+OOXML strings. It consumes the typed model and emits Uniword builders
+(`ParagraphBuilder`, `RunBuilder`, `TableBuilder`,
+`TableRowBuilder`, `TableCellBuilder`). `Uniword::DocumentWriter` does
+the final packaging (ZIP, content types, relationships).
+
+=== File structure
+
+```
+lib/metanorma-jis.rb                            # gem entry: requires namespaces only
+lib/metanorma/jis.rb                           # Metanorma::Jis autoloads
+lib/isodoc/jis.rb                              # IsoDoc::Jis autoloads
+lib/relaton/render-jis.rb                      # Relaton::Render::Jis autoloads
+
+lib/metanorma/jis/converter.rb                 # Converter (Layer 1)
+lib/metanorma/jis/cleanup.rb                   # cleanup hooks
+lib/metanorma/jis/validate.rb                  # validation
+lib/metanorma/jis/processor.rb                 # Processor: route :docx to Adapter
+lib/metanorma/jis/front.rb                     # Front module (mixed into Converter)
+lib/metanorma/jis/log.rb                       # Log module (mixed into Converter)
+
+lib/metanorma/jis/document/                    # typed model (Layer 2)
+  root.rb                                      # Document::Root
+  cover.rb                                     # Document::Cover
+  namespace.rb                                 # JIS XML namespace
+  sections.rb                                  # Document::Sections namespace
+  sections/jis_sections.rb                     # <sections> container
+  sections/jis_clause_section.rb
+  sections/jis_annex_section.rb
+  sections/jis_commentary_section.rb
+  sections/jis_index_section.rb
+  terms.rb                                     # Document::Terms namespace
+  terms/jis_term.rb
+
+lib/isodoc/jis/docx/                           # DOCX Adapter (Layer 3)
+  adapter.rb                                   # Adapter: the only entry point
+  body_renderer.rb                             # walk clauses → Uniword builders
+  cover_renderer.rb                            # cover from Bibdata model
+  inline_renderer.rb                           # bold/italic/sub/sup/links
+  style_mapping.rb                             # template path + style mapping
+  style_resolver.rb                            # strict styleId lookup
+  errors.rb                                    # typed errors
+
+data/jis/                                      # runtime assets
+  template.docx                                # 41 KB, 635 styles, 6 headers, 6 footers
+  style_mapping.yml                            # semantic key → styleId
+  doctype_overrides.yml                        # doctype → section routing
+  document_properties.yml                      # docProps metadata
+```
+
+=== Design properties
+
+* **Open/Closed**: adding a new block type = adding a case to
+  `BodyRenderer.render_block_children` and (optionally) a new
+  inline element type to `InlineRenderer.render_mixed`. No edit to
+  dispatch logic.
+* **MECE**: each renderer handles one concern (cover, body, inline).
+  No renderer reaches into another renderer's state.
+* **Model-driven, semantically-driven**: every render decision comes
+  from the typed model. The DOCX is a *projection* of the model, not
+  a transformation of XML strings.
+* **No Nokogiri in `lib/isodoc/jis/docx/`**: the Adapter takes the
+  typed model in, emits Uniword builders out. XML parsing is
+  upstream (`Root.from_xml`) and never leaks into the write path.
+* **No hand-rolled OOXML**: every `<w:p>`, `<w:r>`, `<w:t>` is
+  constructed via Uniword's typed builder classes. The Adapter
+  never concatenates OOXML strings.
+* **No "Writer" class**: metanorma-iso's pattern has *one* entry
+  point (the Adapter) with `Renderers::Registry` fan-out. JIS is
+  small enough that a registry is overkill — the Adapter delegates
+  directly to renderers via class-keyed dispatch.
+* **Strict style resolution**: `StyleResolver#paragraph_style` raises
+  `UnknownStyleError` on miss. Mapping lapses surface immediately.
+* **No `require_relative`**: every internal load is via `autoload`
+  declared in the immediate parent namespace's file.
+* **No `send` on private methods, no `instance_variable_set/get`,
+  no `respond_to?`**: type-safe access via the lutaml-model typed
+  attributes and `each_mixed_content`.
+
+=== Template source
+
+`data/jis/template.docx` is built from the JDT2023
+distribution (`reference-docs/JDT2023/ﾚｲｱｳﾄ/JDT_本文.dotx`).
+Uniword parses the source DOCX, the build script clears the body, and
+Uniword writes the result. The template carries 635 paragraph +
+character styles, 3 headers, and 3 footers — everything needed for
+JIS layout except the body content, which is produced per-document
+from the typed model.
+
+== Quickstart
 
 [source,console]
 ----
-$ metanorma --type jis a.adoc                   # output HTML
-$ metanorma --type jis --extensions html a.adoc # output just HTML
-$ metanorma --type jis --extensions xml a.adoc  # output Metanorma XML
+$ gem install metanorma-jis
+$ metanorma --type jis a.adoc             # HTML by default
+$ metanorma --type jis --extensions docx a.adoc   # DOCX (JDT2023 template)
+$ metanorma --type jis --extensions xml a.adoc    # Metanorma-JIS XML
 ----
-
 
 == Authoring
 
-Please refer to the Metanorma-ISO documentation for general documentation.
+Refer to the Metanorma-ISO documentation for general authoring
+guidance. JIS-specific authoring rules (the JIS document model,
+equivalence markers IDT/MOD/NEQ, committee metadata) are documented
+inline in the model classes
+(`lib/metanorma/jis/document/`).
 
-* Metanorma-ISO general documentation: https://www.metanorma.com/software/metanorma-iso/
-
-* Metanorma-ISO guidance: https://www.metanorma.com/software/metanorma-iso/docs/guidance/
-
-
-== Documentation
-
-See https://www.metanorma.com/author/iso/[Write ISO documents with Metanorma]
-
-== Examples
-
-* Example documents are avalable at the https://github.com/metanorma/mn-samples-jis[mn-samples-jis] repository.
-* Document templates are available at the https://github.com/metanorma/mn-templates-jis[mn-templates-jis] repository.
-
+* Metanorma documentation: https://www.metanorma.com
+* JIS samples: https://github.com/metanorma/mn-samples-jis
+* JIS templates: https://github.com/metanorma/mn-templates-jis

@@ -1,9 +1,9 @@
 module IsoDoc
   module Jis
-    class PresentationXMLConvert < IsoDoc::Iso::PresentationXMLConvert
+    module PresentationList
       def ol_depth(node)
         depth = node.ancestors("ol").size + 1
-        @counter.ol_type(node, depth) # defined in Xref::Counter
+        @counter.ol_type(node, depth)
       end
 
       def ul_label_list(_elem)
@@ -16,7 +16,6 @@ module IsoDoc
         val[(depth - 1) % val.size]
       end
 
-      # TODO: move the table/figure key processing to Word, not Presentation XML
       def dl(docxml)
         super
         docxml.xpath(ns("//table//dl | //figure//dl")).each do |l|
@@ -26,13 +25,13 @@ module IsoDoc
       end
 
       def dt_dd?(node)
-        %w{dt dd}.include? node.name
+        %w[dt dd].include? node.name
       end
 
       def dl_to_para(node)
         ret = dl_to_para_name(node)
         ret += dl_to_para_terms(node)
-        node.elements.reject { |n| %w(dt dd name fmt-name).include?(n.name) }
+        node.elements.reject { |n| %w[dt dd name fmt-name].include?(n.name) }
           .each do |x|
           ret += x.to_xml
         end
@@ -51,7 +50,7 @@ module IsoDoc
         if node.parent.parent.parent.parent.parent["type"] == "participants"
           ""
         else
-        "<p class='ListTitle'>#{e.children.to_xml}</p>"
+          "<p class='ListTitle'>#{e.children.to_xml}</p>"
         end
       end
 

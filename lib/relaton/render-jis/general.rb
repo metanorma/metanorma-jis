@@ -1,8 +1,5 @@
 require "relaton-render"
 require "metanorma-iso"
-require "isodoc"
-require_relative "parse"
-require_relative "fields"
 
 module Relaton
   module Render

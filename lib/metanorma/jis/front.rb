@@ -2,7 +2,7 @@ require "pubid-jis"
 
 module Metanorma
   module Jis
-    class Converter < Iso::Converter
+    module Front
       def org_abbrev
         super.merge("Japanese Industrial Standards" => "JIS")
       end
@@ -36,7 +36,7 @@ module Metanorma
         end
       end
 
-      LANGS = %w(ja en).freeze
+      LANGS = %w[ja en].freeze
 
       def pub_hash
         { "ja" => "日本工業規格", "en" => "Japanese Industrial Standards" }
@@ -89,7 +89,7 @@ module Metanorma
       end
 
       def extract_org_attrs_address(node, opts, suffix)
-        %w(address phone fax email uri).each_with_object({}) do |a, m|
+        %w[address phone fax email uri].each_with_object({}) do |a, m|
           opts[:source]&.each do |s|
             p = multiling_docattr(node, "#{s}-#{a}", suffix, LANGS) and
               m[a.to_sym] = p
@@ -131,9 +131,9 @@ module Metanorma
       end
 
       def title(node, xml)
-        %w(en ja).each do |lang|
+        %w[en ja].each do |lang|
           title_full(node, xml, lang)
-          %w(intro main part).each do |w|
+          %w[intro main part].each do |w|
             title_component(node, xml, lang, { name: w, abbr: w })
           end
           @amd and title_component(node, xml, lang,
