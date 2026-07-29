@@ -1,0 +1,54 @@
+# JIS document properties — populates docProps/custom.xml in the rendered DOCX.
+#
+# Single source of truth for JIS-specific document property values that
+# the PackageBuilder writes into docProps/core.xml, docProps/app.xml,
+# and docProps/custom.xml.
+#
+# Template source:  reference-docs/JDT2023/
+# Loaded by:        IsoDoc::Jis::Docx::PackageBuilder (TODO 05)
+#
+# Note: data/jis/document_metadata.yml is the EXTRACTION output (raw docProps
+# captured from source DOTX). This file is the INTENTIONAL config — what
+# the Adapter writes into the rendered DOCX.
+
+# JIS document types and their abbreviation as printed on the cover.
+doctype_abbreviations:
+  japanese-industrial-standard: JIS
+  technical-report: TR
+  technical-specification: TS
+  amendment: 追補
+  technical-corrigendum: 追補
+
+# JIS stage codes (subset of ISO stage codes used by JSA).
+# DocumentProperties.release_version buckets via `stage / 10 * 10`.
+stage_abbreviations:
+  0: PWI
+  10: NP
+  20: WD
+  30: CD
+  40: DIS
+  50: FDIS
+  60: IS
+  90: 追補
+  95: 追補
+
+# International-alignment markers shown on the cover when the JIS standard
+# aligns with an international (ISO/IEC) standard.
+international_alignment:
+  idt: IDT    # identical
+  mod: MOD    # modified
+  neq: NEQ    # not equivalent
+
+# Default publisher / copyright holder for JIS documents.
+publisher:
+  abbreviation: JIS
+  name_ja: 日本規格協会
+  name_en: Japanese Standards Association
+
+# Document property template — the PackageBuilder fills these into
+# docProps/core.xml and docProps/custom.xml.
+core_properties_template:
+  creator: 日本規格協会
+  description: ""
+  language: ja-JP
+  content_status: Final
