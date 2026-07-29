@@ -1,6 +1,5 @@
 require "asciidoctor"
 require "metanorma-iso"
-require_relative "front"
 
 module Metanorma
   module Jis
@@ -54,12 +53,8 @@ module Metanorma
         end
       end
 
-      def doc_converter(node)
-        if node.nil?
-          IsoDoc::Jis::WordConvert.new({})
-        else
-          IsoDoc::Jis::WordConvert.new(doc_extract_attributes(node))
-        end
+      def docx_converter(_node)
+        ::IsoDoc::Jis::Docx::Adapter.new
       end
 
       def pdf_converter(node)
@@ -82,8 +77,9 @@ module Metanorma
             .output_formats))
         end
       end
+
+      include Front
+      include Log
     end
   end
 end
-
-require_relative "log"

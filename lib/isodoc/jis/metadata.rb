@@ -41,7 +41,7 @@ module IsoDoc
 
       def set_encoded(name, field)
         field or return
-        field.respond_to?(:text) and field = field.text
+        field = field.text if field.is_a?(Nokogiri::XML::Node)
         set(name, @c.encode(field, :hexadecimal))
       end
 
