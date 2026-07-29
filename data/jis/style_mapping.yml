@@ -1,0 +1,157 @@
+# JIS DOCX style mapping — JDT2023 distribution
+#
+# Single source of truth for semantic-key → DOCX styleId mapping.
+# All values are verified against styles.yml by scripts/validate_style_mapping.rb
+# (run by spec/data/jis/style_mapping_spec.rb).
+#
+# Template source:    reference-docs/JDT2023/ (JSA JDT2023 v1.2)
+# Style library:      data/jis/styles.yml (925 unique styles across 11 sources)
+# Numbering:          data/jis/numbering.yml
+# Style rule files:   data/jis/style_check/{forbidden_styles,mandatory_styles,next_style}.yml
+#
+# Conventions:
+#   - styleId values come straight from the extracted DOTX/DOTM. They are
+#     stable for a given JDT version; re-run scripts/extract_jis_templates.rb
+#     when JSA ships a new version.
+#   - The semantic_key is what the Adapter's StyleResolver looks up. Adding
+#     a new semantic key = one line here, no Ruby change (OCP).
+#   - When a JIS styleId is ambiguous (e.g., "本文" used for both body and
+#     title), pick the most-specific match and add a comment.
+#   - doctestyle IDs prefixed with `_` indicate uncertain mappings that
+#     need visual verification against a real JIS document.
+
+excluded_styles_ref: TODO.roadmap/01-template-extraction.md
+
+paragraph_styles:
+  # ── Document structure ──
+  title: afffff4            # 章 — used for the main document title block
+  heading1: afffff4         # 章 (Chapter)
+  heading2: aff4            # 箇条１ (Clause level 1)
+  heading3: aff5            # 箇条２
+  heading4: aff6            # 箇条３
+  heading5: aff7            # 箇条４
+  heading6: aff8            # 箇条５
+  heading7: aff9            # 箇条６
+  heading8: affa            # 箇条７
+  heading9: affb            # 箇条８
+
+  # ── Annex ──
+  annex: ae                 # くくり見出し (Annex heading)
+  annex_clause1: aff4       # 箇条１ used inside annexes
+
+  # ── Preface sections ──
+  foreword: ae              # くくり見出し (Foreword title)
+  foreword_text: af         # 段落 (body paragraph)
+  introduction: ae          # くくり見出し (Introduction title)
+  bibliography: aff1        # 引用規格 (Normative references title)
+
+  # ── Box wrapping (notes / examples / admonitions) ──
+  note: af0                 # 図表説明＿段落 — TODO: verify, may need a true 注記 style
+  example: af0              # TODO: differentiate from note
+
+  # ── Body text ──
+  body_text: af             # 段落
+  definition: af0           # 図表説明＿段落 — TODO: find a true 定義リスト style
+
+  # ── Figures ──
+  figure_title: afffff5     # 図題
+  figure_title_commentary: afffff6  # 図題（解説図）
+  figure_title_annex: afffffb      # 図題（附属書ｎ図ｎ）
+
+  # ── Tables ──
+  table_title: TODO          # 表題 — see styles.yml; ambiguous
+  table_header: TODO
+  table_body: TODO
+
+  # ── Footnotes ──
+  footnote_text: TODO        # 脚注文字列
+
+  # ── TOC ──
+  toc1: TODO                 # 目次 1
+  toc2: TODO                 # 目次 2
+  toc3: TODO
+  toc_heading: TODO          # 目次の見出し
+
+  # ── Terms ──
+  term_num: TODO             # 用語番号
+  terms: TODO                # 用語項目
+  alt_terms: TODO            # 用語対応英語
+
+  # ── Commentary (解説) ──
+  commentary_title: aa       # 解説＿規格名称
+  commentary_number: a7      # 解説＿規格番号
+  commentary_idt: IDT        # 解説＿IDT番号
+
+  # ── Index (索引) ──
+  index_heading: TODO        # 索引見出し
+  index_subheading: a8       # 索引小見出し
+  index_kana_term: ab        # 索引用語（日本語）
+  index_latin_term: TODO     # 索引用語（英語）
+
+  # ── Bibliography entries ──
+  biblio_entry: aff1         # 引用規格
+  biblio_text: affc          # 関連規格段落１
+
+  # ── Lists ──
+  list_paragraph: af         # 段落
+  list_continue1: af4        # ダーシ２＿段落
+
+  # ── Cover page ──
+  cover_docnumber: afff      # 規格番号
+  cover_docname: ad          # 規格名称
+  cover_docname_en: TODO     # 規格名称（英語）
+
+character_styles:
+  hyperlink: afffffffffffffffffffffffffffb
+  footnote_reference: afffffff7
+
+# Paragraph styles whose <w:pPr><w:numPr> in styles.xml produces the
+# section/term number automatically. When rendering headings that use
+# one of these styles, the Adapter MUST strip <semx element="autonum">
+# carriers from the title text — otherwise the number appears twice.
+#
+# Populated by scripts/validate_style_mapping.rb from styles.yml.
+auto_numbered_styles:
+  - a
+  - "1"
+  - "21"
+  - "31"
+  - "41"
+  - "51"
+  - "6"
+  - "7"
+  - "8"
+  - "9"
+  - list1
+  - list2
+  - list3
+  - list4
+  - list5
+  - list6
+  - list7
+  - list8
+  - list9
+  - lista
+
+# Numbering instances from data/jis/numbering.yml. The Adapter looks up
+# abstract_num_id by semantic key when emitting list items.
+numbering:
+  decimal_ordered_list: 1   # TODO: verify which numId is decimal-ordered
+  body_clause: 2            # TODO
+  annex_clause: 3           # TODO
+
+# Styles excluded from output — pollution from Word built-ins, locale
+# variants, and collaboration tools. The StyleMappingValidator flags any
+# mapped styleId that matches.
+excluded_styles:
+  globs:
+    - "Table*Default*"
+    - "Table*Grid*"
+    - "Table*Light*"
+    - "Table*Medium*"
+    - "*de-DE*"
+    - "*zh-CN*"
+    - "*nl-NL*"
+    - "*fr-FR*"
+    - "*TrackChanges*"
+    - "*Comment*"
