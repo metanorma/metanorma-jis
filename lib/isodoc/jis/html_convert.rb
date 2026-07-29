@@ -1,8 +1,3 @@
-require "isodoc"
-require "metanorma-iso"
-require_relative "base_convert"
-require_relative "init"
-
 module IsoDoc
   module Jis
     class HtmlConvert < IsoDoc::Iso::HtmlConvert

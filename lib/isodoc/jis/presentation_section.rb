@@ -1,9 +1,6 @@
-require_relative "init"
-require "isodoc"
-
 module IsoDoc
   module Jis
-    class PresentationXMLConvert < IsoDoc::Iso::PresentationXMLConvert
+    module PresentationSection
       def annex1(elem)
         elem["commentary"] == "true" and return commentary(elem)
         super
@@ -126,7 +123,6 @@ module IsoDoc
         middle_title_hdr(elem)
         middle_title_main(elem, "zzSTDTitle1")
         middle_subtitle_main(elem, "zzSTDTitle2")
-        # middle_title_amd(s.children.first)
       end
 
       def middle_title_hdr(out)
