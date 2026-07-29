@@ -123,8 +123,10 @@ PATH
   specs:
     metanorma-jis (1.2.0)
       japanese_calendar (~> 0)
+      liquid (~> 5.4)
       metanorma-iso (>= 3.4.2)
       pubid
+      uniword (~> 1.5)
 
 GEM
   remote: https://rubygems.org/
