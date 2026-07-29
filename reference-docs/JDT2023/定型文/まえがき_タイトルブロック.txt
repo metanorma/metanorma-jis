@@ -1,0 +1,5 @@
+[standard]
+introduction_1=まえがき§まえがき見出し
+introduction_2=§まえがき段落
+introduction_3=§まえがき段落
+introduction_4=§まえがき段落
