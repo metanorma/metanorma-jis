@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jis-standard xmlns="https://www.metanorma.org/ns/jis" type="presentation">
+  <bibdata>
+    <docidentifier primary="true" type="JIS">X 0000:2026</docidentifier>
+    <docnumber>X 0000</docnumber>
+    <title format="text/plain" language="ja">日本語タイトル</title>
+    <title format="text/plain" language="en">English Title</title>
+    <language>ja</language>
+    <script>Jpan</script>
+    <contributor>
+      <role type="publisher"/>
+      <organization>
+        <name>Japanese Standards Association</name>
+        <abbreviation>JIS</abbreviation>
+      </organization>
+    </contributor>
+    <status>
+      <stage>60</stage>
+      <substage>60</substage>
+    </status>
+    <copyright>
+      <from>2026</from>
+      <owner>
+        <organization>
+          <name>Japanese Standards Association</name>
+          <abbreviation>JIS</abbreviation>
+        </organization>
+      </owner>
+    </copyright>
+    <ext>
+      <doctype>japanese-industrial-standard</doctype>
+      <flavor>jis</flavor>
+      <structuredidentifier>
+        <project-number>X 0000</project-number>
+      </structuredidentifier>
+    </ext>
+  </bibdata>
+  <preface>
+    <foreword id="_" obligation="informative">
+      <title>まえがき</title>
+      <p id="_">この規格は，JIS X 0000:2026 について規定する。</p>
+    </foreword>
+  </preface>
+  <sections>
+    <clause id="_" obligation="normative">
+      <title>Scope</title>
+      <p id="_">This is a JIS sample document.</p>
+    </clause>
+  </sections>
+</jis-standard>
