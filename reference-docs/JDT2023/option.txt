@@ -1,0 +1,10 @@
+[mode]
+mode=àÍî ÉÇÅ[Éh
+[user]
+name=
+initial=
+[style_mode]
+style_mode=on
+[JDT2023_caution]
+ChkNextView=False
+version=
