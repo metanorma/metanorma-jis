@@ -1,6 +1,6 @@
 module IsoDoc
   module Jis
-    class PresentationXMLConvert < IsoDoc::Iso::PresentationXMLConvert
+    module PresentationTable
       def table1(node)
         super
         cols = table_cols_count(node)
@@ -23,17 +23,16 @@ module IsoDoc
 
       def table_content_to_tfoot(node)
         node.at(ns("./note | ./fmt-source | ./example | " \
-          "./fmt-footnote-container")) or return
+                   "./fmt-footnote-container")) or return
         tf = final_tfoot_cell(node)
-        %w(example note fmt-footnote-container
-           fmt-source).each do |n|
+        %w[example note fmt-footnote-container
+           fmt-source].each do |n|
           node.xpath(ns("./#{n}")).each do |x|
             tf.children.last.next = x.remove
           end
         end
       end
 
-      # how many columns in the table?
       def table_col_count(table)
         cols = 0
         table&.at(ns(".//tr"))&.xpath(ns("./td | ./th"))&.each do |td|
@@ -42,9 +41,6 @@ module IsoDoc
         cols
       end
 
-      # if there is already a full-row cell at the start of tfoot,
-      # use that to move content into
-      # else create a full-row cell at the start of tfoot
       def initial_tfoot_cell(node)
         colspan = table_col_count(node)
         empty_row = full_row(colspan, " ", border: true)

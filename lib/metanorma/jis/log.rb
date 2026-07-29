@@ -1,6 +1,6 @@
 module Metanorma
   module Jis
-    class Converter
+    module Log
       JIS_LOG_MESSAGES = {
         # rubocop:disable Naming/VariableNumber
         "JIS_1": { category: "Document Attributes",
