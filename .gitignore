@@ -1,0 +1,21 @@
+# Build artifacts
+*.gem
+*.rbc
+coverage/
+tmp/
+
+# Test data
+*.adoc.err.html
+*.html.err.html
+*.asciidoc.log.txt
+.rspec_status
+
+# Local files
+test.doc
+test.pdf
+test.presentation.xml
+test_alt.html
+tmp_inspect_styles.rb
+
+# Cached reference data
+spec/relatondb/
