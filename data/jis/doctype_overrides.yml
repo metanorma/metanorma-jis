@@ -1,0 +1,37 @@
+# Doctype routing — which section templates to assemble per doctype.
+#
+# Single source of truth for the Adapter's SectionAssembler. Adding a new
+# doctype = adding one entry here (OCP); no Ruby change.
+#
+# Each entry resolves to one or more files in data/jis/sections/*.yml.
+
+japanese-industrial-standard:
+  cover: cover-jis
+  body: body
+  has_commentary: true
+  has_index: true
+
+technical-report:
+  cover: cover-tr
+  body: body
+  has_commentary: true
+  has_index: true
+
+technical-specification:
+  cover: cover-ts
+  body: body
+  has_commentary: true
+  has_index: true
+
+amendment:
+  cover: cover-amd
+  body: body-mod                # default to MOD body variant
+  body_no_intl: body-amd-no-intl # used when no international-standard direction
+  has_commentary: false
+  has_index: false
+
+technical-corrigendum:
+  cover: cover-amd
+  body: body-mod
+  has_commentary: false
+  has_index: false
