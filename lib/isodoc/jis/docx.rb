@@ -13,6 +13,9 @@ module IsoDoc
       autoload :CoverRenderer, "isodoc/jis/docx/cover_renderer"
       autoload :BodyRenderer, "isodoc/jis/docx/body_renderer"
       autoload :InlineRenderer, "isodoc/jis/docx/inline_renderer"
+      autoload :SectionManager, "isodoc/jis/docx/section_manager"
+      autoload :Walker, "isodoc/jis/docx/walker"
+      autoload :Renderers, "isodoc/jis/docx/renderers"
       autoload :Errors, "isodoc/jis/docx/errors"
     end
   end

@@ -11,7 +11,8 @@ module IsoDoc
       #   metanorma-jis model → Adapter → Uniword builders → DOCX
       #
       # The Adapter loads a template DOCX via Uniword.load, clears the
-      # body, walks the typed model, and saves via DocumentWriter.
+      # body, walks the typed model via Renderers::Registry, and saves
+      # via DocumentWriter.
       class Adapter
         attr_reader :resolver, :template_path
 
@@ -64,14 +65,46 @@ module IsoDoc
         end
 
         def reset_state
-          @cover_renderer = CoverRenderer.new(@resolver)
-          @body_renderer = BodyRenderer.new(@resolver)
+          @section_manager = SectionManager.new(nil)
         end
 
         def visit_root(model, doc)
-          @cover_renderer.render(model.cover, doc)
+          render_cover(model, doc)
           doc.page_break if model.cover
-          @body_renderer.render(model, doc)
+          render_body(model, doc)
+        end
+
+        def render_cover(model, doc)
+          return unless model.cover
+          cover = CoverRenderer.new(@resolver)
+          cover.render(model.cover, doc)
+        end
+
+        def render_body(model, doc)
+          walker = Walker.new(doc: doc, resolver: @resolver)
+          walk_sections(model, walker)
+        end
+
+        def walk_sections(model, walker)
+          walk_sections_container(model, walker)
+          walk_annexes(model, walker)
+        end
+
+        def walk_preface(model, walker)
+          preface = model.preface
+          return unless preface
+          registry = Renderers::Registry.new(doc: walker.registry, resolver: @resolver)
+          registry.render(preface) rescue nil
+        end
+
+        def walk_sections_container(model, walker)
+          sections = model.sections
+          return unless sections
+          walker.walk(sections)
+        end
+
+        def walk_annexes(model, walker)
+          Array(model.annex).each { |annex| walker.walk(annex) }
         end
 
         def save_document(model, output_path)
