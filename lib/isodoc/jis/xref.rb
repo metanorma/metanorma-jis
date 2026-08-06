@@ -160,10 +160,11 @@ module IsoDoc
       end
 
       def commentary_name_anchors(clause, num, root, level)
+        t = clause_title(clause)
         @anchors[clause["id"]] =
           { label: num, xref: labelled_autonum(@labels["clause"], num),
             container: root,
-            title: clause_title(clause), level: level, type: "clause",
+            title: t && semx(clause, t, "title"), level: level, type: "clause",
             elem: @labels["clause"] }
       end
 
