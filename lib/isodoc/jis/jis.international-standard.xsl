@@ -13277,6 +13277,13 @@
 	<xsl:template name="refine_note-style">
 	</xsl:template> <!-- refine_note-style -->
 
+	<xsl:attribute-set name="note-block-style">
+		<xsl:attribute name="role">SKIP</xsl:attribute>
+	</xsl:attribute-set> <!-- note-block-style -->
+
+	<xsl:template name="refine_note-block-style">
+	</xsl:template> <!-- refine_note-block-style -->
+
 	<xsl:variable name="note-body-indent">10mm</xsl:variable>
 	<xsl:variable name="note-body-indent-table">5mm</xsl:variable>
 
@@ -13381,9 +13388,6 @@
 		</fo:block>
 
 	</xsl:template>
-
-	<xsl:template name="refine_note_block_style">
-	</xsl:template> <!-- refine_note_block_style -->
 
 	<xsl:template match="mn:note/mn:p">
 		<xsl:variable name="num"><xsl:number/></xsl:variable>
