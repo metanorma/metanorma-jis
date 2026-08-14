@@ -1,14 +1,7 @@
-Encoding.default_external = Encoding::UTF_8
-Encoding.default_internal = Encoding::UTF_8
-
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}" }
 
 gemspec
-
-gem "metanorma-core", github: "metanorma/metanorma-core", branch: "feat/flavor-table"
-gem "metanorma-iso", github: "metanorma/metanorma-iso", branch: "main"
-gem "metanorma-utils", github: "metanorma/metanorma-utils", branch: "main" # GcBudget, unreleased past 2.0.7
 
 # TEMPORARY: cross-PR branch pins so CI can resolve the in-flight
 # metanorma-standoc namespace rename (Metanorma::Standoc::Document)
@@ -19,8 +12,8 @@ gem "metanorma-utils", github: "metanorma/metanorma-utils", branch: "main" # GcB
 gem "metanorma-standoc", github: "metanorma/metanorma-standoc", branch: "feat/move-standard-document"
 gem "metanorma-document", github: "metanorma/metanorma-document", branch: "feat/model-validation-l1-declarations"
 gem "isodoc", github: "metanorma/isodoc", branch: "rt-pubid-2-migration"
-gem "relaton-cli", ">= 3.0.0.pre.alpha.1"
-gem "pubid", "2.0.0.pre.alpha.27" # pubid main gemspec carries a typo version (2.1.A); released alpha.27 is the v2-pre line
+gem "relaton-bib", "~> 2.2.0.pre.alpha.1"
+gem "pubid", github: "pubid/pubid", branch: "main"
 
 eval_gemfile("Gemfile.devel") rescue nil
 
