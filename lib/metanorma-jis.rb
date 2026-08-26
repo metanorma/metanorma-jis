@@ -15,4 +15,3 @@ if defined? Metanorma::Registry
   require_relative "metanorma/jis"
   Metanorma::Registry.instance.register(Metanorma::Jis::Processor)
 end
-require "metanorma/jis/document"
