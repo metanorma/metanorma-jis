@@ -1,4 +1,4 @@
-require "pubid-jis"
+require "pubid/jis"
 
 module Metanorma
   module Jis

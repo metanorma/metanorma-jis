@@ -10,9 +10,9 @@ module Metanorma
           element "annex"
           ordered
 
-          Metanorma::StandardDocument::SectionXmlMapping.apply_annex_attributes(self)
+          Metanorma::Standoc::Document::SectionXmlMapping.apply_annex_attributes(self)
           map_attribute "commentary", to: :commentary
-          Metanorma::StandardDocument::SectionXmlMapping.apply_annex_elements(self)
+          Metanorma::Standoc::Document::SectionXmlMapping.apply_annex_elements(self)
         end
       end
     end
