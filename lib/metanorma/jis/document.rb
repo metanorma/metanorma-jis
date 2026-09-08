@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "metanorma/standoc"
+require "metanorma/iso/document"
 # Forward-declare parent namespace so this file is safe to require
 # directly (without first requiring metanorma/jis.rb).
 module Metanorma
@@ -34,4 +35,22 @@ end
 
 module Metanorma
   deprecate_constant :JisDocument
+end
+
+require "metanorma-core"
+
+# OCP adoption: ONE registration in the metanorma-core flavor table
+# (metanorma-core#18). Lazy: the table exists only on the flavor-table
+# line of metanorma-core; skip silently on resolutions without it.
+if defined?(Metanorma::Core::Flavors)
+  Metanorma::Core::Flavors.register(Metanorma::Core::Flavor.new(
+                                      name: :jis,
+                                      gem: "metanorma-jis",
+                                      model_root: Metanorma::Jis::Document::Root,
+                                      pubid_module: nil,
+                                      renderers: { html: lambda do |_document, **_options|
+                                        require "metanorma/jis/html"
+                                        Metanorma::Jis::Html::Renderer
+                                      end },
+                                    ))
 end
