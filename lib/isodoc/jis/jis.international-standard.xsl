@@ -10138,6 +10138,13 @@
 	<xsl:template name="refine_table-fn-body-style">
 	</xsl:template>
 
+	<xsl:attribute-set name="table-fn-p-style">
+		<xsl:attribute name="role">P</xsl:attribute>
+	</xsl:attribute-set>
+
+	<xsl:template name="refine_table-fn-p-style">
+	</xsl:template>
+
 	<xsl:template name="setNoBordersForTableList">
 		<xsl:if test="ancestor::mn:fmt-ol or ancestor::mn:fmt-ul">
 			<xsl:attribute name="border">none</xsl:attribute>
@@ -11419,8 +11426,16 @@
 
 	</xsl:template> <!-- table/note -->
 
-	<xsl:template match="mn:table/*[self::mn:note or self::mn:example]/mn:p |  mn:table/mn:tfoot//*[self::mn:note or self::mn:example]/mn:p" priority="2">
-		<fo:inline role="P"><xsl:apply-templates/></fo:inline>
+	<xsl:template match="mn:table/*[self::mn:note or self::mn:example]/mn:p |  mn:table/mn:tfoot//*[self::mn:note or self::mn:example][not(ancestor::mn:fn)]/mn:p" priority="2">
+		<xsl:param name="fo_element">inline</xsl:param>
+		<xsl:choose>
+			<xsl:when test="contains($fo_element, 'block')">
+				<fo:block role="P"><xsl:apply-templates/></fo:block>
+			</xsl:when>
+			<xsl:otherwise>
+				<fo:inline role="P"><xsl:apply-templates/></fo:inline>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 
 	<!-- ============================ -->
@@ -11647,6 +11662,23 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template> <!-- fn -->
+
+	<xsl:template match="mn:table//mn:fn//mn:p | mn:table//mn:fmt-fn-body//mn:p" priority="4">
+		<xsl:choose>
+			<xsl:when test="preceding-sibling::*">
+				<fo:block xsl:use-attribute-sets="table-fn-p-style">
+					<xsl:call-template name="refine_table-fn-p-style"/>
+					<xsl:apply-templates/>
+				</fo:block>
+			</xsl:when>
+			<xsl:otherwise>
+				<fo:inline xsl:use-attribute-sets="table-fn-p-style">
+					<xsl:call-template name="refine_table-fn-p-style"/>
+					<xsl:apply-templates/>
+				</fo:inline>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
 
 	<!-- split string 'text' by 'separator' -->
 	<xsl:template name="tokenize">
