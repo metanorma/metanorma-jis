@@ -61,6 +61,26 @@ module IsoDoc
         end
       end
 
+      def docstatus1(isoxml, docstatus, published)
+        set(:stage, docstatus.text)
+        set(:stage_int, docstatus.text.to_i)
+        set(:substage_int, isoxml.at(ns("//bibdata/status/substage"))&.text)
+        set(:statusabbr,
+            status_abbrev(docstatus["abbreviation"] || "??",
+                          isoxml.at(ns("//bibdata/status/substage"))&.text,
+                          isoxml.at(ns("//bibdata/status/iteration"))&.text,
+                          draft_version(isoxml),
+                          isoxml.at(ns("//bibdata/ext/doctype"))&.text))
+        !published and set(:stageabbr, docstatus["abbreviation"])
+      end
+
+      # Standoc keeps the draft in <version> text; relaton-style XML uses
+      # <version><draft>. Accept either so "Pre" stage prefixes apply.
+      def draft_version(isoxml)
+        isoxml.at(ns("//bibdata/version/draft"))&.text ||
+          isoxml.at(ns("//bibdata/version"))&.text
+      end
+
       def version(isoxml, out)
         super
         @lang == "ja" or return

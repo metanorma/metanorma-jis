@@ -1,4 +1,5 @@
-require "pubid-jis"
+require "pubid"
+require "pubid/jis"
 
 module Metanorma
   module Jis
@@ -185,16 +186,52 @@ module Metanorma
         compact_blank(ret)
       end
 
-      def iso_id_out(xml, params, _with_prf)
-        id = iso_id_default(params).to_s(with_publisher: false)
-        add_noko_elem(xml, "docidentifier", id.strip, type: "JIS",
-                                                      primary: "true")
+      def orig_id_parse(orig)
+        Pubid::Jis::Identifier.parse(orig)
       end
 
+      def iso_id_out(xml, params)
+        id = iso_id_default(params).to_s(with_publisher: false)
+        add_noko_elem(xml, "docidentifier", id.strip.squeeze(" "), type: "JIS",
+                                                                  primary: "true")
+      end
+
+      # pubid 2 dropped `Identifier.create`; construct the typed JIS
+      # identifier directly. `params` is the legacy hash produced by
+      # iso_id_params_core / iso_id_params_add / iso_id_params_resolve.
       def iso_id_default(params)
-        base_pubid.create(**params)
-      rescue StandardError => e
-        clean_abort("Document identifier: #{e}", xml)
+        if params[:base] || params[:type] == :amd
+          jis_supplement_pubid(params)
+        else
+          jis_single_pubid(params)
+        end
+      end
+
+      def jis_single_pubid(params)
+        klass = case params[:type]
+                when :tr then Pubid::Jis::Identifiers::TechnicalReport
+                when :ts then Pubid::Jis::Identifiers::TechnicalSpecification
+                else Pubid::Jis::Identifiers::JapaneseIndustrialStandard
+                end
+        attrs = { series: params[:series],
+                  number: params[:number].to_s,
+                  parts: params[:part] ? Array(params[:part]) : params[:parts],
+                  year: params[:year],
+                  language: params[:language] }.compact
+        klass.new(**attrs)
+      end
+
+      def jis_supplement_pubid(params)
+        klass = case params[:type]
+                when :cor then Pubid::Jis::Identifiers::Corrigendum
+                when :exp, :explanation then Pubid::Jis::Identifiers::Explanation
+                else Pubid::Jis::Identifiers::Amendment
+                end
+        base = params[:base] || jis_single_pubid(params)
+        attrs = { base: base,
+                  number: params[:number] && params[:number].to_i,
+                  year: params[:year] && params[:year].to_i }.compact
+        klass.new(**attrs)
       end
 
       def personal_author(node, xml)

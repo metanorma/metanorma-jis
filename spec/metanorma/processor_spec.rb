@@ -150,7 +150,7 @@ RSpec.describe Metanorma::Jis::Processor do
             <title id="_">Clause</title>
           </clause>
         </sections>
-      </ogc-standard>
+      </metanorma>
     OUTPUT
 
     FileUtils.rm_f "test.html"

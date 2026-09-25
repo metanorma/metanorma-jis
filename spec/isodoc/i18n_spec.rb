@@ -1677,7 +1677,7 @@ RSpec.describe IsoDoc::Jis do
 
     html = <<~OUTPUT
       <html lang="en">
-          <head></hea>
+          <head></head>
           <body lang="en">
              <div class="title-section">
                 <p> </p>
