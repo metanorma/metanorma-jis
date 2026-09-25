@@ -860,7 +860,7 @@ RSpec.describe Metanorma::Jis do
              <p id="_">This is also extraneous information</p>
            </references>
          </bibliography>
-      </standard-document>
+      </metanorma>
     OUTPUT
     expect(strip_guid(Asciidoctor.convert(input, *OPTIONS)))
       .to be_xml_equivalent_to output

@@ -17,6 +17,14 @@ module Metanorma
         "jis.rng"
       end
 
+      # Iso::Validate#validate migrated content checks but dropped the
+      # RelaxNG pass; JIS still relies on it for attribute enumerations
+      # such as p/@align.
+      def validate(doc)
+        super
+        schema_validate(formattedstr_strip(doc.dup), schema_location)
+      end
+
       def image_name_validate(xmldoc); end
       def norm_bibitem_style(xmldoc); end
       def xrefs_mandate_validate(root); end
