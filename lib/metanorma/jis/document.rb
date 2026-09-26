@@ -29,9 +29,9 @@ module Metanorma
   end
 end
 
-if defined?(Metanorma::Registers::Setup.setup_jis_register)
-  Metanorma::Registers::Setup.setup_jis_register
-end
+require_relative "registers"
+
+Metanorma::Jis::Registers.setup
 
 module Metanorma
   deprecate_constant :JisDocument
