@@ -1,5 +1,8 @@
 require "relaton-render"
 require "metanorma-iso"
+# this stack subclasses the ISO flavor render classes, which load lazily
+# (metanorma-iso#1655) - bring them in before defining the Jis subclasses
+require "metanorma/iso/relaton_render/general"
 require "isodoc"
 require_relative "parse"
 require_relative "fields"
