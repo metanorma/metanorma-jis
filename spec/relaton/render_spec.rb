@@ -1,5 +1,7 @@
 require "spec_helper"
 
+require_relative "../../lib/relaton/render-jis/general"
+
 RSpec.describe Relaton::Render::Jis do
   it "renders home standard, ISO" do
     input = <<~INPUT
