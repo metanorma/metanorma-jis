@@ -20,9 +20,9 @@ module IsoDoc
       end
 
       def bibrenderer(options = {})
-        require_relative "../../relaton/render-jis/general"
+        require_relative "../../metanorma/jis/citation_style"
 
-        ::Relaton::Render::Jis::General.new(options
+        ::Metanorma::Jis::CitationStyle.new(options
           .merge(language: @lang, script: @script, i18nhash: @i18n.get))
       end
 

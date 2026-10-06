@@ -7,7 +7,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}" }
 gemspec
 
 gem "metanorma-core", github: "metanorma/metanorma-core", branch: "feat/flavor-table"
-gem "metanorma-iso", github: "metanorma/metanorma-iso", branch: "feat/model-validation-migration"
+gem "metanorma-iso", github: "metanorma/metanorma-iso", branch: "main" # CitationStyle facade (render-v3); requires the relaton-render 3.x pairing below
+gem "relaton", "= 3.0.0.pre.alpha.4"
+gem "relaton-bib", "2.1.9"
+gem "relaton-render", "3.0.0.pre.alpha.8"
 
 # TEMPORARY: cross-PR branch pins so CI can resolve the in-flight
 # metanorma-standoc namespace rename (Metanorma::Standoc::Document)
