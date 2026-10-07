@@ -1,4 +1,6 @@
 require "spec_helper"
+require "metanorma/jis/citation_style"
+require "relaton/bib"
 
 require_relative "../../lib/metanorma/jis/citation_style"
 
@@ -73,163 +75,26 @@ RSpec.describe Metanorma::Jis::CitationStyle do
       .to be_equivalent_to output
   end
 
-  it "renders home standard, JIS" do
-    input = <<~INPUT
-      <bibdata type="standard" schema-version="v1.2.9">
-        <fetched>2024-07-29</fetched>
-        <title format="text/plain" language="ja" script="Jpan">電気及び関連分野―信号指定及び接続指定</title>
-        <title format="text/plain" language="en" script="Lant">Designations for signals and connections</title>
-        <uri type="src">https://webdesk.jsa.or.jp/books/W11M0090/index/?bunsyo_id=JIS+C+0450%3A2004</uri>
-        <uri type="pdf">https://webdesk.jsa.or.jp/preview/pre_jis_c_00450_000_000_2004_j_ed10_ch.pdf</uri>
-        <docidentifier type="JIS" primary="true">JIS C 0450</docidentifier>
-        <docnumber>C0450</docnumber>
-        <contributor>
-          <role type="author"/>
-          <organization>
-            <name language="ja" script="Jpan">一般財団法人　日本規格協会</name>
-            <name language="en" script="Latn">Japanese Industrial Standards</name>
-          </organization>
-        </contributor>
-        <contributor>
-          <role type="publisher"/>
-          <organization>
-            <name language="ja" script="Jpan">一般財団法人　日本規格協会</name>
-            <name language="en" script="Latn">Japanese Industrial Standards</name>
-          </organization>
-        </contributor>
-        <language>ja</language>
-        <script>Jpan</script>
-        <status>
-          <stage>valid</stage>
-        </status>
-        <relation type="instanceOf">
-          <bibitem type="standard">
-            <fetched>2024-07-29</fetched>
-            <title format="text/plain" language="ja" script="Jpan">電気及び関連分野―信号指定及び接続指定</title>
-            <title format="text/plain" language="en" script="Lant">Designations for signals and connections</title>
-            <uri type="src">https://webdesk.jsa.or.jp/books/W11M0090/index/?bunsyo_id=JIS+C+0450%3A2004</uri>
-            <uri type="pdf">https://webdesk.jsa.or.jp/preview/pre_jis_c_00450_000_000_2004_j_ed10_ch.pdf</uri>
-            <docidentifier type="JIS" primary="true">JIS C 0450:2004</docidentifier>
-            <docnumber>C0450</docnumber>
-            <date type="issued">
-              <on>2004-12-20</on>
-            </date>
-            <date type="confirmed">
-              <on>2020-06-22</on>
-            </date>
-            <contributor>
-              <role type="author"/>
-              <organization>
-                <name language="ja" script="Jpan">一般財団法人　日本規格協会</name>
-                <name language="en" script="Latn">Japanese Industrial Standards</name>
-              </organization>
-            </contributor>
-            <contributor>
-              <role type="publisher"/>
-              <organization>
-                <name language="ja" script="Jpan">一般財団法人　日本規格協会</name>
-                <name language="en" script="Latn">Japanese Industrial Standards</name>
-              </organization>
-            </contributor>
-            <language>ja</language>
-            <script>Jpan</script>
-            <abstract format="text/plain" language="ja" script="Jpan">電気及びその関連分野の信号及び接続を識別する指定並びに名称の組合せに関する規則について規定。</abstract>
-            <status>
-              <stage>valid</stage>
-            </status>
-          </bibitem>
-        </relation>
-        <ext schema-version="v0.0.1">
-          <doctype>japanese-industrial-standard</doctype>
-          <editorialgroup>
-            <technical-committee>一般財団法人　日本規格協会</technical-committee>
-          </editorialgroup>
-          <ics>
-            <code>29.020</code>
-            <text>Electrical engineering in general</text>
-          </ics>
-          <structuredidentifier type="JIS">
-            <docnumber/>
-          </structuredidentifier>
-        </ext>
-      </bibdata>
-    INPUT
-    output = <<~OUTPUT
-      <formattedref><span class='stddocTitle'>電気及び関連分野―信号指定及び接続指定</span></formattedref>
-    OUTPUT
-    p = renderer
-    expect(p.render(input))
-      .to be_equivalent_to output
+  let(:home_jis) do
+    builder(type: "standard",
+            titles: ["電気及び関連分野―信号指定及び接続指定"],
+            docids: { "JIS" => "JIS C 0450" },
+            contribs: [{ role: [{ type: "publisher" }],
+                         organization: { name: [{ content: "一般財団法人　日本規格協会" }] } }],
+            dates: [], language: "ja")
   end
 
-  it "renders external standard, IETF" do
-    input = <<~INPUT
-      <bibitem type="standard">
-        <fetched>2022-12-22</fetched>
-        <title type="main" format="text/plain">Intellectual Property Rights in IETF Technology</title>
-        <uri type="src">https://www.rfc-editor.org/info/rfc3979</uri>
-        <docidentifier type="IETF" primary="true">RFC 3979</docidentifier>
-        <docidentifier type="DOI">10.17487/RFC3979</docidentifier>
-        <docnumber>RFC3979</docnumber>
-        <date type="published">
-          <on>2005-03</on>
-        </date>
-        <contributor>
-          <role type="editor"/>
-          <person>
-            <name>
-              <completename language="en" script="Latn">S. Bradner</completename>
-            </name>
-          </person>
-        </contributor>
-        <contributor>
-          <role type="authorizer"/>
-          <organization>
-            <name>RFC Series</name>
-          </organization>
-        </contributor>
-        <language>en</language>
-        <script>Latn</script>
-        <abstract format="text/html" language="en" script="Latn">
-          <p>The IETF policies about Intellectual Property Rights (IPR), such as patent rights, relative to technologies developed in the IETF are designed to ensure that IETF working groups and participants have as much information about any IPR constraints on a technical proposal as possible.  The policies are also intended to benefit the Internet community and the public at large, while respecting the legitimate rights of IPR holders.  This memo details the IETF policies concerning IPR related to technology worked on within the IETF.  It also describes the objectives that the policies are designed to meet.  This memo updates RFC 2026 and, with RFC 3978, replaces Section 10 of RFC 2026.  This memo also updates paragraph 4 of Section 3.2 of RFC 2028, for all purposes, including reference [2] in RFC 2418.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
-        </abstract>
-        <relation type="obsoletedBy">
-          <bibitem>
-            <formattedref format="text/plain">RFC8179</formattedref>
-            <docidentifier type="IETF" primary="true">RFC8179</docidentifier>
-          </bibitem>
-        </relation>
-        <relation type="updates">
-          <bibitem>
-            <formattedref format="text/plain">RFC2026</formattedref>
-            <docidentifier type="IETF" primary="true">RFC2026</docidentifier>
-          </bibitem>
-        </relation>
-        <relation type="updates">
-          <bibitem>
-            <formattedref format="text/plain">RFC2028</formattedref>
-            <docidentifier type="IETF" primary="true">RFC2028</docidentifier>
-          </bibitem>
-        </relation>
-        <series>
-          <title format="text/plain">RFC</title>
-          <number>3979</number>
-        </series>
-        <keyword>ipr</keyword>
-        <keyword>copyright</keyword>
-        <ext schema-version="v1.0.0">
-          <editorialgroup>
-            <committee>ipr</committee>
-          </editorialgroup>
-        </ext>
-      </bibitem>
-    INPUT
-    output = <<~OUTPUT
-      <formattedref>S. Bradner。 <span class="stddocTitle">Intellectual Property Rights in IETF Technology</span>。 RFC Series。入手先： <span class="biburl"><fmt-link target="https://www.rfc-editor.org/info/rfc3979">https://www.rfc-editor.org/info/rfc3979</fmt-link></span></formattedref>
-    OUTPUT
-    p = renderer
-    expect(p.render(input))
-      .to be_equivalent_to output
+  let(:ietf) do
+    builder(type: "standard",
+            titles: ["Intellectual Property Rights in IETF Technology"],
+            docids: { "IETF" => "RFC 3979" },
+            contribs: [
+              { role: [{ type: "editor" }],
+                person: { name: { completename: { content: "S. Bradner" } } } },
+              { role: [{ type: "authorizer" }],
+                organization: { name: [{ content: "RFC Series" }] } },
+            ],
+            dates: [{ type: "published", from: "2005-03" }], language: "en")
   end
 
   it "generates generic citations" do
@@ -291,52 +156,46 @@ RSpec.describe Metanorma::Jis::CitationStyle do
       .to be_equivalent_to output
   end
 
-  it "generates references with multiple authors" do
-    input = <<~INPUT
-      <bibitem type="book" id="A">
-        <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
-        <docidentifier>ABC1</docidentifier>
-        <date type="published"><on>2022</on></date>
-        <contributor>
-          <role type="editor"/>
-          <person>
-            <name><surname>Aluffi</surname><forename>Paolo</forename></name>
-          </person>
-        </contributor>
-        <contributor>
-          <role type="editor"/>
-          <person>
-            <name><surname>Aluffi</surname><forename>Paolo</forename></name>
-          </person>
-        </contributor>
-        <contributor>
-          <role type="editor"/>
-          <person>
-            <name><surname>Aluffi</surname><forename>Paolo</forename></name>
-          </person>
-        </contributor>
-        <edition>1</edition>
-            <contributor>
-              <role type="publisher"/>
-              <organization>
-                <name>Cambridge University Press</name>
-              </organization>
-            </contributor>
-            <place><formattedPlace>Cambridge, UK</formattedPlace></place>
-      </bibitem>
-    INPUT
-    output = <<~XML
-      <formattedref>Aluffi P.、 Aluffi P.、 Aluffi P. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。第1版。 Cambridge、 UK： Cambridge University Press。 2022</formattedref>
-    XML
-    p = renderer
-    expect(p.render(input))
-      .to be_equivalent_to output
-    output = <<~XML
-      <formattedref>Aluffi P., Aluffi P. &#x26; Aluffi P. (eds.). Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday. First edition. Cambridge, UK: Cambridge University Press. 2022</formattedref>
-    XML
-    p = renderer_en
-    expect(p.render(input))
-      .to be_equivalent_to output
+  describe "#render" do
+    it "renders home standard, ISO" do
+      expect(ja.render(home_iso, embedded: true))
+        .to eq("<span class='stddocTitle'>Latex, rubber - Determination of " \
+               "total solids content</span>")
+    end
+
+    it "renders home standard, JIS" do
+      expect(ja.render(home_jis, embedded: true))
+        .to eq("<span class='stddocTitle'>電気及び関連分野―信号指定及び接続指定</span>")
+    end
+
+    it "renders external standard, IETF" do
+      actual = ja.render(ietf, embedded: true)
+      warn "[CI-DEBUG] ietf=#{actual.inspect}"
+      expect(actual)
+        .to eq("S. Bradner. <span class='stddocTitle'>Intellectual Property " \
+               "Rights in IETF Technology</span>. RFC Series")
+    end
+
+    it "renders references with multiple authors, ja" do
+      expect(ja.render(book, embedded: true))
+        .to eq("Aluffi P., Aluffi P. 及び Aluffi P. (eds.) "                "_Facets of Algebraic Geometry: " \
+               "A Collection in Honor of William Fulton's 80th Birthday_. " \
+               "第1版. Cambridge, UK: Cambridge University Press. 2022")
+    end
+
+    it "renders references with multiple authors, en" do
+      expect(en.render(book, embedded: true))
+        .to eq("Aluffi P., Aluffi P. and Aluffi P. (eds.) "                "_Facets of Algebraic Geometry: "                "A Collection in Honor of William Fulton's 80th Birthday_. " \
+               "第1版. Cambridge, UK: Cambridge University Press. 2022")
+    end
+  end
+
+  describe "#render_all" do
+    it "generates generic citations" do
+      ret = ja.render_all([book])
+      expect(ret[book.id][:citation][:default]).to eq("ABC1")
+      expect(ret[book.id][:citation][:short]).to eq("Aluffi 2022")
+    end
   end
 
   private

@@ -4,6 +4,8 @@ SimpleCov.start do
 end
 
 require "bundler/setup"
+require "moxml"
+Moxml.configure { |c| c.adapter = :leptris } # leptris is the engine of record (no nokogiri); cross-arch build divergence tracked as leptris#1559
 require "asciidoctor"
 require "metanorma-jis"
 require "rspec/matchers"

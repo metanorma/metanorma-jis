@@ -1,0 +1,89 @@
+<bibdata type="standard" schema-version="v1.5.6">
+  <fetched>2026-10-06</fetched>
+  <title language="en" script="Latn" type="title-intro">Rubber latex</title>
+  <title language="en" script="Latn" type="title-main">Sampling</title>
+  <title language="en" script="Latn" type="main">Rubber latex - Sampling</title>
+  <title language="fr" script="Latn" type="title-intro">Latex de caoutchouc</title>
+  <title language="fr" script="Latn" type="title-main">Échantillonnage</title>
+  <title language="fr" script="Latn" type="main">Latex de caoutchouc - Échantillonnage</title>
+  <uri type="src">https://www.iso.org/standard/3926.html</uri>
+  <uri type="obp">https://www.iso.org/obp/ui/en/#!iso:std:3926:en</uri>
+  <uri type="rss">https://www.iso.org/contents/data/standard/00/39/3926.detail.rss</uri>
+  <docidentifier type="ISO" primary="true">ISO 123:1985</docidentifier>
+  <docidentifier type="iso-undated">ISO 123</docidentifier>
+  <docidentifier type="iso-reference">ISO 123:1985(E)</docidentifier>
+  <docidentifier type="URN">urn:iso:std:iso:123:stage-95.99</docidentifier>
+  <docnumber>123</docnumber>
+  <date type="published">
+    <on>1985-08-01</on>
+  </date>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>International Organization for Standardization</name>
+      <abbreviation>ISO</abbreviation>
+      <uri>www.iso.org</uri>
+    </organization>
+  </contributor>
+  <contributor>
+    <role type="author">
+      <description>committee</description>
+    </role>
+    <organization>
+      <name>International Organization for Standardization</name>
+      <subdivision type="technical-committee" subtype="TC">
+        <name>Raw materials (including latex) for use in the rubber industry</name>
+        <identifier>ISO/TC 45/SC 3</identifier>
+      </subdivision>
+      <abbreviation>ISO</abbreviation>
+    </organization>
+  </contributor>
+  <edition>2</edition>
+  <language>en</language>
+  <language>fr</language>
+  <script>Latn</script>
+  <status>
+    <stage>95</stage>
+    <substage>99</substage>
+  </status>
+  <copyright>
+    <from>1985</from>
+    <owner>
+      <organization>
+        <name>ISO</name>
+      </organization>
+    </owner>
+  </copyright>
+  <relation type="obsoletes">
+    <bibitem>
+      <formattedref>ISO 123:1974</formattedref>
+      <docidentifier type="ISO" primary="true">ISO 123:1974</docidentifier>
+      <date type="published">
+        <on>1974-01-01</on>
+      </date>
+    </bibitem>
+  </relation>
+  <relation type="obsoletedBy">
+    <bibitem>
+      <formattedref>ISO 123:2001</formattedref>
+      <docidentifier type="ISO" primary="true">ISO 123:2001</docidentifier>
+      <date type="published">
+        <on>2001-05-31</on>
+      </date>
+    </bibitem>
+  </relation>
+  <place>
+    <city>Geneva</city>
+  </place>
+  <ext schema-version="v1.1.2">
+    <doctype>international-standard</doctype>
+    <flavor>iso</flavor>
+    <ics>
+      <code>83.040.10</code>
+      <text>Latex and raw rubber</text>
+    </ics>
+    <structuredidentifier type="ISO">
+      <project-number>3926</project-number>
+    </structuredidentifier>
+  </ext>
+</bibdata>

@@ -1428,378 +1428,107 @@ RSpec.describe IsoDoc::Jis do
       </iso-standard>
     INPUT
     output = <<~OUTPUT
+      <?xml version="1.0"?>
       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
-          <preface>
-             <clause type="toc" id="_" displayorder="1">
-                <fmt-title depth="1" id="_">Contents</fmt-title>
-             </clause>
-          </preface>
-          <sections>
-             <p class="JapaneseIndustrialStandard" displayorder="2">
-                日本工業規格
-                <tab/>
-                <tab/>
-                <tab/>
-                <tab/>
-                <tab/>
-                <tab/>
-                <tab/>
-                <span class="JIS">JIS</span>
-             </p>
-             <p class="StandardNumber" displayorder="3">
-                <tab/>
-             </p>
-             <p class="IDT" displayorder="4"/>
-             <terms id="_" obligation="normative" displayorder="5">
-                <title id="_">Terms and Definitions</title>
-                <fmt-title depth="1" id="_">
-                   <span class="fmt-caption-label">
-                      <semx element="autonum" source="_">1</semx>
-                   </span>
-                   <span class="fmt-caption-delim">
-                      <tab/>
-                   </span>
-                   <semx element="title" source="_">Terms and Definitions</semx>
-                </fmt-title>
-                <fmt-xref-label>
-                   <span class="fmt-element-name">Clause</span>
-                   <semx element="autonum" source="_">1</semx>
-                </fmt-xref-label>
-                <term id="paddy1">
-                   <fmt-name id="_">
-                      <span class="fmt-caption-label">
-                         <semx element="autonum" source="_">1</semx>
-                         <span class="fmt-autonum-delim">.</span>
-                         <semx element="autonum" source="paddy1">1</semx>
-                      </span>
-                   </fmt-name>
-                   <fmt-xref-label>
-                      <semx element="autonum" source="_">1</semx>
-                      <span class="fmt-autonum-delim">.</span>
-                      <semx element="autonum" source="paddy1">1</semx>
-                   </fmt-xref-label>
-                   <preferred id="_">
-                      <expression>
-                         <name id="_">paddy</name>
-                      </expression>
-                   </preferred>
-                   <fmt-preferred>
-                      <p>
-                         <semx element="preferred" source="_">
-                            <strong>
-                               <semx element="expression/name" source="_">paddy</semx>
-                            </strong>
-                         </semx>
-                      </p>
-                   </fmt-preferred>
-                   <definition id="_">
-                      <verbal-definition>
-                         <p original-id="_">
-                            rice retaining its husk after threshing,
-                            <eref bibitem="ISO712" citeas="ISO 712"/>
-                         </p>
-                      </verbal-definition>
-                   </definition>
-                   <fmt-definition id="_">
-                      <semx element="definition" source="_">
-                         <p id="_">
-                            rice retaining its husk after threshing,
-                            <eref bibitem="ISO712" citeas="ISO 712" id="_"/>
-                            <semx element="eref" source="_">
-                               <fmt-xref bibitem="ISO712" target="">ISO 712</fmt-xref>
-                            </semx>
-                         </p>
-                      </semx>
-                   </fmt-definition>
-                   <source status="modified" id="_">
-                      <origin bibitemid="ISO712" type="inline" citeas="ISO 712">
-                         <locality type="clause">
-                            <referenceFrom>3.1</referenceFrom>
-                         </locality>
-                      </origin>
-                      <modification id="_">
-                         <p id="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
+              <preface> <clause type="toc" id="_" displayorder="1"><fmt-title depth="1" id="_">Contents</fmt-title></clause>
+       </preface><sections><p class="JapaneseIndustrialStandard" displayorder="2">&#x65E5;&#x672C;&#x5DE5;&#x696D;&#x898F;&#x683C;<tab/><tab/><tab/><tab/><tab/><tab/><tab/><span class="JIS">JIS</span></p><p class="StandardNumber" displayorder="3"><tab/></p><p class="IDT" displayorder="4"/>
+                <terms id="_" obligation="normative" displayorder="5"><title id="_">Terms and Definitions</title><fmt-title depth="1" id="_"><span class="fmt-caption-label"><semx element="autonum" source="_">1</semx></span><span class="fmt-caption-delim"><tab/></span><semx element="title" source="_">Terms and Definitions</semx></fmt-title><fmt-xref-label><span class="fmt-element-name">Clause</span> <semx element="autonum" source="_">1</semx></fmt-xref-label>
+                  <term id="paddy1"><fmt-name id="_"><span class="fmt-caption-label"><semx element="autonum" source="_">1</semx><span class="fmt-autonum-delim">.</span><semx element="autonum" source="paddy1">1</semx></span></fmt-name><fmt-xref-label><semx element="autonum" source="_">1</semx><span class="fmt-autonum-delim">.</span><semx element="autonum" source="paddy1">1</semx></fmt-xref-label>
+                    <preferred id="_"><expression><name id="_">paddy</name></expression></preferred><fmt-preferred><p><semx element="preferred" source="_"><strong><semx element="expression/name" source="_">paddy</semx></strong></semx></p></fmt-preferred>
+                    <definition id="_"><verbal-definition><p original-id="_">rice retaining its husk after threshing, <eref bibitem="ISO712" citeas="ISO 712"/></p></verbal-definition></definition><fmt-definition id="_"><semx element="definition" source="_"><p id="_">rice retaining its husk after threshing, <eref bibitem="ISO712" citeas="ISO 712" id="_"/><semx element="eref" source="_"><fmt-xref bibitem="ISO712" target="">ISO&#xA0;712</fmt-xref></semx></p></semx></fmt-definition>
+                    <source status="modified" id="_">
+                      <origin bibitemid="ISO712" type="inline" citeas="ISO 712"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
+                        <modification id="_">
+                        <p id="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</p>
                       </modification>
-                   </source>
-                   <fmt-termsource status="modified">
-                      (SOURCE:
-                      <semx element="source" source="_">
-                         <origin bibitemid="ISO712" type="inline" citeas="ISO 712" id="_">
-                            <locality type="clause">
-                               <referenceFrom>3.1</referenceFrom>
-                            </locality>
-                         </origin>
-                         <semx element="origin" source="_">
-                            <fmt-xref type="inline" target="ISO712">
-                               ISO 712,
-                               <span class="citesec">3.1</span>
-                            </fmt-xref>
-                         </semx>
-                         , modified,
-                         <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx>
-                      </semx>
-                      )
-                   </fmt-termsource>
-                </term>
-                <term id="paddy">
-                   <fmt-name id="_">
-                      <span class="fmt-caption-label">
-                         <semx element="autonum" source="_">1</semx>
-                         <span class="fmt-autonum-delim">.</span>
-                         <semx element="autonum" source="paddy">2</semx>
-                      </span>
-                   </fmt-name>
-                   <fmt-xref-label>
-                      <semx element="autonum" source="_">1</semx>
-                      <span class="fmt-autonum-delim">.</span>
-                      <semx element="autonum" source="paddy">2</semx>
-                   </fmt-xref-label>
-                   <preferred id="_">
-                      <expression>
-                         <name id="_">paddy</name>
-                      </expression>
-                   </preferred>
-                   <fmt-preferred>
-                      <p>
-                         <semx element="preferred" source="_">
-                            <strong>
-                               <semx element="expression/name" source="_">paddy</semx>
-                            </strong>
-                         </semx>
-                      </p>
-                   </fmt-preferred>
-                   <definition id="_">
-                      <verbal-definition>
-                         <p original-id="_">
-                            rice retaining its husk after threshing
-                            <eref bibitem="ISO713" citeas="ISO 713"/>
-                         </p>
-                      </verbal-definition>
-                   </definition>
-                   <fmt-definition id="_">
-                      <semx element="definition" source="_">
-                         <p id="_">
-                            rice retaining its husk after threshing
-                            <eref bibitem="ISO713" citeas="ISO 713" id="_"/>
-                            <semx element="eref" source="_">
-                               <fmt-xref bibitem="ISO713" target="">ISO 713</fmt-xref>
-                            </semx>
-                         </p>
-                      </semx>
-                   </fmt-definition>
-                   <source status="identical" id="_">
-                      <origin bibitemid="ISO713" type="inline" citeas="ISO 713">
-                         <locality type="clause">
-                            <referenceFrom>3.1</referenceFrom>
-                         </locality>
-                      </origin>
-                   </source>
-                   <fmt-termsource status="identical">
-                      (SOURCE:
-                      <semx element="source" source="_">
-                         <origin bibitemid="ISO713" type="inline" citeas="ISO 713" id="_">
-                            <locality type="clause">
-                               <referenceFrom>3.1</referenceFrom>
-                            </locality>
-                         </origin>
-                         <semx element="origin" source="_">
-                            <fmt-origin bibitemid="ISO713" type="inline" citeas="[2]" style="short">
-                               <fmt-xref target="ISO713">Aluffi P., Anderson D., Hering M., Mustaţă M. &amp; Payne S</fmt-xref>
-                               .
-                               <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>
-                               . Version 1. Cambridge University Press,
-                               <span class="citesec">3.1</span>
-                            </fmt-origin>
-                         </semx>
-                      </semx>
-                      )
-                   </fmt-termsource>
-                </term>
-                <term id="paddy2">
-                   <fmt-name id="_">
-                      <span class="fmt-caption-label">
-                         <semx element="autonum" source="_">1</semx>
-                         <span class="fmt-autonum-delim">.</span>
-                         <semx element="autonum" source="paddy2">3</semx>
-                      </span>
-                   </fmt-name>
-                   <fmt-xref-label>
-                      <semx element="autonum" source="_">1</semx>
-                      <span class="fmt-autonum-delim">.</span>
-                      <semx element="autonum" source="paddy2">3</semx>
-                   </fmt-xref-label>
-                   <preferred id="_">
-                      <expression>
-                         <name id="_">paddy</name>
-                      </expression>
-                   </preferred>
-                   <fmt-preferred>
-                      <p>
-                         <semx element="preferred" source="_">
-                            <strong>
-                               <semx element="expression/name" source="_">paddy</semx>
-                            </strong>
-                         </semx>
-                      </p>
-                   </fmt-preferred>
-                   <definition id="_">
-                      <verbal-definition>
-                         <p original-id="_">
-                            rice retaining its husk after threshing
-                            <eref bibitem="ISO713" citeas="ISO 713"/>
-                         </p>
-                      </verbal-definition>
-                   </definition>
-                   <fmt-definition id="_">
-                      <semx element="definition" source="_">
-                         <p id="_">
-                            rice retaining its husk after threshing
-                            <eref bibitem="ISO713" citeas="ISO 713" id="_"/>
-                            <semx element="eref" source="_">
-                               <fmt-xref bibitem="ISO713" target="">ISO 713</fmt-xref>
-                            </semx>
-                         </p>
-                      </semx>
-                   </fmt-definition>
-                   <source status="identical" id="_">
-                      <origin bibitemid="ISO713" type="inline" style="reference_tag" citeas="ISO 713">
-                         <locality type="clause">
-                            <referenceFrom>3.1</referenceFrom>
-                         </locality>
-                      </origin>
-                   </source>
-                   <fmt-termsource status="identical">
-                      (SOURCE:
-                      <semx element="source" source="_">
-                         <origin bibitemid="ISO713" type="inline" style="reference_tag" citeas="ISO 713" id="_">
-                            <locality type="clause">
-                               <referenceFrom>3.1</referenceFrom>
-                            </locality>
-                         </origin>
-                         <semx element="origin" source="_">
-                            <fmt-xref type="inline" style="reference_tag" target="ISO713">
-                               [2],
-                               <span class="citesec">3.1</span>
-                            </fmt-xref>
-                         </semx>
-                      </semx>
-                      )
-                   </fmt-termsource>
-                </term>
-             </terms>
-          </sections>
-          <bibliography>
-             <references id="_" obligation="informative" normative="false" displayorder="6">
-                <title id="_">Bibliography</title>
-                <fmt-title depth="1" id="_">
-                   <semx element="title" source="_">Bibliography</semx>
-                </fmt-title>
-                <bibitem id="ISO712" type="standard">
-                   <biblio-tag>
-                      [1]
-                      <tab/>
-                      ISO 712,
-                   </biblio-tag>
-                   <formattedref>
-                      <span class="stddocTitle">Cereals and cereal products</span>
-                   </formattedref>
-                   <title format="text/plain">Cereals or cereal products</title>
-                   <title type="main" format="text/plain">Cereals and cereal products</title>
-                   <docidentifier type="metanorma-ordinal">[1]</docidentifier>
-                   <docidentifier type="ISO">ISO 712</docidentifier>
-                   <docidentifier scope="biblio-tag">ISO 712</docidentifier>
-                   <contributor>
-                      <role type="publisher"/>
-                      <organization>
-                         <name>International Organization for Standardization</name>
-                      </organization>
-                   </contributor>
-                </bibitem>
-                <bibitem id="ISO713" type="standard">
-                   <biblio-tag>
-                      [2]
-                      <tab/>
-                   </biblio-tag>
-                   <formattedref>
-                      Aluffi P., Anderson D., Hering M., Mustaţă M. &amp; Payne S.
-                      <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>
-                      . Version 1. Cambridge University Press. Available at:
-                      <span class="biburl">
-                         <fmt-link target="https://www.iso.org/standard/4766.html">https://www.iso.org/standard/4766.html</fmt-link>
-                      </span>
-                   </formattedref>
-                   <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
-                   <uri type="src">https://www.iso.org/standard/4766.html</uri>
-                   <docidentifier type="metanorma-ordinal">[2]</docidentifier>
-                   <docidentifier type="DOI">DOI https://doi.org/10.1017/9781108877831</docidentifier>
-                   <docidentifier type="ISBN">ISBN 9781108877831</docidentifier>
-                   <date type="published">
-                      <on>2022</on>
-                   </date>
-                   <contributor>
+                    </source><fmt-termsource status="modified">(SOURCE: <semx element="source" source="_"><origin bibitemid="ISO712" type="inline" citeas="ISO 712" id="_"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin><semx element="origin" source="_"><fmt-xref type="inline" target="ISO712">ISO&#xA0;712,  <span class="citesec">3.1</span></fmt-xref></semx>, modified, <semx element="modification" source="_">The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here</semx></semx>)</fmt-termsource>
+                  </term>
+
+                  <term id="paddy"><fmt-name id="_"><span class="fmt-caption-label"><semx element="autonum" source="_">1</semx><span class="fmt-autonum-delim">.</span><semx element="autonum" source="paddy">2</semx></span></fmt-name><fmt-xref-label><semx element="autonum" source="_">1</semx><span class="fmt-autonum-delim">.</span><semx element="autonum" source="paddy">2</semx></fmt-xref-label>
+                    <preferred id="_"><expression><name id="_">paddy</name></expression></preferred><fmt-preferred><p><semx element="preferred" source="_"><strong><semx element="expression/name" source="_">paddy</semx></strong></semx></p></fmt-preferred>
+                    <definition id="_"><verbal-definition><p original-id="_">rice retaining its husk after threshing  <eref bibitem="ISO713" citeas="ISO 713"/></p></verbal-definition></definition><fmt-definition id="_"><semx element="definition" source="_"><p id="_">rice retaining its husk after threshing  <eref bibitem="ISO713" citeas="ISO 713" id="_"/><semx element="eref" source="_"><fmt-xref bibitem="ISO713" target="">ISO&#xA0;713</fmt-xref></semx></p></semx></fmt-definition>
+                    <source status="identical" id="_">
+                      <origin bibitemid="ISO713" type="inline" citeas="ISO 713"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
+                    </source><fmt-termsource status="identical">(SOURCE: <semx element="source" source="_"><origin bibitemid="ISO713" type="inline" citeas="ISO 713" id="_"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin><semx element="origin" source="_"><fmt-origin bibitemid="ISO713" type="inline" citeas="[2]" style="short"><fmt-xref target="ISO713">Aluffi P., Anderson D., Hering M., Musta&#x163;&#x103; M. &amp; Payne S</fmt-xref>. <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>. Version 1. Cambridge University Press,  <span class="citesec">3.1</span>
+      </fmt-origin></semx></semx>)</fmt-termsource>
+                  </term>
+
+                  <term id="paddy2"><fmt-name id="_"><span class="fmt-caption-label"><semx element="autonum" source="_">1</semx><span class="fmt-autonum-delim">.</span><semx element="autonum" source="paddy2">3</semx></span></fmt-name><fmt-xref-label><semx element="autonum" source="_">1</semx><span class="fmt-autonum-delim">.</span><semx element="autonum" source="paddy2">3</semx></fmt-xref-label>
+                    <preferred id="_"><expression><name id="_">paddy</name></expression></preferred><fmt-preferred><p><semx element="preferred" source="_"><strong><semx element="expression/name" source="_">paddy</semx></strong></semx></p></fmt-preferred>
+                    <definition id="_"><verbal-definition><p original-id="_">rice retaining its husk after threshing  <eref bibitem="ISO713" citeas="ISO 713"/></p></verbal-definition></definition><fmt-definition id="_"><semx element="definition" source="_"><p id="_">rice retaining its husk after threshing  <eref bibitem="ISO713" citeas="ISO 713" id="_"/><semx element="eref" source="_"><fmt-xref bibitem="ISO713" target="">ISO&#xA0;713</fmt-xref></semx></p></semx></fmt-definition>
+                    <source status="identical" id="_">
+                      <origin bibitemid="ISO713" type="inline" style="reference_tag" citeas="ISO 713"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin>
+                    </source><fmt-termsource status="identical">(SOURCE: <semx element="source" source="_"><origin bibitemid="ISO713" type="inline" style="reference_tag" citeas="ISO 713" id="_"><locality type="clause"><referenceFrom>3.1</referenceFrom></locality></origin><semx element="origin" source="_"><fmt-xref type="inline" style="reference_tag" target="ISO713">[2],  <span class="citesec">3.1</span></fmt-xref></semx></semx>)</fmt-termsource>
+                  </term>
+
+                </terms>
+              </sections>
+              <bibliography>
+                        <references id="_" obligation="informative" normative="false" displayorder="6"><title id="_">Bibliography</title><fmt-title depth="1" id="_"><semx element="title" source="_">Bibliography</semx></fmt-title>
+              <bibitem id="ISO712" type="standard"><biblio-tag>[1]<tab/>ISO&#xA0;712, </biblio-tag><formattedref><span class="stddocTitle">Cereals and cereal products</span></formattedref>
+              <title format="text/plain">Cereals or cereal products</title>
+              <title type="main" format="text/plain">Cereals and cereal products</title><docidentifier type="metanorma-ordinal">[1]</docidentifier>
+              <docidentifier type="ISO">ISO&#xA0;712</docidentifier><docidentifier scope="biblio-tag">ISO&#xA0;712</docidentifier>
+              <contributor>
+                <role type="publisher"/>
+                <organization>
+                  <name>International Organization for Standardization</name>
+                </organization>
+              </contributor>
+            </bibitem>
+            <bibitem id="ISO713" type="standard"><biblio-tag>[2]<tab/></biblio-tag><formattedref>Aluffi P., Anderson D., Hering M., Musta&#x163;&#x103; M. &amp; Payne S. <span class="stddocTitle">Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</span>. Version 1. Cambridge University Press. Available at: <span class="biburl"><fmt-link target="https://www.iso.org/standard/4766.html">https://www.iso.org/standard/4766.html</fmt-link></span></formattedref>
+                    <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
+                    <uri type="src">https://www.iso.org/standard/4766.html</uri><docidentifier type="metanorma-ordinal">[2]</docidentifier>
+                    <docidentifier type="DOI">DOI&#xA0;https://doi.org/10.1017/9781108877831</docidentifier>
+                    <docidentifier type="ISBN">ISBN&#xA0;9781108877831</docidentifier>
+                    <date type="published"><on>2022</on></date>
+                    <contributor>
                       <role type="editor"/>
                       <person>
-                         <name>
-                            <surname>Aluffi</surname>
-                            <forename>Paolo</forename>
-                         </name>
+                        <name><surname>Aluffi</surname><forename>Paolo</forename></name>
                       </person>
-                   </contributor>
-                   <contributor>
+                    </contributor>
+                            <contributor>
                       <role type="editor"/>
                       <person>
-                         <name>
-                            <surname>Anderson</surname>
-                            <forename>David</forename>
-                         </name>
+                        <name><surname>Anderson</surname><forename>David</forename></name>
                       </person>
-                   </contributor>
-                   <contributor>
+                    </contributor>
+                    <contributor>
                       <role type="editor"/>
                       <person>
-                         <name>
-                            <surname>Hering</surname>
-                            <forename>Milena</forename>
-                         </name>
+                        <name><surname>Hering</surname><forename>Milena</forename></name>
                       </person>
-                   </contributor>
-                   <contributor>
+                    </contributor>
+                    <contributor>
                       <role type="editor"/>
                       <person>
-                         <name>
-                            <surname>Mustaţă</surname>
-                            <forename>Mircea</forename>
-                         </name>
+                        <name><surname>Musta&#x163;&#x103;</surname><forename>Mircea</forename></name>
                       </person>
-                   </contributor>
-                   <contributor>
+                    </contributor>
+                    <contributor>
                       <role type="editor"/>
                       <person>
-                         <name>
-                            <surname>Payne</surname>
-                            <forename>Sam</forename>
-                         </name>
+                        <name><surname>Payne</surname><forename>Sam</forename></name>
                       </person>
-                   </contributor>
-                   <edition>1</edition>
-                   <series>
-                      <title>London Mathematical Society Lecture Note Series</title>
-                      <number>472</number>
-                   </series>
-                   <contributor>
-                      <role type="publisher"/>
-                      <organization>
-                         <name>Cambridge University Press</name>
-                      </organization>
-                   </contributor>
-                   <place>Cambridge, UK</place>
-                   <size>
-                      <value type="volume">1</value>
-                   </size>
-                </bibitem>
-             </references>
-          </bibliography>
-       </iso-standard>
+                    </contributor>
+                    <edition>1</edition>
+                    <series>
+                    <title>London Mathematical Society Lecture Note Series</title>
+                    <number>472</number>
+                    </series>
+                        <contributor>
+                          <role type="publisher"/>
+                          <organization>
+                            <name>Cambridge University Press</name>
+                          </organization>
+                        </contributor>
+                        <place>Cambridge, UK</place>
+                      <size><value type="volume">1</value></size>
+            </bibitem>
+            </references>
+            </bibliography>
+            </iso-standard>
     OUTPUT
     xml = Nokogiri::XML(IsoDoc::Jis::PresentationXMLConvert.new(presxml_options)
          .convert("test", input, true))

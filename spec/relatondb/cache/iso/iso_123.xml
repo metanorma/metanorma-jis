@@ -1,0 +1,147 @@
+<bibdata type="standard" schema-version="v1.5.6">
+  <fetched>2026-10-06</fetched>
+  <title language="en" script="Latn" type="title-intro">Rubber latex</title>
+  <title language="en" script="Latn" type="title-main">Sampling</title>
+  <title language="en" script="Latn" type="main">Rubber latex - Sampling</title>
+  <title language="fr" script="Latn" type="title-intro">Latex de caoutchouc</title>
+  <title language="fr" script="Latn" type="title-main">Échantillonnage</title>
+  <title language="fr" script="Latn" type="main">Latex de caoutchouc - Échantillonnage</title>
+  <uri type="src">https://www.iso.org/standard/23281.html</uri>
+  <uri type="obp">https://www.iso.org/obp/ui/en/#!iso:std:23281:en</uri>
+  <uri type="rss">https://www.iso.org/contents/data/standard/02/32/23281.detail.rss</uri>
+  <docidentifier type="ISO" primary="true">ISO 123</docidentifier>
+  <docidentifier type="iso-reference">ISO 123(E)</docidentifier>
+  <docidentifier type="URN">urn:iso:std:iso:123:stage-90.93</docidentifier>
+  <docnumber>123</docnumber>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>International Organization for Standardization</name>
+      <abbreviation>ISO</abbreviation>
+      <uri>www.iso.org</uri>
+    </organization>
+  </contributor>
+  <contributor>
+    <role type="author">
+      <description>committee</description>
+    </role>
+    <organization>
+      <name>International Organization for Standardization</name>
+      <subdivision type="technical-committee" subtype="TC">
+        <name>Raw materials (including latex) for use in the rubber industry</name>
+        <identifier>ISO/TC 45/SC 3</identifier>
+      </subdivision>
+      <abbreviation>ISO</abbreviation>
+    </organization>
+  </contributor>
+  <edition>3</edition>
+  <language>en</language>
+  <language>fr</language>
+  <script>Latn</script>
+  <status>
+    <stage>90</stage>
+    <substage>93</substage>
+  </status>
+  <copyright>
+    <from>2001</from>
+    <owner>
+      <organization>
+        <name>ISO</name>
+      </organization>
+    </owner>
+  </copyright>
+  <relation type="obsoletes">
+    <bibitem>
+      <formattedref>ISO 123:1985</formattedref>
+      <docidentifier type="ISO" primary="true">ISO 123:1985</docidentifier>
+      <date type="published">
+        <on>1985-08-01</on>
+      </date>
+    </bibitem>
+  </relation>
+  <relation type="instanceOf">
+    <bibitem type="standard">
+      <title language="en" script="Latn" type="title-intro">Rubber latex</title>
+      <title language="en" script="Latn" type="title-main">Sampling</title>
+      <title language="en" script="Latn" type="main">Rubber latex - Sampling</title>
+      <title language="fr" script="Latn" type="title-intro">Latex de caoutchouc</title>
+      <title language="fr" script="Latn" type="title-main">Échantillonnage</title>
+      <title language="fr" script="Latn" type="main">Latex de caoutchouc - Échantillonnage</title>
+      <uri type="src">https://www.iso.org/standard/23281.html</uri>
+      <uri type="obp">https://www.iso.org/obp/ui/en/#!iso:std:23281:en</uri>
+      <uri type="rss">https://www.iso.org/contents/data/standard/02/32/23281.detail.rss</uri>
+      <docidentifier type="ISO" primary="true">ISO 123:2001</docidentifier>
+      <docidentifier type="iso-undated">ISO 123</docidentifier>
+      <docidentifier type="iso-reference">ISO 123:2001(E)</docidentifier>
+      <docidentifier type="URN">urn:iso:std:iso:123:stage-90.93</docidentifier>
+      <docnumber>123</docnumber>
+      <date type="published">
+        <on>2001-05-31</on>
+      </date>
+      <contributor>
+        <role type="publisher"/>
+        <organization>
+          <name>International Organization for Standardization</name>
+          <abbreviation>ISO</abbreviation>
+          <uri>www.iso.org</uri>
+        </organization>
+      </contributor>
+      <contributor>
+        <role type="author">
+          <description>committee</description>
+        </role>
+        <organization>
+          <name>International Organization for Standardization</name>
+          <subdivision type="technical-committee" subtype="TC">
+            <name>Raw materials (including latex) for use in the rubber industry</name>
+            <identifier>ISO/TC 45/SC 3</identifier>
+          </subdivision>
+          <abbreviation>ISO</abbreviation>
+        </organization>
+      </contributor>
+      <edition>3</edition>
+      <language>en</language>
+      <language>fr</language>
+      <script>Latn</script>
+      <abstract language="en" script="Latn">This International Standard specifies procedures for sampling natural rubber latex concentrate and for sampling synthetic rubber latices and artificial latices. It is also suitable for sampling rubber latex contained in drums, tank cars or tanks. The procedures may also be used for sampling plastics dispersions.</abstract>
+      <status>
+        <stage>90</stage>
+        <substage>93</substage>
+      </status>
+      <copyright>
+        <from>2001</from>
+        <owner>
+          <organization>
+            <name>ISO</name>
+          </organization>
+        </owner>
+      </copyright>
+      <relation type="obsoletes">
+        <bibitem>
+          <formattedref>ISO 123:1985</formattedref>
+          <docidentifier type="ISO" primary="true">ISO 123:1985</docidentifier>
+          <date type="published">
+            <on>1985-08-01</on>
+          </date>
+        </bibitem>
+      </relation>
+      <place>
+        <city>Geneva</city>
+      </place>
+    </bibitem>
+  </relation>
+  <place>
+    <city>Geneva</city>
+  </place>
+  <ext schema-version="v1.1.2">
+    <doctype>international-standard</doctype>
+    <flavor>iso</flavor>
+    <ics>
+      <code>83.040.10</code>
+      <text>Latex and raw rubber</text>
+    </ics>
+    <structuredidentifier type="ISO">
+      <project-number>23281</project-number>
+    </structuredidentifier>
+  </ext>
+</bibdata>

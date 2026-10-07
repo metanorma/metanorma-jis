@@ -1,0 +1,159 @@
+<bibdata type="standard" schema-version="v1.5.6">
+  <fetched>2026-10-06</fetched>
+  <title language="en" script="Latn" type="title-intro">Natural rubber latex concentrate</title>
+  <title language="en" script="Latn" type="title-main">Determination of alkalinity</title>
+  <title language="en" script="Latn" type="main">Natural rubber latex concentrate - Determination of alkalinity</title>
+  <title language="fr" script="Latn" type="title-intro">Latex concentré de caoutchouc naturel</title>
+  <title language="fr" script="Latn" type="title-main">Détermination de l'alcalinité</title>
+  <title language="fr" script="Latn" type="main">Latex concentré de caoutchouc naturel - Détermination de l'alcalinité</title>
+  <uri type="src">https://www.iso.org/standard/72849.html</uri>
+  <uri type="obp">https://www.iso.org/obp/ui/en/#!iso:std:72849:en</uri>
+  <uri type="rss">https://www.iso.org/contents/data/standard/07/28/72849.detail.rss</uri>
+  <docidentifier type="ISO" primary="true">ISO 125</docidentifier>
+  <docidentifier type="iso-reference">ISO 125(E)</docidentifier>
+  <docidentifier type="URN">urn:iso:std:iso:125:stage-90.92</docidentifier>
+  <docnumber>125</docnumber>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>International Organization for Standardization</name>
+      <abbreviation>ISO</abbreviation>
+      <uri>www.iso.org</uri>
+    </organization>
+  </contributor>
+  <contributor>
+    <role type="author">
+      <description>committee</description>
+    </role>
+    <organization>
+      <name>International Organization for Standardization</name>
+      <subdivision type="technical-committee" subtype="TC">
+        <name>Raw materials (including latex) for use in the rubber industry</name>
+        <identifier>ISO/TC 45/SC 3</identifier>
+      </subdivision>
+      <abbreviation>ISO</abbreviation>
+    </organization>
+  </contributor>
+  <edition>7</edition>
+  <language>en</language>
+  <language>fr</language>
+  <script>Latn</script>
+  <status>
+    <stage>90</stage>
+    <substage>92</substage>
+  </status>
+  <copyright>
+    <from>2020</from>
+    <owner>
+      <organization>
+        <name>ISO</name>
+      </organization>
+    </owner>
+  </copyright>
+  <relation type="obsoletes">
+    <bibitem>
+      <formattedref>ISO 125:2011</formattedref>
+      <docidentifier type="ISO" primary="true">ISO 125:2011</docidentifier>
+      <date type="published">
+        <on>2011-11-10</on>
+      </date>
+    </bibitem>
+  </relation>
+  <relation type="obsoletedBy">
+    <bibitem>
+      <formattedref>ISO/DIS 125</formattedref>
+      <docidentifier type="ISO" primary="true">ISO/DIS 125</docidentifier>
+    </bibitem>
+  </relation>
+  <relation type="instanceOf">
+    <bibitem type="standard">
+      <title language="en" script="Latn" type="title-intro">Natural rubber latex concentrate</title>
+      <title language="en" script="Latn" type="title-main">Determination of alkalinity</title>
+      <title language="en" script="Latn" type="main">Natural rubber latex concentrate - Determination of alkalinity</title>
+      <title language="fr" script="Latn" type="title-intro">Latex concentré de caoutchouc naturel</title>
+      <title language="fr" script="Latn" type="title-main">Détermination de l'alcalinité</title>
+      <title language="fr" script="Latn" type="main">Latex concentré de caoutchouc naturel - Détermination de l'alcalinité</title>
+      <uri type="src">https://www.iso.org/standard/72849.html</uri>
+      <uri type="obp">https://www.iso.org/obp/ui/en/#!iso:std:72849:en</uri>
+      <uri type="rss">https://www.iso.org/contents/data/standard/07/28/72849.detail.rss</uri>
+      <docidentifier type="ISO" primary="true">ISO 125:2020</docidentifier>
+      <docidentifier type="iso-undated">ISO 125</docidentifier>
+      <docidentifier type="iso-reference">ISO 125:2020(E)</docidentifier>
+      <docidentifier type="URN">urn:iso:std:iso:125:stage-90.92</docidentifier>
+      <docnumber>125</docnumber>
+      <date type="published">
+        <on>2020-02-19</on>
+      </date>
+      <contributor>
+        <role type="publisher"/>
+        <organization>
+          <name>International Organization for Standardization</name>
+          <abbreviation>ISO</abbreviation>
+          <uri>www.iso.org</uri>
+        </organization>
+      </contributor>
+      <contributor>
+        <role type="author">
+          <description>committee</description>
+        </role>
+        <organization>
+          <name>International Organization for Standardization</name>
+          <subdivision type="technical-committee" subtype="TC">
+            <name>Raw materials (including latex) for use in the rubber industry</name>
+            <identifier>ISO/TC 45/SC 3</identifier>
+          </subdivision>
+          <abbreviation>ISO</abbreviation>
+        </organization>
+      </contributor>
+      <edition>7</edition>
+      <language>en</language>
+      <language>fr</language>
+      <script>Latn</script>
+      <abstract language="en" script="Latn">This document specifies a method for the determination of the alkalinity of natural rubber latex concentrate. The method is not necessarily suitable for latices from natural sources other than Hevea brasiliensis or for synthetic rubber latices, compounded latex, vulcanized latex or artificial dispersions of rubber. NOTE A method for the determination of the alkalinity of polychloroprene latex is specified in ISO 13773.</abstract>
+      <status>
+        <stage>90</stage>
+        <substage>92</substage>
+      </status>
+      <copyright>
+        <from>2020</from>
+        <owner>
+          <organization>
+            <name>ISO</name>
+          </organization>
+        </owner>
+      </copyright>
+      <relation type="obsoletes">
+        <bibitem>
+          <formattedref>ISO 125:2011</formattedref>
+          <docidentifier type="ISO" primary="true">ISO 125:2011</docidentifier>
+          <date type="published">
+            <on>2011-11-10</on>
+          </date>
+        </bibitem>
+      </relation>
+      <relation type="obsoletedBy">
+        <bibitem>
+          <formattedref>ISO/DIS 125</formattedref>
+          <docidentifier type="ISO" primary="true">ISO/DIS 125</docidentifier>
+        </bibitem>
+      </relation>
+      <place>
+        <city>Geneva</city>
+      </place>
+    </bibitem>
+  </relation>
+  <place>
+    <city>Geneva</city>
+  </place>
+  <ext schema-version="v1.1.2">
+    <doctype>international-standard</doctype>
+    <flavor>iso</flavor>
+    <ics>
+      <code>83.040.10</code>
+      <text>Latex and raw rubber</text>
+    </ics>
+    <structuredidentifier type="ISO">
+      <project-number>72849</project-number>
+    </structuredidentifier>
+  </ext>
+</bibdata>
