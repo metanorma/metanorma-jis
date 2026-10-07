@@ -9,7 +9,7 @@ RSpec.describe IsoDoc do
         </bibdata>
         <preface>
           <foreword>
-            <p id="_f06fd0d1-a203-4f3d-a515-0bdba0f8d83f">
+            <p id="_">
               <eref bibitemid="ISO712"/>
               <eref bibitemid="ISBN"/>
               <eref bibitemid="ISSN"/>
@@ -302,605 +302,315 @@ RSpec.describe IsoDoc do
       </iso-standard>
     INPUT
     presxml = <<~OUTPUT
-       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
-          <bibdata>
-             <language current="true">en</language>
-          </bibdata>
-          <preface>
-             <foreword id="_" displayorder="1">
-                <title id="_">Foreword</title>
-                <fmt-title depth="1" id="_">
-                   <semx element="title" source="_">Foreword</semx>
-                </fmt-title>
-                <p id="_">
-                   <eref bibitemid="ISO712" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref target="ISO712">ISO 712</fmt-xref>
-                   </semx>
-                   <eref bibitemid="ISBN" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref target="ISBN">[1]</fmt-xref>
-                   </semx>
-                   <eref bibitemid="ISSN" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref target="ISSN">[3]</fmt-xref>
-                   </semx>
-                   <eref bibitemid="ISO16634" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref target="ISO16634">ISO 16634:--</fmt-xref>
-                   </semx>
-                   <eref bibitemid="ref1" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref target="ref1">ICC 167</fmt-xref>
-                   </semx>
-                   <eref bibitemid="ref10" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref target="ref10">[5]</fmt-xref>
-                   </semx>
-                   <eref bibitemid="ref11" style="title" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref style="title" target="ref11">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</fmt-xref>
-                   </semx>
-                   <eref bibitemid="ref12" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref target="ref12">[Citn]</fmt-xref>
-                   </semx>
-                </p>
-             </foreword>
-             <clause type="toc" id="_" displayorder="2">
-                <fmt-title depth="1" id="_">Contents</fmt-title>
-             </clause>
-          </preface>
-          <sections>
-             <p class="JapaneseIndustrialStandard" displayorder="3">
-                日本工業規格
-                <tab/>
-                <tab/>
-                <tab/>
-                <tab/>
-                <tab/>
-                <tab/>
-                <tab/>
-                <span class="JIS">JIS</span>
-             </p>
-             <p class="StandardNumber" displayorder="4">
-                <tab/>
-             </p>
-             <p class="IDT" displayorder="5"/>
-             <references id="_" normative="true" obligation="informative" displayorder="6">
-                <title id="_">Normative References</title>
-                <fmt-title depth="1" id="_">
-                   <span class="fmt-caption-label">
-                      <semx element="autonum" source="_">1</semx>
-                   </span>
-                   <span class="fmt-caption-delim">
-                      <tab/>
-                   </span>
-                   <semx element="title" source="_">Normative References</semx>
-                </fmt-title>
-                <fmt-xref-label>
-                   <span class="fmt-element-name">Clause</span>
-                   <semx element="autonum" source="_">1</semx>
-                </fmt-xref-label>
-                <p>The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</p>
-                <bibitem id="ISO712" type="standard">
-                   <biblio-tag>
-                      <strong>ISO 712</strong>
-                      ,
-                   </biblio-tag>
-                   <formattedref>
-                      <span class="stddocTitle">Cereals and cereal products</span>
-                   </formattedref>
-                   <title format="text/plain">Cereals or cereal products</title>
-                   <title format="text/plain" type="main">Cereals and cereal products</title>
-                   <docidentifier type="ISO">ISO 712</docidentifier>
-                   <docidentifier scope="biblio-tag">ISO 712</docidentifier>
-                   <contributor>
+      <?xml version="1.0"?>
+      <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
+              <bibdata>
+                <language current="true">en</language>
+              </bibdata>
+              <preface>
+                <foreword id="_" displayorder="1"><title id="_">Foreword</title><fmt-title depth="1" id="_"><semx element="title" source="_">Foreword</semx></fmt-title>
+                  <p id="_">
+                    <eref bibitemid="ISO712" id="_"/><semx element="eref" source="_"><fmt-xref target="ISO712">ISO&#xA0;712</fmt-xref></semx>
+                    <eref bibitemid="ISBN" id="_"/><semx element="eref" source="_"><fmt-xref target="ISBN">[1]</fmt-xref></semx>
+                    <eref bibitemid="ISSN" id="_"/><semx element="eref" source="_"><fmt-xref target="ISSN">[3]</fmt-xref></semx>
+                    <eref bibitemid="ISO16634" id="_"/><semx element="eref" source="_"><fmt-xref target="ISO16634">ISO&#xA0;16634:--</fmt-xref></semx>
+                    <eref bibitemid="ref1" id="_"/><semx element="eref" source="_"><fmt-xref target="ref1">ICC&#xA0;167</fmt-xref></semx>
+                    <eref bibitemid="ref10" id="_"/><semx element="eref" source="_"><fmt-xref target="ref10">[5]</fmt-xref></semx>
+                    <eref bibitemid="ref11" style="title" id="_"/><semx element="eref" source="_"><fmt-xref style="title" target="ref11">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</fmt-xref></semx>
+                    <eref bibitemid="ref12" id="_"/><semx element="eref" source="_"><fmt-xref target="ref12">[Citn]</fmt-xref></semx>
+                  </p>
+                </foreword>
+              <clause type="toc" id="_" displayorder="2"><fmt-title depth="1" id="_">Contents</fmt-title></clause>
+       </preface><sections><p class="JapaneseIndustrialStandard" displayorder="3">&#x65E5;&#x672C;&#x5DE5;&#x696D;&#x898F;&#x683C;<tab/><tab/><tab/><tab/><tab/><tab/><tab/><span class="JIS">JIS</span></p><p class="StandardNumber" displayorder="4"><tab/></p><p class="IDT" displayorder="5"/><references id="_" normative="true" obligation="informative" displayorder="6">
+                  <title id="_">Normative References</title><fmt-title depth="1" id="_"><span class="fmt-caption-label"><semx element="autonum" source="_">1</semx></span><span class="fmt-caption-delim"><tab/></span><semx element="title" source="_">Normative References</semx></fmt-title><fmt-xref-label><span class="fmt-element-name">Clause</span> <semx element="autonum" source="_">1</semx></fmt-xref-label>
+                  <p>The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</p>
+                  <bibitem id="ISO712" type="standard"><biblio-tag><strong>ISO&#xA0;712</strong>, </biblio-tag><formattedref><span class="stddocTitle">Cereals and cereal products</span></formattedref>
+                    <title format="text/plain">Cereals or cereal products</title>
+                    <title format="text/plain" type="main">Cereals and cereal products</title>
+                    <docidentifier type="ISO">ISO&#xA0;712</docidentifier><docidentifier scope="biblio-tag">ISO&#xA0;712</docidentifier>
+                    <contributor>
                       <role type="publisher"/>
                       <organization>
-                         <name>International Organization for Standardization</name>
+                        <name>International Organization for Standardization</name>
                       </organization>
-                   </contributor>
-                </bibitem>
-                <bibitem id="ISO16634" type="standard">
-                   <biblio-tag>
-                      <strong>ISO 16634:-- (all parts)</strong>
-                      <fn id="_" reference="1" original-reference="1" target="_">
-                         <p>Under preparation. (Stage at the time of publication ISO/DIS 16634)</p>
-                         <fmt-fn-label>
-                            <span class="fmt-caption-label">
-                               <sup>
-                                  <semx element="autonum" source="_">1</semx>
-                               </sup>
-                            </span>
-                         </fmt-fn-label>
-                      </fn>
-                      ,
-                   </biblio-tag>
-                   <formattedref>
-                      <span class="stddocTitle">Cereals, pulses, milled cereal products, oilseeds and animal feeding stuffs</span>
-                   </formattedref>
-                   <title format="text/plain" language="x">Cereals, pulses, milled cereal products, xxxx, oilseeds and animal feeding stuffs</title>
-                   <title format="text/plain" language="en">Cereals, pulses, milled cereal products, oilseeds and animal feeding stuffs</title>
-                   <docidentifier type="ISO">ISO 16634:-- (all parts)</docidentifier>
-                   <docidentifier scope="biblio-tag">ISO 16634:-- (all parts)</docidentifier>
-                   <date type="published">
+                    </contributor>
+                  </bibitem>
+                  <bibitem id="ISO16634" type="standard"><biblio-tag><strong>ISO&#xA0;16634:--&#xA0;(all&#xA0;parts)</strong><fn id="_" reference="1" original-reference="1" target="_"><p>Under preparation. (Stage at the time of publication ISO/DIS 16634)</p><fmt-fn-label><span class="fmt-caption-label"><sup><semx element="autonum" source="_">1</semx></sup></span></fmt-fn-label></fn>
+      , </biblio-tag><formattedref><span class="stddocTitle">Cereals, pulses, milled cereal products, oilseeds and animal feeding stuffs</span></formattedref>
+                    <title format="text/plain" language="x">Cereals, pulses, milled cereal products, xxxx, oilseeds and animal feeding stuffs</title>
+                    <title format="text/plain" language="en">Cereals, pulses, milled cereal products, oilseeds and animal feeding stuffs</title>
+                    <docidentifier type="ISO">ISO&#xA0;16634:--&#xA0;(all&#xA0;parts)</docidentifier><docidentifier scope="biblio-tag">ISO&#xA0;16634:--&#xA0;(all&#xA0;parts)</docidentifier>
+                    <date type="published">
                       <on>--</on>
-                   </date>
-                   <contributor>
+                    </date>
+                    <contributor>
                       <role type="publisher"/>
                       <organization>
-                         <name>ISO</name>
+                        <name>ISO</name>
                       </organization>
-                   </contributor>
-                   <note format="text/plain" reference="1" type="Unpublished-Status">Under preparation. (Stage at the time of publication ISO/DIS 16634)</note>
-                   <extent type="part">
+                    </contributor>
+                    <note format="text/plain" reference="1" type="Unpublished-Status">Under preparation. (Stage at the time of publication ISO/DIS 16634)</note>
+                    <extent type="part">
                       <referenceFrom>all</referenceFrom>
-                   </extent>
-                </bibitem>
-                <bibitem id="ISO20483" type="standard">
-                   <biblio-tag>
-                      <strong>ISO 20483:2013-2014</strong>
-                      　
-                   </biblio-tag>
-                   <formattedref>
-                      <span class="stddocTitle">Cereals and pulses</span>
-                   </formattedref>
-                   <title format="text/plain">Cereals and pulses</title>
-                   <docidentifier type="ISO">ISO 20483:2013-2014</docidentifier>
-                   <docidentifier scope="biblio-tag">ISO 20483:2013-2014</docidentifier>
-                   <date type="published">
+                    </extent>
+                  </bibitem>
+                  <bibitem id="ISO20483" type="standard"><biblio-tag><strong>ISO&#xA0;20483:2013-2014</strong>&#x3000;</biblio-tag><formattedref><span class="stddocTitle">Cereals and pulses</span></formattedref>
+                    <title format="text/plain">Cereals and pulses</title>
+                    <docidentifier type="ISO">ISO&#xA0;20483:2013-2014</docidentifier><docidentifier scope="biblio-tag">ISO&#xA0;20483:2013-2014</docidentifier>
+                    <date type="published">
                       <from>2013</from>
                       <to>2014</to>
-                   </date>
-                   <contributor>
+                    </date>
+                    <contributor>
                       <role type="publisher"/>
                       <organization>
-                         <name>International Organization for Standardization</name>
+                        <name>International Organization for Standardization</name>
                       </organization>
-                   </contributor>
-                   <language>ja</language>
-                   <script>Jpan</script>
-                </bibitem>
-                <bibitem id="ref1">
-                   <biblio-tag>
-                      <strong>ICC 167</strong>
-                      ,
-                   </biblio-tag>
-                   <formattedref format="application/x-isodoc+xml">
-                      <smallcap>Standard No I.C.C 167</smallcap>
-                      .
+                    </contributor>
+                    <language>ja</language>
+                    <script>Jpan</script>
+                  </bibitem>
+                  <bibitem id="ref1"><biblio-tag><strong>ICC&#xA0;167</strong>, </biblio-tag>
+                    <formattedref format="application/x-isodoc+xml">
+                      <smallcap>Standard No I.C.C 167</smallcap> .
+
                       <em>Determination of the protein content in cereal and cereal products for food and animal feeding stuffs according to the Dumas combustion method</em>
                       (see
-                      <link target="http://www.icc.or.at" id="_"/>
-                      <semx element="link" source="_">
-                         <fmt-link target="http://www.icc.or.at"/>
-                      </semx>
-                      )
-                      <note type="display" id="_" autonum="">
-                         <fmt-name id="_">
-                            <span class="fmt-caption-label">
-                               <span class="fmt-element-name">NOTE</span>
-                            </span>
-                            <span class="fmt-label-delim">
-                               <tab/>
-                            </span>
-                         </fmt-name>
-                         <fmt-xref-label>
-                            <span class="fmt-element-name">Note</span>
-                         </fmt-xref-label>
-                         <fmt-xref-label container="ref1">
-                            <span class="fmt-xref-container">
-                               <span class="fmt-xref-container">
-                                  <span class="fmt-element-name">Clause</span>
-                                  <semx element="autonum" source="_">1</semx>
-                               </span>
-                               <span class="fmt-comma">,</span>
-                               ICC 167
-                            </span>
-                            <span class="fmt-comma">,</span>
-                            <span class="fmt-element-name">Note</span>
-                         </fmt-xref-label>
-                         <semx element="note" source="_">
-                            <p>This is an annotation of ISO 20483:2013-2014</p>
-                         </semx>
-                      </note>
-                   </formattedref>
-                   <docidentifier type="ICC">ICC 167</docidentifier>
-                   <docidentifier scope="biblio-tag">ICC 167</docidentifier>
-                   <note type="display" original-id="_" id="_">
-                      <p>This is an annotation of ISO 20483:2013-2014</p>
-                   </note>
-                </bibitem>
-             </references>
-          </sections>
-          <bibliography>
-             <references id="_" normative="false" obligation="informative" displayorder="7">
-                <title id="_">Bibliography</title>
-                <fmt-title depth="1" id="_">
-                   <semx element="title" source="_">Bibliography</semx>
-                </fmt-title>
-                <bibitem id="ISBN" type="book">
-                   <biblio-tag>
-                      [1]
-                      <tab/>
-                   </biblio-tag>
-                   <formattedref>Chemicals for analytical laboratory use. n.p.: n.d</formattedref>
-                   <title format="text/plain">Chemicals for analytical laboratory use</title>
-                   <docidentifier type="metanorma-ordinal">[1]</docidentifier>
-                   <docidentifier type="ISBN">ISBN</docidentifier>
-                   <contributor>
+
+                      <link target="http://www.icc.or.at" id="_"/><semx element="link" source="_"><fmt-link target="http://www.icc.or.at"/></semx>
+                      )<note type="display" id="_" autonum=""><fmt-name id="_"><span class="fmt-caption-label"><span class="fmt-element-name">NOTE</span></span><span class="fmt-label-delim"><tab/></span></fmt-name><fmt-xref-label><span class="fmt-element-name">Note</span></fmt-xref-label><fmt-xref-label container="ref1"><span class="fmt-xref-container"><span class="fmt-xref-container"><span class="fmt-element-name">Clause</span> <semx element="autonum" source="_">1</semx></span><span class="fmt-comma">,</span> ICC&#xA0;167</span><span class="fmt-comma">,</span> <span class="fmt-element-name">Note</span></fmt-xref-label><semx element="note" source="_">
+                    <p>This is an annotation of ISO 20483:2013-2014</p>
+                  </semx></note>
+      </formattedref>
+                    <docidentifier type="ICC">ICC&#xA0;167</docidentifier><docidentifier scope="biblio-tag">ICC&#xA0;167</docidentifier>
+                  <note type="display" original-id="_" id="_">
+                    <p>This is an annotation of ISO 20483:2013-2014</p>
+                  </note></bibitem>
+            
+                </references></sections>
+              <bibliography>
+          
+                <references id="_" normative="false" obligation="informative" displayorder="7">
+                  <title id="_">Bibliography</title><fmt-title depth="1" id="_"><semx element="title" source="_">Bibliography</semx></fmt-title>
+                  <bibitem id="ISBN" type="book"><biblio-tag>[1]<tab/></biblio-tag><formattedref>Chemicals for analytical laboratory use. n.p.: n.d</formattedref>
+                    <title format="text/plain">Chemicals for analytical laboratory use</title><docidentifier type="metanorma-ordinal">[1]</docidentifier>
+                    <docidentifier type="ISBN">ISBN</docidentifier>
+              
+                    <contributor>
                       <role type="publisher"/>
                       <organization>
-                         <abbreviation>ISBN</abbreviation>
+                        <abbreviation>ISBN</abbreviation>
                       </organization>
-                   </contributor>
-                </bibitem>
-                <bibitem id="A" anchor="A" type="inbook">
-                   <biblio-tag>
-                      [2]
-                      <tab/>
-                      ISO 1234 / B,
-                   </biblio-tag>
-                   <formattedref>
-                      Wozniak S., Jobs S. &amp; Hoover J.E.
-                      <em>Work</em>
-                      . Collected Essays UNICEF). Fourth edition. (Bibliographers Anonymous). Geneva: International Standardization Organization. 1996. vol. 4 p. 19. Available at:
-                      <span class="biburl">
-                         <fmt-link target="http://www.example.com">http://www.example.com</fmt-link>
-                      </span>
-                   </formattedref>
+                    </contributor>
+                  </bibitem>
+                                  <bibitem id="A" anchor="A" type="inbook"><biblio-tag>[2]<tab/>ISO&#xA0;1234&#xA0;/ B, </biblio-tag><formattedref>Wozniak S., Jobs S. &amp; Hoover J.E. <em>Work</em> . Collected Essays UNICEF). Fourth edition. (Bibliographers Anonymous). Geneva: International Standardization Organization. 1996. vol. 4 p. 19. Available at: <span class="biburl"><fmt-link target="http://www.example.com">http://www.example.com</fmt-link></span></formattedref>
                    <title>
-                      <em>Work</em>
+                     <em>Work</em>
                    </title>
-                   <uri type="citation">http://www.example.com</uri>
-                   <docidentifier type="metanorma-ordinal">[2]</docidentifier>
-                   <docidentifier type="ISO">ISO 1234</docidentifier>
-                   <docidentifier>B</docidentifier>
-                   <docidentifier scope="biblio-tag">ISO 1234</docidentifier>
-                   <docidentifier scope="biblio-tag">B</docidentifier>
+                   <uri type="citation">http://www.example.com</uri><docidentifier type="metanorma-ordinal">[2]</docidentifier>
+                   <docidentifier type="ISO">ISO&#xA0;1234</docidentifier>
+                   <docidentifier>B</docidentifier><docidentifier scope="biblio-tag">ISO&#xA0;1234</docidentifier><docidentifier scope="biblio-tag">B</docidentifier>
                    <date type="issued">
-                      <from>1991</from>
-                      <to>1992</to>
+                     <from>1991</from>
+                     <to>1992</to>
                    </date>
                    <date type="published">
-                      <on>1996-01-02</on>
+                     <on>1996-01-02</on>
                    </date>
                    <contributor>
-                      <role type="author"/>
-                      <person>
-                         <name>
-                            <formatted-initials>S.</formatted-initials>
-                            <surname>Wozniak</surname>
-                         </name>
-                      </person>
+                     <role type="author"/>
+                     <person>
+                       <name>
+                         <formatted-initials>S.</formatted-initials>
+                         <surname>Wozniak</surname>
+                       </name>
+                     </person>
                    </contributor>
                    <contributor>
-                      <role type="author"/>
-                      <person>
-                         <name>
-                            <forename>Steve</forename>
-                            <surname>Jobs</surname>
-                         </name>
-                      </person>
+                     <role type="author"/>
+                     <person>
+                       <name>
+                         <forename>Steve</forename>
+                         <surname>Jobs</surname>
+                       </name>
+                     </person>
                    </contributor>
                    <contributor>
-                      <role type="author"/>
-                      <person>
-                         <name>
-                            <forename>J.</forename>
-                            <forename>Edgar</forename>
-                            <surname>Hoover</surname>
-                         </name>
-                      </person>
+                     <role type="author"/>
+                     <person>
+                       <name>
+                         <forename>J.</forename>
+                         <forename>Edgar</forename>
+                         <surname>Hoover</surname>
+                       </name>
+                     </person>
                    </contributor>
                    <contributor>
-                      <role type="publisher"/>
-                      <organization>
-                         <name>International Standardization Organization</name>
-                      </organization>
+                     <role type="publisher"/>
+                     <organization>
+                       <name>International Standardization Organization</name>
+                     </organization>
                    </contributor>
                    <edition>4</edition>
                    <version>draft</version>
                    <note>Also available in paperback.</note>
-                   <abstract>
-                      This is a
-                      <em>journey</em>
-                      into sound
-                   </abstract>
+                   <abstract>This is a <em>journey</em> into sound</abstract>
                    <place><formattedPlace>Geneva</formattedPlace></place>
                    <relation type="includedIn">
-                      <bibitem type="book">
-                         <title>Collected Essays</title>
-                         <contributor>
-                            <role type="editor"/>
-                            <person>
-                               <name>
-                                  <formatted-initials>W. H</formatted-initials>
-                                  <surname>Gates</surname>
-                               </name>
-                            </person>
-                         </contributor>
-                         <contributor>
-                            <role type="author"/>
-                            <organization>
-                               <name>UNICEF</name>
-                            </organization>
-                         </contributor>
-                         <series>
-                            <title>Bibliographers Anonymous</title>
-                         </series>
-                      </bibitem>
+                     <bibitem type="book">
+                       <title>Collected Essays</title>
+                       <contributor>
+                         <role type="editor"/>
+                         <person>
+                           <name>
+                             <formatted-initials>W. H</formatted-initials>
+                             <surname>Gates</surname>
+                           </name>
+                         </person>
+                       </contributor>
+                       <contributor>
+                         <role type="author"/>
+                         <organization>
+                           <name>UNICEF</name>
+                         </organization>
+                       </contributor>
+                       <series>
+                         <title>Bibliographers Anonymous</title>
+                      </series>
+                     </bibitem>
                    </relation>
                    <extent>
-                      <locality type="volume">
-                         <referenceFrom>4</referenceFrom>
-                      </locality>
-                      <locality type="issue">
-                         <referenceFrom>2</referenceFrom>
-                         <referenceTo>3</referenceTo>
-                      </locality>
-                      <locality type="page">
-                         <referenceFrom>12</referenceFrom>
-                         <referenceTo>13</referenceTo>
-                      </locality>
-                      <locality type="page">
-                         <referenceFrom>19</referenceFrom>
-                      </locality>
+                     <locality type="volume">
+                       <referenceFrom>4</referenceFrom>
+                     </locality>
+                     <locality type="issue">
+                       <referenceFrom>2</referenceFrom>
+                       <referenceTo>3</referenceTo>
+                     </locality>
+                     <locality type="page">
+                       <referenceFrom>12</referenceFrom>
+                       <referenceTo>13</referenceTo>
+                     </locality>
+                     <locality type="page">
+                       <referenceFrom>19</referenceFrom>
+                     </locality>
                    </extent>
                    <classification>A</classification>
-                   <classification type="B">C</classification>
-                   <classification>D</classification>
-                   <keyword>key word</keyword>
-                   <keyword>word key</keyword>
-                </bibitem>
-                <bibitem type="article" id="ISSN">
-                   <biblio-tag>
-                      [3]
-                      <tab/>
-                   </biblio-tag>
-                   <formattedref>
-                      Aluffi P., Anderson D., Hering M., Mustaţă M. &amp; Payne S. (eds.). Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday. London Mathematical Society Lecture Note Series (N.S.). 2022, vol. 1 no. 7, pp. 89–112
-                      <note type="display" id="_" autonum="1">
-                         <fmt-name id="_">
-                            <span class="fmt-caption-label">
-                               <span class="fmt-element-name">NOTE</span>
-                               <semx element="autonum" source="_">1</semx>
-                            </span>
-                            <span class="fmt-label-delim">
-                               <tab/>
-                            </span>
-                         </fmt-name>
-                         <fmt-xref-label>
-                            <span class="fmt-element-name">Note</span>
-                            <semx element="autonum" source="_">1</semx>
-                         </fmt-xref-label>
-                         <fmt-xref-label container="ISSN">
-                            <span class="fmt-xref-container">
-                               <span class="fmt-xref-container">
-                                  <semx element="references" source="_">Bibliography</semx>
-                               </span>
-                               <span class="fmt-comma">,</span>
-                               [3]
-                            </span>
-                            <span class="fmt-comma">,</span>
-                            <span class="fmt-element-name">Note</span>
-                            <semx element="autonum" source="_">1</semx>
-                         </fmt-xref-label>
-                         <semx element="note" source="_">
-                            <p>This is an annotation of document ISSN.</p>
-                         </semx>
-                      </note>
-                      <note type="display" id="_" autonum="2">
-                         <fmt-name id="_">
-                            <span class="fmt-caption-label">
-                               <span class="fmt-element-name">NOTE</span>
-                               <semx element="autonum" source="_">2</semx>
-                            </span>
-                            <span class="fmt-label-delim">
-                               <tab/>
-                            </span>
-                         </fmt-name>
-                         <fmt-xref-label>
-                            <span class="fmt-element-name">Note</span>
-                            <semx element="autonum" source="_">2</semx>
-                         </fmt-xref-label>
-                         <fmt-xref-label container="ISSN">
-                            <span class="fmt-xref-container">
-                               <span class="fmt-xref-container">
-                                  <semx element="references" source="_">Bibliography</semx>
-                               </span>
-                               <span class="fmt-comma">,</span>
-                               [3]
-                            </span>
-                            <span class="fmt-comma">,</span>
-                            <span class="fmt-element-name">Note</span>
-                            <semx element="autonum" source="_">2</semx>
-                         </fmt-xref-label>
-                         <semx element="note" source="_">
-                            <p>This is another annotation of document ISSN.</p>
-                         </semx>
-                      </note>
-                   </formattedref>
-                   <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
-                   <docidentifier type="metanorma-ordinal">[3]</docidentifier>
-                   <docidentifier type="DOI">DOI https://doi.org/10.1017/9781108877831</docidentifier>
-                   <docidentifier type="ISBN">ISBN 9781108877831</docidentifier>
-                   <date type="published">
-                      <on>2022</on>
-                   </date>
-                   <contributor>
-                      <role type="editor"/>
-                      <person>
-                         <name>
-                            <surname>Aluffi</surname>
-                            <forename>Paolo</forename>
-                         </name>
-                      </person>
-                   </contributor>
-                   <contributor>
-                      <role type="editor"/>
-                      <person>
-                         <name>
-                            <surname>Anderson</surname>
-                            <forename>David</forename>
-                         </name>
-                      </person>
-                   </contributor>
-                   <contributor>
-                      <role type="editor"/>
-                      <person>
-                         <name>
-                            <surname>Hering</surname>
-                            <forename>Milena</forename>
-                         </name>
-                      </person>
-                   </contributor>
-                   <contributor>
-                      <role type="editor"/>
-                      <person>
-                         <name>
-                            <surname>Mustaţă</surname>
-                            <forename>Mircea</forename>
-                         </name>
-                      </person>
-                   </contributor>
-                   <contributor>
-                      <role type="editor"/>
-                      <person>
-                         <name>
-                            <surname>Payne</surname>
-                            <forename>Sam</forename>
-                         </name>
-                      </person>
-                   </contributor>
-                   <edition>1</edition>
-                   <series>
-                      <title>London Mathematical Society Lecture Note Series</title>
-                      <number>472</number>
-                      <partnumber>472</partnumber>
-                      <run>N.S.</run>
-                   </series>
-                   <contributor>
-                      <role type="publisher"/>
-                      <organization>
-                         <name>Cambridge University Press</name>
-                      </organization>
-                   </contributor>
-                   <place><formattedPlace>Cambridge, UK</formattedPlace></place>
-                   <extent>
+               <classification type="B">C</classification>
+               <classification>D</classification>
+               <keyword>key word</keyword>
+               <keyword>word key</keyword>
+              </bibitem>
+                            <bibitem type="article" id="ISSN"><biblio-tag>[3]<tab/></biblio-tag><formattedref>Aluffi P., Anderson D., Hering M., Musta&#x163;&#x103; M. &amp; Payne S. (eds.). Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday. London Mathematical Society Lecture Note Series (N.S.). 2022, vol. 1 no. 7, pp. 89&#x2013;112<note type="display" id="_" autonum="1"><fmt-name id="_"><span class="fmt-caption-label"><span class="fmt-element-name">NOTE</span> <semx element="autonum" source="_">1</semx></span><span class="fmt-label-delim"><tab/></span></fmt-name><fmt-xref-label><span class="fmt-element-name">Note</span> <semx element="autonum" source="_">1</semx></fmt-xref-label><fmt-xref-label container="ISSN"><span class="fmt-xref-container"><span class="fmt-xref-container"><semx element="references" source="_">Bibliography</semx></span><span class="fmt-comma">,</span> [3]</span><span class="fmt-comma">,</span> <span class="fmt-element-name">Note</span> <semx element="autonum" source="_">1</semx></fmt-xref-label><semx element="note" source="_">
+                    <p>This is an annotation of document ISSN.</p>
+                  </semx></note>
+      <note type="display" id="_" autonum="2"><fmt-name id="_"><span class="fmt-caption-label"><span class="fmt-element-name">NOTE</span> <semx element="autonum" source="_">2</semx></span><span class="fmt-label-delim"><tab/></span></fmt-name><fmt-xref-label><span class="fmt-element-name">Note</span> <semx element="autonum" source="_">2</semx></fmt-xref-label><fmt-xref-label container="ISSN"><span class="fmt-xref-container"><span class="fmt-xref-container"><semx element="references" source="_">Bibliography</semx></span><span class="fmt-comma">,</span> [3]</span><span class="fmt-comma">,</span> <span class="fmt-element-name">Note</span> <semx element="autonum" source="_">2</semx></fmt-xref-label><semx element="note" source="_">
+                    <p>This is another annotation of document ISSN.</p>
+                  </semx></note>
+      </formattedref>
+                    <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title><docidentifier type="metanorma-ordinal">[3]</docidentifier>
+              <docidentifier type="DOI">DOI&#xA0;https://doi.org/10.1017/9781108877831</docidentifier>
+              <docidentifier type="ISBN">ISBN&#xA0;9781108877831</docidentifier>
+              <date type="published"><on>2022</on></date>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Aluffi</surname><forename>Paolo</forename></name>
+                </person>
+              </contributor>
+                      <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Anderson</surname><forename>David</forename></name>
+                </person>
+              </contributor>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Hering</surname><forename>Milena</forename></name>
+                </person>
+              </contributor>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Musta&#x163;&#x103;</surname><forename>Mircea</forename></name>
+                </person>
+              </contributor>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Payne</surname><forename>Sam</forename></name>
+                </person>
+              </contributor>
+              <edition>1</edition>
+              <series>
+              <title>London Mathematical Society Lecture Note Series</title>
+              <number>472</number>
+              <partnumber>472</partnumber>
+              <run>N.S.</run>
+              </series>
+                  <contributor>
+                    <role type="publisher"/>
+                    <organization>
+                      <name>Cambridge University Press</name>
+                    </organization>
+                  </contributor>
+                  <place><formattedPlace>Cambridge, UK</formattedPlace></place>
+                  <extent>
                       <localityStack>
-                         <locality type="volume">
-                            <referenceFrom>1</referenceFrom>
-                         </locality>
-                         <locality type="issue">
-                            <referenceFrom>7</referenceFrom>
-                         </locality>
-                         <locality type="page">
-                            <referenceFrom>89</referenceFrom>
-                            <referenceTo>112</referenceTo>
-                         </locality>
+                        <locality type="volume"><referenceFrom>1</referenceFrom></locality>
+                        <locality type="issue"><referenceFrom>7</referenceFrom></locality>
+              <locality type="page">
+                <referenceFrom>89</referenceFrom>
+                <referenceTo>112</referenceTo>
+              </locality>
                       </localityStack>
-                   </extent>
-                   <note type="display" original-id="_" id="_">
-                      <p>This is an annotation of document ISSN.</p>
-                   </note>
-                   <note type="display" original-id="_" id="_">
-                      <p>This is another annotation of document ISSN.</p>
-                   </note>
-                </bibitem>
-                <bibitem id="ISO3696" type="standard">
-                   <biblio-tag>
-                      [4]
-                      <tab/>
-                      ISO 3696　
-                   </biblio-tag>
-                   <formattedref>
-                      <span class="stddocTitle">Water for analytical laboratory use</span>
-                   </formattedref>
-                   <title format="text/plain">Water for analytical laboratory use</title>
-                   <docidentifier type="metanorma-ordinal">[4]</docidentifier>
-                   <docidentifier type="ISO">ISO 3696</docidentifier>
-                   <docidentifier scope="biblio-tag">ISO 3696</docidentifier>
-                   <contributor>
+                  </extent>
+            <note type="display" original-id="_" id="_">
+                    <p>This is an annotation of document ISSN.</p>
+                  </note><note type="display" original-id="_" id="_">
+                    <p>This is another annotation of document ISSN.</p>
+                  </note></bibitem>
+            
+            
+                  <bibitem id="ISO3696" type="standard"><biblio-tag>[4]<tab/>ISO&#xA0;3696&#x3000;</biblio-tag><formattedref><span class="stddocTitle">Water for analytical laboratory use</span></formattedref>
+                    <title format="text/plain">Water for analytical laboratory use</title><docidentifier type="metanorma-ordinal">[4]</docidentifier>
+                    <docidentifier type="ISO">ISO&#xA0;3696</docidentifier><docidentifier scope="biblio-tag">ISO&#xA0;3696</docidentifier>
+                    <contributor>
                       <role type="publisher"/>
                       <organization>
-                         <name>ISO</name>
+                        <name>ISO</name>
                       </organization>
-                   </contributor>
-                   <language>ja</language>
-                   <script>Jpan</script>
-                </bibitem>
-                <bibitem id="ref10">
-                   <biblio-tag>
-                      [5]
-                      <tab/>
-                   </biblio-tag>
-                   <formattedref format="application/x-isodoc+xml">
-                      <smallcap>Standard No I.C.C 167</smallcap>
-                      .
+                    </contributor>
+                    <language>ja</language>
+                    <script>Jpan</script>
+                  </bibitem>
+                  <bibitem id="ref10"><biblio-tag>[5]<tab/></biblio-tag>
+                    <formattedref format="application/x-isodoc+xml">
+                      <smallcap>Standard No I.C.C 167</smallcap> .
+
                       <em>Determination of the protein content in cereal and cereal products for food and animal feeding stuffs according to the Dumas combustion method</em>
                       (see
-                      <link target="http://www.icc.or.at" id="_"/>
-                      <semx element="link" source="_">
-                         <fmt-link target="http://www.icc.or.at"/>
-                      </semx>
-                      )
-                   </formattedref>
-                   <docidentifier type="metanorma-ordinal">[5]</docidentifier>
-                </bibitem>
-                <bibitem id="ref11">
-                   <biblio-tag>
-                      [6]
-                      <tab/>
-                      IETF RFC 10,
-                   </biblio-tag>
-                   <formattedref>
-                      <span class="stddocTitle">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</span>
-                   </formattedref>
-                   <title>Internet Calendaring and Scheduling Core Object Specification (iCalendar)</title>
-                   <docidentifier type="metanorma-ordinal">[6]</docidentifier>
-                   <docidentifier type="IETF">IETF RFC 10</docidentifier>
-                   <docidentifier scope="biblio-tag">IETF RFC 10</docidentifier>
-                </bibitem>
-                <bibitem id="ref12">
-                   <biblio-tag>
-                      [7]
-                      <tab/>
-                      IETF RFC 20,
-                   </biblio-tag>
-                   <formattedref format="application/x-isodoc+xml">
-                      CitationWorks. 2019.
+
+                      <link target="http://www.icc.or.at" id="_"/><semx element="link" source="_"><fmt-link target="http://www.icc.or.at"/></semx>
+                      )</formattedref><docidentifier type="metanorma-ordinal">[5]</docidentifier>
+              
+                  </bibitem>
+                  <bibitem id="ref11"><biblio-tag>[6]<tab/>IETF&#xA0;RFC&#xA0;10, </biblio-tag><formattedref><span class="stddocTitle">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</span></formattedref>
+                    <title>Internet Calendaring and Scheduling Core Object Specification (iCalendar)</title><docidentifier type="metanorma-ordinal">[6]</docidentifier>
+                    <docidentifier type="IETF">IETF&#xA0;RFC&#xA0;10</docidentifier><docidentifier scope="biblio-tag">IETF&#xA0;RFC&#xA0;10</docidentifier>
+                  </bibitem>
+                  <bibitem id="ref12"><biblio-tag>[7]<tab/>IETF&#xA0;RFC&#xA0;20, </biblio-tag>
+                    <formattedref format="application/x-isodoc+xml">CitationWorks. 2019.
+
                       <em>How to cite a reference</em>
-                      .
-                   </formattedref>
-                   <docidentifier type="metanorma-ordinal">[7]</docidentifier>
-                   <docidentifier type="metanorma">[Citn]</docidentifier>
-                   <docidentifier type="IETF">IETF RFC 20</docidentifier>
-                   <docidentifier scope="biblio-tag">IETF RFC 20</docidentifier>
-                </bibitem>
-             </references>
-          </bibliography>
-          <fmt-footnote-container>
-             <fmt-fn-body id="_" target="_" reference="1">
-                <semx element="fn" source="_">
-                   <p>
-                      <fmt-fn-label>
-                         <span class="fmt-caption-label">
-                            <sup>
-                               <semx element="autonum" source="_">1</semx>
-                            </sup>
-                         </span>
-                         <span class="fmt-caption-delim">
-                            <tab/>
-                         </span>
-                      </fmt-fn-label>
-                      Under preparation. (Stage at the time of publication ISO/DIS 16634)
-                   </p>
-                </semx>
-             </fmt-fn-body>
-          </fmt-footnote-container>
-       </iso-standard>
+                      .</formattedref><docidentifier type="metanorma-ordinal">[7]</docidentifier>
+                    <docidentifier type="metanorma">[Citn]</docidentifier>
+                    <docidentifier type="IETF">IETF&#xA0;RFC&#xA0;20</docidentifier><docidentifier scope="biblio-tag">IETF&#xA0;RFC&#xA0;20</docidentifier>
+                  </bibitem>
+                </references>
+              </bibliography>
+            <fmt-footnote-container><fmt-fn-body id="_" target="_" reference="1"><semx element="fn" source="_"><p><fmt-fn-label><span class="fmt-caption-label"><sup><semx element="autonum" source="_">1</semx></sup></span><span class="fmt-caption-delim"><tab/></span></fmt-fn-label>Under preparation. (Stage at the time of publication ISO/DIS 16634)</p></semx></fmt-fn-body></fmt-footnote-container></iso-standard>
     OUTPUT
     pres_output = IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
@@ -911,615 +621,315 @@ RSpec.describe IsoDoc do
       .to be_xml_equivalent_to presxml
 
     presxml = <<~OUTPUT
+      <?xml version="1.0"?>
       <iso-standard xmlns="http://riboseinc.com/isoxml" type="presentation">
-          <bibdata>
-             <language current="true">ja</language>
-          </bibdata>
-          <preface>
-             <foreword id="_" displayorder="1">
-                <title id="_">まえがき</title>
-                <fmt-title depth="1" id="_">
-                   <semx element="title" source="_">まえがき</semx>
-                </fmt-title>
-                <p id="_">
-                   <eref bibitemid="ISO712" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref target="ISO712">ISO 712</fmt-xref>
-                   </semx>
-                   <eref bibitemid="ISBN" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref target="ISBN">[1]</fmt-xref>
-                   </semx>
-                   <eref bibitemid="ISSN" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref target="ISSN">[3]</fmt-xref>
-                   </semx>
-                   <eref bibitemid="ISO16634" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref target="ISO16634">ISO 16634:-- (規格群)</fmt-xref>
-                   </semx>
-                   <eref bibitemid="ref1" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref target="ref1">ICC 167</fmt-xref>
-                   </semx>
-                   <eref bibitemid="ref10" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref target="ref10">[5]</fmt-xref>
-                   </semx>
-                   <eref bibitemid="ref11" style="title" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref style="title" target="ref11">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</fmt-xref>
-                   </semx>
-                   <eref bibitemid="ref12" id="_"/>
-                   <semx element="eref" source="_">
-                      <fmt-xref target="ref12">[Citn]</fmt-xref>
-                   </semx>
-                </p>
-             </foreword>
-             <clause type="toc" id="_" displayorder="2">
-                <fmt-title depth="1" id="_">目　次</fmt-title>
-             </clause>
-          </preface>
-          <sections>
-             <p class="JapaneseIndustrialStandard" displayorder="3">
-                日本産業規格
-                <tab/>
-                <tab/>
-                <tab/>
-                <tab/>
-                <tab/>
-                <tab/>
-                <tab/>
-                <span class="JIS">JIS</span>
-             </p>
-             <p class="StandardNumber" displayorder="4">
-                <tab/>
-             </p>
-             <p class="IDT" displayorder="5"/>
-             <references id="_" normative="true" obligation="informative" displayorder="6">
-                <title id="_">Normative References</title>
-                <fmt-title depth="1" id="_">
-                   <span class="fmt-caption-label">
-                      <semx element="autonum" source="_">1</semx>
-                   </span>
-                   <span class="fmt-caption-delim">
-                      <tab/>
-                   </span>
-                   <semx element="title" source="_">Normative References</semx>
-                </fmt-title>
-                <fmt-xref-label>
-                   <span class="fmt-element-name">箇条</span>
-                    
-                   <semx element="autonum" source="_">1</semx>
-                </fmt-xref-label>
-                <p>The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</p>
-                <bibitem id="ISO712" type="standard">
-                   <biblio-tag>
-                      <strong>ISO 712</strong>
-                      ,
-                   </biblio-tag>
-                   <formattedref>
-                      <span class="stddocTitle">Cereals and cereal products</span>
-                   </formattedref>
-                   <title format="text/plain">Cereals or cereal products</title>
-                   <title format="text/plain" type="main">Cereals and cereal products</title>
-                   <docidentifier type="ISO">ISO 712</docidentifier>
-                   <docidentifier scope="biblio-tag">ISO 712</docidentifier>
-                   <contributor>
+              <bibdata>
+                <language current="true">ja</language>
+              </bibdata>
+              <preface>
+                <foreword id="_" displayorder="1"><title id="_">&#x307E;&#x3048;&#x304C;&#x304D;</title><fmt-title depth="1" id="_"><semx element="title" source="_">&#x307E;&#x3048;&#x304C;&#x304D;</semx></fmt-title>
+                  <p id="_">
+                    <eref bibitemid="ISO712" id="_"/><semx element="eref" source="_"><fmt-xref target="ISO712">ISO&#xA0;712</fmt-xref></semx>
+                    <eref bibitemid="ISBN" id="_"/><semx element="eref" source="_"><fmt-xref target="ISBN">[1]</fmt-xref></semx>
+                    <eref bibitemid="ISSN" id="_"/><semx element="eref" source="_"><fmt-xref target="ISSN">[3]</fmt-xref></semx>
+                    <eref bibitemid="ISO16634" id="_"/><semx element="eref" source="_"><fmt-xref target="ISO16634">ISO&#xA0;16634:--&#xA0;(&#x898F;&#x683C;&#x7FA4;)</fmt-xref></semx>
+                    <eref bibitemid="ref1" id="_"/><semx element="eref" source="_"><fmt-xref target="ref1">ICC&#xA0;167</fmt-xref></semx>
+                    <eref bibitemid="ref10" id="_"/><semx element="eref" source="_"><fmt-xref target="ref10">[5]</fmt-xref></semx>
+                    <eref bibitemid="ref11" style="title" id="_"/><semx element="eref" source="_"><fmt-xref style="title" target="ref11">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</fmt-xref></semx>
+                    <eref bibitemid="ref12" id="_"/><semx element="eref" source="_"><fmt-xref target="ref12">[Citn]</fmt-xref></semx>
+                  </p>
+                </foreword>
+              <clause type="toc" id="_" displayorder="2"><fmt-title depth="1" id="_">&#x76EE;&#x3000;&#x6B21;</fmt-title></clause>
+       </preface><sections><p class="JapaneseIndustrialStandard" displayorder="3">&#x65E5;&#x672C;&#x7523;&#x696D;&#x898F;&#x683C;<tab/><tab/><tab/><tab/><tab/><tab/><tab/><span class="JIS">JIS</span></p><p class="StandardNumber" displayorder="4"><tab/></p><p class="IDT" displayorder="5"/><references id="_" normative="true" obligation="informative" displayorder="6">
+                  <title id="_">Normative References</title><fmt-title depth="1" id="_"><span class="fmt-caption-label"><semx element="autonum" source="_">1</semx></span><span class="fmt-caption-delim"><tab/></span><semx element="title" source="_">Normative References</semx></fmt-title><fmt-xref-label><span class="fmt-element-name">&#x7B87;&#x6761;</span>&#x2005;<semx element="autonum" source="_">1</semx></fmt-xref-label>
+                  <p>The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</p>
+                  <bibitem id="ISO712" type="standard"><biblio-tag><strong>ISO&#xA0;712</strong>, </biblio-tag><formattedref><span class="stddocTitle">Cereals and cereal products</span></formattedref>
+                    <title format="text/plain">Cereals or cereal products</title>
+                    <title format="text/plain" type="main">Cereals and cereal products</title>
+                    <docidentifier type="ISO">ISO&#xA0;712</docidentifier><docidentifier scope="biblio-tag">ISO&#xA0;712</docidentifier>
+                    <contributor>
                       <role type="publisher"/>
                       <organization>
-                         <name>International Organization for Standardization</name>
+                        <name>International Organization for Standardization</name>
                       </organization>
-                   </contributor>
-                </bibitem>
-                <bibitem id="ISO16634" type="standard">
-                   <biblio-tag>
-                      <strong>ISO 16634:-- (</strong>
-                      <span style="font-family:&quot;MS Gothic&quot;">規格群</span>
-                      <strong>)</strong>
-                      <fn id="_" reference="1" original-reference="1" target="_">
-                         <p>Under preparation。（Stage at the time of publication ISO/DIS 16634）</p>
-                         <fmt-fn-label>
-                            <span class="fmt-caption-label">
-                               <sup>
-                                  <semx element="autonum" source="_">1</semx>
-                               </sup>
-                            </span>
-                         </fmt-fn-label>
-                      </fn>
-                      ,
-                   </biblio-tag>
-                   <formattedref>
-                      <span class="stddocTitle">Cereals, pulses, milled cereal products, xxxx, oilseeds and animal feeding stuffs</span>
-                   </formattedref>
-                   <title format="text/plain" language="x">Cereals, pulses, milled cereal products, xxxx, oilseeds and animal feeding stuffs</title>
-                   <title format="text/plain" language="en">Cereals, pulses, milled cereal products, oilseeds and animal feeding stuffs</title>
-                   <docidentifier type="ISO">ISO 16634:-- (規格群)</docidentifier>
-                   <docidentifier scope="biblio-tag">ISO 16634:-- (規格群)</docidentifier>
-                   <date type="published">
+                    </contributor>
+                  </bibitem>
+                  <bibitem id="ISO16634" type="standard"><biblio-tag><strong>ISO&#xA0;16634:--&#xA0;(</strong><span style="font-family:&quot;MS Gothic&quot;">&#x898F;&#x683C;&#x7FA4;</span><strong>)</strong><fn id="_" reference="1" original-reference="1" target="_"><p>Under preparation&#x3002;&#xFF08;Stage at the time of publication ISO/DIS 16634&#xFF09;</p><fmt-fn-label><span class="fmt-caption-label"><sup><semx element="autonum" source="_">1</semx></sup></span></fmt-fn-label></fn>
+      , </biblio-tag><formattedref><span class="stddocTitle">Cereals, pulses, milled cereal products, xxxx, oilseeds and animal feeding stuffs</span></formattedref>
+                    <title format="text/plain" language="x">Cereals, pulses, milled cereal products, xxxx, oilseeds and animal feeding stuffs</title>
+                    <title format="text/plain" language="en">Cereals, pulses, milled cereal products, oilseeds and animal feeding stuffs</title>
+                    <docidentifier type="ISO">ISO&#xA0;16634:--&#xA0;(&#x898F;&#x683C;&#x7FA4;)</docidentifier><docidentifier scope="biblio-tag">ISO&#xA0;16634:--&#xA0;(&#x898F;&#x683C;&#x7FA4;)</docidentifier>
+                    <date type="published">
                       <on>--</on>
-                   </date>
-                   <contributor>
+                    </date>
+                    <contributor>
                       <role type="publisher"/>
                       <organization>
-                         <name>ISO</name>
+                        <name>ISO</name>
                       </organization>
-                   </contributor>
-                   <note format="text/plain" reference="1" type="Unpublished-Status">Under preparation. (Stage at the time of publication ISO/DIS 16634)</note>
-                   <extent type="part">
+                    </contributor>
+                    <note format="text/plain" reference="1" type="Unpublished-Status">Under preparation. (Stage at the time of publication ISO/DIS 16634)</note>
+                    <extent type="part">
                       <referenceFrom>all</referenceFrom>
-                   </extent>
-                </bibitem>
-                <bibitem id="ISO20483" type="standard">
-                   <biblio-tag>
-                      <strong>ISO 20483:2013-2014</strong>
-                      　
-                   </biblio-tag>
-                   <formattedref>
-                      <span class="stddocTitle">Cereals and pulses</span>
-                   </formattedref>
-                   <title format="text/plain">Cereals and pulses</title>
-                   <docidentifier type="ISO">ISO 20483:2013-2014</docidentifier>
-                   <docidentifier scope="biblio-tag">ISO 20483:2013-2014</docidentifier>
-                   <date type="published">
+                    </extent>
+                  </bibitem>
+                  <bibitem id="ISO20483" type="standard"><biblio-tag><strong>ISO&#xA0;20483:2013-2014</strong>&#x3000;</biblio-tag><formattedref><span class="stddocTitle">Cereals and pulses</span></formattedref>
+                    <title format="text/plain">Cereals and pulses</title>
+                    <docidentifier type="ISO">ISO&#xA0;20483:2013-2014</docidentifier><docidentifier scope="biblio-tag">ISO&#xA0;20483:2013-2014</docidentifier>
+                    <date type="published">
                       <from>2013</from>
                       <to>2014</to>
-                   </date>
-                   <contributor>
+                    </date>
+                    <contributor>
                       <role type="publisher"/>
                       <organization>
-                         <name>International Organization for Standardization</name>
+                        <name>International Organization for Standardization</name>
                       </organization>
-                   </contributor>
-                   <language>ja</language>
-                   <script>Jpan</script>
-                </bibitem>
-                <bibitem id="ref1">
-                   <biblio-tag>
-                      <strong>ICC 167</strong>
-                      ,
-                   </biblio-tag>
-                   <formattedref format="application/x-isodoc+xml">
-                      <smallcap>Standard No I.C.C 167</smallcap>
-                      .
+                    </contributor>
+                    <language>ja</language>
+                    <script>Jpan</script>
+                  </bibitem>
+                  <bibitem id="ref1"><biblio-tag><strong>ICC&#xA0;167</strong>, </biblio-tag>
+                    <formattedref format="application/x-isodoc+xml">
+                      <smallcap>Standard No I.C.C 167</smallcap> .
+
                       <em>Determination of the protein content in cereal and cereal products for food and animal feeding stuffs according to the Dumas combustion method</em>
                       (see
-                      <link target="http://www.icc.or.at" id="_"/>
-                      <semx element="link" source="_">
-                         <fmt-link target="http://www.icc.or.at"/>
-                      </semx>
-                      )
-                      <note type="display" id="_" autonum="">
-                         <fmt-name id="_">
-                            <span class="fmt-caption-label">
-                               <span class="fmt-element-name">注記</span>
-                            </span>
-                            <span class="fmt-label-delim">
-                               <tab/>
-                            </span>
-                         </fmt-name>
-                         <fmt-xref-label>
-                            <span class="fmt-element-name">注記</span>
-                         </fmt-xref-label>
-                         <fmt-xref-label container="ref1">
-                            <span class="fmt-xref-container">
-                               <span class="fmt-xref-container">
-                                  <span class="fmt-element-name">箇条</span>
-                                   
-                                  <semx element="autonum" source="_">1</semx>
-                               </span>
-                               <span class="fmt-conn">の</span>
-                               ICC 167
-                            </span>
-                            <span class="fmt-conn">の</span>
-                            <span class="fmt-element-name">注記</span>
-                         </fmt-xref-label>
-                         <semx element="note" source="_">
-                            <p>This is an annotation of ISO 20483:2013-2014</p>
-                         </semx>
-                      </note>
-                   </formattedref>
-                   <docidentifier type="ICC">ICC 167</docidentifier>
-                   <docidentifier scope="biblio-tag">ICC 167</docidentifier>
-                   <note type="display" original-id="_" id="_">
-                      <p>This is an annotation of ISO 20483:2013-2014</p>
-                   </note>
-                </bibitem>
-             </references>
-          </sections>
-          <bibliography>
-             <references id="_" normative="false" obligation="informative" displayorder="7">
-                <title id="_">Bibliography</title>
-                <fmt-title depth="1" id="_">
-                   <semx element="title" source="_">Bibliography</semx>
-                </fmt-title>
-                <bibitem id="ISBN" type="book">
-                   <biblio-tag>
-                      [1]
-                      <tab/>
-                   </biblio-tag>
-                   <formattedref>Chemicals for analytical laboratory use。出版地不明：日付なし</formattedref>
-                   <title format="text/plain">Chemicals for analytical laboratory use</title>
-                   <docidentifier type="metanorma-ordinal">[1]</docidentifier>
-                   <docidentifier type="ISBN">ISBN</docidentifier>
-                   <contributor>
+
+                      <link target="http://www.icc.or.at" id="_"/><semx element="link" source="_"><fmt-link target="http://www.icc.or.at"/></semx>
+                      )<note type="display" id="_" autonum=""><fmt-name id="_"><span class="fmt-caption-label"><span class="fmt-element-name">&#x6CE8;&#x8A18;</span></span><span class="fmt-label-delim"><tab/></span></fmt-name><fmt-xref-label><span class="fmt-element-name">&#x6CE8;&#x8A18;</span></fmt-xref-label><fmt-xref-label container="ref1"><span class="fmt-xref-container"><span class="fmt-xref-container"><span class="fmt-element-name">&#x7B87;&#x6761;</span>&#x2005;<semx element="autonum" source="_">1</semx></span><span class="fmt-conn">&#x306E;</span>ICC&#xA0;167</span><span class="fmt-conn">&#x306E;</span><span class="fmt-element-name">&#x6CE8;&#x8A18;</span></fmt-xref-label><semx element="note" source="_">
+                    <p>This is an annotation of ISO 20483:2013-2014</p>
+                  </semx></note>
+      </formattedref>
+                    <docidentifier type="ICC">ICC&#xA0;167</docidentifier><docidentifier scope="biblio-tag">ICC&#xA0;167</docidentifier>
+                  <note type="display" original-id="_" id="_">
+                    <p>This is an annotation of ISO 20483:2013-2014</p>
+                  </note></bibitem>
+            
+                </references></sections>
+              <bibliography>
+          
+                <references id="_" normative="false" obligation="informative" displayorder="7">
+                  <title id="_">Bibliography</title><fmt-title depth="1" id="_"><semx element="title" source="_">Bibliography</semx></fmt-title>
+                  <bibitem id="ISBN" type="book"><biblio-tag>[1]<tab/></biblio-tag><formattedref>Chemicals for analytical laboratory use&#x3002;&#x51FA;&#x7248;&#x5730;&#x4E0D;&#x660E;&#xFF1A;&#x65E5;&#x4ED8;&#x306A;&#x3057;</formattedref>
+                    <title format="text/plain">Chemicals for analytical laboratory use</title><docidentifier type="metanorma-ordinal">[1]</docidentifier>
+                    <docidentifier type="ISBN">ISBN</docidentifier>
+              
+                    <contributor>
                       <role type="publisher"/>
                       <organization>
-                         <abbreviation>ISBN</abbreviation>
+                        <abbreviation>ISBN</abbreviation>
                       </organization>
-                   </contributor>
-                </bibitem>
-                <bibitem id="A" anchor="A" type="inbook">
-                   <biblio-tag>
-                      [2]
-                      <tab/>
-                      ISO 1234 / B,
-                   </biblio-tag>
-                   <formattedref>
-                      Wozniak S.、 Jobs S.、 Hoover J.E.。 
-                      <em>Work</em>
-                      。 Collected Essays UNICEF）。第4版。（Bibliographers Anonymous）。 Geneva： International Standardization Organization。 1996。巻4 19頁。入手先： 
-                      <span class="biburl">
-                         <fmt-link target="http://www.example.com">http://www.example.com</fmt-link>
-                      </span>
-                   </formattedref>
+                    </contributor>
+                  </bibitem>
+                                  <bibitem id="A" anchor="A" type="inbook"><biblio-tag>[2]<tab/>ISO&#xA0;1234&#xA0;/ B, </biblio-tag><formattedref>Wozniak S.&#x3001;&#x2005;Jobs S.&#x3001;&#x2005;Hoover J.E.&#x3002; <em>Work</em> &#x3002;&#x2005;Collected Essays UNICEF&#xFF09;&#x3002;&#x7B2C;4&#x7248;&#x3002;&#xFF08;Bibliographers Anonymous&#xFF09;&#x3002;&#x2005;Geneva&#xFF1A;&#x2005;International Standardization Organization&#x3002;&#x2005;1996&#x3002;&#x5DFB;4 19&#x9801;&#x3002;&#x5165;&#x624B;&#x5148;&#xFF1A;&#x2005;<span class="biburl"><fmt-link target="http://www.example.com">http://www.example.com</fmt-link></span></formattedref>
                    <title>
-                      <em>Work</em>
+                     <em>Work</em>
                    </title>
-                   <uri type="citation">http://www.example.com</uri>
-                   <docidentifier type="metanorma-ordinal">[2]</docidentifier>
-                   <docidentifier type="ISO">ISO 1234</docidentifier>
-                   <docidentifier>B</docidentifier>
-                   <docidentifier scope="biblio-tag">ISO 1234</docidentifier>
-                   <docidentifier scope="biblio-tag">B</docidentifier>
+                   <uri type="citation">http://www.example.com</uri><docidentifier type="metanorma-ordinal">[2]</docidentifier>
+                   <docidentifier type="ISO">ISO&#xA0;1234</docidentifier>
+                   <docidentifier>B</docidentifier><docidentifier scope="biblio-tag">ISO&#xA0;1234</docidentifier><docidentifier scope="biblio-tag">B</docidentifier>
                    <date type="issued">
-                      <from>1991</from>
-                      <to>1992</to>
+                     <from>1991</from>
+                     <to>1992</to>
                    </date>
                    <date type="published">
-                      <on>1996-01-02</on>
+                     <on>1996-01-02</on>
                    </date>
                    <contributor>
-                      <role type="author"/>
-                      <person>
-                         <name>
-                            <formatted-initials>S.</formatted-initials>
-                            <surname>Wozniak</surname>
-                         </name>
-                      </person>
+                     <role type="author"/>
+                     <person>
+                       <name>
+                         <formatted-initials>S.</formatted-initials>
+                         <surname>Wozniak</surname>
+                       </name>
+                     </person>
                    </contributor>
                    <contributor>
-                      <role type="author"/>
-                      <person>
-                         <name>
-                            <forename>Steve</forename>
-                            <surname>Jobs</surname>
-                         </name>
-                      </person>
+                     <role type="author"/>
+                     <person>
+                       <name>
+                         <forename>Steve</forename>
+                         <surname>Jobs</surname>
+                       </name>
+                     </person>
                    </contributor>
                    <contributor>
-                      <role type="author"/>
-                      <person>
-                         <name>
-                            <forename>J.</forename>
-                            <forename>Edgar</forename>
-                            <surname>Hoover</surname>
-                         </name>
-                      </person>
+                     <role type="author"/>
+                     <person>
+                       <name>
+                         <forename>J.</forename>
+                         <forename>Edgar</forename>
+                         <surname>Hoover</surname>
+                       </name>
+                     </person>
                    </contributor>
                    <contributor>
-                      <role type="publisher"/>
-                      <organization>
-                         <name>International Standardization Organization</name>
-                      </organization>
+                     <role type="publisher"/>
+                     <organization>
+                       <name>International Standardization Organization</name>
+                     </organization>
                    </contributor>
                    <edition>4</edition>
                    <version>draft</version>
                    <note>Also available in paperback.</note>
-                   <abstract>
-                      This is a
-                      <em>journey</em>
-                      into sound
-                   </abstract>
+                   <abstract>This is a <em>journey</em> into sound</abstract>
                    <place><formattedPlace>Geneva</formattedPlace></place>
                    <relation type="includedIn">
-                      <bibitem type="book">
-                         <title>Collected Essays</title>
-                         <contributor>
-                            <role type="editor"/>
-                            <person>
-                               <name>
-                                  <formatted-initials>W. H</formatted-initials>
-                                  <surname>Gates</surname>
-                               </name>
-                            </person>
-                         </contributor>
-                         <contributor>
-                            <role type="author"/>
-                            <organization>
-                               <name>UNICEF</name>
-                            </organization>
-                         </contributor>
-                         <series>
-                            <title>Bibliographers Anonymous</title>
-                         </series>
-                      </bibitem>
+                     <bibitem type="book">
+                       <title>Collected Essays</title>
+                       <contributor>
+                         <role type="editor"/>
+                         <person>
+                           <name>
+                             <formatted-initials>W. H</formatted-initials>
+                             <surname>Gates</surname>
+                           </name>
+                         </person>
+                       </contributor>
+                       <contributor>
+                         <role type="author"/>
+                         <organization>
+                           <name>UNICEF</name>
+                         </organization>
+                       </contributor>
+                       <series>
+                         <title>Bibliographers Anonymous</title>
+                      </series>
+                     </bibitem>
                    </relation>
                    <extent>
-                      <locality type="volume">
-                         <referenceFrom>4</referenceFrom>
-                      </locality>
-                      <locality type="issue">
-                         <referenceFrom>2</referenceFrom>
-                         <referenceTo>3</referenceTo>
-                      </locality>
-                      <locality type="page">
-                         <referenceFrom>12</referenceFrom>
-                         <referenceTo>13</referenceTo>
-                      </locality>
-                      <locality type="page">
-                         <referenceFrom>19</referenceFrom>
-                      </locality>
+                     <locality type="volume">
+                       <referenceFrom>4</referenceFrom>
+                     </locality>
+                     <locality type="issue">
+                       <referenceFrom>2</referenceFrom>
+                       <referenceTo>3</referenceTo>
+                     </locality>
+                     <locality type="page">
+                       <referenceFrom>12</referenceFrom>
+                       <referenceTo>13</referenceTo>
+                     </locality>
+                     <locality type="page">
+                       <referenceFrom>19</referenceFrom>
+                     </locality>
                    </extent>
                    <classification>A</classification>
-                   <classification type="B">C</classification>
-                   <classification>D</classification>
-                   <keyword>key word</keyword>
-                   <keyword>word key</keyword>
-                </bibitem>
-                <bibitem type="article" id="ISSN">
-                   <biblio-tag>
-                      [3]
-                      <tab/>
-                   </biblio-tag>
-                   <formattedref>
-                   Aluffi P.、 Anderson D.、 Hering M.、 Mustaţă M.、 Payne S. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。 London Mathematical Society Lecture Note Series （N.S.）。 2022、巻1 7号、 89〜112頁
-                      <note type="display" id="_" autonum="1">
-                         <fmt-name id="_">
-                            <span class="fmt-caption-label">
-                               <span class="fmt-element-name">注記</span>
-                                
-                               <semx element="autonum" source="_">1</semx>
-                            </span>
-                            <span class="fmt-label-delim">
-                               <tab/>
-                            </span>
-                         </fmt-name>
-                         <fmt-xref-label>
-                            <span class="fmt-element-name">注記</span>
-                             
-                            <semx element="autonum" source="_">1</semx>
-                         </fmt-xref-label>
-                         <fmt-xref-label container="ISSN">
-                            <span class="fmt-xref-container">
-                               <span class="fmt-xref-container">
-                                  <semx element="references" source="_">Bibliography</semx>
-                               </span>
-                               <span class="fmt-conn">の</span>
-                               ［3］
-                            </span>
-                            <span class="fmt-conn">の</span>
-                            <span class="fmt-element-name">注記</span>
-                             
-                            <semx element="autonum" source="_">1</semx>
-                         </fmt-xref-label>
-                         <semx element="note" source="_">
-                            <p>This is an annotation of document ISSN.</p>
-                         </semx>
-                      </note>
-                      <note type="display" id="_" autonum="2">
-                         <fmt-name id="_">
-                            <span class="fmt-caption-label">
-                               <span class="fmt-element-name">注記</span>
-                                
-                               <semx element="autonum" source="_">2</semx>
-                            </span>
-                            <span class="fmt-label-delim">
-                               <tab/>
-                            </span>
-                         </fmt-name>
-                         <fmt-xref-label>
-                            <span class="fmt-element-name">注記</span>
-                             
-                            <semx element="autonum" source="_">2</semx>
-                         </fmt-xref-label>
-                         <fmt-xref-label container="ISSN">
-                            <span class="fmt-xref-container">
-                               <span class="fmt-xref-container">
-                                  <semx element="references" source="_">Bibliography</semx>
-                               </span>
-                               <span class="fmt-conn">の</span>
-                               ［3］
-                            </span>
-                            <span class="fmt-conn">の</span>
-                            <span class="fmt-element-name">注記</span>
-                             
-                            <semx element="autonum" source="_">2</semx>
-                         </fmt-xref-label>
-                         <semx element="note" source="_">
-                            <p>This is another annotation of document ISSN.</p>
-                         </semx>
-                      </note>
-                   </formattedref>
-                   <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title>
-                   <docidentifier type="metanorma-ordinal">[3]</docidentifier>
-                   <docidentifier type="DOI">DOI https://doi.org/10.1017/9781108877831</docidentifier>
-                   <docidentifier type="ISBN">ISBN 9781108877831</docidentifier>
-                   <date type="published">
-                      <on>2022</on>
-                   </date>
-                   <contributor>
-                      <role type="editor"/>
-                      <person>
-                         <name>
-                            <surname>Aluffi</surname>
-                            <forename>Paolo</forename>
-                         </name>
-                      </person>
-                   </contributor>
-                   <contributor>
-                      <role type="editor"/>
-                      <person>
-                         <name>
-                            <surname>Anderson</surname>
-                            <forename>David</forename>
-                         </name>
-                      </person>
-                   </contributor>
-                   <contributor>
-                      <role type="editor"/>
-                      <person>
-                         <name>
-                            <surname>Hering</surname>
-                            <forename>Milena</forename>
-                         </name>
-                      </person>
-                   </contributor>
-                   <contributor>
-                      <role type="editor"/>
-                      <person>
-                         <name>
-                            <surname>Mustaţă</surname>
-                            <forename>Mircea</forename>
-                         </name>
-                      </person>
-                   </contributor>
-                   <contributor>
-                      <role type="editor"/>
-                      <person>
-                         <name>
-                            <surname>Payne</surname>
-                            <forename>Sam</forename>
-                         </name>
-                      </person>
-                   </contributor>
-                   <edition>1</edition>
-                   <series>
-                      <title>London Mathematical Society Lecture Note Series</title>
-                      <number>472</number>
-                      <partnumber>472</partnumber>
-                      <run>N.S.</run>
-                   </series>
-                   <contributor>
-                      <role type="publisher"/>
-                      <organization>
-                         <name>Cambridge University Press</name>
-                      </organization>
-                   </contributor>
-                   <place><formattedPlace>Cambridge, UK</formattedPlace></place>
-                   <extent>
+               <classification type="B">C</classification>
+               <classification>D</classification>
+               <keyword>key word</keyword>
+               <keyword>word key</keyword>
+              </bibitem>
+                            <bibitem type="article" id="ISSN"><biblio-tag>[3]<tab/></biblio-tag><formattedref>Aluffi P.&#x3001;&#x2005;Anderson D.&#x3001;&#x2005;Hering M.&#x3001;&#x2005;Musta&#x163;&#x103; M.&#x3001;&#x2005;Payne S. &#xFF08;&#x7DE8;&#xFF09;&#x3002;&#x2005;Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday&#x3002;&#x2005;London Mathematical Society Lecture Note Series &#xFF08;N.S.&#xFF09;&#x3002;&#x2005;2022&#x3001;&#x5DFB;1 7&#x53F7;&#x3001; 89&#x301C;112&#x9801;<note type="display" id="_" autonum="1"><fmt-name id="_"><span class="fmt-caption-label"><span class="fmt-element-name">&#x6CE8;&#x8A18;</span>&#x2005;<semx element="autonum" source="_">1</semx></span><span class="fmt-label-delim"><tab/></span></fmt-name><fmt-xref-label><span class="fmt-element-name">&#x6CE8;&#x8A18;</span>&#x2005;<semx element="autonum" source="_">1</semx></fmt-xref-label><fmt-xref-label container="ISSN"><span class="fmt-xref-container"><span class="fmt-xref-container"><semx element="references" source="_">Bibliography</semx></span><span class="fmt-conn">&#x306E;</span>&#xFF3B;3&#xFF3D;</span><span class="fmt-conn">&#x306E;</span><span class="fmt-element-name">&#x6CE8;&#x8A18;</span>&#x2005;<semx element="autonum" source="_">1</semx></fmt-xref-label><semx element="note" source="_">
+                    <p>This is an annotation of document ISSN.</p>
+                  </semx></note>
+      <note type="display" id="_" autonum="2"><fmt-name id="_"><span class="fmt-caption-label"><span class="fmt-element-name">&#x6CE8;&#x8A18;</span>&#x2005;<semx element="autonum" source="_">2</semx></span><span class="fmt-label-delim"><tab/></span></fmt-name><fmt-xref-label><span class="fmt-element-name">&#x6CE8;&#x8A18;</span>&#x2005;<semx element="autonum" source="_">2</semx></fmt-xref-label><fmt-xref-label container="ISSN"><span class="fmt-xref-container"><span class="fmt-xref-container"><semx element="references" source="_">Bibliography</semx></span><span class="fmt-conn">&#x306E;</span>&#xFF3B;3&#xFF3D;</span><span class="fmt-conn">&#x306E;</span><span class="fmt-element-name">&#x6CE8;&#x8A18;</span>&#x2005;<semx element="autonum" source="_">2</semx></fmt-xref-label><semx element="note" source="_">
+                    <p>This is another annotation of document ISSN.</p>
+                  </semx></note>
+      </formattedref>
+                    <title>Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday</title><docidentifier type="metanorma-ordinal">[3]</docidentifier>
+              <docidentifier type="DOI">DOI&#xA0;https://doi.org/10.1017/9781108877831</docidentifier>
+              <docidentifier type="ISBN">ISBN&#xA0;9781108877831</docidentifier>
+              <date type="published"><on>2022</on></date>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Aluffi</surname><forename>Paolo</forename></name>
+                </person>
+              </contributor>
+                      <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Anderson</surname><forename>David</forename></name>
+                </person>
+              </contributor>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Hering</surname><forename>Milena</forename></name>
+                </person>
+              </contributor>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Musta&#x163;&#x103;</surname><forename>Mircea</forename></name>
+                </person>
+              </contributor>
+              <contributor>
+                <role type="editor"/>
+                <person>
+                  <name><surname>Payne</surname><forename>Sam</forename></name>
+                </person>
+              </contributor>
+              <edition>1</edition>
+              <series>
+              <title>London Mathematical Society Lecture Note Series</title>
+              <number>472</number>
+              <partnumber>472</partnumber>
+              <run>N.S.</run>
+              </series>
+                  <contributor>
+                    <role type="publisher"/>
+                    <organization>
+                      <name>Cambridge University Press</name>
+                    </organization>
+                  </contributor>
+                  <place><formattedPlace>Cambridge, UK</formattedPlace></place>
+                  <extent>
                       <localityStack>
-                         <locality type="volume">
-                            <referenceFrom>1</referenceFrom>
-                         </locality>
-                         <locality type="issue">
-                            <referenceFrom>7</referenceFrom>
-                         </locality>
-                         <locality type="page">
-                            <referenceFrom>89</referenceFrom>
-                            <referenceTo>112</referenceTo>
-                         </locality>
+                        <locality type="volume"><referenceFrom>1</referenceFrom></locality>
+                        <locality type="issue"><referenceFrom>7</referenceFrom></locality>
+              <locality type="page">
+                <referenceFrom>89</referenceFrom>
+                <referenceTo>112</referenceTo>
+              </locality>
                       </localityStack>
-                   </extent>
-                   <note type="display" original-id="_" id="_">
-                      <p>This is an annotation of document ISSN.</p>
-                   </note>
-                   <note type="display" original-id="_" id="_">
-                      <p>This is another annotation of document ISSN.</p>
-                   </note>
-                </bibitem>
-                <bibitem id="ISO3696" type="standard">
-                   <biblio-tag>
-                      [4]
-                      <tab/>
-                      ISO 3696　
-                   </biblio-tag>
-                   <formattedref>
-                      <span class="stddocTitle">Water for analytical laboratory use</span>
-                   </formattedref>
-                   <title format="text/plain">Water for analytical laboratory use</title>
-                   <docidentifier type="metanorma-ordinal">[4]</docidentifier>
-                   <docidentifier type="ISO">ISO 3696</docidentifier>
-                   <docidentifier scope="biblio-tag">ISO 3696</docidentifier>
-                   <contributor>
+                  </extent>
+            <note type="display" original-id="_" id="_">
+                    <p>This is an annotation of document ISSN.</p>
+                  </note><note type="display" original-id="_" id="_">
+                    <p>This is another annotation of document ISSN.</p>
+                  </note></bibitem>
+            
+            
+                  <bibitem id="ISO3696" type="standard"><biblio-tag>[4]<tab/>ISO&#xA0;3696&#x3000;</biblio-tag><formattedref><span class="stddocTitle">Water for analytical laboratory use</span></formattedref>
+                    <title format="text/plain">Water for analytical laboratory use</title><docidentifier type="metanorma-ordinal">[4]</docidentifier>
+                    <docidentifier type="ISO">ISO&#xA0;3696</docidentifier><docidentifier scope="biblio-tag">ISO&#xA0;3696</docidentifier>
+                    <contributor>
                       <role type="publisher"/>
                       <organization>
-                         <name>ISO</name>
+                        <name>ISO</name>
                       </organization>
-                   </contributor>
-                   <language>ja</language>
-                   <script>Jpan</script>
-                </bibitem>
-                <bibitem id="ref10">
-                   <biblio-tag>
-                      [5]
-                      <tab/>
-                   </biblio-tag>
-                   <formattedref format="application/x-isodoc+xml">
-                      <smallcap>Standard No I.C.C 167</smallcap>
-                      .
+                    </contributor>
+                    <language>ja</language>
+                    <script>Jpan</script>
+                  </bibitem>
+                  <bibitem id="ref10"><biblio-tag>[5]<tab/></biblio-tag>
+                    <formattedref format="application/x-isodoc+xml">
+                      <smallcap>Standard No I.C.C 167</smallcap> .
+
                       <em>Determination of the protein content in cereal and cereal products for food and animal feeding stuffs according to the Dumas combustion method</em>
                       (see
-                      <link target="http://www.icc.or.at" id="_"/>
-                      <semx element="link" source="_">
-                         <fmt-link target="http://www.icc.or.at"/>
-                      </semx>
-                      )
-                   </formattedref>
-                   <docidentifier type="metanorma-ordinal">[5]</docidentifier>
-                </bibitem>
-                <bibitem id="ref11">
-                   <biblio-tag>
-                      [6]
-                      <tab/>
-                      IETF RFC 10,
-                   </biblio-tag>
-                   <formattedref>
-                      <span class="stddocTitle">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</span>
-                   </formattedref>
-                   <title>Internet Calendaring and Scheduling Core Object Specification (iCalendar)</title>
-                   <docidentifier type="metanorma-ordinal">[6]</docidentifier>
-                   <docidentifier type="IETF">IETF RFC 10</docidentifier>
-                   <docidentifier scope="biblio-tag">IETF RFC 10</docidentifier>
-                </bibitem>
-                <bibitem id="ref12">
-                   <biblio-tag>
-                      [7]
-                      <tab/>
-                      IETF RFC 20,
-                   </biblio-tag>
-                   <formattedref format="application/x-isodoc+xml">
-                      CitationWorks. 2019.
+
+                      <link target="http://www.icc.or.at" id="_"/><semx element="link" source="_"><fmt-link target="http://www.icc.or.at"/></semx>
+                      )</formattedref><docidentifier type="metanorma-ordinal">[5]</docidentifier>
+              
+                  </bibitem>
+                  <bibitem id="ref11"><biblio-tag>[6]<tab/>IETF&#xA0;RFC&#xA0;10, </biblio-tag><formattedref><span class="stddocTitle">Internet Calendaring and Scheduling Core Object Specification (iCalendar)</span></formattedref>
+                    <title>Internet Calendaring and Scheduling Core Object Specification (iCalendar)</title><docidentifier type="metanorma-ordinal">[6]</docidentifier>
+                    <docidentifier type="IETF">IETF&#xA0;RFC&#xA0;10</docidentifier><docidentifier scope="biblio-tag">IETF&#xA0;RFC&#xA0;10</docidentifier>
+                  </bibitem>
+                  <bibitem id="ref12"><biblio-tag>[7]<tab/>IETF&#xA0;RFC&#xA0;20, </biblio-tag>
+                    <formattedref format="application/x-isodoc+xml">CitationWorks. 2019.
+
                       <em>How to cite a reference</em>
-                      .
-                   </formattedref>
-                   <docidentifier type="metanorma-ordinal">[7]</docidentifier>
-                   <docidentifier type="metanorma">[Citn]</docidentifier>
-                   <docidentifier type="IETF">IETF RFC 20</docidentifier>
-                   <docidentifier scope="biblio-tag">IETF RFC 20</docidentifier>
-                </bibitem>
-             </references>
-          </bibliography>
-          <fmt-footnote-container>
-             <fmt-fn-body id="_" target="_" reference="1">
-                <semx element="fn" source="_">
-                   <p>
-                      <fmt-fn-label>
-                         <span class="fmt-caption-label">
-                            <sup>
-                               <semx element="autonum" source="_">1</semx>
-                            </sup>
-                         </span>
-                         <span class="fmt-caption-delim">
-                            <tab/>
-                         </span>
-                      </fmt-fn-label>
-                      Under preparation。（Stage at the time of publication ISO/DIS 16634）
-                   </p>
-                </semx>
-             </fmt-fn-body>
-          </fmt-footnote-container>
-       </iso-standard>
+                      .</formattedref><docidentifier type="metanorma-ordinal">[7]</docidentifier>
+                    <docidentifier type="metanorma">[Citn]</docidentifier>
+                    <docidentifier type="IETF">IETF&#xA0;RFC&#xA0;20</docidentifier><docidentifier scope="biblio-tag">IETF&#xA0;RFC&#xA0;20</docidentifier>
+                  </bibitem>
+                </references>
+              </bibliography>
+            <fmt-footnote-container><fmt-fn-body id="_" target="_" reference="1"><semx element="fn" source="_"><p><fmt-fn-label><span class="fmt-caption-label"><sup><semx element="autonum" source="_">1</semx></sup></span><span class="fmt-caption-delim"><tab/></span></fmt-fn-label>Under preparation&#x3002;&#xFF08;Stage at the time of publication ISO/DIS 16634&#xFF09;</p></semx></fmt-fn-body></fmt-footnote-container></iso-standard>
     OUTPUT
     pres_output = IsoDoc::Jis::PresentationXMLConvert
       .new(presxml_options)
