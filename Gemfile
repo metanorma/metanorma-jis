@@ -20,8 +20,9 @@ gem "metanorma-standoc", github: "metanorma/metanorma-standoc", branch: "feat/mo
 gem "metanorma-document", github: "metanorma/metanorma-document", branch: "feat/model-validation-l1-declarations"
 gem "isodoc", github: "metanorma/isodoc", branch: "rt-pubid-2-migration"
 gem "relaton-cli", ">= 3.0.0.pre.alpha.1"
-gem "pubid", "2.0.0.pre.alpha.13" # relaton 3.0.0.pre.alpha.1 pairs with pre-rename pubid; .alpha.9 renamed base_identifier->base
+gem "pubid", github: "pubid/pubid", branch: "main" # rubygems yanked 2.0.0.pre.alpha.13; main is the v2-pre line
 
 eval_gemfile("Gemfile.devel") rescue nil
 
-gem "relaton-render", "3.0.0.pre.alpha.23" # JIS CitationStyle port
+gem "relaton-render", "= 3.0.0.pre.alpha.23"
+gem "leptris", "1.9.317"
