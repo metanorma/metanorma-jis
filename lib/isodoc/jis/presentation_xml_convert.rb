@@ -3,7 +3,6 @@ require "isodoc"
 require_relative "presentation_section"
 require_relative "presentation_list"
 require_relative "presentation_table"
-require_relative "../../relaton/render-jis/general"
 
 module IsoDoc
   module Jis

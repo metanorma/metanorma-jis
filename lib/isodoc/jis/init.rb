@@ -20,7 +20,7 @@ module IsoDoc
       end
 
       def bibrenderer(options = {})
-        ::Relaton::Render::Jis::General.new(options
+        Metanorma::Jis::CitationStyle.new(options
           .merge(language: @lang, script: @script, i18nhash: @i18n.get))
       end
 

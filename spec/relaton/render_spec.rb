@@ -1,6 +1,8 @@
 require "spec_helper"
 
-RSpec.describe Relaton::Render::Jis do
+require_relative "../../lib/metanorma/jis/citation_style"
+
+RSpec.describe Metanorma::Jis::CitationStyle do
   it "renders home standard, ISO" do
     input = <<~INPUT
       <bibitem type="standard" schema-version="v1.2.1">
@@ -283,7 +285,7 @@ RSpec.describe Relaton::Render::Jis do
         </bibitem>
       </references>
     INPUT
-    output = {"A" => {author: "Aluffi", date: "2022a", citation: {default: "ABC1", short: "Aluffi P. （編）<span class=\"fmt-first-biblio-delim\"/>。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1", author_date: "Aluffi 2022", author_date_br: "Aluffi （2022）", author: "Aluffi", date: "2022", reference_tag: "", title: "Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday", title_reference_tag: "Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday", full: "Aluffi P. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1"}, formattedref: "Aluffi P. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1"}, "B" => {author: "Aluffi", date: "2022b", citation: {default: "ABC2", short: "Aluffi P. （編）<span class=\"fmt-first-biblio-delim\"/>。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1", author_date: "Aluffi 2022", author_date_br: "Aluffi （2022）", author: "Aluffi", date: "2022", reference_tag: "", title: "Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday", title_reference_tag: "Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday", full: "Aluffi P. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1"}, formattedref: "Aluffi P. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1"}}
+    output = {"A" => {author: "Aluffi", date: "2022a", citation: {default: "ABC1", short: "Aluffi P. （編）<span class=\"fmt-first-biblio-delim\"/>。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1", author_date: "Aluffi 2022", author_date_br: "Aluffi （2022）", author: "Aluffi", date: "2022", title: "Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday", title_reference_tag: "Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday", full: "Aluffi P. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1"}, formattedref: "Aluffi P. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1"}, "B" => {author: "Aluffi", date: "2022b", citation: {default: "ABC2", short: "Aluffi P. （編）<span class=\"fmt-first-biblio-delim\"/>。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1", author_date: "Aluffi 2022", author_date_br: "Aluffi （2022）", author: "Aluffi", date: "2022", title: "Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday", title_reference_tag: "Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday", full: "Aluffi P. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1"}, formattedref: "Aluffi P. （編）。 Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1"}}
     p = renderer
     expect(p.render_all(input, type: nil))
       .to be_equivalent_to output
@@ -340,14 +342,14 @@ RSpec.describe Relaton::Render::Jis do
   private
 
   def renderer
-    Relaton::Render::Jis::General
+    Metanorma::Jis::CitationStyle
       .new("language" => "ja", "script" => "Jpan",
            "i18nhash" => IsoDoc::Jis::PresentationXMLConvert.new({})
       .i18n_init("ja", "Jpan", nil).get)
   end
 
   def renderer_en
-    Relaton::Render::Jis::General
+    Metanorma::Jis::CitationStyle
       .new("language" => "en", "script" => "Latn",
            "i18nhash" => IsoDoc::Jis::PresentationXMLConvert.new({})
       .i18n_init("en", "Latn", nil).get)
