@@ -7,7 +7,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}" }
 gemspec
 
 gem "metanorma-core", github: "metanorma/metanorma-core", branch: "feat/flavor-table"
-gem "metanorma-iso", github: "metanorma/metanorma-iso", branch: "feat/model-validation-migration"
+gem "metanorma-iso", github: "metanorma/metanorma-iso", branch: "main"
+gem "metanorma-utils", github: "metanorma/metanorma-utils", branch: "main" # GcBudget, unreleased past 2.0.7
 
 # TEMPORARY: cross-PR branch pins so CI can resolve the in-flight
 # metanorma-standoc namespace rename (Metanorma::Standoc::Document)
@@ -22,3 +23,5 @@ gem "relaton-cli", ">= 3.0.0.pre.alpha.1"
 gem "pubid", "2.0.0.pre.alpha.13" # relaton 3.0.0.pre.alpha.1 pairs with pre-rename pubid; .alpha.9 renamed base_identifier->base
 
 eval_gemfile("Gemfile.devel") rescue nil
+
+gem "relaton-render", "3.0.0.pre.alpha.23" # JIS CitationStyle port
