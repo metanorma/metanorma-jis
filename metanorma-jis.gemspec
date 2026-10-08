@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "japanese_calendar", "~> 0"
   spec.add_dependency "metanorma-iso", "~> 3.5.0"
-  spec.add_dependency "pubid", "2.0.0.pre.alpha.13"
+  spec.add_dependency "pubid", ">= 2.0.0.pre.alpha" # rubygems yanked 2.0.0.pre.alpha.13; doctrine: the v2 pre line onwards
   spec.add_dependency "relaton-render", "~> 3.0.0.pre.alpha"
 
   spec.add_development_dependency "canon"# , "= 0.2.3"
