@@ -2,7 +2,6 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}" }
 
 gemspec
-gem "metanorma-mirror", "~> 1.0"
 
 # TEMPORARY: cross-PR branch pins so CI can resolve the in-flight
 # metanorma-standoc namespace rename (Metanorma::Standoc::Document)
@@ -10,11 +9,6 @@ gem "metanorma-mirror", "~> 1.0"
 # Revert each pin once the corresponding PR merges:
 #   - https://github.com/metanorma/metanorma-standoc/pull/1232
 #   - https://github.com/metanorma/metanorma-document/pull/45
-gem "metanorma-standoc", github: "metanorma/metanorma-standoc", branch: "feat/term-grammar-coverage" # TEMPORARY audit chain (stacked)
-gem "metanorma-document", github: "metanorma/metanorma-document", branch: "main" # TEMPORARY audit chain
-gem "isodoc", github: "metanorma/isodoc", branch: "main" # merged as #825
-gem "relaton-bib", "~> 2.2.0.pre.alpha.1"
-gem "pubid", github: "pubid/pubid", branch: "main"
 
 # TEMPORARY: cross-PR branch pins so CI can resolve the in-flight
 # metanorma-standoc namespace rename (Metanorma::Standoc::Document)

@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/metanorma/isodoc
-  revision: 0eab42082ba881c9f8034f0721b495fc83fe2274
-  branch: rt-pubid-2-migration
+  revision: b599d232e01b1a4bc6cd51b6452032d68ea9da56
+  branch: main
   specs:
-    isodoc (3.7.2)
+    isodoc (3.7.3)
       base64
       bigdecimal
       html2doc (~> 1.12)
@@ -30,8 +30,8 @@ GIT
 
 GIT
   remote: https://github.com/metanorma/metanorma-document
-  revision: d1ff9f06b72b1daccfab54799286777a05c8b22b
-  branch: feat/model-validation-l1-declarations
+  revision: 1ba04f2bc4ab549acb93cc5ca1ee2b41625d6d80
+  branch: feat/render-new-vocabulary
   specs:
     metanorma-document (0.5.1)
       glossarist (~> 2.13)
@@ -45,22 +45,30 @@ GIT
 
 GIT
   remote: https://github.com/metanorma/metanorma-iso
-  revision: 289635d693435ae42a2e1d41a23cf62b41d6d64e
-  branch: main
+  revision: 7f77f2a81bad5a7640ef885a8bb0dd7a67c7f4c5
+  branch: feat/model-validation-migration
   specs:
     metanorma-iso (3.5.0)
       metanorma-document (~> 0.5.0)
       metanorma-standoc (>= 3.4.2)
       mnconvert (~> 1.14)
-      pubid (~> 2.0.0.pre.alpha)
+      pubid
       sts (>= 0.5.6)
       tokenizer (~> 0.3.0)
       uniword (~> 1.0)
 
 GIT
+  remote: https://github.com/metanorma/metanorma-mirror
+  revision: aa6149b0a3da6675888f0cbb8ac5b55e594f85c7
+  branch: feat/svgmap-imagemap-handlers
+  specs:
+    metanorma-mirror (1.0.0)
+      lutaml-model (~> 0.8)
+
+GIT
   remote: https://github.com/metanorma/metanorma-standoc
-  revision: ec98d74da0d260fd77557e2f04a20884f6d4a2c7
-  branch: feat/move-standard-document
+  revision: 3a0d9ff81cec3b5917503c96f6f268fb34b541e4
+  branch: feat/term-grammar-coverage
   specs:
     metanorma-standoc (3.5.0)
       addressable (~> 2.8)
@@ -69,40 +77,35 @@ GIT
       crass (~> 1.0.0)
       isodoc (~> 3.7.2)
       metanorma-core (~> 0.2.3)
-      metanorma-document (~> 0.5.0)
+      metanorma-document
+      metanorma-mirror
       metanorma-plugin-glossarist (~> 0.3.0)
       metanorma-plugin-lutaml (~> 0.7.31)
       metanorma-plugin-plantuml (~> 1.0.0)
       metanorma-utils (~> 2.0.1)
       png_conform (~> 0.1.0)
-      relaton-cli (>= 2.1.0, < 3.1.0)
+      relaton-cli (>= 3.0.0.pre.alpha.3, < 3.1.0)
       relaton-iev (~> 2.0.0)
       ruby-jing
       svg_conform (~> 0.1.0)
 
 GIT
-  remote: https://github.com/metanorma/metanorma-utils
-  revision: b3e51c0e4056d27d9e5ec2d540d5189ba451b7eb
+  remote: https://github.com/pubid/pubid
+  revision: 2a0d97748b0a0bac8d759ec4c43e64e3f2152180
   branch: main
   specs:
-    metanorma-utils (2.0.7)
-      asciidoctor (>= 2)
-      concurrent-ruby
-      csv
-      htmlentities (~> 4.3.4)
-      logger
-      nokogiri (>= 1.11)
-      sterile (~> 1.0.14)
-      uuidtools
+    pubid (2.0.0.pre.alpha.27)
+      lutaml-model
+      parsanol (>= 1.3.62)
+      parslet
 
 PATH
   remote: .
   specs:
     metanorma-jis (1.2.0)
       japanese_calendar (~> 0)
-      metanorma-iso (~> 3.5.0)
-      pubid (>= 2.0.0.pre.alpha)
-      relaton-render (~> 3.0.0.pre.alpha)
+      metanorma-iso (>= 3.4.2)
+      pubid
 
 GEM
   remote: https://rubygems.org/
@@ -179,6 +182,7 @@ GEM
       base64
       ssrf_filter (~> 1.5)
     csv (3.3.6)
+    date (3.6.0)
     debug (1.11.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
@@ -565,6 +569,15 @@ GEM
       asciidoctor
     metanorma-taste (1.1.2)
       lutaml-model (>= 0.8)
+    metanorma-utils (2.0.7)
+      asciidoctor (>= 2)
+      concurrent-ruby
+      csv
+      htmlentities (~> 4.3.4)
+      logger
+      nokogiri (>= 1.11)
+      sterile (~> 1.0.14)
+      uuidtools
     method_source (1.1.0)
     mime-types (3.7.0)
       logger
@@ -681,10 +694,9 @@ GEM
       coderay (~> 1.1)
       method_source (~> 1.0)
       reline (>= 0.6.0)
-    pubid (2.0.0.pre.alpha.27)
-      lutaml-model
-      parsanol (>= 1.3.62)
-      parslet
+    psych (5.2.6)
+      date
+      stringio
     public_suffix (7.0.5)
     racc (1.8.1)
     rack (3.2.7)
@@ -756,17 +768,33 @@ GEM
       sqlite3 (~> 1.7)
       w3c_api (~> 0.3.3)
       yeptris (>= 0.4)
+    relaton-bib (2.2.0.pre.alpha.1)
+      bibtex-ruby
+      iso639
+      isoics (~> 0.1.0)
+      lutaml-model (~> 0.8.0)
+      nokogiri (>= 1.16)
+      psych (~> 5.2.0)
+      relaton-core (~> 2.2.0.pre.alpha.1)
+      relaton-logger (~> 2.2.0.pre.alpha.1)
+      rfcxml (~> 0.4.3)
     relaton-cli (3.0.0.pre.alpha.12)
       liquid (~> 5)
       pubid (~> 2.0.0.pre.alpha.13)
       relaton (= 3.0.0.pre.alpha.12)
       thor
       thor-hollaback
+    relaton-core (2.2.0.pre.alpha.1)
+      nokogiri (>= 1.16)
+      psych (~> 5.2.0)
+      relaton-logger (~> 2.2.0.pre.alpha.1)
     relaton-iev (2.0.2)
       htmlentities (~> 4.3.4)
       nokogiri (>= 1.13.0)
       relaton (>= 2.0.0.pre.alpha.1, < 4)
       uuidtools
+    relaton-logger (2.2.0.pre.alpha.1)
+      logger (~> 1.6)
     relaton-render (3.0.0.pre.alpha.23)
       htmlentities
       liquid (~> 5)
@@ -873,6 +901,7 @@ GEM
     ssrf_filter (1.6.0)
     sterile (1.0.26)
       nokogiri (>= 1.11.7)
+    stringio (3.2.0)
     strscan (3.1.8)
     sts (0.6.11)
       bigdecimal
@@ -1014,18 +1043,16 @@ DEPENDENCIES
   guard-rspec (~> 4.7)
   iev (~> 0.3.0)
   isodoc!
-  leptris (= 1.9.317)
   metanorma-core!
   metanorma-document!
   metanorma-iso!
   metanorma-jis!
+  metanorma-mirror!
   metanorma-standoc!
-  metanorma-utils!
   openssl
-  pubid (= 2.0.0.pre.alpha.27)
+  pubid!
   rake (~> 13.0)
-  relaton-cli (>= 3.0.0.pre.alpha.1)
-  relaton-render (= 3.0.0.pre.alpha.23)
+  relaton-bib (~> 2.2.0.pre.alpha.1)
   rspec (~> 3.6)
   rubocop (~> 1)
   rubocop-performance
