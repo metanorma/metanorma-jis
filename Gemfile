@@ -19,6 +19,7 @@ gemspec
 gem "metanorma-standoc", github: "metanorma/metanorma-standoc", branch: "main" # TEMPORARY audit chain (stacked)
 gem "metanorma-document", github: "metanorma/metanorma-document", branch: "main" # TEMPORARY audit chain
 gem "isodoc", github: "metanorma/isodoc", branch: "main" # merged as #825
+gem "relaton-render", "3.0.0.pre.alpha.39" # jis_* named rules
 gem "relaton-bib", "~> 2.2.0.pre.alpha.1"
 gem "pubid", github: "pubid/pubid", branch: "main"
 
