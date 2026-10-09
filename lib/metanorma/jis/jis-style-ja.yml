@@ -21,6 +21,10 @@ scheme:
       "and": ""
       oxford_comma: ""
       series_no: ""
+rules:
+  component_part: jis_component_part
+  series: jis_series
+  extent: jis_extent
 templates:
   titleOpen: ""
   titleClose: ""
