@@ -93,7 +93,6 @@ module Metanorma
           script: @renderer_opts[:script],
           labels: @renderer_opts[:labels],
           style: style_path(lang),
-          elements: JisElements::ELEMENTS,
         )
       end
 
@@ -105,7 +104,6 @@ module Metanorma
           script: options[:script] || "Latn",
           labels: options[:i18nhash] || {},
           style: options[:style] || style_path(@lang),
-          elements: JisElements::ELEMENTS,
         )
       end
     end
