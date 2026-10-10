@@ -815,7 +815,7 @@ GEM
       uuidtools
     relaton-logger (2.2.0.pre.alpha.1)
       logger (~> 1.6)
-    relaton-render (3.0.0.pre.alpha.39)
+    relaton-render (3.0.0.pre.alpha.40)
       htmlentities
       liquid (~> 5)
       lutaml-model
@@ -1074,7 +1074,7 @@ DEPENDENCIES
   pubid!
   rake (~> 13.0)
   relaton-bib (~> 2.2.0.pre.alpha.1)
-  relaton-render (= 3.0.0.pre.alpha.39)
+  relaton-render (= 3.0.0.pre.alpha.40)
   rspec (~> 3.6)
   rubocop (~> 1)
   rubocop-performance
@@ -1302,7 +1302,7 @@ CHECKSUMS
   relaton-core (2.2.0.pre.alpha.1) sha256=af5310cc0b481fc1ba875e5c41cad5a67c10c3c03abd9f4c50d7b64cdb09a4f2
   relaton-iev (2.0.2) sha256=ec77f5ad4700c8856aaacf9655eaf026c4a87acdfb17eca9af53520e8bf5b638
   relaton-logger (2.2.0.pre.alpha.1) sha256=70f22fa8c5b16a219ed1d6c241c07016fefaec2205e2d479131f6ae9bff1eae4
-  relaton-render (3.0.0.pre.alpha.39) sha256=3e68b866b1bd106897c42b83a21cb711a31e8bb64d719755deed076522f378be
+  relaton-render (3.0.0.pre.alpha.40) sha256=bb2c558bb81019757a4fb7887c17f5f3a3f0bebd6f19a442182e9732aa22440f
   reline (0.7.0) sha256=5b012d8e55dbf9d450f12bde2cf7d15ff546ae80b3f8f3b30e570d431815583d
   reverse_markdown (2.1.1) sha256=b2206466b682ac1177b6b8ec321d00a84fca02d096c5d676a7a0cc5838dc0701
   rexml (3.4.4) sha256=19e0a2c3425dfbf2d4fc1189747bdb2f849b6c5e74180401b15734bc97b5d142
