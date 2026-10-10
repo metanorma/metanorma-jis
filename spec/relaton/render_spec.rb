@@ -75,6 +75,32 @@ RSpec.describe Metanorma::Jis::CitationStyle do
       .to be_equivalent_to output
   end
 
+  let(:home_iso) do
+    builder(type: "standard",
+            titles: ["Latex, rubber - Determination of total solids content"],
+            docids: { "ISO" => "ISO 124" },
+            contribs: [{ role: [{ type: "publisher" }],
+                         organization: { name: [{ content: "International Organization for Standardization" }] } }],
+            dates: [], language: "en")
+  end
+
+  let(:book) do
+    builder(type: "book",
+            titles: ["Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday"],
+            docids: { "ABC" => "ABC1" },
+            contribs: [
+              { role: [{ type: "editor" }],
+                person: { name: { surname: "Aluffi", forename: "Paolo" } } },
+              { role: [{ type: "editor" }],
+                person: { name: { surname: "Aluffi", forename: "Paolo" } } },
+              { role: [{ type: "editor" }],
+                person: { name: { surname: "Aluffi", forename: "Paolo" } } },
+              { role: [{ type: "publisher" }],
+                organization: { name: [{ content: "Cambridge University Press" }] } },
+            ],
+            dates: [{ type: "published", from: "2022" }], edition: "1")
+  end
+
   let(:home_jis) do
     builder(type: "standard",
             titles: ["電気及び関連分野―信号指定及び接続指定"],
@@ -199,6 +225,39 @@ RSpec.describe Metanorma::Jis::CitationStyle do
   end
 
   private
+
+  def ja
+    renderer
+  end
+
+  def en
+    renderer_en
+  end
+
+  def builder(type:, titles:, docids: {}, contribs: [], dates: [], language: nil, edition: nil)
+    docid_xml = docids.map { |t, i| %(<docidentifier type="#{t}">#{i}</docidentifier>) }.join
+    contrib_xml = contribs.map do |c|
+      role = Array(c[:role]).map { |r| %(<role type="#{r[:type]}"/>) }.join
+      if c[:person]
+        n = c[:person][:name]
+        name = %(<name><surname>#{n[:surname]}</surname><forename>#{n[:forename]}</forename></name>) if n[:surname]
+        name ||= %(<name><completename>#{n[:completename][:content]}</completename></name>)
+        %(<contributor>#{role}<person>#{name}</person></contributor>)
+      else
+        names = Array(c[:organization][:name]).map { |n| %(<name>#{n[:content]}</name>) }.join
+        %(<contributor>#{role}<organization>#{names}</organization></contributor>)
+      end
+    end.join
+    dates_xml = dates.map { |d| %(<date type="#{d[:type]}"><from>#{d[:from]}</from></date>) }.join
+    edition_xml = edition ? %(<edition>#{edition}</edition>) : ""
+    lang_xml = language ? %(<language>#{language}</language>) : ""
+    Relaton::Bib::Item.from_xml(<<~XML)
+      <bibitem type="#{type}">
+        #{titles.map { |t| %(<title format="text/plain">#{t}</title>) }.join}
+        #{docid_xml}#{contrib_xml}#{dates_xml}#{edition_xml}#{lang_xml}
+      </bibitem>
+    XML
+  end
 
   def renderer
     Metanorma::Jis::CitationStyle
