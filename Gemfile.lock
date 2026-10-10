@@ -30,8 +30,8 @@ GIT
 
 GIT
   remote: https://github.com/metanorma/metanorma-document
-  revision: 1ba04f2bc4ab549acb93cc5ca1ee2b41625d6d80
-  branch: feat/render-new-vocabulary
+  revision: 525b5f8fa49cd5c138999a49fe6f279a24951c1a
+  branch: main
   specs:
     metanorma-document (0.5.1)
       glossarist (~> 2.13)
@@ -39,6 +39,7 @@ GIT
       metanorma-core
       metanorma-mko (>= 1.0.0)
       mml (~> 2.4)
+      mn-requirements (>= 0.2.1)
       plurimath (~> 0.11)
       pubid (~> 2.0.0.pre.alpha)
       relaton (>= 3.0.0.pre.alpha.1)
@@ -67,8 +68,8 @@ GIT
 
 GIT
   remote: https://github.com/metanorma/metanorma-standoc
-  revision: 3a0d9ff81cec3b5917503c96f6f268fb34b541e4
-  branch: feat/term-grammar-coverage
+  revision: 3df042a983f5c91dec18c0230583fad5a43ac934
+  branch: main
   specs:
     metanorma-standoc (3.5.0)
       addressable (~> 2.8)
@@ -76,13 +77,16 @@ GIT
       concurrent-ruby
       crass (~> 1.0.0)
       isodoc (~> 3.7.2)
+      leptris (~> 1.9)
       metanorma-core (~> 0.2.3)
       metanorma-document
       metanorma-mirror
+      metanorma-plugin-asciichem (~> 0.1.0)
       metanorma-plugin-glossarist (~> 0.3.0)
       metanorma-plugin-lutaml (~> 0.7.31)
       metanorma-plugin-plantuml (~> 1.0.0)
       metanorma-utils (~> 2.0.1)
+      moxml (~> 0.5.84)
       png_conform (~> 0.1.0)
       relaton-cli (>= 3.0.0.pre.alpha.3, < 3.1.0)
       relaton-iev (~> 2.0.0)
@@ -131,6 +135,16 @@ GEM
       multi_json (~> 1.0)
       net-http-persistent
     ansi (1.6.0)
+    asciichem (0.30.1)
+      chemicalml (~> 0.3.0)
+      elkrb (~> 1.0)
+      lutaml-model (~> 0.8)
+      mml (~> 2.3)
+      moxml (~> 0.5)
+      parslet (~> 2.0)
+      plurimath (~> 0.11)
+      relaton-bib (~> 2.1)
+      thor (~> 1.3)
     asciidoctor (2.0.26)
     ast (2.4.3)
     base64 (0.3.0)
@@ -157,6 +171,8 @@ GEM
       thor
       unicode-name
       yeptris (~> 0.6.31)
+    chemicalml (0.3.0)
+      lutaml-model (~> 0.8.0)
     cldr-plurals-runtime-rb (1.2.0)
     cliver (0.3.2)
     cnccs (0.1.6)
@@ -207,6 +223,10 @@ GEM
       scanf (~> 1.0)
       sxp (~> 2.0)
       unicode-types (~> 1.8)
+    elkrb (1.0.2)
+      lutaml-model (~> 0.7)
+      rbs (~> 3.0)
+      thor (~> 1.4)
     emf (0.1.0)
       bindata (~> 2.4)
     emfsvg (0.1.2)
@@ -546,6 +566,9 @@ GEM
       lutaml-model (~> 0.8, >= 0.8.22)
       rubyzip
       unitsml (~> 0.6)
+    metanorma-plugin-asciichem (0.1.2)
+      asciichem (~> 0.29, >= 0.29.2)
+      moxml (~> 0.5)
     metanorma-plugin-glossarist (0.3.10)
       asciidoctor
       glossarist (~> 2.8, >= 2.8.16)
@@ -706,9 +729,8 @@ GEM
       ffi (~> 1.0)
     rb_sys (0.9.130)
       rake-compiler-dock (= 1.12.0)
-    rbs (4.2.0)
+    rbs (3.10.4)
       logger
-      prism (>= 1.6.0)
       tsort
     rdf (3.3.1)
       bcp47_spec (~> 0.2)
@@ -721,10 +743,9 @@ GEM
     rdf-xsd (3.3.0)
       rdf (~> 3.3)
       rexml (~> 3.2)
-    rdoc (8.1.0)
+    rdoc (7.2.0)
       erb
-      prism (>= 1.6.0)
-      rbs (>= 4.0.0)
+      psych (>= 4.0.0)
       tsort
     readline (0.0.4)
       reline
