@@ -19,11 +19,13 @@ gemspec
 gem "metanorma-standoc", github: "metanorma/metanorma-standoc", branch: "main" # TEMPORARY audit chain (stacked)
 gem "metanorma-document", github: "metanorma/metanorma-document", branch: "main" # TEMPORARY audit chain
 gem "isodoc", github: "metanorma/isodoc", branch: "main" # merged as #825
+gem "relaton-render", "3.0.0.pre.alpha.43" # slot forms; bare from-only dates; item-language routing
 gem "relaton-bib", "~> 2.2.0.pre.alpha.1"
 gem "pubid", github: "pubid/pubid", branch: "main"
 
 eval_gemfile("Gemfile.devel") rescue nil
 
 gem "metanorma-mirror", github: "metanorma/metanorma-mirror", branch: "feat/svgmap-imagemap-handlers" # TEMPORARY audit chain
-gem "metanorma-iso", github: "metanorma/metanorma-iso", branch: "feat/model-validation-migration" # TEMPORARY audit chain
+gem "metanorma-iso", github: "metanorma/metanorma-iso", branch: "main"
+gem "metanorma-utils", github: "metanorma/metanorma-utils", branch: "main" # GcBudget + table cell buffer, unreleased past 2.0.7 # the audit branch carries the 1.x lib/relaton stack, which cannot boot beside relaton-render 3
 gem "metanorma-core", github: "metanorma/metanorma-core", branch: "feat/flavor-table" # TEMPORARY audit chain

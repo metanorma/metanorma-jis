@@ -392,7 +392,7 @@ RSpec.describe IsoDoc do
           
                 <references id="_" normative="false" obligation="informative" displayorder="7">
                   <title id="_">Bibliography</title><fmt-title depth="1" id="_"><semx element="title" source="_">Bibliography</semx></fmt-title>
-                  <bibitem id="ISBN" type="book"><biblio-tag>[1]<tab/></biblio-tag><formattedref>Chemicals for analytical laboratory use. n.p.: n.d</formattedref>
+                  <bibitem id="ISBN" type="book"><biblio-tag>[1]<tab/></biblio-tag><formattedref>_Chemicals for analytical laboratory use_. n.p.: n.d</formattedref>
                     <title format="text/plain">Chemicals for analytical laboratory use</title><docidentifier type="metanorma-ordinal">[1]</docidentifier>
                     <docidentifier type="ISBN">ISBN</docidentifier>
               
@@ -403,7 +403,7 @@ RSpec.describe IsoDoc do
                       </organization>
                     </contributor>
                   </bibitem>
-                                  <bibitem id="A" anchor="A" type="inbook"><biblio-tag>[2]<tab/>ISO&#xA0;1234&#xA0;/ B, </biblio-tag><formattedref>Wozniak S., Jobs S. &amp; Hoover J.E. <em>Work</em> . Collected Essays UNICEF). Fourth edition. (Bibliographers Anonymous). Geneva: International Standardization Organization. 1996. vol. 4 p. 19. Available at: <span class="biburl"><fmt-link target="http://www.example.com">http://www.example.com</fmt-link></span></formattedref>
+                                  <bibitem id="A" anchor="A" type="inbook"><biblio-tag>[2]<tab/>ISO&#xA0;1234&#xA0;/ B, </biblio-tag><formattedref>Wozniak S., Jobs S. and Hoover J.E. <em>Work</em> . Collected Essays UNICEF). 第4版. (Bibliographers Anonymous). Geneva: International Standardization Organization. 1996. vol. 4 p. 19. Available at: <span class="biburl"><fmt-link target="http://www.example.com">http://www.example.com</fmt-link></span></formattedref>
                    <title>
                      <em>Work</em>
                    </title>
@@ -501,7 +501,7 @@ RSpec.describe IsoDoc do
                <keyword>key word</keyword>
                <keyword>word key</keyword>
               </bibitem>
-                            <bibitem type="article" id="ISSN"><biblio-tag>[3]<tab/></biblio-tag><formattedref>Aluffi P., Anderson D., Hering M., Musta&#x163;&#x103; M. &amp; Payne S. (eds.). Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday. London Mathematical Society Lecture Note Series (N.S.). 2022, vol. 1 no. 7, pp. 89&#x2013;112<note type="display" id="_" autonum="1"><fmt-name id="_"><span class="fmt-caption-label"><span class="fmt-element-name">NOTE</span> <semx element="autonum" source="_">1</semx></span><span class="fmt-label-delim"><tab/></span></fmt-name><fmt-xref-label><span class="fmt-element-name">Note</span> <semx element="autonum" source="_">1</semx></fmt-xref-label><fmt-xref-label container="ISSN"><span class="fmt-xref-container"><span class="fmt-xref-container"><semx element="references" source="_">Bibliography</semx></span><span class="fmt-comma">,</span> [3]</span><span class="fmt-comma">,</span> <span class="fmt-element-name">Note</span> <semx element="autonum" source="_">1</semx></fmt-xref-label><semx element="note" source="_">
+                            <bibitem type="article" id="ISSN"><biblio-tag>[3]<tab/></biblio-tag><formattedref>Aluffi P., Anderson D., Hering M., Musta&#x163;&#x103; M. and Payne S. (eds.). Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday. London Mathematical Society Lecture Note Series (N.S.). 2022, vol. 1 no. 7, pp. 89&#x2013;112<note type="display" id="_" autonum="1"><fmt-name id="_"><span class="fmt-caption-label"><span class="fmt-element-name">NOTE</span> <semx element="autonum" source="_">1</semx></span><span class="fmt-label-delim"><tab/></span></fmt-name><fmt-xref-label><span class="fmt-element-name">Note</span> <semx element="autonum" source="_">1</semx></fmt-xref-label><fmt-xref-label container="ISSN"><span class="fmt-xref-container"><span class="fmt-xref-container"><semx element="references" source="_">Bibliography</semx></span><span class="fmt-comma">,</span> [3]</span><span class="fmt-comma">,</span> <span class="fmt-element-name">Note</span> <semx element="autonum" source="_">1</semx></fmt-xref-label><semx element="note" source="_">
                     <p>This is an annotation of document ISSN.</p>
                   </semx></note>
       <note type="display" id="_" autonum="2"><fmt-name id="_"><span class="fmt-caption-label"><span class="fmt-element-name">NOTE</span> <semx element="autonum" source="_">2</semx></span><span class="fmt-label-delim"><tab/></span></fmt-name><fmt-xref-label><span class="fmt-element-name">Note</span> <semx element="autonum" source="_">2</semx></fmt-xref-label><fmt-xref-label container="ISSN"><span class="fmt-xref-container"><span class="fmt-xref-container"><semx element="references" source="_">Bibliography</semx></span><span class="fmt-comma">,</span> [3]</span><span class="fmt-comma">,</span> <span class="fmt-element-name">Note</span> <semx element="autonum" source="_">2</semx></fmt-xref-label><semx element="note" source="_">
@@ -711,7 +711,7 @@ RSpec.describe IsoDoc do
           
                 <references id="_" normative="false" obligation="informative" displayorder="7">
                   <title id="_">Bibliography</title><fmt-title depth="1" id="_"><semx element="title" source="_">Bibliography</semx></fmt-title>
-                  <bibitem id="ISBN" type="book"><biblio-tag>[1]<tab/></biblio-tag><formattedref>Chemicals for analytical laboratory use&#x3002;&#x51FA;&#x7248;&#x5730;&#x4E0D;&#x660E;&#xFF1A;&#x65E5;&#x4ED8;&#x306A;&#x3057;</formattedref>
+                  <bibitem id="ISBN" type="book"><biblio-tag>[1]<tab/></biblio-tag><formattedref>_Chemicals for analytical laboratory use_&#x3002;&#x51FA;&#x7248;&#x5730;&#x4E0D;&#x660E;&#xFF1A;&#x65E5;&#x4ED8;&#x306A;&#x3057;</formattedref>
                     <title format="text/plain">Chemicals for analytical laboratory use</title><docidentifier type="metanorma-ordinal">[1]</docidentifier>
                     <docidentifier type="ISBN">ISBN</docidentifier>
               
