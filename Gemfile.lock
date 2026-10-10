@@ -110,7 +110,7 @@ GIT
 
 GIT
   remote: https://github.com/pubid/pubid
-  revision: 2a0d97748b0a0bac8d759ec4c43e64e3f2152180
+  revision: 4ab4bf14324471dd19a99ebcf81c3a2866407459
   branch: main
   specs:
     pubid (2.0.0.pre.alpha.28)
@@ -757,7 +757,7 @@ GEM
     readline (0.0.4)
       reline
     regexp_parser (2.13.1)
-    relaton (3.0.0.pre.alpha.12)
+    relaton (3.0.0.pre.alpha.14)
       addressable (~> 2.8)
       algolia (~> 2.3.0)
       base64
@@ -787,7 +787,7 @@ GEM
       niso-jats (~> 0.3.4)
       parallel (~> 1.26)
       parslet (~> 2.0.0)
-      pubid (~> 2.0.0.pre.alpha.21)
+      pubid (~> 2.0.0.pre.alpha.28)
       relaton-render (>= 3.0.0.pre.alpha.1, < 4)
       rfcxml (~> 0.4.3)
       rubyzip (~> 3.7)
@@ -804,10 +804,10 @@ GEM
       relaton-core (~> 2.2.0.pre.alpha.1)
       relaton-logger (~> 2.2.0.pre.alpha.1)
       rfcxml (~> 0.4.3)
-    relaton-cli (3.0.0.pre.alpha.12)
+    relaton-cli (3.0.0.pre.alpha.14)
       liquid (~> 5)
       pubid (~> 2.0.0.pre.alpha.13)
-      relaton (= 3.0.0.pre.alpha.12)
+      relaton (= 3.0.0.pre.alpha.14)
       thor
       thor-hollaback
     relaton-core (2.2.0.pre.alpha.1)
@@ -1303,9 +1303,9 @@ CHECKSUMS
   rdoc (7.2.0) sha256=8650f76cd4009c3b54955eb5d7e3a075c60a57276766ebf36f9085e8c9f23192
   readline (0.0.4) sha256=6138eef17be2b98298b672c3ea63bf9cb5158d401324f26e1e84f235879c1d6a
   regexp_parser (2.13.1) sha256=5aedb6b7c35688f51e86eef17a15374dfd287c83f4ca644b2c5f3ec50a33b44b
-  relaton (3.0.0.pre.alpha.12) sha256=6cd8f3756be3399912d32d8599abae929afa85057f50fac6952b7cb75665fab2
+  relaton (3.0.0.pre.alpha.14) sha256=af57372d60fb4de1c5e2e2fd66745395c8eaf6c819bb5ce24a6ceb4f32993794
   relaton-bib (2.2.0.pre.alpha.1) sha256=bb9f3c926449a57432859e2a7dff0c8462f957dd327de0f7d7aa7ccdbe82a1c2
-  relaton-cli (3.0.0.pre.alpha.12) sha256=16dabe2e3022c36d78ec086802ce9a368001c66732b3cf57859dc16e47f53c33
+  relaton-cli (3.0.0.pre.alpha.14) sha256=177344bfbdfb564b5c3a91b7470ecda4f6e5f13f381ee6d29677f559cc81d481
   relaton-core (2.2.0.pre.alpha.1) sha256=af5310cc0b481fc1ba875e5c41cad5a67c10c3c03abd9f4c50d7b64cdb09a4f2
   relaton-iev (2.0.2) sha256=ec77f5ad4700c8856aaacf9655eaf026c4a87acdfb17eca9af53520e8bf5b638
   relaton-logger (2.2.0.pre.alpha.1) sha256=70f22fa8c5b16a219ed1d6c241c07016fefaec2205e2d479131f6ae9bff1eae4
