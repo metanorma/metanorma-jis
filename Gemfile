@@ -26,5 +26,6 @@ gem "pubid", github: "pubid/pubid", branch: "main"
 eval_gemfile("Gemfile.devel") rescue nil
 
 gem "metanorma-mirror", github: "metanorma/metanorma-mirror", branch: "feat/svgmap-imagemap-handlers" # TEMPORARY audit chain
-gem "metanorma-iso", github: "metanorma/metanorma-iso", branch: "main" # the audit branch carries the 1.x lib/relaton stack, which cannot boot beside relaton-render 3
+gem "metanorma-iso", github: "metanorma/metanorma-iso", branch: "main"
+gem "metanorma-utils", github: "metanorma/metanorma-utils", branch: "main" # GcBudget + table cell buffer, unreleased past 2.0.7 # the audit branch carries the 1.x lib/relaton stack, which cannot boot beside relaton-render 3
 gem "metanorma-core", github: "metanorma/metanorma-core", branch: "feat/flavor-table" # TEMPORARY audit chain
