@@ -46,14 +46,14 @@ GIT
 
 GIT
   remote: https://github.com/metanorma/metanorma-iso
-  revision: 7f77f2a81bad5a7640ef885a8bb0dd7a67c7f4c5
-  branch: feat/model-validation-migration
+  revision: 289635d693435ae42a2e1d41a23cf62b41d6d64e
+  branch: main
   specs:
     metanorma-iso (3.5.0)
       metanorma-document (~> 0.5.0)
       metanorma-standoc (>= 3.4.2)
       mnconvert (~> 1.14)
-      pubid
+      pubid (~> 2.0.0.pre.alpha)
       sts (>= 0.5.6)
       tokenizer (~> 0.3.0)
       uniword (~> 1.0)
