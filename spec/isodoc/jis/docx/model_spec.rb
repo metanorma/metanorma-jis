@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require "metanorma/jis/document"
+require "isodoc/jis/docx/model"
 
-RSpec.describe Metanorma::Jis::Document do
+RSpec.describe IsoDoc::Jis::Docx::Model do
   describe "Root" do
     it "is a lutaml-model Serializable" do
       expect(described_class::Root.ancestors)

@@ -19,7 +19,7 @@ RSpec.describe "JIS end-to-end pipeline", :e2e do
   end
 
   it "Root model parses sections from the fixture XML" do
-    root = Metanorma::Jis::Document::Root.from_xml(File.read(FIXTURE))
+    root = IsoDoc::Jis::Docx::Model::Root.from_xml(File.read(FIXTURE))
     expect(root.sections).not_to be_nil
     expect(root.sections.clause.size).to be > 0
   end
@@ -31,7 +31,7 @@ RSpec.describe "JIS end-to-end pipeline", :e2e do
   end
 
   it "uses autoloaded classes with no require_relative" do
-    expect(Metanorma::Jis::Document::Root).to be_a(Class)
+    expect(IsoDoc::Jis::Docx::Model::Root).to be_a(Class)
     expect(IsoDoc::Jis::Docx::Adapter).to be_a(Class)
   end
 end

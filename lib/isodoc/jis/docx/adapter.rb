@@ -33,7 +33,7 @@ module IsoDoc
 
         def parse_xml(source)
           xml = read_source(source)
-          Metanorma::Jis::Document::Root.from_xml(xml)
+          Model::Root.from_xml(xml)
         end
 
         def read_source(source)
@@ -76,6 +76,7 @@ module IsoDoc
 
         def render_cover(model, doc)
           return unless model.cover
+
           cover = CoverRenderer.new(@resolver)
           cover.render(model.cover, doc)
         end
@@ -93,13 +94,20 @@ module IsoDoc
         def walk_preface(model, walker)
           preface = model.preface
           return unless preface
-          registry = Renderers::Registry.new(doc: walker.registry, resolver: @resolver)
-          registry.render(preface) rescue nil
+
+          registry = Renderers::Registry.new(doc: walker.registry,
+                                             resolver: @resolver)
+          begin
+            registry.render(preface)
+          rescue StandardError
+            nil
+          end
         end
 
         def walk_sections_container(model, walker)
           sections = model.sections
           return unless sections
+
           walker.walk(sections)
         end
 
