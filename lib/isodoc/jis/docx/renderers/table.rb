@@ -50,7 +50,7 @@ module IsoDoc
           end
 
           def cell_text(cell)
-            cell.respond_to?(:text) ? Array(cell.text).join : cell.to_s
+            cell.is_a?(String) ? cell : Array(cell.text).join
           end
 
           def thead_rows(node) = Array(node.thead&.tr)
