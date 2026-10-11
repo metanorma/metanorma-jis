@@ -1,5 +1,4 @@
 require "metanorma-iso"
-require "metanorma/jis/document"
 
 module Metanorma
   module Jis

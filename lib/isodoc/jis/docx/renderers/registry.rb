@@ -28,17 +28,17 @@ module IsoDoc
           }.freeze
 
           SECTION_RENDERERS = {
-            "Metanorma::Jis::Document::Sections::JisSections" => :SectionsRenderer,
-            "Metanorma::Jis::Document::Sections::JisCommentarySection" => :CommentaryRenderer,
-            "Metanorma::Jis::Document::Sections::JisIndexSection" => :IndexRenderer,
+            "IsoDoc::Jis::Docx::Model::Sections::JisSections" => :SectionsRenderer,
+            "IsoDoc::Jis::Docx::Model::Sections::JisCommentarySection" => :CommentaryRenderer,
+            "IsoDoc::Jis::Docx::Model::Sections::JisIndexSection" => :IndexRenderer,
             "Metanorma::Document::Components::Sections::ReferencesSection" => :ReferencesRenderer,
           }.freeze
 
           CLAUSE_RENDERERS = {
             "Metanorma::IsoDocument::Sections::IsoClauseSection" => :ClauseRenderer,
-            "Metanorma::Jis::Document::Sections::JisClauseSection" => :ClauseRenderer,
+            "IsoDoc::Jis::Docx::Model::Sections::JisClauseSection" => :ClauseRenderer,
             "Metanorma::IsoDocument::Sections::IsoAnnexSection" => :AnnexRenderer,
-            "Metanorma::Jis::Document::Sections::JisAnnexSection" => :AnnexRenderer,
+            "IsoDoc::Jis::Docx::Model::Sections::JisAnnexSection" => :AnnexRenderer,
           }.freeze
 
           SPECIAL_RENDERERS = {
@@ -55,6 +55,7 @@ module IsoDoc
           def render(node)
             renderer_symbol = lookup(node.class.name)
             return nil unless renderer_symbol
+
             @instances[renderer_symbol] ||= build_renderer(renderer_symbol)
             @instances[renderer_symbol].render(node)
           end

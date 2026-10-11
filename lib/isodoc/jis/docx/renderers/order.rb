@@ -67,7 +67,7 @@ module IsoDoc
           end
 
           def text_of(item)
-            item.respond_to?(:text) ? item.text.to_s : item.to_s
+            item.is_a?(String) ? item : item.text.to_s
           end
         end
 
@@ -122,7 +122,7 @@ module IsoDoc
 
           def apply_label(para, item)
             run = Uniword::Builder::RunBuilder.new
-            run.text(item.respond_to?(:text) ? item.text.to_s : item.to_s)
+            run.text(item.is_a?(String) ? item : item.text.to_s)
             para << run
           end
         end

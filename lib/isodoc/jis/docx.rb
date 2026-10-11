@@ -7,6 +7,7 @@ require "uniword"
 module IsoDoc
   module Jis
     module Docx
+      autoload :Model, "isodoc/jis/docx/model"
       autoload :Adapter, "isodoc/jis/docx/adapter"
       autoload :StyleMapping, "isodoc/jis/docx/style_mapping"
       autoload :StyleResolver, "isodoc/jis/docx/style_resolver"
