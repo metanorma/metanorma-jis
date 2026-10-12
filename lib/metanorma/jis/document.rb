@@ -16,6 +16,10 @@ module Metanorma
     autoload :Root, "metanorma/jis/document/root"
     autoload :Sections, "metanorma/jis/document/sections"
   end
+
+  module Jis
+    autoload :Registers, "metanorma/jis/registers"
+  end
 end
 
 
@@ -29,8 +33,16 @@ module Metanorma
   end
 end
 
+# The :jis_document register must exist before the first Root parse:
+# without it lutaml resolves the shared-model types against a nil
+# context and Root.from_xml crashes (NoMethodError: undefined method
+# 'id' for nil in CachedTypeResolver#resolve). metanorma-document's
+# legacy shim is gone on current lines, so call the local setup
+# unconditionally there.
 if defined?(Metanorma::Registers::Setup.setup_jis_register)
   Metanorma::Registers::Setup.setup_jis_register
+else
+  Metanorma::Jis::Registers.setup
 end
 
 module Metanorma
