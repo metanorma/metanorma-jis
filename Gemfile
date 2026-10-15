@@ -19,9 +19,8 @@ gemspec
 gem "metanorma-standoc", github: "metanorma/metanorma-standoc", branch: "main" # TEMPORARY audit chain (stacked)
 gem "metanorma-document", github: "metanorma/metanorma-document", branch: "main" # TEMPORARY audit chain
 gem "isodoc", github: "metanorma/isodoc", branch: "main" # merged as #825
-gem "relaton-render", "= 3.0.0.pre.alpha.43" # slot forms; bare from-only dates; item-language routing, github: "metanorma/relaton-render", branch: "main"
-gem "relaton-bib", "2.2.0.pre.alpha.1"
-gem "pubid", github: "pubid/pubid", branch: "main"
+gem "relaton-render", "~> 3.0.0.pre.alpha" # # slot forms; bare from-only dates; item-language routing, github: "metanorma/relaton-render", branch: "main"
+gem "pubid", "~> 2.0.0.pre.alpha"
 
 eval_gemfile("Gemfile.devel") rescue nil
 
