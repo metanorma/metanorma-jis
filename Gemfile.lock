@@ -1077,7 +1077,6 @@ DEPENDENCIES
   openssl
   pubid (~> 2.0.0.pre.alpha)
   rake (~> 13.0)
-  relaton-bib (~> 2.2.0.pre.alpha)
   relaton-render (~> 3.0.0.pre.alpha)
   rspec (~> 3.6)
   rubocop (~> 1)
