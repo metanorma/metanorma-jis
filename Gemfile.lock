@@ -19,14 +19,14 @@ GIT
 
 GIT
   remote: https://github.com/metanorma/metanorma-core
-  revision: 2769a00c38dcb47a457a833471cb991c53ec4f75
-  branch: feat/flavor-table
+  revision: 00b2e0fe7f7f49caf4cd31c572ff4f2c98fbfbe9
+  branch: main
   specs:
-    metanorma-core (0.2.3)
+    metanorma-core (0.2.4)
       asciidoctor
       metanorma-taste (~> 1.1.0)
       metanorma-utils
-      nokogiri
+      nokogiri (~> 1.19)
 
 GIT
   remote: https://github.com/metanorma/metanorma-document
@@ -60,8 +60,8 @@ GIT
 
 GIT
   remote: https://github.com/metanorma/metanorma-mirror
-  revision: aa6149b0a3da6675888f0cbb8ac5b55e594f85c7
-  branch: feat/svgmap-imagemap-handlers
+  revision: b38be9cc86b291fd0018390c15cc4ff9c09727d8
+  branch: main
   specs:
     metanorma-mirror (1.0.0)
       lutaml-model (~> 0.8)
@@ -1221,7 +1221,7 @@ CHECKSUMS
   matrix (0.4.3) sha256=a0d5ab7ddcc1973ff690ab361b67f359acbb16958d1dc072b8b956a286564c5b
   mechanize (2.14.1) sha256=b66205133a01d3dc3bc0cbc5e99888e5476818398d8d315193429f21488abafd
   memo_wise (1.13.0) sha256=30220c38c4cef410849bc73553c58664dc2c91c6379e4a1df22aea02358b716b
-  metanorma-core (0.2.3)
+  metanorma-core (0.2.4)
   metanorma-document (0.5.1)
   metanorma-iso (3.5.0)
   metanorma-jis (1.2.0)
