@@ -1066,7 +1066,7 @@ DEPENDENCIES
   guard-rspec (~> 4.7)
   iev (~> 0.3.0)
   isodoc!
-  lutaml-model (= 0.8.106)
+  lutaml-model (~> 0.8)
   metanorma-core!
   metanorma-document!
   metanorma-iso!
