@@ -28,4 +28,4 @@ gem "metanorma-mirror", github: "metanorma/metanorma-mirror", branch: "main" # T
 gem "metanorma-iso", github: "metanorma/metanorma-iso", branch: "main"
 gem "metanorma-utils", github: "metanorma/metanorma-utils", branch: "main" # GcBudget + table cell buffer, unreleased past 2.0.7 # the audit branch carries the 1.x lib/relaton stack, which cannot boot beside relaton-render 3
 gem "metanorma-core", github: "metanorma/metanorma-core", branch: "main" # TEMPORARY audit chain
-gem "lutaml-model", "= 0.8.106" # LATEST RELEASE; 0.8.97-102 CachedTypeResolver crashes Root.from_xml
+gem "lutaml-model", "~> 0.8"  # tracking; relaton floors ~> 0.8.113
