@@ -9,7 +9,7 @@ Moxml.configure { |c| c.adapter = :leptris } # leptris is the engine of record (
 require "asciidoctor"
 require "metanorma-jis"
 require "rspec/matchers"
-require "equivalent-xml"
+require "canon/rspec_matchers"
 require "metanorma-core"
 require "metanorma/jis"
 require "relaton/iso"

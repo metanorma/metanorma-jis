@@ -242,7 +242,7 @@ RSpec.describe IsoDoc::Jis::Metadata do
         updateddate: "2000-01-01",
         wg: "WG 62A1" }
     expect(metadata(c.info(Nokogiri::XML(input),
-                           nil))).to be_equivalent_to output
+                           nil))).to eq output
     c = IsoDoc::Jis::HtmlConvert.new({})
     _ = c.convert_init(<<~INPUT, "test", false)
       <iso-standard xmlns="http://riboseinc.com/isoxml">
@@ -298,6 +298,6 @@ RSpec.describe IsoDoc::Jis::Metadata do
         updateddate: "平成十二年1月1日",
         wg: "WG 62A1" }
     expect(metadata(c.info(Nokogiri::XML(input),
-                           nil))).to be_equivalent_to output
+                           nil))).to eq output
   end
 end
