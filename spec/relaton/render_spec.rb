@@ -72,7 +72,7 @@ RSpec.describe Metanorma::Jis::CitationStyle do
     OUTPUT
     p = renderer
     expect(p.render(input))
-      .to be_equivalent_to output
+      .to be_xml_equivalent_to output
   end
 
   let(:home_iso) do
@@ -180,7 +180,7 @@ RSpec.describe Metanorma::Jis::CitationStyle do
     output = {"A" => {author: "Aluffi", date: "2022a", citation: {full: "Aluffi P. （編） _Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday_。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1", default: "ABC1", short: "Aluffi 2022", author_date: "Aluffi 2022", author_date_br: "Aluffi （2022）", author: "Aluffi", date: "2022", title: "Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday", title_reference_tag: "Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday"}, formattedref: "Aluffi P. （編） _Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday_。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1"}, "B" => {author: "Aluffi", date: "2022b", citation: {full: "Aluffi P. （編） _Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday_。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1", default: "ABC2", short: "Aluffi 2022", author_date: "Aluffi 2022", author_date_br: "Aluffi （2022）", author: "Aluffi", date: "2022", title: "Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday", title_reference_tag: "Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday"}, formattedref: "Aluffi P. （編） _Facets of Algebraic Geometry: A Collection in Honor of William Fulton's 80th Birthday_。第1版。（London Mathematical Society Lecture Note Series 472）。 Cambridge、 UK： Cambridge University Press。 2022。巻1"}}
     p = renderer
     expect(p.render_all(input, type: nil))
-      .to be_equivalent_to output
+      .to eq output
   end
 
   describe "#render" do
