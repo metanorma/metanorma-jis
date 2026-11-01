@@ -35,3 +35,13 @@ RSpec.describe "JIS end-to-end pipeline", :e2e do
     expect(IsoDoc::Jis::Docx::Adapter).to be_a(Class)
   end
 end
+
+RSpec.describe "Metanorma::Jis::Processor docx output", :e2e do
+  it "produces a .docx when the compile passes nil xml with the presentation path" do
+    processor = Metanorma::Jis::Processor.new
+    output = File.join(Dir.mktmpdir, "jis_via_processor.docx")
+    processor.output(nil, FIXTURE, output, :docx, {})
+    expect(File.exist?(output)).to be(true)
+    expect(File.size(output)).to be > 0
+  end
+end
