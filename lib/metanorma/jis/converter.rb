@@ -7,6 +7,11 @@ module Metanorma
       XML_ROOT_TAG = "jis-standard".freeze
       XML_NAMESPACE = "https://www.metanorma.org/ns/jis".freeze
 
+      # Registration side effect: Asciidoctor resolves the converter
+      # for the `backend: :jis` document attribute through the global
+      # registry built here, before this class is ever referenced by
+      # name. lib/metanorma-jis.rb force-loads this file for that
+      # reason; see the comment there.
       register_for "jis"
 
       def init_i18n(node)
