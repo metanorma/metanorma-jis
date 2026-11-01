@@ -1064,6 +1064,7 @@ DEPENDENCIES
   rubocop-performance
   sassc-embedded (~> 1)
   simplecov (~> 0.15)
+  svg_conform (= 0.2.4)
   timecop (~> 0.9)
   webmock
 
