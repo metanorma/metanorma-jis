@@ -49,7 +49,11 @@ module Metanorma
           IsoDoc::Jis::HtmlConvert.new(options)
             .convert(inname, xml, nil, outname)
         when :docx
-          ::IsoDoc::Jis::Docx::Adapter.new.convert(xml, outname)
+          # The compile's pooled path passes xml=nil with the presentation
+          # XML path as inname (IsoDoc convention: read it yourself); the
+          # Adapter takes content, so bridge the two here.
+          content = xml || File.read(inname, encoding: "utf-8")
+          ::IsoDoc::Jis::Docx::Adapter.new.convert(content, outname)
         when :pdf
           IsoDoc::Jis::PdfConvert.new(options)
             .convert(inname, xml, nil, outname)
