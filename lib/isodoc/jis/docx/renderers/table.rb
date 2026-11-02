@@ -12,7 +12,7 @@ module IsoDoc
 
           def render(node)
             table = Uniword::Builder::TableBuilder.new
-            table.width = "5000"
+            table.width 5000, rule: "pct"
             render_rows(table, node)
             doc << table
           end
@@ -21,23 +21,15 @@ module IsoDoc
 
           def render_rows(table, node)
             (thead_rows(node) + tbody_rows(node)).each_with_index do |row, i|
-              table_row = build_row(row, header: i < thead_rows(node).size)
-              table.row(table_row)
+              header = i < thead_rows(node).size
+              table.row do |row_builder|
+                cells(row).each do |cell|
+                  row_builder.cell do |cell_builder|
+                    render_cell_paragraph(cell, cell_builder, header: header)
+                  end
+                end
+              end
             end
-          end
-
-          def build_row(row, header:)
-            row_builder = Uniword::Builder::TableRowBuilder.new
-            cells(row).each do |cell|
-              row_builder.cell(build_cell(cell, header: header))
-            end
-            row_builder
-          end
-
-          def build_cell(cell, header:)
-            cell_builder = Uniword::Builder::TableCellBuilder.new
-            render_cell_paragraph(cell, cell_builder, header: header)
-            cell_builder
           end
 
           def render_cell_paragraph(cell, cell_builder, header:)
