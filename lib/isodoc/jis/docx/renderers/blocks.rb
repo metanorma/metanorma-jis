@@ -15,8 +15,11 @@ module IsoDoc
             doc << para
           end
           def note_style_id = resolver.lookup(:note) || "af"
+
+          # NoteBlock carries its paragraphs under +content+, unlike
+          # Example/Admonition/Quote which use +paragraphs+.
           def text_of(node)
-            Array(node.paragraphs).map { |p| Array(p.text).join }.join
+            Array(node.content).map { |p| Array(p.text).join }.join
           end
         end
 
