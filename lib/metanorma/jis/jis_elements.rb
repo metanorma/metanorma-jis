@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "relaton-render"
+require "relaton/render"
 
 module Metanorma
   module Jis
