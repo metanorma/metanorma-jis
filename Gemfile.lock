@@ -118,7 +118,7 @@ GEM
       addressable
       base64
       ssrf_filter (~> 1.5)
-    csv (3.3.6)
+    csv (3.3.7)
     date (3.6.0)
     debug (1.11.1)
       irb (~> 1.10)
@@ -404,7 +404,7 @@ GEM
       twitter_cldr
     isoics (0.1.13)
     japanese_calendar (0.4.2)
-    json (2.21.2)
+    json (3.1.0)
     json-canonicalization (1.0.0)
     json-ld (3.3.2)
       htmlentities (~> 4.3)
@@ -416,19 +416,19 @@ GEM
       rexml (~> 3.2)
     language_server-protocol (3.17.0.6)
     latex-decode (0.4.2)
-    leptris (1.9.407.0)
+    leptris (1.9.411.0)
       ffi (~> 1.15)
-    leptris (1.9.407.0-aarch64-linux)
+    leptris (1.9.411.0-aarch64-linux)
       ffi (~> 1.15)
-    leptris (1.9.407.0-arm64-darwin)
+    leptris (1.9.411.0-arm64-darwin)
       ffi (~> 1.15)
-    leptris (1.9.407.0-x64-mingw-ucrt)
+    leptris (1.9.411.0-x64-mingw-ucrt)
       ffi (~> 1.15)
-    leptris (1.9.407.0-x64-mingw32)
+    leptris (1.9.411.0-x64-mingw32)
       ffi (~> 1.15)
-    leptris (1.9.407.0-x86_64-darwin)
+    leptris (1.9.411.0-x86_64-darwin)
       ffi (~> 1.15)
-    leptris (1.9.407.0-x86_64-linux)
+    leptris (1.9.411.0-x86_64-linux)
       ffi (~> 1.15)
     libpng (1.6.58.6)
       ffi (~> 1.0)
@@ -471,7 +471,7 @@ GEM
       moxml (>= 0.1.24)
       parsanol (~> 1.3.68)
       ruby-graphviz
-    lutaml-model (0.8.165)
+    lutaml-model (0.8.169)
       base64 (>= 0.1.1)
       bigdecimal
       canon
@@ -592,7 +592,7 @@ GEM
       relaton-render (>= 1.0.0)
     mn2pdf (2.73)
     mnconvert (1.89.0)
-    moxml (0.6.3)
+    moxml (0.6.4)
     multi_json (1.21.2)
     nenv (0.3.0)
     net-http-digest_auth (1.4.1)
@@ -718,7 +718,7 @@ GEM
     readline (0.0.4)
       reline
     regexp_parser (2.13.1)
-    relaton (3.0.0)
+    relaton (3.0.2)
       addressable (~> 2.8)
       algolia (~> 2.3.0)
       base64
@@ -726,7 +726,7 @@ GEM
       cnccs (~> 0.1.1)
       concurrent-ruby (~> 1.0)
       csv (~> 3.3)
-      faraday (~> 2.7.0)
+      faraday (~> 2.7)
       faraday-net_http_persistent (~> 2.0)
       ferrum (~> 0.17)
       gb-agencies (~> 0.0.1)
@@ -735,7 +735,6 @@ GEM
       ieee-idams (~> 0.3.0)
       iso639
       isoics (~> 0.1.6)
-      json (< 3)
       leptris (>= 1.9.80)
       loc_mods (~> 0.3.0)
       logger (~> 1.6)
@@ -747,14 +746,15 @@ GEM
       moxml (>= 0.5)
       niso-jats (~> 0.3.4)
       parallel (~> 1.26)
+      parsanol (>= 1.3.114, < 1.4)
       parslet (~> 2.0.0)
-      pubid (~> 2.0.0.pre.alpha.62)
+      pubid (>= 2.0.1, < 2.1)
       relaton-render (>= 3.0.0.pre.alpha.1, < 4)
       rfcxml (~> 0.4.3)
       rubyzip (~> 3.7)
       sqlite3 (>= 1.7)
       w3c_api (~> 0.3.3)
-      yeptris (>= 0.4)
+      yeptris (>= 0.6.51)
     relaton-bib (2.2.0.pre.alpha.1)
       bibtex-ruby
       iso639
@@ -765,10 +765,10 @@ GEM
       relaton-core (~> 2.2.0.pre.alpha.1)
       relaton-logger (~> 2.2.0.pre.alpha.1)
       rfcxml (~> 0.4.3)
-    relaton-cli (3.0.0)
+    relaton-cli (3.0.2)
       liquid (~> 5)
-      pubid (~> 2.0.0.pre.alpha.28)
-      relaton (= 3.0.0)
+      pubid (>= 2.0.1, < 2.1)
+      relaton (= 3.0.2)
       relaton-render (>= 3.0.0.pre.alpha.1, < 4)
       thor
       thor-hollaback
@@ -1084,7 +1084,7 @@ CHECKSUMS
   crack (1.0.1) sha256=ff4a10390cd31d66440b7524eb1841874db86201d5b70032028553130b6d4c7e
   crass (1.0.8) sha256=7a0145c7a2c59f8e7923b3a69ce819c444823a00a5127d805298fea13be24efe
   css_parser (3.3.0) sha256=79ba7fc428b18d2a085bcb6f310193f957afc30a7df9be2701419abc1a83d7ca
-  csv (3.3.6) sha256=aba61e7e507a66f03d45cb1f3c4b6359861c3504038b422962875dce099e4456
+  csv (3.3.7) sha256=15a3f16f6628da8664d455eb634e7f22031bcf53044923caf56975109e71b9f8
   date (3.6.0) sha256=18ac945c4e24ebd93534f8eab8c2fd8c5604b3e977105b3798d62a1e8d27b580
   debug (1.11.1) sha256=2e0b0ac6119f2207a6f8ac7d4a73ca8eb4e440f64da0a3136c30343146e952b6
   diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962
@@ -1150,18 +1150,18 @@ CHECKSUMS
   isodoc-i18n (1.5.3) sha256=39e16f8dc35ec130da3241b44bb13199e5b407bfd7c4874a0ee02482cd7d6e47
   isoics (0.1.13) sha256=57d3a1e30817e03fe8e2442bf62ec5b17e101bae0eea2c0f507030fe834c7482
   japanese_calendar (0.4.2) sha256=4357d4232215f498f905204d503d0cf4b88999e3be589e5e4e1168ca27e6c11d
-  json (2.21.2) sha256=1f1d3b7cf2b3ba1a69beca0bb6db13d5438b80bff3cd54cdaaa620b9b07c1c6a
+  json (3.1.0) sha256=3ce7ccf8fde58960177a3a756c31f292a4c1e1dedee884547096a5b0604e3bd8
   json-canonicalization (1.0.0) sha256=d4848a8cca7534455c6721f2d9fc9e5e9adca49486864a898810024f67d59446
   json-ld (3.3.2) sha256=b9531893bf5bdc01db428e96953845a23adb1097125ce918ae0f97c4a6e1ab27
   language_server-protocol (3.17.0.6) sha256=5ef2c0c138f8267e1bc631d3328347d354f96724b0af22f2c79516120443b7f0
   latex-decode (0.4.2) sha256=e85633406e315e348e0ca6de231dee1bf45a22496b0866059c635f7502c2a592
-  leptris (1.9.407.0) sha256=a0ef41d9110fd1b978e3c732a94a8d858dddcade666a6f834b0e9e6ea786085e
-  leptris (1.9.407.0-aarch64-linux) sha256=528b5e4d145351c695521ec7f2a599c18e9935c7e9414e7a3e3e76bee802fa8b
-  leptris (1.9.407.0-arm64-darwin) sha256=4716f7ee2b22157ec845ab1eebe9b6018aece9923999fce687c61331c4ae5cc1
-  leptris (1.9.407.0-x64-mingw-ucrt) sha256=c7b080318acd2ccfd1dc9039442311ca9398c55f57c77a19f7fc83ac5d24a539
-  leptris (1.9.407.0-x64-mingw32) sha256=0e6b649c9a93e6a64e25411f6928bc4b63b2127ee144ab7eef5dfa7b745111de
-  leptris (1.9.407.0-x86_64-darwin) sha256=e7f448022236bc1c7aa19cd7fa250276133ea83882ad3066d57ab5b4e2e61d73
-  leptris (1.9.407.0-x86_64-linux) sha256=0ef968b9e1169504a8e6dbce7840a41416786e6cb98737d5eafc9bdd3c4adc68
+  leptris (1.9.411.0) sha256=ca6fa9f1fec714103153b9b1566da98c84c4579e35ca7f51f0240c2630ef681f
+  leptris (1.9.411.0-aarch64-linux) sha256=f7db49900d017fb09f3e68511ba72b47505f9a61f7bee1e1a001c814cbb47da1
+  leptris (1.9.411.0-arm64-darwin) sha256=8fc312dfbb30c2d5b172faac8dded134c78a43b25b00c2a5f9dd54150c58cb49
+  leptris (1.9.411.0-x64-mingw-ucrt) sha256=2bcb77f1e47f29b4eed4f9f6ed174662d6eaca15b25245623f7f3f86c575fadf
+  leptris (1.9.411.0-x64-mingw32) sha256=8f8eb4c444669140006b2fbc0d7c0da0b50603ac1234cdbf53f8ade87d08dc40
+  leptris (1.9.411.0-x86_64-darwin) sha256=99319aa45febb182bbcaaebbb69167b33a17b1d9d3cc7f95cac424404b16360c
+  leptris (1.9.411.0-x86_64-linux) sha256=f445ab6f654176130fb22be59a9248659d29ee74541798bd381ff826c606f3ed
   libpng (1.6.58.6) sha256=6cc9164de9934d91f56f7e106db17ce1965343538f7a725e22d8ba0019616425
   libpng (1.6.58.6-aarch64-linux) sha256=57d4a32abae936cd3b0bafdf4a7ce701973a638e07ca9d80e044d4da9465b4da
   libpng (1.6.58.6-arm64-darwin) sha256=7bb72fe9dae352bd755f423f34501c4c1824e074fc789ba21614c1ed55fc2d08
@@ -1178,7 +1178,7 @@ CHECKSUMS
   lumberjack (1.4.2) sha256=40de5ae46321380c835031bcc1370f13bba304d29f2b5f5bb152061a5a191b95
   lutaml-hal (0.2.7) sha256=c60b7657ca38b82124b746621d603bf881833c86bcb75fca68c1c7d0c5fb057b
   lutaml-lml (0.3.4) sha256=9b923f5d4889a8d22e5315647e68514307ece0757eda5e92592907fe255fd4bd
-  lutaml-model (0.8.165) sha256=8fb97f90e2d6c2de7e70b623a2ea20442cde87014616659a4c52605bcbb5beb1
+  lutaml-model (0.8.169) sha256=9f7bfd533837b23f5e5bc85b3ee31713f2e161e40d4e19037758ac753c42919b
   lutaml-path (0.2.1) sha256=d533ca77e40b9b4752a2731a4f9c2a662081c9df02d9ce8929266a88b118d32a
   lutaml-store (0.3.2) sha256=9c455dbab32b4c635c48a27213f6f56fda191731c4574eb6187184ba0588a672
   lutaml-uml (1.0.3) sha256=1eb6fe347eecc0fcdc4880ad44a5456c25a34977ca6960a1423eb1cb162c3813
@@ -1207,7 +1207,7 @@ CHECKSUMS
   mn-requirements (0.5.13) sha256=e82675d00135740565509cd36d608954c2dd78df149e73981ca39c045f52138b
   mn2pdf (2.73) sha256=f8ac12b84662cba4fb18ed87f21336d0428f5f71abad6a30261a30d8493ebd38
   mnconvert (1.89.0) sha256=02edfbf41118a8ff767f7c04f44db0c1faaed84e326f417fb24c4ed4e25f4b53
-  moxml (0.6.3) sha256=3a1f605a5bf74a2e2ec5ce0f8f918013e46ae52c54c1cf317e6ee5932d645039
+  moxml (0.6.4) sha256=2038a222a367132b5fdcc40d669d67e6bb913145e4b5e5bd3b7b62fd73a25912
   multi_json (1.21.2) sha256=245531eaf54bdba57aba515ff08b4503505c5e09911daa89c5a561e2f85bea8e
   nenv (0.3.0) sha256=d9de6d8fb7072228463bf61843159419c969edb34b3cef51832b516ae7972765
   net-http-digest_auth (1.4.1) sha256=4b8ad50ed8d180a58db5d6c49449b987dd0466fe01e24037945bc007562a08db
@@ -1267,9 +1267,9 @@ CHECKSUMS
   rdoc (7.2.0) sha256=8650f76cd4009c3b54955eb5d7e3a075c60a57276766ebf36f9085e8c9f23192
   readline (0.0.4) sha256=6138eef17be2b98298b672c3ea63bf9cb5158d401324f26e1e84f235879c1d6a
   regexp_parser (2.13.1) sha256=5aedb6b7c35688f51e86eef17a15374dfd287c83f4ca644b2c5f3ec50a33b44b
-  relaton (3.0.0) sha256=23be227ee74406500826ca92556b253c20f3834a918092c946edd3e33259d9c0
+  relaton (3.0.2) sha256=3f4072713cb61747110c1af73d45185f6e04fff3c23dac90efcf47148ea81328
   relaton-bib (2.2.0.pre.alpha.1) sha256=bb9f3c926449a57432859e2a7dff0c8462f957dd327de0f7d7aa7ccdbe82a1c2
-  relaton-cli (3.0.0) sha256=b788db97d6b220beedbbecb57eb1649e7b4dec1a4dc8f60eee101a8d2cbee96f
+  relaton-cli (3.0.2) sha256=dc95df49d1333ef743a743ebb273d8f8f9a15fb13e446c141b88ae1586e13d01
   relaton-core (2.2.0.pre.alpha.1) sha256=af5310cc0b481fc1ba875e5c41cad5a67c10c3c03abd9f4c50d7b64cdb09a4f2
   relaton-iev (2.0.2) sha256=ec77f5ad4700c8856aaacf9655eaf026c4a87acdfb17eca9af53520e8bf5b638
   relaton-logger (2.2.0.pre.alpha.1) sha256=70f22fa8c5b16a219ed1d6c241c07016fefaec2205e2d479131f6ae9bff1eae4
