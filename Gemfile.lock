@@ -23,7 +23,7 @@ GIT
 PATH
   remote: .
   specs:
-    metanorma-jis (1.2.3)
+    metanorma-jis (1.2.4)
       japanese_calendar (~> 0)
       liquid (~> 5.4)
       metanorma-iso (>= 3.4.2)
@@ -1189,7 +1189,7 @@ CHECKSUMS
   metanorma-core (0.2.7) sha256=c4e58b263b32ecfc8a053da93c2be2c5b9ee9407d5b1e2b3dbd4cb2bc76db0c0
   metanorma-document (0.5.3) sha256=ad55f982341007573fa66ebea9a9c75435e6e1cbeb571e2c585f32a9bbd0f4ed
   metanorma-iso (3.5.1.pre.alpha.3)
-  metanorma-jis (1.2.3)
+  metanorma-jis (1.2.4)
   metanorma-mirror (1.0.0)
   metanorma-plugin-asciichem (0.1.4) sha256=47711680f202c60f9f698b721e1df3c3e6dcb1b9d6683cb1edcef84d6cda61a8
   metanorma-plugin-glossarist (0.5.2) sha256=d1b05bf76162412d7cabe2c99034a287fdf684f822d87eff762fcaf64a35766e
