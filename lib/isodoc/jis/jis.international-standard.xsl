@@ -31,6 +31,26 @@
 			<xsl:for-each select="xalan:nodeset($current_document)">
 				<mnx:doc num="{$num}">
 
+					<xsl:variable name="element_name_colon_gothic">colon_gothic</xsl:variable>
+					<xsl:variable name="tag_colon_gothic_open">###<xsl:value-of select="$element_name_colon_gothic"/>###</xsl:variable>
+					<xsl:variable name="tag_colon_gothic_close">###/<xsl:value-of select="$element_name_colon_gothic"/>###</xsl:variable>
+
+					<xsl:variable name="docidentifier_" select="java:replaceAll(java:java.lang.String.new(/*/mn:bibdata/mn:docidentifier), '(:)', concat($tag_colon_gothic_open,'$1',$tag_colon_gothic_close))"/>
+
+					<xsl:variable name="docidentifier__"><text><xsl:call-template name="replace_text_tags">
+						<xsl:with-param name="tag_open" select="$tag_colon_gothic_open"/>
+						<xsl:with-param name="tag_close" select="$tag_colon_gothic_close"/>
+						<xsl:with-param name="text" select="$docidentifier_"/>
+					</xsl:call-template></text></xsl:variable>
+
+					<xsl:variable name="docidentifier">
+						<xsl:apply-templates select="xalan:nodeset($docidentifier__)/node()"/>
+					</xsl:variable>
+					<docidentifier><xsl:copy-of select="$docidentifier"/></docidentifier>
+
+					<xsl:variable name="copyrightText"><xsl:call-template name="get_copyrightText"/></xsl:variable>
+					<copyrightText><xsl:copy-of select="$copyrightText"/></copyrightText>
+
 				</mnx:doc>
 			</xsl:for-each>
 		</xsl:for-each>
@@ -507,24 +527,6 @@
 
 					<xsl:variable name="year_published" select="substring(/*/mn:bibdata/mn:date[@type = 'published']/mn:on, 1, 4)"/>
 
-					<xsl:variable name="element_name_colon_gothic">colon_gothic</xsl:variable>
-					<xsl:variable name="tag_colon_gothic_open">###<xsl:value-of select="$element_name_colon_gothic"/>###</xsl:variable>
-					<xsl:variable name="tag_colon_gothic_close">###/<xsl:value-of select="$element_name_colon_gothic"/>###</xsl:variable>
-
-					<xsl:variable name="docidentifier_" select="java:replaceAll(java:java.lang.String.new(/*/mn:bibdata/mn:docidentifier), '(:)', concat($tag_colon_gothic_open,'$1',$tag_colon_gothic_close))"/>
-
-					<xsl:variable name="docidentifier__"><text><xsl:call-template name="replace_text_tags">
-						<xsl:with-param name="tag_open" select="$tag_colon_gothic_open"/>
-						<xsl:with-param name="tag_close" select="$tag_colon_gothic_close"/>
-						<xsl:with-param name="text" select="$docidentifier_"/>
-					</xsl:call-template></text></xsl:variable>
-
-					<xsl:variable name="docidentifier">
-						<xsl:apply-templates select="xalan:nodeset($docidentifier__)/node()"/>
-					</xsl:variable>
-
-					<xsl:variable name="copyrightText"><xsl:call-template name="get_copyrightText"/></xsl:variable>
-
 					<xsl:variable name="doctype"><xsl:call-template name="getDoctype"/></xsl:variable>
 
 					<xsl:variable name="title_ja" select="/*/mn:bibdata/mn:title[@language = 'ja' and @type = 'main']"/>
@@ -548,9 +550,8 @@
 
 					<xsl:variable name="doclang"><xsl:call-template name="getLang"/></xsl:variable>
 
-					<xsl:call-template name="cover-page">
+					<xsl:call-template name="cover-pages">
 						<xsl:with-param name="num" select="$num"/>
-						<xsl:with-param name="docidentifier" select="$docidentifier"/>
 					</xsl:call-template>
 
 					<xsl:call-template name="inner-cover-page"/>
@@ -582,21 +583,18 @@
 									<xsl:choose>
 										<xsl:when test="$vertical_layout = 'true'">
 											<xsl:call-template name="insertLeftRightRegions">
+												<xsl:with-param name="num" select="$num"/>
 												<xsl:with-param name="cover_header_footer_background" select="$cover_header_footer_background"/>
 												<xsl:with-param name="title_ja" select="$title_ja"/>
 												<xsl:with-param name="i18n_JIS" select="$i18n_JIS"/>
 												<xsl:with-param name="docidentifier" select="concat('JIS ', $docidentifier_JIS_no_year)"/>
 												<xsl:with-param name="docidentifier_jis" select="$docidentifier_JIS"/>
 												<xsl:with-param name="edition" select="$edition"/>
-												<xsl:with-param name="copyrightText">
-													<xsl:copy-of select="$copyrightText"/>
-												</xsl:with-param>
 											</xsl:call-template>
 										</xsl:when>
 										<xsl:otherwise>
 											<xsl:call-template name="insertHeaderFooter">
-												<xsl:with-param name="docidentifier" select="$docidentifier"/>
-												<xsl:with-param name="copyrightText" select="$copyrightText"/>
+												<xsl:with-param name="num" select="$num"/>
 												<xsl:with-param name="section">preface</xsl:with-param>
 												<xsl:with-param name="section_title">
 													<fo:inline font-family="IPAexGothic">
@@ -650,23 +648,20 @@
 										<xsl:choose>
 											<xsl:when test="$vertical_layout = 'true'">
 												<xsl:call-template name="insertLeftRightRegions">
+													<xsl:with-param name="num" select="$num"/>
 													<xsl:with-param name="cover_header_footer_background" select="$cover_header_footer_background"/>
 													<xsl:with-param name="title_ja" select="$title_ja"/>
 													<xsl:with-param name="i18n_JIS" select="$i18n_JIS"/>
 													<xsl:with-param name="docidentifier" select="concat('JIS ', $docidentifier_JIS_no_year)"/>
 													<xsl:with-param name="docidentifier_jis" select="$docidentifier_JIS"/>
 													<xsl:with-param name="edition" select="$edition"/>
-													<xsl:with-param name="copyrightText">
-														<xsl:copy-of select="$copyrightText"/>
-													</xsl:with-param>
 													<!-- <xsl:with-param name="insertLast">true</xsl:with-param> -->
 													<xsl:with-param name="bibdata" select="$bibdata"/>
 												</xsl:call-template>
 											</xsl:when>
 											<xsl:otherwise>
 												<xsl:call-template name="insertHeaderFooter">
-													<xsl:with-param name="docidentifier" select="$docidentifier"/>
-													<xsl:with-param name="copyrightText" select="$copyrightText"/>
+													<xsl:with-param name="num" select="$num"/>
 													<xsl:with-param name="section">preface</xsl:with-param>
 												</xsl:call-template>
 											</xsl:otherwise>
@@ -694,8 +689,7 @@
 					<!-- Document type rendering -->
 					<fo:page-sequence xsl:use-attribute-sets="page-sequence-preface">
 						<xsl:call-template name="insertHeaderFooter">
-							<xsl:with-param name="docidentifier" select="$docidentifier"/>
-							<xsl:with-param name="copyrightText" select="$copyrightText"/>
+							<xsl:with-param name="num" select="$num"/>
 							<xsl:with-param name="section">preface</xsl:with-param>
 						</xsl:call-template>
 
@@ -819,23 +813,20 @@
 							<xsl:choose>
 								<xsl:when test="$vertical_layout = 'true'">
 									<xsl:call-template name="insertLeftRightRegions">
+										<xsl:with-param name="num" select="$num"/>
 										<xsl:with-param name="cover_header_footer_background" select="$cover_header_footer_background"/>
 										<xsl:with-param name="title_ja" select="$title_ja"/>
 										<xsl:with-param name="i18n_JIS" select="$i18n_JIS"/>
 										<xsl:with-param name="docidentifier" select="concat('JIS ', $docidentifier_JIS_no_year)"/>
 										<xsl:with-param name="docidentifier_jis" select="$docidentifier_JIS"/>
 										<xsl:with-param name="edition" select="$edition"/>
-										<xsl:with-param name="copyrightText">
-											<xsl:copy-of select="$copyrightText"/>
-										</xsl:with-param>
 										<xsl:with-param name="insertLast" select="normalize-space(position() = last())"/>
 										<xsl:with-param name="bibdata" select="$bibdata"/>
 									</xsl:call-template>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:call-template name="insertHeaderFooter">
-										<xsl:with-param name="docidentifier" select="$docidentifier"/>
-										<xsl:with-param name="copyrightText" select="$copyrightText"/>
+										<xsl:with-param name="num" select="$num"/>
 										<xsl:with-param name="section" select="$section"/>
 										<xsl:with-param name="section_title">
 											<xsl:copy-of select="$section_title"/>
@@ -930,9 +921,6 @@
 
 					<xsl:call-template name="back-page">
 						<xsl:with-param name="num" select="$num"/>
-						<xsl:with-param name="copyrightText">
-							<xsl:copy-of select="$copyrightText"/>
-						</xsl:with-param>
 					</xsl:call-template>
 
 				</xsl:for-each>
@@ -971,7 +959,6 @@
 
 	<xsl:template name="cover-page">
 		<xsl:param name="num"/>
-		<xsl:param name="docidentifier"/>
 		<xsl:choose>
 			<xsl:when test="/mn:metanorma/mn:metanorma-extension/mn:presentation-metadata/mn:coverpage-image/mn:image and         normalize-space(/mn:metanorma/mn:metanorma-extension/mn:presentation-metadata/mn:full-coverpage-replacement) = 'true'">
 				<xsl:call-template name="insertCoverPageFullImage"/>
@@ -999,7 +986,6 @@
 						<xsl:otherwise>
 							<xsl:call-template name="insertCoverPage">
 								<xsl:with-param name="num" select="$num"/>
-								<xsl:with-param name="copyrightText" select="$copyrightText"/>
 								<xsl:with-param name="docidentifier_jis" select="$docidentifier_JIS"/>
 							</xsl:call-template>
 						</xsl:otherwise>
@@ -1007,8 +993,7 @@
 
 					<xsl:if test="not($vertical_layout = 'true')">
 						<xsl:call-template name="insertInnerCoverPage">
-							<xsl:with-param name="docidentifier" select="$docidentifier"/>
-							<xsl:with-param name="copyrightText" select="$copyrightText"/>
+							<xsl:with-param name="num" select="$num"/>
 						</xsl:call-template>
 					</xsl:if>
 				</xsl:if>
@@ -1171,7 +1156,6 @@
 
 	<xsl:template name="insertCoverPage">
 		<xsl:param name="num"/>
-		<xsl:param name="copyrightText"/>
 		<xsl:param name="docidentifier_jis"/>
 
 		<!-- docidentifier, 3 part: number, colon and year-->
@@ -1180,7 +1164,7 @@
 
 		<fo:page-sequence master-reference="cover-page" force-page-count="no-force">
 			<xsl:call-template name="insertFooter">
-				<xsl:with-param name="copyrightText" select="$copyrightText"/>
+				<xsl:with-param name="num" select="$num"/>
 			</xsl:call-template>
 
 			<fo:flow flow-name="xsl-region-body">
@@ -1486,7 +1470,7 @@
 
 	<xsl:template name="back-page">
 		<xsl:param name="num"/>
-		<xsl:param name="copyrightText"/>
+		<xsl:variable name="copyrightText"><xsl:copy-of select="$variables/mnx:doc[@num = $num]/copyrightText/node()"/></xsl:variable>
 		<xsl:if test="$isGenerateTableIF = 'false'">
 			<xsl:if test="$vertical_layout = 'true'">
 
@@ -1571,8 +1555,8 @@
 	</xsl:template>
 
 	<xsl:template name="insertInnerCoverPage">
-		<xsl:param name="docidentifier"/>
-		<xsl:param name="copyrightText"/>
+		<xsl:param name="num"/>
+		<xsl:variable name="copyrightText"><xsl:copy-of select="$variables/mnx:doc[@num = $num]/copyrightText/node()"/></xsl:variable>
 		<fo:page-sequence master-reference="document" force-page-count="no-force">
 
 			<fo:static-content flow-name="xsl-footnote-separator" role="artifact">
@@ -1582,8 +1566,7 @@
 			</fo:static-content>
 
 			<xsl:call-template name="insertHeaderFooter">
-				<xsl:with-param name="docidentifier" select="$docidentifier"/>
-				<xsl:with-param name="copyrightText" select="$copyrightText"/>
+				<xsl:with-param name="num" select="$num"/>
 			</xsl:call-template>
 
 			<fo:flow flow-name="xsl-region-body">
@@ -3185,28 +3168,28 @@
 	</xsl:template>
 
 	<xsl:template name="insertHeaderFooter">
-		<xsl:param name="docidentifier"/>
+		<xsl:param name="num"/>
 		<xsl:param name="hidePageNumber">false</xsl:param>
 		<xsl:param name="section"/>
-		<xsl:param name="copyrightText"/>
 		<xsl:param name="section_title"/>
 
 		<xsl:call-template name="insertHeader">
-			<xsl:with-param name="docidentifier" select="$docidentifier"/>
+			<xsl:with-param name="num" select="$num"/>
 			<xsl:with-param name="section" select="$section"/>
 			<xsl:with-param name="section_title" select="$section_title"/>
 		</xsl:call-template>
 
 		<xsl:call-template name="insertFooter">
+			<xsl:with-param name="num" select="$num"/>
 			<xsl:with-param name="section" select="$section"/>
-			<xsl:with-param name="copyrightText" select="$copyrightText"/>
 		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template name="insertHeader">
-		<xsl:param name="docidentifier"/>
+	  <xsl:param name="num"/>
 	  <xsl:param name="section"/>
 	  <xsl:param name="section_title"/>
+		<xsl:variable name="docidentifier"><xsl:copy-of select="$variables/mnx:doc[@num = $num]/docidentifier/node()"/></xsl:variable>
 		<fo:static-content flow-name="header-odd-first" role="artifact">
 			<fo:block-container font-family="Arial" font-size="9pt" height="26mm" display-align="after" text-align="right">
 				<xsl:if test="$vertical_layout = 'true'">
@@ -3265,8 +3248,9 @@
 	</xsl:template>
 
 	<xsl:template name="insertFooter">
+		<xsl:param name="num"/>
 		<xsl:param name="section"/>
-		<xsl:param name="copyrightText"/>
+		<xsl:variable name="copyrightText"><xsl:copy-of select="$variables/mnx:doc[@num = $num]/copyrightText/node()"/></xsl:variable>
 		<fo:static-content flow-name="footer">
 			<fo:block-container height="24mm" display-align="after">
 				<xsl:if test="$section = 'commentary'">
@@ -3297,19 +3281,21 @@
 	</xsl:template>
 
 	<xsl:template name="insertLeftRightRegions">
+		<xsl:param name="num"/>
 		<xsl:param name="cover_header_footer_background"/>
 		<xsl:param name="i18n_JIS"/>
 		<xsl:param name="docidentifier"/>
 		<xsl:param name="docidentifier_jis"/>
 		<xsl:param name="title_ja"/>
 		<xsl:param name="edition"/>
-		<xsl:param name="copyrightText"/>
 		<xsl:param name="insertLast"/>
 		<xsl:param name="bibdata"/>
 
 		<!-- docidentifier, 3 part: number, colon and year-->
 		<xsl:variable name="docidentifier_number" select="java:replaceAll(java:java.lang.String.new($docidentifier_jis), '^(.*)(:)(.*)$', '$1')"/>
 		<xsl:variable name="docidentifier_year" select="java:replaceAll(java:java.lang.String.new($docidentifier_jis), '^(.*)(:)(.*)$', '$3')"/>
+
+		<xsl:variable name="copyrightText"><xsl:copy-of select="$variables/mnx:doc[@num = $num]/copyrightText/node()"/></xsl:variable>
 
 		<!-- header -->
 		<fo:static-content flow-name="right-region" role="artifact">
@@ -5538,7 +5524,11 @@
 	<xsl:variable name="root_element">metanorma</xsl:variable>
 
 	<!---examples: 2013, 2024 -->
+	<!-- TO DO: delete -->
 	<xsl:variable name="document_scheme" select="normalize-space(//mn:metanorma/mn:metanorma-extension/mn:presentation-metadata/mn:document-scheme)"/>
+
+	<!-- string, not node. Will be evaluated via xalan:evaluate -->
+	<xsl:variable name="bibdataContextNode">/mn:metanorma/mn:bibdata</xsl:variable>
 
 	<!-- external parameters -->
 	<xsl:param name="svg_images"/> <!-- svg images array -->
@@ -7365,6 +7355,102 @@
 		</xsl:element>
 	</xsl:template>
 
+	<xsl:template name="cover-pages">
+		<xsl:param name="num"/>
+		<xsl:call-template name="cover-page">
+			<xsl:with-param name="num" select="$num"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- insert cover page image -->
+	<!-- background cover image -->
+	<xsl:template name="insertBackgroundPageImage">
+		<xsl:param name="number">1</xsl:param>
+		<xsl:param name="name">coverpage-image</xsl:param>
+		<xsl:param name="suffix"/>
+		<xsl:variable name="num" select="number($number)"/>
+		<!-- background image -->
+		<fo:block-container absolute-position="fixed" left="0mm" top="0mm" font-size="0" id="__internal_layout__coverpage{$suffix}_{$name}_{$number}_{generate-id()}">
+			<fo:block>
+				<xsl:for-each select="/mn:metanorma/mn:metanorma-extension/mn:presentation-metadata/*[local-name() = $name][1]/mn:image[$num]">
+
+					<xsl:call-template name="insertPageImage"/>
+
+				</xsl:for-each>
+			</fo:block>
+		</fo:block-container>
+	</xsl:template>
+
+	<!-- for https://github.com/metanorma/mn-native-pdf/issues/845 -->
+	<xsl:template name="insertCoverPageFullImage">
+		<xsl:param name="name">coverpage-image</xsl:param>
+		<xsl:for-each select="//mn:metanorma/mn:metanorma-extension/mn:presentation-metadata/*[local-name() = $name][1]/mn:image">
+			<fo:page-sequence master-reference="cover-page" force-page-count="no-force" initial-page-number="1">
+				<fo:flow flow-name="xsl-region-body">
+					<xsl:call-template name="insertBackgroundPageImage">
+						<xsl:with-param name="number" select="position()"/>
+					</xsl:call-template>
+				</fo:flow>
+			</fo:page-sequence>
+		</xsl:for-each>
+	</xsl:template>
+
+	<xsl:template name="insertPageImage">
+		<xsl:param name="svg_content_height" select="$pageHeight"/>
+		<xsl:param name="bitmap_width" select="$pageWidth"/>
+		<xsl:choose>
+			<xsl:when test="*[local-name() = 'svg'] or java:endsWith(java:java.lang.String.new(@src), '.svg')">
+				<fo:instream-foreign-object fox:alt-text="Image Front" fox:placement="Block">
+					<xsl:attribute name="content-height"><xsl:value-of select="$svg_content_height"/>mm</xsl:attribute>
+					<xsl:call-template name="getSVG"/>
+				</fo:instream-foreign-object>
+			</xsl:when>
+			<xsl:when test="starts-with(@src, 'data:application/pdf;base64')">
+				<fo:external-graphic src="{@src}" fox:alt-text="Image Front" fox:placement="Block"/>
+			</xsl:when>
+			<xsl:otherwise> <!-- bitmap image -->
+				<xsl:variable name="coverimage_src" select="normalize-space(@src)"/>
+				<xsl:if test="$coverimage_src != ''">
+					<xsl:variable name="coverpage">
+						<xsl:call-template name="getImageURL">
+							<xsl:with-param name="src" select="$coverimage_src"/>
+						</xsl:call-template>
+					</xsl:variable>
+					<fo:external-graphic src="{$coverpage}" width="{$bitmap_width}mm" content-height="scale-to-fit" scaling="uniform" fox:alt-text="Image Front" fox:placement="Block"/>
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template name="getImageURL">
+		<xsl:param name="src"/>
+		<xsl:choose>
+			<xsl:when test="starts-with($src, 'data:image')">
+				<xsl:value-of select="$src"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:variable name="src_external"><xsl:call-template name="getImageSrcExternal"/></xsl:variable>
+				<xsl:value-of select="concat('url(file:///', $src_external, ')')"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template name="getSVG">
+		<xsl:choose>
+			<xsl:when test="*[local-name() = 'svg']">
+				<xsl:apply-templates select="*[local-name() = 'svg']" mode="svg_update"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:variable name="svg_content" select="document(@src)"/>
+				<xsl:for-each select="xalan:nodeset($svg_content)/node()">
+					<xsl:apply-templates select="." mode="svg_update"/>
+				</xsl:for-each>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- END: insert cover page image -->
+
 	<!-- boilerplate sections styles -->
 	<xsl:attribute-set name="copyright-statement-style">
 	</xsl:attribute-set> <!-- copyright-statement-style -->
@@ -8083,11 +8169,11 @@
 		<fo:block role="SKIP">
 			<fo:table width="100%" table-layout="fixed" role="SKIP">
 				<xsl:copy-of select="@id"/>
-					<fo:table-column column-width="8%"/>
-					<fo:table-column column-width="92%"/>
-					<fo:table-body role="SKIP">
-						<xsl:apply-templates/>
-					</fo:table-body>
+				<fo:table-column column-width="8%"/>
+				<fo:table-column column-width="92%"/>
+				<fo:table-body role="SKIP">
+					<xsl:apply-templates/>
+				</fo:table-body>
 			</fo:table>
 		</fo:block>
 	</xsl:template>
@@ -14964,6 +15050,17 @@
 		<xsl:attribute name="{$att_name}-opacity"><xsl:value-of select="$components/mnx:item[4]"/></xsl:attribute>
 	</xsl:template>
 
+	<xsl:template match="*[local-name() = 'text' or local-name() = 'g']/@font-family[. = 'sans-serif']" mode="svg_update">
+		<xsl:attribute name="font-family">Arial
+		</xsl:attribute>
+	</xsl:template>
+	<xsl:template match="*[local-name() = 'text' or local-name() = 'g']/@font-family[. = 'serif']" mode="svg_update">
+		<xsl:attribute name="font-family">Times New Roman</xsl:attribute>
+	</xsl:template>
+	<xsl:template match="*[local-name() = 'text' or local-name() = 'g']/@font-family[. = 'monospace']" mode="svg_update">
+		<xsl:attribute name="font-family">Courier New</xsl:attribute>
+	</xsl:template>
+
 	<!-- ============== -->
 	<!-- END: svg_update -->
 	<!-- ============== -->
@@ -17980,7 +18077,8 @@
 
 	<xsl:template match="mnx:item/text()" mode="bookmarks"/>
 
-	<xsl:template match="*[local-name() = 'add'][starts-with(., $ace_tag)]" mode="bookmarks"/>
+	<!-- <xsl:template match="*[local-name() = 'add'][starts-with(., $ace_tag)]" mode="bookmarks"/> -->
+	<xsl:template match="*[local-name() = 'add'][starts-with(., 'ace-tag_')]" mode="bookmarks"/>
 
 	<!-- Bookmarks -->
 	<xsl:template name="addBookmarks">
@@ -20322,9 +20420,10 @@
 	</xsl:template>
 
 	<xsl:template name="getDoctype">
+		<xsl:variable name="contextNode" select="xalan:evaluate($bibdataContextNode)"/>
 		<xsl:variable name="doctype_alias" select="normalize-space(/mn:metanorma/mn:metanorma-extension/mn:presentation-metadata/mn:doctype-alias)"/>
 		<xsl:value-of select="$doctype_alias"/>
-		<xsl:if test="$doctype_alias = ''"><xsl:value-of select="/mn:metanorma/mn:bibdata/mn:ext/mn:doctype[not(@language) or @language = '']"/></xsl:if>
+		<xsl:if test="$doctype_alias = ''"><xsl:value-of select="$contextNode/mn:ext/mn:doctype[not(@language) or @language = '']"/></xsl:if>
 	</xsl:template>
 
 	<xsl:template name="getDoctypeTitle">
@@ -20586,95 +20685,6 @@
 			<xsl:attribute name="keep-with-next">always</xsl:attribute>
 		</xsl:if>
 	</xsl:template>
-
-	<!-- insert cover page image -->
-	<!-- background cover image -->
-	<xsl:template name="insertBackgroundPageImage">
-		<xsl:param name="number">1</xsl:param>
-		<xsl:param name="name">coverpage-image</xsl:param>
-		<xsl:param name="suffix"/>
-		<xsl:variable name="num" select="number($number)"/>
-		<!-- background image -->
-		<fo:block-container absolute-position="fixed" left="0mm" top="0mm" font-size="0" id="__internal_layout__coverpage{$suffix}_{$name}_{$number}_{generate-id()}">
-			<fo:block>
-				<xsl:for-each select="/mn:metanorma/mn:metanorma-extension/mn:presentation-metadata/*[local-name() = $name][1]/mn:image[$num]">
-
-					<xsl:call-template name="insertPageImage"/>
-
-				</xsl:for-each>
-			</fo:block>
-		</fo:block-container>
-	</xsl:template>
-
-	<!-- for https://github.com/metanorma/mn-native-pdf/issues/845 -->
-	<xsl:template name="insertCoverPageFullImage">
-		<xsl:param name="name">coverpage-image</xsl:param>
-		<xsl:for-each select="//mn:metanorma/mn:metanorma-extension/mn:presentation-metadata/*[local-name() = $name][1]/mn:image">
-			<fo:page-sequence master-reference="cover-page" force-page-count="no-force" initial-page-number="1">
-				<fo:flow flow-name="xsl-region-body">
-					<xsl:call-template name="insertBackgroundPageImage">
-						<xsl:with-param name="number" select="position()"/>
-					</xsl:call-template>
-				</fo:flow>
-			</fo:page-sequence>
-		</xsl:for-each>
-	</xsl:template>
-
-	<xsl:template name="insertPageImage">
-		<xsl:param name="svg_content_height" select="$pageHeight"/>
-		<xsl:param name="bitmap_width" select="$pageWidth"/>
-		<xsl:choose>
-			<xsl:when test="*[local-name() = 'svg'] or java:endsWith(java:java.lang.String.new(@src), '.svg')">
-				<fo:instream-foreign-object fox:alt-text="Image Front" fox:placement="Block">
-					<xsl:attribute name="content-height"><xsl:value-of select="$svg_content_height"/>mm</xsl:attribute>
-					<xsl:call-template name="getSVG"/>
-				</fo:instream-foreign-object>
-			</xsl:when>
-			<xsl:when test="starts-with(@src, 'data:application/pdf;base64')">
-				<fo:external-graphic src="{@src}" fox:alt-text="Image Front" fox:placement="Block"/>
-			</xsl:when>
-			<xsl:otherwise> <!-- bitmap image -->
-				<xsl:variable name="coverimage_src" select="normalize-space(@src)"/>
-				<xsl:if test="$coverimage_src != ''">
-					<xsl:variable name="coverpage">
-						<xsl:call-template name="getImageURL">
-							<xsl:with-param name="src" select="$coverimage_src"/>
-						</xsl:call-template>
-					</xsl:variable>
-					<fo:external-graphic src="{$coverpage}" width="{$bitmap_width}mm" content-height="scale-to-fit" scaling="uniform" fox:alt-text="Image Front" fox:placement="Block"/>
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
-
-	<xsl:template name="getImageURL">
-		<xsl:param name="src"/>
-		<xsl:choose>
-			<xsl:when test="starts-with($src, 'data:image')">
-				<xsl:value-of select="$src"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:variable name="src_external"><xsl:call-template name="getImageSrcExternal"/></xsl:variable>
-				<xsl:value-of select="concat('url(file:///', $src_external, ')')"/>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
-
-	<xsl:template name="getSVG">
-		<xsl:choose>
-			<xsl:when test="*[local-name() = 'svg']">
-				<xsl:apply-templates select="*[local-name() = 'svg']" mode="svg_update"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:variable name="svg_content" select="document(@src)"/>
-				<xsl:for-each select="xalan:nodeset($svg_content)/node()">
-					<xsl:apply-templates select="." mode="svg_update"/>
-				</xsl:for-each>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
-
-	<!-- END: insert cover page image -->
 
 	<!-- https://github.com/metanorma/docs/blob/main/109.adoc -->
 	<xsl:variable name="regex_ja_spec_half_width_">
