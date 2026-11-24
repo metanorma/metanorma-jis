@@ -38,7 +38,7 @@ Gem::Specification.new do |spec|
   # consolidated relaton gem's bundled styles (metanorma-jis#551); the
   # approved reconciliation (relaton#575) first ships in 3.1.8. An older
   # transitive relaton would render pre-reconciliation citations.
-  spec.add_dependency "relaton", ">= 3.1.8"
+  spec.add_dependency "relaton", "~> 3.1", ">= 3.1.8"
   spec.add_dependency "uniword", "~> 1.5"
 
   spec.add_development_dependency "debug"
