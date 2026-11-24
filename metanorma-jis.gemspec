@@ -34,6 +34,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency "liquid", "~> 5.4"
   spec.add_dependency "metanorma-iso", ">= 3.4.2" # audit chain
   spec.add_dependency "pubid", "~> 2.0.3"
+  # The citation renderer loads the JIS packs by family name from the
+  # consolidated relaton gem's bundled styles (metanorma-jis#551); the
+  # approved reconciliation (relaton#575) first ships in 3.1.8. An older
+  # transitive relaton would render pre-reconciliation citations.
+  spec.add_dependency "relaton", ">= 3.1.8"
   spec.add_dependency "uniword", "~> 1.5"
 
   spec.add_development_dependency "debug"
