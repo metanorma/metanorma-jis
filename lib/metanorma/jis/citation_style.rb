@@ -12,9 +12,13 @@ module Metanorma
     # metanorma-iso's deleted 1.x renderer.
     #
     class CitationStyle < ::Relaton::Render::General
+      # The canonical JIS CitationStyle instances, resolved by family name
+      # from the render engine's bundled pack (lib/relaton/render/iso690/
+      # styles/) — the JIS-approved reconciliation (relaton#575). This gem
+      # no longer vendors its own copies (metanorma-jis#551).
       STYLES = {
-        "ja" => File.join(__dir__, "jis-style-ja.yml"),
-        "en" => File.join(__dir__, "jis-style-en.yml"),
+        "ja" => "jis-ja",
+        "en" => "jis-en",
       }.freeze
 
       def style_path(lang)
