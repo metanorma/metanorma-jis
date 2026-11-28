@@ -5,7 +5,7 @@ gemspec
 
 
 gem "metanorma-standoc", "~> 3.5.7" # Standoc::Document rename
-gem "metanorma-document", "~> 0.5.3"
+gem "metanorma-document", "~> 0.5.15"
 gem "isodoc", "~> 3.7.9"
 # The render engine ships inside the consolidated relaton gem (the
 # standalone relaton-render repo is archived; its released 3.0 gem is
