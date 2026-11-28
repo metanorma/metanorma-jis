@@ -719,7 +719,7 @@ GEM
       metanorma-utils
       nokogiri (~> 1.19)
       singleton
-    metanorma-document (0.5.11)
+    metanorma-document (0.5.17)
       base64
       glossarist (~> 2.14)
       isodoc-i18n (~> 1.5)
@@ -733,6 +733,7 @@ GEM
       plurimath (~> 0.11.14)
       pubid (~> 2.0.3)
       relaton (~> 3.1.1)
+      sts (~> 0.6.15)
     metanorma-plugin-glossarist (0.5.12)
       asciidoctor
       glossarist (~> 2.14)
@@ -1292,7 +1293,7 @@ DEPENDENCIES
   isodoc (~> 3.7.9)
   lutaml-model (~> 0.8)
   metanorma-core (~> 0.2.7)
-  metanorma-document (~> 0.5.3)
+  metanorma-document (~> 0.5.15)
   metanorma-iso!
   metanorma-jis!
   metanorma-mirror!
@@ -1480,7 +1481,7 @@ CHECKSUMS
   mechanize (2.14.2) sha256=aaf0a91dad80a2a72f51054780731d42ffed564fc530d6cffa8022717508e23e
   memo_wise (1.13.0) sha256=30220c38c4cef410849bc73553c58664dc2c91c6379e4a1df22aea02358b716b
   metanorma-core (0.2.9) sha256=8bf01ac0328f0d764a94b1bb927a88ca5a1fbb3a64d57dcfc48ffc4107f8b4d4
-  metanorma-document (0.5.11) sha256=966f8157579c093afacc81a1052afe67b2b4e69bd33942b8e70e8577136dcfb2
+  metanorma-document (0.5.17) sha256=ace5e374afddcecc29b159d4fa1c7d230ef2cb5b8f31992c602c0c50ea9f1683
   metanorma-iso (3.5.30)
   metanorma-jis (1.2.5)
   metanorma-mirror (1.0.0)
